@@ -1,0 +1,50 @@
+name: Scrape donor wall
+
+on:
+  repository_dispatch:          # fired by the Pledge webhook (near real-time)
+    types: [donation]
+  schedule:
+    - cron: '*/30 * * * *'      # safety net every 30 min, in case a webhook is missed
+  workflow_dispatch: {}         # manual "Run workflow" button
+
+permissions:
+  contents: write               # allows the job to commit donors.json back
+
+concurrency:
+  group: scrape
+  cancel-in-progress: true      # a newer donation supersedes an in-flight run (it re-scrapes everything)
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm install
+
+      # cache the Chromium download so real-time runs are fast
+      - name: Cache Playwright browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Scrape the wall
+        run: node scrape.js
+
+      - name: Commit donors.json if it changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add donors.json
+          git diff --staged --quiet || git commit -m "Update donors.json [skip ci]"
+          git push
