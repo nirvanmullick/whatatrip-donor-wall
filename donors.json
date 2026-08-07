@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-06T15:10:21.109Z",
+  "updated": "2026-08-07T00:38:08.568Z",
   "count": 11,
   "donors": [
     {
       "name": "Kate Specter",
       "anonymous": false,
       "amount": 100,
-      "time": "13 hours ago",
+      "time": "22 hours ago",
       "comment": "",
       "matched": true
     },
@@ -14,7 +14,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "13 hours ago",
+      "time": "23 hours ago",
       "comment": "",
       "matched": true
     },
@@ -22,7 +22,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "13 hours ago",
+      "time": "23 hours ago",
       "comment": "Mo & Elisa Septimus",
       "matched": false
     },
@@ -30,7 +30,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 500,
-      "time": "16 hours ago",
+      "time": "1 day ago",
       "comment": "",
       "matched": true
     },
@@ -38,7 +38,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 500,
-      "time": "16 hours ago",
+      "time": "1 day ago",
       "comment": "This is Ray and Mary- thrilled to help this film!",
       "matched": false
     },
@@ -46,14 +46,6 @@
       "name": "Elana Horwich",
       "anonymous": false,
       "amount": 3000,
-      "time": "21 hours ago",
-      "comment": "",
-      "matched": true
-    },
-    {
-      "name": "",
-      "anonymous": true,
-      "amount": 5,
       "time": "1 day ago",
       "comment": "",
       "matched": true
@@ -62,7 +54,15 @@
       "name": "",
       "anonymous": true,
       "amount": 5,
-      "time": "1 day ago",
+      "time": "2 days ago",
+      "comment": "",
+      "matched": true
+    },
+    {
+      "name": "",
+      "anonymous": true,
+      "amount": 5,
+      "time": "2 days ago",
       "comment": "<3",
       "matched": false
     },
@@ -70,7 +70,7 @@
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": true
     },
