@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-07T00:38:08.568Z",
+  "updated": "2026-08-07T03:45:30.077Z",
   "count": 11,
   "donors": [
     {
       "name": "Kate Specter",
       "anonymous": false,
       "amount": 100,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "comment": "",
       "matched": true
     },
@@ -14,7 +14,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "comment": "",
       "matched": true
     },
@@ -22,7 +22,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "comment": "Mo & Elisa Septimus",
       "matched": false
     },
