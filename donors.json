@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-10T08:23:50.545Z",
-  "count": 13,
+  "updated": "2026-08-10T09:56:04.059Z",
+  "count": 12,
   "donors": [
     {
       "name": "Tiffany Rochelle",
@@ -22,7 +22,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "comment": "",
       "matched": true
     },
@@ -30,7 +30,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "comment": "the last bit to make the goal!",
       "matched": false
     },
@@ -38,15 +38,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 days ago",
-      "comment": "",
-      "matched": true
-    },
-    {
-      "name": "Thomas Waltcher",
-      "anonymous": false,
-      "amount": 250,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "comment": "",
       "matched": true
     },
@@ -56,7 +48,7 @@
       "amount": 250,
       "time": "3 days ago",
       "comment": "",
-      "matched": false
+      "matched": true
     },
     {
       "name": "Daniel & Kerry McMurtrie",
