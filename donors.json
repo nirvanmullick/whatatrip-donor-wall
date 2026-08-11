@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11T00:01:23.313Z",
+  "updated": "2026-08-11T02:34:00.038Z",
   "count": 12,
   "donors": [
     {
@@ -78,7 +78,7 @@
       "name": "Laura Lochraine",
       "anonymous": false,
       "amount": 3000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": false
     },
