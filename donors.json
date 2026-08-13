@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T01:21:46.852Z",
+  "updated": "2026-08-13T03:38:24.801Z",
   "count": 12,
   "donors": [
     {
@@ -86,7 +86,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": true
     },
@@ -94,7 +94,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "Mo & Elisa Septimus",
       "matched": false
     }
