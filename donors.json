@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-14T20:54:32.741Z",
+  "updated": "2026-08-14T21:19:26.297Z",
   "count": 12,
   "donors": [
     {
       "name": "Sarena Snider",
       "anonymous": false,
       "amount": 4000,
-      "time": "6 hours ago",
+      "time": "7 hours ago",
       "comment": "",
       "matched": false
     },
@@ -30,7 +30,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": true
     },
@@ -38,7 +38,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "the last bit to make the goal!",
       "matched": false
     },
@@ -46,7 +46,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": true
     },
