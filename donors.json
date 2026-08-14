@@ -1,7 +1,15 @@
 {
-  "updated": "2026-08-14T14:11:56.155Z",
+  "updated": "2026-08-14T15:14:22.422Z",
   "count": 12,
   "donors": [
+    {
+      "name": "Sarena Snider",
+      "anonymous": false,
+      "amount": 4000,
+      "time": "35 minutes ago",
+      "comment": "",
+      "matched": false
+    },
     {
       "name": "Tiffany Rochelle",
       "anonymous": false,
@@ -51,20 +59,20 @@
       "matched": true
     },
     {
-      "name": "Daniel & Kerry McMurtrie",
-      "anonymous": false,
-      "amount": 10000,
-      "time": "2 weeks ago",
-      "comment": "Keep up the great work, Rick deserves this to honor his lifetime of work in service to others.",
-      "matched": false
-    },
-    {
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
       "time": "2 weeks ago",
       "comment": "",
       "matched": true
+    },
+    {
+      "name": "Daniel & Kerry McMurtrie",
+      "anonymous": false,
+      "amount": 10000,
+      "time": "2 weeks ago",
+      "comment": "Keep up the great work, Rick deserves this to honor his lifetime of work in service to others.",
+      "matched": false
     },
     {
       "name": "Elana Horwich",
@@ -81,14 +89,6 @@
       "time": "2 weeks ago",
       "comment": "",
       "matched": false
-    },
-    {
-      "name": "Andrew Septimus",
-      "anonymous": false,
-      "amount": 1000,
-      "time": "1 week ago",
-      "comment": "",
-      "matched": true
     },
     {
       "name": "Andrew Septimus",
