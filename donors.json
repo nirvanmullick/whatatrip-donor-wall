@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-14T20:03:15.158Z",
+  "updated": "2026-08-14T20:54:32.741Z",
   "count": 12,
   "donors": [
     {
       "name": "Sarena Snider",
       "anonymous": false,
       "amount": 4000,
-      "time": "5 hours ago",
+      "time": "6 hours ago",
       "comment": "",
       "matched": false
     },
@@ -54,7 +54,7 @@
       "name": "Thomas Waltcher",
       "anonymous": false,
       "amount": 250,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": true
     },
