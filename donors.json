@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-17T07:02:27.419Z",
+  "updated": "2026-08-17T08:06:05.935Z",
   "count": 12,
   "donors": [
     {
@@ -62,7 +62,7 @@
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "comment": "",
       "matched": true
     },
