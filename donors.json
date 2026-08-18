@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T09:03:46.247Z",
+  "updated": "2026-08-18T09:56:47.152Z",
   "count": 12,
   "donors": [
     {
@@ -30,7 +30,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "",
       "matched": true
     },
@@ -38,7 +38,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "the last bit to make the goal!",
       "matched": false
     },
