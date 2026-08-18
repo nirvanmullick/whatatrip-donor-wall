@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T07:32:31.036Z",
+  "updated": "2026-08-18T08:28:23.121Z",
   "count": 12,
   "donors": [
     {
@@ -54,7 +54,7 @@
       "name": "Thomas Waltcher",
       "anonymous": false,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "",
       "matched": true
     },
