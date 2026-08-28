@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T18:21:32.868Z",
+  "updated": "2026-08-28T02:15:11.397Z",
   "count": 12,
   "donors": [
     {
@@ -14,7 +14,7 @@
       "name": "Daniel McMurtrie",
       "anonymous": false,
       "amount": 10000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "",
       "matched": false
     },
@@ -67,14 +67,6 @@
       "matched": true
     },
     {
-      "name": "Daniel & Kerry McMurtrie",
-      "anonymous": false,
-      "amount": 10000,
-      "time": "4 weeks ago",
-      "comment": "Keep up the great work, Rick deserves this to honor his lifetime of work in service to others.",
-      "matched": false
-    },
-    {
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
@@ -96,6 +88,14 @@
       "amount": 3000,
       "time": "3 weeks ago",
       "comment": "",
+      "matched": false
+    },
+    {
+      "name": "Andrew Septimus",
+      "anonymous": false,
+      "amount": 1000,
+      "time": "3 weeks ago",
+      "comment": "Mo & Elisa Septimus",
       "matched": false
     }
   ]
