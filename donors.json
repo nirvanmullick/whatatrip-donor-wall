@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-01T06:27:16.483Z",
+  "updated": "2026-09-01T11:54:24.618Z",
   "count": 12,
   "donors": [
     {
       "name": "",
       "anonymous": true,
       "amount": 5,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "",
       "matched": false
     },
@@ -46,7 +46,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "comment": "",
       "matched": true
     },
@@ -54,7 +54,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 50,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "comment": "the last bit to make the goal!",
       "matched": false
     },
@@ -62,7 +62,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "comment": "",
       "matched": true
     },
