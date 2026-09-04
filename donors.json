@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T17:19:44.275Z",
+  "updated": "2026-09-04T19:45:32.726Z",
   "count": 12,
   "donors": [
     {
@@ -78,7 +78,7 @@
       "name": "Elana Horwich",
       "anonymous": false,
       "amount": 3000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "comment": "",
       "matched": true
     },
