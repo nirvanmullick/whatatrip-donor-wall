@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-19T19:53:30.264Z",
+  "updated": "2026-09-19T22:01:42.125Z",
   "count": 13,
   "donors": [
     {
@@ -22,7 +22,7 @@
       "name": "Daniel McMurtrie",
       "anonymous": false,
       "amount": 10000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "comment": "",
       "matched": false
     },
