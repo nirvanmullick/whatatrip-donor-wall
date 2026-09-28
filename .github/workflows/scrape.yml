@@ -1,22 +1,30 @@
 name: Scrape donor wall
 
+# v2 (2026-09-28): reads Pledge's JSON feed directly -- no browser, runs in ~10 seconds.
 on:
-  repository_dispatch:          # fired by the Pledge webhook (near real-time)
+  repository_dispatch:          # fired by the Pledge webhook (near real-time), once that's wired up
     types: [donation]
   schedule:
-    - cron: '*/30 * * * *'      # safety net every 30 min, in case a webhook is missed
-  workflow_dispatch: {}         # manual "Run workflow" button
+    - cron: '7,22,37,52 * * * *'   # every 15 min, off the top of the hour (GitHub delays :00 jobs most)
+    - cron: '17 9 * * *'           # once a day, walk the ENTIRE list
+  workflow_dispatch:            # manual "Run workflow" button
+    inputs:
+      full_sync:
+        description: 'Walk the entire donation list'
+        type: boolean
+        default: true
 
 permissions:
   contents: write               # allows the job to commit donors.json back
 
 concurrency:
   group: scrape
-  cancel-in-progress: true      # a newer donation supersedes an in-flight run (it re-scrapes everything)
+  cancel-in-progress: false     # let a run finish; the next one picks up anything newer
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -24,21 +32,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install deps
-        run: npm install
-
-      # cache the Chromium download so real-time runs are fast
-      - name: Cache Playwright browser
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-chromium
-
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Scrape the wall
+      - name: Read Pledge and update donors.json
         run: node scrape.js
+        env:
+          FULL_SYNC: ${{ (github.event.schedule == '17 9 * * *' || inputs.full_sync) && '1' || '' }}
+          MIN_GIFTS: '20'
 
       - name: Commit donors.json if it changed
         run: |
@@ -46,4 +44,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add donors.json
           git diff --staged --quiet || git commit -m "Update donors.json [skip ci]"
+          git pull --rebase --autostash || true
           git push
