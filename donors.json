@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-28T19:42:06.042Z",
+  "updated": "2026-09-28T23:58:41.252Z",
   "count": 27,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "57 minutes ago",
+      "time": "5 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -32,7 +32,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -40,7 +40,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -48,7 +48,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -56,7 +56,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -65,7 +65,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "16 hours ago",
+      "time": "21 hours ago",
       "matched": true
     },
     {
@@ -74,7 +74,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "17 hours ago",
+      "time": "21 hours ago",
       "matched": true
     },
     {
@@ -82,7 +82,7 @@
       "ts": "2026-09-27T16:56:11.258-07:00",
       "anonymous": true,
       "amount": 10,
-      "time": "20 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -91,7 +91,7 @@
       "name": "Anthony Greenberg",
       "anonymous": false,
       "amount": 500,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
