@@ -1,102 +1,252 @@
 {
-  "updated": "2026-09-28T12:37:12.452Z",
-  "count": 12,
+  "updated": "2026-09-28T19:42:06.042Z",
+  "count": 27,
+  "source": "pledge-json-v2",
+  "totals": {
+    "raised": 39738,
+    "raised_with_matching": 62461,
+    "goal": 150000,
+    "donors": 27
+  },
   "donors": [
     {
-      "name": "",
-      "anonymous": true,
-      "amount": 200,
-      "time": "8 hours ago",
-      "comment": "",
+      "id": 33335791,
+      "ts": "2026-09-28T11:45:20.000-07:00",
+      "name": "David Segall",
+      "anonymous": false,
+      "amount": 8,
+      "time": "57 minutes ago",
       "matched": true
     },
     {
+      "id": 33331187,
+      "ts": "2026-09-27T21:09:57.083-07:00",
+      "anonymous": true,
+      "amount": 200,
+      "time": "16 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33330897,
+      "ts": "2026-09-27T20:32:03.158-07:00",
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "9 hours ago",
-      "comment": "",
+      "time": "16 hours ago",
       "matched": true
     },
     {
-      "name": "",
+      "id": 33330895,
+      "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "9 hours ago",
-      "comment": "",
+      "time": "16 hours ago",
       "matched": true
     },
     {
-      "name": "",
+      "id": 33330891,
+      "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "9 hours ago",
-      "comment": "",
+      "time": "16 hours ago",
       "matched": true
     },
     {
-      "name": "",
+      "id": 33330886,
+      "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "9 hours ago",
-      "comment": "",
+      "time": "16 hours ago",
       "matched": true
     },
     {
-      "name": "Peter Kennedy",
+      "id": 33330858,
+      "ts": "2026-09-27T20:22:42.964-07:00",
+      "name": "Thomas Aarts",
       "anonymous": false,
-      "amount": 10000,
-      "time": "2 months ago",
-      "comment": "",
+      "amount": 200,
+      "time": "16 hours ago",
       "matched": true
     },
     {
+      "id": 33330583,
+      "ts": "2026-09-27T19:47:43.294-07:00",
+      "name": "Vincent Nance",
+      "anonymous": false,
+      "amount": 250,
+      "time": "17 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33328457,
+      "ts": "2026-09-27T16:56:11.258-07:00",
+      "anonymous": true,
+      "amount": 10,
+      "time": "20 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33326207,
+      "ts": "2026-09-27T13:47:21.525-07:00",
+      "name": "Anthony Greenberg",
+      "anonymous": false,
+      "amount": 500,
+      "time": "23 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33057883,
+      "ts": "2026-09-06T16:53:08.987-07:00",
+      "name": "Hari Mohanan",
+      "anonymous": false,
+      "amount": 10,
+      "time": "3 weeks ago",
+      "matched": false
+    },
+    {
+      "id": 32733056,
+      "ts": "2026-08-21T13:57:27.587-07:00",
+      "anonymous": true,
+      "amount": 5,
+      "time": "1 month ago",
+      "matched": false
+    },
+    {
+      "id": 32715856,
+      "ts": "2026-08-20T14:02:39.404-07:00",
       "name": "Daniel McMurtrie",
       "anonymous": false,
       "amount": 10000,
       "time": "1 month ago",
-      "comment": "",
       "matched": false
     },
     {
-      "name": "Eva Dillon",
-      "anonymous": false,
-      "amount": 5000,
-      "time": "2 months ago",
-      "comment": "",
-      "matched": true
-    },
-    {
+      "id": 32624321,
+      "ts": "2026-08-14T07:39:20.777-07:00",
       "name": "Sarena Snider",
       "anonymous": false,
       "amount": 4000,
       "time": "1 month ago",
-      "comment": "",
       "matched": false
     },
     {
-      "name": "Elana Horwich",
+      "id": 32586562,
+      "ts": "2026-08-07T18:25:35.819-07:00",
+      "name": "Tiffany Rochelle",
       "anonymous": false,
-      "amount": 3000,
+      "amount": 500,
       "time": "2 months ago",
-      "comment": "",
       "matched": true
     },
     {
-      "name": "Laura Lochraine",
-      "anonymous": false,
-      "amount": 3000,
+      "id": 32586393,
+      "ts": "2026-08-07T17:32:29.002-07:00",
+      "anonymous": true,
+      "amount": 250,
       "time": "2 months ago",
-      "comment": "",
-      "matched": false
+      "matched": true
     },
     {
+      "id": 32585474,
+      "ts": "2026-08-07T14:04:12.143-07:00",
+      "name": "Mary Dohrmann",
+      "anonymous": false,
+      "amount": 50,
+      "time": "2 months ago",
+      "comment": "the last bit to make the goal!",
+      "matched": true
+    },
+    {
+      "id": 32585439,
+      "ts": "2026-08-07T13:58:45.424-07:00",
+      "name": "Eva Dillon",
+      "anonymous": false,
+      "amount": 5000,
+      "time": "2 months ago",
+      "matched": true
+    },
+    {
+      "id": 32585320,
+      "ts": "2026-08-07T13:23:49.122-07:00",
+      "name": "Thomas Waltcher",
+      "anonymous": false,
+      "amount": 250,
+      "time": "2 months ago",
+      "matched": true
+    },
+    {
+      "id": 32576960,
+      "ts": "2026-08-05T19:18:45.602-07:00",
+      "name": "Kate Specter",
+      "anonymous": false,
+      "amount": 100,
+      "time": "2 months ago",
+      "matched": true
+    },
+    {
+      "id": 32576894,
+      "ts": "2026-08-05T18:47:33.245-07:00",
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
       "time": "2 months ago",
       "comment": "Mo & Elisa Septimus",
+      "matched": true
+    },
+    {
+      "id": 32576439,
+      "ts": "2026-08-05T16:22:47.457-07:00",
+      "name": "Mary Dohrmann",
+      "anonymous": false,
+      "amount": 500,
+      "time": "2 months ago",
+      "comment": "This is Ray and Mary- thrilled to help this film!",
+      "matched": true
+    },
+    {
+      "id": 32575362,
+      "ts": "2026-08-05T11:28:24.588-07:00",
+      "name": "Elana Horwich",
+      "anonymous": false,
+      "amount": 3000,
+      "time": "2 months ago",
+      "matched": true
+    },
+    {
+      "id": 32573196,
+      "ts": "2026-08-04T23:23:51.700-07:00",
+      "anonymous": true,
+      "amount": 5,
+      "time": "2 months ago",
+      "comment": "<3",
+      "matched": true
+    },
+    {
+      "id": 32568879,
+      "ts": "2026-08-03T18:44:27.097-07:00",
+      "name": "Laura Lochraine",
+      "anonymous": false,
+      "amount": 3000,
+      "time": "2 months ago",
       "matched": false
+    },
+    {
+      "id": 32546283,
+      "ts": "2026-07-30T12:53:14.979-07:00",
+      "name": "Peter Kennedy",
+      "anonymous": false,
+      "amount": 10000,
+      "time": "2 months ago",
+      "matched": true
+    },
+    {
+      "id": 32545959,
+      "ts": "2026-07-30T11:25:25.423-07:00",
+      "name": "Charles Johnston",
+      "anonymous": false,
+      "amount": 100,
+      "time": "2 months ago",
+      "matched": true
     }
   ]
 }
