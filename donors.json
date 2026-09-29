@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T05:36:55.676Z",
+  "updated": "2026-09-29T11:34:27.075Z",
   "count": 27,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "11 hours ago",
+      "time": "17 hours ago",
       "matched": true
     },
     {
@@ -91,7 +91,7 @@
       "name": "Anthony Greenberg",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -126,7 +126,7 @@
       "name": "Sarena Snider",
       "anonymous": false,
       "amount": 4000,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": false
     },
     {
