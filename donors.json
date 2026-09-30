@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T15:57:35.962Z",
+  "updated": "2026-09-30T22:12:06.143Z",
   "count": 27,
   "source": "pledge-json-v2",
   "totals": {
@@ -23,7 +23,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
