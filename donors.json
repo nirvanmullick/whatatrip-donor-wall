@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01T01:20:14.570Z",
+  "updated": "2026-10-01T07:19:25.331Z",
   "count": 27,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
