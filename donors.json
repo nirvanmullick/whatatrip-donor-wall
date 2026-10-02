@@ -1,21 +1,56 @@
 {
-  "updated": "2026-10-02T20:10:53.238Z",
-  "count": 30,
+  "updated": "2026-10-02T23:51:48.435Z",
+  "count": 34,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 40918,
-    "raised_with_matching": 64821,
+    "raised": 45983,
+    "raised_with_matching": 74951,
     "goal": 150000,
-    "donors": 30
+    "donors": 34
   },
   "donors": [
+    {
+      "id": 33380796,
+      "ts": "2026-10-02T16:01:10.009-07:00",
+      "anonymous": true,
+      "amount": 5000,
+      "time": "51 minutes ago",
+      "matched": true
+    },
+    {
+      "id": 33380326,
+      "ts": "2026-10-02T14:28:29.008-07:00",
+      "name": "jackie ivy",
+      "anonymous": false,
+      "amount": 25,
+      "time": "2 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33373365,
+      "ts": "2026-10-02T13:52:00.790-07:00",
+      "name": "Alexis Slutzky",
+      "anonymous": false,
+      "amount": 25,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33373042,
+      "ts": "2026-10-02T13:22:24.076-07:00",
+      "name": "Michelle Ellison",
+      "anonymous": false,
+      "amount": 15,
+      "time": "3 hours ago",
+      "matched": true
+    },
     {
       "id": 33368646,
       "ts": "2026-10-02T05:28:28.824-07:00",
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "8 hours ago",
+      "time": "11 hours ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️ / Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
     },
@@ -24,7 +59,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -33,7 +68,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "17 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
