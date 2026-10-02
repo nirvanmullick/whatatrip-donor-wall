@@ -1,20 +1,30 @@
 {
-  "updated": "2026-10-02T08:58:24.191Z",
-  "count": 29,
+  "updated": "2026-10-02T15:44:09.793Z",
+  "count": 30,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 40418,
-    "raised_with_matching": 63821,
+    "raised": 40918,
+    "raised_with_matching": 64821,
     "goal": 150000,
-    "donors": 29
+    "donors": 30
   },
   "donors": [
+    {
+      "id": 33368646,
+      "ts": "2026-10-02T05:28:28.824-07:00",
+      "name": "Bradford Bancroft",
+      "anonymous": false,
+      "amount": 500,
+      "time": "3 hours ago",
+      "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️ / Thank you so much, Bradford! Super appreciate the support!",
+      "matched": true
+    },
     {
       "id": 33366482,
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "5 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -23,7 +33,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "5 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -49,7 +59,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -57,7 +67,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -65,7 +75,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -73,7 +83,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -82,7 +92,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -91,7 +101,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -99,7 +109,7 @@
       "ts": "2026-09-27T16:56:11.258-07:00",
       "anonymous": true,
       "amount": 10,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
