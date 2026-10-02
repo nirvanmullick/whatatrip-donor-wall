@@ -1,21 +1,38 @@
 {
-  "updated": "2026-10-02T02:33:22.480Z",
-  "count": 27,
+  "updated": "2026-10-02T08:58:24.191Z",
+  "count": 29,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 39738,
-    "raised_with_matching": 62461,
+    "raised": 40418,
+    "raised_with_matching": 63821,
     "goal": 150000,
-    "donors": 27
+    "donors": 29
   },
   "donors": [
+    {
+      "id": 33366482,
+      "ts": "2026-10-01T20:48:05.576-07:00",
+      "anonymous": true,
+      "amount": 500,
+      "time": "5 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33366462,
+      "ts": "2026-10-01T20:40:39.201-07:00",
+      "name": "Dan Fleitman Broder",
+      "anonymous": false,
+      "amount": 180,
+      "time": "5 hours ago",
+      "matched": true
+    },
     {
       "id": 33335791,
       "ts": "2026-09-28T11:45:20.000-07:00",
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -91,7 +108,7 @@
       "name": "Anthony Greenberg",
       "anonymous": false,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
