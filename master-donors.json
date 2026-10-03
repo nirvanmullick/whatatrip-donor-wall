@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-03T04:47:58.895Z",
- "count": 237,
+ "updated": "2026-10-03T04:48:36.729Z",
+ "count": 238,
  "gifts": [
+  {
+   "date": "2026-10-02T21:01:46.652-07:00",
+   "name": "ALI RAD",
+   "name_on_record": "ALI RAD",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33381889,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-02T16:01:10.009-07:00",
    "name": "",
