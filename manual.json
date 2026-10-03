@@ -1,0 +1,1248 @@
+{
+ "updated": "2026-10-03T04:47:58.889Z",
+ "count": 203,
+ "gifts": [
+  {
+   "ts": "2026-08-08T09:00:00",
+   "amount": 30000,
+   "source": "private",
+   "name": "Rachel Hamilton"
+  },
+  {
+   "ts": "2026-06-15T12:05:00",
+   "amount": 5000,
+   "source": "networkforgood",
+   "name": "Elise Fried"
+  },
+  {
+   "ts": "2026-06-15T12:04:00",
+   "amount": 100,
+   "source": "networkforgood",
+   "name": "Melanie Hoopes"
+  },
+  {
+   "ts": "2026-06-15T12:03:00",
+   "amount": 100,
+   "source": "networkforgood",
+   "name": "Daisy Pommer"
+  },
+  {
+   "ts": "2026-06-15T12:02:00",
+   "amount": 242,
+   "source": "networkforgood",
+   "name": "Vicky Marchand"
+  },
+  {
+   "ts": "2026-06-15T12:01:00",
+   "amount": 5000,
+   "source": "networkforgood",
+   "name": "Bruce Rudolph"
+  },
+  {
+   "ts": "2026-06-15T12:00:00",
+   "amount": 5000,
+   "source": "networkforgood",
+   "name": "Rosalie Tolson"
+  },
+  {
+   "ts": "2026-06-15T09:00:00",
+   "amount": 25000,
+   "source": "private",
+   "name": "Rachel Hamilton"
+  },
+  {
+   "ts": "2025-12-15T09:00:00",
+   "amount": 60000,
+   "source": "private",
+   "name": "Rachel Hamilton"
+  },
+  {
+   "ts": "2025-07-15T09:00:00",
+   "amount": 50000,
+   "source": "private",
+   "name": "Rachel Hamilton"
+  },
+  {
+   "ts": "2024-11-16T10:18:00",
+   "amount": 60,
+   "source": "gofundme",
+   "name": "Gabriel Frank"
+  },
+  {
+   "ts": "2024-09-30T12:00:00",
+   "amount": 25000,
+   "source": "private",
+   "name": "Thor Halvorssen",
+   "legacy": true
+  },
+  {
+   "ts": "2024-09-30T12:00:00",
+   "amount": 25000,
+   "source": "private",
+   "name": "Lyn Lear",
+   "legacy": true
+  },
+  {
+   "ts": "2024-07-29T15:54:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Lincoln Stewart"
+  },
+  {
+   "ts": "2024-04-12T11:26:00",
+   "amount": 500,
+   "source": "gofundme",
+   "name": "Paul Lieberman"
+  },
+  {
+   "ts": "2024-03-27T12:00:00",
+   "amount": 4000,
+   "source": "private",
+   "name": "Roman Tsunder",
+   "legacy": true
+  },
+  {
+   "ts": "2024-01-18T18:42:00",
+   "amount": 60,
+   "source": "gofundme",
+   "name": "Eric Braun"
+  },
+  {
+   "ts": "2023-09-30T12:00:00",
+   "amount": 50000,
+   "source": "private",
+   "name": "Blake Mycoskie",
+   "legacy": true
+  },
+  {
+   "ts": "2023-07-21T08:07:00",
+   "amount": 5,
+   "source": "gofundme",
+   "name": "Paul Newman"
+  },
+  {
+   "ts": "2023-07-20T14:57:00",
+   "amount": 10,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-19T22:12:00",
+   "amount": 10,
+   "source": "gofundme",
+   "name": "Samir Shrestha"
+  },
+  {
+   "ts": "2023-07-19T05:50:00",
+   "amount": 500,
+   "source": "gofundme",
+   "name": "Gagan Levy"
+  },
+  {
+   "ts": "2023-07-18T13:51:00",
+   "amount": 23,
+   "source": "gofundme",
+   "name": "diego seliman"
+  },
+  {
+   "ts": "2023-07-17T22:15:00",
+   "amount": 2000,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-17T07:01:00",
+   "amount": 111,
+   "source": "gofundme",
+   "name": "Catherine Moses"
+  },
+  {
+   "ts": "2023-07-16T16:08:00",
+   "amount": 100,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-16T01:35:00",
+   "amount": 500,
+   "source": "gofundme",
+   "name": "Ina Sofia Kalo"
+  },
+  {
+   "ts": "2023-07-15T11:24:00",
+   "amount": 133,
+   "source": "gofundme",
+   "name": "Magalie Bonneau"
+  },
+  {
+   "ts": "2023-07-14T21:32:00",
+   "amount": 500,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-14T07:59:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Gwenaelle Gobe",
+   "comment": "Woohoo!"
+  },
+  {
+   "ts": "2023-07-13T18:46:00",
+   "amount": 150,
+   "source": "gofundme",
+   "name": "Cory Reddish"
+  },
+  {
+   "ts": "2023-07-13T05:51:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Sarah Berner"
+  },
+  {
+   "ts": "2023-07-12T17:14:00",
+   "amount": 10,
+   "source": "gofundme",
+   "name": "Joshua Epstein",
+   "comment": "Rick’s work and story deserve to be known by the world!"
+  },
+  {
+   "ts": "2023-07-12T04:55:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Agustina Ferguson"
+  },
+  {
+   "ts": "2023-07-11T16:54:00",
+   "amount": 200,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-11T05:09:00",
+   "amount": 100,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-10T17:41:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Fanny R Bangoura"
+  },
+  {
+   "ts": "2023-07-10T06:28:00",
+   "amount": 250,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-09T19:32:00",
+   "amount": 170,
+   "source": "gofundme",
+   "name": "Catherine Campion",
+   "comment": "the world needs A LOT of healing, and psychedelic medicines are one of the ways we can do that! Thank you, Nirvan, Dream, and Rick for your service to the human race."
+  },
+  {
+   "ts": "2023-07-09T08:51:00",
+   "amount": 333,
+   "source": "gofundme",
+   "name": "Elana Horwich"
+  },
+  {
+   "ts": "2023-07-08T22:24:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Jennifer Hale"
+  },
+  {
+   "ts": "2023-07-08T12:13:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "John Quigley"
+  },
+  {
+   "ts": "2023-07-08T02:16:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Bobbi Dunphy"
+  },
+  {
+   "ts": "2023-07-07T16:32:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Siobhan Franklin"
+  },
+  {
+   "ts": "2023-07-07T07:03:00",
+   "amount": 15,
+   "source": "gofundme",
+   "name": "Alexander Nantschev"
+  },
+  {
+   "ts": "2023-07-06T21:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-06T12:43:00",
+   "amount": 33,
+   "source": "gofundme",
+   "name": "Alexis Slutzky"
+  },
+  {
+   "ts": "2023-07-06T03:53:00",
+   "amount": 20,
+   "source": "gofundme",
+   "name": "Seth Ream"
+  },
+  {
+   "ts": "2023-07-05T19:15:00",
+   "amount": 30,
+   "source": "gofundme",
+   "name": "Robin Willoughby"
+  },
+  {
+   "ts": "2023-07-05T10:48:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-07-05T02:34:00",
+   "amount": 30,
+   "source": "gofundme",
+   "name": "Judy Levitow"
+  },
+  {
+   "ts": "2023-07-04T18:32:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Gwen Gordon"
+  },
+  {
+   "ts": "2023-07-04T10:40:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Ethan Colburn"
+  },
+  {
+   "ts": "2023-07-04T03:00:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "CiNdy Stein"
+  },
+  {
+   "ts": "2023-07-03T19:30:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Charles Johnston"
+  },
+  {
+   "ts": "2023-07-03T12:11:00",
+   "amount": 500,
+   "source": "gofundme",
+   "name": "Christine Mason"
+  },
+  {
+   "ts": "2023-07-03T05:03:00",
+   "amount": 250,
+   "source": "gofundme",
+   "name": "Kimberly Rael"
+  },
+  {
+   "ts": "2023-07-02T22:04:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Kaia Roman"
+  },
+  {
+   "ts": "2023-07-02T15:15:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Soyona Rafatjah"
+  },
+  {
+   "ts": "2023-07-02T08:36:00",
+   "amount": 20,
+   "source": "gofundme",
+   "name": "Cameron Price"
+  },
+  {
+   "ts": "2023-07-02T02:05:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Amy Emerson"
+  },
+  {
+   "ts": "2023-07-01T19:45:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Charles Mayo"
+  },
+  {
+   "ts": "2023-07-01T13:33:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Michael Johnson"
+  },
+  {
+   "ts": "2023-07-01T07:29:00",
+   "amount": 40,
+   "source": "gofundme",
+   "name": "Conor Watters"
+  },
+  {
+   "ts": "2023-07-01T01:34:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Adrian Tannler"
+  },
+  {
+   "ts": "2023-06-30T19:48:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Suzanne Marie"
+  },
+  {
+   "ts": "2023-06-30T14:10:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Liliana Galindo Guarin"
+  },
+  {
+   "ts": "2023-06-30T08:39:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Lawrence Cormier"
+  },
+  {
+   "ts": "2023-06-30T03:16:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Jason Starr"
+  },
+  {
+   "ts": "2023-06-29T22:01:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "claudia vaisman angulo"
+  },
+  {
+   "ts": "2023-06-29T16:53:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Venessa McBrearty"
+  },
+  {
+   "ts": "2023-06-29T11:53:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-29T06:59:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Norma Kim"
+  },
+  {
+   "ts": "2023-06-29T02:12:00",
+   "amount": 5,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-28T21:32:00",
+   "amount": 5,
+   "source": "gofundme",
+   "name": "Laura Pustarfi"
+  },
+  {
+   "ts": "2023-06-28T16:59:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Kelsy Williams"
+  },
+  {
+   "ts": "2023-06-28T12:32:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Amber Livingston"
+  },
+  {
+   "ts": "2023-06-28T12:00:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Laura Lochrane"
+  },
+  {
+   "ts": "2023-06-28T08:11:00",
+   "amount": 60,
+   "source": "gofundme",
+   "name": "Alex Kuznetsov"
+  },
+  {
+   "ts": "2023-06-28T03:56:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Ashley Palmer"
+  },
+  {
+   "ts": "2023-06-27T23:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Nicole Yang"
+  },
+  {
+   "ts": "2023-06-27T19:44:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Lorne Gertner"
+  },
+  {
+   "ts": "2023-06-27T15:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Parham Albadvi"
+  },
+  {
+   "ts": "2023-06-27T11:55:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Valeria McCarroll"
+  },
+  {
+   "ts": "2023-06-27T08:09:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-27T04:28:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Cole Moffatt"
+  },
+  {
+   "ts": "2023-06-27T00:52:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Randy Baird"
+  },
+  {
+   "ts": "2023-06-26T21:21:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Katrina Limbach"
+  },
+  {
+   "ts": "2023-06-26T17:56:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Mary Mahood"
+  },
+  {
+   "ts": "2023-06-26T14:35:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Matthew Roberts"
+  },
+  {
+   "ts": "2023-06-26T11:18:00",
+   "amount": 40,
+   "source": "gofundme",
+   "name": "Abigale Layman"
+  },
+  {
+   "ts": "2023-06-26T08:06:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "DAVID BOYER"
+  },
+  {
+   "ts": "2023-06-26T04:59:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Grey Gorman"
+  },
+  {
+   "ts": "2023-06-26T01:56:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Tatyana Kholodkov"
+  },
+  {
+   "ts": "2023-06-25T22:58:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "aaron batt"
+  },
+  {
+   "ts": "2023-06-25T20:03:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Becca Black (Beau & Bex)"
+  },
+  {
+   "ts": "2023-06-25T17:13:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-25T14:27:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Christoph Hofbauer"
+  },
+  {
+   "ts": "2023-06-25T11:44:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Will Rowe"
+  },
+  {
+   "ts": "2023-06-25T09:05:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Meghan Brown"
+  },
+  {
+   "ts": "2023-06-25T06:30:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Natasha Lacy"
+  },
+  {
+   "ts": "2023-06-25T03:59:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "McKayan May"
+  },
+  {
+   "ts": "2023-06-25T01:31:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Andrea Moorer"
+  },
+  {
+   "ts": "2023-06-24T23:07:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Kylie O'Brien"
+  },
+  {
+   "ts": "2023-06-24T20:46:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "kristy romanowski"
+  },
+  {
+   "ts": "2023-06-24T18:28:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Fanicy Sears"
+  },
+  {
+   "ts": "2023-06-24T16:14:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Katherine Kincaid"
+  },
+  {
+   "ts": "2023-06-24T14:03:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Kerry Marumoto"
+  },
+  {
+   "ts": "2023-06-24T11:54:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Shaina Hesla"
+  },
+  {
+   "ts": "2023-06-24T09:49:00",
+   "amount": 15,
+   "source": "gofundme",
+   "name": "ola may"
+  },
+  {
+   "ts": "2023-06-24T07:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Brianna Duval"
+  },
+  {
+   "ts": "2023-06-24T05:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Lyndsey Ryan"
+  },
+  {
+   "ts": "2023-06-24T03:51:00",
+   "amount": 75,
+   "source": "gofundme",
+   "name": "Patrick Webb"
+  },
+  {
+   "ts": "2023-06-24T01:57:00",
+   "amount": 10,
+   "source": "gofundme",
+   "name": "Michelle Landon"
+  },
+  {
+   "ts": "2023-06-24T00:06:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Lori Losen"
+  },
+  {
+   "ts": "2023-06-23T22:17:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Cat Maria"
+  },
+  {
+   "ts": "2023-06-23T20:31:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "James Stewart"
+  },
+  {
+   "ts": "2023-06-23T18:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Sophia Bond"
+  },
+  {
+   "ts": "2023-06-23T17:06:00",
+   "amount": 125,
+   "source": "gofundme",
+   "name": "Richard Woodruff"
+  },
+  {
+   "ts": "2023-06-23T15:27:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "RUBY SEGOVIA"
+  },
+  {
+   "ts": "2023-06-23T13:51:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Charles Alovisetti"
+  },
+  {
+   "ts": "2023-06-23T12:16:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Andrew Ninnemann"
+  },
+  {
+   "ts": "2023-06-23T10:44:00",
+   "amount": 60,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-23T09:14:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "David Sanders"
+  },
+  {
+   "ts": "2023-06-23T07:47:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Bethany Mealy"
+  },
+  {
+   "ts": "2023-06-23T06:21:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "David Friedman"
+  },
+  {
+   "ts": "2023-06-23T04:57:00",
+   "amount": 125,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-23T03:35:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Matt Buzas"
+  },
+  {
+   "ts": "2023-06-23T02:15:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Megan Portnoy"
+  },
+  {
+   "ts": "2023-06-23T00:57:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Jenelle Becerra"
+  },
+  {
+   "ts": "2023-06-22T23:41:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Calvin Styrczula"
+  },
+  {
+   "ts": "2023-06-22T22:27:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Nicole Olsen"
+  },
+  {
+   "ts": "2023-06-22T21:14:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Sabrina Hadeed"
+  },
+  {
+   "ts": "2023-06-22T20:03:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Mary Sellars"
+  },
+  {
+   "ts": "2023-06-22T18:54:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Patrick Devitt"
+  },
+  {
+   "ts": "2023-06-22T17:46:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Julie Wang"
+  },
+  {
+   "ts": "2023-06-22T16:40:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Shelby Didkin"
+  },
+  {
+   "ts": "2023-06-22T15:36:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Hideaki Takeuchi"
+  },
+  {
+   "ts": "2023-06-22T14:33:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Ashley Palmer"
+  },
+  {
+   "ts": "2023-06-22T13:31:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Jason Wallach"
+  },
+  {
+   "ts": "2023-06-22T12:31:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Paul Renn"
+  },
+  {
+   "ts": "2023-06-22T11:32:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Andrea Earlywine"
+  },
+  {
+   "ts": "2023-06-22T10:35:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Paul Renn"
+  },
+  {
+   "ts": "2023-06-22T09:39:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Krista Hartin"
+  },
+  {
+   "ts": "2023-06-22T08:44:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Lori Losen"
+  },
+  {
+   "ts": "2023-06-22T07:51:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Jon Evens"
+  },
+  {
+   "ts": "2023-06-22T06:59:00",
+   "amount": 5,
+   "source": "gofundme",
+   "name": "Mary DuBose Stewart"
+  },
+  {
+   "ts": "2023-06-22T06:08:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Nicola King"
+  },
+  {
+   "ts": "2023-06-22T05:18:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Susannah Mars"
+  },
+  {
+   "ts": "2023-06-22T04:29:00",
+   "amount": 20,
+   "source": "gofundme",
+   "name": "Portia Cue"
+  },
+  {
+   "ts": "2023-06-22T03:42:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Lisa Ceremsak"
+  },
+  {
+   "ts": "2023-06-22T02:55:00",
+   "amount": 53,
+   "source": "gofundme",
+   "name": "james leathem"
+  },
+  {
+   "ts": "2023-06-22T02:10:00",
+   "amount": 53,
+   "source": "gofundme",
+   "name": "Sara Herman"
+  },
+  {
+   "ts": "2023-06-22T01:26:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Meredith Thomas"
+  },
+  {
+   "ts": "2023-06-22T00:43:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Randy Sappington"
+  },
+  {
+   "ts": "2023-06-22T00:01:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Ajay D"
+  },
+  {
+   "ts": "2023-06-21T23:19:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Aria McLauchlan"
+  },
+  {
+   "ts": "2023-06-21T22:39:00",
+   "amount": 5,
+   "source": "gofundme",
+   "name": "Seth Peschansky"
+  },
+  {
+   "ts": "2023-06-21T22:00:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Brianna Reising"
+  },
+  {
+   "ts": "2023-06-21T21:22:00",
+   "amount": 500,
+   "source": "gofundme",
+   "name": "Harley Cross"
+  },
+  {
+   "ts": "2023-06-21T20:44:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Sandeep Sabhlok"
+  },
+  {
+   "ts": "2023-06-21T20:08:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "alice lin",
+   "comment": "Go Mullicks go!!! Thank you for telling this story!!"
+  },
+  {
+   "ts": "2023-06-21T19:32:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Bruce Lambert"
+  },
+  {
+   "ts": "2023-06-21T18:57:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Julie Reichenberger"
+  },
+  {
+   "ts": "2023-06-21T18:23:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Valeria Pulgar"
+  },
+  {
+   "ts": "2023-06-21T17:50:00",
+   "amount": 40,
+   "source": "gofundme",
+   "name": "Lisa Layman"
+  },
+  {
+   "ts": "2023-06-21T17:17:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Alan Anick"
+  },
+  {
+   "ts": "2023-06-21T16:45:00",
+   "amount": 50,
+   "source": "gofundme",
+   "anonymous": true
+  },
+  {
+   "ts": "2023-06-21T16:14:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "J Klein"
+  },
+  {
+   "ts": "2023-06-21T15:44:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Trevor Christiansen",
+   "comment": "Thank you guys for all you do!"
+  },
+  {
+   "ts": "2023-06-21T15:15:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Zeberiah Scheffler"
+  },
+  {
+   "ts": "2023-06-21T14:46:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Philip Eichhorn"
+  },
+  {
+   "ts": "2023-06-21T14:18:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Edyta C"
+  },
+  {
+   "ts": "2023-06-21T13:50:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Stephanie Lary"
+  },
+  {
+   "ts": "2023-06-21T13:23:00",
+   "amount": 400,
+   "source": "gofundme",
+   "name": "Alexis Bryant"
+  },
+  {
+   "ts": "2023-06-21T12:57:00",
+   "amount": 85,
+   "source": "gofundme",
+   "name": "Karen Alter-Reid"
+  },
+  {
+   "ts": "2023-06-21T12:31:00",
+   "amount": 90,
+   "source": "gofundme",
+   "name": "Matthew Marks"
+  },
+  {
+   "ts": "2023-06-21T12:06:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Carol Ingram"
+  },
+  {
+   "ts": "2023-06-21T11:42:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Lois Nightingale"
+  },
+  {
+   "ts": "2023-06-21T11:18:00",
+   "amount": 100,
+   "source": "gofundme",
+   "name": "Melissa Slocumb"
+  },
+  {
+   "ts": "2023-06-21T10:55:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Kaitlyn Stewart"
+  },
+  {
+   "ts": "2023-06-21T10:32:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Saul Costa"
+  },
+  {
+   "ts": "2023-06-21T10:09:00",
+   "amount": 27,
+   "source": "gofundme",
+   "name": "Allison Brekke",
+   "comment": "This is such important work! And thank you Cat Campion for the link!"
+  },
+  {
+   "ts": "2023-06-21T09:48:00",
+   "amount": 123,
+   "source": "gofundme",
+   "name": "Payam Panbechi, OG"
+  },
+  {
+   "ts": "2023-06-21T09:27:00",
+   "amount": 50,
+   "source": "gofundme",
+   "name": "Brian Wallace"
+  },
+  {
+   "ts": "2023-06-21T09:06:00",
+   "amount": 25,
+   "source": "gofundme",
+   "name": "Sara Hamilton"
+  },
+  {
+   "ts": "2023-06-21T08:46:00",
+   "amount": 12,
+   "source": "gofundme",
+   "name": "Jake Wilkinson"
+  },
+  {
+   "ts": "2023-06-21T08:26:00",
+   "amount": 11,
+   "source": "gofundme",
+   "name": "catherine campion"
+  },
+  {
+   "ts": "2023-06-21T08:07:00",
+   "amount": 1000,
+   "source": "gofundme",
+   "name": "Paul Stamets"
+  },
+  {
+   "ts": "2022-06-28T12:00:00",
+   "amount": 32760,
+   "source": "nft",
+   "name": "David Choe",
+   "via": "David Choe’s NFT “Fist Hugger” of Rick Doblin, sold at Christie’s Auction",
+   "viaUrl": "https://onlineonly.christies.com/s/cartography-mind-curated-nft-sale-benefit-maps/david-choe-b-1976-rick-doblin-b-1953-27/155342",
+   "art": true,
+   "video": "https://players.brightcove.net/6057940598001/default_default/index.html?videoId=6307371227112"
+  },
+  {
+   "ts": "2019-10-16T12:06:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Ronnen Harary"
+  },
+  {
+   "ts": "2019-10-15T12:04:00",
+   "amount": 25000,
+   "source": "private",
+   "anonymous": true
+  },
+  {
+   "ts": "2019-02-15T12:00:00",
+   "amount": 25000,
+   "source": "private",
+   "name": "Will Nathan"
+  },
+  {
+   "ts": "2018-12-06T12:12:00",
+   "amount": 150,
+   "source": "private",
+   "name": "Bobbi Dunphy"
+  },
+  {
+   "ts": "2018-12-05T12:11:00",
+   "amount": 500,
+   "source": "private",
+   "name": "Alex Enchin"
+  },
+  {
+   "ts": "2018-12-04T12:10:00",
+   "amount": 1000,
+   "source": "private",
+   "name": "Laura Lochrane"
+  },
+  {
+   "ts": "2018-12-03T12:09:00",
+   "amount": 2500,
+   "source": "private",
+   "name": "Rae & Tomas"
+  },
+  {
+   "ts": "2018-12-02T12:08:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Dayna West"
+  },
+  {
+   "ts": "2018-12-01T12:07:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Dick Simon"
+  },
+  {
+   "ts": "2018-06-18T12:05:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Zem & James Joaquin"
+  },
+  {
+   "ts": "2018-06-17T12:03:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Louie Schwartzberg"
+  },
+  {
+   "ts": "2018-06-16T12:02:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Kat Conure"
+  },
+  {
+   "ts": "2018-06-15T12:01:00",
+   "amount": 5500,
+   "source": "private",
+   "name": "Nicole Panter"
+  }
+ ],
+ "renames": {
+  "peter kennedy": "Peter & Brooke Kennedy",
+  "andrew septimus": "Mo & Elisa Septimus",
+  "laura whitney": "Laura Lochrane",
+  "laura lochraine": "Laura Lochrane",
+  "daniel mcmurtrie": "Daniel & Kerry McMurtrie"
+ },
+ "pledgeVia": {
+  "32624321": "Another Light Foundation Grant"
+ }
+}

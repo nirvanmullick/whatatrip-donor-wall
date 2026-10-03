@@ -1,12 +1,18 @@
 name: Scrape donor wall
 
 # v2 (2026-09-28): reads Pledge's JSON feed directly -- no browser, runs in ~10 seconds.
+# v4 (2026-10-02): also builds a link-preview page for every credit (build-credits.js).
+# v3 (2026-09-30): also builds the MASTER DONOR LIST (build-master.js) on every run, and
+#                  runs straight away when someone edits manual-gifts.csv or name-fixes.csv.
 on:
   repository_dispatch:          # fired by the Pledge webhook (near real-time), once that's wired up
     types: [donation]
   schedule:
     - cron: '7,22,37,52 * * * *'   # every 15 min, off the top of the hour (GitHub delays :00 jobs most)
     - cron: '17 9 * * *'           # once a day, walk the ENTIRE list
+  push:                         # a hand edit to the donor lists -> rebuild the master list now
+    branches: [main]
+    paths: ['manual-gifts.csv', 'name-fixes.csv', 'pledge-via.csv', 'build-master.js', 'build-credits.js', 'credits-seed.json']
   workflow_dispatch:            # manual "Run workflow" button
     inputs:
       full_sync:
@@ -15,7 +21,9 @@ on:
         default: true
 
 permissions:
-  contents: write               # allows the job to commit donors.json back
+  contents: write               # allows the job to commit the files back
+  pages: write                  # v4: publish the credit pages (site/) to credits.whatatrip.com
+  id-token: write
 
 concurrency:
   group: scrape
@@ -24,7 +32,9 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
+    outputs:
+      site_changed: ${{ steps.commit.outputs.site_changed }}
     steps:
       - uses: actions/checkout@v4
 
@@ -32,17 +42,67 @@ jobs:
         with:
           node-version: '20'
 
+      # If Pledge can't be read this step fails, but the master list is still rebuilt
+      # from what we already have; the run is marked failed at the very end.
       - name: Read Pledge and update donors.json
+        id: pledge
+        continue-on-error: true
         run: node scrape.js
         env:
           FULL_SYNC: ${{ (github.event.schedule == '17 9 * * *' || inputs.full_sync) && '1' || '' }}
           MIN_GIFTS: '20'
 
-      - name: Commit donors.json if it changed
+      # Checks manual-gifts.csv and name-fixes.csv. A mistake in either fails this step
+      # (the run summary says which line) and the site keeps the last good manual.json.
+      - name: Build the master donor list
+        id: master
+        continue-on-error: true
+        run: node build-master.js
+
+      # v4 (2026-10-02): one small page per credit (site/<name>.html), so a texted link previews as
+      # "David Choe -- Donor to What a Trip" with a card image. Only new or changed cards are drawn.
+      - name: Build the credit link pages
+        id: credits
+        continue-on-error: true
+        run: |
+          npm install --no-save --no-package-lock @resvg/resvg-js@2.6.2 > /dev/null
+          node build-credits.js
+
+      - name: Commit what changed
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add donors.json
-          git diff --staged --quiet || git commit -m "Update donors.json [skip ci]"
+          for f in donors.json manual.json master-donors.csv master-donors.json site; do [ -e "$f" ] && git add "$f"; done
+          if git diff --staged --quiet -- site; then echo "site_changed=" >> "$GITHUB_OUTPUT"; else echo "site_changed=1" >> "$GITHUB_OUTPUT"; fi
+          git diff --staged --quiet || git commit -m "Update donor lists [skip ci]"
           git pull --rebase --autostash || true
           git push
+
+      # The credit pages travel to the publish job below.
+      - name: Package the credit pages
+        if: steps.commit.outputs.site_changed == '1' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Report a failed step
+        if: steps.pledge.outcome == 'failure' || steps.master.outcome == 'failure' || steps.credits.outcome == 'failure'
+        run: |
+          echo "Pledge read: ${{ steps.pledge.outcome }} / master list: ${{ steps.master.outcome }} / credit pages: ${{ steps.credits.outcome }}"
+          exit 1
+
+  # Publish the credit pages to credits.whatatrip.com -- only when one was added or changed
+  # (or on a manual run), so the 15-minute runs don't redeploy an unchanged site.
+  publish:
+    needs: scrape
+    if: ${{ !cancelled() && (needs.scrape.outputs.site_changed == '1' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true       # until Pages is switched on (Settings -> Pages -> GitHub Actions) this step can't publish
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

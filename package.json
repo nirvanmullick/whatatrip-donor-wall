@@ -1,10 +1,11 @@
 {
   "name": "whatatrip-donor-wall",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "scrape": "node scrape.js",
-    "full": "FULL_SYNC=1 node scrape.js"
+    "full": "FULL_SYNC=1 node scrape.js",
+    "master": "node build-master.js"
   }
 }
