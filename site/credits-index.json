@@ -1505,6 +1505,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-soyona-rafatjah"
  },
  {
+  "slug": "stacey-platt",
+  "name": "Stacey Platt",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/stacey-platt",
+  "goes_to": "https://whatatrip.com/donors#donor-stacey-platt"
+ },
+ {
   "slug": "stephanie-lary",
   "name": "Stephanie Lary",
   "kind": "donor",
