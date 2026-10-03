@@ -113,14 +113,21 @@ const fresh = orders
   .filter((o) => !o.is_match && !o.is_pending_pledge)   // pending pledges aren't money yet
   .map((o) => {
     const anonymous = !!o.anonymized || !o.donor_name || /^anonymous$/i.test(o.donor_name.trim());
-    const comment = (o.comments || []).filter((c) => c.from_donor !== false)
-      .map((c) => String(c.body || '').trim()).filter(Boolean).join(' / ');
+    // 2026-10-03: the donor's own note is from_donor:true; OUR replies come back from_donor:null and
+    // used to be glued onto the donor's words. They are kept apart now: `comment` theirs, `reply` ours.
+    const cs = o.comments || [];
+    const mineFlag = cs.some((c) => c.from_donor === true);
+    const theirs = cs.filter((c, i) => (mineFlag ? c.from_donor === true : i === 0));
+    const ours = cs.filter((c) => !theirs.includes(c));
+    const comment = theirs.map((c) => String(c.body || '').trim()).filter(Boolean).join(' / ');
+    const reply = ours.map((c) => String(c.body || '').trim()).filter(Boolean).join(' / ');
     const row = { id: o.id, ts: o.created_at };
     if (!anonymous) row.name = o.donor_name.trim();
     row.anonymous = anonymous;
     row.amount = Math.round(Number(o.usd_amount || o.amount) * 100) / 100;
     row.time = ago(o.created_at);
     if (comment) row.comment = comment;
+    if (reply) row.reply = reply;
     row.matched = hasMatch(o);
     return row;
   });

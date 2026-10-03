@@ -12,7 +12,7 @@ on:
     - cron: '17 9 * * *'           # once a day, walk the ENTIRE list
   push:                         # a hand edit to the donor lists -> rebuild the master list now
     branches: [main]
-    paths: ['manual-gifts.csv', 'name-fixes.csv', 'pledge-via.csv', 'build-master.js', 'build-credits.js', 'credits-seed.json']
+    paths: ['manual-gifts.csv', 'name-fixes.csv', 'pledge-via.csv', 'build-master.js', 'build-credits.js', 'credits-seed.json', 'scrape.js']
   workflow_dispatch:            # manual "Run workflow" button
     inputs:
       full_sync:
