@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03T04:48:36.670Z",
+  "updated": "2026-10-03T08:32:59.698Z",
   "count": 35,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "47 minutes ago",
+      "time": "5 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "6 hours ago",
+      "time": "10 hours ago",
       "matched": true
     },
     {
@@ -32,7 +32,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "7 hours ago",
+      "time": "11 hours ago",
       "matched": true
     },
     {
@@ -41,7 +41,7 @@
       "name": "Alexis Slutzky",
       "anonymous": false,
       "amount": 25,
-      "time": "8 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -50,7 +50,7 @@
       "name": "Michelle Ellison",
       "anonymous": false,
       "amount": 15,
-      "time": "8 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -59,8 +59,9 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "16 hours ago",
-      "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️ / Thank you so much, Bradford! Super appreciate the support!",
+      "time": "20 hours ago",
+      "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
+      "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
     },
     {
@@ -86,7 +87,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
