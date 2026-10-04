@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T14:48:55.967Z",
+  "updated": "2026-10-04T19:33:07.428Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "18 minutes ago",
+      "time": "5 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "name": "Stacey Platt",
       "anonymous": false,
       "amount": 100,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -32,7 +32,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -86,7 +86,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -95,7 +95,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -112,7 +112,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -121,7 +121,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -129,7 +129,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -137,7 +137,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -145,7 +145,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -154,7 +154,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
