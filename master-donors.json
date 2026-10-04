@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-03T18:02:56.249Z",
- "count": 239,
+ "updated": "2026-10-04T14:48:56.012Z",
+ "count": 240,
  "gifts": [
+  {
+   "date": "2026-10-04T07:31:21.696-07:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33397728,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-03T08:47:36.309-07:00",
    "name": "Stacey Platt",
