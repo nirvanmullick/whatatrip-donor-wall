@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T09:23:04.945Z",
+  "updated": "2026-10-06T16:00:02.481Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -40,7 +40,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -49,7 +49,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -86,7 +86,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -95,7 +95,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -197,7 +197,7 @@
       "ts": "2026-08-21T13:57:27.587-07:00",
       "anonymous": true,
       "amount": 5,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": false
     },
     {
