@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T22:46:04.146Z",
+  "updated": "2026-10-06T02:32:44.417Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -76,7 +76,7 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
       "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
