@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T06:36:03.996Z",
+  "updated": "2026-10-07T13:55:47.936Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -40,7 +40,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -49,7 +49,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -58,7 +58,7 @@
       "name": "Alexis Slutzky",
       "anonymous": false,
       "amount": 25,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -67,7 +67,7 @@
       "name": "Michelle Ellison",
       "anonymous": false,
       "amount": 15,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -189,7 +189,7 @@
       "name": "Hari Mohanan",
       "anonymous": false,
       "amount": 10,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": false
     },
     {
