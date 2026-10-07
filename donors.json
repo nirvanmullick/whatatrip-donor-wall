@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T00:38:22.886Z",
+  "updated": "2026-10-07T06:36:03.996Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "name": "Stacey Platt",
       "anonymous": false,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
