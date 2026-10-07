@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T13:55:47.936Z",
+  "updated": "2026-10-07T19:55:45.334Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -32,7 +32,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -86,7 +86,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -95,7 +95,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
