@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08T00:08:39.148Z",
+  "updated": "2026-10-08T06:18:56.657Z",
   "count": 37,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "name": "Stacey Platt",
       "anonymous": false,
       "amount": 100,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -76,7 +76,7 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
       "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
