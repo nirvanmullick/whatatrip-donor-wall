@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-04T14:48:56.012Z",
- "count": 240,
+ "updated": "2026-10-08T19:31:25.283Z",
+ "count": 241,
  "gifts": [
+  {
+   "date": "2026-10-08T11:03:03.433-07:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33450845,
+   "via": "",
+   "comment": "Thank you for the vision, courage and dedication. We’re excited to support this documentary and help bring your story to a much bigger audience.",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-04T07:31:21.696-07:00",
    "name": "",

@@ -1,14 +1,23 @@
 {
-  "updated": "2026-10-08T13:45:10.471Z",
-  "count": 37,
+  "updated": "2026-10-08T19:31:25.223Z",
+  "count": 38,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 46683,
-    "raised_with_matching": 76351,
+    "raised": 47183,
+    "raised_with_matching": 77351,
     "goal": 150000,
-    "donors": 37
+    "donors": 38
   },
   "donors": [
+    {
+      "id": 33450845,
+      "ts": "2026-10-08T11:03:03.433-07:00",
+      "anonymous": true,
+      "amount": 500,
+      "time": "1 hour ago",
+      "comment": "Thank you for the vision, courage and dedication. We’re excited to support this documentary and help bring your story to a much bigger audience.",
+      "matched": true
+    },
     {
       "id": 33397728,
       "ts": "2026-10-04T07:31:21.696-07:00",
@@ -32,7 +41,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -86,7 +95,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -95,7 +104,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -112,7 +121,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -121,7 +130,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -129,7 +138,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -137,7 +146,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -145,7 +154,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -154,7 +163,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -163,7 +172,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
