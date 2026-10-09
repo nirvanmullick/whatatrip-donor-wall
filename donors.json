@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-09T05:59:36.715Z",
+  "updated": "2026-10-09T13:07:41.124Z",
   "count": 38,
   "source": "pledge-json-v2",
   "totals": {
     "raised": 47183,
     "raised_with_matching": 77351,
-    "goal": 150000,
+    "goal": 500000,
     "donors": 38
   },
   "donors": [
@@ -14,7 +14,7 @@
       "ts": "2026-10-08T11:03:03.433-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "12 hours ago",
+      "time": "19 hours ago",
       "comment": "Thank you for the vision, courage and dedication. We’re excited to support this documentary and help bring your story to a much bigger audience.",
       "matched": true
     },
@@ -49,7 +49,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -58,7 +58,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -67,7 +67,7 @@
       "name": "Alexis Slutzky",
       "anonymous": false,
       "amount": 25,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -76,7 +76,7 @@
       "name": "Michelle Ellison",
       "anonymous": false,
       "amount": 15,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -85,7 +85,7 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
       "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
@@ -113,7 +113,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
