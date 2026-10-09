@@ -1,20 +1,29 @@
 {
-  "updated": "2026-10-09T16:18:11.089Z",
-  "count": 38,
+  "updated": "2026-10-09T18:52:13.162Z",
+  "count": 39,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 47183,
-    "raised_with_matching": 77351,
+    "raised": 47203,
+    "raised_with_matching": 77391,
     "goal": 500000,
-    "donors": 38
+    "donors": 39
   },
   "donors": [
+    {
+      "id": 33476247,
+      "ts": "2026-10-09T10:52:13.195-07:00",
+      "name": "Breeda Wool",
+      "anonymous": false,
+      "amount": 20,
+      "time": "60 minutes ago",
+      "matched": true
+    },
     {
       "id": 33450845,
       "ts": "2026-10-08T11:03:03.433-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "comment": "Thank you for the vision, courage and dedication. We’re excited to support this documentary and help bring your story to a much bigger audience.",
       "matched": true
     },

@@ -441,6 +441,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-bradford-bancroft"
  },
  {
+  "slug": "breeda-wool",
+  "name": "Breeda Wool",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/breeda-wool",
+  "goes_to": "https://whatatrip.com/donors#donor-breeda-wool"
+ },
+ {
   "slug": "brian-wallace",
   "name": "Brian Wallace",
   "kind": "donor",
