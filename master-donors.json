@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-09T18:52:13.252Z",
- "count": 242,
+ "updated": "2026-10-10T08:39:41.340Z",
+ "count": 243,
  "gifts": [
+  {
+   "date": "2026-10-10T00:36:22.851-07:00",
+   "name": "Beth Karlin",
+   "name_on_record": "Beth Karlin",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33482923,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-09T10:52:13.195-07:00",
    "name": "Breeda Wool",

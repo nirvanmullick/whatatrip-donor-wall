@@ -413,6 +413,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-becca-black-beau-and-bex"
  },
  {
+  "slug": "beth-karlin",
+  "name": "Beth Karlin",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/beth-karlin",
+  "goes_to": "https://whatatrip.com/donors#donor-beth-karlin"
+ },
+ {
   "slug": "bethany-mealy",
   "name": "Bethany Mealy",
   "kind": "donor",
