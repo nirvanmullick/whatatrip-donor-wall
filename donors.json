@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T08:39:41.278Z",
+  "updated": "2026-10-10T14:49:03.444Z",
   "count": 40,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Beth Karlin",
       "anonymous": false,
       "amount": 50,
-      "time": "1 hour ago",
+      "time": "7 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Breeda Wool",
       "anonymous": false,
       "amount": 20,
-      "time": "15 hours ago",
+      "time": "21 hours ago",
       "matched": true
     },
     {
