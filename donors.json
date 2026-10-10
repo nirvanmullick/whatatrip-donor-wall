@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09T22:59:20.644Z",
+  "updated": "2026-10-10T02:16:12.857Z",
   "count": 39,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Breeda Wool",
       "anonymous": false,
       "amount": 20,
-      "time": "5 hours ago",
+      "time": "8 hours ago",
       "matched": true
     },
     {
@@ -58,7 +58,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
