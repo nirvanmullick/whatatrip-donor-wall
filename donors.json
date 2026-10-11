@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11T14:13:16.722Z",
+  "updated": "2026-10-11T19:00:24.147Z",
   "count": 40,
   "source": "pledge-json-v2",
   "totals": {
@@ -41,7 +41,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
