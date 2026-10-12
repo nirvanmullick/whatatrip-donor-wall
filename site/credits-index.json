@@ -679,6 +679,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-diego-seliman"
  },
  {
+  "slug": "douglas-frey",
+  "name": "Douglas Frey",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/douglas-frey",
+  "goes_to": "https://whatatrip.com/donors#donor-douglas-frey"
+ },
+ {
   "slug": "edyta-c",
   "name": "Edyta C",
   "kind": "donor",
@@ -852,6 +859,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/jason-wallach",
   "goes_to": "https://whatatrip.com/donors#donor-jason-wallach"
+ },
+ {
+  "slug": "jean-fleury",
+  "name": "Jean Fleury",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/jean-fleury",
+  "goes_to": "https://whatatrip.com/donors#donor-jean-fleury"
  },
  {
   "slug": "jenelle-becerra",
@@ -1274,6 +1288,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-ola-may"
  },
  {
+  "slug": "pamela-o-leary",
+  "name": "Pamela O’Leary",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/pamela-o-leary",
+  "goes_to": "https://whatatrip.com/donors#donor-pamela-o-leary"
+ },
+ {
   "slug": "parham-albadvi",
   "name": "Parham Albadvi",
   "kind": "donor",
@@ -1643,6 +1664,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/vincent-nance",
   "goes_to": "https://whatatrip.com/donors#donor-vincent-nance"
+ },
+ {
+  "slug": "wendy-marussich",
+  "name": "Wendy Marussich",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/wendy-marussich",
+  "goes_to": "https://whatatrip.com/donors#donor-wendy-marussich"
  },
  {
   "slug": "will-nathan",

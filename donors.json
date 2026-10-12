@@ -1,14 +1,50 @@
 {
-  "updated": "2026-10-11T22:49:07.316Z",
-  "count": 40,
+  "updated": "2026-10-12T01:51:50.055Z",
+  "count": 44,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 47253,
-    "raised_with_matching": 77491,
+    "raised": 47573,
+    "raised_with_matching": 78131,
     "goal": 500000,
-    "donors": 40
+    "donors": 44
   },
   "donors": [
+    {
+      "id": 33503361,
+      "ts": "2026-10-11T18:37:02.906-07:00",
+      "name": "Wendy Marussich",
+      "anonymous": false,
+      "amount": 100,
+      "time": "15 minutes ago",
+      "matched": true
+    },
+    {
+      "id": 33503266,
+      "ts": "2026-10-11T18:28:03.520-07:00",
+      "name": "Jean Fleury",
+      "anonymous": false,
+      "amount": 100,
+      "time": "24 minutes ago",
+      "matched": true
+    },
+    {
+      "id": 33502760,
+      "ts": "2026-10-11T17:22:11.904-07:00",
+      "name": "Pamela O’Leary",
+      "anonymous": false,
+      "amount": 20,
+      "time": "1 hour ago",
+      "matched": true
+    },
+    {
+      "id": 33501995,
+      "ts": "2026-10-11T16:05:48.681-07:00",
+      "name": "Douglas Frey",
+      "anonymous": false,
+      "amount": 100,
+      "time": "3 hours ago",
+      "matched": true
+    },
     {
       "id": 33482923,
       "ts": "2026-10-10T00:36:22.851-07:00",

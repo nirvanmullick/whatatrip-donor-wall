@@ -1,7 +1,59 @@
 {
- "updated": "2026-10-10T08:39:41.340Z",
- "count": 243,
+ "updated": "2026-10-12T01:51:50.117Z",
+ "count": 247,
  "gifts": [
+  {
+   "date": "2026-10-11T18:37:02.906-07:00",
+   "name": "Wendy Marussich",
+   "name_on_record": "Wendy Marussich",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33503361,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-11T18:28:03.520-07:00",
+   "name": "Jean Fleury",
+   "name_on_record": "Jean Fleury",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33503266,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-11T17:22:11.904-07:00",
+   "name": "Pamela O’Leary",
+   "name_on_record": "Pamela O’Leary",
+   "amount": 20,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33502760,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-11T16:05:48.681-07:00",
+   "name": "Douglas Frey",
+   "name_on_record": "Douglas Frey",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33501995,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-10T00:36:22.851-07:00",
    "name": "Beth Karlin",
