@@ -1,20 +1,28 @@
 {
-  "updated": "2026-10-12T08:21:36.071Z",
-  "count": 45,
+  "updated": "2026-10-12T18:05:05.492Z",
+  "count": 46,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 47823,
-    "raised_with_matching": 78631,
+    "raised": 48073,
+    "raised_with_matching": 79131,
     "goal": 500000,
-    "donors": 45
+    "donors": 46
   },
   "donors": [
+    {
+      "id": 33507273,
+      "ts": "2026-10-12T07:30:17.040-07:00",
+      "anonymous": true,
+      "amount": 250,
+      "time": "4 hours ago",
+      "matched": true
+    },
     {
       "id": 33504495,
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "5 hours ago",
+      "time": "14 hours ago",
       "matched": true
     },
     {
@@ -23,7 +31,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "7 hours ago",
+      "time": "16 hours ago",
       "matched": true
     },
     {
@@ -32,7 +40,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "7 hours ago",
+      "time": "17 hours ago",
       "matched": true
     },
     {
@@ -41,7 +49,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "8 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -50,7 +58,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "9 hours ago",
+      "time": "19 hours ago",
       "matched": true
     },
     {
@@ -157,7 +165,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -166,7 +174,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {

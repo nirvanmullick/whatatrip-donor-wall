@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-12T08:21:36.127Z",
- "count": 248,
+ "updated": "2026-10-12T18:05:05.553Z",
+ "count": 249,
  "gifts": [
+  {
+   "date": "2026-10-12T07:30:17.040-07:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 250,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33507273,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-11T20:35:37.603-07:00",
    "name": "",
