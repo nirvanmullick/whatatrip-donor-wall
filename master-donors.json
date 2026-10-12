@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-12T01:51:50.117Z",
- "count": 247,
+ "updated": "2026-10-12T08:21:36.127Z",
+ "count": 248,
  "gifts": [
+  {
+   "date": "2026-10-11T20:35:37.603-07:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 250,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33504495,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-11T18:37:02.906-07:00",
    "name": "Wendy Marussich",
