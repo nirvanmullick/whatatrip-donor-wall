@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13T07:04:47.340Z",
+  "updated": "2026-10-13T14:59:00.864Z",
   "count": 49,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "RACHEL DRATCH",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 hours ago",
+      "time": "10 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "9 hours ago",
+      "time": "17 hours ago",
       "matched": true
     },
     {
@@ -32,7 +32,7 @@
       "name": "Aaron Sender",
       "anonymous": false,
       "amount": 5,
-      "time": "10 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -40,7 +40,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "17 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -57,7 +57,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -66,7 +66,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -75,7 +75,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -84,7 +84,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -145,7 +145,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -154,7 +154,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -163,7 +163,7 @@
       "name": "Alexis Slutzky",
       "anonymous": false,
       "amount": 25,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -172,7 +172,7 @@
       "name": "Michelle Ellison",
       "anonymous": false,
       "amount": 15,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
