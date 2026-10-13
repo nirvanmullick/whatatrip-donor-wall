@@ -7,6 +7,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-aaron-batt"
  },
  {
+  "slug": "aaron-sender",
+  "name": "Aaron Sender",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/aaron-sender",
+  "goes_to": "https://whatatrip.com/donors#donor-aaron-sender"
+ },
+ {
   "slug": "abigale-layman",
   "name": "Abigale Layman",
   "kind": "donor",
@@ -355,6 +362,13 @@
   "kind": "anon",
   "url": "https://credits.whatatrip.com/anon-50-2023-07-06",
   "goes_to": "https://whatatrip.com/donors#donor-anon-50-2023-07-06"
+ },
+ {
+  "slug": "anon-50-2026-10-12",
+  "name": null,
+  "kind": "anon",
+  "url": "https://credits.whatatrip.com/anon-50-2026-10-12",
+  "goes_to": "https://whatatrip.com/donors#donor-anon-50-2026-10-12"
  },
  {
   "slug": "anon-500-2023-07-14",

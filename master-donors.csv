@@ -1,4 +1,6 @@
 date,name,amount,source,via,anonymous,matched_on_pledge,comment,name_on_record,pledge_id,added_by
+2026-10-12 15:05,Anonymous,50,Pledge,,yes,yes,,,33511436,automatic (Pledge)
+2026-10-12 13:36,Aaron Sender,5,Pledge,,,yes,,Aaron Sender,33510712,automatic (Pledge)
 2026-10-12 07:30,Anonymous,250,Pledge,,yes,yes,,,33507273,automatic (Pledge)
 2026-10-11 20:35,Anonymous,250,Pledge,,yes,yes,,,33504495,automatic (Pledge)
 2026-10-11 18:37,Wendy Marussich,100,Pledge,,,yes,,Wendy Marussich,33503361,automatic (Pledge)

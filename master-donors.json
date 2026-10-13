@@ -1,7 +1,33 @@
 {
- "updated": "2026-10-12T18:05:05.553Z",
- "count": 249,
+ "updated": "2026-10-13T00:34:57.286Z",
+ "count": 251,
  "gifts": [
+  {
+   "date": "2026-10-12T15:05:38.207-07:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33511436,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-12T13:36:39.916-07:00",
+   "name": "Aaron Sender",
+   "name_on_record": "Aaron Sender",
+   "amount": 5,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33510712,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-12T07:30:17.040-07:00",
    "name": "",
