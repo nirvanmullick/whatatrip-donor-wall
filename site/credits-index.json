@@ -1400,6 +1400,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-portia-cue"
  },
  {
+  "slug": "rachel-dratch",
+  "name": "RACHEL DRATCH",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/rachel-dratch",
+  "goes_to": "https://whatatrip.com/donors#donor-rachel-dratch"
+ },
+ {
   "slug": "rachel-hamilton",
   "name": "Rachel Hamilton",
   "kind": "donor",
