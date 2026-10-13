@@ -1064,6 +1064,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-laura-pustarfi"
  },
  {
+  "slug": "laurale-wunsch",
+  "name": "LauraLe Wunsch",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/laurale-wunsch",
+  "goes_to": "https://whatatrip.com/donors#donor-laurale-wunsch"
+ },
+ {
   "slug": "lawrence-cormier",
   "name": "Lawrence Cormier",
   "kind": "donor",

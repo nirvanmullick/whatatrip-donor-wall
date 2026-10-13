@@ -1,21 +1,31 @@
 {
-  "updated": "2026-10-13T14:59:00.864Z",
-  "count": 49,
+  "updated": "2026-10-13T20:37:20.409Z",
+  "count": 50,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 53128,
-    "raised_with_matching": 89241,
+    "raised": 53228,
+    "raised_with_matching": 89441,
     "goal": 500000,
-    "donors": 49
+    "donors": 50
   },
   "donors": [
+    {
+      "id": 33518088,
+      "ts": "2026-10-13T12:59:15.423-07:00",
+      "name": "LauraLe Wunsch",
+      "anonymous": false,
+      "amount": 100,
+      "time": "38 minutes ago",
+      "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
+      "matched": true
+    },
     {
       "id": 33512980,
       "ts": "2026-10-12T21:47:01.728-07:00",
       "name": "RACHEL DRATCH",
       "anonymous": false,
       "amount": 5000,
-      "time": "10 hours ago",
+      "time": "16 hours ago",
       "matched": true
     },
     {
@@ -23,7 +33,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "17 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -32,7 +42,7 @@
       "name": "Aaron Sender",
       "anonymous": false,
       "amount": 5,
-      "time": "18 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -48,7 +58,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -93,7 +103,7 @@
       "name": "Beth Karlin",
       "anonymous": false,
       "amount": 50,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -137,7 +147,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {

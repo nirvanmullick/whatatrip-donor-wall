@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-13T07:04:47.402Z",
- "count": 252,
+ "updated": "2026-10-13T20:37:20.459Z",
+ "count": 253,
  "gifts": [
+  {
+   "date": "2026-10-13T12:59:15.423-07:00",
+   "name": "LauraLe Wunsch",
+   "name_on_record": "LauraLe Wunsch",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33518088,
+   "via": "",
+   "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-12T21:47:01.728-07:00",
    "name": "RACHEL DRATCH",
