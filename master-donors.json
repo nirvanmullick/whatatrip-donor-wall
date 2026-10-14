@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-14T18:59:24.078Z",
- "count": 260,
+ "updated": "2026-10-14T22:15:08.797Z",
+ "count": 261,
  "gifts": [
+  {
+   "date": "2026-10-14T14:58:08.520-07:00",
+   "name": "Lauren Elizabeth Taus",
+   "name_on_record": "Lauren Elizabeth Taus",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33526907,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-14T11:56:45.893-07:00",
    "name": "valerie beltran",

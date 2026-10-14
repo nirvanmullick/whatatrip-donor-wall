@@ -1092,6 +1092,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-laurale-wunsch"
  },
  {
+  "slug": "lauren-elizabeth-taus",
+  "name": "Lauren Elizabeth Taus",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/lauren-elizabeth-taus",
+  "goes_to": "https://whatatrip.com/donors#donor-lauren-elizabeth-taus"
+ },
+ {
   "slug": "lawrence-cormier",
   "name": "Lawrence Cormier",
   "kind": "donor",
