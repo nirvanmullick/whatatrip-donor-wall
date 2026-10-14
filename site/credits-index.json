@@ -1015,6 +1015,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-katrina-limbach"
  },
  {
+  "slug": "kayla-soibelman",
+  "name": "Kayla Soibelman",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/kayla-soibelman",
+  "goes_to": "https://whatatrip.com/donors#donor-kayla-soibelman"
+ },
+ {
   "slug": "kelsy-williams",
   "name": "Kelsy Williams",
   "kind": "donor",
@@ -1713,6 +1720,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/valeria-pulgar",
   "goes_to": "https://whatatrip.com/donors#donor-valeria-pulgar"
+ },
+ {
+  "slug": "valerie-beltran",
+  "name": "valerie beltran",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/valerie-beltran",
+  "goes_to": "https://whatatrip.com/donors#donor-valerie-beltran"
  },
  {
   "slug": "venessa-mcbrearty",

@@ -1,21 +1,39 @@
 {
-  "updated": "2026-10-14T14:33:25.093Z",
-  "count": 55,
+  "updated": "2026-10-14T18:59:24.030Z",
+  "count": 57,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 54975,
-    "raised_with_matching": 92935,
+    "raised": 55136,
+    "raised_with_matching": 93257,
     "goal": 500000,
-    "donors": 55
+    "donors": 57
   },
   "donors": [
+    {
+      "id": 33525605,
+      "ts": "2026-10-14T11:56:45.893-07:00",
+      "name": "valerie beltran",
+      "anonymous": false,
+      "amount": 50,
+      "time": "3 minutes ago",
+      "matched": true
+    },
+    {
+      "id": 33523851,
+      "ts": "2026-10-14T08:53:40.779-07:00",
+      "name": "Kayla Soibelman",
+      "anonymous": false,
+      "amount": 111,
+      "time": "3 hours ago",
+      "matched": true
+    },
     {
       "id": 33520269,
       "ts": "2026-10-13T18:59:36.802-07:00",
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "13 hours ago",
+      "time": "17 hours ago",
       "matched": true
     },
     {
@@ -24,7 +42,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "13 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -33,7 +51,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "13 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -42,7 +60,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "13 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -51,7 +69,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "14 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -60,7 +78,7 @@
       "name": "LauraLe Wunsch",
       "anonymous": false,
       "amount": 100,
-      "time": "19 hours ago",
+      "time": "23 hours ago",
       "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
       "matched": true
     },
@@ -70,7 +88,7 @@
       "name": "RACHEL DRATCH",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -103,7 +121,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {

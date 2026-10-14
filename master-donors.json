@@ -1,7 +1,33 @@
 {
- "updated": "2026-10-14T04:44:55.265Z",
- "count": 258,
+ "updated": "2026-10-14T18:59:24.078Z",
+ "count": 260,
  "gifts": [
+  {
+   "date": "2026-10-14T11:56:45.893-07:00",
+   "name": "valerie beltran",
+   "name_on_record": "valerie beltran",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33525605,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-14T08:53:40.779-07:00",
+   "name": "Kayla Soibelman",
+   "name_on_record": "Kayla Soibelman",
+   "amount": 111,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33523851,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-13T18:59:36.802-07:00",
    "name": "Maggie Kay",
