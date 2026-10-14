@@ -630,6 +630,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-cory-reddish"
  },
  {
+  "slug": "courtney-barnes",
+  "name": "Courtney Barnes",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/courtney-barnes",
+  "goes_to": "https://whatatrip.com/donors#donor-courtney-barnes"
+ },
+ {
   "slug": "daisy-pommer",
   "name": "Daisy Pommer",
   "kind": "donor",
@@ -924,6 +931,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-jon-evens"
  },
  {
+  "slug": "jonelle-toothman",
+  "name": "Jonelle Toothman",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/jonelle-toothman",
+  "goes_to": "https://whatatrip.com/donors#donor-jonelle-toothman"
+ },
+ {
   "slug": "joshua-epstein",
   "name": "Joshua Epstein",
   "kind": "donor",
@@ -1153,6 +1167,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/magalie-bonneau",
   "goes_to": "https://whatatrip.com/donors#donor-magalie-bonneau"
+ },
+ {
+  "slug": "maggie-kay",
+  "name": "Maggie Kay",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/maggie-kay",
+  "goes_to": "https://whatatrip.com/donors#donor-maggie-kay"
  },
  {
   "slug": "mary-dohrmann",
@@ -1531,6 +1552,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/sarah-berner",
   "goes_to": "https://whatatrip.com/donors#donor-sarah-berner"
+ },
+ {
+  "slug": "sarah-gordon",
+  "name": "Sarah Gordon",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/sarah-gordon",
+  "goes_to": "https://whatatrip.com/donors#donor-sarah-gordon"
  },
  {
   "slug": "sarena-snider",

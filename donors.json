@@ -1,21 +1,66 @@
 {
-  "updated": "2026-10-13T23:59:11.591Z",
-  "count": 50,
+  "updated": "2026-10-14T04:44:55.199Z",
+  "count": 55,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 53228,
-    "raised_with_matching": 89441,
+    "raised": 54975,
+    "raised_with_matching": 92935,
     "goal": 500000,
-    "donors": 50
+    "donors": 55
   },
   "donors": [
+    {
+      "id": 33520269,
+      "ts": "2026-10-13T18:59:36.802-07:00",
+      "name": "Maggie Kay",
+      "anonymous": false,
+      "amount": 25,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33520070,
+      "ts": "2026-10-13T18:21:17.477-07:00",
+      "name": "Sarah Gordon",
+      "anonymous": false,
+      "amount": 111,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33520045,
+      "ts": "2026-10-13T18:18:48.044-07:00",
+      "name": "Jonelle Toothman",
+      "anonymous": false,
+      "amount": 1000,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33520038,
+      "ts": "2026-10-13T18:17:37.201-07:00",
+      "name": "Courtney Barnes",
+      "anonymous": false,
+      "amount": 111,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33519781,
+      "ts": "2026-10-13T17:33:51.048-07:00",
+      "name": "Jonelle Toothman",
+      "anonymous": false,
+      "amount": 500,
+      "time": "4 hours ago",
+      "matched": true
+    },
     {
       "id": 33518088,
       "ts": "2026-10-13T12:59:15.423-07:00",
       "name": "LauraLe Wunsch",
       "anonymous": false,
       "amount": 100,
-      "time": "4 hours ago",
+      "time": "9 hours ago",
       "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
       "matched": true
     },
@@ -25,7 +70,7 @@
       "name": "RACHEL DRATCH",
       "anonymous": false,
       "amount": 5000,
-      "time": "19 hours ago",
+      "time": "24 hours ago",
       "matched": true
     },
     {
@@ -50,7 +95,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -138,7 +183,7 @@
       "name": "Stacey Platt",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
