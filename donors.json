@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14T09:47:34.230Z",
+  "updated": "2026-10-14T14:33:25.093Z",
   "count": 55,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "8 hours ago",
+      "time": "13 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "8 hours ago",
+      "time": "13 hours ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "8 hours ago",
+      "time": "13 hours ago",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "8 hours ago",
+      "time": "13 hours ago",
       "matched": true
     },
     {
@@ -51,7 +51,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "9 hours ago",
+      "time": "14 hours ago",
       "matched": true
     },
     {
@@ -60,7 +60,7 @@
       "name": "LauraLe Wunsch",
       "anonymous": false,
       "amount": 100,
-      "time": "14 hours ago",
+      "time": "19 hours ago",
       "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
       "matched": true
     },
@@ -78,7 +78,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -112,7 +112,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -121,7 +121,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -130,7 +130,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -139,7 +139,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
