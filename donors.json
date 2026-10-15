@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T10:05:21.993Z",
+  "updated": "2026-10-15T14:13:11.923Z",
   "count": 59,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Lyubomir-Michele Uzunov",
       "anonymous": false,
       "amount": 500,
-      "time": "12 hours ago",
+      "time": "16 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Lauren Elizabeth Taus",
       "anonymous": false,
       "amount": 5000,
-      "time": "12 hours ago",
+      "time": "16 hours ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "valerie beltran",
       "anonymous": false,
       "amount": 50,
-      "time": "15 hours ago",
+      "time": "19 hours ago",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "18 hours ago",
+      "time": "22 hours ago",
       "matched": true
     },
     {
@@ -51,7 +51,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -60,7 +60,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -69,7 +69,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -78,7 +78,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -87,7 +87,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -114,7 +114,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -148,7 +148,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -157,7 +157,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -166,7 +166,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -175,7 +175,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -367,7 +367,7 @@
       "ts": "2026-09-27T16:56:11.258-07:00",
       "anonymous": true,
       "amount": 10,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
