@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-14T22:15:08.753Z",
-  "count": 58,
+  "updated": "2026-10-15T00:36:36.822Z",
+  "count": 59,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 60136,
-    "raised_with_matching": 103257,
+    "raised": 60636,
+    "raised_with_matching": 104257,
     "goal": 500000,
-    "donors": 58
+    "donors": 59
   },
   "donors": [
+    {
+      "id": 33526998,
+      "ts": "2026-10-14T15:22:53.129-07:00",
+      "name": "Lyubomir-Michele Uzunov",
+      "anonymous": false,
+      "amount": 500,
+      "time": "2 hours ago",
+      "matched": true
+    },
     {
       "id": 33526907,
       "ts": "2026-10-14T14:58:08.520-07:00",
       "name": "Lauren Elizabeth Taus",
       "anonymous": false,
       "amount": 5000,
-      "time": "17 minutes ago",
+      "time": "3 hours ago",
       "matched": true
     },
     {
@@ -24,7 +33,7 @@
       "name": "valerie beltran",
       "anonymous": false,
       "amount": 50,
-      "time": "3 hours ago",
+      "time": "6 hours ago",
       "matched": true
     },
     {
@@ -33,7 +42,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "6 hours ago",
+      "time": "9 hours ago",
       "matched": true
     },
     {
@@ -42,7 +51,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "20 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -51,7 +60,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "21 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -60,7 +69,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "21 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -69,7 +78,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "21 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -78,7 +87,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -512,7 +521,7 @@
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "matched": true
     },
     {

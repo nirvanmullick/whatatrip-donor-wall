@@ -1176,6 +1176,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-lyndsey-ryan"
  },
  {
+  "slug": "lyubomir-michele-uzunov",
+  "name": "Lyubomir-Michele Uzunov",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/lyubomir-michele-uzunov",
+  "goes_to": "https://whatatrip.com/donors#donor-lyubomir-michele-uzunov"
+ },
+ {
   "slug": "magalie-bonneau",
   "name": "Magalie Bonneau",
   "kind": "donor",

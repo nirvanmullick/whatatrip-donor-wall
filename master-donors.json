@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-14T22:15:08.797Z",
- "count": 261,
+ "updated": "2026-10-15T00:36:37.208Z",
+ "count": 262,
  "gifts": [
+  {
+   "date": "2026-10-14T15:22:53.129-07:00",
+   "name": "Lyubomir-Michele Uzunov",
+   "name_on_record": "Lyubomir-Michele Uzunov",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33526998,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-14T14:58:08.520-07:00",
    "name": "Lauren Elizabeth Taus",
