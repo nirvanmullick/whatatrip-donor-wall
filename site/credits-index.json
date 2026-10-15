@@ -434,6 +434,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-ashley-palmer"
  },
  {
+  "slug": "aubrey-marcus",
+  "name": "Aubrey Marcus",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/aubrey-marcus",
+  "goes_to": "https://whatatrip.com/donors#donor-aubrey-marcus"
+ },
+ {
   "slug": "becca-black-beau-and-bex",
   "name": "Becca Black (Beau & Bex)",
   "kind": "donor",
