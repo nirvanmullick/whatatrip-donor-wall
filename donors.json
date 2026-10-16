@@ -1,21 +1,119 @@
 {
-  "updated": "2026-10-15T22:12:12.670Z",
-  "count": 60,
+  "updated": "2026-10-16T04:56:43.945Z",
+  "count": 71,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 65636,
-    "raised_with_matching": 114257,
+    "raised": 68406,
+    "raised_with_matching": 119797,
     "goal": 500000,
-    "donors": 60
+    "donors": 71
   },
   "donors": [
+    {
+      "id": 33536534,
+      "ts": "2026-10-15T20:52:56.993-07:00",
+      "name": "Elizabeth Gillooly",
+      "anonymous": false,
+      "amount": 50,
+      "time": "1 hour ago",
+      "matched": true
+    },
+    {
+      "id": 33536393,
+      "ts": "2026-10-15T20:13:46.682-07:00",
+      "name": "Wendy c Franco",
+      "anonymous": false,
+      "amount": 100,
+      "time": "2 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536149,
+      "ts": "2026-10-15T19:00:03.305-07:00",
+      "anonymous": true,
+      "amount": 20,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536131,
+      "ts": "2026-10-15T18:58:57.628-07:00",
+      "name": "Julissa Vasquez",
+      "anonymous": false,
+      "amount": 150,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536124,
+      "ts": "2026-10-15T18:57:36.575-07:00",
+      "name": "Anya Kamenetz",
+      "anonymous": false,
+      "amount": 1000,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536121,
+      "ts": "2026-10-15T18:56:51.694-07:00",
+      "name": "Valentin Somma",
+      "anonymous": false,
+      "amount": 50,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536111,
+      "ts": "2026-10-15T18:52:34.943-07:00",
+      "name": "Cicek Erdem",
+      "anonymous": false,
+      "amount": 500,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536108,
+      "ts": "2026-10-15T18:52:11.599-07:00",
+      "name": "Santos Rodriguez",
+      "anonymous": false,
+      "amount": 500,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536100,
+      "ts": "2026-10-15T18:49:55.991-07:00",
+      "name": "Chris Kantrowitz",
+      "anonymous": false,
+      "amount": 100,
+      "time": "3 hours ago",
+      "matched": true
+    },
+    {
+      "id": 33536089,
+      "ts": "2026-10-15T18:48:51.738-07:00",
+      "name": "Adriaan Kolff",
+      "anonymous": false,
+      "amount": 100,
+      "time": "3 hours ago",
+      "comment": "What an incredible story! Thank you!!",
+      "matched": true
+    },
+    {
+      "id": 33536081,
+      "ts": "2026-10-15T18:47:59.940-07:00",
+      "anonymous": true,
+      "amount": 200,
+      "time": "3 hours ago",
+      "matched": true
+    },
     {
       "id": 33533446,
       "ts": "2026-10-15T10:54:41.744-07:00",
       "name": "Aubrey Marcus",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 hours ago",
+      "time": "11 hours ago",
       "matched": true
     },
     {
@@ -24,7 +122,7 @@
       "name": "Lyubomir-Michele Uzunov",
       "anonymous": false,
       "amount": 500,
-      "time": "24 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -51,7 +149,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -140,7 +238,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
