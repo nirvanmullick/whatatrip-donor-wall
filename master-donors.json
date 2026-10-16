@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-16T04:56:43.996Z",
- "count": 274,
+ "updated": "2026-10-16T18:14:08.580Z",
+ "count": 275,
  "gifts": [
+  {
+   "date": "2026-10-16T08:52:57.852-07:00",
+   "name": "Jennifer Benetato",
+   "name_on_record": "Jennifer Benetato",
+   "amount": 108,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33539477,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-15T20:52:56.993-07:00",
    "name": "Elizabeth Gillooly",

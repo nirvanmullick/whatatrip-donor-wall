@@ -966,6 +966,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-jenelle-becerra"
  },
  {
+  "slug": "jennifer-benetato",
+  "name": "Jennifer Benetato",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/jennifer-benetato",
+  "goes_to": "https://whatatrip.com/donors#donor-jennifer-benetato"
+ },
+ {
   "slug": "jennifer-hale",
   "name": "Jennifer Hale",
   "kind": "donor",
