@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-17T01:55:12.224Z",
- "count": 276,
+ "updated": "2026-10-17T17:19:18.776Z",
+ "count": 277,
  "gifts": [
+  {
+   "date": "2026-10-17T07:29:59.743-07:00",
+   "name": "Allison Dew",
+   "name_on_record": "Allison Dew",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33546939,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-16T18:09:36.238-07:00",
    "name": "Sandi kaufman",

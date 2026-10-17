@@ -112,6 +112,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-allison-brekke"
  },
  {
+  "slug": "allison-dew",
+  "name": "Allison Dew",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/allison-dew",
+  "goes_to": "https://whatatrip.com/donors#donor-allison-dew"
+ },
+ {
   "slug": "amber-livingston",
   "name": "Amber Livingston",
   "kind": "donor",
