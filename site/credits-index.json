@@ -1624,6 +1624,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-sandeep-sabhlok"
  },
  {
+  "slug": "sandi-kaufman",
+  "name": "Sandi kaufman",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/sandi-kaufman",
+  "goes_to": "https://whatatrip.com/donors#donor-sandi-kaufman"
+ },
+ {
   "slug": "santos-rodriguez",
   "name": "Santos Rodriguez",
   "kind": "donor",
