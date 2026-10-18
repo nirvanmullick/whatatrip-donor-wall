@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-18T11:39:59.533Z",
-  "count": 75,
+  "updated": "2026-10-18T13:21:23.534Z",
+  "count": 76,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 76114,
-    "raised_with_matching": 135213,
+    "raised": 81114,
+    "raised_with_matching": 141114,
     "goal": 500000,
-    "donors": 75
+    "donors": 76
   },
   "donors": [
+    {
+      "id": 33553787,
+      "ts": "2026-10-18T05:27:18.149-07:00",
+      "name": "Eva Dillon",
+      "anonymous": false,
+      "amount": 5000,
+      "time": "54 minutes ago",
+      "matched": false
+    },
     {
       "id": 33552360,
       "ts": "2026-10-17T18:33:22.209-07:00",
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "10 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -24,7 +33,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "21 hours ago",
+      "time": "23 hours ago",
       "matched": true
     },
     {
@@ -33,7 +42,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -203,7 +212,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -212,7 +221,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -221,7 +230,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -230,7 +239,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -309,7 +318,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {

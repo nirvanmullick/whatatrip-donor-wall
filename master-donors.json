@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-18T06:33:22.008Z",
- "count": 278,
+ "updated": "2026-10-18T13:21:23.697Z",
+ "count": 279,
  "gifts": [
+  {
+   "date": "2026-10-18T05:27:18.149-07:00",
+   "name": "Eva Dillon",
+   "name_on_record": "Eva Dillon",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": 33553787,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-17T18:33:22.209-07:00",
    "name": "Linda Goldstein",
