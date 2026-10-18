@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-18T01:29:35.102Z",
-  "count": 74,
+  "updated": "2026-10-18T06:33:21.966Z",
+  "count": 75,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 73614,
-    "raised_with_matching": 130213,
+    "raised": 76114,
+    "raised_with_matching": 135213,
     "goal": 500000,
-    "donors": 74
+    "donors": 75
   },
   "donors": [
+    {
+      "id": 33552360,
+      "ts": "2026-10-17T18:33:22.209-07:00",
+      "name": "Linda Goldstein",
+      "anonymous": false,
+      "amount": 2500,
+      "time": "5 hours ago",
+      "matched": true
+    },
     {
       "id": 33546939,
       "ts": "2026-10-17T07:29:59.743-07:00",
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "11 hours ago",
+      "time": "16 hours ago",
       "matched": true
     },
     {
@@ -33,7 +42,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -140,7 +149,7 @@
       "name": "Aubrey Marcus",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -176,7 +185,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -265,7 +274,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {

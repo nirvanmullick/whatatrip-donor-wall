@@ -1197,6 +1197,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-lincoln-stewart"
  },
  {
+  "slug": "linda-goldstein",
+  "name": "Linda Goldstein",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/linda-goldstein",
+  "goes_to": "https://whatatrip.com/donors#donor-linda-goldstein"
+ },
+ {
   "slug": "lisa-ceremsak",
   "name": "Lisa Ceremsak",
   "kind": "donor",
