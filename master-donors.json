@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-18T13:21:23.697Z",
- "count": 279,
+ "updated": "2026-10-19T16:31:15.941Z",
+ "count": 280,
  "gifts": [
+  {
+   "date": "2026-10-19T05:42:55.794-07:00",
+   "name": "thomas Houghton",
+   "name_on_record": "thomas Houghton",
+   "amount": 100,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": 33562666,
+   "via": "",
+   "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-18T05:27:18.149-07:00",
    "name": "Eva Dillon",

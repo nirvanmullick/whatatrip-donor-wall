@@ -1785,6 +1785,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-thomas-aarts"
  },
  {
+  "slug": "thomas-houghton",
+  "name": "thomas Houghton",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/thomas-houghton",
+  "goes_to": "https://whatatrip.com/donors#donor-thomas-houghton"
+ },
+ {
   "slug": "thomas-waltcher",
   "name": "Thomas Waltcher",
   "kind": "donor",
