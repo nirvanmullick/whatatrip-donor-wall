@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20T10:23:20.938Z",
+  "updated": "2026-10-20T14:21:22.169Z",
   "count": 77,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "thomas Houghton",
       "anonymous": false,
       "amount": 100,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
       "matched": false
     },
@@ -34,7 +34,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -52,7 +52,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -87,7 +87,7 @@
       "ts": "2026-10-15T19:00:03.305-07:00",
       "anonymous": true,
       "amount": 20,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -96,7 +96,7 @@
       "name": "Julissa Vasquez",
       "anonymous": false,
       "amount": 150,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -105,7 +105,7 @@
       "name": "Anya Kamenetz",
       "anonymous": false,
       "amount": 1000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -114,7 +114,7 @@
       "name": "Valentin Somma",
       "anonymous": false,
       "amount": 50,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -123,7 +123,7 @@
       "name": "Cicek Erdem",
       "anonymous": false,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -132,7 +132,7 @@
       "name": "Santos Rodriguez",
       "anonymous": false,
       "amount": 500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -141,7 +141,7 @@
       "name": "Chris Kantrowitz",
       "anonymous": false,
       "amount": 100,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -150,7 +150,7 @@
       "name": "Adriaan Kolff",
       "anonymous": false,
       "amount": 100,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "comment": "What an incredible story! Thank you!!",
       "matched": true
     },
@@ -159,7 +159,7 @@
       "ts": "2026-10-15T18:47:59.940-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -213,7 +213,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -222,7 +222,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -231,7 +231,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -240,7 +240,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -249,7 +249,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -398,7 +398,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
