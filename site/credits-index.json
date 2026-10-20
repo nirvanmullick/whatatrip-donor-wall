@@ -1204,6 +1204,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-linda-goldstein"
  },
  {
+  "slug": "lindsay-caspi",
+  "name": "Lindsay Caspi",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/lindsay-caspi",
+  "goes_to": "https://whatatrip.com/donors#donor-lindsay-caspi"
+ },
+ {
   "slug": "lisa-ceremsak",
   "name": "Lisa Ceremsak",
   "kind": "donor",

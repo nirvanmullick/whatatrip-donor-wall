@@ -1,14 +1,23 @@
 {
-  "updated": "2026-10-20T14:21:22.169Z",
-  "count": 77,
+  "updated": "2026-10-20T19:25:59.637Z",
+  "count": 78,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 81214,
-    "raised_with_matching": 141214,
+    "raised": 86214,
+    "raised_with_matching": 151214,
     "goal": 500000,
-    "donors": 77
+    "donors": 78
   },
   "donors": [
+    {
+      "id": 33576453,
+      "ts": "2026-10-20T11:23:28.524-07:00",
+      "name": "Lindsay Caspi",
+      "anonymous": false,
+      "amount": 5000,
+      "time": "1 hour ago",
+      "matched": true
+    },
     {
       "id": 33562666,
       "ts": "2026-10-19T05:42:55.794-07:00",
@@ -70,7 +79,7 @@
       "name": "Elizabeth Gillooly",
       "anonymous": false,
       "amount": 50,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -79,7 +88,7 @@
       "name": "Wendy c Franco",
       "anonymous": false,
       "amount": 100,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -390,7 +399,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {

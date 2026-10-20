@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-19T16:31:15.941Z",
- "count": 280,
+ "updated": "2026-10-20T19:25:59.680Z",
+ "count": 281,
  "gifts": [
+  {
+   "date": "2026-10-20T11:23:28.524-07:00",
+   "name": "Lindsay Caspi",
+   "name_on_record": "Lindsay Caspi",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33576453,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-19T05:42:55.794-07:00",
    "name": "thomas Houghton",
