@@ -315,6 +315,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-anon-250-2026-10-12"
  },
  {
+  "slug": "anon-250-2026-10-21",
+  "name": null,
+  "kind": "anon",
+  "url": "https://credits.whatatrip.com/anon-250-2026-10-21",
+  "goes_to": "https://whatatrip.com/donors#donor-anon-250-2026-10-21"
+ },
+ {
   "slug": "anon-25000-2019-10-15",
   "name": null,
   "kind": "anon",
