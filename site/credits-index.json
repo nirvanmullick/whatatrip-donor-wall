@@ -623,6 +623,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-charles-mayo"
  },
  {
+  "slug": "charlotte-ibarra",
+  "name": "Charlotte Ibarra",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/charlotte-ibarra",
+  "goes_to": "https://whatatrip.com/donors#donor-charlotte-ibarra"
+ },
+ {
   "slug": "chris-kantrowitz",
   "name": "Chris Kantrowitz",
   "kind": "donor",
