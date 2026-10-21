@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21T16:08:38.967Z",
+  "updated": "2026-10-21T20:14:57.881Z",
   "count": 81,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "45 minutes ago",
+      "time": "5 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "4 hours ago",
+      "time": "8 hours ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -33,7 +33,7 @@
       "name": "Lieberman Lynn And Paul",
       "anonymous": false,
       "amount": 500,
-      "time": "16 hours ago",
+      "time": "20 hours ago",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -231,7 +231,7 @@
       "name": "valerie beltran",
       "anonymous": false,
       "amount": 50,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
