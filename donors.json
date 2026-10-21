@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21T00:56:16.607Z",
+  "updated": "2026-10-21T05:57:37.664Z",
   "count": 79,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Lieberman Lynn And Paul",
       "anonymous": false,
       "amount": 500,
-      "time": "24 minutes ago",
+      "time": "5 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "7 hours ago",
+      "time": "12 hours ago",
       "matched": true
     },
     {
@@ -61,7 +61,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -79,7 +79,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -186,7 +186,7 @@
       "name": "Aubrey Marcus",
       "anonymous": false,
       "amount": 5000,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -222,7 +222,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -231,7 +231,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -240,7 +240,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -249,7 +249,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -258,7 +258,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -399,7 +399,7 @@
       "name": "Stacey Platt",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -645,7 +645,7 @@
       "name": "Kate Specter",
       "anonymous": false,
       "amount": 100,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "matched": true
     },
     {
@@ -654,7 +654,7 @@
       "name": "Andrew Septimus",
       "anonymous": false,
       "amount": 1000,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "comment": "Mo & Elisa Septimus",
       "matched": true
     },
@@ -664,7 +664,7 @@
       "name": "Mary Dohrmann",
       "anonymous": false,
       "amount": 500,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "comment": "This is Ray and Mary- thrilled to help this film!",
       "matched": true
     },
