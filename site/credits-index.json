@@ -1183,6 +1183,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-lawrence-cormier"
  },
  {
+  "slug": "lieberman-lynn-and-paul",
+  "name": "Lieberman Lynn And Paul",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/lieberman-lynn-and-paul",
+  "goes_to": "https://whatatrip.com/donors#donor-lieberman-lynn-and-paul"
+ },
+ {
   "slug": "liliana-galindo-guarin",
   "name": "Liliana Galindo Guarin",
   "kind": "donor",

@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-20T19:25:59.680Z",
- "count": 281,
+ "updated": "2026-10-21T00:56:16.657Z",
+ "count": 282,
  "gifts": [
+  {
+   "date": "2026-10-20T17:32:12.200-07:00",
+   "name": "Lieberman Lynn And Paul",
+   "name_on_record": "Lieberman Lynn And Paul",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33580211,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-20T11:23:28.524-07:00",
    "name": "Lindsay Caspi",

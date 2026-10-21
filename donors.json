@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-20T22:36:39.184Z",
-  "count": 78,
+  "updated": "2026-10-21T00:56:16.607Z",
+  "count": 79,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 86214,
-    "raised_with_matching": 151214,
+    "raised": 86714,
+    "raised_with_matching": 152214,
     "goal": 500000,
-    "donors": 78
+    "donors": 79
   },
   "donors": [
+    {
+      "id": 33580211,
+      "ts": "2026-10-20T17:32:12.200-07:00",
+      "name": "Lieberman Lynn And Paul",
+      "anonymous": false,
+      "amount": 500,
+      "time": "24 minutes ago",
+      "matched": true
+    },
     {
       "id": 33576453,
       "ts": "2026-10-20T11:23:28.524-07:00",
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 hours ago",
+      "time": "7 hours ago",
       "matched": true
     },
     {
@@ -24,7 +33,7 @@
       "name": "thomas Houghton",
       "anonymous": false,
       "amount": 100,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
       "matched": false
     },
@@ -34,7 +43,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": false
     },
     {
@@ -258,7 +267,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
