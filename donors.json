@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22T06:40:26.200Z",
+  "updated": "2026-10-22T12:32:03.486Z",
   "count": 81,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "15 hours ago",
+      "time": "21 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "18 hours ago",
+      "time": "1 day ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -364,7 +364,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -373,7 +373,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -565,7 +565,7 @@
       "ts": "2026-09-27T16:56:11.258-07:00",
       "anonymous": true,
       "amount": 10,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -574,7 +574,7 @@
       "name": "Anthony Greenberg",
       "anonymous": false,
       "amount": 500,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
