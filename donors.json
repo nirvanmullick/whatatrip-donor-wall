@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22T12:32:03.486Z",
+  "updated": "2026-10-22T17:35:40.661Z",
   "count": 81,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "21 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Lieberman Lynn And Paul",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -70,7 +70,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -88,7 +88,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -106,7 +106,7 @@
       "name": "Elizabeth Gillooly",
       "anonymous": false,
       "amount": 50,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -115,7 +115,7 @@
       "name": "Wendy c Franco",
       "anonymous": false,
       "amount": 100,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -123,7 +123,7 @@
       "ts": "2026-10-15T19:00:03.305-07:00",
       "anonymous": true,
       "amount": 20,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -132,7 +132,7 @@
       "name": "Julissa Vasquez",
       "anonymous": false,
       "amount": 150,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -141,7 +141,7 @@
       "name": "Anya Kamenetz",
       "anonymous": false,
       "amount": 1000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -150,7 +150,7 @@
       "name": "Valentin Somma",
       "anonymous": false,
       "amount": 50,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -159,7 +159,7 @@
       "name": "Cicek Erdem",
       "anonymous": false,
       "amount": 500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -168,7 +168,7 @@
       "name": "Santos Rodriguez",
       "anonymous": false,
       "amount": 500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -177,7 +177,7 @@
       "name": "Chris Kantrowitz",
       "anonymous": false,
       "amount": 100,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -186,7 +186,7 @@
       "name": "Adriaan Kolff",
       "anonymous": false,
       "amount": 100,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "comment": "What an incredible story! Thank you!!",
       "matched": true
     },
@@ -195,7 +195,7 @@
       "ts": "2026-10-15T18:47:59.940-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -337,7 +337,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -346,7 +346,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -355,7 +355,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -506,7 +506,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -515,7 +515,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -523,7 +523,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -531,7 +531,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -539,7 +539,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -548,7 +548,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -557,7 +557,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -583,7 +583,7 @@
       "name": "Hari Mohanan",
       "anonymous": false,
       "amount": 10,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": false
     },
     {
