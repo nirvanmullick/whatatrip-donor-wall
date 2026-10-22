@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22T17:35:40.661Z",
+  "updated": "2026-10-22T20:47:16.267Z",
   "count": 81,
   "source": "pledge-json-v2",
   "totals": {
@@ -204,7 +204,7 @@
       "name": "Aubrey Marcus",
       "anonymous": false,
       "amount": 5000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
