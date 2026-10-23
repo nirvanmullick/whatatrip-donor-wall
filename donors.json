@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23T14:17:16.169Z",
+  "updated": "2026-10-23T17:34:37.064Z",
   "count": 82,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "1 hour ago",
+      "time": "4 hours ago",
       "matched": true
     },
     {
@@ -106,7 +106,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -313,7 +313,7 @@
       "name": "RACHEL DRATCH",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
