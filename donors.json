@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23T02:02:14.496Z",
+  "updated": "2026-10-23T07:23:03.593Z",
   "count": 81,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -79,7 +79,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -97,7 +97,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -106,7 +106,7 @@
       "name": "Elizabeth Gillooly",
       "anonymous": false,
       "amount": 50,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -115,7 +115,7 @@
       "name": "Wendy c Franco",
       "anonymous": false,
       "amount": 100,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -329,7 +329,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -498,7 +498,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -618,7 +618,7 @@
       "name": "Tiffany Rochelle",
       "anonymous": false,
       "amount": 500,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "matched": true
     },
     {
@@ -626,7 +626,7 @@
       "ts": "2026-08-07T17:32:29.002-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "matched": true
     },
     {
