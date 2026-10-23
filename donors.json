@@ -1,14 +1,23 @@
 {
-  "updated": "2026-10-23T12:50:45.107Z",
-  "count": 81,
+  "updated": "2026-10-23T14:17:16.169Z",
+  "count": 82,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 87014,
-    "raised_with_matching": 152814,
+    "raised": 87264,
+    "raised_with_matching": 153314,
     "goal": 500000,
-    "donors": 81
+    "donors": 82
   },
   "donors": [
+    {
+      "id": 33612779,
+      "ts": "2026-10-23T06:16:07.671-07:00",
+      "name": "Ilana Mazlin",
+      "anonymous": false,
+      "amount": 250,
+      "time": "1 hour ago",
+      "matched": true
+    },
     {
       "id": 33585891,
       "ts": "2026-10-21T08:23:25.282-07:00",
@@ -70,7 +79,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -88,7 +97,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {

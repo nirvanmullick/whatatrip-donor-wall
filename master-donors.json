@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-21T16:08:39.012Z",
- "count": 284,
+ "updated": "2026-10-23T14:17:16.235Z",
+ "count": 285,
  "gifts": [
+  {
+   "date": "2026-10-23T06:16:07.671-07:00",
+   "name": "Ilana Mazlin",
+   "name_on_record": "Ilana Mazlin",
+   "amount": 250,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33612779,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-21T08:23:25.282-07:00",
    "name": "",

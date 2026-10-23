@@ -910,6 +910,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-hideaki-takeuchi"
  },
  {
+  "slug": "ilana-mazlin",
+  "name": "Ilana Mazlin",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/ilana-mazlin",
+  "goes_to": "https://whatatrip.com/donors#donor-ilana-mazlin"
+ },
+ {
   "slug": "ina-sofia-kalo",
   "name": "Ina Sofia Kalo",
   "kind": "donor",
