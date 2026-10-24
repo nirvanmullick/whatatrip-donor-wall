@@ -1302,6 +1302,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-lyndsey-ryan"
  },
  {
+  "slug": "lynn-and-paul-lieberman",
+  "name": "Lynn & Paul Lieberman",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/lynn-and-paul-lieberman",
+  "goes_to": "https://whatatrip.com/donors#donor-lynn-and-paul-lieberman"
+ },
+ {
   "slug": "lyubomir-michele-uzunov",
   "name": "Lyubomir-Michele Uzunov",
   "kind": "donor",
@@ -1576,7 +1583,7 @@
  },
  {
   "slug": "rachel-dratch",
-  "name": "RACHEL DRATCH",
+  "name": "Rachel Dratch",
   "kind": "donor",
   "url": "https://credits.whatatrip.com/rachel-dratch",
   "goes_to": "https://whatatrip.com/donors#donor-rachel-dratch"
