@@ -119,6 +119,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-allison-dew"
  },
  {
+  "slug": "allison-dew-and-cameron-sojan",
+  "name": "Allison Dew & Cameron Sojan",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/allison-dew-and-cameron-sojan",
+  "goes_to": "https://whatatrip.com/donors#donor-allison-dew-and-cameron-sojan"
+ },
+ {
   "slug": "amber-livingston",
   "name": "Amber Livingston",
   "kind": "donor",
