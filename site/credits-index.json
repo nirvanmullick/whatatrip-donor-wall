@@ -917,6 +917,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-hideaki-takeuchi"
  },
  {
+  "slug": "holly-whitaker",
+  "name": "Holly Whitaker",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/holly-whitaker",
+  "goes_to": "https://whatatrip.com/donors#donor-holly-whitaker"
+ },
+ {
   "slug": "ilana-mazlin",
   "name": "Ilana Mazlin",
   "kind": "donor",

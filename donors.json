@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-24T11:45:21.014Z",
-  "count": 82,
+  "updated": "2026-10-24T15:52:08.385Z",
+  "count": 83,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 87264,
-    "raised_with_matching": 153314,
+    "raised": 87314,
+    "raised_with_matching": 153414,
     "goal": 500000,
-    "donors": 82
+    "donors": 83
   },
   "donors": [
+    {
+      "id": 33627532,
+      "ts": "2026-10-24T07:58:28.872-07:00",
+      "name": "Holly Whitaker",
+      "anonymous": false,
+      "amount": 50,
+      "time": "54 minutes ago",
+      "matched": true
+    },
     {
       "id": 33612779,
       "ts": "2026-10-23T06:16:07.671-07:00",
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "22 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -42,7 +51,7 @@
       "name": "Lieberman Lynn And Paul",
       "anonymous": false,
       "amount": 500,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -79,7 +88,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -88,7 +97,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -258,7 +267,7 @@
       "name": "Maggie Kay",
       "anonymous": false,
       "amount": 25,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -267,7 +276,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -276,7 +285,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -285,7 +294,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -294,7 +303,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {

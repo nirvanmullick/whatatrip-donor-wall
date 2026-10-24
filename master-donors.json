@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-24T11:53:24.240Z",
- "count": 285,
+ "updated": "2026-10-24T15:52:08.440Z",
+ "count": 286,
  "gifts": [
+  {
+   "date": "2026-10-24T07:58:28.872-07:00",
+   "name": "Holly Whitaker",
+   "name_on_record": "Holly Whitaker",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33627532,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-23T06:16:07.671-07:00",
    "name": "Ilana Mazlin",
