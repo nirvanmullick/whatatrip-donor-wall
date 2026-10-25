@@ -924,6 +924,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-holly-whitaker"
  },
  {
+  "slug": "ian-pai",
+  "name": "Ian Pai",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/ian-pai",
+  "goes_to": "https://whatatrip.com/donors#donor-ian-pai"
+ },
+ {
   "slug": "ilana-mazlin",
   "name": "Ilana Mazlin",
   "kind": "donor",

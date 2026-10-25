@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-24T15:52:08.440Z",
- "count": 286,
+ "updated": "2026-10-25T01:33:26.593Z",
+ "count": 287,
  "gifts": [
+  {
+   "date": "2026-10-24T17:13:18.357-07:00",
+   "name": "Ian Pai",
+   "name_on_record": "Ian Pai",
+   "amount": 200,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33634896,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-24T07:58:28.872-07:00",
    "name": "Holly Whitaker",

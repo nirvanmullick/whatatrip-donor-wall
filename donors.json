@@ -1,21 +1,30 @@
 {
-  "updated": "2026-10-24T21:08:42.324Z",
-  "count": 83,
+  "updated": "2026-10-25T01:33:26.549Z",
+  "count": 84,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 87314,
-    "raised_with_matching": 153414,
+    "raised": 87514,
+    "raised_with_matching": 153814,
     "goal": 500000,
-    "donors": 83
+    "donors": 84
   },
   "donors": [
+    {
+      "id": 33634896,
+      "ts": "2026-10-24T17:13:18.357-07:00",
+      "name": "Ian Pai",
+      "anonymous": false,
+      "amount": 200,
+      "time": "1 hour ago",
+      "matched": true
+    },
     {
       "id": 33627532,
       "ts": "2026-10-24T07:58:28.872-07:00",
       "name": "Holly Whitaker",
       "anonymous": false,
       "amount": 50,
-      "time": "6 hours ago",
+      "time": "11 hours ago",
       "matched": true
     },
     {
@@ -24,7 +33,7 @@
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -41,7 +50,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -69,7 +78,7 @@
       "name": "thomas Houghton",
       "anonymous": false,
       "amount": 100,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
       "matched": false
     },
@@ -79,7 +88,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": false
     },
     {
@@ -88,7 +97,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
