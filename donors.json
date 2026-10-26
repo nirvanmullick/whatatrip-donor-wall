@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T04:59:49.977Z",
+  "updated": "2026-10-26T10:59:45.033Z",
   "count": 84,
   "source": "pledge-json-v2",
   "totals": {
@@ -69,7 +69,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -231,7 +231,7 @@
       "name": "Aubrey Marcus",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -426,7 +426,7 @@
       "ts": "2026-10-08T11:03:03.433-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "comment": "Thank you for the vision, courage and dedication. We’re excited to support this documentary and help bring your story to a much bigger audience.",
       "matched": true
     },
