@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-27T00:54:47.526Z",
- "count": 288,
+ "updated": "2026-10-27T06:12:21.894Z",
+ "count": 289,
  "gifts": [
+  {
+   "date": "2026-10-26T21:41:12.887-07:00",
+   "name": "Carla Detchon",
+   "name_on_record": "Carla Detchon",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33663150,
+   "via": "",
+   "comment": "Let's make this happen--can't wait to see it!",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-26T15:32:54.854-07:00",
    "name": "Oriel Poole",

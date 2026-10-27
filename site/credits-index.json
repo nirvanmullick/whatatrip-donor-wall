@@ -588,6 +588,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-cameron-price"
  },
  {
+  "slug": "carla-detchon",
+  "name": "Carla Detchon",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/carla-detchon",
+  "goes_to": "https://whatatrip.com/donors#donor-carla-detchon"
+ },
+ {
   "slug": "carol-ingram",
   "name": "Carol Ingram",
   "kind": "donor",

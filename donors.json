@@ -1,21 +1,31 @@
 {
-  "updated": "2026-10-27T00:54:47.480Z",
-  "count": 85,
+  "updated": "2026-10-27T06:12:21.835Z",
+  "count": 86,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 87564,
-    "raised_with_matching": 153914,
+    "raised": 88064,
+    "raised_with_matching": 154914,
     "goal": 500000,
-    "donors": 85
+    "donors": 86
   },
   "donors": [
+    {
+      "id": 33663150,
+      "ts": "2026-10-26T21:41:12.887-07:00",
+      "name": "Carla Detchon",
+      "anonymous": false,
+      "amount": 500,
+      "time": "2 hours ago",
+      "comment": "Let's make this happen--can't wait to see it!",
+      "matched": true
+    },
     {
       "id": 33659349,
       "ts": "2026-10-26T15:32:54.854-07:00",
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "2 hours ago",
+      "time": "8 hours ago",
       "matched": true
     },
     {
@@ -33,7 +43,7 @@
       "name": "Holly Whitaker",
       "anonymous": false,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -42,7 +52,7 @@
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -50,7 +60,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -133,7 +143,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -427,7 +437,7 @@
       "name": "Breeda Wool",
       "anonymous": false,
       "amount": 20,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
