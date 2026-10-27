@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T06:12:21.835Z",
+  "updated": "2026-10-27T12:27:04.296Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Carla Detchon",
       "anonymous": false,
       "amount": 500,
-      "time": "2 hours ago",
+      "time": "8 hours ago",
       "comment": "Let's make this happen--can't wait to see it!",
       "matched": true
     },
@@ -25,7 +25,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "8 hours ago",
+      "time": "14 hours ago",
       "matched": true
     },
     {
@@ -34,7 +34,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -88,7 +88,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -480,7 +480,7 @@
       "ts": "2026-10-02T16:01:10.009-07:00",
       "anonymous": true,
       "amount": 5000,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -489,7 +489,7 @@
       "name": "jackie ivy",
       "anonymous": false,
       "amount": 25,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -498,7 +498,7 @@
       "name": "Alexis Slutzky",
       "anonymous": false,
       "amount": 25,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -507,7 +507,7 @@
       "name": "Michelle Ellison",
       "anonymous": false,
       "amount": 15,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
