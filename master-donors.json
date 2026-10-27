@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-25T01:33:26.593Z",
- "count": 287,
+ "updated": "2026-10-27T00:54:47.526Z",
+ "count": 288,
  "gifts": [
+  {
+   "date": "2026-10-26T15:32:54.854-07:00",
+   "name": "Oriel Poole",
+   "name_on_record": "Oriel Poole",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33659349,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-24T17:13:18.357-07:00",
    "name": "Ian Pai",

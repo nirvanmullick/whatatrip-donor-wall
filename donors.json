@@ -1,14 +1,23 @@
 {
-  "updated": "2026-10-26T21:41:09.744Z",
-  "count": 84,
+  "updated": "2026-10-27T00:54:47.480Z",
+  "count": 85,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 87514,
-    "raised_with_matching": 153814,
+    "raised": 87564,
+    "raised_with_matching": 153914,
     "goal": 500000,
-    "donors": 84
+    "donors": 85
   },
   "donors": [
+    {
+      "id": 33659349,
+      "ts": "2026-10-26T15:32:54.854-07:00",
+      "name": "Oriel Poole",
+      "anonymous": false,
+      "amount": 50,
+      "time": "2 hours ago",
+      "matched": true
+    },
     {
       "id": 33634896,
       "ts": "2026-10-24T17:13:18.357-07:00",
@@ -50,7 +59,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -497,7 +506,7 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
       "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true
