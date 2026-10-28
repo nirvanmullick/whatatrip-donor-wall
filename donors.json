@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28T07:33:22.767Z",
+  "updated": "2026-10-28T14:27:33.798Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -26,7 +26,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -35,7 +35,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -70,7 +70,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -117,7 +117,7 @@
       "name": "Linda Goldstein",
       "anonymous": false,
       "amount": 2500,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -562,7 +562,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -570,7 +570,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -578,7 +578,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -586,7 +586,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -595,7 +595,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -604,7 +604,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -612,7 +612,7 @@
       "ts": "2026-09-27T16:56:11.258-07:00",
       "anonymous": true,
       "amount": 10,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
