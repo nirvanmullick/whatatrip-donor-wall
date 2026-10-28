@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28T14:27:33.798Z",
+  "updated": "2026-10-28T19:50:06.913Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Carla Detchon",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "comment": "Let's make this happen--can't wait to see it!",
       "reply": "Thank you SO much for helping make it happen!",
       "matched": true
@@ -61,7 +61,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -553,7 +553,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
