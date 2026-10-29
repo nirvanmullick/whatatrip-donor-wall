@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T09:49:44.452Z",
+  "updated": "2026-10-29T16:13:42.162Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -26,7 +26,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -35,7 +35,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -384,7 +384,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -393,7 +393,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -402,7 +402,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -411,7 +411,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -420,7 +420,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
