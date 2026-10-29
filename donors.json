@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T02:56:36.195Z",
+  "updated": "2026-10-29T09:49:44.452Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -44,7 +44,7 @@
       "name": "Holly Whitaker",
       "anonymous": false,
       "amount": 50,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -545,7 +545,7 @@
       "name": "David Segall",
       "anonymous": false,
       "amount": 8,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
