@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T07:19:09.213Z",
+  "updated": "2026-10-30T14:22:03.205Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -26,7 +26,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -35,7 +35,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -53,7 +53,7 @@
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -359,7 +359,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -368,7 +368,7 @@
       "name": "Aaron Sender",
       "anonymous": false,
       "amount": 5,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
