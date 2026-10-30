@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T21:23:38.809Z",
+  "updated": "2026-10-30T01:19:43.779Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -53,7 +53,7 @@
       "name": "Ilana Mazlin",
       "anonymous": false,
       "amount": 250,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -98,7 +98,7 @@
       "name": "thomas Houghton",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
       "matched": false
     },
