@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T02:31:27.966Z",
+  "updated": "2026-10-31T08:50:09.914Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -44,7 +44,7 @@
       "name": "Holly Whitaker",
       "anonymous": false,
       "amount": 50,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -89,7 +89,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -341,7 +341,7 @@
       "name": "LauraLe Wunsch",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
       "matched": true
     },
