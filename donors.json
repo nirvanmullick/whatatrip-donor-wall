@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T22:36:23.757Z",
+  "updated": "2026-11-01T08:04:55.994Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -35,7 +35,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -61,7 +61,7 @@
       "ts": "2026-10-21T08:23:25.282-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -70,7 +70,7 @@
       "name": "Charlotte Ibarra",
       "anonymous": false,
       "amount": 50,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "comment": "Thrilled for you! I remember when all of this began!",
       "matched": true
     },
@@ -278,7 +278,7 @@
       "name": "valerie beltran",
       "anonymous": false,
       "amount": 50,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -287,7 +287,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
