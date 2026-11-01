@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T08:04:55.994Z",
+  "updated": "2026-11-01T15:01:54.986Z",
   "count": 86,
   "source": "pledge-json-v2",
   "totals": {
@@ -26,7 +26,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -260,7 +260,7 @@
       "name": "Lyubomir-Michele Uzunov",
       "anonymous": false,
       "amount": 500,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -269,7 +269,7 @@
       "name": "Lauren Elizabeth Taus",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -527,7 +527,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -536,7 +536,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
