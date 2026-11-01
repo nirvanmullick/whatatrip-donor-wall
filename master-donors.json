@@ -1,7 +1,20 @@
 {
- "updated": "2026-10-27T06:12:21.894Z",
- "count": 289,
+ "updated": "2026-11-01T23:02:18.076Z",
+ "count": 290,
  "gifts": [
+  {
+   "date": "2026-11-01T12:14:54.049-08:00",
+   "name": "Erin  Lawrence",
+   "name_on_record": "Erin  Lawrence",
+   "amount": 40,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33732432,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-10-26T21:41:12.887-07:00",
    "name": "Carla Detchon",

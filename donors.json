@@ -1,14 +1,23 @@
 {
-  "updated": "2026-11-01T19:34:36.881Z",
-  "count": 86,
+  "updated": "2026-11-01T23:02:18.019Z",
+  "count": 87,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 88064,
-    "raised_with_matching": 154914,
+    "raised": 88104,
+    "raised_with_matching": 154994,
     "goal": 500000,
-    "donors": 86
+    "donors": 87
   },
   "donors": [
+    {
+      "id": 33732432,
+      "ts": "2026-11-01T12:14:54.049-08:00",
+      "name": "Erin  Lawrence",
+      "anonymous": false,
+      "amount": 40,
+      "time": "3 hours ago",
+      "matched": true
+    },
     {
       "id": 33663150,
       "ts": "2026-10-26T21:41:12.887-07:00",
@@ -517,7 +526,7 @@
       "name": "Bradford Bancroft",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "comment": "Thank you folks for all of the deep healing that you are doing. It is so important and necessary at this time. Blessings on you from a fellow guide.❤️",
       "reply": "Thank you so much, Bradford! Super appreciate the support!",
       "matched": true

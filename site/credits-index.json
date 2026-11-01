@@ -840,6 +840,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-eric-braun"
  },
  {
+  "slug": "erin-lawrence",
+  "name": "Erin  Lawrence",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/erin-lawrence",
+  "goes_to": "https://whatatrip.com/donors#donor-erin-lawrence"
+ },
+ {
   "slug": "ethan-colburn",
   "name": "Ethan Colburn",
   "kind": "donor",
