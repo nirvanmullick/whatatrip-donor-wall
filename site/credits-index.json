@@ -161,6 +161,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-andrea-moorer"
  },
  {
+  "slug": "andrew-bujalski",
+  "name": "Andrew Bujalski",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/andrew-bujalski",
+  "goes_to": "https://whatatrip.com/donors#donor-andrew-bujalski"
+ },
+ {
   "slug": "andrew-ninnemann",
   "name": "Andrew Ninnemann",
   "kind": "donor",

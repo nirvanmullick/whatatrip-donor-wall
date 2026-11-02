@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-01T23:02:18.076Z",
- "count": 290,
+ "updated": "2026-11-02T19:33:48.094Z",
+ "count": 291,
  "gifts": [
+  {
+   "date": "2026-11-02T11:31:28.645-08:00",
+   "name": "Andrew Bujalski",
+   "name_on_record": "Andrew Bujalski",
+   "amount": 50,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33746693,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-01T12:14:54.049-08:00",
    "name": "Erin  Lawrence",
