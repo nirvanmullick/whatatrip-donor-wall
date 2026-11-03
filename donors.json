@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T02:27:48.420Z",
+  "updated": "2026-11-03T09:59:25.909Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Andrew Bujalski",
       "anonymous": false,
       "amount": 50,
-      "time": "7 hours ago",
+      "time": "14 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Erin  Lawrence",
       "anonymous": false,
       "amount": 40,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Carla Detchon",
       "anonymous": false,
       "amount": 500,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "Let's make this happen--can't wait to see it!",
       "reply": "Thank you SO much for helping make it happen!",
       "matched": true
@@ -162,7 +162,7 @@
       "name": "Jennifer Benetato",
       "anonymous": false,
       "amount": 108,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -456,7 +456,7 @@
       "name": "Breeda Wool",
       "anonymous": false,
       "amount": 20,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
