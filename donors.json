@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T09:59:25.909Z",
+  "updated": "2026-11-03T17:08:06.272Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Andrew Bujalski",
       "anonymous": false,
       "amount": 50,
-      "time": "14 hours ago",
+      "time": "22 hours ago",
       "matched": true
     },
     {
@@ -153,7 +153,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
