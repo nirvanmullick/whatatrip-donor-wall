@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T17:19:53.245Z",
+  "updated": "2026-11-04T23:35:16.357Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -665,7 +665,7 @@
       "name": "Daniel McMurtrie",
       "anonymous": false,
       "amount": 10000,
-      "time": "2 months ago",
+      "time": "3 months ago",
       "matched": false
     },
     {
