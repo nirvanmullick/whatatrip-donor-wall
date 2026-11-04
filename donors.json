@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T22:35:02.831Z",
+  "updated": "2026-11-04T02:40:54.125Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -144,7 +144,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -473,7 +473,7 @@
       "ts": "2026-10-04T07:31:21.696-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
