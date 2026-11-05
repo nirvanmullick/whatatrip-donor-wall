@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T11:38:33.631Z",
+  "updated": "2026-11-05T17:27:38.299Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -402,7 +402,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -411,7 +411,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -420,7 +420,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -429,7 +429,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
