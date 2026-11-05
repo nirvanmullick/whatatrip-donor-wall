@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T03:42:35.404Z",
+  "updated": "2026-11-05T11:38:33.631Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Andrew Bujalski",
       "anonymous": false,
       "amount": 50,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Erin  Lawrence",
       "anonymous": false,
       "amount": 40,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -438,7 +438,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
