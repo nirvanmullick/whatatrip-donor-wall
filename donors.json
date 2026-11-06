@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T00:09:16.739Z",
+  "updated": "2026-11-06T07:00:20.563Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -116,7 +116,7 @@
       "name": "thomas Houghton",
       "anonymous": false,
       "amount": 100,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "comment": "Lucky to join Gideon's hosting of Rick and Nirvan last night. Inspiring story of lifelong persistence guided human desire to help. Thank you.",
       "matched": false
     },
@@ -394,7 +394,7 @@
       "ts": "2026-10-12T07:30:17.040-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
