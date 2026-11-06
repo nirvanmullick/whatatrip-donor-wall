@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T07:00:20.563Z",
+  "updated": "2026-11-06T14:57:35.128Z",
   "count": 88,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Andrew Bujalski",
       "anonymous": false,
       "amount": 50,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Erin  Lawrence",
       "anonymous": false,
       "amount": 40,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -44,7 +44,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -377,7 +377,7 @@
       "ts": "2026-10-12T15:05:38.207-07:00",
       "anonymous": true,
       "amount": 50,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -386,7 +386,7 @@
       "name": "Aaron Sender",
       "anonymous": false,
       "amount": 5,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
