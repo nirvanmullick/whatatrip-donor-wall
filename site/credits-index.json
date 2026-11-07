@@ -1127,6 +1127,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-karen-alter-reid"
  },
  {
+  "slug": "kat-conour",
+  "name": "Kat Conour",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/kat-conour",
+  "goes_to": "https://whatatrip.com/donors#donor-kat-conour"
+ },
+ {
   "slug": "kat-conure",
   "name": "Kat Conure",
   "kind": "donor",
