@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T19:04:45.798Z",
+  "updated": "2026-11-08T22:49:46.016Z",
   "count": 89,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Nathen Willard",
       "anonymous": false,
       "amount": 500,
-      "time": "3 hours ago",
+      "time": "7 hours ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Erin  Lawrence",
       "anonymous": false,
       "amount": 40,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
