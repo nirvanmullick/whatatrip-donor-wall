@@ -1,0 +1,65 @@
+<!-- WHAT A TRIP - Pledge donation form + instant placeholder (11/8/2026, "nn").
+     The .plg-donate line below is Pledge's own embed: leave it exactly as is.
+     The grey placeholder shows the instant the page opens and fades out once Pledge's real form has loaded.
+     It never blocks clicks, and it removes itself after a few seconds no matter what. -->
+<div class="wat-pf wat-pf-wait" id="wat-pf">
+  <div class="wat-pf-skel" aria-hidden="true">
+    <div class="wat-pf-row"><div class="wat-pf-col"><i class="s" style="width:45%"></i><i class="l" style="width:85%"></i></div><i class="thumb"></i></div>
+    <i class="l" style="width:58%;margin-top:22px"></i>
+    <i class="s" style="width:96%"></i><i class="s" style="width:60%"></i>
+    <i class="tog"></i>
+    <div class="wat-pf-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <i class="box"></i><i class="box"></i>
+    <i class="btn"></i>
+    <div class="wat-pf-row" style="margin-top:14px"><i class="s" style="width:28%;margin:0"></i><i class="s" style="width:38%;margin:0"></i></div>
+  </div>
+  <div class="plg-donate" data-widget-id="6GNakp1GtmAa92RH"></div>
+</div>
+<style>
+  .wat-pf { position: relative; }
+  .wat-pf.wat-pf-wait { min-height: 637px; }
+  .wat-pf-skel { position: absolute; top: 0; left: 0; right: 0; height: 637px; z-index: 2; pointer-events: none; box-sizing: border-box;
+    background: #fff; border-radius: 12px; padding: 16px 15px; opacity: 1; transition: opacity .35s ease; }
+  .wat-pf-skel.wat-pf-gone { opacity: 0; }
+  .wat-pf-skel i { display: block; border-radius: 6px; background: linear-gradient(90deg,#eef1f4 0%,#f7f9fa 50%,#eef1f4 100%); background-size: 200% 100%; animation: watPf 1.3s ease-in-out infinite; }
+  .wat-pf-skel .s { height: 12px; margin-top: 9px; }
+  .wat-pf-skel .l { height: 18px; margin-top: 9px; }
+  .wat-pf-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .wat-pf-col { flex: 1; }
+  .wat-pf-skel .thumb { width: 76px; height: 76px; flex: none; border-radius: 4px; }
+  .wat-pf-skel .tog { height: 44px; margin-top: 18px; border-radius: 8px; }
+  .wat-pf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 10px; }
+  .wat-pf-grid i { height: 52px; border-radius: 8px; }
+  .wat-pf-skel .box { height: 52px; margin-top: 10px; border-radius: 8px; }
+  .wat-pf-skel .btn { height: 42px; margin-top: 16px; border-radius: 8px; background: #b9d0dc; animation: none; }
+  @keyframes watPf { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+  @media (prefers-reduced-motion: reduce) { .wat-pf-skel i { animation: none; } }
+</style>
+<script>
+(function () {
+  var box = document.getElementById('wat-pf'); if (!box) return;
+  var skel = box.querySelector('.wat-pf-skel'), host = box.querySelector('.plg-donate'), done = false;
+  function reveal() {
+    if (done) return; done = true;
+    skel.classList.add('wat-pf-gone');
+    setTimeout(function () { box.classList.remove('wat-pf-wait'); if (skel.parentNode) skel.parentNode.removeChild(skel); }, 400);
+  }
+  function watch(fr) {
+    if (fr.__watPf) return; fr.__watPf = 1;
+    fr.addEventListener('load', function () {
+      /* Pledge sets the form's real height right after it loads; wait for that so nothing jumps */
+      var t0 = Date.now();
+      (function check() {
+        if (done) return;
+        if (fr.offsetHeight >= 500 || Date.now() - t0 > 1200) reveal(); else setTimeout(check, 50);
+      })();
+    });
+  }
+  function look() { var fr = host.querySelector('iframe'); if (fr) { watch(fr); return true; } return false; }
+  if (!look() && window.MutationObserver) {
+    var mo = new MutationObserver(function () { if (look()) mo.disconnect(); });
+    mo.observe(host, { childList: true, subtree: true });
+  }
+  setTimeout(reveal, 9000);   /* safety net: never leave the placeholder up */
+})();
+</script>
