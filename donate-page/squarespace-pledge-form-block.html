@@ -34,6 +34,13 @@
   .wat-pf-skel .btn { height: 42px; margin-top: 16px; border-radius: 8px; background: #b9d0dc; animation: none; }
   @keyframes watPf { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
   @media (prefers-reduced-motion: reduce) { .wat-pf-skel i { animation: none; } }
+  /* Pledge's phone layout (under 576px wide) is taller: photo on top, text centered */
+  @media (max-width: 575px) {
+    .wat-pf.wat-pf-wait { min-height: 724px; }
+    .wat-pf-skel { height: 724px; }
+    .wat-pf-skel > .wat-pf-row:first-child { flex-direction: column-reverse; align-items: center; }
+    .wat-pf-skel > .wat-pf-row:first-child .wat-pf-col { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  }
 
   /* (nn) PHONES: the top section's background photo is shown whole, at screen width, instead of being
      blown up to cover the whole (very tall) section. Below it fades into the section's blue.
