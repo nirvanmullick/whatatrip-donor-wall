@@ -49,12 +49,14 @@
     section[data-section-id="6659020468b3c0a50497268e"] .section-background-canvas { display: none !important; }
     section[data-section-id="6659020468b3c0a50497268e"] .section-background { background-color: rgb(134,176,190) !important; }
     section[data-section-id="6659020468b3c0a50497268e"] .section-background img {
-      opacity: 1 !important; visibility: visible !important; transform: none !important;
+      opacity: 1 !important; visibility: visible !important;
+      transform: translate3d(0, var(--wat-plx, 0px), 0) !important; will-change: transform;
       position: absolute !important; top: 0 !important; left: 0 !important;
       width: 100% !important; height: auto !important; aspect-ratio: 2500 / 1406; object-fit: cover !important; }
     section[data-section-id="6659020468b3c0a50497268e"] .section-background::after {
       content: ""; position: absolute; left: 0; right: 0; z-index: 1; pointer-events: none;
       top: calc(100vw * 1406 / 2500 - 90px); height: 90px;
+      transform: translate3d(0, var(--wat-plx, 0px), 0);
       background: linear-gradient(rgba(134,176,190,0), rgb(134,176,190)); }
   }
 </style>
@@ -84,5 +86,26 @@
     mo.observe(host, { childList: true, subtree: true });
   }
   setTimeout(reveal, 9000);   /* safety net: never leave the placeholder up */
+})();
+
+/* (oo) PHONES: gentle parallax on the top photo. As you scroll, the page moves up at normal speed
+   while the photo drifts at about half speed, so the form slides up over it. Off on desktop
+   (Squarespace's own effect runs there) and for people who turn on "reduce motion". */
+(function () {
+  var sec = document.querySelector('section[data-section-id="6659020468b3c0a50497268e"]'); if (!sec) return;
+  var mq = window.matchMedia('(max-width: 767px)');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var RATE = 0.45, ticking = false;
+  function paint() {
+    ticking = false;
+    if (!mq.matches || calm.matches) { sec.style.removeProperty('--wat-plx'); return; }
+    var y = Math.max(0, -sec.getBoundingClientRect().top);
+    if (y > window.innerWidth * 1.2) return;          /* photo is long gone: stop updating */
+    sec.style.setProperty('--wat-plx', (y * RATE).toFixed(1) + 'px');
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  paint();
 })();
 </script>
