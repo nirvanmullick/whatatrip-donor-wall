@@ -1498,6 +1498,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-natasha-lacy"
  },
  {
+  "slug": "nathen-willard",
+  "name": "Nathen Willard",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/nathen-willard",
+  "goes_to": "https://whatatrip.com/donors#donor-nathen-willard"
+ },
+ {
   "slug": "nicola-king",
   "name": "Nicola King",
   "kind": "donor",

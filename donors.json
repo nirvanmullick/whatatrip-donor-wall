@@ -1,14 +1,23 @@
 {
-  "updated": "2026-11-08T14:30:35.223Z",
-  "count": 88,
+  "updated": "2026-11-08T16:01:43.371Z",
+  "count": 89,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 88154,
-    "raised_with_matching": 155094,
+    "raised": 88654,
+    "raised_with_matching": 156094,
     "goal": 500000,
-    "donors": 88
+    "donors": 89
   },
   "donors": [
+    {
+      "id": 33861275,
+      "ts": "2026-11-08T07:53:55.467-08:00",
+      "name": "Nathen Willard",
+      "anonymous": false,
+      "amount": 500,
+      "time": "8 minutes ago",
+      "matched": true
+    },
     {
       "id": 33746693,
       "ts": "2026-11-02T11:31:28.645-08:00",
