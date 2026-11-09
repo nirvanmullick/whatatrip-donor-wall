@@ -1015,6 +1015,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-james-stewart"
  },
  {
+  "slug": "jamie-frankenberg",
+  "name": "Jamie Frankenberg",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/jamie-frankenberg",
+  "goes_to": "https://whatatrip.com/donors#donor-jamie-frankenberg"
+ },
+ {
   "slug": "jason-starr",
   "name": "Jason Starr",
   "kind": "donor",

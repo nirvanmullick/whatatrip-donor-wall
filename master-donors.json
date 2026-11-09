@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-09T02:07:54.635Z",
- "count": 293,
+ "updated": "2026-11-09T19:53:19.184Z",
+ "count": 294,
  "gifts": [
+  {
+   "date": "2026-11-09T08:40:36.769-08:00",
+   "name": "Jamie Frankenberg",
+   "name_on_record": "Jamie Frankenberg",
+   "amount": 5,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33883134,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-08T17:22:35.430-08:00",
    "name": "Don Wirtshafter",
