@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-08T16:01:43.429Z",
- "count": 292,
+ "updated": "2026-11-09T02:07:54.635Z",
+ "count": 293,
  "gifts": [
+  {
+   "date": "2026-11-08T17:22:35.430-08:00",
+   "name": "Don Wirtshafter",
+   "name_on_record": "Don Wirtshafter",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33872479,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-08T07:53:55.467-08:00",
    "name": "Nathen Willard",

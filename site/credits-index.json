@@ -805,6 +805,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-diego-seliman"
  },
  {
+  "slug": "don-wirtshafter",
+  "name": "Don Wirtshafter",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/don-wirtshafter",
+  "goes_to": "https://whatatrip.com/donors#donor-don-wirtshafter"
+ },
+ {
   "slug": "douglas-frey",
   "name": "Douglas Frey",
   "kind": "donor",

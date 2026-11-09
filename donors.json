@@ -1,21 +1,30 @@
 {
-  "updated": "2026-11-08T22:49:46.016Z",
-  "count": 89,
+  "updated": "2026-11-09T02:07:54.551Z",
+  "count": 90,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 88654,
-    "raised_with_matching": 156094,
+    "raised": 89154,
+    "raised_with_matching": 157094,
     "goal": 500000,
-    "donors": 89
+    "donors": 90
   },
   "donors": [
+    {
+      "id": 33872479,
+      "ts": "2026-11-08T17:22:35.430-08:00",
+      "name": "Don Wirtshafter",
+      "anonymous": false,
+      "amount": 500,
+      "time": "45 minutes ago",
+      "matched": true
+    },
     {
       "id": 33861275,
       "ts": "2026-11-08T07:53:55.467-08:00",
       "name": "Nathen Willard",
       "anonymous": false,
       "amount": 500,
-      "time": "7 hours ago",
+      "time": "10 hours ago",
       "matched": true
     },
     {
