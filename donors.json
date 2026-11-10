@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T11:01:23.558Z",
+  "updated": "2026-11-10T17:06:30.164Z",
   "count": 91,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Jamie Frankenberg",
       "anonymous": false,
       "amount": 5,
-      "time": "18 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Don Wirtshafter",
       "anonymous": false,
       "amount": 500,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -180,7 +180,7 @@
       "name": "Sandi kaufman",
       "anonymous": false,
       "amount": 100,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
