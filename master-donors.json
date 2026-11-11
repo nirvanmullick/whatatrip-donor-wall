@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-11T03:10:21.694Z",
- "count": 296,
+ "updated": "2026-11-11T11:13:31.352Z",
+ "count": 297,
  "gifts": [
+  {
+   "date": "2026-11-11T02:51:13.890-08:00",
+   "name": "Theresa Daniello",
+   "name_on_record": "Theresa Daniello",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33917252,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-10T18:48:34.160-08:00",
    "name": "Alexa Albert",

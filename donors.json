@@ -1,21 +1,30 @@
 {
-  "updated": "2026-11-11T03:10:21.635Z",
-  "count": 93,
+  "updated": "2026-11-11T11:13:31.274Z",
+  "count": 94,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 94409,
-    "raised_with_matching": 167604,
+    "raised": 99409,
+    "raised_with_matching": 177604,
     "goal": 500000,
-    "donors": 93
+    "donors": 94
   },
   "donors": [
+    {
+      "id": 33917252,
+      "ts": "2026-11-11T02:51:13.890-08:00",
+      "name": "Theresa Daniello",
+      "anonymous": false,
+      "amount": 5000,
+      "time": "22 minutes ago",
+      "matched": true
+    },
     {
       "id": 33911753,
       "ts": "2026-11-10T18:48:34.160-08:00",
       "name": "Alexa Albert",
       "anonymous": false,
       "amount": 5000,
-      "time": "22 minutes ago",
+      "time": "8 hours ago",
       "matched": true
     },
     {
@@ -23,7 +32,7 @@
       "ts": "2026-11-10T17:41:30.520-08:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 hour ago",
+      "time": "10 hours ago",
       "matched": true
     },
     {
@@ -32,7 +41,7 @@
       "name": "Jamie Frankenberg",
       "anonymous": false,
       "amount": 5,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
@@ -50,7 +59,7 @@
       "name": "Nathen Willard",
       "anonymous": false,
       "amount": 500,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -473,7 +482,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -482,7 +491,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {

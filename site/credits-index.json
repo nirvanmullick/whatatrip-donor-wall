@@ -1911,6 +1911,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-tatyana-kholodkov"
  },
  {
+  "slug": "theresa-daniello",
+  "name": "Theresa Daniello",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/theresa-daniello",
+  "goes_to": "https://whatatrip.com/donors#donor-theresa-daniello"
+ },
+ {
   "slug": "thomas-aarts",
   "name": "Thomas Aarts",
   "kind": "donor",
