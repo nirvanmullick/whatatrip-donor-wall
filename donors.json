@@ -1,14 +1,31 @@
 {
-  "updated": "2026-11-10T23:46:43.030Z",
-  "count": 91,
+  "updated": "2026-11-11T03:10:21.635Z",
+  "count": 93,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 89159,
-    "raised_with_matching": 157104,
+    "raised": 94409,
+    "raised_with_matching": 167604,
     "goal": 500000,
-    "donors": 91
+    "donors": 93
   },
   "donors": [
+    {
+      "id": 33911753,
+      "ts": "2026-11-10T18:48:34.160-08:00",
+      "name": "Alexa Albert",
+      "anonymous": false,
+      "amount": 5000,
+      "time": "22 minutes ago",
+      "matched": true
+    },
+    {
+      "id": 33910726,
+      "ts": "2026-11-10T17:41:30.520-08:00",
+      "anonymous": true,
+      "amount": 250,
+      "time": "1 hour ago",
+      "matched": true
+    },
     {
       "id": 33883134,
       "ts": "2026-11-09T08:40:36.769-08:00",
@@ -89,7 +106,7 @@
       "name": "Holly Whitaker",
       "anonymous": false,
       "amount": 50,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -171,7 +188,7 @@
       "name": "Allison Dew",
       "anonymous": false,
       "amount": 5000,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {

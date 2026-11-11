@@ -1,7 +1,33 @@
 {
- "updated": "2026-11-09T19:53:19.184Z",
- "count": 294,
+ "updated": "2026-11-11T03:10:21.694Z",
+ "count": 296,
  "gifts": [
+  {
+   "date": "2026-11-10T18:48:34.160-08:00",
+   "name": "Alexa Albert",
+   "name_on_record": "Alexa Albert",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33911753,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-11-10T17:41:30.520-08:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 250,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 33910726,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-09T08:40:36.769-08:00",
    "name": "Jamie Frankenberg",

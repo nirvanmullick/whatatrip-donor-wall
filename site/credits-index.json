@@ -70,6 +70,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-alex-kuznetsov"
  },
  {
+  "slug": "alexa-albert",
+  "name": "Alexa Albert",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/alexa-albert",
+  "goes_to": "https://whatatrip.com/donors#donor-alexa-albert"
+ },
+ {
   "slug": "alexander-nantschev",
   "name": "Alexander Nantschev",
   "kind": "donor",
@@ -334,6 +341,13 @@
   "kind": "anon",
   "url": "https://credits.whatatrip.com/anon-250-2026-10-21",
   "goes_to": "https://whatatrip.com/donors#donor-anon-250-2026-10-21"
+ },
+ {
+  "slug": "anon-250-2026-11-10",
+  "name": null,
+  "kind": "anon",
+  "url": "https://credits.whatatrip.com/anon-250-2026-11-10",
+  "goes_to": "https://whatatrip.com/donors#donor-anon-250-2026-11-10"
  },
  {
   "slug": "anon-25000-2019-10-15",
