@@ -2977,7 +2977,25 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       })
       .catch(function () {});
   }
-  function totalDonorCount(){var names={},anon=0;cleanDonors(wall.donors).concat(suppList()).forEach(function(d){if(d.anonymous||!d.name)anon++;else names[String(d.name).trim().toLowerCase()]=1;});return Object.keys(names).length+anon;}
+  /* 2026-11-12 (Nirvan): the true number of DONORS, the same one the NIRVANA goal shows. NIRVANA's CRM knows
+     who is who: each person or couple counts once (repeat gifts and joint gifts are one donor), and an anonymous
+     gift only counts as a new donor when nobody could be matched to it. A small public endpoint returns just that
+     count (no names, no amounts). Until it answers, or if it is unreachable, the older estimate below is used:
+     distinct names on the wall plus one per anonymous gift. */
+  var WAT_TRUE_DONORS = null;
+  try {
+    fetch('https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !(Number(j.donors) > 0)) return;
+        WAT_TRUE_DONORS = Number(j.donors);
+        try { window.WAT_DONOR_COUNT = WAT_TRUE_DONORS; window.dispatchEvent(new Event('wat-donors')); } catch (e) {}
+        var el = document.getElementById('wat-alldonors');
+        if (el) el.innerHTML = 'See all ' + WAT_TRUE_DONORS + ' donors &rarr;';
+      })
+      .catch(function () {});
+  } catch (e) {}
+  function totalDonorCount(){if(WAT_TRUE_DONORS)return WAT_TRUE_DONORS;var names={},anon=0;cleanDonors(wall.donors).concat(suppList()).forEach(function(d){if(d.anonymous||!d.name)anon++;else names[String(d.name).trim().toLowerCase()]=1;});return Object.keys(names).length+anon;}
   function avatarFor(d){return (d.anonymous||!d.name)?'<span class="wat-av wat-av-anon">&#9829;</span>':(d.photo?'<span class="wat-av wat-av-photo"><img src="'+esc(d.photo)+'" alt=""></span>':'<span class="wat-av" style="background:'+colorFor(d.name)+'">'+esc(initials(d.name)).toUpperCase()+'</span>');}
   // Gold "certificate" starburst seal that rings a matching-challenge donor's avatar.
   var CERT_SEAL_SVG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="wcg" cx="50%" cy="34%" r="70%"><stop offset="0%" stop-color="#f9e4a8"/><stop offset="52%" stop-color="#e9ba46"/><stop offset="100%" stop-color="#c48a26"/></radialGradient></defs><polygon points="24.00,0.50 26.89,5.73 31.26,1.65 32.40,7.52 37.81,4.99 37.08,10.92 43.01,10.19 40.48,15.60 46.35,16.74 42.27,21.11 47.50,24.00 42.27,26.89 46.35,31.26 40.48,32.40 43.01,37.81 37.08,37.08 37.81,43.01 32.40,40.48 31.26,46.35 26.89,42.27 24.00,47.50 21.11,42.27 16.74,46.35 15.60,40.48 10.19,43.01 10.92,37.08 4.99,37.81 7.52,32.40 1.65,31.26 5.73,26.89 0.50,24.00 5.73,21.11 1.65,16.74 7.52,15.60 4.99,10.19 10.92,10.92 10.19,4.99 15.60,7.52 16.74,1.65 21.11,5.73" fill="url(#wcg)"/><circle cx="24" cy="24" r="19.5" fill="#edb84e"/><circle cx="24" cy="24" r="18" fill="none" stroke="#fff8e6" stroke-width="1.3" opacity="0.9"/></svg>';
