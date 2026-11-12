@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T16:53:50.590Z",
+  "updated": "2026-11-12T22:41:06.244Z",
   "count": 94,
   "source": "pledge-json-v2",
   "totals": {
@@ -624,7 +624,7 @@
       "ts": "2026-09-27T21:09:57.083-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -633,7 +633,7 @@
       "name": "Roman Campolo",
       "anonymous": false,
       "amount": 250,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -641,7 +641,7 @@
       "ts": "2026-09-27T20:31:49.279-07:00",
       "anonymous": true,
       "amount": 100,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -649,7 +649,7 @@
       "ts": "2026-09-27T20:31:16.170-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -657,7 +657,7 @@
       "ts": "2026-09-27T20:30:24.129-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -666,7 +666,7 @@
       "name": "Thomas Aarts",
       "anonymous": false,
       "amount": 200,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -675,7 +675,7 @@
       "name": "Vincent Nance",
       "anonymous": false,
       "amount": 250,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
