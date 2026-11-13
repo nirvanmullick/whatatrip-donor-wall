@@ -560,6 +560,13 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var a0 = xOfL0(S0), a1 = xOfL0(E0), af = xOfL0(clamp(raised, S0, E0));
       mzl.style.left = (offX + a0) + 'px'; mzl.style.width = Math.max(4, a1 - a0) + 'px';
       mzl.firstChild.style.width = Math.max(0, af - a0) + 'px';
+      /* (ag) 2026-11-13 -- THE GOLD LINE WAS LEFT AS A DOT AT THE FAR LEFT (Nirvan, live). If this runs while the bar's
+         segments have no width yet (the bar is still arriving), every x comes out 0 and the line is drawn 4px wide at
+         the left edge. It used to be put right by the next repaint -- but since the budget figure is remembered /
+         pre-fetched, the live figure no longer changes after load, so no repaint came. A line that measures as
+         nothing on a bar that has width is now simply measured again shortly, until it is right. */
+      if ((a1 - a0) < 8 && trackEl.offsetWidth > 120 && (window.__watMzlTry = (window.__watMzlTry || 0) + 1) < 60) { clearTimeout(window.__watMzlT); window.__watMzlT = setTimeout(lmPaint, 200); }
+      else if ((a1 - a0) >= 8) window.__watMzlTry = 0;
       var lb = mzl.querySelector('.wb-mzl-lbl');                   /* "$60K match": just past the line's right end, or before its start if the bar runs out */
       if (lb) { var room = barEl.offsetWidth - (offX + a1); lb.classList.toggle('wb-mzl-lbl-l', room < lb.offsetWidth + 10); }
       mchipPlace(offX + (a0 + a1) / 2, !show);
@@ -636,6 +643,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   var LM_T = { line: 1700, box: 2750, link: 3300 };   // line draws -> window pops out of it -> connector
   var lmReduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function lmPaint() { try { paintMatch(); } catch (e) {} }
+  /* (ag) and a few repaints as the page settles, whatever else happens */
+  [1200, 2600, 4200, 7000].forEach(function (ms) { setTimeout(lmPaint, ms); }); window.addEventListener('load', function () { setTimeout(lmPaint, 300); });
   function openMatchBox(instant) {
     var ln = document.getElementById('wb-mline'); if (!ln || lmBoxOpen || !LIVE_MATCH.on) return;
     lmBoxOpen = true; ln.hidden = false; mchipSync(); if (ln._fit) { try { ln._fit(); } catch (e) {} }
