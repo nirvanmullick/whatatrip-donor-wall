@@ -3243,3 +3243,79 @@
     #bp-secs .bp-inner > .wat-ml { padding: 16px 14px 18px; }
   }
 </style>
+
+<!-- (ah) 2026-11-13 (Nirvan): "after it loads it all up, can you animate it so that it scrolls to the most recent thing
+     that's now being fundraised for (so that's at the top of the list)? ... you still have the header ... a little
+     glimpse of something above it, like that connects it to the green milestone above ... Make the whole thing sort
+     of scrollable so that you could scroll back up and see the previous things ... as each different milestone gets
+     met, it'll scroll down to the next one."
+     Each budget's list of goals is a scroll window under its (unmoving) header. Once the page has loaded it glides to
+     the goal being funded now, leaving a strip of the goal before it -- and the line that joins them -- showing at
+     the top. When that goal is met and the next becomes current, it glides on. Scroll up to see what is funded. -->
+<style>
+  #bp-secs .wat-ml-list.wat-ml-scroll { overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #cfd3de transparent; }
+  #bp-secs .wat-ml-list.wat-ml-scroll::-webkit-scrollbar { width: 8px; }
+  #bp-secs .wat-ml-list.wat-ml-scroll::-webkit-scrollbar-thumb { background: #cfd3de; border-radius: 8px; }
+  /* more above / more below: a soft edge where the list runs on */
+  #bp-secs .wat-ml-list.wat-ml-scroll.has-up { -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.35) 0, #000 26px); mask-image: linear-gradient(180deg, rgba(0,0,0,.35) 0, #000 26px); }
+  #bp-secs .wat-ml-list.wat-ml-scroll.has-down { -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 34px), rgba(0,0,0,.25) 100%); mask-image: linear-gradient(180deg, #000 calc(100% - 34px), rgba(0,0,0,.25) 100%); }
+  #bp-secs .wat-ml-list.wat-ml-scroll.has-up.has-down { -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.35) 0, #000 26px, #000 calc(100% - 34px), rgba(0,0,0,.25) 100%); mask-image: linear-gradient(180deg, rgba(0,0,0,.35) 0, #000 26px, #000 calc(100% - 34px), rgba(0,0,0,.25) 100%); }
+</style>
+<script>
+(function () {
+  var root = document.getElementById('bp-secs'); if (!root) return;
+  var GLIMPSE = 30;                                   /* how much of the goal before stays in view */
+  function maxH() { return Math.round(Math.min(560, Math.max(330, (window.innerHeight || 800) * 0.6))); }
+  function edges(list) {
+    var up = list.scrollTop > 4, down = list.scrollTop + list.clientHeight < list.scrollHeight - 4;
+    if (list.classList.contains('has-up') !== up) list.classList.toggle('has-up', up);
+    if (list.classList.contains('has-down') !== down) list.classList.toggle('has-down', down);
+  }
+  function target(list) {
+    var cur = list.querySelector('.wat-ml-row.is-current');
+    return cur ? { id: cur.id || 'cur', top: Math.max(0, cur.offsetTop - GLIMPSE) } : null;
+  }
+  function glide(list, top) {
+    if (list.scrollHeight <= list.clientHeight + 2) return;
+    var reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (reduce || !list.scrollTo) { list.scrollTop = top; edges(list); return; }
+    /* our own ease, ~0.9s: the browser's "smooth" is too quick to read as a move */
+    var from = list.scrollTop, t0 = 0, dur = 900, tok = (list._tok = (list._tok || 0) + 1);
+    function step(t) {
+      if (tok !== list._tok) return;
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / dur), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+      list.scrollTop = from + (top - from) * e;
+      if (k < 1) requestAnimationFrame(step); else edges(list);
+    }
+    requestAnimationFrame(step);
+  }
+  function watch(list) {
+    if (list._ah) return; list._ah = { cur: null, t: 0 };
+    list.classList.add('wat-ml-scroll'); list.style.maxHeight = maxH() + 'px';
+    list.addEventListener('scroll', function () { edges(list); }, { passive: true });
+    /* a touch or a wheel means the reader is driving: stop any glide of ours */
+    ['wheel', 'touchstart', 'pointerdown'].forEach(function (ev) { list.addEventListener(ev, function () { list._tok = (list._tok || 0) + 1; }, { passive: true }); });
+    var check = function (delay) {
+      clearTimeout(list._ah.t);
+      list._ah.t = setTimeout(function () {
+        var tg = target(list); edges(list);
+        if (!tg || tg.id === list._ah.cur) return;
+        var card = list.closest ? list.closest('.bp-card') : null;
+        if (card && !card.classList.contains('is-open')) return;          /* shut: try again when it opens */
+        /* the window is no taller than what is left from that goal down (never under 300px), or the list could not
+           be brought up far enough to put the current goal at the top */
+        list.style.maxHeight = Math.max(300, Math.min(maxH(), list.scrollHeight - tg.top)) + 'px';
+        list._ah.cur = tg.id; glide(list, tg.top);
+      }, delay);
+    };
+    if (window.MutationObserver) new MutationObserver(function () { check(list._ah.cur ? 500 : 1300); }).observe(list, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    check(1500);
+    window.addEventListener('resize', function () { list._ah.cur = null; list.style.maxHeight = maxH() + 'px'; check(300); });
+    var card = list.closest ? list.closest('.bp-card') : null, head = card && card.querySelector('.bp-head');
+    if (head) head.addEventListener('click', function () { setTimeout(function () { check(350); }, 50); });
+  }
+  function all() { [].forEach.call(root.querySelectorAll('.wat-ml-list'), watch); }
+  all(); setTimeout(all, 800);
+})();
+</script>
