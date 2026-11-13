@@ -47,6 +47,7 @@
   </div>
   </div>
   <div class="wb-mline" id="wb-mline" hidden></div>
+  <button type="button" class="wb-mchip" id="wb-mchip" aria-expanded="false" aria-controls="wb-mline" hidden><span class="wb-mchip-t"></span><span class="wb-mchip-chev" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 8l4 4 4-4"/></svg></span></button>
   <div class="wb-bar" id="wb-bar">
     <div class="wb-surface" id="wb-surface">
       <div class="wb-ctx wb-ctx-l" id="wb-ctx-l" aria-hidden="true"></div>
@@ -514,7 +515,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     /* gold LINE above the matched stretch + the connector to the window (phase 2); both live in the bar
        (not the track), so they are placed from layout offsets and hidden while the bar zooms/pans */
     var mzl = document.getElementById('wb-mzl'), lnk = document.getElementById('wb-mlink');
-    if (!mzl && barEl) { mzl = document.createElement('div'); mzl.id = 'wb-mzl'; mzl.className = 'wb-mzl'; mzl.setAttribute('aria-hidden', 'true'); mzl.innerHTML = '<span class="wb-mzl-fill"></span><span class="wb-mzl-lbl">' + money(poolCap()).replace(/,000$/, 'K') + ' match</span>'; barEl.appendChild(mzl); }
+    if (!mzl && barEl) { mzl = document.createElement('div'); mzl.id = 'wb-mzl'; mzl.className = 'wb-mzl'; mzl.setAttribute('aria-hidden', 'true'); mzl.innerHTML = '<span class="wb-mzl-fill"></span>'; barEl.appendChild(mzl); }   /* (ss) the chip above the line names it now */
     if (!lnk && barEl) { lnk = document.createElement('div'); lnk.id = 'wb-mlink'; lnk.className = 'wb-mlink'; lnk.setAttribute('aria-hidden', 'true'); barEl.appendChild(lnk); }
     var lineOn = show && lmPhase === 2 && !barBusy;
     if (barEl) barEl.classList.toggle('wb-bar-mz', show);   // gives the gold line its own lane above the bar, clear of "17% raised" 
@@ -536,6 +537,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       mzl.firstChild.style.width = Math.max(0, af - a0) + 'px';
       var lb = mzl.querySelector('.wb-mzl-lbl');                   /* "$60K match": just past the line's right end, or before its start if the bar runs out */
       if (lb) { var room = barEl.offsetWidth - (offX + a1); lb.classList.toggle('wb-mzl-lbl-l', room < lb.offsetWidth + 10); }
+      mchipPlace(offX + (a0 + a1) / 2);
       var box = document.getElementById('wb-mline');
       if (lnk && box && !box.hidden && lmBoxOpen) {
         var br = box.getBoundingClientRect(), bbar = barEl.getBoundingClientRect();
@@ -544,6 +546,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         lnk.style.left = cx + 'px'; lnk.style.top = (-gap) + 'px'; lnk.style.height = Math.max(0, gap - 7) + 'px';
       }
     }
+    if (!(lineOn && mzl)) mchipPlace(null);
     var blockOn = false;   // 2026-09-28 (Nirvan): no gold block in the bar any more -- only the thin line above it
     mz.style.display = blockOn ? '' : 'none';   // (the in-bar "$X raised" below keeps its place right of the matched stretch in every phase, so it never jumps)
     if (inbarEl && activeTab !== 'raised') inbarEl.style.left = '';
@@ -610,7 +613,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   function lmPaint() { try { paintMatch(); } catch (e) {} }
   function openMatchBox(instant) {
     var ln = document.getElementById('wb-mline'); if (!ln || lmBoxOpen || !LIVE_MATCH.on) return;
-    lmBoxOpen = true; ln.hidden = false;
+    lmBoxOpen = true; ln.hidden = false; mchipSync(); if (ln._fit) { try { ln._fit(); } catch (e) {} }
     if (instant) { mlT0 = performance.now(); lmPaint(); return; }
     var h = ln.offsetHeight, cs = getComputedStyle(ln), mt = cs.marginTop, mb = cs.marginBottom;
     ln.style.overflow = 'hidden'; ln.style.height = '0px'; ln.style.paddingTop = '0px'; ln.style.paddingBottom = '0px';
@@ -628,6 +631,41 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     mlT0 = performance.now() + 350;                               // the matched figure counts up as it opens
     setTimeout(function () { ln.style.transition = ''; ln.style.height = ''; ln.style.overflow = ''; ln.style.marginTop = ''; ln.style.marginBottom = ''; ln.style.transformOrigin = ''; lmPaint(); }, 620);
   }
+  /* ---- (ss) the collapsed state: a small chip over the gold line ---- */
+  function mchipSync() {
+    var c = document.getElementById('wb-mchip'); if (!c) return;
+    var live = LIVE_MATCH.on && Date.now() < new Date(LIVE_MATCH.end).getTime();
+    var t = c.querySelector('.wb-mchip-t'), txt = '\uD83C\uDF81 ' + moneyK(poolCap()) + ' Matching Challenge Fund';
+    if (t && t.textContent !== txt) t.textContent = txt;
+    c.hidden = !(live && lmPhase === 2);
+    c.classList.toggle('wb-mchip-off', lmBoxOpen);          /* while the window is open the chip is spent (kept in place so nothing jumps) */
+    c.setAttribute('aria-expanded', String(lmBoxOpen));
+    c.tabIndex = lmBoxOpen ? -1 : 0;
+  }
+  /* on the Rough Cut bar the chip sits over the gold line; on the other budgets it is centred */
+  function mchipPlace(cx) {
+    var c = document.getElementById('wb-mchip'); if (!c || c.hidden || !barEl) return;
+    if (cx == null) { c.style.transform = ''; return; }
+    var w = c.offsetWidth, bw = barEl.offsetWidth; if (!w || !bw) return;
+    var dx = clamp(cx, w / 2, bw - w / 2) - bw / 2;
+    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)';
+  }
+  function closeMatchBox(instant) {
+    var ln = document.getElementById('wb-mline'); if (!ln || !lmBoxOpen) return;
+    if (lmListOpen) lmToggleList(false);
+    lmBoxOpen = false; mlOpenLeg = -1;
+    var done = function () { ln.hidden = true; ln.style.transition = ''; ln.style.height = ''; ln.style.overflow = ''; ln.style.paddingTop = ''; ln.style.paddingBottom = ''; ln.style.marginTop = ''; ln.style.marginBottom = ''; ln.style.opacity = ''; ln.style.transform = ''; ln.style.transformOrigin = ''; mchipSync(); lmPaint(); };
+    mchipSync(); lmPaint();
+    if (instant || lmReduce) { done(); return; }
+    var mzl = document.getElementById('wb-mzl'), bxr = ln.getBoundingClientRect();
+    if (mzl && barEl && mzl.offsetWidth) { var ox = barEl.getBoundingClientRect().left + mzl.offsetLeft + mzl.offsetWidth / 2 - bxr.left; ln.style.transformOrigin = clamp(ox, 22, bxr.width - 22).toFixed(1) + 'px 100%'; }
+    ln.style.overflow = 'hidden'; ln.style.height = ln.offsetHeight + 'px'; void ln.offsetWidth;
+    ln.style.transition = 'height .38s cubic-bezier(.4,0,.2,1), padding .38s cubic-bezier(.4,0,.2,1), margin .38s cubic-bezier(.4,0,.2,1), opacity .25s ease, transform .38s cubic-bezier(.4,0,.2,1)';
+    ln.style.height = '0px'; ln.style.paddingTop = '0px'; ln.style.paddingBottom = '0px'; ln.style.marginTop = '0px'; ln.style.marginBottom = '0px'; ln.style.opacity = '0'; ln.style.transform = 'scale(.3)';
+    var seq = ++lmCloseSeq; setTimeout(function () { if (seq === lmCloseSeq && !lmBoxOpen) done(); }, 400);
+  }
+  var lmCloseSeq = 0;
+  function toggleMatchBox() { if (lmBoxOpen) closeMatchBox(false); else { lmCloseSeq++; var ln = document.getElementById('wb-mline'); if (ln) { ln.style.transition = ''; ln.style.height = ''; ln.style.overflow = ''; ln.style.paddingTop = ''; ln.style.paddingBottom = ''; ln.style.marginTop = ''; ln.style.marginBottom = ''; ln.style.opacity = ''; ln.style.transform = ''; } openMatchBox(lmReduce); } }
   function lmToLine() {
     if (lmPhase >= 2) return;
     var mz = document.getElementById('wb-mz');
@@ -637,9 +675,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
   (function lmTimeline() {
     if (!LIVE_MATCH.on) return;
-    if (lmReduce) { lmPhase = 2; setTimeout(function () { openMatchBox(true); }, 0); return; }
-    setTimeout(function () { if (lmPhase < 2) { lmPhase = 2; lmPaint(); } }, LM_T.line);
-    setTimeout(function () { openMatchBox(false); }, LM_T.box);
+    /* (ss) 2026-11-12 (Nirvan: "a bit overwhelming and too busy"): the window no longer opens by itself. The widget
+       lands with just the thin gold line and a small "$135K Matching Challenge Fund" chip over it; a tap opens the
+       window, a tap closes it, and changing budget tab closes it. */
+    if (lmReduce) { lmPhase = 2; setTimeout(function () { lmPaint(); mchipSync(); }, 0); return; }
+    setTimeout(function () { if (lmPhase < 2) { lmPhase = 2; lmPaint(); } mchipSync(); }, LM_T.line);
     setTimeout(function () { var k = document.getElementById('wb-mlink'); if (k) k.classList.add('wb-mlink-in'); }, LM_T.link);
   })();
   window.addEventListener('resize', function () { lmPaint(); });
@@ -713,7 +753,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
          raised-by-N-people + countdown under both. Kasey & David's line wakes up the moment the Osters'
          $60K is met (paintLegs, from the same matched figure as everything else). */
       /* (hh) the timeline -- see paintLegs */
-      ln.innerHTML = '<div class="wb-ml-title">&#127873; ' + moneyK(cap) + ' Matching Challenge Fund</div>' +
+      ln.innerHTML = '<button type="button" class="wb-ml-x" aria-label="Close the matching challenge details" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 12l4-4 4 4"/></svg></button>' +
+        '<div class="wb-ml-title" role="button" tabindex="0" title="Close">&#127873; ' + moneyK(cap) + ' Matching Challenge Fund</div>' +
         '<div class="wb-ml-top">Every gift doubled, dollar for dollar</div>' +
         '<div class="wb-tl-head"><b class="wb-tl-left"></b><span class="wb-tl-so"></span></div>' +
         '<div class="wb-tl-bar">' + mlLegs().map(function (L, i) {
@@ -733,7 +774,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
           for (var k = 0; k < fs.length; k++) { e.textContent = fs[k]; if (e.scrollWidth <= box + 0.5) break; }
         });
       };
-      var fitLine = function () {                       /* one line each: step the type down until it fits, never clip it */
+      var fitLine = ln._fit = function () {              /* one line each: step the type down until it fits, never clip it. (ss) kept on the box: it is built closed, so it is fitted again each time it opens */
         fitNames();
         var hd = ln.querySelector('.wb-ml-title');         /* (ff) the pool's heading: one line too */
         if (hd) {
@@ -847,6 +888,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
   document.addEventListener('click', function (e) {
     var t = e.target && e.target.closest ? e.target : null; if (!t) return;
+    if (t.closest('#wat-bud .wb-mchip, #wat-bud .wb-ml-x, #wat-bud .wb-ml-title')) { e.preventDefault(); toggleMatchBox(); return; }   /* (ss) open / close the matching window */
     if (t.closest('#wat-bud .wb-ml-ppl')) { e.preventDefault(); lmToggleList(); return; }
     var tg = t.closest('#wat-bud .wb-tl-seg, #wat-bud .wb-tl-nm, #wat-bud .wb-tl-amt');   /* (hh) a section or its words */
     if (tg) { e.preventDefault(); var lgI = +tg.getAttribute('data-leg'); mlOpenLeg = (mlOpenLeg === lgI) ? -1 : lgI;
@@ -1579,6 +1621,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   function switchTab(target) {
     if (target === activeTab || barBusy) return;
     if (lmListOpen) lmToggleList(false);
+    if (lmBoxOpen) closeMatchBox(false);   /* (ss) the matching window shrinks back whenever the budget view changes */
     if (typeof openWth === 'function') openWth(false);   // leaving the view closes the Ways-to-Help panel
     navSide = null;
     rcMarHover = false;   // clear the raised-view Rough Cut preview state when leaving
@@ -2067,9 +2110,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (key !== activeTab) {
       [].forEach.call(document.querySelectorAll('#wat-bud .wb-tab'), function (b) { b.classList.toggle('wb-tab-on', b.getAttribute('data-b') === key); });
       if (lmListOpen) lmToggleList(false);
+      if (lmBoxOpen) closeMatchBox(true);
       loadBudget(key, false); if (typeof updateNav === 'function') updateNav();
     }
     if (idx != null && B.stages[idx]) { pointing = true; setGoal(idx, 0, false); }
+    if (h === 'matching' && !lmBoxOpen) setTimeout(function () { if (!lmBoxOpen && lmPhase === 2) toggleMatchBox(); }, 1200);
     var host = document.getElementById('wat-bud');
     var hands = false, stop = function () { hands = true; };
     ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (e) { window.addEventListener(e, stop, { passive: true, once: true }); });
@@ -2299,6 +2344,24 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-mline { margin: 4px auto 20px; position: relative; max-width: 460px; padding: 9px 14px 10px; border-radius: 12px;
     background: #fbf5e6; border: 1px solid #ecd9a8; color: #5b4a1f; font-size: 0.8rem; line-height: 1.35; text-align: center; }
   #wat-bud .wb-mline b { color: #3f3212; }
+  /* (ss) the collapsed chip + the window's close control */
+  #wat-bud .wb-mchip { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 5px; width: -moz-fit-content; width: fit-content; max-width: 100%; margin: 2px auto 3px; padding: 4px 9px 4px 10px; border-radius: 999px;
+    background: #fbf5e6; border: 1px solid #ecd9a8; color: #6b5516; font-family: inherit; font-size: 0.74rem; line-height: 1.2; font-weight: 800; letter-spacing: .01em; white-space: nowrap; cursor: pointer; position: relative; z-index: 4;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease, background .15s ease, box-shadow .15s ease; animation: wbChipIn .45s ease both; }
+  #wat-bud .wb-mchip[hidden] { display: none; }
+  #wat-bud .wb-mchip:hover, #wat-bud .wb-mchip:focus-visible { background: #f6e9c4; box-shadow: 0 1px 6px rgba(201,154,62,.35); }
+  #wat-bud .wb-mchip:focus-visible { outline: 2px solid #c99a3e; outline-offset: 2px; }
+  #wat-bud .wb-mchip-chev { display: inline-flex; width: 14px; height: 14px; border-radius: 50%; background: #e9cf8e; color: #5b4712; align-items: center; justify-content: center; }
+  #wat-bud .wb-mchip-chev svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+  #wat-bud .wb-mchip.wb-mchip-off { opacity: 0; pointer-events: none; }
+  @keyframes wbChipIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+  #wat-bud .wb-mchip.wb-mchip-off { animation: none; }
+  #wat-bud .wb-ml-x { all: unset; position: absolute; top: 6px; right: 7px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #8a6d1d; cursor: pointer; }
+  #wat-bud .wb-ml-x:hover, #wat-bud .wb-ml-x:focus-visible { background: #f1e2b7; }
+  #wat-bud .wb-ml-x svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+  #wat-bud .wb-ml-title { cursor: pointer; margin-left: 24px; margin-right: 24px; }
+  #wat-bud .wb-mline { margin-bottom: 0; }   /* the chip's row (kept, invisible, while the window is open) is the gap to the bar now */
+  @media (prefers-reduced-motion: reduce) { #wat-bud .wb-mchip { transition: none; animation: none; } }
   #wat-bud .wb-ml-title { font-size: 1.02rem; font-weight: 800; color: #3f3212; letter-spacing: .01em; margin-bottom: 2px; }
   #wat-bud .wb-ml-top { font-size: 0.78rem; color: #6b5a2c; white-space: nowrap; }
   #wat-bud .wb-ml-top.wb-ml-wrap { white-space: normal; }   /* fitLine() below: shrinks to fit one line, wraps only if it would go under 10.5px */
@@ -3430,7 +3493,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (recentShown > RECENT_FIRST) rows.push('<button type="button" class="wat-rollup" id="wat-rollup">Show fewer &uarr;</button>');
     }
     if (activeTab === 'recent') rows = liveMatchCards().concat(rows);   /* pinned on Recent: whoever is matching now + who is up next. A finished match sits in the timeline (rr). */
+    /* (ss) an opened challenge list scrolls inside itself -- keep its place across the 20-second refresh */
+    var keepSc = {}; [].forEach.call(listEl.querySelectorAll('.wat-live-match'), function (c) { var l = c.querySelector('.wat-lm-rows'); if (l) keepSc[c.getAttribute('data-leg')] = l.scrollTop; });
     listEl.innerHTML = rows.length ? rows.join('') : '<div class="wat-wall-empty">No supporters yet.</div>';
+    [].forEach.call(listEl.querySelectorAll('.wat-live-match'), function (c) { var l = c.querySelector('.wat-lm-rows'), k = c.getAttribute('data-leg'); if (l && keepSc[k]) l.scrollTop = keepSc[k]; });
     listEl.classList.toggle('wat-list-short', activeTab === 'recent' && recentShown <= RECENT_FIRST);   /* (rr) a shorter window until more are asked for */
     watchLoadMore();
   }
@@ -3504,11 +3570,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var jsTot = js.reduce(function (t, s) { return t + legShare(s); }, 0);
     if (window.WAT_LM_ORDER) js = window.WAT_LM_ORDER(js, legShare);   /* largest first unless toggled */
     var list = n ? '<div class="wat-lm-list"' + (open ? '' : ' hidden') + '>' +
-      '<div class="wat-lm-sum"><span><b>' + money(jsTot) + '</b> raised by ' + n + ' ' + (n === 1 ? 'person' : 'people') + ':</span>' + (window.WAT_LM_SORTBTN ? window.WAT_LM_SORTBTN('wat-lm-sort') : '') + '</div>' + js.map(function (s) {
+      '<div class="wat-lm-sum"><span><b>' + money(jsTot) + '</b> raised by ' + n + ' ' + (n === 1 ? 'person' : 'people') + ':</span>' + (window.WAT_LM_SORTBTN ? window.WAT_LM_SORTBTN('wat-lm-sort') : '') + '</div><div class="wat-lm-rows">' + js.map(function (s) {
         var nm = (s.anonymous || !s.name) ? 'Anonymous' : esc(s.name);
         var date = s.time ? ' <span class="wat-sup-date">&middot; ' + esc(s.time) + '</span>' : '';
         return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span>' + date + '</span><span class="wat-sup-amt">' + money(legShare(s)) + '</span></div>';
-      }).join('') + '</div>' : '';
+      }).join('') + '</div></div>' : '';
     return '<div class="wat-donor-card wat-live-match' + (doneBy ? ' wat-lm-done' : '') + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
       '<div class="wat-row-main"><div class="wat-row-top"><span class="wat-name">' + esc(W.name) + '</span>' + line + '</div>' + who + '</div></div>' + list + '</div>';
   }
@@ -3731,6 +3797,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-wall .wat-lm-chev { display: inline-block; transition: transform .2s ease; }
   #wat-wall .wat-lm-on .wat-lm-chev { transform: rotate(90deg); }
   #wat-wall .wat-lm-list { margin: 10px 0 0 44px; }
+  /* (ss) a long list (the Osters' 77 gifts) scrolls inside the card instead of running down the page */
+  #wat-wall .wat-lm-rows { max-height: 264px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; scrollbar-width: thin; scrollbar-color: #dcc48a transparent; }
+  #wat-wall .wat-lm-rows::-webkit-scrollbar { width: 7px; }
+  #wat-wall .wat-lm-rows::-webkit-scrollbar-thumb { background: #dcc48a; border-radius: 4px; }
   #wat-wall .wat-lm-list .wat-sup-row + .wat-sup-row { border-top-color: rgba(216,180,106,.35); }
   #wat-wall .wat-live-match:has(.wat-lm-toggle) { cursor: pointer; transition: background .2s ease, border-color .2s ease; }
   #wat-wall .wat-live-match:has(.wat-lm-toggle):hover { background: #f8efd8; border-color: #e2c783; }
