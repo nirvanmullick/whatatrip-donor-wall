@@ -15788,8 +15788,10 @@ window.dwResize = (function () {
   var NAME_AMOUNT_MIN = 500;            // compact lists at/above this also print the amount beside the name
   var AVATAR_MIN = 5000;                // profile circles only from the film-credit tier up
   var PHOTO_MIN = 25000;                // profile photos only at this level and above; everyone else gets initials
-  var TIER_PAGE = 24;                   // card tiers: supporters shown before "show more"
-  var TIER_PAGE_COMPACT = 150;          // name-list tiers: names shown before "show more"
+  /* v19.41 (Nirvan, 2026-11-12): NO PAGING. A level that grew to one name past its page hid that one person behind
+     "Show 1 more". Every name at every level is always shown; these were 24 and 150. */
+  var TIER_PAGE = 100000;               // card tiers
+  var TIER_PAGE_COMPACT = 100000;       // name-list tiers
   var RECENT_PAGE = 50;                 // sidebar "Recent donations": rows per batch
 
   /* ---- Funds a person HELPED RAISE (beyond their own gifts) -------------
