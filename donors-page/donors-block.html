@@ -16143,10 +16143,11 @@ window.dwResize = (function () {
       .then(function (r) { return r.json(); })
       .then(function (m) {
         var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia);
-        if (sig === manualSig) return;
-        if (applyManual(m)) { manualSig = sig; render(); }
+        if (sig === manualSig) { firstDone('manual'); return; }
+        if (applyManual(m)) { manualSig = sig; lastManual = { gifts: m.gifts, renames: m.renames, pledgeVia: m.pledgeVia, updated: m.updated }; renderData(); }
+        firstDone('manual');
       })
-      .catch(function () {});
+      .catch(function () { firstDone('manual'); });
   }
   function challengeFor(name){var k=keyOf(name);if(!k)return null;for(var i=0;i<CHALLENGES.length;i++){if(keyOf(CHALLENGES[i].matcher)===k)return CHALLENGES[i];}return null;}
   // Returns WHO matched this person, WHAT they pledged, and -- new -- the size of the
@@ -19504,8 +19505,8 @@ window.dwResize = (function () {
       .then(function(r){ return r.json(); })
       .then(function(d){ if (d && d.donors && d.donors.length) {
         // merge, never replace -- a short scrape can no longer delete a donor
-        jsonRows = d.donors; wall = { updated: d.updated, donors: mergeWall(jsonRows.concat(liveRows)) }; render(); } })
-      .catch(function(){});
+        jsonRows = d.donors; wall = { updated: d.updated, donors: mergeWall(jsonRows.concat(liveRows)) }; renderData(); } firstDone('list'); })
+      .catch(function(){ firstDone('list'); });
   }
   /* v19.28 -- NEW GIFTS IN ~30 SECONDS, NOT HOURS. donors.json is rebuilt by GitHub on a schedule
      that says "every 15 minutes" but in practice runs every 3-6 hours, so a new gift could sit
@@ -19518,16 +19519,53 @@ window.dwResize = (function () {
     fetch(LIVE_DONORS_URL + '&t=' + Date.now(), { cache:'no-store' })
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if (!d || !d.donors || !d.donors.length) return;
+        if (!d || !d.donors || !d.donors.length) { firstDone('live'); return; }
         var sig = JSON.stringify(d.donors);
-        if (sig === liveSig) return;
+        if (sig === liveSig) { firstDone('live'); return; }
         liveSig = sig; liveRows = d.donors;
-        wall = { updated: d.updated, donors: mergeWall((jsonRows || []).concat(liveRows)) }; render();
+        wall = { updated: d.updated, donors: mergeWall((jsonRows || []).concat(liveRows)) }; renderData(); firstDone('live');
       })
-      .catch(function(){});
+      .catch(function(){ firstDone('live'); });
   }
 
+  /* v19.46 -- ONE REBUILD FOR THE THREE FEEDS, AND NONE WHEN NOTHING CHANGED (Nirvan: the wall stalls for seconds
+     at a time after it loads). Measured: the wall was rebuilt from scratch four times in its first three seconds --
+     once from the list in the code, then again as manual.json, donors.json and the live feed each landed -- and every
+     rebuild makes the full-width layer re-measure every level (1-2 seconds a time). Now the three first answers are
+     waited for together (3.5s at most) and drawn in ONE rebuild, and a feed that brings nothing new -- the live feed
+     usually repeats donors.json -- draws nothing at all. */
+  var t0Data = Date.now(), firstWave = { list: 1, live: 1, manual: 1 }, rdTimer = 0, lastDataSig = null, rdWanted = false;
+  function wallSig(){
+    try { return JSON.stringify((wall.donors || []).map(function(d){ return [d.id || d.name || '', d.amount || 0, d.ts || '', d.anonymous ? 1 : 0, d.matched ? 1 : 0, d.comment || '', d.reply || '']; })) + '|' + manualSig; }
+    catch (e) { return String(Math.random()); }
+  }
+  function waveOpen(){ return (firstWave.list || firstWave.live || firstWave.manual) && Date.now() - t0Data < 3500; }
+  function flushData(){
+    clearTimeout(rdTimer); rdTimer = 0;
+    if (!rdWanted) return;
+    if (waveOpen()) { rdTimer = setTimeout(flushData, Math.max(60, 3500 - (Date.now() - t0Data))); return; }
+    rdWanted = false;
+    keepData();
+    var sig = wallSig(); if (sig === lastDataSig) return;
+    lastDataSig = sig; render();
+  }
+  var lastManual = null;
+  function keepData(){
+    try { localStorage.setItem('wat-dw-data', JSON.stringify({ v: 1, t: Date.now(), updated: wall.updated, rows: (jsonRows || []).concat(liveRows || []), manual: lastManual })); } catch (e) {}
+  }
+  function renderData(){ rdWanted = true; clearTimeout(rdTimer); rdTimer = setTimeout(flushData, 80); }
+  function firstDone(k){ if (firstWave[k]) { firstWave[k] = 0; if (rdWanted) { clearTimeout(rdTimer); rdTimer = setTimeout(flushData, 30); } } }
+  /* ...and a returning visitor starts from what the feeds said LAST time (kept in this browser), so the first build is
+     already the current wall and the feeds, when they land, usually change nothing. */
+  try {
+    var kept = JSON.parse(localStorage.getItem('wat-dw-data') || 'null');
+    if (kept && kept.v === 1 && Date.now() - kept.t < 14 * 864e5) {
+      if (kept.manual && applyManual(kept.manual)) manualSig = JSON.stringify(kept.manual.gifts) + JSON.stringify(kept.manual.renames) + JSON.stringify(kept.manual.pledgeVia);
+      if (kept.rows && kept.rows.length) { jsonRows = kept.rows; wall = { updated: kept.updated, donors: mergeWall(jsonRows.concat(liveRows)) }; }
+    }
+  } catch (e) {}
   render();
+  lastDataSig = wallSig();
   alignSidebar();
   setTimeout(alignSidebar, 400);   // after webfonts settle
   pullList();
@@ -22048,15 +22086,29 @@ window.dwResize = (function () {
   setTimeout(alignBar, 1200);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(alignBar);
 
-  var pending = 0;
-  new MutationObserver(function () {
+  var pending = 0, appliedAt = 0;
+  /* v19.46 -- apply() IS A FULL PASS OVER EVERY CARD, AND IT WAS RUNNING ON EVERY FRAME. This observer watches the whole
+     wall for added / removed nodes, and a number that counts (the budget widget's clock and totals, the progress bar's
+     "$X to go", the recent-donations feed) replaces its text node on every frame -- so each of those frames re-ran the
+     whole pass (measured: ~50 passes in the first 12 seconds; it is what made the counting stutter). Changes inside
+     those live read-outs are not this pass's business and are skipped; what the pass itself changes is not news; and
+     it runs at most once every 200ms (the first one straight away). */
+  var QUIET = '#wat-bud, .skf-prog, .skf-recent, .skf-cc-feed, .skf-expop, .dw-pin';
+  function inQuiet(n) { n = n && n.nodeType === 1 ? n : n && n.parentNode; return !!(n && n.closest && n.closest(QUIET)); }
+  var obsA = new MutationObserver(function (recs) {
     if (pending) return;
+    var news = false;
+    for (var i = 0; i < recs.length && !news; i++) if (!inQuiet(recs[i].target)) news = true;
+    if (!news) return;
+    var run = function () { pending = 0; appliedAt = Date.now(); apply(); try { obsA.takeRecords(); } catch (x) {} };
+    var gap = 200 - (Date.now() - appliedAt);
     /* v18.82: a hidden tab never runs animation frames, so after the live feed rebuilt the
        wall in a background tab the three top levels sat UNMERGED until the tab came back --
        and then snapped into place in front of him. A timer runs there instead. */
-    if (document.hidden) pending = setTimeout(function () { pending = 0; apply(); }, 0);
-    else pending = requestAnimationFrame(function () { pending = 0; apply(); });
-  }).observe(root, { childList: true, subtree: true });
+    if (document.hidden) pending = setTimeout(run, Math.max(0, gap));
+    else pending = gap > 0 ? setTimeout(function () { requestAnimationFrame(run); }, gap) : requestAnimationFrame(run);
+  });
+  obsA.observe(root, { childList: true, subtree: true });
 })();
 
 </script>
@@ -23897,6 +23949,7 @@ window.dwResize = (function () {
      animation so the pass cannot be seen. It runs once per level per layout width. */
   function tierOf(card) { return card && card.closest ? card.closest('.dw-tier') : null; }
   var CW_NOISE = 24;   /* a level does not move house over eleven pixels */
+  var LVLW = {};       /* v19.46: measured level widths, by who is in the level and the room it has */
   function levelWidth(card) {
     var t = tierOf(card);
     if (!t) { if (card._skfWant) setCw(card, card._skfWant); return; }
@@ -23938,6 +23991,17 @@ window.dwResize = (function () {
     if (t.dataset.skfLvlw === String(avail)) return;
     var cards = [].slice.call(t.querySelectorAll('.dw-card-list'));
     if (!cards.length) { t.dataset.skfLvlw = String(avail); return; }
+    /* v19.46 -- A LEVEL THAT HAS NOT CHANGED IS NOT MEASURED AGAIN. Measuring means opening every card in the level,
+       laying each out twice and shutting them -- about a second for the whole wall -- and the wall is rebuilt from
+       scratch whenever a feed brings something new, which threw every measurement away. The answer depends only on
+       who is in the level, what their cards say, and the room the level has; with those the same, it is reused. */
+    var ck = avail + '|' + cards.map(function (c) { return (c.getAttribute('data-id') || '') + ':' + (c.textContent || '').length; }).join(',');
+    if (LVLW[ck]) {
+      t.dataset.skfLvlw = String(avail); t._skfW = LVLW[ck];
+      cards.forEach(function (c) { if (!c._skfWant) c._skfWant = LVLW[ck]; setCw(c, LVLW[ck]); });
+      return;
+    }
+    t._skfKey = ck;
     t.dataset.skfLvlw = String(avail);
     t._skfW = 0;
     var y = window.scrollY, shut = [];
@@ -23964,6 +24028,7 @@ window.dwResize = (function () {
     t.classList.remove('skf-mz');
     if (window.scrollY !== y) window.scrollTo(0, y);
     if (cards[0]) levelWidth(cards[0]);
+    if (t._skfKey && t._skfW) LVLW[t._skfKey] = t._skfW;
   }
   /* ---- v17.94: THE ANONYMOUS HEART IS THE SAME HEART -----------------------------------
      "Make the heart in the anonymous profile the same size as the white heart in the
@@ -24098,8 +24163,23 @@ window.dwResize = (function () {
     placeLvlPk();
     if (window.innerWidth < 900) return;
     [].forEach.call(root.querySelectorAll('.dw-tier'), measureLevel);
-    [].forEach.call(root.querySelectorAll('.dw-card-list'), sizeCard);
+    /* v19.46: a SHUT card that has already been sized is left alone until something that could change the answer has
+       happened (a resize, the fonts landing, the page finishing loading, the level's width changing). This pass runs
+       dozens of times as the page settles and was re-measuring all ~65 cards on every one of them. */
+    [].forEach.call(root.querySelectorAll('.dw-card-list'), function (c) {
+      var open = c.classList.contains('is-open');
+      var k = sizeEpoch + '|' + (open ? 'o' : 's') + '|' + (c._skfCw || 0);
+      if (!open && c._skfSizedAt === k) return;
+      sizeCard(c);
+      c._skfSizedAt = sizeEpoch + '|' + (open ? 'o' : 's') + '|' + (c._skfCw || 0);
+    });
   }
+  var sizeEpoch = 0;
+  function sizeBump() { sizeEpoch++; }
+  window.addEventListener('resize', sizeBump);
+  window.addEventListener('load', sizeBump);
+  window.addEventListener('wat-dw-ready', sizeBump);
+  try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeBump); } catch (x) {}
 
   /* ---- v17.36: the search count's quoted term is bold ------------------------------
      The base writes "<b>2</b> supporters matching &ldquo;laura&rdquo;" -- the figure is
@@ -29814,37 +29894,52 @@ window.dwResize = (function () {
      it the full once-over the first 20 seconds give everything, two frames later so the
      observers' own passes have landed first. */
   window.addEventListener('dw-level-rebuilt', function () {
-    requestAnimationFrame(function () { requestAnimationFrame(tick); });
-    setTimeout(tick, 300);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { tickSoon(0); }); });
+    setTimeout(function () { tickSoon(0); }, 400);
   });
-  var tries = 0;
-  var iv = setInterval(function () {
-    tick();
-    if (++tries > 40) clearInterval(iv);        // 20s, then the observers carry it
-  }, 500);
+  /* v19.46 -- THE ONCE-OVER IS NO LONGER A HEARTBEAT. It ran every half second for the first 20 seconds: forty passes,
+     each one measuring and nudging things, each nudge waking the observers below into a full re-measure of every level.
+     Measured on the live page that is most of ten seconds of 1-2 second stalls. It now runs when something has
+     actually happened -- a few times as the page settles, when the fonts land, when the window has loaded, and after
+     every rebuild of the wall (the ladder observer asks for it) -- and never more than once in 350ms. */
+  var tickAt = 0, tickPend = 0;
+  function tickSoon(ms) {
+    if (tickPend) return;
+    var wait = Math.max(ms || 0, 350 - (Date.now() - tickAt));
+    tickPend = setTimeout(function () { tickPend = 0; tickAt = Date.now(); tick(); dropOwn(); }, Math.max(0, wait));
+  }
+  window.WAT_DW_TICK = tickSoon;
+  [300, 900, 1800, 3200, 5200, 8000, 12000, 20000].forEach(function (ms) { setTimeout(function () { tickSoon(0); }, ms); });
+  try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { tickSoon(50); }); } catch (x) {}
+  window.addEventListener('load', function () { tickSoon(100); });
+  window.addEventListener('wat-dw-ready', function () { tickSoon(0); });
   /* AND ONE ON THE LADDER, for the divider. The sidebar observer below cannot see the wall
      rebuilding, which is what was taking the divider out. Only placeDivider runs here: it
      mutates the DOM at most once per rebuild and does nothing at all when it finds itself
      already in place, so the observer cannot feed itself. */
   var ladder = root.querySelector('.dw-main') || root;
+  /* v19.46: the passes below change classes and nodes themselves; those changes are theirs, not news */
+  var obsC = null, obsD = null;
+  function dropOwn() { try { if (obsC) obsC.takeRecords(); if (obsD) obsD.takeRecords(); } catch (x) {} }
   if (window.MutationObserver) {
     var pendD = 0;
-    new MutationObserver(function () {
+    obsD = new MutationObserver(function () {
       if (pendD) return;
       /* v18.83: centreHeads() ran only from tick(), which stops after 20s -- so a heading
          rebuilt after that (any click) was never re-arranged. It runs on every rebuild now.
          A hidden tab gets a timer, since it never runs animation frames. */
-      var runD = function () { pendD = 0; markSpecial(); placeDivider(); placeAllRow(); dressCards(); centreHeads(); pkFoot(); pinChips(); measureFly(); labelFly(); fitPhoneHeads(); alignImpact(); };
+      var runD = function () { pendD = 0; markSpecial(); placeDivider(); placeAllRow(); dressCards(); centreHeads(); pkFoot(); pinChips(); measureFly(); labelFly(); fitPhoneHeads(); alignImpact(); dropOwn(); tickSoon(120); };
       pendD = document.hidden ? setTimeout(runD, 0) : requestAnimationFrame(runD);
-    }).observe(ladder, { childList: true, subtree: true });
+    });
+    obsD.observe(ladder, { childList: true, subtree: true });
   }
   /* THE OPEN HAS TO BE MEASURED BEFORE THE FIRST FRAME. A MutationObserver callback runs
      as a microtask -- after the class flips, before paint -- so measuring the card right
      there means the panel animates straight to its real width. Deferred to a rAF it would
      start toward the 100% fallback and visibly correct itself. */
   if (window.MutationObserver) {
-    var pendC = 0;
-    new MutationObserver(function (recs) {
+    var pendC = 0, passAt = 0;
+    obsC = new MutationObserver(function (recs) {
       if (window.innerWidth < 900) return;
       var sync = false;
       for (var i = 0; i < recs.length; i++) {
@@ -29857,17 +29952,25 @@ window.dwResize = (function () {
         }
       }
       if (sync || pendC) return;
-      pendC = requestAnimationFrame(function () { pendC = 0; dressCards(); centreHeads(); pkFoot(); sizeCards(); placeQuotes(); });
-    }).observe(ladder, { attributes: true, attributeFilter: ['class', 'hidden'],
+      /* v19.46: at most one full pass every 250ms (the first is immediate), and what the pass itself changes is not
+         a reason to run it again */
+      var runC = function () { pendC = 0; passAt = Date.now(); dressCards(); centreHeads(); pkFoot(); sizeCards(); placeQuotes(); dropOwn(); };
+      var gap = 250 - (Date.now() - passAt);
+      pendC = gap > 0 ? setTimeout(function () { requestAnimationFrame(runC); }, gap) : requestAnimationFrame(runC);
+    });
+    obsC.observe(ladder, { attributes: true, attributeFilter: ['class', 'hidden'],
                          subtree: true, childList: true });
   }
 
   var side = root.querySelector('.dw-side');
   if (side && window.MutationObserver) {
-    var pend = 0;
+    var pend = 0, sideAt = 0;
     new MutationObserver(function () {
       if (pend) return;
-      pend = requestAnimationFrame(function () { pend = 0; paintBudget(); paintRecent(); });
+      /* v19.46: the sidebar's own clock and counters change every frame; three looks a second is plenty */
+      var runS = function () { pend = 0; sideAt = Date.now(); paintBudget(); paintRecent(); };
+      var gap = 300 - (Date.now() - sideAt);
+      pend = gap > 0 ? setTimeout(runS, gap) : requestAnimationFrame(runS);
     }).observe(side, { childList: true, subtree: true, characterData: true });
   }
 })();
