@@ -15132,6 +15132,15 @@ window.dwResize = (function () {
   #wat-dw.sk-full.dw-skin .dw-tier .dw-chip.is-open + .dw-chip.is-open{margin-top:4px !important;}
 }
 
+/* v19.56 (Nirvan): "On the desktop, when you click to expand somebody's donor history, can you allow any quote to have
+   7 lines so that Rachel Hamilton's and Thor's will read automatically? If a quote's longer than that, then introduce
+   the Read more and Read less." Seven lines on desktop (three stays on phones); skin_full.js hides "Read more" on any
+   quote that fits inside them. */
+@media(min-width:900px){
+  #wat-dw.sk-full .dw-quote:not(.dw-quote-open) .dw-qtext:not(.dw-qtext-full){-webkit-line-clamp:7;line-clamp:7;}
+}
+#wat-dw.sk-full .dw-quote .dw-more.skf-more-off{display:none !important;}
+
 </style>
 
     <div class="dw-panel">
@@ -30215,6 +30224,24 @@ window.dwResize = (function () {
       pend = gap > 0 ? setTimeout(runS, gap) : requestAnimationFrame(runS);
     }).observe(side, { childList: true, subtree: true, characterData: true });
   }
+})();
+
+/* v19.56: "Read more" only on a quote that is really cut short. The page decides it by length (over 150 characters);
+   with seven lines on desktop most of those now fit, so each visible, shut quote is measured: if all of it shows, its
+   "Read more" is put away. Measured when a name is opened, on resize, and once the wall is in. */
+(function () {
+  var root = document.getElementById('wat-dw'); if (!root) return;
+  function fit() {
+    var qs = root.querySelectorAll('.dw-quote');
+    for (var i = 0; i < qs.length; i++) {
+      var q = qs[i], m = q.querySelector('.dw-more'), t = q.querySelector('.dw-qtext');
+      if (!m || !t || q.classList.contains('dw-quote-open') || !t.clientHeight) continue;
+      m.classList.toggle('skf-more-off', t.scrollHeight <= t.clientHeight + 2);
+    }
+  }
+  var T = 0; function soon() { clearTimeout(T); T = setTimeout(fit, 60); setTimeout(fit, 420); }
+  root.addEventListener('click', soon); window.addEventListener('resize', soon);
+  document.addEventListener('wat-dw-ready', soon); setTimeout(fit, 1500); setTimeout(fit, 4000);
 })();
 
 /* v19.39 -- THE WALL APPEARS ONCE. Loaded through the GitHub loader, the three layers ran as three separate tasks and
