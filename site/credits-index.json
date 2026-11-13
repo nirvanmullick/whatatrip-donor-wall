@@ -784,6 +784,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-david-friedman"
  },
  {
+  "slug": "david-roth",
+  "name": "David Roth",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/david-roth",
+  "goes_to": "https://whatatrip.com/donors#donor-david-roth"
+ },
+ {
   "slug": "david-sanders",
   "name": "David Sanders",
   "kind": "donor",

@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-11T11:13:31.352Z",
- "count": 297,
+ "updated": "2026-11-13T02:58:39.040Z",
+ "count": 298,
  "gifts": [
+  {
+   "date": "2026-11-12T16:14:10.980-08:00",
+   "name": "David Roth",
+   "name_on_record": "David Roth",
+   "amount": 15000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33953269,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-11T02:51:13.890-08:00",
    "name": "Theresa Daniello",
