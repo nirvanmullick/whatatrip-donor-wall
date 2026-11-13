@@ -2051,6 +2051,33 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var _n = document.getElementById('wb-note');
     if (_n && !_n.hidden && /wb-supporters/.test(_n.innerHTML) && !barBusy) setGoal(selIdx, 0, false);
   });
+  /* (rr) 2026-11-12 DIRECT LINKS to this widget: /donate#budget, #total-budget, #rough-cut, #final-cut, #matching,
+     and one per goal (#editing-act-3, #animation, #sound-design-mix ... the same names as on /budget). The link opens
+     that budget, lands the card on that goal and scrolls here. (On /budget the lists below answer these instead.) */
+  function budgetGo(h, smooth) {
+    if (document.getElementById('bp-secs')) return false;
+    var key = null, idx = null;
+    if (h === 'budget') key = activeTab;
+    else if (h === 'total-budget') key = 'total';
+    else if (h === 'rough-cut' || h === 'matching') key = 'rough';
+    else if (h === 'final-cut') key = 'final';
+    else { ['rough', 'final'].forEach(function (k) { var n = BUDGET_SLUGS[k].indexOf(h); if (n > -1) { key = k; idx = n; } }); }
+    if (!key) return false;
+    if (barBusy) { setTimeout(function () { budgetGo(h, smooth); }, 400); return true; }
+    if (key !== activeTab) {
+      [].forEach.call(document.querySelectorAll('#wat-bud .wb-tab'), function (b) { b.classList.toggle('wb-tab-on', b.getAttribute('data-b') === key); });
+      if (lmListOpen) lmToggleList(false);
+      loadBudget(key, false); if (typeof updateNav === 'function') updateNav();
+    }
+    if (idx != null && B.stages[idx]) { pointing = true; setGoal(idx, 0, false); }
+    var host = document.getElementById('wat-bud');
+    var hands = false, stop = function () { hands = true; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (e) { window.addEventListener(e, stop, { passive: true, once: true }); });
+    if (host) { [300, 1300, 2600].forEach(function (ms, n) { setTimeout(function () { if (hands) return; var y = host.getBoundingClientRect().top; if (n === 0 || y < 40 || y > 170) { try { host.scrollIntoView({ behavior: (n === 0 && smooth) ? 'smooth' : 'auto', block: 'start' }); } catch (e) { host.scrollIntoView(); } } }, ms); }); }
+    return true;
+  }
+  window.addEventListener('hashchange', function () { budgetGo(decodeURIComponent((location.hash || '').slice(1)), true); });
+  if (location.hash) setTimeout(function () { budgetGo(decodeURIComponent(location.hash.slice(1)), false); }, 700);
   var navL = el('wb-nav-l'), navR = el('wb-nav-r');
   var navSide = null;
   function navTargets() {
@@ -2190,6 +2217,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-circle.is-funded { background: var(--c); border: 2px solid var(--c); }
   #wat-bud .wb-circle.is-funded::after { content: '\2713'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; font-weight: 700; }
   #wat-bud #wb-title-text { transition: color .2s ease; }
+  #wat-bud { scroll-margin-top: 90px; }
   #wat-bud .wb-tlink { color: inherit; text-decoration: none; }
   #wat-bud .wb-tlink:hover { text-decoration: underline; text-underline-offset: 3px; }
   #wat-bud #wb-title-text.is-struck .wb-tlink:hover { text-decoration: line-through underline; }
@@ -3036,8 +3064,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     [].forEach.call(document.querySelectorAll('#wat-wall .wat-tab'), function (b) { b.classList.toggle('wat-tab-active', b.getAttribute('data-tab') === 'recent'); });
   } })();
   var topShown = TOP_ROWS;
-  var RECENT_BATCH = 20;   // (mm) was 50 -- 'List 20 more' shows the rest
-  var recentShown = RECENT_BATCH;
+  /* (rr) 2026-11-12 (Nirvan): "doesn't show so many automatically until you scroll down, then it can roll up and load
+     more". Recent opens on RECENT_FIRST gifts; more arrive by themselves as you scroll to the end of the list (or tap
+     the button); "Show fewer" rolls it back up. */
+  var RECENT_FIRST = 6, RECENT_BATCH = 12;
+  var recentShown = RECENT_FIRST;
 
   var money = function (n) { return '$' + Number(n || 0).toLocaleString('en-US'); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -3133,6 +3164,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         d._nmatch = Math.max(0, Math.min(d._omatch, before + d._omatch - M.cap));
         d._rmatch = M.then ? Math.max(0, Math.min(d._omatch, before + d._omatch - c2)) : 0;   /* (gg) Rachel's part */
         d._nmatch -= d._rmatch;
+        /* (rr) which matches THIS gift completed: 0 = the Osters, 1 = Kasey & David, 2 = Rachel */
+        var aft = before + d._omatch; d._done = [];
+        if (d._omatch > 0) { if (before < M.cap && aft >= M.cap) d._done.push(0); if (M.next && before < c2 && aft >= c2) d._done.push(1); if (M.then && before < poolC && aft >= poolC) d._done.push(2); }
         left -= d._omatch;
       });
     }
@@ -3147,7 +3181,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
 
   // Per-gift credit: "Rachel Hamilton matched Elena's $3,500"
-  function osterMatchRow(d) {
+  function osterMatchRow(d, afterLeg) {
     var M = window.WAT_LIVE_MATCH;
     var pre = (d.anonymous || !d.name) ? 'an anonymous gift of ' : (esc(d.name) + '&rsquo;s ');
     /* (ff) a gift past the Osters' $60K is Kasey & David's to match; one that straddles the line gets a row from each */
@@ -3160,7 +3194,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var av = W.photo ? '<span class="wat-av wat-av-photo"><img src="' + esc(W.photo) + '" style="' + (W.photoStyle || '') + '" alt=""></span>' : '<span class="wat-av" style="background:' + (W === M ? '#5a93af' : '#9a7fd0') + ';font-size:10px;letter-spacing:0">' + esc(W.mono || '') + '</span>';
       return '<div class="wat-row wat-row-match">' + certWrap(av) +
         '<div class="wat-row-main"><div class="wat-row-top"><span class="wat-name">' + esc(W.name) +
-        '</span> matched ' + pre + '<span class="wat-amt">' + money(p[1]) + '</span> &#127881;</div></div></div>';
+        '</span> matched ' + pre + '<span class="wat-amt">' + money(p[1]) + '</span> &#127881;</div></div></div>' +
+        (afterLeg ? afterLeg(W === M ? 0 : W === M.next ? 1 : 2) : '');   /* (rr) */
     }).join('');
   }
   function rachelMatchRow(d) {
@@ -3386,15 +3421,29 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var feed = [];
       merged.slice(0, recentShown).forEach(function (d) {
         feed.push(donorRow(d));
-        if (d._omatch > 0) feed.push(osterMatchRow(d));          /* the running challenge credits its own matches */
+        if (d._omatch > 0) feed.push(osterMatchRow(d, function (leg) { return (d._done && d._done.indexOf(leg) > -1) ? liveMatchCard(leg, d) : ''; }));   /* the running challenge credits its own matches; (rr) a match this gift COMPLETED is marked right here, and scrolls down the timeline as new gifts arrive */
         else if (d._match > 0) feed.push(rachelMatchRow(d));      /* Rachel's: only gifts before her Aug 8 end */
         if (d === completingDonor) feed.push(challengeCompleteRow(totalMatched, contributors));
       });
       rows = pops.map(placeholderRow).concat(feed);
-      if (merged.length > recentShown) { var rmore = Math.min(RECENT_BATCH, merged.length - recentShown); rows.push('<button type="button" class="wat-loadmore" id="wat-loadmore">List ' + rmore + ' more &darr;</button>'); }
+      if (merged.length > recentShown) { rows.push('<button type="button" class="wat-loadmore wat-loadmore-auto" id="wat-loadmore">Show more donations &darr;</button>'); }
+      if (recentShown > RECENT_FIRST) rows.push('<button type="button" class="wat-rollup" id="wat-rollup">Show fewer &uarr;</button>');
     }
-    if (activeTab === 'recent') rows = liveMatchCards().concat(rows);   /* pinned on Recent; Top places it by amount */
+    if (activeTab === 'recent') rows = liveMatchCards().concat(rows);   /* pinned on Recent: whoever is matching now + who is up next. A finished match sits in the timeline (rr). */
     listEl.innerHTML = rows.length ? rows.join('') : '<div class="wat-wall-empty">No supporters yet.</div>';
+    listEl.classList.toggle('wat-list-short', activeTab === 'recent' && recentShown <= RECENT_FIRST);   /* (rr) a shorter window until more are asked for */
+    watchLoadMore();
+  }
+  /* (rr) the "Show more" button loads by itself once it has been on screen for a moment */
+  var lmIO = null, lmTimer = null;
+  function watchLoadMore() {
+    if (lmIO) { lmIO.disconnect(); lmIO = null; } clearTimeout(lmTimer);
+    var btn = listEl.querySelector('.wat-loadmore-auto'); if (!btn || !('IntersectionObserver' in window)) return;
+    lmIO = new IntersectionObserver(function (en) {
+      var on = en.some(function (x) { return x.isIntersecting; }); clearTimeout(lmTimer);
+      if (on) lmTimer = setTimeout(function () { if (activeTab !== 'recent' || !document.body.contains(btn)) return; recentShown += RECENT_BATCH; render(); }, 350);
+    }, { threshold: 0.6 });
+    lmIO.observe(btn);
   }
   /* 2026-09-27: the RUNNING matching challenge (Anna & Scott Oster), pinned at the top of the
      list with the same gold seal as Rachel and Thor. Config + numbers come from the budget widget
@@ -3424,9 +3473,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     L.forEach(function (x, i) { var st = 0; for (var k = 0; k < i; k++) st += L[k].cap; if (got >= st) act = i; });
     if (act >= L.length || got >= st0(L)) act = 0;
     order = [act].concat(order.filter(function (i) { return i !== act; }));   /* (gg) whoever is matching now goes first, then the rest in turn */
-    return order.map(liveMatchCard).filter(Boolean);
+    /* (rr) a FINISHED match is no longer pinned -- it lives in the timeline at the gift that completed it */
+    var ended = Date.now() > new Date(M.end).getTime();
+    order = order.filter(function (i) { var st = 0; for (var k = 0; k < i; k++) st += L[k].cap; return ended ? false : got < st + L[i].cap; });
+    return order.map(function (i) { return liveMatchCard(i); }).filter(Boolean);
   }
-  function liveMatchCard(leg) {
+  function liveMatchCard(leg, doneBy) {   /* doneBy (rr) = the gift that completed this match, when the card sits in the timeline */
     var M = window.WAT_LIVE_MATCH; if (!M || !M.on) return '';
     leg = leg || 0;
     var LL = poolLegsOf(M), W = LL[leg]; if (!W) return '';
@@ -3437,7 +3489,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var over = Date.now() > new Date(M.end).getTime() || got >= W.cap;
     var av = W.photo ? '<span class="wat-av wat-av-photo"><img src="' + esc(W.photo) + '" style="' + (W.photoStyle || '') + '" alt="' + esc(W.name) + '"></span>'
                      : '<span class="wat-av" style="background:' + (leg ? '#9a7fd0' : '#5a93af') + ';font-size:10px;letter-spacing:0">' + esc(W.mono || '') + '</span>';
-    var line = over ? ' completed ' + they.their + ' <span class="wat-amt">' + money(W.cap) + '</span> Matching Challenge! &#127881;'
+    var doneWhen = (doneBy && doneBy.ts) ? new Date(doneBy.ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/Los_Angeles' }) : '';
+    var line = over ? ' completed ' + they.their + ' <span class="wat-amt">' + money(W.cap) + '</span> Matching Challenge! &#127881;' + (doneWhen ? '<span class="wat-when wat-lm-when">Challenge met ' + doneWhen + (doneBy.time ? ' &middot; ' + esc(doneBy.time) : '') + ' &mdash; ' + money(W.cap) + ' in gifts became ' + money(W.cap * 2) + '</span>' : '')
                : !started ? ' will match the next <span class="wat-amt">$' + Math.round(W.cap / 1000) + 'k</span> after our $' + Math.round(from / 1000) + 'k ' + (leg > 1 ? 'in matches is met!' : 'challenge is met!')   /* (ff) Nirvan's wording, 2026-10-09; (gg) Rachel's: "after our $85k in matches is met!" */
                : got > 0 ? ' ' + they.have + ' matched <span class="wat-amt">' + money(got) + '</span> of ' + they.their + ' ' + money(W.cap) + ' Matching Challenge!'
                : ' ' + they.are + ' matching every gift up to <span class="wat-amt">' + money(W.cap) + '</span> &mdash; be the first to join ' + they.their + ' challenge!';
@@ -3456,7 +3509,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         var date = s.time ? ' <span class="wat-sup-date">&middot; ' + esc(s.time) + '</span>' : '';
         return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span>' + date + '</span><span class="wat-sup-amt">' + money(legShare(s)) + '</span></div>';
       }).join('') + '</div>' : '';
-    return '<div class="wat-donor-card wat-live-match' + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
+    return '<div class="wat-donor-card wat-live-match' + (doneBy ? ' wat-lm-done' : '') + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
       '<div class="wat-row-main"><div class="wat-row-top"><span class="wat-name">' + esc(W.name) + '</span>' + line + '</div>' + who + '</div></div>' + list + '</div>';
   }
   function clamp0(v, hi) { return Math.max(0, Math.min(v, hi)); }
@@ -3494,6 +3547,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         var gLeg = +(gl.getAttribute('data-leg') || 0) || 0;   /* (pp) open the card of whoever matched THIS gift */
         lmOpen[gLeg] = true; render();
         var oc = listEl.querySelector('.wat-live-match[data-leg="' + gLeg + '"]');
+        if (!oc) { recentShown = 100000; render(); oc = listEl.querySelector('.wat-live-match[data-leg="' + gLeg + '"]'); }   /* (rr) a finished match sits further down the timeline */
         if (oc) { if (oc.scrollIntoView) oc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); oc.classList.add('wat-lm-flash'); setTimeout(function () { oc.classList.remove('wat-lm-flash'); }, 1300); }
         return;
       }
@@ -3505,6 +3559,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     }
     var lm = e.target.closest ? e.target.closest('.wat-loadmore') : null;
     if (lm) { e.preventDefault(); if (activeTab === 'top') { topShown += TOP_ROWS; } else { recentShown += RECENT_BATCH; } render(); return; }
+    var ru = e.target.closest ? e.target.closest('.wat-rollup') : null;
+    if (ru) { e.preventDefault(); recentShown = RECENT_FIRST; render(); listEl.scrollTop = 0;
+      var wl = document.getElementById('wat-wall'); if (wl && wl.getBoundingClientRect().top < 0 && wl.scrollIntoView) wl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return; }
     var a = e.target.closest ? e.target.closest('.wat-more') : null;   // "Read more" on a quote — handle before the card toggle so it doesn't collapse the card
     if (a) { e.preventDefault(); e.stopPropagation(); var q = a.closest('.wat-quote'); if (q) { var open = q.classList.toggle('wat-quote-open'); a.textContent = open ? 'Read less' : 'Read more'; } return; }
     if (e.target.closest && e.target.closest('.wat-challenge-btn')) return;   // let the "Start a Challenge" link navigate
@@ -3553,7 +3611,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     btn.addEventListener('click', function () {
       activeTab = btn.getAttribute('data-tab');
       topShown = TOP_ROWS;
-      recentShown = RECENT_BATCH;
+      recentShown = RECENT_FIRST;
       [].forEach.call(document.querySelectorAll('#wat-wall .wat-tab'), function (b) {
         b.className = 'wat-tab' + (b === btn ? ' wat-tab-active' : '');
       });
@@ -3667,7 +3725,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-wall .wat-av-anon { background: #5a93af; color: #fff; font-size: 1rem; }
   #wat-wall .wat-lm-toggle { appearance: none; background: none; border: 0; padding: 0; margin-top: 4px; font: inherit; font-size: 0.86rem; color: #8a6a1c; cursor: pointer; }
   #wat-wall .wat-lm-toggle:hover { text-decoration: underline; }
-  #wat-wall .wat-live-match.wat-lm-next { opacity: .8; }   /* (ff) Kasey & David's card until their match starts */
+  #wat-wall .wat-live-match.wat-lm-next { opacity: .8; }
+  #wat-wall .wat-live-match .wat-lm-when { display: block; margin-top: 3px; font-weight: 400; }   /* (rr) */
+  #wat-wall .wat-live-match.wat-lm-done { margin-top: 10px; margin-bottom: 10px; }   /* (ff) Kasey & David's card until their match starts */
   #wat-wall .wat-lm-chev { display: inline-block; transition: transform .2s ease; }
   #wat-wall .wat-lm-on .wat-lm-chev { transform: rotate(90deg); }
   #wat-wall .wat-lm-list { margin: 10px 0 0 44px; }
@@ -3709,6 +3769,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-wall .wat-donor-card.wat-ch-open .wat-gifts-chev { transform:rotate(90deg); }
   #wat-wall .wat-loadmore { display:block; width:calc(100% - 8px); margin:10px 4px 2px; padding:10px 12px; border:1px solid #d5dae4; background:#f6f8fb; color:#5a93af; font-size:0.9rem; font-weight:700; border-radius:12px; cursor:pointer; transition:background .15s ease; }
   #wat-wall .wat-loadmore:hover { background:#eef2f7; }
+  #wat-wall .wat-wall-list { transition: max-height .35s ease; }
+  #wat-wall .wat-wall-list.wat-list-short { max-height: 470px; }
+  @media (prefers-reduced-motion: reduce) { #wat-wall .wat-wall-list { transition: none; } }
+  #wat-wall .wat-rollup { display:block; margin:8px auto 2px; padding:6px 12px; border:0; background:none; color:#7c8696; font-family:inherit; font-size:0.82rem; font-weight:700; cursor:pointer; }
+  #wat-wall .wat-rollup:hover { color:#5a93af; }
   #wat-wall .wat-donor-ch { background: rgba(109,91,158,0.07); }
   #wat-wall .wat-donor-ch .wat-gifts, #wat-wall .wat-donor-ch .wat-gifts-chev { color:#6d5b9e; }
   #wat-wall .wat-topch-data { margin-top:10px; font-size:0.86rem; color:#3a4051; line-height:1.5; }
