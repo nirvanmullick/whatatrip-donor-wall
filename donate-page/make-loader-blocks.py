@@ -1,7 +1,35 @@
 import re,io
 R='/home/claude/whatatrip-donor-wall/'
 old=io.open(R+'donate-page/squarespace-loader-block.html',encoding='utf-8').read()
-gate=old[old.index('/* Gate:'):old.index('/* Loader')]; gate=gate[:gate.rindex('})();')+5]+'\n'   # the Pledge-form gate, unchanged
+# v3 (11/13/2026): the Pledge-form gate is gone. It held this block back until the form's iframe had finished loading
+# (about a second, up to 3.5s). The form loads in its own frame and is not slowed by this; Nirvan: "The donate page is
+# especially important to load fast." WAT_AFTER_FORM stays defined (the block calls it) but runs straight away.
+gate='''/* v3: no waiting on the Pledge form -- it loads in its own frame. The block still calls WAT_AFTER_FORM. */
+(function () {
+  if (window.WAT_AFTER_FORM) return;
+  var q = [], going = false;
+  function runNext() { var fn = q.shift(); if (!fn) { going = false; return; } try { fn(); } catch (e) { if (window.console) console.error(e); } setTimeout(runNext, 0); }
+  window.WAT_AFTER_FORM = function (fn) { q.push(fn); if (!going) { going = true; setTimeout(runNext, 0); } };
+})();
+'''
+PLEDGE='https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec'
+FEED='https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec'
+RAW='https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/'
+ALLPRE={'pledge':PLEDGE+'?t=','list':RAW+'donors.json?t=','manual':RAW+'manual.json?t=','live':FEED+'?type=donors&t=','recent':FEED+'?type=recent&t=','count':'https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count'}
+def pre(keys):
+    items=', '.join("%s: '%s'"%(k,ALLPRE[k]) for k in keys)
+    return '''/* v3: ask for the live numbers NOW, at the top of the page, instead of after the code below has arrived and
+   started. The block picks these answers up (window.WAT_PRE); if one fails it simply asks again itself. */
+(function () {
+  if (window.WAT_PRE) return;
+  var U = { '''+items+''' }, P = window.WAT_PRE = { t: Date.now() };
+  Object.keys(U).forEach(function (k) {
+    var u = U[k]; if (/[?&]t=$/.test(u)) u += Date.now();
+    try { P[k] = fetch(u, /t=\\d+$/.test(u) ? { cache: 'no-store' } : undefined).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); } catch (e) {}
+  });
+})();
+'''
+
 
 CSS='''
   #%(m)s.wat-ld-wait { min-height: %(h)spx; }
@@ -52,7 +80,7 @@ DWCSS='''
   #%(m)s .watld-dw .watld-cap { font-size: 15px; color: #5a4a9a; margin: 0; }
 '''
 JS='''
-/* Loader v2 (11/12/2026). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
+/* Loader v3 (11/13/2026; the code-loading part is as in v2). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
    browsers keep it. NEW: the last version this browser loaded is remembered, and its code is asked for straight away
    (it comes out of the browser's own cache), while VERSION is checked alongside -- so a returning visitor is not kept
    waiting on two round trips. A newer version, if VERSION answers within 0.6s, is used instead. */
@@ -105,28 +133,28 @@ JS='''
 })();
 '''
 PAGES={
- 'budget': dict(m='wat-budget-mount',h=1500,w=860,dir='budget-page/',file='budget-block.html',after='function (fn) { fn(); }',failh='Our Film Budget',failt='The budget could not load. Please refresh the page.',
+ 'budget': dict(pre=['pledge'],m='wat-budget-mount',h=1500,w=860,dir='budget-page/',file='budget-block.html',after='function (fn) { fn(); }',failh='Our Film Budget',failt='The budget could not load. Please refresh the page.',
     caps='["Loading the budget\\u2026", "Adding up the latest donations\\u2026", "Checking the matching challenge\\u2026", "Almost there\\u2026"]',
-    head='''<!-- WHAT A TRIP - /budget page LOADER v2 (11/12/2026).
+    head='''<!-- WHAT A TRIP - /budget page LOADER v3 (11/13/2026).
      Paste this ENTIRE small block into the ONE Code Block on /budget (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> budget-page/budget-block.html
      Shows a picture of the page (and "Loading the budget...") while the real one arrives. -->'''),
- 'donors': dict(m='wat-donors-mount',h=600,w=860,dir='donors-page/',file='donors-block.html',after='function (fn) { fn(); }',failh='Our Film Donors',failt='The donor wall could not load. Please refresh the page.',
+ 'donors': dict(pre=['pledge','manual','list','live'],m='wat-donors-mount',h=600,w=860,dir='donors-page/',file='donors-block.html',after='function (fn) { fn(); }',failh='Our Film Donors',failt='The donor wall could not load. Please refresh the page.',
     caps='(function () { var n = 0; try { n = +localStorage.getItem("wat-donor-count") || 0; } catch (e) {} var t = n >= 20 ? "Now loading over " + (Math.floor(n / 10) * 10) + " donors and donor perks\\u2026" : "Now loading our donors and donor perks\\u2026"; window.WAT_DW_CAP = t; var c = document.querySelector("#wat-donors-mount .watld-cap"); if (c) c.textContent = t; return [t]; })()',
-    head='''<!-- WHAT A TRIP - /donors (donor wall) LOADER v2 (11/12/2026).
+    head='''<!-- WHAT A TRIP - /donors (donor wall) LOADER v3 (11/13/2026).
      Paste this ENTIRE small block into the ONE Code Block on /donors (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html
      Shows the wall's own pale background and a quiet "Loading the donor wall..." until the wall is ready. -->'''),
- 'donate': dict(m='wat-donate-mount',h=1100,w=480,dir='donate-page/',file='donate-block.html',after='window.WAT_AFTER_FORM || function (fn) { fn(); }',failh='Our Film Budget',failt='<a href="/budget">See the film budget &rarr;</a>',
+ 'donate': dict(pre=['pledge','list','manual','live','recent','count'],m='wat-donate-mount',h=1100,w=480,dir='donate-page/',file='donate-block.html',after='window.WAT_AFTER_FORM || function (fn) { fn(); }',failh='Our Film Budget',failt='<a href="/budget">See the film budget &rarr;</a>',
     caps='["Loading the budget\\u2026", "Adding up the latest donations\\u2026", "Loading our donors\\u2026", "Almost there\\u2026"]',
-    head='''<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v2 (11/12/2026).
+    head='''<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v3 (11/13/2026).
      Paste this ENTIRE small block over the earlier loader (the block UNDER the Pledge form).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donate-page/donate-block.html
-     The donation form still loads first; a picture of the budget + donations shows meanwhile. -->'''),
+     A picture of the budget + donations shows while the real one arrives (v3: no longer waits for the form). -->'''),
 }
 OUT={'budget':'budget-page/squarespace-loader-block.html','donors':'donors-page/squarespace-loader-block.html','donate':'donate-page/squarespace-loader-block.html'}
 for k,P in PAGES.items():
     css=CSS%P+(DWCSS%P if k=='donors' else '')
-    html=(P['head']+'\n<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>\n<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>\n'
-      '<div id="%s" class="wat-ld-wait">\n  <div class="watld">%s</div>\n</div>\n<style>%s</style>\n<script>\n%s%s</script>\n'%(P['m'],SKEL[k],css,(gate if k=='donate' else ''),JS%P))
+    html=(P['head']+'\n<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>\n<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>\n<link rel="preconnect" href="https://script.google.com" crossorigin>\n<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>\n'
+      '<div id="%s" class="wat-ld-wait">\n  <div class="watld">%s</div>\n</div>\n<style>%s</style>\n<script>\n%s%s</script>\n'%(P['m'],SKEL[k],css,pre(P['pre'])+(gate if k=='donate' else ''),JS%P))
     io.open(R+OUT[k],'w',encoding='utf-8').write(html); print(k,len(html))

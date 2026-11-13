@@ -117,7 +117,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   var WAT_PROXY_URL = 'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec';   // same proxy the Rough Cut Budget Goals widget uses; returns {raised, goal, donors}
   var POLL_MS   = 20000, DURATION = 900;   // (cc) 30s -> 20s; the proxy itself refreshes every 30s
   var ROUGH_BASE = 75000;
-  var ROUGH_FALLBACK_PLEDGE = 37755;   // only used until the live fetch lands (or if it fails)
+  var ROUGH_FALLBACK_PLEDGE = 114409;   // (ac) brought up to date 11/13 so a first-time visitor's bar starts near the truth   // only used until the live fetch lands (or if it fails)
   var DONOR_COUNT = 300;            // fallback only — the donor wall below reports the LIVE count via window.WAT_DONOR_COUNT
   function donorCount() { return (typeof window !== 'undefined' && window.WAT_DONOR_COUNT != null) ? window.WAT_DONOR_COUNT : DONOR_COUNT; }
   function donorCountText() { return Number(donorCount()).toLocaleString('en-US'); }
@@ -226,7 +226,21 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     ],
     sampleGifts: 21450                    // TEST ONLY: sample gifts so far (matched 1:1)
   };
+  /* (ac) 2026-11-13 FASTER START. Two helpers, shared by the budget and the donations list:
+     watGet  -- uses an answer the page's loader already asked for at the very top of the page (window.WAT_PRE),
+                so the numbers are on their way before this code has even arrived; otherwise asks now.
+     watKeep / watKept -- remembers the last answer in this browser, so a returning visitor sees the real budget and
+                the real list at once, and the fresh answer then only changes what actually changed. */
+  function watGet(key, url) {
+    var P = window.WAT_PRE, pp = P && P[key];
+    function ask() { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }); }
+    if (pp && Date.now() - (P.t || 0) < 15000) { P[key] = null; return pp.then(function (d) { if (d == null) throw 0; return d; }).catch(ask); }
+    return ask();
+  }
+  function watKeep(k, v) { try { localStorage.setItem('wat-c:' + k, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} }
+  function watKept(k) { try { var c = JSON.parse(localStorage.getItem('wat-c:' + k) || 'null'); if (c && Date.now() - c.t < 14 * 864e5) return c.v; } catch (e) {} return null; }
   var roughPledge = ROUGH_FALLBACK_PLEDGE;
+  (function () { var k = watKept('pledge'); if (typeof k === 'number' && isFinite(k) && k >= 0) roughPledge = k; })();
   /* 2026-09-28 FIX: Pledge's total counts donors' gifts only -- it does NOT add the sponsor's match
      (verified: after the first night the total rose $1,960, exactly the nine gifts). So:
        matched  = gifts since the challenge started (capped at the pledge)
@@ -2152,9 +2166,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
   function pullPledge() {
     if (!WAT_PROXY_URL) return;
-    fetch(WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && typeof d.raised === 'number') { var first = !window.WAT_ROUGH_LIVE; window.WAT_ROUGH_LIVE = true; applyLivePledge(d.raised); if (first) announceRough(); } })
+    watGet('pledge', WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
+      .then(function (d) { if (d && typeof d.raised === 'number') { watKeep('pledge', d.raised); var first = !window.WAT_ROUGH_LIVE; window.WAT_ROUGH_LIVE = true; applyLivePledge(d.raised); if (first) announceRough(); } })
       .catch(function () {});                                     // offline/blocked -> keep the fallback figure
   }
   pullPledge();
@@ -2698,7 +2711,20 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
      and this simply does nothing. */
   var LIVE_DONORS_URL = 'https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec?type=donors';
   var POLL_LIVE_MS = 20000;
-  var jsonRows = null, liveRows = [], liveSig = '';
+  /* (ac) 2026-11-13 FASTER START. Two helpers, shared by the budget and the donations list:
+     watGet  -- uses an answer the page's loader already asked for at the very top of the page (window.WAT_PRE),
+                so the numbers are on their way before this code has even arrived; otherwise asks now.
+     watKeep / watKept -- remembers the last answer in this browser, so a returning visitor sees the real budget and
+                the real list at once, and the fresh answer then only changes what actually changed. */
+  function watGet(key, url) {
+    var P = window.WAT_PRE, pp = P && P[key];
+    function ask() { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }); }
+    if (pp && Date.now() - (P.t || 0) < 15000) { P[key] = null; return pp.then(function (d) { if (d == null) throw 0; return d; }).catch(ask); }
+    return ask();
+  }
+  function watKeep(k, v) { try { localStorage.setItem('wat-c:' + k, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} }
+  function watKept(k) { try { var c = JSON.parse(localStorage.getItem('wat-c:' + k) || 'null'); if (c && Date.now() - c.t < 14 * 864e5) return c.v; } catch (e) {} return null; }
+  var jsonRows = null, liveRows = [], liveSig = '', listSig = '', recentSig = '';
 
   // ---- LIVE-FEED DONOR FIXUPS (overriding what Pledge.to sends us) ------------
   // Pledge is the system of record for gifts, but it can't express how a donor wants to be
@@ -3191,12 +3217,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     return true;
   }
   function pullManual() {
-    fetch(MANUAL_URL + '?t=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
+    watGet('manual', MANUAL_URL + '?t=' + Date.now())
       .then(function (m) {
         var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia);
         if (sig === manualSig) return;
-        if (applyManual(m)) { manualSig = sig; render(); }
+        if (applyManual(m)) { manualSig = sig; watKeep('manual', m); render(); }
       })
       .catch(function () {});
   }
@@ -3207,8 +3232,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
      distinct names on the wall plus one per anonymous gift. */
   var WAT_TRUE_DONORS = null;
   try {
-    fetch('https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count')
-      .then(function (r) { return r.ok ? r.json() : null; })
+    watGet('count', 'https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count')
       .then(function (j) {
         if (!j || !(Number(j.donors) > 0)) return;
         WAT_TRUE_DONORS = Number(j.donors);
@@ -3807,28 +3831,25 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   });
 
   function pullList() {
-    fetch(WALL_URL + (WALL_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && d.donors && d.donors.length) { jsonRows = d.donors; wall = { updated: d.updated, count: d.count, donors: mergeWall(jsonRows.concat(liveRows)) }; render(); } })   // MERGE, never replace
+    watGet('list', WALL_URL + (WALL_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
+      .then(function (d) { if (d && d.donors && d.donors.length) { var sg = JSON.stringify(d.donors); if (sg === listSig) return; listSig = sg; watKeep('list', { updated: d.updated, count: d.count, donors: d.donors }); jsonRows = d.donors; wall = { updated: d.updated, count: d.count, donors: mergeWall(jsonRows.concat(liveRows)) }; render(); } })   // MERGE, never replace
       .catch(function () {});
   }
   function pullLive() {
-    fetch(LIVE_DONORS_URL + '&t=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
+    watGet('live', LIVE_DONORS_URL + '&t=' + Date.now())
       .then(function (d) {
         if (!d || !d.donors || !d.donors.length) return;
         var sig = JSON.stringify(d.donors);
         if (sig === liveSig) return;                      // nothing new -> no re-render
-        liveSig = sig; liveRows = d.donors;
+        liveSig = sig; liveRows = d.donors; watKeep('live', { updated: d.updated, donors: d.donors });
         wall = { updated: d.updated, count: wall && wall.count, donors: mergeWall((jsonRows || []).concat(liveRows)) };
         render();
       })
       .catch(function () {});
   }
   function pullRecent() {
-    fetch(RECENT_URL + '&t=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && d.recent) { recent = d.recent; render(); } })
+    watGet('recent', RECENT_URL + '&t=' + Date.now())
+      .then(function (d) { if (d && d.recent) { var sg = JSON.stringify(d.recent); if (sg === recentSig) return; recentSig = sg; watKeep('recent', d.recent); recent = d.recent; render(); } })
       .catch(function () {});
   }
 
@@ -3851,7 +3872,18 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
   window.addEventListener('hashchange', deepLinkChallenge);
 
-  render();               // paint the seed immediately
+  /* (ac) start from what this browser saw last time, so the first paint is the real list, not the built-in one */
+  (function () {
+    try {
+      var m = watKept('manual'); if (m && applyManual(m)) manualSig = JSON.stringify(m.gifts) + JSON.stringify(m.renames) + JSON.stringify(m.pledgeVia);
+      var j = watKept('list'), l = watKept('live'), r = watKept('recent');
+      if (j && j.donors && j.donors.length) { jsonRows = j.donors; listSig = JSON.stringify(j.donors); }
+      if (l && l.donors && l.donors.length) { liveRows = l.donors; liveSig = JSON.stringify(l.donors); }
+      if (jsonRows || liveRows.length) wall = { updated: (l && l.updated) || (j && j.updated), count: j && j.count, donors: mergeWall((jsonRows || []).concat(liveRows)) };
+      if (r && r.length) { recent = r; recentSig = JSON.stringify(r); }
+    } catch (e) {}
+  })();
+  render();               // paint straight away
   deepLinkChallenge();    // honor an incoming #wat-challenge-… link
   pullList(); pullRecent(); pullManual(); pullLive();
   setInterval(function () { if (!document.hidden) pullManual(); }, 5 * 60 * 1000);   // the master donor list (hand-kept gifts) changes rarely

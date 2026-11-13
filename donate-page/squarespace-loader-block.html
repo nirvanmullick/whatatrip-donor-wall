@@ -1,9 +1,11 @@
-<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v2 (11/12/2026).
+<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v3 (11/13/2026).
      Paste this ENTIRE small block over the earlier loader (the block UNDER the Pledge form).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donate-page/donate-block.html
-     The donation form still loads first; a picture of the budget + donations shows meanwhile. -->
+     A picture of the budget + donations shows while the real one arrives (v3: no longer waits for the form). -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
 <div id="wat-donate-mount" class="wat-ld-wait">
   <div class="watld"><div class="watld-card"><div class="watld-h">Our Film Budget</div><div class="watld-tabs"><span>Total Budget</span><span class="on">Rough Cut</span><span>Final Cut</span></div><span class="watld-sh " style="width:62%;height:34px;margin:0 auto 14px"></span><span class="watld-sh pu" style="width:100%;height:26px;border-radius:6px;margin-bottom:26px"></span><span class="watld-sh " style="width:100%;height:128px;border-radius:12px"></span><div class="watld-cap" aria-live="polite">Loading the budget&hellip;</div></div><div class="watld-card"><div class="watld-h">Donations</div><div class="watld-tabs"><span>Top Donations</span><span class="on">Recent Donations</span><span>Challenges</span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:70%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:38%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:61%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:45%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:52%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:52%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:43%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:39%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:64%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:46%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div></div></div>
 </div>
@@ -27,32 +29,25 @@
   @media (prefers-reduced-motion: reduce) { #wat-donate-mount .watld-sh, #wat-donate-mount .watld-cap::before { animation: none; } }
 </style>
 <script>
-/* Gate: start the budget + donor wall only after the Pledge form has loaded (max 3.5s). */
+/* v3: ask for the live numbers NOW, at the top of the page, instead of after the code below has arrived and
+   started. The block picks these answers up (window.WAT_PRE); if one fails it simply asks again itself. */
+(function () {
+  if (window.WAT_PRE) return;
+  var U = { pledge: 'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec?t=', list: 'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/donors.json?t=', manual: 'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/manual.json?t=', live: 'https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec?type=donors&t=', recent: 'https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec?type=recent&t=', count: 'https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count' }, P = window.WAT_PRE = { t: Date.now() };
+  Object.keys(U).forEach(function (k) {
+    var u = U[k]; if (/[?&]t=$/.test(u)) u += Date.now();
+    try { P[k] = fetch(u, /t=\d+$/.test(u) ? { cache: 'no-store' } : undefined).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); } catch (e) {}
+  });
+})();
+/* v3: no waiting on the Pledge form -- it loads in its own frame. The block still calls WAT_AFTER_FORM. */
 (function () {
   if (window.WAT_AFTER_FORM) return;
-  var q = [], done = false, mo = null;
-  function runNext() {
-    var fn = q.shift(); if (!fn) return;
-    try { fn(); } catch (e) { if (window.console) console.error(e); }
-    if (q.length) setTimeout(runNext, 0);
-  }
-  function flush() { if (done) return; done = true; if (mo) mo.disconnect(); setTimeout(runNext, 0); }
-  window.WAT_AFTER_FORM = function (fn) { q.push(fn); if (done && q.length === 1) setTimeout(runNext, 0); };
-  function hook(fr) {
-    if (fr.__watHooked) return; fr.__watHooked = 1;
-    fr.addEventListener('load', function () { setTimeout(flush, 200); });
-  }
-  function look() { var fr = document.querySelector('iframe.plg-donate-iframe, .plg-donate iframe'); if (fr) { hook(fr); return true; } return false; }
-  if (!document.querySelector('.plg-donate')) { setTimeout(flush, 0); return; }
-  if (!look() && window.MutationObserver) {
-    var host = document.querySelector('.plg-donate');
-    mo = new MutationObserver(function () { if (look()) mo.disconnect(); });
-    mo.observe(host, { childList: true, subtree: true });
-  }
-  setTimeout(flush, 3500);
+  var q = [], going = false;
+  function runNext() { var fn = q.shift(); if (!fn) { going = false; return; } try { fn(); } catch (e) { if (window.console) console.error(e); } setTimeout(runNext, 0); }
+  window.WAT_AFTER_FORM = function (fn) { q.push(fn); if (!going) { going = true; setTimeout(runNext, 0); } };
 })();
 
-/* Loader v2 (11/12/2026). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
+/* Loader v3 (11/13/2026; the code-loading part is as in v2). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
    browsers keep it. NEW: the last version this browser loaded is remembered, and its code is asked for straight away
    (it comes out of the browser's own cache), while VERSION is checked alongside -- so a returning visitor is not kept
    waiting on two round trips. A newer version, if VERSION answers within 0.6s, is used instead. */

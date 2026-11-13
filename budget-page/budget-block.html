@@ -202,7 +202,21 @@
     ],
     sampleGifts: 21450                    // TEST ONLY: sample gifts so far (matched 1:1)
   };
+  /* (ac) 2026-11-13 FASTER START. Two helpers, shared by the budget and the donations list:
+     watGet  -- uses an answer the page's loader already asked for at the very top of the page (window.WAT_PRE),
+                so the numbers are on their way before this code has even arrived; otherwise asks now.
+     watKeep / watKept -- remembers the last answer in this browser, so a returning visitor sees the real budget and
+                the real list at once, and the fresh answer then only changes what actually changed. */
+  function watGet(key, url) {
+    var P = window.WAT_PRE, pp = P && P[key];
+    function ask() { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }); }
+    if (pp && Date.now() - (P.t || 0) < 15000) { P[key] = null; return pp.then(function (d) { if (d == null) throw 0; return d; }).catch(ask); }
+    return ask();
+  }
+  function watKeep(k, v) { try { localStorage.setItem('wat-c:' + k, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} }
+  function watKept(k) { try { var c = JSON.parse(localStorage.getItem('wat-c:' + k) || 'null'); if (c && Date.now() - c.t < 14 * 864e5) return c.v; } catch (e) {} return null; }
   var roughPledge = ROUGH_FALLBACK_PLEDGE;
+  (function () { var k = watKept('pledge'); if (typeof k === 'number' && isFinite(k) && k >= 0) roughPledge = k; })();
   /* 2026-09-28 FIX: Pledge's total counts donors' gifts only -- it does NOT add the sponsor's match
      (verified: after the first night the total rose $1,960, exactly the nine gifts). So:
        matched  = gifts since the challenge started (capped at the pledge)
@@ -2128,9 +2142,8 @@
   }
   function pullPledge() {
     if (!WAT_PROXY_URL) return;
-    fetch(WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && typeof d.raised === 'number') { var first = !window.WAT_ROUGH_LIVE; window.WAT_ROUGH_LIVE = true; applyLivePledge(d.raised); if (first) announceRough(); } })
+    watGet('pledge', WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
+      .then(function (d) { if (d && typeof d.raised === 'number') { watKeep('pledge', d.raised); var first = !window.WAT_ROUGH_LIVE; window.WAT_ROUGH_LIVE = true; applyLivePledge(d.raised); if (first) announceRough(); } })
       .catch(function () {});                                     // offline/blocked -> keep the fallback figure
   }
   pullPledge();

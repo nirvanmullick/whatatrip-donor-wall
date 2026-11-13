@@ -1,9 +1,11 @@
-<!-- WHAT A TRIP - /donors (donor wall) LOADER v2 (11/12/2026).
+<!-- WHAT A TRIP - /donors (donor wall) LOADER v3 (11/13/2026).
      Paste this ENTIRE small block into the ONE Code Block on /donors (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html
      Shows the wall's own pale background and a quiet "Loading the donor wall..." until the wall is ready. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
 <div id="wat-donors-mount" class="wat-ld-wait">
   <div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Now loading our donors and donor perks&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div>
 </div>
@@ -31,8 +33,18 @@
   #wat-donors-mount .watld-dw .watld-cap { font-size: 15px; color: #5a4a9a; margin: 0; }
 </style>
 <script>
+/* v3: ask for the live numbers NOW, at the top of the page, instead of after the code below has arrived and
+   started. The block picks these answers up (window.WAT_PRE); if one fails it simply asks again itself. */
+(function () {
+  if (window.WAT_PRE) return;
+  var U = { pledge: 'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec?t=', manual: 'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/manual.json?t=', list: 'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/donors.json?t=', live: 'https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec?type=donors&t=' }, P = window.WAT_PRE = { t: Date.now() };
+  Object.keys(U).forEach(function (k) {
+    var u = U[k]; if (/[?&]t=$/.test(u)) u += Date.now();
+    try { P[k] = fetch(u, /t=\d+$/.test(u) ? { cache: 'no-store' } : undefined).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); } catch (e) {}
+  });
+})();
 
-/* Loader v2 (11/12/2026). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
+/* Loader v3 (11/13/2026; the code-loading part is as in v2). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
    browsers keep it. NEW: the last version this browser loaded is remembered, and its code is asked for straight away
    (it comes out of the browser's own cache), while VERSION is checked alongside -- so a returning visitor is not kept
    waiting on two round trips. A newer version, if VERSION answers within 0.6s, is used instead. */

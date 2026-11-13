@@ -1,3 +1,13 @@
+<script>
+/* v19.47: answers the page's loader already asked for at the very top of the page (window.WAT_PRE) are used first,
+   so the three donor feeds are on their way before this code has arrived. No loader, or a stale answer -> ask now. */
+window.WAT_PREGET = window.WAT_PREGET || function (key, url) {
+  var P = window.WAT_PRE, pp = P && P[key];
+  function ask() { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }); }
+  if (pp && Date.now() - (P.t || 0) < 15000) { P[key] = null; return pp.then(function (d) { if (d == null) throw 0; return d; }).catch(ask); }
+  return ask();
+};
+</script>
 <!-- BOOT (v19.39-42): the loading state stays up until the WHOLE wall is ready, so the page appears once instead of
      in three stages. Deliberately not a picture of the layout: the wall's own canvas and one line, "Now loading over N
      donors and donor perks..." Same markup as the loader block (donate-page/make-loader-blocks.py). -->
@@ -2564,7 +2574,7 @@ window.dwResize = (function () {
   var WAT_PROXY_URL = 'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec';   // same proxy the Rough Cut Budget Goals widget uses; returns {raised, goal, donors}
   var POLL_MS   = 30000, DURATION = 900;
   var ROUGH_BASE = 75000;
-  var ROUGH_FALLBACK_PLEDGE = 37755;   // only used until the live fetch lands (or if it fails)
+  var ROUGH_FALLBACK_PLEDGE = 114409;   // only used until the live fetch lands (or if it fails)
   var DONOR_COUNT = 300;            // fallback only — the donor wall below reports the LIVE count via window.WAT_DONOR_COUNT
   function donorCount() { return (typeof window !== 'undefined' && window.WAT_DONOR_COUNT != null) ? window.WAT_DONOR_COUNT : DONOR_COUNT; }
   function donorCountText() { return Number(donorCount()).toLocaleString('en-US'); }
@@ -4029,8 +4039,7 @@ window.dwResize = (function () {
   }
   function pullPledge() {
     if (!WAT_PROXY_URL) return;
-    fetch(WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
+    (window.WAT_PREGET || function (k, u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }); })('pledge', WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
       .then(function (d) {
         if (d && typeof d.raised === 'number') {
           /* v18.82: announce the LIVE figure the moment it lands, before anything animates,
@@ -16139,8 +16148,7 @@ window.dwResize = (function () {
     return true;
   }
   function pullManual() {
-    fetch(MANUAL_URL + '?t=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
+    (window.WAT_PREGET || function (k, u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }); })('manual', MANUAL_URL + '?t=' + Date.now())
       .then(function (m) {
         var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia);
         if (sig === manualSig) { firstDone('manual'); return; }
@@ -19501,8 +19509,7 @@ window.dwResize = (function () {
 
   /* ======================= live feeds ======================= */
   function pullList(){
-    fetch(WALL_URL + (WALL_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache:'no-store' })
-      .then(function(r){ return r.json(); })
+    (window.WAT_PREGET || function (k, u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }); })('list', WALL_URL + (WALL_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
       .then(function(d){ if (d && d.donors && d.donors.length) {
         // merge, never replace -- a short scrape can no longer delete a donor
         jsonRows = d.donors; wall = { updated: d.updated, donors: mergeWall(jsonRows.concat(liveRows)) }; renderData(); } firstDone('list'); })
@@ -19516,8 +19523,7 @@ window.dwResize = (function () {
   var LIVE_DONORS_URL = 'https://script.google.com/macros/s/AKfycbzh1TcLYntIy9tf7Nj8jJfnl5k7ILrkrF1yJ1xTJ2vR4JyEQZHMgp3XMw3dtH7-4ajHzQ/exec?type=donors';
   var jsonRows = null, liveRows = [], liveSig = '';
   function pullLive(){
-    fetch(LIVE_DONORS_URL + '&t=' + Date.now(), { cache:'no-store' })
-      .then(function(r){ return r.json(); })
+    (window.WAT_PREGET || function (k, u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }); })('live', LIVE_DONORS_URL + '&t=' + Date.now())
       .then(function(d){
         if (!d || !d.donors || !d.donors.length) { firstDone('live'); return; }
         var sig = JSON.stringify(d.donors);
