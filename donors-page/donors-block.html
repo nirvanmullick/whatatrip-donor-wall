@@ -1,5 +1,6 @@
-<!-- BOOT (v19.39): the loading picture stays up until the WHOLE wall is ready, so the page appears once instead of
-     in three stages (base wall -> name wall -> full-width wall, each painted as its script ran). -->
+<!-- BOOT (v19.39/40): the loading state stays up until the WHOLE wall is ready, so the page appears once instead of
+     in three stages (base wall -> name wall -> full-width wall, each painted as its script ran). Deliberately not a
+     picture of the layout (v19.40): just the wall's own canvas and one quiet line. Same markup as the loader block. -->
 <style>
 
   
@@ -20,27 +21,16 @@
   @keyframes watLdPulse { 0%, 100% { opacity: .25; transform: scale(.8) } 50% { opacity: 1; transform: scale(1.15) } }
   @media (prefers-reduced-motion: reduce) { #dw-boot .watld-sh, #dw-boot .watld-cap::before { animation: none; } }
 
-  #dw-boot .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); padding: 34px 0 60px; }
-  #dw-boot .watld-dw-in { max-width: 1204px; margin: 0 auto; padding: 0 16px; }
-  #dw-boot .watld-dw-h { font-size: clamp(26px, 4.2vw, 46px); line-height: 1.08; font-weight: 700; letter-spacing: -.01em; color: #1c1830; max-width: 760px; }
-  #dw-boot .watld-dw-s { margin-top: 12px; font-size: clamp(16px, 2vw, 22px); color: #2a2540; }
-  #dw-boot .watld-dw-s b { color: #5a4a9a; }
-  #dw-boot .watld-perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 22px 0 34px; max-width: 620px; }
-  #dw-boot .watld-perk { background: #fff; border-radius: 14px; padding: 12px 10px 12px; text-align: center; box-shadow: 0 6px 18px rgba(28,24,52,.10); display: flex; flex-direction: column; gap: 6px; min-height: 250px; }
-  #dw-boot .watld-perk img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 9px; background: #e3defa; }
-  #dw-boot .watld-perk b { font-size: 16px; line-height: 1.15; color: #1c1830; }
-  #dw-boot .watld-perk span { font-size: 13px; line-height: 1.35; color: #6b6780; flex: 1; }
-  #dw-boot .watld-perk i { font-style: normal; font-weight: 800; color: #5a4a9a; font-size: 16px; }
-  #dw-boot .watld-lvl { border-top: 1px solid rgba(28,24,52,.35); padding: 26px 0; }
-  @media (max-width: 640px) { #dw-boot .watld-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } #dw-boot .watld-perk { min-height: 0; } }
+  #dw-boot .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); min-height: 100vh; display: flex; justify-content: center; }
+  #dw-boot .watld-dw-mid { margin-top: 30vh; text-align: center; }
+  #dw-boot .watld-dw .watld-cap { font-size: 15px; color: #5a4a9a; margin: 0; }
 
-  #dw-boot { min-height: 100vh; }
   /* until it is ready the wall is laid out (it measures itself) but not shown, and takes no room */
   #wat-dw:not(.dw-ready) { position: absolute !important; left: 0; right: 0; top: 0; height: 100vh; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; }
 </style>
-<div id="dw-boot"><div class="watld"><div class="watld-dw"><div class="watld-dw-in"><div class="watld-dw-h">Help Bring the Rick Doblin Story to the Screen</div><div class="watld-dw-s"><b>Add Your Name</b> and get <i>higher</i> level perks.</div><span class="watld-sh pu" style="width:100%;height:10px;border-radius:6px;margin:22px 0 6px"></span><div class="watld-cap" aria-live="polite" style="text-align:left">Almost there&hellip;</div><div class="watld-perks"><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/76b2e2e5-27bc-454e-9bc1-db04bae5638e/WAT+5+add+your+name+pic.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Add Your Name</b><span>Join our donor wall with everyone helping make this film.</span><i>$5+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/b9c48c42-1e1d-4d74-9c65-e533da7e89b3/WAT_theater_pre_visual.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Get a Film Credit</b><span>Get a Special Thanks or more in our film and on IMDb.</span><i>$5k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Stay in Arcturus</b><span>A week in the house Rick built at 21 for psychedelic journeys.</span><i>$25k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Guided Therapy w Rick</b><span>Guided session w Rick in home he built for psychedelic therapy</span><i>$250k+</i></div></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div></div></div></div></div>
+<div id="dw-boot"><div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div></div>
 <script>
-/* shows the wall: called by the last layer when it has drawn (skin_full.js), or after 5s whatever happens */
+/* shows the wall: called by the last line of the last layer (skin_full.js), or after 5s whatever happens */
 window.WAT_DW_READY = function () {
   var w = document.getElementById('wat-dw'), b = document.getElementById('dw-boot');
   if (w && !w.classList.contains('dw-ready')) { w.classList.add('dw-ready'); try { window.dispatchEvent(new Event('resize')); } catch (e) {} }

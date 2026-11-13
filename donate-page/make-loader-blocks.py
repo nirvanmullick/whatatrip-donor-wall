@@ -38,28 +38,18 @@ PERKS=[('Add Your Name','Join our donor wall with everyone helping make this fil
        ('Stay in Arcturus','A week in the house Rick built at 21 for psychedelic journeys.','$25k+','1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png'),
        ('Guided Therapy w Rick','Guided session w Rick in home he built for psychedelic therapy','$250k+','2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png')]
 IMG='https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/'
-SKEL['donors']=('<div class="watld-dw"><div class="watld-dw-in">'
- '<div class="watld-dw-h">Help Bring the Rick Doblin Story to the Screen</div>'
- '<div class="watld-dw-s"><b>Add Your Name</b> and get <i>higher</i> level perks.</div>'
- + sh('100%',10,'border-radius:6px;margin:22px 0 6px','pu')
- + '<div class="watld-cap" aria-live="polite" style="text-align:left">Loading the donor wall&hellip;</div>'
- '<div class="watld-perks">'+''.join('<div class="watld-perk"><img src="'+IMG+u+'?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility=\'hidden\'"><b>'+t+'</b><span>'+d+'</span><i>'+a+'</i></div>' for t,d,a,u in PERKS)+'</div>'
- + ''.join('<div class="watld-lvl">'+sh('90px',18,'margin:0 auto 8px','pu')+sh('220px',13,'margin:0 auto')+'</div>' for _ in range(4))
+# 2026-11-12 (Nirvan): the picture-of-the-page placeholder for the donor wall "does not match what the actual donor
+# wall is ... looks like a mistake going from one page to the other". A stand-in layout can never match a page that
+# measures and arranges itself, so the wall's placeholder is now deliberately NOT a layout: the wall's own pale canvas
+# with one quiet line in the middle. The wall then appears on the same canvas.
+SKEL['donors']=('<div class="watld-dw"><div class="watld-dw-mid">'
+ '<div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div>'
+ + sh('220px',6,'border-radius:4px;margin:14px auto 0','pu')
  + '</div></div>')
 DWCSS='''
-  #%(m)s .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); padding: 34px 0 60px; }
-  #%(m)s .watld-dw-in { max-width: 1204px; margin: 0 auto; padding: 0 16px; }
-  #%(m)s .watld-dw-h { font-size: clamp(26px, 4.2vw, 46px); line-height: 1.08; font-weight: 700; letter-spacing: -.01em; color: #1c1830; max-width: 760px; }
-  #%(m)s .watld-dw-s { margin-top: 12px; font-size: clamp(16px, 2vw, 22px); color: #2a2540; }
-  #%(m)s .watld-dw-s b { color: #5a4a9a; }
-  #%(m)s .watld-perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 22px 0 34px; max-width: 620px; }
-  #%(m)s .watld-perk { background: #fff; border-radius: 14px; padding: 12px 10px 12px; text-align: center; box-shadow: 0 6px 18px rgba(28,24,52,.10); display: flex; flex-direction: column; gap: 6px; min-height: 250px; }
-  #%(m)s .watld-perk img { width: 100%%; aspect-ratio: 16/10; object-fit: cover; border-radius: 9px; background: #e3defa; }
-  #%(m)s .watld-perk b { font-size: 16px; line-height: 1.15; color: #1c1830; }
-  #%(m)s .watld-perk span { font-size: 13px; line-height: 1.35; color: #6b6780; flex: 1; }
-  #%(m)s .watld-perk i { font-style: normal; font-weight: 800; color: #5a4a9a; font-size: 16px; }
-  #%(m)s .watld-lvl { border-top: 1px solid rgba(28,24,52,.35); padding: 26px 0; }
-  @media (max-width: 640px) { #%(m)s .watld-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } #%(m)s .watld-perk { min-height: 0; } }
+  #%(m)s .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); min-height: 100vh; display: flex; justify-content: center; }
+  #%(m)s .watld-dw-mid { margin-top: 30vh; text-align: center; }
+  #%(m)s .watld-dw .watld-cap { font-size: 15px; color: #5a4a9a; margin: 0; }
 '''
 JS='''
 /* Loader v2 (11/12/2026). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
@@ -121,12 +111,12 @@ PAGES={
      Paste this ENTIRE small block into the ONE Code Block on /budget (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> budget-page/budget-block.html
      Shows a picture of the page (and "Loading the budget...") while the real one arrives. -->'''),
- 'donors': dict(m='wat-donors-mount',h=2400,w=860,dir='donors-page/',file='donors-block.html',after='function (fn) { fn(); }',failh='Our Film Donors',failt='The donor wall could not load. Please refresh the page.',
-    caps='["Loading the donor wall\\u2026", "Gathering everyone who made this film possible\\u2026", "Adding the latest donations\\u2026", "Almost there\\u2026"]',
+ 'donors': dict(m='wat-donors-mount',h=600,w=860,dir='donors-page/',file='donors-block.html',after='function (fn) { fn(); }',failh='Our Film Donors',failt='The donor wall could not load. Please refresh the page.',
+    caps='["Loading the donor wall\\u2026"]',
     head='''<!-- WHAT A TRIP - /donors (donor wall) LOADER v2 (11/12/2026).
      Paste this ENTIRE small block into the ONE Code Block on /donors (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html
-     Shows the headline and the four featured perks (real pictures) while the wall arrives. -->'''),
+     Shows the wall's own pale background and a quiet "Loading the donor wall..." until the wall is ready. -->'''),
  'donate': dict(m='wat-donate-mount',h=1100,w=480,dir='donate-page/',file='donate-block.html',after='window.WAT_AFTER_FORM || function (fn) { fn(); }',failh='Our Film Budget',failt='<a href="/budget">See the film budget &rarr;</a>',
     caps='["Loading the budget\\u2026", "Adding up the latest donations\\u2026", "Loading our donors\\u2026", "Almost there\\u2026"]',
     head='''<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v2 (11/12/2026).

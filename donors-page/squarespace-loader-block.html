@@ -1,14 +1,14 @@
 <!-- WHAT A TRIP - /donors (donor wall) LOADER v2 (11/12/2026).
      Paste this ENTIRE small block into the ONE Code Block on /donors (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html
-     Shows the headline and the four featured perks (real pictures) while the wall arrives. -->
+     Shows the wall's own pale background and a quiet "Loading the donor wall..." until the wall is ready. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <div id="wat-donors-mount" class="wat-ld-wait">
-  <div class="watld"><div class="watld-dw"><div class="watld-dw-in"><div class="watld-dw-h">Help Bring the Rick Doblin Story to the Screen</div><div class="watld-dw-s"><b>Add Your Name</b> and get <i>higher</i> level perks.</div><span class="watld-sh pu" style="width:100%;height:10px;border-radius:6px;margin:22px 0 6px"></span><div class="watld-cap" aria-live="polite" style="text-align:left">Loading the donor wall&hellip;</div><div class="watld-perks"><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/76b2e2e5-27bc-454e-9bc1-db04bae5638e/WAT+5+add+your+name+pic.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Add Your Name</b><span>Join our donor wall with everyone helping make this film.</span><i>$5+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/b9c48c42-1e1d-4d74-9c65-e533da7e89b3/WAT_theater_pre_visual.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Get a Film Credit</b><span>Get a Special Thanks or more in our film and on IMDb.</span><i>$5k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Stay in Arcturus</b><span>A week in the house Rick built at 21 for psychedelic journeys.</span><i>$25k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Guided Therapy w Rick</b><span>Guided session w Rick in home he built for psychedelic therapy</span><i>$250k+</i></div></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div></div></div></div>
+  <div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div>
 </div>
 <style>
-  #wat-donors-mount.wat-ld-wait { min-height: 2400px; }
+  #wat-donors-mount.wat-ld-wait { min-height: 600px; }
   #wat-donors-mount .watld { font-family: "Source Sans 3", "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #1f2430; -webkit-font-smoothing: antialiased; }
   #wat-donors-mount .watld * { box-sizing: border-box; }
   #wat-donors-mount .watld-card { background: #fff; border-radius: 18px; box-shadow: 0 14px 40px rgba(20,30,55,.18); padding: 22px 24px 20px; margin: 0 auto 18px; max-width: 860px; }
@@ -26,19 +26,9 @@
   @keyframes watLdPulse { 0%, 100% { opacity: .25; transform: scale(.8) } 50% { opacity: 1; transform: scale(1.15) } }
   @media (prefers-reduced-motion: reduce) { #wat-donors-mount .watld-sh, #wat-donors-mount .watld-cap::before { animation: none; } }
 
-  #wat-donors-mount .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); padding: 34px 0 60px; }
-  #wat-donors-mount .watld-dw-in { max-width: 1204px; margin: 0 auto; padding: 0 16px; }
-  #wat-donors-mount .watld-dw-h { font-size: clamp(26px, 4.2vw, 46px); line-height: 1.08; font-weight: 700; letter-spacing: -.01em; color: #1c1830; max-width: 760px; }
-  #wat-donors-mount .watld-dw-s { margin-top: 12px; font-size: clamp(16px, 2vw, 22px); color: #2a2540; }
-  #wat-donors-mount .watld-dw-s b { color: #5a4a9a; }
-  #wat-donors-mount .watld-perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 22px 0 34px; max-width: 620px; }
-  #wat-donors-mount .watld-perk { background: #fff; border-radius: 14px; padding: 12px 10px 12px; text-align: center; box-shadow: 0 6px 18px rgba(28,24,52,.10); display: flex; flex-direction: column; gap: 6px; min-height: 250px; }
-  #wat-donors-mount .watld-perk img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 9px; background: #e3defa; }
-  #wat-donors-mount .watld-perk b { font-size: 16px; line-height: 1.15; color: #1c1830; }
-  #wat-donors-mount .watld-perk span { font-size: 13px; line-height: 1.35; color: #6b6780; flex: 1; }
-  #wat-donors-mount .watld-perk i { font-style: normal; font-weight: 800; color: #5a4a9a; font-size: 16px; }
-  #wat-donors-mount .watld-lvl { border-top: 1px solid rgba(28,24,52,.35); padding: 26px 0; }
-  @media (max-width: 640px) { #wat-donors-mount .watld-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } #wat-donors-mount .watld-perk { min-height: 0; } }
+  #wat-donors-mount .watld-dw { background: #ece7f7; box-shadow: 0 0 0 100vmax #ece7f7; clip-path: inset(0 -100vmax); min-height: 100vh; display: flex; justify-content: center; }
+  #wat-donors-mount .watld-dw-mid { margin-top: 30vh; text-align: center; }
+  #wat-donors-mount .watld-dw .watld-cap { font-size: 15px; color: #5a4a9a; margin: 0; }
 </style>
 <script>
 
@@ -50,7 +40,7 @@
   var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'donors-page/', FILE = DIR + 'donors-block.html', KEY = 'wat-ver:' + DIR;
   var mount = document.getElementById('wat-donors-mount'); if (!mount || mount.__watStarted) return;
   mount.__watStarted = 1; mount.classList.add('wat-ld-wait');
-  var caps = ["Loading the donor wall\u2026", "Gathering everyone who made this film possible\u2026", "Adding the latest donations\u2026", "Almost there\u2026"], ci = 0, capEl = mount.querySelector('.watld-cap');
+  var caps = ["Loading the donor wall\u2026"], ci = 0, capEl = mount.querySelector('.watld-cap');
   var capT = setInterval(function () { if (!capEl || !document.body.contains(capEl)) { clearInterval(capT); return; }
     ci = (ci + 1) % caps.length; capEl.style.opacity = '0'; setTimeout(function () { capEl.textContent = caps[ci]; capEl.style.opacity = '1'; }, 230); }, 1700);
   function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
