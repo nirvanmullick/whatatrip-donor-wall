@@ -1,0 +1,52 @@
+<!-- WHAT A TRIP - /budget page LOADER (11/12/2026, "pp").
+     Paste this ENTIRE small block into the ONE Code Block on /budget, replacing the big budget code.
+     The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> budget-page/budget-block.html
+     Claude publishes changes there; this page picks them up within ~5 minutes. No more pasting.
+     Direct links: /budget#rough-cut  /budget#final-cut  /budget#editing-act-3 (etc.) -->
+<div id="wat-budget-mount">
+  <div class="wat-ld-card"><div class="wat-ld-t">Our Film Budget</div><div class="wat-ld-bar"></div><div class="wat-ld-s">Loading&hellip;</div></div>
+</div>
+<style>
+  #wat-budget-mount.wat-ld-wait { min-height: 1500px; }
+  #wat-budget-mount .wat-ld-card { background: #fff; border-radius: 18px; padding: 22px 22px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.08); font-family: inherit; }
+  #wat-budget-mount .wat-ld-t { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5a6b78; text-align: center; margin-bottom: 14px; }
+  #wat-budget-mount .wat-ld-bar { height: 10px; border-radius: 6px; background: linear-gradient(90deg,#e8eef2 0%,#f4f7f9 50%,#e8eef2 100%); background-size: 200% 100%; animation: watLdB 1.4s ease-in-out infinite; }
+  #wat-budget-mount .wat-ld-s { margin-top: 12px; font-size: 13px; color: #8a98a3; text-align: center; }
+  @keyframes watLdB { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+</style>
+<script>
+/* Loader: VERSION holds the commit to load; jsDelivr serves that exact commit from a fast CDN and browsers
+   keep it cached. Falls back to GitHub directly if needed. */
+(function () {
+  var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'budget-page/', FILE = DIR + 'budget-block.html';
+  var mount = document.getElementById('wat-budget-mount'); if (!mount || mount.__watStarted) return;
+  mount.__watStarted = 1; mount.className = 'wat-ld-wait';
+  function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
+  var html = get('https://raw.githubusercontent.com/' + REPO + '/main/' + DIR + 'VERSION', { cache: 'no-store' })
+    .then(function (v) {
+      v = (v || '').trim(); if (!/^[0-9a-f]{7,40}$/.test(v)) throw new Error('version');
+      return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
+        .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); });
+    })
+    .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE, { cache: 'no-store' }); });
+  function inject(s) {
+    var tpl = document.createElement('template'); tpl.innerHTML = s;
+    var scripts = [].slice.call(tpl.content.querySelectorAll('script'));
+    var marks = scripts.map(function (sc) { var c = document.createComment('wat'); sc.parentNode.replaceChild(c, sc); return c; });
+    mount.innerHTML = ''; mount.className = ''; mount.appendChild(tpl.content);
+    var i = 0;
+    (function next() {
+      if (i >= scripts.length) return;
+      var old = scripts[i], m = marks[i]; i++;
+      var n = document.createElement('script');
+      [].forEach.call(old.attributes, function (a) { n.setAttribute(a.name, a.value); });
+      n.text = old.text; m.parentNode.replaceChild(n, m);
+      setTimeout(next, 0);
+    })();
+  }
+  html.then(inject, function () {
+    mount.className = '';
+    mount.innerHTML = '<div class="wat-ld-card"><div class="wat-ld-t">Our Film Budget</div><div class="wat-ld-s">The budget could not load. Please refresh the page.</div></div>';
+  });
+})();
+</script>

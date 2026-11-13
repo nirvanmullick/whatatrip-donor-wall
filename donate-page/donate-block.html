@@ -200,7 +200,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
        scale() pushes in, and origin + object-position point at the same spot -- same method as the donor wall */
     photoStyle: 'object-position:45.2% 35.3%;transform:scale(1.354);transform-origin:45.2% 35.3%',
     cap: 60000,
-    end: '2026-11-27T23:59:59-08:00',     // Pledge match ends Nov 27
+    end: '2026-12-31T23:59:59-08:00',     // (pp) 2026-11-12: extended to Dec 31 (was Nov 27)
     /* 2026-10-08 (ff): THE $85K MATCHING CHALLENGE POOL. Kasey Crown & David Comfort match the NEXT $25K,
        starting the moment the Osters' $60K is met, same end date (Nirvan: "assume same end date"). Every
        figure below that is "the match" is the POOL (cap + next.cap); the first $60K of matched gifts is
@@ -208,7 +208,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     next: { name: 'Kasey Crown & David Comfort', short: 'Kasey & David', label: 'Kasey & David', forms: ['Kasey & David', 'Kasey & D.', 'K & D'], mono: 'K&D', cap: 25000, photo: '', photoStyle: '' },
     /* 2026-10-13 (gg): THE POOL IS $110K. Rachel Hamilton pledges to match the $25K AFTER Kasey & David's, same end
        date. A pledge like theirs (Nirvan): it adds to the Rough Cut total only as it matches. */
-    then: { name: 'Rachel Hamilton', short: 'Rachel', forms: ['Rachel Hamilton', 'Rachel H.', 'Rachel'], mono: 'RH', cap: 25000, one: true,
+    then: { name: 'Rachel Hamilton', short: 'Rachel', forms: ['Rachel Hamilton', 'Rachel H.', 'Rachel'], mono: 'RH', cap: 50000, one: true,   /* (pp) 2026-11-12: Rachel added another $25K -> $50K; the pool is $135K */
             photo: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/b4f47436-f528-4275-9249-ee476b67d384/rachel-hamilton_1.jpg?format=500w', photoStyle: '' },
     startRaised: 112770,                  // Rough Cut total at launch: $75,000 pre-Pledge + $37,770 Pledge (read live 2026-09-27 10:52 PT)
     start: '2026-09-27T10:52:00-07:00',   // launch: gifts from this moment on are matched by the Osters
@@ -244,7 +244,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   window.WAT_POOL_LEGS = poolLegs;
   function legStart(i) { var t = 0, L = poolLegs(); for (var k = 0; k < i && k < L.length; k++) t += L[k].cap; return t; }
   window.WAT_LEG_START = legStart;
-  function poolCap() { return legStart(poolLegs().length); }   /* (gg) $60K + $25K + $25K = $110K */
+  function poolCap() { return legStart(poolLegs().length); }   /* (pp) $60K + $25K + $50K = $135K */
 
   window.WAT_POOL_CAP = poolCap;
   function matchedSoFar() { return LIVE_MATCH.on ? clamp(Math.max(giftsRaised() - matchStart(), feedMatched()), 0, poolCap()) : 0; }
@@ -1164,6 +1164,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (subEl) subEl.style.display = '';
   }
   var pAnim = 0;
+  /* (pp) 2026-11-12: each goal's title links to that goal on the budget page (whatatrip.com/budget#editing-act-3 ...).
+     On /budget itself the link stays on the page and opens the goal below. */
+  var BUDGET_SLUGS = { rough: ['editing-act-1', 'production-filming', 'editing-act-2', 'editing-act-3', 'animation', 'interviews-b-roll', 'music-archival', 'admin-fees'],
+                       final: ['final-cut-editing', 'color-grading', 'sound-design-mix', 'score-music', 'titles-vfx', 'delivery-distribution'] };
+  function budgetHref(tab, i) { var sl = (BUDGET_SLUGS[tab] || [])[i]; return sl ? ((document.getElementById('bp-secs') ? '' : 'https://www.whatatrip.com/budget') + '#' + sl) : ''; }
   function setGoal(i, dir, doAnimate) {
     var _reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     hideIntro();
@@ -1230,7 +1235,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     }
     titleText.innerHTML = (activeTab === 'total')
       ? (isHeader ? (money2M(B.raised) + ' total raised &amp; invested since 2014') : m.n)
-      : (moneyK(m.c) + ' for ' + m.n);
+      : (function (t) { var h = budgetHref(activeTab, i); return h ? '<a class="wb-tlink" href="' + h + '" title="See this goal in our budget">' + t + '<span class="wb-tlink-go" aria-hidden="true">&nbsp;&rsaquo;</span></a>' : t; })(moneyK(m.c) + ' for ' + m.n);
     titleText.classList.toggle('is-struck', !isHeader && st === 'funded');
     mFill.style.background = accent;
     mTogoWord.textContent = st === 'funded' ? 'fully funded' : st === 'active' ? 'to go' : 'to fund';
@@ -2183,6 +2188,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-circle.is-funded { background: var(--c); border: 2px solid var(--c); }
   #wat-bud .wb-circle.is-funded::after { content: '\2713'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; font-weight: 700; }
   #wat-bud #wb-title-text { transition: color .2s ease; }
+  #wat-bud .wb-tlink { color: inherit; text-decoration: none; }
+  #wat-bud .wb-tlink:hover { text-decoration: underline; text-underline-offset: 3px; }
+  #wat-bud #wb-title-text.is-struck .wb-tlink:hover { text-decoration: line-through underline; }
+  #wat-bud .wb-tlink-go { color: var(--wb-muted); font-weight: 600; }
   #wat-bud #wb-title-text.is-struck { color: var(--wb-muted); text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: var(--wb-muted); }
   #wat-bud .wb-mstats { display: flex; justify-content: space-between; margin: 9px 0 6px; font-size: 0.82rem; color: var(--wb-muted); }
   #wat-bud .wb-mstats strong { color: var(--wb-text); font-weight: 700; }
@@ -3111,7 +3120,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
          (everything past the Osters' first $60K, oldest gift first) */
       var poolC = poolLegsOf(M).reduce(function (t, L) { return t + L.cap; }, 0), c2 = M.cap + (M.next ? M.next.cap : 0);   /* (gg) $110K; c2 = where Rachel's turn starts */
       var t0 = new Date(M.start).getTime(), t1 = new Date(M.end).getTime(), left = poolC;
-      clean.slice().reverse().forEach(function (d) {
+      /* (pp) 2026-11-12 FIX: first come, first matched -- by the TIME of each gift, not the list's order. The merged
+         list is not strictly newest-first (the Sept 27-28 gifts sit at its end), so those ten were handed out LAST
+         and showed up under Kasey & David while the Osters' $60K still looked open. */
+      clean.map(function (d, i) { return { d: d, t: giftTs(d), i: i }; })
+           .sort(function (x, y) { return (x.t - y.t) || (y.i - x.i); })
+           .map(function (x) { return x.d; }).forEach(function (d) {
         var ts = giftTs(d), before = poolC - left;
         d._omatch = (ts >= t0 && ts <= t1) ? Math.max(0, Math.min(d.amount || 0, left)) : 0;
         d._nmatch = Math.max(0, Math.min(d._omatch, before + d._omatch - M.cap));
@@ -3218,7 +3232,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var matchedLink = chGift
       ? '<a class="wat-gift-challenge" href="#" data-goto-challenge="' + chSlugOf(ownCh) + '">&#127881; $' + Math.round(ownCh.amount / 1000) + 'k Matching Challenge</a>'
       : (d._omatch > 0)
-      ? '<a class="wat-gift-challenge" href="#" data-goto-challenge="oster">&#127881; matched</a>'
+      ? '<a class="wat-gift-challenge" href="#" data-goto-challenge="oster" data-leg="' + ((d._rmatch || 0) > 0 ? 2 : (d._nmatch || 0) > 0 ? 1 : 0) + '">&#127881; matched</a>'
       : matchedLinkFor(d.name);
     var mSep = (d.time && matchedLink) ? ' <span class="wat-when-dot">&middot;</span> ' : '';
     var time = (d.time || matchedLink) ? '<span class="wat-when">' + (d.time ? esc(d.time) : '') + mSep + matchedLink + '</span>' : '';
@@ -3430,13 +3444,15 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var who = n ? '<button type="button" class="wat-lm-toggle" aria-expanded="' + open + '"><strong>' + n + '</strong> ' + (n === 1 ? 'person has' : 'people have') +
       ' joined ' + they.their + ' challenge <span class="wat-lm-chev" aria-hidden="true">&#8250;</span></button>' : '';
     /* 2026-09-29 (Nirvan): a summary at the top of the opened list -- "$1,968 raised by 10 people:" */
-    var jsTot = js.reduce(function (t, s) { return t + (s.amount || 0); }, 0);
-    if (window.WAT_LM_ORDER) js = window.WAT_LM_ORDER(js, function (s) { return s.amount || 0; });   /* largest first unless toggled */
+    /* (pp) each list shows the part of a gift THIS matcher matched (a gift that crosses the line is split) */
+    function legShare(s) { if (M.test) return s.amount || 0; var n = s._nmatch || 0, r = s._rmatch || 0; return leg === 2 ? r : leg ? n : (s._omatch || 0) - n - r; }
+    var jsTot = js.reduce(function (t, s) { return t + legShare(s); }, 0);
+    if (window.WAT_LM_ORDER) js = window.WAT_LM_ORDER(js, legShare);   /* largest first unless toggled */
     var list = n ? '<div class="wat-lm-list"' + (open ? '' : ' hidden') + '>' +
       '<div class="wat-lm-sum"><span><b>' + money(jsTot) + '</b> raised by ' + n + ' ' + (n === 1 ? 'person' : 'people') + ':</span>' + (window.WAT_LM_SORTBTN ? window.WAT_LM_SORTBTN('wat-lm-sort') : '') + '</div>' + js.map(function (s) {
         var nm = (s.anonymous || !s.name) ? 'Anonymous' : esc(s.name);
         var date = s.time ? ' <span class="wat-sup-date">&middot; ' + esc(s.time) + '</span>' : '';
-        return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span>' + date + '</span><span class="wat-sup-amt">' + money(s.amount) + '</span></div>';
+        return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span>' + date + '</span><span class="wat-sup-amt">' + money(legShare(s)) + '</span></div>';
       }).join('') + '</div>' : '';
     return '<div class="wat-donor-card wat-live-match' + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
       '<div class="wat-row-main"><div class="wat-row-top"><span class="wat-name">' + esc(W.name) + '</span>' + line + '</div>' + who + '</div></div>' + list + '</div>';
@@ -3473,8 +3489,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var slug = gl.getAttribute('data-goto-challenge') || 'rachel';
       if (slug === 'oster') {   // the running challenge lives in the pinned gold card at the top of Recent: open its supporters list there
         if (activeTab !== 'recent') { var rTab = document.querySelector('#wat-wall .wat-tab[data-tab="recent"]'); if (rTab) rTab.click(); }
-        lmOpen[0] = true; render();
-        var oc = listEl.querySelector('.wat-live-match[data-leg="0"]');
+        var gLeg = +(gl.getAttribute('data-leg') || 0) || 0;   /* (pp) open the card of whoever matched THIS gift */
+        lmOpen[gLeg] = true; render();
+        var oc = listEl.querySelector('.wat-live-match[data-leg="' + gLeg + '"]');
         if (oc) { if (oc.scrollIntoView) oc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); oc.classList.add('wat-lm-flash'); setTimeout(function () { oc.classList.remove('wat-lm-flash'); }, 1300); }
         return;
       }
