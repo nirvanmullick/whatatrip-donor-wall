@@ -13620,7 +13620,8 @@ window.dwResize = (function () {
 #wat-dw.sk-full .skf-prog-mile.is-done{
   background:color-mix(in srgb,#fff 78%,transparent);}
 #wat-dw.sk-full .skf-prog-track:hover .skf-prog-mile{opacity:.85;}
-#wat-dw.sk-full .skf-prog-track{cursor:crosshair;}
+/* v19.55 (Nirvan): the pointer stays an ordinary arrow over the bar -- the plus sign suggested something to click */
+#wat-dw.sk-full .skf-prog-track{cursor:default;}
 
 /* the readout: a small pill centred on the point being hovered, above the bar */
 #wat-dw.sk-full .skf-prog-tip{

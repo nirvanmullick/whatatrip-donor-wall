@@ -512,6 +512,7 @@
        copy to the fill; that shift and clip were left on when you slid over to the raised-to-date view. Any view
        but the Rough Cut now clears them, and it happens before anything below can return early. */
     if (inbarEl && activeTab !== 'rough') { inbarEl.style.left = ''; if (activeTab === 'raised' && inbarW) inbarW.style.clipPath = 'inset(0 0 0 0)'; }
+    try { lmWatch(); } catch (e) {}
     if (lmFlying) return;                                        /* mid-zoom: lmFly() is moving the line and the chip */
     /* gold LINE above the matched stretch + the connector to the window (phase 2); both live in the bar
        (not the track), so they are placed from layout offsets and hidden while the bar zooms/pans */
@@ -619,6 +620,22 @@
   var LM_T = { line: 1700, box: 2750, link: 3300 };   // line draws -> window pops out of it -> connector
   var lmReduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function lmPaint() { try { paintMatch(); } catch (e) {} }
+  /* (ai) 2026-11-13 -- THE GOLD LINE STILL SAT AS A DOT AT THE LEFT, AND THE NUMBER IN THE BAR JUMPED ON HOVER (Nirvan, live).
+     The line and the in-bar number are placed from the bar's measured widths. When the page loads in a tab or window
+     that is not in view, the bar's own arrival animation does not run, so everything measures as nothing; the
+     retries below ran out before he looked, and nothing repainted until the pointer crossed the bar. So now the bar
+     is WATCHED: whenever the track or any section of it changes size, and whenever the tab comes back into view, the
+     line and the number are placed again. No timing to guess. */
+  var lmRO = null, lmSeen = (typeof WeakSet === 'function') ? new WeakSet() : null, lmRaf = 0;
+  function lmSoon() { if (lmRaf) return; lmRaf = (window.requestAnimationFrame || setTimeout)(function () { lmRaf = 0; lmPaint(); }, 16); }
+  function lmWatch() {
+    if (!window.ResizeObserver || !lmSeen || !trackEl) return;
+    if (!lmRO) lmRO = new ResizeObserver(lmSoon);
+    var els = [trackEl, barEl].concat(segEls);
+    for (var i = 0; i < els.length; i++) if (els[i] && !lmSeen.has(els[i])) { lmSeen.add(els[i]); lmRO.observe(els[i]); }
+  }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { window.__watMzlTry = 0; lmPaint(); [150, 600, 1500, 3000].forEach(function (ms) { setTimeout(lmPaint, ms); }); } });
+  window.addEventListener('pageshow', function () { window.__watMzlTry = 0; lmSoon(); }); window.addEventListener('focus', lmSoon);
   /* (ag) and a few repaints as the page settles, whatever else happens */
   [1200, 2600, 4200, 7000].forEach(function (ms) { setTimeout(lmPaint, ms); }); window.addEventListener('load', function () { setTimeout(lmPaint, 300); });
   function openMatchBox(instant) {
