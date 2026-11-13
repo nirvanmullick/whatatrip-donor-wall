@@ -547,7 +547,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var box = document.getElementById('wb-mline');
       if (lnk && box && !box.hidden && lmBoxOpen) {
         var br = box.getBoundingClientRect(), bbar = barEl.getBoundingClientRect();
-        var gap = bbar.top - br.bottom, cx = offX + (a0 + a1) / 2;
+        var gap = bbar.top - br.bottom, cx = offX + af;   /* (ww) 2026-11-12 (Nirvan): the arrow points at where the matching has GOT TO -- the end of the gold fill -- and moves along as it grows. Was the middle of the line. */
         cx = clamp(cx, (br.left - bbar.left) + 22, (br.right - bbar.left) - 22);   // keep the tail on the window's bottom edge
         lnk.style.left = cx + 'px'; lnk.style.top = (-gap) + 'px'; lnk.style.height = Math.max(0, gap - 7) + 'px';
       }
@@ -627,7 +627,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     /* it grows OUT of the gold line: scale from the point on its bottom edge right above the line's middle */
     var mzl = document.getElementById('wb-mzl'), bxr = ln.getBoundingClientRect();
     if (mzl && barEl && mzl.offsetWidth) {
-      var ox = barEl.getBoundingClientRect().left + mzl.offsetLeft + mzl.offsetWidth / 2 - bxr.left;
+      var ox = barEl.getBoundingClientRect().left + mzl.offsetLeft + (mzl.firstChild ? mzl.firstChild.offsetWidth : mzl.offsetWidth / 2) - bxr.left;   /* (ww) from the progress point */
       ln.style.transformOrigin = clamp(ox, 22, bxr.width - 22).toFixed(1) + 'px 100%';
     }
     void ln.offsetWidth;
@@ -708,7 +708,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     mchipSync(); lmPaint();
     if (instant || lmReduce) { done(); return; }
     var mzl = document.getElementById('wb-mzl'), bxr = ln.getBoundingClientRect();
-    if (mzl && barEl && mzl.offsetWidth) { var ox = barEl.getBoundingClientRect().left + mzl.offsetLeft + mzl.offsetWidth / 2 - bxr.left; ln.style.transformOrigin = clamp(ox, 22, bxr.width - 22).toFixed(1) + 'px 100%'; }
+    if (mzl && barEl && mzl.offsetWidth) { var ox = barEl.getBoundingClientRect().left + mzl.offsetLeft + (mzl.firstChild ? mzl.firstChild.offsetWidth : mzl.offsetWidth / 2) - bxr.left; ln.style.transformOrigin = clamp(ox, 22, bxr.width - 22).toFixed(1) + 'px 100%'; }
     ln.style.overflow = 'hidden'; ln.style.height = ln.offsetHeight + 'px'; void ln.offsetWidth;
     ln.style.transition = 'height .38s cubic-bezier(.4,0,.2,1), padding .38s cubic-bezier(.4,0,.2,1), margin .38s cubic-bezier(.4,0,.2,1), opacity .25s ease, transform .38s cubic-bezier(.4,0,.2,1)';
     ln.style.height = '0px'; ln.style.paddingTop = '0px'; ln.style.paddingBottom = '0px'; ln.style.marginTop = '0px'; ln.style.marginBottom = '0px'; ln.style.opacity = '0'; ln.style.transform = 'scale(.3)';
@@ -2403,7 +2403,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-mzl-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: linear-gradient(90deg, #e6c87f, #c99a3e); transition: width .3s ease; }
   /* the connector: a thin gold stem from the window's bottom edge (with a small tail) down to the line */
   #wat-bud .wb-mlink { position: absolute; width: 2px; margin-left: -1px; background: #d8b46a; pointer-events: none; z-index: 3; opacity: 0;
-    transform: scaleY(0); transform-origin: 50% 0; transition: opacity .25s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+    transform: scaleY(0); transform-origin: 50% 0; transition: opacity .25s ease, transform .4s cubic-bezier(.2,.8,.2,1), left .3s ease; }
   #wat-bud .wb-mlink::before { content: ''; position: absolute; left: 50%; top: -5px; width: 9px; height: 9px; margin-left: -5px;
     background: #fbf5e6; border-right: 1px solid #ecd9a8; border-bottom: 1px solid #ecd9a8; transform: rotate(45deg); }
   #wat-bud .wb-mlink.wb-mlink-on.wb-mlink-in { opacity: 1; transform: none; }
