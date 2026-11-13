@@ -88,6 +88,7 @@
         <button type="button" class="wb-more" id="wb-more" aria-expanded="false"><span class="wb-chev" id="wb-chev">&#9656;</span> <span id="wb-more-txt">more info</span></button>
       </div>
       <div class="wb-intro" id="wb-intro" hidden></div>
+      <button type="button" class="wb-copylink" id="wb-copylink" aria-label="Copy a link to this part of the budget" title="Copy link"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.2 3.2 0 0 0 4.5 0l2.6-2.6a3.2 3.2 0 0 0-4.5-4.5l-.9.9"/><path d="M11.5 8.5a3.2 3.2 0 0 0-4.5 0L4.4 11.1a3.2 3.2 0 0 0 4.5 4.5l.9-.9"/></svg><span class="wb-copylink-t">Copy link</span></button>
     </div>
     <div class="wb-wth-card" id="wb-wth-card" aria-hidden="true">
       <div class="wb-wth-card-head"><span>Ways to Help</span><button type="button" class="wb-wth-close" id="wb-wth-close" aria-label="Close">&times;</button></div>
@@ -1328,8 +1329,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     }
     titleText.innerHTML = (activeTab === 'total')
       ? (isHeader ? (money2M(B.raised) + ' total raised &amp; invested since 2014') : m.n)
-      : (function (t) { var h = budgetHref(activeTab, i); return h ? '<a class="wb-tlink" href="' + h + '" title="See this goal in our budget">' + t + '<span class="wb-tlink-go" aria-hidden="true">&nbsp;&rsaquo;</span></a>' : t; })(moneyK(m.c) + ' for ' + m.n);
+      : (moneyK(m.c) + ' for ' + m.n);   /* (vv) the link moved to the card's lower-right corner (#wb-copylink) */
     titleText.classList.toggle('is-struck', !isHeader && st === 'funded');
+    var _cl = el('wb-copylink'); if (_cl) { var _sl = (activeTab === 'rough' || activeTab === 'final') ? (BUDGET_SLUGS[activeTab] || [])[i] : (activeTab === 'total' ? (i === 1 ? 'rough-cut' : i === 2 ? 'final-cut' : 'total-budget') : 'total-budget'); if (pointing && _sl) { lpSlug = _sl; lpT = Date.now(); } if (!_cl.matches(':hover')) _cl.setAttribute('data-slug', _sl || 'budget'); }
     mFill.style.background = accent;
     mTogoWord.textContent = st === 'funded' ? 'fully funded' : st === 'active' ? 'to go' : 'to fund';
     var _mStatus = el('wb-togo-status');   // bottom-right corner of the card: the section's status
@@ -1759,7 +1761,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var i = idxFromX(clientX);
     if (activeTab === 'total' && !emptyView) {
       var r = trackEl.getBoundingClientRect(), xf = clamp((clientX - r.left) / r.width, 0, 1);
-      if (xf <= B.raised / B.goal) return 0;
+      /* (vv) 2026-11-12 (Nirvan): the whole Rough Cut zone is the Rough Cut -- including the part of it already raised
+         (the blue that runs past $1.8M). Only the stretch BEFORE the Rough Cut is "raised to date". Was: B.raised / B.goal. */
+      if (xf <= Math.min(B.raised, DEV_DONE) / B.goal) return 0;
     }
     return i;
   }
@@ -2166,7 +2170,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (lmBoxOpen) closeMatchBox(true);
       loadBudget(key, false); if (typeof updateNav === 'function') updateNav();
     }
-    if (idx != null && B.stages[idx]) { pointing = true; setGoal(idx, 0, false); }
+    if (idx != null && B.stages[idx]) { pointing = true; setGoal(idx, 0, false); if (sectionHasMore && !fundOpen) setMore(true); }   /* (vv) a goal's link opens it EXPANDED */
     if (h === 'matching' && !lmBoxOpen) setTimeout(function () { if (!lmBoxOpen && lmPhase === 2) toggleMatchBox(); }, 1200);
     var host = document.getElementById('wat-bud');
     var hands = false, stop = function () { hands = true; };
@@ -2174,6 +2178,43 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (host) { [300, 1300, 2600].forEach(function (ms, n) { setTimeout(function () { if (hands) return; var y = host.getBoundingClientRect().top; if (n === 0 || y < 40 || y > 170) { try { host.scrollIntoView({ behavior: (n === 0 && smooth) ? 'smooth' : 'auto', block: 'start' }); } catch (e) { host.scrollIntoView(); } } }, ms); }); }
     return true;
   }
+  /* (vv) the link in the card's lower-right corner: copies the address of whatever the card is showing --
+     this budget, or this goal. Pasted, it opens the widget on that view with the goal expanded (on /budget, the goal
+     in the list below opens too). */
+  var lpSlug = null, lpT = 0;   /* the goal the pointer was last on, and when */
+  function budgetSlugNow() {
+    if (activeTab === 'rough' || activeTab === 'final') {
+      if (B.intro && B.raised <= 0 && !pointing) return activeTab === 'rough' ? 'rough-cut' : 'final-cut';
+      return (BUDGET_SLUGS[activeTab] || [])[selIdx] || (activeTab === 'rough' ? 'rough-cut' : 'final-cut');
+    }
+    if (activeTab === 'total' && pointing) return selIdx === 1 ? 'rough-cut' : selIdx === 2 ? 'final-cut' : 'total-budget';
+    return 'total-budget';
+  }
+  (function () {
+    var cb = el('wb-copylink'); if (!cb) return;
+    var legacy = function (t) { try { var ta = document.createElement('textarea'); ta.value = t; ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {} };
+    var slugAt = null;
+    /* remember what the card showed when the pointer headed for the button (leaving the bar resets the card) */
+    cb.addEventListener('pointerenter', function () {
+      if (slugAt != null) return;
+      slugAt = cb.getAttribute('data-slug') || budgetSlugNow();
+      /* came straight from a goal on the bar (which un-selects as the pointer leaves it)? bring that goal back, so the card shows exactly what the link will open */
+      if (lpSlug && Date.now() - lpT < 2500 && lpSlug !== slugAt && !barBusy) {
+        var ix = (BUDGET_SLUGS[activeTab] || []).indexOf(lpSlug);
+        if (activeTab === 'total') ix = lpSlug === 'rough-cut' ? 1 : lpSlug === 'final-cut' ? 2 : -1;
+        if (ix > -1 && B.stages[ix]) { slugAt = lpSlug; pointing = true; setGoal(ix, 0, false); }
+      }
+    });
+    cb.addEventListener('pointerleave', function () { slugAt = null; });
+    cb.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var slug = slugAt || cb.getAttribute('data-slug') || budgetSlugNow();
+      var url = location.origin + location.pathname.replace(/\/$/, '') + '#' + slug;
+      try { history.replaceState(null, '', '#' + slug); } catch (x) {}
+      var t = cb.querySelector('.wb-copylink-t'), done = function () { cb.classList.add('is-copied'); if (t) t.textContent = 'Link copied'; setTimeout(function () { cb.classList.remove('is-copied'); if (t) t.textContent = 'Copy link'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { legacy(url); done(); }); else { legacy(url); done(); }
+    });
+  })();
   window.addEventListener('hashchange', function () { budgetGo(decodeURIComponent((location.hash || '').slice(1)), true); });
   if (location.hash) setTimeout(function () { budgetGo(decodeURIComponent(location.hash.slice(1)), false); }, 700);
   var navL = el('wb-nav-l'), navR = el('wb-nav-r');
@@ -2316,6 +2357,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-circle.is-funded::after { content: '\2713'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; font-weight: 700; }
   #wat-bud #wb-title-text { transition: color .2s ease; }
   #wat-bud { scroll-margin-top: 90px; }
+  #wat-bud .wb-copylink { all: unset; box-sizing: border-box; position: absolute; right: 12px; bottom: 9px; z-index: 2; display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 6px; border-radius: 12px; color: #9aa3b2; font-family: inherit; font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: color .15s ease, background .15s ease; }
+  #wat-bud .wb-copylink svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; display: block; }
+  #wat-bud .wb-copylink-t { max-width: 0; overflow: hidden; white-space: nowrap; transition: max-width .2s ease; }
+  #wat-bud .wb-copylink:hover, #wat-bud .wb-copylink:focus-visible, #wat-bud .wb-copylink.is-copied { color: #6a56c9; background: rgba(106,86,201,.1); }
+  #wat-bud .wb-copylink:hover .wb-copylink-t, #wat-bud .wb-copylink:focus-visible .wb-copylink-t, #wat-bud .wb-copylink.is-copied .wb-copylink-t { max-width: 90px; }
+  #wat-bud .wb-panel.wb-mlist-open .wb-copylink { display: none; }
   #wat-bud .wb-tlink { color: inherit; text-decoration: none; }
   #wat-bud .wb-tlink:hover { text-decoration: underline; text-underline-offset: 3px; }
   #wat-bud #wb-title-text.is-struck .wb-tlink:hover { text-decoration: line-through underline; }
