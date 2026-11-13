@@ -22187,7 +22187,7 @@ window.dwResize = (function () {
      donation while the page is open glides from the old figure to the new one. */
   var pbBuilt = false, pbRv = null, pbGv = null, pbTv = null;
   var pbShown = 0, pbGoal = 0, pbTgt = -1, pbTok = 0;
-  var PB_FALLBACK_MS = 6000, PB_FIRST_MS = 2200, PB_NEXT_MS = 900;
+  var PB_FALLBACK_MS = 2500, PB_FIRST_MS = 2200, PB_NEXT_MS = 900;
   function pbBuild(goal) {
     /* v19.11, his: "switch the progress bars and show more prominently the amount left to go,
        and then put the amount raised underneath the bar. 500-some thousand to go of a 700k goal."
@@ -22204,13 +22204,14 @@ window.dwResize = (function () {
     fill.style.transition = 'none';
     pbBuilt = true;
   }
-  function pbDraw(r, goal) {
+  function pbDraw(r, goal, numbersOnly) {
     pbShown = r;
     var pct = goal ? Math.max(0, Math.min(100, (r / goal) * 100)) : 0;
     if (pbRv) pbRv.textContent = money(r);
     if (pbGv && pbGoal !== goal) pbGv.textContent = shortMoney(goal);
     pbGoal = goal;
     if (pbTv) pbTv.textContent = money(Math.max(0, goal - r));
+    if (numbersOnly) return;
     fill.style.width = pct + '%';
     var full = pct >= 99.9;
     if (fill.classList.contains('is-full') !== full) fill.classList.toggle('is-full', full);
@@ -22218,14 +22219,28 @@ window.dwResize = (function () {
     if (r) fill.dataset.raised = String(Math.round(r));
   }
   function pbAnimate(to, goal) {
-    var from = pbShown, dur = pbTgt < 0 ? PB_FIRST_MS : PB_NEXT_MS, t0 = 0, tok = ++pbTok;
+    var from = pbShown, first = pbTgt < 0, dur = first ? PB_FIRST_MS : PB_NEXT_MS, t0 = 0, tok = ++pbTok;
     pbTgt = to;
+    /* v19.44: THE FIRST GROWTH IS DRAWN BY THE BROWSER, NOT BY THIS LOOP. Measured live, the page has 1-2 second
+       stalls for ~10s after it loads; a loop that sets the width each frame simply jumps across them. So the bar is
+       set to its final width at once and revealed by a transform animation (those keep running smoothly through a
+       stall), with the same ease-out as the numbers, which this loop still counts. */
+    var grown = false;
+    if (first && fill.animate && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      try {
+        pbDraw(to, goal); pbDraw(from, goal, true);
+        fill.style.transformOrigin = '0 50%';
+        fill.animate([{ transform: 'scaleX(' + (to > 0 ? Math.max(0, from / to) : 0) + ')' }, { transform: 'scaleX(1)' }],
+                     { duration: dur, easing: 'cubic-bezier(.215,.61,.355,1)', fill: 'backwards' });
+        grown = true;
+      } catch (x) { grown = false; }
+    }
     function frame(t) {
       if (tok !== pbTok) return;
       if (!t0) t0 = t;
       var k = Math.min(1, (t - t0) / dur);
       var e = 1 - Math.pow(1 - k, 3);                     /* ease-out: quick, then settles */
-      pbDraw(from + (to - from) * e, goal);
+      pbDraw(from + (to - from) * e, goal, grown && k < 1);
       if (k < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -22265,7 +22280,7 @@ window.dwResize = (function () {
   window.addEventListener('wat-dw-ready', function () {
     pbHoldUntil = Date.now() + 4000;
     var go = function () { if (!pbHoldUntil) return; pbHoldUntil = 0; paintBudget(); };
-    setTimeout(function () { if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 3000 }); else go(); }, 500);
+    setTimeout(function () { if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 1200 }); else go(); }, 400);
   });
   window.addEventListener('wat-rough', function () { paintBudget(); });
 
