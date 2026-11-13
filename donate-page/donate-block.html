@@ -652,12 +652,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   }
   /* the chip sits centred over the gold line on the Rough Cut bar. Anywhere else it is "away": shrunk into the line
      (Total) or gone off the side with it (Final Cut) -- still holding its row, so nothing below moves. */
-  function mchipPlace(cx, away) {
+  function mchipPlace(cx, away, noScale) {
     var c = document.getElementById('wb-mchip'); if (!c || c.hidden || !barEl) return;
     var w = c.offsetWidth, bw = barEl.offsetWidth; if (!w || !bw) return;
     var dx = (away ? cx : clamp(cx, w / 2, bw - w / 2)) - bw / 2;
     c.classList.toggle('wb-mchip-away', !!away);
-    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + (away ? ' scale(.12)' : '');
+    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + ((away && !noScale) ? ' scale(.12)' : '');
     c.tabIndex = (away || lmBoxOpen) ? -1 : 0;
   }
   /* (uu) THE FLIGHT. While the bar zooms / pans (0.5s), the line and the chip travel to where the matched stretch
@@ -693,7 +693,18 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var E = '.5s cubic-bezier(.82,0,.18,1)';
     mzl.style.transition = 'left ' + E + ', width ' + E; mzl.firstChild.style.transition = 'width ' + E;
     put(Z);
-    mchipPlace(offX + Z.l + Z.w / 2, target !== 'rough');
+    /* (yy) the chip rides the line: it starts exactly over where the line starts (a pan slides it a whole bar-width
+       at full size; a zoom grows it out of the short Total line) and ends over where the line ends. It was starting
+       from its parked spot, so coming back from the Final Cut it slid in out of step with the line. */
+    if (c && !c.hidden && (kind === 'pan' || fromT !== 'rough')) {
+      var bw0 = barEl.offsetWidth, sdx = offX + A.l + A.w / 2 - bw0 / 2;
+      c.style.transition = 'none';
+      c.style.transform = 'translateX(' + sdx.toFixed(1) + 'px)' + (kind === 'pan' ? '' : ' scale(.12)');
+      if (kind === 'pan' && fromT !== 'rough') { c.classList.remove('wb-mchip-away'); c.style.opacity = '1'; }
+      void c.offsetWidth; c.style.transition = '';
+    }
+    if (c) c.style.opacity = '';
+    mchipPlace(offX + Z.l + Z.w / 2, target !== 'rough', kind === 'pan');
     setTimeout(function () {
       if (seq !== lmFlySeq) return;
       lmFlying = false; mzl.style.transition = ''; mzl.firstChild.style.transition = ''; mzl.style.opacity = '';
@@ -2363,6 +2374,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-bud .wb-copylink:hover, #wat-bud .wb-copylink:focus-visible, #wat-bud .wb-copylink.is-copied { color: #6a56c9; background: rgba(106,86,201,.1); }
   #wat-bud .wb-copylink:hover .wb-copylink-t, #wat-bud .wb-copylink:focus-visible .wb-copylink-t, #wat-bud .wb-copylink.is-copied .wb-copylink-t { max-width: 90px; }
   #wat-bud .wb-panel.wb-mlist-open .wb-copylink { display: none; }
+  /* (xx) 2026-11-12 (Nirvan): the link is only offered INSIDE an expanded goal ("more info" open), lower-right */
+  #wat-bud .wb-copylink { display: none; }
+  #wat-bud .wb-panel.is-more-open:not(.wb-mlist-open) .wb-copylink { display: inline-flex; }
   #wat-bud .wb-tlink { color: inherit; text-decoration: none; }
   #wat-bud .wb-tlink:hover { text-decoration: underline; text-underline-offset: 3px; }
   #wat-bud #wb-title-text.is-struck .wb-tlink:hover { text-decoration: line-through underline; }

@@ -628,12 +628,12 @@
   }
   /* the chip sits centred over the gold line on the Rough Cut bar. Anywhere else it is "away": shrunk into the line
      (Total) or gone off the side with it (Final Cut) -- still holding its row, so nothing below moves. */
-  function mchipPlace(cx, away) {
+  function mchipPlace(cx, away, noScale) {
     var c = document.getElementById('wb-mchip'); if (!c || c.hidden || !barEl) return;
     var w = c.offsetWidth, bw = barEl.offsetWidth; if (!w || !bw) return;
     var dx = (away ? cx : clamp(cx, w / 2, bw - w / 2)) - bw / 2;
     c.classList.toggle('wb-mchip-away', !!away);
-    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + (away ? ' scale(.12)' : '');
+    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + ((away && !noScale) ? ' scale(.12)' : '');
     c.tabIndex = (away || lmBoxOpen) ? -1 : 0;
   }
   /* (uu) THE FLIGHT. While the bar zooms / pans (0.5s), the line and the chip travel to where the matched stretch
@@ -669,7 +669,18 @@
     var E = '.5s cubic-bezier(.82,0,.18,1)';
     mzl.style.transition = 'left ' + E + ', width ' + E; mzl.firstChild.style.transition = 'width ' + E;
     put(Z);
-    mchipPlace(offX + Z.l + Z.w / 2, target !== 'rough');
+    /* (yy) the chip rides the line: it starts exactly over where the line starts (a pan slides it a whole bar-width
+       at full size; a zoom grows it out of the short Total line) and ends over where the line ends. It was starting
+       from its parked spot, so coming back from the Final Cut it slid in out of step with the line. */
+    if (c && !c.hidden && (kind === 'pan' || fromT !== 'rough')) {
+      var bw0 = barEl.offsetWidth, sdx = offX + A.l + A.w / 2 - bw0 / 2;
+      c.style.transition = 'none';
+      c.style.transform = 'translateX(' + sdx.toFixed(1) + 'px)' + (kind === 'pan' ? '' : ' scale(.12)');
+      if (kind === 'pan' && fromT !== 'rough') { c.classList.remove('wb-mchip-away'); c.style.opacity = '1'; }
+      void c.offsetWidth; c.style.transition = '';
+    }
+    if (c) c.style.opacity = '';
+    mchipPlace(offX + Z.l + Z.w / 2, target !== 'rough', kind === 'pan');
     setTimeout(function () {
       if (seq !== lmFlySeq) return;
       lmFlying = false; mzl.style.transition = ''; mzl.firstChild.style.transition = ''; mzl.style.opacity = '';
@@ -2339,6 +2350,9 @@
   #wat-bud .wb-copylink:hover, #wat-bud .wb-copylink:focus-visible, #wat-bud .wb-copylink.is-copied { color: #6a56c9; background: rgba(106,86,201,.1); }
   #wat-bud .wb-copylink:hover .wb-copylink-t, #wat-bud .wb-copylink:focus-visible .wb-copylink-t, #wat-bud .wb-copylink.is-copied .wb-copylink-t { max-width: 90px; }
   #wat-bud .wb-panel.wb-mlist-open .wb-copylink { display: none; }
+  /* (xx) 2026-11-12 (Nirvan): the link is only offered INSIDE an expanded goal ("more info" open), lower-right */
+  #wat-bud .wb-copylink { display: none; }
+  #wat-bud .wb-panel.is-more-open:not(.wb-mlist-open) .wb-copylink { display: inline-flex; }
   #wat-bud .wb-tlink { color: inherit; text-decoration: none; }
   #wat-bud .wb-tlink:hover { text-decoration: underline; text-underline-offset: 3px; }
   #wat-bud #wb-title-text.is-struck .wb-tlink:hover { text-decoration: line-through underline; }
@@ -2781,7 +2795,6 @@
     <button type="button" class="bp-head" aria-expanded="true">
       <span class="bp-headtxt"><span class="bp-amt">$700K</span> <span class="bp-name">Rough Cut Budget</span> <span class="bp-need" data-need></span></span>
       <span class="bp-status" data-status></span>
-      <span class="bp-link" role="button" tabindex="0" data-link="rough-cut" aria-label="Copy a link to this budget" title="Copy link"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.2 3.2 0 0 0 4.5 0l2.6-2.6a3.2 3.2 0 0 0-4.5-4.5l-.9.9"/><path d="M11.5 8.5a3.2 3.2 0 0 0-4.5 0L4.4 11.1a3.2 3.2 0 0 0 4.5 4.5l.9-.9"/></svg></span>
       <span class="bp-chev" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 8l4 4 4-4"/></svg></span>
     </button>
     <div class="bp-body"><div class="bp-inner">
@@ -2793,6 +2806,7 @@
           <div class="wat-ml-stats"><span class="wat-ml-total-raised"><strong>&nbsp;</strong></span><span class="wat-ml-total-togo"></span></div>
         </div>
         <p class="wat-ml-foot">&nbsp;</p>
+        <div class="bp-linkrow"><span class="bp-link" role="button" tabindex="0" data-link="rough-cut"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.2 3.2 0 0 0 4.5 0l2.6-2.6a3.2 3.2 0 0 0-4.5-4.5l-.9.9"/><path d="M11.5 8.5a3.2 3.2 0 0 0-4.5 0L4.4 11.1a3.2 3.2 0 0 0 4.5 4.5l.9-.9"/></svg><span class="bp-link-t">Copy link to the Rough Cut budget</span></span></div>
       </div>
     </div></div>
   </div>
@@ -2800,7 +2814,6 @@
     <button type="button" class="bp-head" aria-expanded="true">
       <span class="bp-headtxt"><span class="bp-amt">$900K</span> <span class="bp-name">Final Cut Budget</span> <span class="bp-need" data-need></span></span>
       <span class="bp-status" data-status></span>
-      <span class="bp-link" role="button" tabindex="0" data-link="final-cut" aria-label="Copy a link to this budget" title="Copy link"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.2 3.2 0 0 0 4.5 0l2.6-2.6a3.2 3.2 0 0 0-4.5-4.5l-.9.9"/><path d="M11.5 8.5a3.2 3.2 0 0 0-4.5 0L4.4 11.1a3.2 3.2 0 0 0 4.5 4.5l.9-.9"/></svg></span>
       <span class="bp-chev" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 8l4 4 4-4"/></svg></span>
     </button>
     <div class="bp-body"><div class="bp-inner">
@@ -2812,6 +2825,7 @@
           <div class="wat-ml-stats"><span class="wat-ml-total-raised"><strong>&nbsp;</strong></span><span class="wat-ml-total-togo"></span></div>
         </div>
         <p class="wat-ml-foot">&nbsp;</p>
+        <div class="bp-linkrow"><span class="bp-link" role="button" tabindex="0" data-link="final-cut"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.2 3.2 0 0 0 4.5 0l2.6-2.6a3.2 3.2 0 0 0-4.5-4.5l-.9.9"/><path d="M11.5 8.5a3.2 3.2 0 0 0-4.5 0L4.4 11.1a3.2 3.2 0 0 0 4.5 4.5l.9-.9"/></svg><span class="bp-link-t">Copy link to the Final Cut budget</span></span></div>
       </div>
     </div></div>
   </div>
@@ -2941,11 +2955,12 @@
           +   '<span class="wat-ml-ico"><svg viewBox="0 0 20 20" aria-hidden="true">' + (ICONS[g.icon] || '') + '</svg></span>'
           +   '<span class="wat-ml-headtext"><span class="wat-ml-amt">' + kMoney(g.amount) + (st === 'done' ? '<span class="wat-ml-strike"></span>' : '') + '</span>'
           +     '<span class="wat-ml-lead">' + g.lead + '</span><span class="wat-ml-desc"> &mdash; ' + desc + '</span></span>'
-          +   '<a class="wat-ml-link" href="#' + g.slug + '" data-link="' + g.slug + '" aria-label="Copy a link to this goal" title="Copy link">' + LINK_SVG + '</a>'
           +   '<span class="wat-ml-chev" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 8l4 4 4-4"/></svg></span></div>'
           + '<div class="wat-ml-progress"><div class="wat-ml-track"><div class="wat-ml-ticks"></div><div class="wat-ml-fill"></div></div>'
           + '<div class="wat-ml-stats"><span class="wat-ml-raised">' + (st === 'upcoming' ? '' : money(0) + ' raised') + '</span>' + right + '</div></div>'
-          + '<div class="wat-ml-details"><div class="wat-ml-details-inner">' + ((st === 'done' && g.done_details) ? g.done_details : g.details) + '</div></div></div>';   /* (qq) a met goal thanks you: "You helped us: ..." */
+          + '<div class="wat-ml-details"><div class="wat-ml-details-inner">' + ((st === 'done' && g.done_details) ? g.done_details : g.details)
+          +   '<div class="wat-ml-linkrow"><a class="wat-ml-link" href="#' + g.slug + '" data-link="' + g.slug + '">' + LINK_SVG + '<span class="bp-link-t">Copy link</span></a></div>'   /* (xx) only inside the opened goal */
+          + '</div></div></div>';   /* (qq) a met goal thanks you: "You helped us: ..." */
         listEl.appendChild(row); ticks(row.querySelector('.wat-ml-ticks'), g.amount);
         row.classList.add('has-details'); row.setAttribute('role', 'button'); row.setAttribute('tabindex', '0');
         row.setAttribute('aria-expanded', openRows[i] ? 'true' : 'false');
@@ -3073,7 +3088,8 @@
   function copyLink(btn) {
     var slug = btn.getAttribute('data-link'), url = linkFor(slug);
     try { history.replaceState(null, '', '#' + slug); } catch (e) {}
-    var done = function () { btn.classList.add('is-copied'); btn.setAttribute('data-tip', 'Link copied'); setTimeout(function () { btn.classList.remove('is-copied'); btn.removeAttribute('data-tip'); }, 1800); };
+    var tx = btn.querySelector('.bp-link-t'), was = tx ? tx.textContent : '';
+    var done = function () { btn.classList.add('is-copied'); if (tx) tx.textContent = 'Link copied'; setTimeout(function () { btn.classList.remove('is-copied'); if (tx) tx.textContent = was; }, 1800); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { legacyCopy(url); done(); });
     else { legacyCopy(url); done(); }
   }
@@ -3109,12 +3125,12 @@
   #bp-secs .bp-card, #bp-secs .wat-ml-row { scroll-margin-top: 96px; }
   #bp-secs .wat-ml-thanks { margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--ml-line); font-weight: 700; font-size: 14px; color: var(--ml-accent-dk, #33697f); }   /* (qq) */
   #bp-secs .wat-ml-thanks + ul { margin-top: 4px; padding-top: 0; border-top: 0; }
-  #bp-secs .bp-link, #bp-secs .wat-ml-link { position: relative; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; color: #9aa3b2; cursor: pointer; text-decoration: none; transition: color .15s ease, background .15s ease, opacity .15s ease; }
-  #bp-secs .wat-ml-link { width: 22px; height: 22px; margin-top: 0; opacity: .55; }
-  #bp-secs .bp-link svg, #bp-secs .wat-ml-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; display: block; }
-  #bp-secs .wat-ml-link svg { width: 14px; height: 14px; }
-  #bp-secs .bp-link:hover, #bp-secs .wat-ml-link:hover, #bp-secs .bp-link.is-copied, #bp-secs .wat-ml-link.is-copied { color: #6a56c9; background: rgba(106,86,201,.1); opacity: 1; }
-  #bp-secs [data-tip]::after { content: attr(data-tip); position: absolute; right: 0; bottom: calc(100% + 5px); white-space: nowrap; background: #232838; color: #fff; font: 600 11px/1 inherit; font-family: inherit; letter-spacing: .02em; padding: 6px 8px; border-radius: 6px; pointer-events: none; z-index: 5; text-transform: none; }
+  /* (xx) 2026-11-12 (Nirvan): links are not shown on every heading -- only inside an opened goal / budget, lower-right */
+  #bp-secs .wat-ml-linkrow, #bp-secs .bp-linkrow { display: flex; justify-content: flex-end; margin-top: 8px; }
+  #bp-secs .bp-linkrow { margin-top: 12px; }
+  #bp-secs .bp-link, #bp-secs .wat-ml-link { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px 4px 7px; border-radius: 999px; color: #8a93a3; font-size: 12.5px; font-weight: 700; line-height: 1; cursor: pointer; text-decoration: none; transition: color .15s ease, background .15s ease; }
+  #bp-secs .bp-link svg, #bp-secs .wat-ml-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; display: block; flex: 0 0 auto; }
+  #bp-secs .bp-link:hover, #bp-secs .wat-ml-link:hover, #bp-secs .bp-link:focus-visible, #bp-secs .wat-ml-link:focus-visible, #bp-secs .bp-link.is-copied, #bp-secs .wat-ml-link.is-copied { color: #6a56c9; background: rgba(106,86,201,.1); }
   @keyframes bpFlash { 0% { box-shadow: 0 0 0 3px rgba(106,86,201,.55); } 100% { box-shadow: 0 0 0 3px rgba(106,86,201,0); } }
   #bp-secs .wat-ml-row.bp-flash { animation: bpFlash 2.1s ease-out; border-radius: 10px; }
   #bp-secs .bp-card.bp-flash { animation: bpFlash 2.1s ease-out; }
@@ -3131,8 +3147,7 @@
   #bp-secs .bp-btn-ghost:hover { color: #fff; }
   @media (max-width: 560px) {
     #bp-secs .bp-head { padding: 15px 16px; flex-wrap: wrap; }
-    #bp-secs .bp-headtxt { flex-basis: calc(100% - 72px); }   /* (pp) room for the link icon + chevron on line 1 */
-    #bp-secs .wat-ml-row:not(.is-open) .wat-ml-link { display: none; }   /* (pp) phones: a goal's link icon shows once the goal is open, so closed names keep their width */
+    #bp-secs .bp-headtxt { flex-basis: calc(100% - 34px); }
     #bp-secs .bp-status { order: 3; margin-left: 0; }
     #bp-secs .bp-inner > .wat-ml { padding: 16px 14px 18px; }
   }
