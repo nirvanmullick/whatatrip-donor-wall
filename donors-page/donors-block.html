@@ -22187,7 +22187,7 @@ window.dwResize = (function () {
      donation while the page is open glides from the old figure to the new one. */
   var pbBuilt = false, pbRv = null, pbGv = null, pbTv = null;
   var pbShown = 0, pbGoal = 0, pbTgt = -1, pbTok = 0;
-  var PB_FALLBACK_MS = 6000, PB_FIRST_MS = 1800, PB_NEXT_MS = 900;
+  var PB_FALLBACK_MS = 6000, PB_FIRST_MS = 2200, PB_NEXT_MS = 900;
   function pbBuild(goal) {
     /* v19.11, his: "switch the progress bars and show more prominently the amount left to go,
        and then put the amount raised underneath the bar. 500-some thousand to go of a 700k goal."
@@ -22232,7 +22232,10 @@ window.dwResize = (function () {
   }
   function pbTarget() {
     var w = window.WAT_ROUGH;
-    if (w && w.live && w.raised > 0 && w.goal > 0) return w;
+    if (w && w.live && w.raised > 0 && w.goal > 0) { try { localStorage.setItem('wat-rough-last', Math.round(w.raised) + '/' + Math.round(w.goal)); } catch (e) {} return w; }
+    /* v19.44: no live figure yet -> start from the one this browser saw last time, and glide on to the live one when
+       it lands (the feed takes 3-6 seconds; waiting for it is what left the bar empty and then made it jump) */
+    try { var m = String(localStorage.getItem('wat-rough-last') || '').match(/^(\d+)\/(\d+)$/); if (m && +m[1] > 0 && +m[2] > 0) return { raised: +m[1], goal: +m[2] }; } catch (e) {}
     if (Date.now() - barT0 >= PB_FALLBACK_MS) {
       var b = readBudget();
       if (b && b.goal) return { raised: b.raised, goal: b.goal };
@@ -22257,7 +22260,13 @@ window.dwResize = (function () {
     return true;
   }
   var pbHoldUntil = 0;
-  window.addEventListener('wat-dw-ready', function () { pbHoldUntil = Date.now() + 450; setTimeout(paintBudget, 470); });
+  /* ...and it starts when the page has a quiet moment (measured live: the first seconds after the wall appears are
+     busy enough to drop most frames, which turned the count into a jump), 3.5s at the latest */
+  window.addEventListener('wat-dw-ready', function () {
+    pbHoldUntil = Date.now() + 4000;
+    var go = function () { if (!pbHoldUntil) return; pbHoldUntil = 0; paintBudget(); };
+    setTimeout(function () { if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 3000 }); else go(); }, 500);
+  });
   window.addEventListener('wat-rough', function () { paintBudget(); });
 
 
