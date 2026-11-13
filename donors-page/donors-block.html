@@ -29440,6 +29440,13 @@ window.dwResize = (function () {
             } else {
               fw.hidden = false;
               requestAnimationFrame(function () { fw.classList.add('is-open'); });
+              /* v19.48 -- BRING IT INTO VIEW. Nirvan: "read this before donating ... is unclickable". It was
+                 opening, but underneath the perks list, below the bottom of the pop-up, so nothing appeared to
+                 happen. The pop-up now scrolls to the panel once it has opened. */
+              [280, 520].forEach(function (ms) { setTimeout(function () {
+                if (fw.hidden || !fw.classList.contains('is-open')) return;
+                try { fw.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (x) { try { fw.scrollIntoView(false); } catch (y) {} }
+              }, ms); });
             }
           };
         }
@@ -29546,6 +29553,16 @@ window.dwResize = (function () {
       if (t) t.click();
     });
     p.hidden = false;
+    /* v19.48 -- ALWAYS OPEN ON THE FIRST SLIDE. Nirvan: Guided Therapy "is opening up on the Dwell video slide, but it's
+       also the last slide. It has a right arrow." The strip was sent back to the start a few lines up, while the pop-up
+       was still hidden -- and a hidden box cannot be scrolled, so it kept the place where the last pop-up was closed
+       (the video, if you had gone to the end), while the dots and arrows were drawn for slide one. The strip is now
+       put back once the pop-up is showing, and the dots and arrows are read off where it really is. */
+    (function () {
+      var vp0 = p.querySelector('.skf-expop-vp'); if (!vp0) return;
+      function home() { var sb = vp0.style.scrollBehavior; vp0.style.scrollBehavior = 'auto'; vp0.scrollLeft = 0; vp0.style.scrollBehavior = sb; if (p.exSync) p.exSync(); }
+      home(); requestAnimationFrame(home);
+    })();
     requestAnimationFrame(function () { p.classList.add('is-open'); });
     var x = p.querySelector('.skf-expop-x');
     if (x) setTimeout(function () { try { x.focus(); } catch (e) {} }, 40);
