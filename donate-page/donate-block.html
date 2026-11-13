@@ -511,14 +511,19 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       mz.innerHTML = '<span class="wb-mz-fill"></span>'; }
     if (mz.parentNode !== trackEl) trackEl.appendChild(mz);
     var show = LIVE_MATCH.on && activeTab === 'rough' && !emptyView && Date.now() < new Date(LIVE_MATCH.end).getTime();
+    /* (uu) 2026-11-12 (Nirvan): the gold line stays pinned to the stretch it matches when you zoom out to the Total
+       budget (a short line over the Rough Cut zone) and flies off with the Rough Cut when you go to the Final Cut. */
+    var showT = LIVE_MATCH.on && activeTab === 'total' && Date.now() < new Date(LIVE_MATCH.end).getTime();
+    var offA = showT ? DEV_DONE : 0;
     if (raised == null) raised = B.raised;
+    if (lmFlying) return;                                        /* mid-zoom: lmFly() is moving the line and the chip */
     /* gold LINE above the matched stretch + the connector to the window (phase 2); both live in the bar
        (not the track), so they are placed from layout offsets and hidden while the bar zooms/pans */
     var mzl = document.getElementById('wb-mzl'), lnk = document.getElementById('wb-mlink');
     if (!mzl && barEl) { mzl = document.createElement('div'); mzl.id = 'wb-mzl'; mzl.className = 'wb-mzl'; mzl.setAttribute('aria-hidden', 'true'); mzl.innerHTML = '<span class="wb-mzl-fill"></span>'; barEl.appendChild(mzl); }   /* (ss) the chip above the line names it now */
     if (!lnk && barEl) { lnk = document.createElement('div'); lnk.id = 'wb-mlink'; lnk.className = 'wb-mlink'; lnk.setAttribute('aria-hidden', 'true'); barEl.appendChild(lnk); }
-    var lineOn = show && lmPhase === 2 && !barBusy;
-    if (barEl) barEl.classList.toggle('wb-bar-mz', show);   // gives the gold line its own lane above the bar, clear of "17% raised" 
+    var lineOn = (show || showT) && lmPhase === 2 && !barBusy;
+    if (barEl) barEl.classList.toggle('wb-bar-mz', show || showT || activeTab === 'final');   /* same lane on every budget tab, so the bar never jumps */   // gives the gold line its own lane above the bar, clear of "17% raised" 
     if (mzl) mzl.classList.toggle('wb-mzl-on', lineOn);
     if (mzl && lineOn && !mzl.dataset.grown) { mzl.dataset.grown = '1'; if (!lmReduce) mzl.classList.add('wb-mzl-grow'); }   /* first time only: it draws itself left to right */
     if (lnk) lnk.classList.toggle('wb-mlink-on', lineOn && lmBoxOpen);
@@ -531,13 +536,13 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         return 0;
       };
       var offX = (surfaceEl ? surfaceEl.offsetLeft : 0) + trackEl.offsetLeft;
-      var S0 = matchStart(), E0 = S0 + 2 * poolCap();
+      var S0 = matchStart() + offA, E0 = S0 + 2 * poolCap();
       var a0 = xOfL0(S0), a1 = xOfL0(E0), af = xOfL0(clamp(raised, S0, E0));
       mzl.style.left = (offX + a0) + 'px'; mzl.style.width = Math.max(4, a1 - a0) + 'px';
       mzl.firstChild.style.width = Math.max(0, af - a0) + 'px';
       var lb = mzl.querySelector('.wb-mzl-lbl');                   /* "$60K match": just past the line's right end, or before its start if the bar runs out */
       if (lb) { var room = barEl.offsetWidth - (offX + a1); lb.classList.toggle('wb-mzl-lbl-l', room < lb.offsetWidth + 10); }
-      mchipPlace(offX + (a0 + a1) / 2);
+      mchipPlace(offX + (a0 + a1) / 2, !show);
       var box = document.getElementById('wb-mline');
       if (lnk && box && !box.hidden && lmBoxOpen) {
         var br = box.getBoundingClientRect(), bbar = barEl.getBoundingClientRect();
@@ -546,7 +551,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
         lnk.style.left = cx + 'px'; lnk.style.top = (-gap) + 'px'; lnk.style.height = Math.max(0, gap - 7) + 'px';
       }
     }
-    if (!(lineOn && mzl)) mchipPlace(null);
+    if (!(lineOn && mzl) && !barBusy) mchipPlace(barEl ? -0.55 * barEl.offsetWidth : -300, true);   /* parked just off the left, where the Rough Cut went */
     var blockOn = false;   // 2026-09-28 (Nirvan): no gold block in the bar any more -- only the thin line above it
     mz.style.display = blockOn ? '' : 'none';   // (the in-bar "$X raised" below keeps its place right of the matched stretch in every phase, so it never jumps)
     if (inbarEl && activeTab !== 'raised') inbarEl.style.left = '';
@@ -642,15 +647,57 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (wasHidden && !c.hidden) { lmPaint(); setTimeout(lmPaint, 60); setTimeout(lmPaint, 700); }   /* place it over the gold line the moment it appears (it was being placed while still hidden, so it landed centred on the bar instead) */
     c.classList.toggle('wb-mchip-off', lmBoxOpen);          /* while the window is open the chip is spent (kept in place so nothing jumps) */
     c.setAttribute('aria-expanded', String(lmBoxOpen));
-    c.tabIndex = lmBoxOpen ? -1 : 0;
+    c.tabIndex = (lmBoxOpen || c.classList.contains('wb-mchip-away')) ? -1 : 0;
   }
-  /* on the Rough Cut bar the chip sits over the gold line; on the other budgets it is centred */
-  function mchipPlace(cx) {
+  /* the chip sits centred over the gold line on the Rough Cut bar. Anywhere else it is "away": shrunk into the line
+     (Total) or gone off the side with it (Final Cut) -- still holding its row, so nothing below moves. */
+  function mchipPlace(cx, away) {
     var c = document.getElementById('wb-mchip'); if (!c || c.hidden || !barEl) return;
-    if (cx == null) { c.style.transform = ''; return; }
     var w = c.offsetWidth, bw = barEl.offsetWidth; if (!w || !bw) return;
-    var dx = clamp(cx, w / 2, bw - w / 2) - bw / 2;
-    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)';
+    var dx = (away ? cx : clamp(cx, w / 2, bw - w / 2)) - bw / 2;
+    c.classList.toggle('wb-mchip-away', !!away);
+    c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + (away ? ' scale(.12)' : '');
+    c.tabIndex = (away || lmBoxOpen) ? -1 : 0;
+  }
+  /* (uu) THE FLIGHT. While the bar zooms / pans (0.5s), the line and the chip travel to where the matched stretch
+     will be in the view we are going to -- worked out from the budgets themselves, because the new bar is not on
+     screen yet. Every view is a window onto the same $3.4M line: Total 0-3.4M, Rough Cut 1.8-2.5M, Final 2.5-3.4M. */
+  var lmFlying = false, lmFlySeq = 0;
+  var LM_VIEW = { total: [0, 3400000], rough: [DEV_DONE, DEV_DONE + 700000], final: [DEV_DONE + 700000, 3400000] };
+  function lmGeom(view, W) {
+    var v = LM_VIEW[view]; if (!v) return null;
+    var t0 = DEV_DONE + matchStart(), t1 = t0 + 2 * poolCap(), tf = DEV_DONE + clamp(roughRaised(), matchStart(), matchStart() + 2 * poolCap());
+    var x = function (t) { return (t - v[0]) / (v[1] - v[0]) * W; };
+    return { l: x(t0), w: Math.max(4, x(t1) - x(t0)), f: Math.max(0, x(tf) - x(t0)) };
+  }
+  function lmFly(fromT, target, kind) {
+    var mzl = document.getElementById('wb-mzl'), c = document.getElementById('wb-mchip');
+    if (!mzl || !barEl || !trackEl || lmPhase !== 2 || !LIVE_MATCH.on || lmReduce || Date.now() > new Date(LIVE_MATCH.end).getTime()) return;
+    var W = trackEl.getBoundingClientRect().width, offX = (surfaceEl ? surfaceEl.offsetLeft : 0) + trackEl.offsetLeft; if (!W) return;
+    var A = lmGeom(fromT, W), Z = lmGeom(target, W), R = lmGeom('rough', W);
+    if (kind === 'pan') {                      /* the neighbour slides in: the Rough Cut's line slides a whole bar-width with it */
+      var right = (fromT === 'rough') ? (target === 'final') : (fromT === 'raised');   /* true = the Rough Cut moves LEFT */
+      A = (fromT === 'rough') ? R : { l: R.l + (right ? W : -W), w: R.w, f: R.f };
+      Z = (target === 'rough') ? R : { l: R.l + (right ? -W : W), w: R.w, f: R.f };
+    }
+    if (!A || !Z) {                            /* to / from the 2014-2026 view: no shared scale -- it just fades */
+      if (!Z) { mzl.classList.remove('wb-mzl-on'); mchipPlace(-0.55 * barEl.offsetWidth, true); }
+      return;
+    }
+    var seq = ++lmFlySeq; lmFlying = true;
+    var put = function (g) { mzl.style.left = (offX + g.l) + 'px'; mzl.style.width = g.w + 'px'; mzl.firstChild.style.width = g.f + 'px'; };
+    mzl.classList.remove('wb-mzl-grow');
+    mzl.style.transition = 'none'; mzl.firstChild.style.transition = 'none'; put(A); mzl.classList.add('wb-mzl-on'); mzl.style.opacity = '1';
+    void mzl.offsetWidth;
+    var E = '.5s cubic-bezier(.82,0,.18,1)';
+    mzl.style.transition = 'left ' + E + ', width ' + E; mzl.firstChild.style.transition = 'width ' + E;
+    put(Z);
+    mchipPlace(offX + Z.l + Z.w / 2, target !== 'rough');
+    setTimeout(function () {
+      if (seq !== lmFlySeq) return;
+      lmFlying = false; mzl.style.transition = ''; mzl.firstChild.style.transition = ''; mzl.style.opacity = '';
+      lmPaint();
+    }, 560);
   }
   function closeMatchBox(instant) {
     var ln = document.getElementById('wb-mline'); if (!ln || !lmBoxOpen) return;
@@ -1513,7 +1560,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     ghost.style.position = 'absolute'; ghost.style.left = '0'; ghost.style.top = trackEl.offsetTop + 'px';
     ghost.style.width = W + 'px'; ghost.style.transformOrigin = '0 0'; ghost.style.transition = 'none';
     ghost.style.pointerEvents = 'none'; ghost.style.zIndex = '4';
-    barEl.style.overflow = 'hidden'; if (caret) caret.style.visibility = 'hidden'; if (numsEl) numsEl.style.visibility = 'hidden';
+    barEl.style.clipPath = 'inset(-40px 0px -600px 0px)';   /* (uu) was overflow:hidden -- clips the sides only, so the gold line above the bar stays visible while it travels */
+    if (caret) caret.style.visibility = 'hidden'; if (numsEl) numsEl.style.visibility = 'hidden';
     surfaceEl.appendChild(ghost);
     var inbarGhost = null;   // PAN: the in-bar number is pinned to the bar → clone the OLD one and slide it off with the bar
     if (!fade && inbarEl && inbarEl.style.display !== 'none') {
@@ -1564,7 +1612,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (inbarEl) { inbarEl.style.transition = ''; inbarEl.style.transform = ''; }
       trackEl.style.transition = ''; trackEl.style.transform = ''; trackEl.style.opacity = ''; trackEl.style.transformOrigin = ''; trackEl.style.filter = ''; trackEl.style.borderRadius = '';
       if (sqReal) { surfaceEl.style.overflow = ''; surfaceEl.style.borderRadius = ''; }   // release the raised-transition clip
-      barEl.style.overflow = ''; if (caret) caret.style.visibility = ''; if (numsEl) numsEl.style.visibility = '';
+      barEl.style.clipPath = ''; if (caret) caret.style.visibility = ''; if (numsEl) numsEl.style.visibility = '';
       barBusy = false;
       if (lmPhase === 1 && activeTab !== 'rough') lmToLine();   // (phase 1 is no longer used)   // left mid-reveal: go straight to the resting line
       lmPaint();
@@ -1642,6 +1690,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (inbarEl) { inbarEl.style.transition = 'none'; inbarEl.style.transform = ''; inbarEl.style.opacity = '0'; }   // keep the in-bar label hidden until the bloom hands off to it
       inbarHold = (target === 'rough' || target === 'final');
       var _sqR = (target === 'raised');   // only the raised bar has a rounded LEFT cap at x=0 that distorts under scaleX — square the corners through the zoom for raised
+      lmFly(fromT, target, 'zoom');
       barTransition(target, zoomTransform(a.L, a.R, W), slotTransform(a.L, a.R, W), true, target !== 'raised', false, _sqR, _sqR);
       if (target === 'raised') {                                  // bloom the white "$1,908,755 raised to date" out of the "$1.9M", growing BOTH directions, landing centred in the raised-to-date region
         var _rd = DEV_DONE + roughRaised();
@@ -1676,10 +1725,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       }
       if (fromT === 'raised') bloomHideIdx = _secIdx;                               // hide the destination label from the very first rebuilt frame (set BEFORE barTransition's paintBar)
       var _sqR2 = (fromT === 'raised');
+      lmFly(fromT, target, 'zoom');
       barTransition(target, slotTransform(b.L, b.R, W), zoomTransform(b.L, b.R, W), true, true, true, _sqR2, _sqR2);   // grow=true → blue fill grows in + "to go" counts down on landing
       if (fromT === 'raised') bloomFromInbar(_startF2, _endF2, _full2, _sfx2, _short2, _col2, _secIdx);   // 2026-09-28: rough/final's in-bar number is now "raised", which doesn't match the total bar's remaining-to-fund label -- it rides the zoom out instead of morphing into it
     } else if (pan) {                                             // PAN across to the neighbouring zoomed view
       var goRight = PAN_ORDER[target] > PAN_ORDER[fromT];         // moving right: old slides left, new enters from the right
+      lmFly(fromT, target, 'pan');
       barTransition(target, 'translateX(' + (goRight ? -100 : 100) + '%)', 'translateX(' + (goRight ? 100 : -100) + '%)', false, false, false);
     } else {
       plainSwitch(target);
@@ -2349,13 +2400,15 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   /* (ss) the collapsed chip + the window's close control */
   #wat-bud .wb-mchip { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 5px; width: -moz-fit-content; width: fit-content; max-width: 100%; margin: 2px auto 3px; padding: 4px 9px 4px 10px; border-radius: 999px;
     background: #fbf5e6; border: 1px solid #ecd9a8; color: #6b5516; font-family: inherit; font-size: 0.74rem; line-height: 1.2; font-weight: 800; letter-spacing: .01em; white-space: nowrap; cursor: pointer; position: relative; z-index: 4;
-    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease, background .15s ease, box-shadow .15s ease; animation: wbChipIn .45s ease both; }
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease, background .15s ease, box-shadow .15s ease; animation: wbChipIn .45s ease backwards; }   /* backwards, not both: a filled animation would pin opacity at 1 and beat the "away" state */
   #wat-bud .wb-mchip[hidden] { display: none; }
   #wat-bud .wb-mchip:hover, #wat-bud .wb-mchip:focus-visible { background: #f6e9c4; box-shadow: 0 1px 6px rgba(201,154,62,.35); }
   #wat-bud .wb-mchip:focus-visible { outline: 2px solid #c99a3e; outline-offset: 2px; }
   #wat-bud .wb-mchip-chev { display: inline-flex; width: 14px; height: 14px; border-radius: 50%; background: #e9cf8e; color: #5b4712; align-items: center; justify-content: center; }
   #wat-bud .wb-mchip-chev svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; display: block; }
   #wat-bud .wb-mchip.wb-mchip-off { opacity: 0; pointer-events: none; }
+  #wat-bud .wb-mchip { transform-origin: 50% 130%; transition: transform .5s cubic-bezier(.82,0,.18,1), opacity .3s ease, background .15s ease, box-shadow .15s ease; }
+  #wat-bud .wb-mchip.wb-mchip-away { opacity: 0; pointer-events: none; }
   @keyframes wbChipIn { 0% { opacity: 0; } 100% { opacity: 1; } }
   #wat-bud .wb-mchip.wb-mchip-off { animation: none; }
   #wat-bud .wb-ml-x { all: unset; position: absolute; top: 6px; right: 7px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #8a6d1d; cursor: pointer; }
