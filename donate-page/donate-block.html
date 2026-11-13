@@ -564,7 +564,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
          the line "animating from the left", the connector bending over to the left, and the chip jumping (Nirvan). A
          line that measures as nothing on a bar that has width is now left exactly where it was (or not shown yet, if
          it has never been placed) and measured again shortly. */
-      var bad = (a1 - a0) < 8 && trackEl.offsetWidth > 120;
+      /* (al) ...whatever the track itself measures: on a narrower window the TRACK measured as nothing in that same
+         moment, the old test ("the track has width") let the dot through, and it showed three or four times (Nirvan) */
+      var bad = (a1 - a0) < 8;
       if (bad) {
         if (!mzl.dataset.ok) mzl.classList.remove('wb-mzl-on');
         if ((window.__watMzlTry = (window.__watMzlTry || 0) + 1) < 400) { clearTimeout(window.__watMzlT); window.__watMzlT = setTimeout(lmPaint, 120); }
