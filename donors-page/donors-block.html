@@ -41,7 +41,7 @@
 /* shows the wall: called by the last line of the last layer (skin_full.js), or after 5s whatever happens */
 window.WAT_DW_READY = function () {
   var w = document.getElementById('wat-dw'), b = document.getElementById('dw-boot');
-  if (w && !w.classList.contains('dw-ready')) { w.classList.add('dw-ready'); try { window.dispatchEvent(new Event('resize')); } catch (e) {} }
+  if (w && !w.classList.contains('dw-ready')) { w.classList.add('dw-ready'); try { window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('wat-dw-ready')); } catch (e) {} }
   if (b && b.parentNode) b.parentNode.removeChild(b);
   /* remember how many people are on the wall, for the loading line next time */
   var keep = function () { try { var k = document.querySelectorAll('#wat-dw .dw-tier .dw-chip, #wat-dw .dw-tier .dw-card').length; if (k >= 20) localStorage.setItem('wat-donor-count', String(k)); } catch (e) {} };
@@ -22246,10 +22246,18 @@ window.dwResize = (function () {
       pbBuild(g0);
       pbDraw(0, g0);
     }
+    /* v19.44 (Nirvan: "the progress bar is popping onto 433,000 instead of counting down from 700,000 with the bar
+       growing"): since v19.39 the wall is hidden behind the loading line until it is ready, and the count was running
+       while it was hidden. It now waits until the wall is on screen, plus a beat, and then plays. */
+    var wEl = document.getElementById('wat-dw');
+    if (wEl && !wEl.classList.contains('dw-ready') && document.getElementById('dw-boot')) return true;
+    if (pbHoldUntil && Date.now() < pbHoldUntil) return true;
     var t = pbTarget();
     if (t && Math.round(t.raised) !== Math.round(pbTgt)) pbAnimate(t.raised, t.goal);
     return true;
   }
+  var pbHoldUntil = 0;
+  window.addEventListener('wat-dw-ready', function () { pbHoldUntil = Date.now() + 450; setTimeout(paintBudget, 470); });
   window.addEventListener('wat-rough', function () { paintBudget(); });
 
 
