@@ -93,7 +93,7 @@
   var WAT_PROXY_URL = 'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec';   // same proxy the Rough Cut Budget Goals widget uses; returns {raised, goal, donors}
   var POLL_MS   = 20000, DURATION = 900;   // (cc) 30s -> 20s; the proxy itself refreshes every 30s
   var ROUGH_BASE = 75000;
-  var ROUGH_FALLBACK_PLEDGE = 37755;   // only used until the live fetch lands (or if it fails)
+  var ROUGH_FALLBACK_PLEDGE = 114409;   // (ac) brought up to date 11/13 so a first-time visitor's bar starts near the truth   // only used until the live fetch lands (or if it fails)
   var DONOR_COUNT = 300;            // fallback only — the donor wall below reports the LIVE count via window.WAT_DONOR_COUNT
   function donorCount() { return (typeof window !== 'undefined' && window.WAT_DONOR_COUNT != null) ? window.WAT_DONOR_COUNT : DONOR_COUNT; }
   function donorCountText() { return Number(donorCount()).toLocaleString('en-US'); }

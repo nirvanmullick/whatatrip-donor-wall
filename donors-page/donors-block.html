@@ -1135,6 +1135,7 @@ setTimeout(function () { window.WAT_DW_READY(); }, 5000);
 #wat-dw .dw-card-list.is-open .dw-ctabtn:nth-child(n+4){animation-delay:.84s;}
 
 /* the contributor list builds the same way when its count is clicked */
+#wat-dw .dw-psplit{display:block;font-size:.8em;line-height:1.3;font-weight:500;opacity:.72;margin-top:1px;white-space:normal;}
 #wat-dw .dw-plist-wrap:not([hidden]) .dw-prow{animation:dwRise .34s ease both;}
 #wat-dw .dw-plist-wrap:not([hidden]) .dw-prow:nth-child(1){animation-delay:.02s;}
 #wat-dw .dw-plist-wrap:not([hidden]) .dw-prow:nth-child(2){animation-delay:.06s;}
@@ -16387,11 +16388,24 @@ window.dwResize = (function () {
         .sort(function(a, b){ return a.t - b.t; })                       /* oldest first: first come, first matched */
         .forEach(function(x){
           if (left <= 0) return;
-          var a = x.d.amount || 0;
-          if (skip > 0) { var s0 = Math.min(a, skip); skip -= s0; a -= s0; }
+          var a = x.d.amount || 0, whole = a, s0 = 0;
+          if (skip > 0) { s0 = Math.min(a, skip); skip -= s0; a -= s0; }
           if (a <= 0) return;
           var m = Math.min(a, left); left -= m;
-          got.push(x.d.anonymous || !x.d.name ? { anonymous: true, amount: m, time: x.d.time, _t: x.t } : { name: x.d.name, amount: m, time: x.d.time, _t: x.t });
+          var row = x.d.anonymous || !x.d.name ? { anonymous: true, amount: m, time: x.d.time, _t: x.t } : { name: x.d.name, amount: m, time: x.d.time, _t: x.t };
+          /* v19.53 -- A GIFT THAT STRADDLES TWO MATCHES IS STILL ONE GIFT. Nirvan: "I just don't want it to look like
+             she didn't give 5k when people look at her name." Theresa's $5,000 finished the Osters' $60K with its first
+             $1,639 and opened Kasey & David's with the other $3,361, and each list printed only its own part. The row
+             now carries the whole gift (`full`) and who matched the rest, and the list prints "$5,000" with the split
+             underneath. `amount` stays the part matched HERE, so every total still adds up. */
+          if (m < whole) {
+            row.full = whole;
+            var prev = s0 > 0 ? ch.after : '', nextCh = (a - m) > 0 ? CHALLENGES.filter(function(c2){ return c2.live && c2.after === ch.matcher; })[0] : null;
+            row.rest = [];
+            if (s0 > 0 && prev) row.rest.push({ amt: s0, by: prev });
+            if (a - m > 0 && nextCh) row.rest.push({ amt: a - m, by: nextCh.matcher });
+          }
+          got.push(row);
         });
       ch.supporters = got;
       /* v19.08: while it runs, the challenge has raised what people gave PLUS the equal amount the
@@ -17364,6 +17378,8 @@ window.dwResize = (function () {
       ? function(a, b){ return (b.amt - a.amt) || (a.ord - b.ord); }
       : function(a, b){ return a.ord - b.ord; };
   }
+  /* "Anna & Scott Oster" -> "Anna & Scott"; "Kasey Crown & David Comfort" -> "Kasey & David"; "Rachel Hamilton" -> "Rachel" */
+  function shortMatcher(n){ return String(n || '').split(/\s*&\s*/).map(function(x){ return x.trim().split(/\s+/)[0]; }).join(' & '); }
   function supporterRowsHTML(list, tail){
     var rows = list.map(function(s, i){ return { s: s, i: i, amt: s.amount || 0, t: s._t || (s.time ? parseAge(s.time) : 0) }; });
     rows.slice().sort(function(a, b){ return (b.t - a.t) || (a.i - b.i); }).forEach(function(r, k){ r.ord = k; });   /* ord 0 = the most recent gift */
@@ -17374,8 +17390,9 @@ window.dwResize = (function () {
       var when = s.time ? ' <span class="dw-pwhen">&middot; '+moHTML(s.time)+'</span>' : '';
       return '<div class="dw-prow" data-amt="'+r.amt+'" data-ord="'+r.ord+'"><span class="dw-pfig">'+
              '<span class="dw-pico" aria-hidden="true">&#127881;</span>'+
-             '<span class="dw-pamt">'+money(s.amount)+'</span></span>'+
-             '<span class="dw-pname">'+nm+when+'</span></div>';
+             '<span class="dw-pamt">'+money(s.full || s.amount)+'</span></span>'+
+             '<span class="dw-pname">'+nm+when+(s.full ? '<span class="dw-psplit">'+money(s.amount)+' matched here'+
+               (s.rest || []).map(function(x){ return ' &middot; '+money(x.amt)+' by '+esc(shortMatcher(x.by)); }).join('')+'</span>' : '')+'</span></div>';
     }).join('');
     var bar = rows.length > 3 ? '<div class="dw-psortbar"><span>'+rows.length+' gifts</span>'+plSortBtn()+'</div>' : '';
     return '<div class="dw-plist">' + bar + '<div class="dw-pscroll'+(rows.length > 8 ? ' dw-pscroll-on' : '')+'">' + html + '</div>' + (tail || '') + '</div>';
@@ -29205,11 +29222,35 @@ window.dwResize = (function () {
     pcOpenRow(th.parentNode);
   });
 
+  /* v19.53 -- the Donate-an-Experience FORM panel, opened from anywhere (the slide itself now, as well as the link) */
+  function openGiveForm() {
+    var opener = root.querySelector('.skf-way-exp');
+    if (opener) { opener.click(); return; }
+    /* the bar button is not in the DOM on a narrow phone -- open it directly */
+    var p = expBuild();
+    if (!p) return;
+    var pop = document.getElementById('wat-pop');
+    if (pop) {
+      if (pop.parentNode !== document.body) document.body.appendChild(pop);
+      [].forEach.call(pop.querySelectorAll('.wat-pop-panel'), function (q) {
+        q.classList.toggle('is-on', q === p);
+      });
+      var card = pop.querySelector('.wat-pop-card');
+      if (card) card.className = 'wat-pop-card wat-pop-fundraiser';
+      pop.classList.add('is-open');
+      pop.setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden';
+    }
+  }
   function openExp(i, spIn) {
     /* v18.65: `spIn` lets a caller open a pop-up for something that is NOT one of the nine
        slides -- a chart row with no slide of its own. `i` is then -1 and nothing downstream
        indexes SLID with it. */
     var sp = spIn || SLID[i]; if (!sp) return;
+    /* v19.53, Nirvan: clicking the Donate an Experience slide "opens up a little pop-up. Then you have to click 'Tell
+       us about it'. That then opens up another pop-up ... Instead ... just open up that second pop-up." The slide now
+       opens the explanation-and-form panel directly; the small card in between is skipped. */
+    if (sp.give) { try { openGiveForm(); return; } catch (x) {} }
     var p = exBuild();
     exLast = document.activeElement;
     exAt = i;
@@ -29677,26 +29718,7 @@ window.dwResize = (function () {
         '<a class="skf-expop-lnk" href="/contact">Contact us</a>' +
         '<a class="skf-expop-lnk" href="/terms">Terms</a>');
     var gv = acts.querySelector('.skf-expop-give');
-    if (gv) gv.addEventListener('click', function () {
-      exClose();
-      var opener = root.querySelector('.skf-way-exp');
-      if (opener) { opener.click(); return; }
-      /* the bar button is not in the DOM on a narrow phone -- open it directly */
-      var p = expBuild();
-      if (!p) return;
-      var pop = document.getElementById('wat-pop');
-      if (pop) {
-        if (pop.parentNode !== document.body) document.body.appendChild(pop);
-        [].forEach.call(pop.querySelectorAll('.wat-pop-panel'), function (q) {
-          q.classList.toggle('is-on', q === p);
-        });
-        var card = pop.querySelector('.wat-pop-card');
-        if (card) card.className = 'wat-pop-card wat-pop-fundraiser';
-        pop.classList.add('is-open');
-        pop.setAttribute('aria-hidden', 'false');
-        document.documentElement.style.overflow = 'hidden';
-      }
-    });
+    if (gv) gv.addEventListener('click', function () { exClose(); openGiveForm(); });
     var ch = acts.querySelector('.skf-expop-chart');
     if (ch) ch.addEventListener('click', function () {
       exClose();
