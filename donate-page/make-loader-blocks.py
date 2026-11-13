@@ -54,7 +54,7 @@ CSS='''
 def sh(w,h,extra='',cls=''): return '<span class="watld-sh %s" style="width:%s;height:%spx;%s"></span>'%(cls,w,h,extra)
 BUDCARD=lambda cap: ('<div class="watld-card"><div class="watld-h">Our Film Budget</div>'
   '<div class="watld-tabs"><span>Total Budget</span><span class="on">Rough Cut</span><span>Final Cut</span></div>'
-  + sh('62%',34,'margin:0 auto 14px') + sh('100%',26,'border-radius:6px;margin-bottom:26px','pu') + sh('100%',128,'border-radius:12px')
+  + sh('62%',34,'margin:0 auto 14px') + sh('100%',26,'border-radius:6px;margin-bottom:26px','pu') + sh('100%',170,'border-radius:12px') + sh('132px',34,'border-radius:8px;margin:22px auto 0','pu')   # v3b: the real card is ~518px tall; the stand-in was 398, so everything under it dropped 120px when it loaded
   + '<div class="watld-cap" aria-live="polite">'+cap+'</div></div>')
 def rows(n,dot=True): return ''.join('<div class="watld-row">'+(sh('34px',34,'','')[:-7].replace('watld-sh ','watld-sh watld-dot ')+'</span>' if dot else '')+'<span style="flex:1">'+sh(str(70-(i*9)%30)+'%',14,'margin-bottom:7px')+sh(str(38+(i*7)%20)+'%',11)+'</span>'+sh('64px',14)+'</div>' for i in range(n))
 LISTCARD=lambda title,n: '<div class="watld-card"><div class="watld-h" style="font-size:19px">'+title+'</div>'+rows(n,False)+'</div>'

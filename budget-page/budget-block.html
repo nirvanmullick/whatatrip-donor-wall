@@ -636,24 +636,77 @@
   function mchipSync() {
     var c = document.getElementById('wb-mchip'); if (!c) return;
     var live = LIVE_MATCH.on && Date.now() < new Date(LIVE_MATCH.end).getTime();
-    var t = c.querySelector('.wb-mchip-t'), txt = '\uD83C\uDF81 ' + moneyK(poolCap()) + ' Matching Challenge Fund';
+    var t = c.querySelector('.wb-mchip-t'), txt = mchipLabels()[c._li || 0];
     if (t && t.textContent !== txt) t.textContent = txt;
     var wasHidden = c.hidden;
     c.hidden = !(live && lmPhase === 2);
     if (wasHidden && !c.hidden) { lmPaint(); setTimeout(lmPaint, 60); setTimeout(lmPaint, 700); }   /* place it over the gold line the moment it appears (it was being placed while still hidden, so it landed centred on the bar instead) */
     c.classList.toggle('wb-mchip-off', lmBoxOpen);          /* while the window is open the chip is spent (kept in place so nothing jumps) */
+    var rt = document.getElementById('wat-bud'); var lnO = document.getElementById('wb-mline'); if (rt) rt.classList.toggle('wb-lm-open', (!!lmBoxOpen || !!(lnO && !lnO.hidden)) && c.classList.contains('wb-mchip-up'));   /* (af) the window covers the numbers' row */
+    if (lmBoxOpen) mconnDraw(true);
     c.setAttribute('aria-expanded', String(lmBoxOpen));
     c.tabIndex = (lmBoxOpen || c.classList.contains('wb-mchip-away')) ? -1 : 0;
   }
   /* the chip sits centred over the gold line on the Rough Cut bar. Anywhere else it is "away": shrunk into the line
      (Total) or gone off the side with it (Final Cut) -- still holding its row, so nothing below moves. */
+  /* (af) 2026-11-13 (Nirvan): the chip no longer has a row of its own. It is LIFTED INTO THE NUMBERS' ROW, between
+     "38% raised" and the figure on the right, so the bar sits closer to those numbers; a thin grey line joins it to
+     the gold line over the bar. It stays over the gold line where there is room (the wide budget page) and otherwise
+     sits in the space between the two figures with air on both sides (the donate page). If the figures leave no room
+     for it at all (a narrow phone) it keeps its old row, over the line. */
+  /* the chip's wording, longest first: the first that fits between the two figures with air to spare is used */
+  function mchipLabels() { var k = '\uD83C\uDF81 ' + moneyK(poolCap()); return [k + ' Matching Challenge Fund', k + ' Matching Fund', k + ' Match']; }
   function mchipPlace(cx, away, noScale) {
     var c = document.getElementById('wb-mchip'); if (!c || c.hidden || !barEl) return;
     var w = c.offsetWidth, bw = barEl.offsetWidth; if (!w || !bw) return;
-    var dx = (away ? cx : clamp(cx, w / 2, bw - w / 2)) - bw / 2;
+    var lo = w / 2, hi = bw - w / 2;
+    if (!away && subEl && subEl.children.length >= 2) {
+      var br = barEl.getBoundingClientRect(), ks = subEl.children;
+      var zl = ks[0].getBoundingClientRect().right - br.left + 10, zr = ks[ks.length - 1].getBoundingClientRect().left - br.left - 10;
+      /* choose the wording for this much room (measured once per width of room) */
+      var zk = Math.round(zr - zl) + '|' + moneyK(poolCap());
+      if (c._zk !== zk) {
+        c._zk = zk;
+        var tEl = c.querySelector('.wb-mchip-t'), L = mchipLabels(), pick = -1;
+        for (var i = 0; i < L.length && tEl; i++) { tEl.textContent = L[i]; if (c.offsetWidth + 28 <= zr - zl) { pick = i; break; } }
+        c._li = pick < 0 ? 0 : pick; if (tEl) tEl.textContent = L[c._li];
+        c._fits = pick >= 0; w = c.offsetWidth; lo = w / 2; hi = bw - w / 2; c._x = null;
+      }
+      var up = !!c._fits;
+      if (up !== c.classList.contains('wb-mchip-up')) { c.classList.toggle('wb-mchip-up', up); c._x = null; }
+      if (up) { var air = Math.min(40, (zr - zl - w) / 2); lo = zl + air + w / 2; hi = zr - air - w / 2; }
+    }
+    var x = away ? cx : clamp(cx, lo, hi), dx = x - bw / 2;
     c.classList.toggle('wb-mchip-away', !!away);
     c.style.transform = 'translateX(' + dx.toFixed(1) + 'px)' + ((away && !noScale) ? ' scale(.12)' : '');
     c.tabIndex = (away || lmBoxOpen) ? -1 : 0;
+    /* the connector: straight away if the chip has not moved, otherwise once its half-second slide has finished */
+    var key = (away ? 'a' : 'h') + Math.round(x);
+    if (c._x === key) mconnDraw();
+    else { c._x = key; mconnDraw(true); clearTimeout(c._ct); c._ct = setTimeout(function () { mconnDraw(); }, 580); }
+  }
+  function mconnDraw(hide) {
+    if (!barEl) return;
+    var k = document.getElementById('wb-mconn'), c = document.getElementById('wb-mchip'), mzl = document.getElementById('wb-mzl');
+    if (!k) { k = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); k.setAttribute('id', 'wb-mconn'); k.setAttribute('class', 'wb-mconn'); k.setAttribute('aria-hidden', 'true');
+      k.innerHTML = '<path fill="none" stroke="#a9adba" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>'; barEl.appendChild(k); }
+    var ok = !hide && c && !c.hidden && c.classList.contains('wb-mchip-up') && !c.classList.contains('wb-mchip-away') && !lmBoxOpen && !lmFlying &&
+             mzl && mzl.classList.contains('wb-mzl-on') && mzl.offsetWidth > 0;
+    if (!ok) { k.style.opacity = '0'; return; }
+    var br = barEl.getBoundingClientRect(), cr = c.getBoundingClientRect(), mr = mzl.getBoundingClientRect(), fl = mzl.firstChild;
+    var x1 = cr.left + cr.width / 2 - br.left, y1 = cr.bottom - br.top + 1;
+    var x2 = clamp(((fl && fl.offsetWidth) ? fl.getBoundingClientRect().right : mr.left + mr.width / 2) - br.left, mr.left - br.left + 2, mr.right - br.left - 2), y2 = mr.top - br.top - 1;
+    if (y2 - y1 < 3) { k.style.opacity = '0'; return; }
+    /* drop from the chip only as far across as the chip itself reaches, so the line never starts in thin air */
+    x1 = clamp(x2, cr.left - br.left + 12, cr.right - br.left - 12);
+    var L = Math.min(x1, x2) - 2, W = Math.abs(x2 - x1) + 4, H = y2 - y1, ym = H / 2, r = Math.min(3, ym, Math.abs(x2 - x1) / 2), sg = x2 > x1 ? 1 : -1;
+    var a = x1 - L, b = x2 - L;
+    var d = Math.abs(x2 - x1) < 1.5 ? 'M' + a.toFixed(1) + ' 0V' + H.toFixed(1)
+      : 'M' + a.toFixed(1) + ' 0V' + (ym - r).toFixed(1) + 'Q' + a.toFixed(1) + ' ' + ym.toFixed(1) + ' ' + (a + sg * r).toFixed(1) + ' ' + ym.toFixed(1) +
+        'H' + (b - sg * r).toFixed(1) + 'Q' + b.toFixed(1) + ' ' + ym.toFixed(1) + ' ' + b.toFixed(1) + ' ' + (ym + r).toFixed(1) + 'V' + H.toFixed(1);
+    k.style.left = L.toFixed(1) + 'px'; k.style.top = y1.toFixed(1) + 'px'; k.style.width = W.toFixed(1) + 'px'; k.style.height = H.toFixed(1) + 'px';
+    k.setAttribute('viewBox', '0 0 ' + W.toFixed(1) + ' ' + H.toFixed(1));
+    k.firstChild.setAttribute('d', d); k.style.opacity = '1';
   }
   /* (uu) THE FLIGHT. While the bar zooms / pans (0.5s), the line and the chip travel to where the matched stretch
      will be in the view we are going to -- worked out from the budgets themselves, because the new bar is not on
@@ -2471,6 +2524,17 @@
   #wat-bud .wb-ml-x svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; display: block; }
   #wat-bud .wb-ml-title { cursor: pointer; margin-left: 24px; margin-right: 24px; }
   #wat-bud .wb-mline { margin-bottom: 0; }   /* the chip's row (kept, invisible, while the window is open) is the gap to the bar now */
+  /* (af) the chip lifted into the numbers' row; the bar moves up under it. -27px puts the chip's middle on the row's
+     middle; the 15px beneath it is the room the gold line and the connector need above the bar. */
+  #wat-bud .wb-substats { margin-bottom: 19px; }   /* was 7: the room the lifted chip's connector needs is ALWAYS there, so nothing moves down when the chip arrives a moment after the page (Nirvan: "everything kind of shifts down a little bit") */
+  #wat-bud .wb-mchip.wb-mchip-up { margin-top: -39px; margin-bottom: 14.5px; }
+  #wat-bud .wb-mchip:not(.wb-mchip-up) { margin-top: -10px; }
+  #wat-bud .wb-mconn { position: absolute; pointer-events: none; overflow: visible; z-index: 3; opacity: 0; transition: opacity .25s ease; }
+  /* open, the window covers the numbers' row (they fade out under it) and pushes the bar down */
+  #wat-bud .wb-substats { transition: opacity .25s ease; }
+  #wat-bud.wb-lm-open .wb-substats { opacity: 0; }
+  #wat-bud.wb-lm-open .wb-mline { margin-top: -39px; z-index: 5; margin-bottom: 14px; }
+  @media (prefers-reduced-motion: reduce) { #wat-bud .wb-mconn, #wat-bud .wb-substats { transition: none; } }
   @media (prefers-reduced-motion: reduce) { #wat-bud .wb-mchip { transition: none; animation: none; } }
   #wat-bud .wb-ml-title { font-size: 1.02rem; font-weight: 800; color: #3f3212; letter-spacing: .01em; margin-bottom: 2px; }
   #wat-bud .wb-ml-top { font-size: 0.78rem; color: #6b5a2c; white-space: nowrap; }
