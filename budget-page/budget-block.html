@@ -627,7 +627,10 @@
      is WATCHED: whenever the track or any section of it changes size, and whenever the tab comes back into view, the
      line and the number are placed again. No timing to guess. */
   var lmRO = null, lmSeen = (typeof WeakSet === 'function') ? new WeakSet() : null, lmRaf = 0;
-  function lmSoon() { if (lmRaf) return; lmRaf = (window.requestAnimationFrame || setTimeout)(function () { lmRaf = 0; lmPaint(); }, 16); }
+  /* (aj) ...but only once the bar has STOPPED changing: placing on every frame of the bar's own arrival made the line
+     grow with it and the chip and its connector chase it about (Nirvan: "bending over to the left ... jumping left to
+     right a few times"). One placement, 140ms after the last change. */
+  function lmSoon() { clearTimeout(lmRaf); lmRaf = setTimeout(function () { lmRaf = 0; lmPaint(); }, 140); }
   function lmWatch() {
     if (!window.ResizeObserver || !lmSeen || !trackEl) return;
     if (!lmRO) lmRO = new ResizeObserver(lmSoon);
@@ -666,7 +669,13 @@
     if (t && t.textContent !== txt) t.textContent = txt;
     var wasHidden = c.hidden;
     c.hidden = !(live && lmPhase === 2);
-    if (wasHidden && !c.hidden) { lmPaint(); setTimeout(lmPaint, 60); setTimeout(lmPaint, 700); }   /* place it over the gold line the moment it appears (it was being placed while still hidden, so it landed centred on the bar instead) */
+    if (wasHidden && !c.hidden) {
+      var first = !c._born && !lmReduce && !!c.animate; c._born = 1;
+      if (first) { c.style.transition = 'none'; c.style.animation = 'none'; }   /* placed in one go: no slide in from the side, no plain fade */
+      lmPaint();
+      if (first) { try { mchipEmerge(c); } catch (e) { c._emerging = false; c.style.transition = ''; } }
+      setTimeout(lmPaint, 60); setTimeout(lmPaint, 700);
+    }   /* place it over the gold line the moment it appears (it was being placed while still hidden, so it landed centred on the bar instead) */
     c.classList.toggle('wb-mchip-off', lmBoxOpen);          /* while the window is open the chip is spent (kept in place so nothing jumps) */
     var rt = document.getElementById('wat-bud'); var lnO = document.getElementById('wb-mline'); if (rt) rt.classList.toggle('wb-lm-open', (!!lmBoxOpen || !!(lnO && !lnO.hidden)) && c.classList.contains('wb-mchip-up'));   /* (af) the window covers the numbers' row */
     if (lmBoxOpen) mconnDraw(true);
@@ -711,9 +720,37 @@
     if (c._x === key) mconnDraw();
     else { c._x = key; mconnDraw(true); clearTimeout(c._ct); c._ct = setTimeout(function () { mconnDraw(); }, 580); }
   }
+  /* (aj) 2026-11-13 (Nirvan): "instead of having the pill pop in from the right ... I'd like it to feel like it emerges
+     from the thin yellow line. It pops up and out of that." The first time the chip shows, it starts as a speck ON the
+     gold line (at the point its connector meets it), just as the line finishes drawing, and grows up and out to its
+     place; the connector draws itself upward from the line with it. */
+  function mchipEmerge(c) {
+    var mzl = document.getElementById('wb-mzl'), fl = mzl && mzl.firstChild;
+    if (!mzl || !mzl.classList.contains('wb-mzl-on') || c.classList.contains('wb-mchip-away') || !c.offsetWidth) { c.style.transition = ''; return; }
+    void c.offsetWidth;
+    clearTimeout(c._ct); mconnDraw();                         /* the connector, for the chip's resting place */
+    var cr = c.getBoundingClientRect(), mr = mzl.getBoundingClientRect(), fw = fl ? parseFloat(fl.style.width) : 0;
+    var px = clamp(fw > 0 ? mr.left + fw : mr.left + mr.width / 2, mr.left + 2, mr.right - 2), py = mr.top + mr.height / 2;
+    var tx = px - (cr.left + cr.width / 2), ty = py - (cr.top + 1.3 * cr.height);   /* the chip scales about a point just under itself (50% 130%) */
+    var base = c.style.transform || '', D = 620;
+    c._emerging = true;
+    var an = c.animate([
+      { transform: base + ' translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(.05)', opacity: 0 },
+      { opacity: 1, offset: 0.3 },
+      { transform: base + ' translate(0px,0px) scale(1)', opacity: 1 }
+    ], { duration: 620, delay: D, easing: 'cubic-bezier(.2,1.2,.3,1)', fill: 'backwards' });
+    var k = document.getElementById('wb-mconn'), pa = k && k.firstChild;
+    if (pa && pa.getTotalLength && k.style.opacity === '1') {
+      var len = Math.max(1, pa.getTotalLength());
+      pa.animate([{ strokeDasharray: len + ' ' + len, strokeDashoffset: -len }, { strokeDasharray: len + ' ' + len, strokeDashoffset: 0 }], { duration: 420, delay: D + 60, easing: 'ease-out', fill: 'backwards' });
+    }
+    var end = function () { if (!c._emerging) return; c._emerging = false; c.style.transition = ''; mconnDraw(); };
+    an.onfinish = end; an.oncancel = end; setTimeout(end, D + 620 + 400);
+  }
   function mconnDraw(hide) {
     if (!barEl) return;
     var k = document.getElementById('wb-mconn'), c = document.getElementById('wb-mchip'), mzl = document.getElementById('wb-mzl');
+    if (c && c._emerging) return;   /* (aj) mid-entrance: the connector is already drawn for where the chip is going */
     if (!k) { k = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); k.setAttribute('id', 'wb-mconn'); k.setAttribute('class', 'wb-mconn'); k.setAttribute('aria-hidden', 'true');
       k.innerHTML = '<path fill="none" stroke="#a9adba" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>'; barEl.appendChild(k); }
     var ok = !hide && c && !c.hidden && c.classList.contains('wb-mchip-up') && !c.classList.contains('wb-mchip-away') && !lmBoxOpen && !lmFlying &&
@@ -721,7 +758,10 @@
     if (!ok) { k.style.opacity = '0'; return; }
     var br = barEl.getBoundingClientRect(), cr = c.getBoundingClientRect(), mr = mzl.getBoundingClientRect(), fl = mzl.firstChild;
     var x1 = cr.left + cr.width / 2 - br.left, y1 = cr.bottom - br.top + 1;
-    var x2 = clamp(((fl && fl.offsetWidth) ? fl.getBoundingClientRect().right : mr.left + mr.width / 2) - br.left, mr.left - br.left + 2, mr.right - br.left - 2), y2 = mr.top - br.top - 1;
+    /* (aj) where the gold fill WILL end (its set width), not where it is mid-way through easing there -- measuring it
+       mid-ease drew the connector bent over to the left first */
+    var fw = fl ? parseFloat(fl.style.width) : 0;
+    var x2 = clamp((fw > 0 ? mr.left + fw : mr.left + mr.width / 2) - br.left, mr.left - br.left + 2, mr.right - br.left - 2), y2 = mr.top - br.top - 1;
     if (y2 - y1 < 3) { k.style.opacity = '0'; return; }
     /* drop from the chip only as far across as the chip itself reaches, so the line never starts in thin air */
     x1 = clamp(x2, cr.left - br.left + 12, cr.right - br.left - 12);
