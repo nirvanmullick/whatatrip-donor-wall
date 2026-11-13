@@ -1,18 +1,30 @@
-<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER (11/8/2026, "mm").
-     Do NOT paste the big code here anymore. The real code lives on GitHub:
-       nirvanmullick/whatatrip-donor-wall -> donate-page/donate-block.html
-     Claude publishes changes there; this page picks them up within ~5 minutes.
-     The donation form loads first; the budget + donor wall load right after it. -->
-<div id="wat-donate-mount">
-  <div class="wat-ld-card"><div class="wat-ld-t">Our Film Budget</div><div class="wat-ld-bar"></div><div class="wat-ld-s">Loading&hellip;</div></div>
+<!-- WHAT A TRIP - /donate Film Budget + Donations LOADER v2 (11/12/2026).
+     Paste this ENTIRE small block over the earlier loader (the block UNDER the Pledge form).
+     The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donate-page/donate-block.html
+     The donation form still loads first; a picture of the budget + donations shows meanwhile. -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<div id="wat-donate-mount" class="wat-ld-wait">
+  <div class="watld"><div class="watld-card"><div class="watld-h">Our Film Budget</div><div class="watld-tabs"><span>Total Budget</span><span class="on">Rough Cut</span><span>Final Cut</span></div><span class="watld-sh " style="width:62%;height:34px;margin:0 auto 14px"></span><span class="watld-sh pu" style="width:100%;height:26px;border-radius:6px;margin-bottom:26px"></span><span class="watld-sh " style="width:100%;height:128px;border-radius:12px"></span><div class="watld-cap" aria-live="polite">Loading the budget&hellip;</div></div><div class="watld-card"><div class="watld-h">Donations</div><div class="watld-tabs"><span>Top Donations</span><span class="on">Recent Donations</span><span>Challenges</span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:70%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:38%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:61%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:45%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:52%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:52%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:43%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:39%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div><div class="watld-row"><span class="watld-sh watld-dot " style="width:34px;height:34px;"></span><span style="flex:1"><span class="watld-sh " style="width:64%;height:14px;margin-bottom:7px"></span><span class="watld-sh " style="width:46%;height:11px;"></span></span><span class="watld-sh " style="width:64px;height:14px;"></span></div></div></div>
 </div>
 <style>
   #wat-donate-mount.wat-ld-wait { min-height: 1100px; }
-  .wat-ld-card { background: #fff; border-radius: 18px; padding: 22px 22px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.08); font-family: inherit; }
-  .wat-ld-t { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5a6b78; text-align: center; margin-bottom: 14px; }
-  .wat-ld-bar { height: 10px; border-radius: 6px; background: linear-gradient(90deg,#e8eef2 0%,#f4f7f9 50%,#e8eef2 100%); background-size: 200% 100%; animation: watLd 1.4s ease-in-out infinite; }
-  .wat-ld-s { margin-top: 12px; font-size: 13px; color: #8a98a3; text-align: center; }
-  @keyframes watLd { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+  #wat-donate-mount .watld { font-family: "Source Sans 3", "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #1f2430; -webkit-font-smoothing: antialiased; }
+  #wat-donate-mount .watld * { box-sizing: border-box; }
+  #wat-donate-mount .watld-card { background: #fff; border-radius: 18px; box-shadow: 0 14px 40px rgba(20,30,55,.18); padding: 22px 24px 20px; margin: 0 auto 18px; max-width: 480px; }
+  #wat-donate-mount .watld-h { font-size: 24px; font-weight: 700; margin: 0 0 12px; }
+  #wat-donate-mount .watld-tabs { display: flex; gap: 6px; border-bottom: 1px solid #e2e5ea; margin-bottom: 16px; }
+  #wat-donate-mount .watld-tabs span { padding: 7px 11px; font-size: 16px; font-weight: 600; color: #6e7488; border-radius: 8px 8px 0 0; }
+  #wat-donate-mount .watld-tabs span.on { background: #e8e2f7; color: #1f2430; box-shadow: inset 0 -2px 0 #33697f; }
+  #wat-donate-mount .watld-sh { display: block; border-radius: 8px; background: linear-gradient(90deg, #e9edf2 0%, #f5f7fa 45%, #e9edf2 90%); background-size: 220% 100%; animation: watLdSh 1.3s ease-in-out infinite; }
+  #wat-donate-mount .watld-sh.pu { background-image: linear-gradient(90deg, #e3defa 0%, #f1eefc 45%, #e3defa 90%); }
+  #wat-donate-mount .watld-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid #eef0f4; }
+  #wat-donate-mount .watld-dot { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; }
+  #wat-donate-mount .watld-cap { text-align: center; font-size: 14px; font-weight: 600; color: #5a6b78; margin: 14px 0 2px; min-height: 20px; transition: opacity .22s ease; }
+  #wat-donate-mount .watld-cap::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #6b5cc4; vertical-align: 1px; animation: watLdPulse 1s ease-in-out infinite; }
+  @keyframes watLdSh { 0% { background-position: 110% 0 } 100% { background-position: -110% 0 } }
+  @keyframes watLdPulse { 0%, 100% { opacity: .25; transform: scale(.8) } 50% { opacity: 1; transform: scale(1.15) } }
+  @media (prefers-reduced-motion: reduce) { #wat-donate-mount .watld-sh, #wat-donate-mount .watld-cap::before { animation: none; } }
 </style>
 <script>
 /* Gate: start the budget + donor wall only after the Pledge form has loaded (max 3.5s). */
@@ -40,22 +52,35 @@
   setTimeout(flush, 3500);
 })();
 
-/* Loader: fetch the current version from GitHub (starts right away, in parallel with the form),
-   then insert it once the form is up. VERSION holds the commit to load; jsDelivr serves that exact
-   commit from a fast CDN and browsers keep it cached. Falls back to GitHub directly if needed. */
+/* Loader v2 (11/12/2026). VERSION names the commit to load; jsDelivr serves that exact commit from a fast CDN and
+   browsers keep it. NEW: the last version this browser loaded is remembered, and its code is asked for straight away
+   (it comes out of the browser's own cache), while VERSION is checked alongside -- so a returning visitor is not kept
+   waiting on two round trips. A newer version, if VERSION answers within 0.6s, is used instead. */
 (function () {
-  var REPO = 'nirvanmullick/whatatrip-donor-wall', FILE = 'donate-page/donate-block.html';
-  var mount = document.getElementById('wat-donate-mount'); if (!mount) return;
-  mount.className = 'wat-ld-wait';
+  var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'donate-page/', FILE = DIR + 'donate-block.html', KEY = 'wat-ver:' + DIR;
+  var mount = document.getElementById('wat-donate-mount'); if (!mount || mount.__watStarted) return;
+  mount.__watStarted = 1; mount.classList.add('wat-ld-wait');
+  var caps = ["Loading the budget\u2026", "Adding up the latest donations\u2026", "Loading our donors\u2026", "Almost there\u2026"], ci = 0, capEl = mount.querySelector('.watld-cap');
+  var capT = setInterval(function () { if (!capEl || !document.body.contains(capEl)) { clearInterval(capT); return; }
+    ci = (ci + 1) % caps.length; capEl.style.opacity = '0'; setTimeout(function () { capEl.textContent = caps[ci]; capEl.style.opacity = '1'; }, 230); }, 1700);
   function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
-  var html = get('https://raw.githubusercontent.com/' + REPO + '/main/donate-page/VERSION', { cache: 'no-store' })
-    .then(function (v) {
-      v = (v || '').trim(); if (!/^[0-9a-f]{7,40}$/.test(v)) throw new Error('version');
-      return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
-        .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); });
-    })
-    .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE, { cache: 'no-store' }); });
+  function ok(v) { return /^[0-9a-f]{7,40}$/.test(v || ''); }
+  function file(v) { return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE).catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); }); }
+  function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var known = null; try { known = localStorage.getItem(KEY); } catch (e) {}
+  if (!ok(known)) known = null;
+  var ver = get('https://raw.githubusercontent.com/' + REPO + '/main/' + DIR + 'VERSION', { cache: 'no-store' }).then(function (v) { v = (v || '').trim(); if (!ok(v)) throw new Error('version'); return v; });
+  var fresh = function () { return ver.then(function (v) { save(v); return file(v); }).catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE, { cache: 'no-store' }); }); };
+  var html;
+  if (known) {
+    var mine = file(known);
+    html = Promise.race([ver.catch(function () { return null; }), new Promise(function (res) { setTimeout(function () { res(null); }, 600); })])
+      .then(function (v) { if (v && v !== known) { save(v); return file(v).catch(function () { return mine; }); } return mine; })
+      .catch(fresh);
+    ver.then(save, function () {});
+  } else html = fresh();
   function inject(s) {
+    clearInterval(capT);
     var tpl = document.createElement('template'); tpl.innerHTML = s;
     var scripts = [].slice.call(tpl.content.querySelectorAll('script'));
     var marks = scripts.map(function (sc) { var c = document.createComment('wat'); sc.parentNode.replaceChild(c, sc); return c; });
@@ -70,10 +95,11 @@
       setTimeout(next, 0);
     })();
   }
-  window.WAT_AFTER_FORM(function () {
+  var after = window.WAT_AFTER_FORM || function (fn) { fn(); };
+  after(function () {
     html.then(inject, function () {
-      mount.className = '';
-      mount.innerHTML = '<div class="wat-ld-card"><div class="wat-ld-t">Our Film Budget</div><div class="wat-ld-s"><a href="/budget">See the film budget &rarr;</a></div></div>';
+      clearInterval(capT); mount.className = '';
+      mount.innerHTML = '<div class="watld"><div class="watld-card"><div class="watld-h">Our Film Budget</div><div class="watld-cap" style="animation:none"><a href="/budget">See the film budget &rarr;</a></div></div></div>';
     });
   });
 })();
