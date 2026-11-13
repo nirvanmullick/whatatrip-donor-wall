@@ -2788,6 +2788,8 @@ window.dwResize = (function () {
   var POOL_ADDED_CAP = 135000;   /* v19.37: Rachel's match is $50K */
   function matchFor(pledge) { return Math.max(0, Math.min(ROUGH_BASE + pledge - OSTER_MATCH.startRaised, POOL_ADDED_CAP)); }
   function roughRaised() { return ROUGH_BASE + roughPledge + matchFor(roughPledge); }
+  /* v19.54: the figure this page was BUILT with, for the top progress count to start from before the live one lands */
+  try { window.WAT_ROUGH0 = { raised: roughRaised(), goal: (typeof roughGoal === 'function' ? roughGoal() : 700000) }; } catch (e) {}
   var RAISED_RC_UNFILLED = 14000;
   // ---- ONE SOURCE OF TRUTH for the funding story. Everything the widget says about
   // "what are we raising for right now" derives from these, so it all moves together.
@@ -15110,6 +15112,25 @@ window.dwResize = (function () {
   content:'';position:absolute;top:0;bottom:-1px;left:calc(50% - 50vw);width:100vw;
   background:var(--sk-bg);z-index:0;pointer-events:none;}
 
+/* ---- v19.54 -- PHONE: AN OPEN NAME'S WHITE PANEL REACHES THE EDGES OF THE SCREEN ------
+   Nirvan: "the white highlight should go further to the left and right margins of the phone,
+   if not all the way across. Currently, it's too close to the text ... crammed and getting
+   cut off, especially on the left margin." The open card already asked for 34px of white
+   either side of its text (margin -34 / padding 34, rule above), but .dw-tier-body clips
+   sideways at its own box, which is exactly the text column -- so the white stopped flush
+   against the words. The body's box is now the full width of the screen (the same -34 / +34,
+   so nothing inside it moves) and its clip sits at the screen's edge instead.
+   AND TWO OPEN NAMES IN A ROW NO LONGER MERGE: "leave a gap between ... keep some kind of
+   divider". The second one gives back the 12px it borrowed from the row above, so a band of
+   the page's own colour shows between the two white panels. */
+@media(max-width:760px){
+  #wat-dw.sk-full.dw-skin .dw-tier .dw-tier-body{
+    margin-left:-34px !important;margin-right:-34px !important;
+    padding-left:34px !important;padding-right:34px !important;}
+  #wat-dw.sk-full.dw-skin .dw-tier .dw-card-list.is-open + .dw-card-list.is-open{margin-top:0 !important;}
+  #wat-dw.sk-full.dw-skin .dw-tier .dw-chip.is-open + .dw-chip.is-open{margin-top:4px !important;}
+}
+
 </style>
 
     <div class="dw-panel">
@@ -16418,6 +16439,8 @@ window.dwResize = (function () {
   /* v19.30 -- QUOTES WE WERE SENT, not typed into Pledge. Keyed by displayed name; shown in the same
      blue quote box as a Pledge note, and on that person's gift in Recent Donations. */
   var QUOTES_BY_HAND = {
+    /* v19.54 (Nirvan): Thor's testimonial from the Matching Challenge page (/matching, Sample Challenge 1) */
+    'thor halvorssen': 'The 2023 FDA decision rejecting MDMA for PTSD was devastating, not just for Rick and MAPS, but for the broader movement for legalization and therapeutic access. What happened there exposed how fear, stigma, and institutional cowardice can still derail life-changing science. The human cost of that failure is profound, and I\'m glad this film will face it directly and honestly. This story matters, Rick\'s work matters, and the reckoning this film documents is an important one.',
     'sarena snider': 'I believe psychedelic-assisted therapy holds real promise for people living with complex PTSD and trauma. That possibility exists today largely because of Rick Doblin, who spent decades pushing for rigorous research when almost no one else would. He had the vision.'   // Nirvan, 2026-10-05
   };
   function buildPeople(){
@@ -22461,10 +22484,17 @@ window.dwResize = (function () {
         grown = true;
       } catch (x) { grown = false; }
     }
+    /* v19.54: the figures count on their OWN clock, which only runs while frames are actually being drawn (a gap of
+       more than 3 frames counts as 3). While the wall is being measured no frame is drawn for a second or so; on a
+       wall clock the figure sat at $0 and then leapt most of the way in one step. Now it simply picks up where it
+       was and counts through -- the bar, drawn by the browser, has been growing all along. */
+    var el = 0, last = 0;
     function frame(t) {
       if (tok !== pbTok) return;
       if (!t0) t0 = t;
-      var k = Math.min(1, (t - t0) / dur);
+      if (last) el += Math.min(50, t - last);
+      last = t;
+      var k = Math.min(1, el / dur);
       var e = 1 - Math.pow(1 - k, 3);                     /* ease-out: quick, then settles */
       pbDraw(from + (to - from) * e, goal, grown && k < 1);
       if (k < 1) requestAnimationFrame(frame);
@@ -22477,6 +22507,9 @@ window.dwResize = (function () {
     /* v19.44: no live figure yet -> start from the one this browser saw last time, and glide on to the live one when
        it lands (the feed takes 3-6 seconds; waiting for it is what left the bar empty and then made it jump) */
     try { var m = String(localStorage.getItem('wat-rough-last') || '').match(/^(\d+)\/(\d+)$/); if (m && +m[1] > 0 && +m[2] > 0) return { raised: +m[1], goal: +m[2] }; } catch (e) {}
+    /* v19.54: ...and a first-time visitor starts from the figure the page was built with (the budget's own stand-in,
+       brought up to date 11/13), rather than sitting at $0 until the feed answers */
+    var w0 = window.WAT_ROUGH0; if (w0 && w0.raised > 0 && w0.goal > 0 && w0.raised <= w0.goal) return w0;
     if (Date.now() - barT0 >= PB_FALLBACK_MS) {
       var b = readBudget();
       if (b && b.goal) return { raised: b.raised, goal: b.goal };
@@ -22504,9 +22537,13 @@ window.dwResize = (function () {
   /* ...and it starts when the page has a quiet moment (measured live: the first seconds after the wall appears are
      busy enough to drop most frames, which turned the count into a jump), 3.5s at the latest */
   window.addEventListener('wat-dw-ready', function () {
-    pbHoldUntil = Date.now() + 4000;
-    var go = function () { if (!pbHoldUntil) return; pbHoldUntil = 0; paintBudget(); };
-    setTimeout(function () { if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 1200 }); else go(); }, 400);
+    /* v19.54 (Nirvan: "is there any way to get the counter animating sooner? ... it's just holding static and then
+       finally starts"): it used to wait for a quiet moment, and since the top of the page now appears BEFORE the wall
+       is measured, the quiet moment came after that whole second of work. It starts as the progress bar fades in
+       (the bar's growth is drawn by the browser itself, so the work behind it cannot stall it), from the figure this
+       browser saw last time or the built-in one, and glides on to the live figure when that lands. */
+    pbHoldUntil = 0;
+    try { paintBudget(); } catch (x) {}      /* now, in the same task that shows the top -- before the wall's measuring pass can get in the way */
   });
   window.addEventListener('wat-rough', function () { paintBudget(); });
 
