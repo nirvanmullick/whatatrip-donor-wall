@@ -517,6 +517,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var showT = LIVE_MATCH.on && activeTab === 'total' && Date.now() < new Date(LIVE_MATCH.end).getTime();
     var offA = showT ? DEV_DONE : 0;
     if (raised == null) raised = B.raised;
+    /* (ab) 2026-11-13 FIX (Nirvan's screenshots: "$2,066,048 raised to date" sat too far right with its "$2" and "te"
+       in black): the Rough Cut view shifts the in-bar number to the right of the gold stretch and clips its white
+       copy to the fill; that shift and clip were left on when you slid over to the raised-to-date view. Any view
+       but the Rough Cut now clears them, and it happens before anything below can return early. */
+    if (inbarEl && activeTab !== 'rough') { inbarEl.style.left = ''; if (activeTab === 'raised' && inbarW) inbarW.style.clipPath = 'inset(0 0 0 0)'; }
     if (lmFlying) return;                                        /* mid-zoom: lmFly() is moving the line and the chip */
     /* gold LINE above the matched stretch + the connector to the window (phase 2); both live in the bar
        (not the track), so they are placed from layout offsets and hidden while the bar zooms/pans */
