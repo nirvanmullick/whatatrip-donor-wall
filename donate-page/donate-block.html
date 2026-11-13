@@ -5018,6 +5018,8 @@ resumeFromParams();
      is as tall as the whole section, so the pin goes on the form's own wrapper inside it. Not on phones (one
      column), and not on a window too short to show the whole form. -->
 <style>
+  /* (ad) 2026-11-13 (Nirvan): on a phone the Rough Cut budget card was touching the Pledge form above it. */
+  @media (max-width: 767px) { #wat-donate-mount { margin-top: 30px; } }
   @media (min-width: 768px) and (min-height: 720px) {
     .wat-pin-form { position: -webkit-sticky; position: sticky; top: 24px; }
   }
