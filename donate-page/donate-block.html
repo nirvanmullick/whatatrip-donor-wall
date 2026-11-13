@@ -546,7 +546,6 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var lineOn = (show || showT) && lmPhase === 2 && !barBusy;
     if (barEl) barEl.classList.toggle('wb-bar-mz', show || showT || activeTab === 'final');   /* same lane on every budget tab, so the bar never jumps */   // gives the gold line its own lane above the bar, clear of "17% raised" 
     if (mzl) mzl.classList.toggle('wb-mzl-on', lineOn);
-    if (mzl && lineOn && !mzl.dataset.grown) { mzl.dataset.grown = '1'; if (!lmReduce) mzl.classList.add('wb-mzl-grow'); }   /* first time only: it draws itself left to right */
     if (lnk) lnk.classList.toggle('wb-mlink-on', lineOn && lmBoxOpen);
     if (lineOn && mzl) {
       var xOfL0 = function (a) {
@@ -559,15 +558,27 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var offX = (surfaceEl ? surfaceEl.offsetLeft : 0) + trackEl.offsetLeft;
       var S0 = matchStart() + offA, E0 = S0 + 2 * poolCap();
       var a0 = xOfL0(S0), a1 = xOfL0(E0), af = xOfL0(clamp(raised, S0, E0));
+      /* (ak) 2026-11-13 -- A MEASUREMENT OF NOTHING IS NEVER DRAWN. Watching the live page frame by frame: the line was
+         placed correctly, then for a third of a second put back as a 4px dot at the far left (the bar's sections are
+         rebuilt when the live figure lands and measure as nothing for a moment), then placed correctly again -- which is
+         the line "animating from the left", the connector bending over to the left, and the chip jumping (Nirvan). A
+         line that measures as nothing on a bar that has width is now left exactly where it was (or not shown yet, if
+         it has never been placed) and measured again shortly. */
+      var bad = (a1 - a0) < 8 && trackEl.offsetWidth > 120;
+      if (bad) {
+        if (!mzl.dataset.ok) mzl.classList.remove('wb-mzl-on');
+        if ((window.__watMzlTry = (window.__watMzlTry || 0) + 1) < 400) { clearTimeout(window.__watMzlT); window.__watMzlT = setTimeout(lmPaint, 120); }
+        return;
+      }
+      window.__watMzlTry = 0;
       mzl.style.left = (offX + a0) + 'px'; mzl.style.width = Math.max(4, a1 - a0) + 'px';
       mzl.firstChild.style.width = Math.max(0, af - a0) + 'px';
+      if (!mzl.dataset.ok) { mzl.dataset.ok = '1'; if (!lmReduce) mzl.classList.add('wb-mzl-grow'); setTimeout(mchipSync, 0); }   /* first real placement: it draws itself left to right, and the chip may now come out of it */
       /* (ag) 2026-11-13 -- THE GOLD LINE WAS LEFT AS A DOT AT THE FAR LEFT (Nirvan, live). If this runs while the bar's
          segments have no width yet (the bar is still arriving), every x comes out 0 and the line is drawn 4px wide at
          the left edge. It used to be put right by the next repaint -- but since the budget figure is remembered /
          pre-fetched, the live figure no longer changes after load, so no repaint came. A line that measures as
          nothing on a bar that has width is now simply measured again shortly, until it is right. */
-      if ((a1 - a0) < 8 && trackEl.offsetWidth > 120 && (window.__watMzlTry = (window.__watMzlTry || 0) + 1) < 60) { clearTimeout(window.__watMzlT); window.__watMzlT = setTimeout(lmPaint, 200); }
-      else if ((a1 - a0) >= 8) window.__watMzlTry = 0;
       var lb = mzl.querySelector('.wb-mzl-lbl');                   /* "$60K match": just past the line's right end, or before its start if the bar runs out */
       if (lb) { var room = barEl.offsetWidth - (offX + a1); lb.classList.toggle('wb-mzl-lbl-l', room < lb.offsetWidth + 10); }
       mchipPlace(offX + (a0 + a1) / 2, !show);
@@ -692,7 +703,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var t = c.querySelector('.wb-mchip-t'), txt = mchipLabels()[c._li || 0];
     if (t && t.textContent !== txt) t.textContent = txt;
     var wasHidden = c.hidden;
-    c.hidden = !(live && lmPhase === 2);
+    var mz0 = document.getElementById('wb-mzl');
+    if (lmPhase === 2 && !c._wait) c._wait = setTimeout(function () { c._late = 1; mchipSync(); }, 6000);   /* never wait for the line for ever */
+    c.hidden = !(live && lmPhase === 2 && ((mz0 && mz0.dataset.ok) || c._late || activeTab !== 'rough'));   /* (ak) not before the gold line it comes out of is really in place */
     if (wasHidden && !c.hidden) {
       var first = !c._born && !lmReduce && !!c.animate; c._born = 1;
       if (first) { c.style.transition = 'none'; c.style.animation = 'none'; }   /* placed in one go: no slide in from the side, no plain fade */
