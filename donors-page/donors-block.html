@@ -14874,6 +14874,17 @@ window.dwResize = (function () {
 #wat-dw .dw-lm-leg2 .dw-lm-legn{font-weight:500;color:#5b5545;}
 #wat-dw .dw-lm-leg2 .dw-lm-legst{display:inline;flex:0 0 auto;font-size:inherit;color:#8a6a1c;font-weight:700;}
 
+/* v19.38: a long challenge list scrolls inside the card; order button above it */
+#wat-dw .dw-pscroll.dw-pscroll-on{max-height:252px;overflow-y:auto;overscroll-behavior:contain;padding-right:8px;
+  scrollbar-width:thin;scrollbar-color:var(--t20,#c9c3dd) transparent;}
+#wat-dw .dw-pscroll.dw-pscroll-on::-webkit-scrollbar{width:7px;}
+#wat-dw .dw-pscroll.dw-pscroll-on::-webkit-scrollbar-thumb{background:var(--t20,#c9c3dd);border-radius:4px;}
+#wat-dw .dw-psortbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 6px;
+  font-size:12px;font-weight:700;letter-spacing:.04em;color:#7b7591;text-transform:uppercase;}
+#wat-dw .dw-psortbar .dw-pl-sort{text-transform:none;letter-spacing:0;}
+/* v19.38: on a phone a six-figure challenge total ("$120,000") ran past the card's left edge */
+@media(max-width:760px){ #wat-dw .dw-plist-wrap .dw-ptot{grid-template-columns:max-content minmax(0,1fr) !important;} }
+
 </style>
 
     <div class="dw-panel">
@@ -16154,7 +16165,7 @@ window.dwResize = (function () {
           if (skip > 0) { var s0 = Math.min(a, skip); skip -= s0; a -= s0; }
           if (a <= 0) return;
           var m = Math.min(a, left); left -= m;
-          got.push(x.d.anonymous || !x.d.name ? { anonymous: true, amount: m, time: x.d.time } : { name: x.d.name, amount: m, time: x.d.time });
+          got.push(x.d.anonymous || !x.d.name ? { anonymous: true, amount: m, time: x.d.time, _t: x.t } : { name: x.d.name, amount: m, time: x.d.time, _t: x.t });
         });
       ch.supporters = got;
       /* v19.08: while it runs, the challenge has raised what people gave PLUS the equal amount the
@@ -17114,16 +17125,46 @@ window.dwResize = (function () {
   }
   // Amount first: every figure stacks directly beneath the challenge's own figure,
   // so the list reads as the sum that made it.
+  /* v19.38 (Nirvan): a challenge's people list is "way too long" (the Osters' 77) -- it now SCROLLS inside the card
+     past 8 rows, opens LARGEST FIRST, and has an order button to switch to most recent first (newest at the top,
+     the first gift of the challenge last). The totals under the list stay put. One choice for the whole page. */
+  var dwPlSort = 'amount';
+  function plSortBtn(){
+    return '<button type="button" class="dw-lm-sort dw-pl-sort" title="Change the order" aria-label="Order: '+(dwPlSort === 'amount' ? 'largest first' : 'most recent first')+'. Change the order">'+
+      SORT_ICO+'<span>'+(dwPlSort === 'amount' ? 'Largest' : 'Recent')+'</span></button>';
+  }
+  function plCmp(){
+    return dwPlSort === 'amount'
+      ? function(a, b){ return (b.amt - a.amt) || (a.ord - b.ord); }
+      : function(a, b){ return a.ord - b.ord; };
+  }
   function supporterRowsHTML(list, tail){
-    return '<div class="dw-plist">' + list.map(function(s){
+    var rows = list.map(function(s, i){ return { s: s, i: i, amt: s.amount || 0, t: s._t || (s.time ? parseAge(s.time) : 0) }; });
+    rows.slice().sort(function(a, b){ return (b.t - a.t) || (a.i - b.i); }).forEach(function(r, k){ r.ord = k; });   /* ord 0 = the most recent gift */
+    rows.sort(plCmp());
+    var html = rows.map(function(r){
+      var s = r.s;
       var nm = (s.anonymous || !s.name) ? 'Anonymous' : esc(s.name);
       var when = s.time ? ' <span class="dw-pwhen">&middot; '+moHTML(s.time)+'</span>' : '';
-      return '<div class="dw-prow"><span class="dw-pfig">'+
+      return '<div class="dw-prow" data-amt="'+r.amt+'" data-ord="'+r.ord+'"><span class="dw-pfig">'+
              '<span class="dw-pico" aria-hidden="true">&#127881;</span>'+
              '<span class="dw-pamt">'+money(s.amount)+'</span></span>'+
              '<span class="dw-pname">'+nm+when+'</span></div>';
-    }).join('') + (tail || '') + '</div>';
+    }).join('');
+    var bar = rows.length > 3 ? '<div class="dw-psortbar"><span>'+rows.length+' gifts</span>'+plSortBtn()+'</div>' : '';
+    return '<div class="dw-plist">' + bar + '<div class="dw-pscroll'+(rows.length > 8 ? ' dw-pscroll-on' : '')+'">' + html + '</div>' + (tail || '') + '</div>';
   }
+  document.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('#wat-dw .dw-pl-sort') : null; if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    dwPlSort = dwPlSort === 'amount' ? 'recent' : 'amount';
+    [].forEach.call(document.querySelectorAll('#wat-dw .dw-pscroll'), function(sc){
+      var rs = [].slice.call(sc.children).map(function(el){ return { el: el, amt: +el.getAttribute('data-amt') || 0, ord: +el.getAttribute('data-ord') || 0 }; });
+      rs.sort(plCmp()).forEach(function(r){ sc.appendChild(r.el); });
+      sc.scrollTop = 0;
+    });
+    [].forEach.call(document.querySelectorAll('#wat-dw .dw-pl-sort'), function(x){ x.outerHTML = plSortBtn(); });
+  }, true);
   // One line per activity: what it was, what it raised, and how many people -- click the
   // people count to list them. Plus a call to action for each kind of activity shown.
   function detailHTML(p){
@@ -23113,6 +23154,7 @@ window.dwResize = (function () {
     if (!card.classList.contains('is-open') || window.innerWidth < 761) {
       if (card.style.maxWidth) card.style.removeProperty('max-width');
       if (card.style.translate) card.style.translate = '';
+      if (card.style.width) card.style.removeProperty('width');
       card.dataset.skfShift = 0;
       return;
     }
@@ -23125,6 +23167,14 @@ window.dwResize = (function () {
     /* it moves left only when the room is under 620 -- a two-column history (780 ideal)
        fits the room it has rather than pulling the name left */
     var need = Math.min(card.querySelector('.sk-htwo:not(.sk-htwo-one)') ? 780 : 620, Math.max(620, room));
+    /* v19.38 (Nirvan: Rachel's "funds raised" figures ran off the right of her card): the 780 above was a guess. A
+       two-column history is as wide as what it carries -- her pledge line and "from 14 people" make it ~900 -- so
+       ask for the width it actually needs and let the card move left to find it (never past the level's own edge). */
+    var two2 = card.querySelector('.sk-htwo:not(.sk-htwo-one)');
+    if (two2 && (two2.scrollWidth > two2.clientWidth + 1 || card.style.width)) {
+      var want = two2.scrollWidth + Math.max(0, two2.getBoundingClientRect().left - (left - cur)) + 28;
+      need = Math.max(need, Math.min(want, Math.floor(tr.width) - 20));
+    }
     /* only when the room is short does it move left -- and never into an open perks list
        beside it, nor past the level's own edge */
     var floor = tr.left + 8;
@@ -23141,6 +23191,9 @@ window.dwResize = (function () {
     if (card.style.translate !== ml) card.style.translate = ml;
     var v = Math.max(280, room + shift) + 'px';
     if (card.style.maxWidth !== v) card.style.setProperty('max-width', v, 'important');
+    /* v19.38: the sheet pins a two-column card at 780px; when its history needs more, say so here */
+    if (two2 && room + shift > 780) { if (card.style.width !== v) card.style.setProperty('width', v, 'important'); }
+    else if (card.style.width) card.style.removeProperty('width');
   }
   function sizeCard(card, again) {
     openRoom(card);

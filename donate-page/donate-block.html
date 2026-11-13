@@ -637,7 +637,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var live = LIVE_MATCH.on && Date.now() < new Date(LIVE_MATCH.end).getTime();
     var t = c.querySelector('.wb-mchip-t'), txt = '\uD83C\uDF81 ' + moneyK(poolCap()) + ' Matching Challenge Fund';
     if (t && t.textContent !== txt) t.textContent = txt;
+    var wasHidden = c.hidden;
     c.hidden = !(live && lmPhase === 2);
+    if (wasHidden && !c.hidden) { lmPaint(); setTimeout(lmPaint, 60); setTimeout(lmPaint, 700); }   /* place it over the gold line the moment it appears (it was being placed while still hidden, so it landed centred on the bar instead) */
     c.classList.toggle('wb-mchip-off', lmBoxOpen);          /* while the window is open the chip is spent (kept in place so nothing jumps) */
     c.setAttribute('aria-expanded', String(lmBoxOpen));
     c.tabIndex = lmBoxOpen ? -1 : 0;
