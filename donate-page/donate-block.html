@@ -4976,3 +4976,22 @@ resumeFromParams();
 })();
 </script>
 
+<!-- (zz) 2026-11-12 (Nirvan): on a wide screen the donation form stays pinned on the left while the budget and
+     the donations on the right scroll past it; it lets go at the end of this section. The form's Squarespace block
+     is as tall as the whole section, so the pin goes on the form's own wrapper inside it. Not on phones (one
+     column), and not on a window too short to show the whole form. -->
+<style>
+  @media (min-width: 768px) and (min-height: 720px) {
+    .wat-pin-form { position: -webkit-sticky; position: sticky; top: 24px; }
+  }
+</style>
+<script>
+(function () {
+  function pin() {
+    var f = document.querySelector('.plg-donate'); if (!f) return false;
+    var c = f.closest ? f.closest('.sqs-block-content') : null; if (!c) return false;
+    c.classList.add('wat-pin-form'); return true;
+  }
+  if (!pin()) { var n = 0, t = setInterval(function () { if (pin() || ++n > 20) clearInterval(t); }, 500); }
+})();
+</script>
