@@ -43,7 +43,7 @@ IMG='https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/'
 # measures and arranges itself, so the wall's placeholder is now deliberately NOT a layout: the wall's own pale canvas
 # with one quiet line in the middle. The wall then appears on the same canvas.
 SKEL['donors']=('<div class="watld-dw"><div class="watld-dw-mid">'
- '<div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div>'
+ '<div class="watld-cap" aria-live="polite">Now loading our donors and donor perks&hellip;</div>'
  + sh('220px',6,'border-radius:4px;margin:14px auto 0','pu')
  + '</div></div>')
 DWCSS='''
@@ -112,7 +112,7 @@ PAGES={
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> budget-page/budget-block.html
      Shows a picture of the page (and "Loading the budget...") while the real one arrives. -->'''),
  'donors': dict(m='wat-donors-mount',h=600,w=860,dir='donors-page/',file='donors-block.html',after='function (fn) { fn(); }',failh='Our Film Donors',failt='The donor wall could not load. Please refresh the page.',
-    caps='["Loading the donor wall\\u2026"]',
+    caps='(function () { var n = 0; try { n = +localStorage.getItem("wat-donor-count") || 0; } catch (e) {} var t = n >= 20 ? "Now loading over " + (Math.floor(n / 10) * 10) + " donors and donor perks\\u2026" : "Now loading our donors and donor perks\\u2026"; window.WAT_DW_CAP = t; var c = document.querySelector("#wat-donors-mount .watld-cap"); if (c) c.textContent = t; return [t]; })()',
     head='''<!-- WHAT A TRIP - /donors (donor wall) LOADER v2 (11/12/2026).
      Paste this ENTIRE small block into the ONE Code Block on /donors (replacing the earlier loader).
      The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html

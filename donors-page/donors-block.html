@@ -1,6 +1,6 @@
-<!-- BOOT (v19.39/40): the loading state stays up until the WHOLE wall is ready, so the page appears once instead of
-     in three stages (base wall -> name wall -> full-width wall, each painted as its script ran). Deliberately not a
-     picture of the layout (v19.40): just the wall's own canvas and one quiet line. Same markup as the loader block. -->
+<!-- BOOT (v19.39-42): the loading state stays up until the WHOLE wall is ready, so the page appears once instead of
+     in three stages. Deliberately not a picture of the layout: the wall's own canvas and one line, "Now loading over N
+     donors and donor perks..." Same markup as the loader block (donate-page/make-loader-blocks.py). -->
 <style>
 
   
@@ -30,11 +30,22 @@
 </style>
 <div id="dw-boot"><div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div></div>
 <script>
+/* the line: what the loader block already said, else this browser's last count, else the count when this was built
+   (282). "Over" a round number, so it stays true as donors are added. */
+(function () {
+  var n = 0; try { n = +localStorage.getItem('wat-donor-count') || 0; } catch (e) {}
+  if (n < 20) n = 282;
+  var t = window.WAT_DW_CAP && /over/.test(window.WAT_DW_CAP) ? window.WAT_DW_CAP : 'Now loading over ' + (Math.floor(n / 10) * 10) + ' donors and donor perks\u2026';
+  var c = document.querySelector('#dw-boot .watld-cap'); if (c) c.textContent = t;
+})();
 /* shows the wall: called by the last line of the last layer (skin_full.js), or after 5s whatever happens */
 window.WAT_DW_READY = function () {
   var w = document.getElementById('wat-dw'), b = document.getElementById('dw-boot');
   if (w && !w.classList.contains('dw-ready')) { w.classList.add('dw-ready'); try { window.dispatchEvent(new Event('resize')); } catch (e) {} }
   if (b && b.parentNode) b.parentNode.removeChild(b);
+  /* remember how many people are on the wall, for the loading line next time */
+  var keep = function () { try { var k = document.querySelectorAll('#wat-dw .dw-tier .dw-chip, #wat-dw .dw-tier .dw-card').length; if (k >= 20) localStorage.setItem('wat-donor-count', String(k)); } catch (e) {} };
+  setTimeout(keep, 1500); setTimeout(keep, 9000);
 };
 setTimeout(function () { window.WAT_DW_READY(); }, 5000);
 </script>
@@ -14925,6 +14936,19 @@ window.dwResize = (function () {
 /* v19.38: on a phone a six-figure challenge total ("$120,000") ran past the card's left edge */
 @media(max-width:760px){ #wat-dw .dw-plist-wrap .dw-ptot{grid-template-columns:max-content minmax(0,1fr) !important;} }
 
+/* v19.43: a video slide in a perk pop-up */
+.skf-expop-yt{position:relative;background:#000;}
+.skf-expop-ytplay{all:unset;box-sizing:border-box;position:absolute;inset:0;cursor:pointer;display:block;}
+.skf-expop-ytplay img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .2s ease;}
+.skf-expop-ytplay:hover img,.skf-expop-ytplay:focus-visible img{opacity:1;}
+.skf-expop-ytbtn{position:absolute;left:50%;top:50%;width:68px;height:48px;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 8px rgba(0,0,0,.45));transition:transform .15s ease;}
+.skf-expop-ytplay:hover .skf-expop-ytbtn{transform:translate(-50%,-50%) scale(1.08);}
+.skf-expop-ytbtn svg{width:100%;height:100%;display:block;}
+.skf-expop-ytcap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;text-align:left;color:#fff;font-weight:700;font-size:15px;line-height:1.25;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.72));}
+.skf-expop-ytlink{position:absolute;top:10px;right:10px;z-index:2;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.62);color:#fff !important;font-size:12.5px;font-weight:700;line-height:1;text-decoration:none !important;}
+.skf-expop-ytlink:hover{background:rgba(0,0,0,.85);}
+.skf-expop-ytfr{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+
 </style>
 
     <div class="dw-panel">
@@ -27340,6 +27364,11 @@ window.dwResize = (function () {
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=1500w',
           alt: 'The exterior of Arcturus, the house Rick Doblin designed and built in Sarasota at twenty-one.',
           cap: 'The exterior of Arcturus in Sarasota, Florida.' },
+        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. SECOND in the set (mine, flagged):
+           the house first, then the film about it. */
+        { yt: 'MTd_3sjg4SU',
+          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
+          cap: 'Watch the Dwell video about Arcturus' },
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=1500w',
           alt: 'The living room at Arcturus.',
           cap: 'The living room of Arcturus.',
@@ -27496,6 +27525,11 @@ window.dwResize = (function () {
              1983. Both are his, both are now on the same screen. */
           cap: 'The living room of Arcturus.',
           pos: '50% 85%' },
+        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. SECOND in the set (mine, flagged):
+           the house first, then the film about it. */
+        { yt: 'MTd_3sjg4SU',
+          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
+          cap: 'Watch the Dwell video about Arcturus' },
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=1500w',
           alt: 'The exterior of Arcturus, the house Rick Doblin designed and built in Sarasota at twenty-one.',
           cap: 'The exterior of Arcturus in Sarasota, Florida.' },
@@ -28085,6 +28119,20 @@ window.dwResize = (function () {
        always could, or {u, alt} -- a photograph of a real place deserves a real alt, and an
        empty one tells a screen reader the image is decoration when it is the perk itself. */
     return [].map.call(n, function (it, i) {
+      /* v19.43 (Nirvan): a VIDEO slide. `yt` is a YouTube id. The frame shows the video's own still with a play button;
+         the player itself is only loaded when someone presses play (so the page is no slower), and "Watch on YouTube"
+         goes straight to the video. */
+      if (it && it.yt) {
+        var id = esc(it.yt), ttl = esc(String(it.cap || 'Video').replace(/<[^>]*>/g, ''));
+        return '<div class="skf-expop-f skf-expop-yt" data-yt="' + id + '" data-cap="' + ttl + '">' +
+               '<button type="button" class="skf-expop-ytplay" aria-label="Play the video: ' + ttl + '">' +
+               '<img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="' + esc(it.alt || '') + '" loading="lazy">' +
+               '<span class="skf-expop-ytbtn" aria-hidden="true"><svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3S12.8.3 7.5 1.7a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f03"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></span>' +
+               (it.cap ? '<span class="skf-expop-ytcap">' + it.cap + '</span>' : '') +
+               '</button>' +
+               '<a class="skf-expop-ytlink" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener noreferrer">Watch on YouTube &#8599;</a>' +
+               '</div>';
+      }
       var u = (it && it.u) ? it.u : it;
       var a = (it && it.alt) ? it.alt : '';
       /* v18.34: an entry may carry `pos` -- an object-position for the 16/9 crop. His, on
@@ -28225,6 +28273,7 @@ window.dwResize = (function () {
       }
       /* an arrow that cannot go anywhere is not dimmed, it is GONE -- his words, and it is
          the honest state: there is nothing that way. */
+      exStopVideo(exPop.querySelectorAll('.skf-expop-f')[i]);   /* v19.43: swiping away from a playing video stops it */
       var pv = exPop.querySelector('.skf-expop-prev');
       var nx = exPop.querySelector('.skf-expop-next');
       if (pv) pv.hidden = (i <= 0 || n < 2);
@@ -28258,8 +28307,16 @@ window.dwResize = (function () {
     });
     return exPop;
   }
+  function exStopVideo(keep) {
+    if (!exPop) return;
+    [].forEach.call(exPop.querySelectorAll('.skf-expop-yt'), function (yf) {
+      var fr = yf.querySelector('.skf-expop-ytfr');
+      if (fr && yf !== keep && yf._still) yf.replaceChild(yf._still, fr);
+    });
+  }
   function exClose() {
     if (!exPop || exPop.hidden) return;
+    exStopVideo(null);
     exPop.hidden = true;
     exPop.classList.remove('is-open');
     document.documentElement.style.removeProperty('overflow');
@@ -28937,6 +28994,20 @@ window.dwResize = (function () {
     if (!p.dataset.skfZoomWired) {
       p.dataset.skfZoomWired = '1';
       p.addEventListener('click', function (e) {
+        var yb = e.target.closest && e.target.closest('.skf-expop-ytplay');
+        if (yb) {                                       /* v19.43: press play -> the player replaces the still */
+          e.preventDefault();
+          var yf = yb.closest('.skf-expop-yt'), yid = yf.getAttribute('data-yt');
+          if (!yf.dataset.skfStill) yf.dataset.skfStill = '1', yf._still = yb;
+          var fr = document.createElement('iframe');
+          fr.className = 'skf-expop-ytfr';
+          fr.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(yid) + '?autoplay=1&rel=0&playsinline=1';
+          fr.title = yf.getAttribute('data-cap') || 'Video';
+          fr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+          fr.setAttribute('allowfullscreen', '');
+          yb.parentNode.replaceChild(fr, yb);
+          return;
+        }
         var f = e.target.closest && e.target.closest('.skf-expop-fz');
         if (!f) return;
         e.preventDefault();
@@ -28945,7 +29016,7 @@ window.dwResize = (function () {
           return { u: n.getAttribute('data-full'), alt: m ? m.alt : '',
                    cap: n.getAttribute('data-cap') || '', clip: n.getAttribute('data-clip') || '' };
         });
-        exZoomOpen(all, Number(f.getAttribute('data-i') || 0));
+        exZoomOpen(all, Math.max(0, [].indexOf.call(p.querySelectorAll('.skf-expop-fz'), f)));   /* v19.43: by position among the PHOTOGRAPHS -- a video slide is not one of them */
       });
     }
     /* THE LEVEL PANEL, AND EVERY BUTTON THAT OPENS IT. Wired AFTER the prose is written,

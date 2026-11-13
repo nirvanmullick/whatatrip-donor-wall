@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <div id="wat-donors-mount" class="wat-ld-wait">
-  <div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Loading the donor wall&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div>
+  <div class="watld"><div class="watld-dw"><div class="watld-dw-mid"><div class="watld-cap" aria-live="polite">Now loading our donors and donor perks&hellip;</div><span class="watld-sh pu" style="width:220px;height:6px;border-radius:4px;margin:14px auto 0"></span></div></div></div>
 </div>
 <style>
   #wat-donors-mount.wat-ld-wait { min-height: 600px; }
@@ -40,7 +40,7 @@
   var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'donors-page/', FILE = DIR + 'donors-block.html', KEY = 'wat-ver:' + DIR;
   var mount = document.getElementById('wat-donors-mount'); if (!mount || mount.__watStarted) return;
   mount.__watStarted = 1; mount.classList.add('wat-ld-wait');
-  var caps = ["Loading the donor wall\u2026"], ci = 0, capEl = mount.querySelector('.watld-cap');
+  var caps = (function () { var n = 0; try { n = +localStorage.getItem("wat-donor-count") || 0; } catch (e) {} var t = n >= 20 ? "Now loading over " + (Math.floor(n / 10) * 10) + " donors and donor perks\u2026" : "Now loading our donors and donor perks\u2026"; window.WAT_DW_CAP = t; var c = document.querySelector("#wat-donors-mount .watld-cap"); if (c) c.textContent = t; return [t]; })(), ci = 0, capEl = mount.querySelector('.watld-cap');
   var capT = setInterval(function () { if (!capEl || !document.body.contains(capEl)) { clearInterval(capT); return; }
     ci = (ci + 1) % caps.length; capEl.style.opacity = '0'; setTimeout(function () { capEl.textContent = caps[ci]; capEl.style.opacity = '1'; }, 230); }, 1700);
   function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
