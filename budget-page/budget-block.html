@@ -97,14 +97,16 @@
   var DONATIONS_ANCHOR = '/donors';   // /budget: the supporter count links to the donor wall
   var DEV_DONE = 1800000;
   var ROUGH = [
-    { n: 'Editing Act 1', c: 75000, b: [{ t: 'Hire two editors full-time for ~3 months on the first pass of Act 1 ✂️', p: 'Hired two editors full-time for ~3 months on the first pass of Act 1 ✂️' }, 'Editorial setup, media management &amp; project organization 🗂️', 'Assistant-editor support and footage syncing 🎞️'] },
-    { n: 'Production &amp; Filming — Fall 2026', c: 50000, b: [{ t: 'Hire a part-time archival producer for 3 months 👩', p: 'Hired a part-time archival producer for 3 months 👩', done: true }, { t: 'Hire a part-time production coordinator for fundraising events (3 months) 💸', p: 'Hired a part-time production coordinator for fundraising events (3 months) 💸', done: true }, { t: 'Hire a part-time concept artist for story-boards and AI pre-vis (3 months) 🎨', p: 'Funded a part-time concept artist for story-boards and AI pre-vis (3 months) 🎨' }, { t: 'Funds travel &amp; filming if MDMA is rescheduled 🎥 ✈️', p: 'Funded travel &amp; filming if MDMA is rescheduled 🎥 ✈️' }]   /* (cc) p = the words once the goal is funded */ },
-    { n: 'Editing Act 2', c: 75000, b: ['Hire two editors full-time for 3 months (Nov 2026 – Jan 2027) ✂️', 'Story development &amp; scene assembly for Act 2 📝'] },
-    { n: 'Editing Act 3', c: 75000, b: ['Hire two editors full-time for 3 months (Feb – Apr 2027) ✂️', 'Cutting Act 3 toward a complete rough-cut assembly 🎬'] },
-    { n: 'Animation Sequences', c: 100000, b: ['Animated story-boards and sequences ✨', 'AI &amp; artist visualizations that fill archival gaps 🎨', 'Tie concepts together and simplify the narrative 🧩'] },
-    { n: 'Interviews &amp; B-roll', c: 75000, b: ['Interviews still needed with key figures in the story 🎤', 'Supplemental B-roll shoots and archival pickups 📹'] },
-    { n: 'Music &amp; Archival', c: 100000, b: ['Music licensing and score work 🎵', 'Archival footage &amp; photo research and licensing 🗄️'] },
-    { n: 'Admin &amp; Fees', c: 150000, b: ['Production admin, insurance &amp; accounting 📊', 'Hard drives, storage &amp; backup 💾', 'Platform, processing &amp; fiscal-sponsorship fees 💳'] }
+    /* (qq) 2026-11-12 (Nirvan): once a goal is met its words turn celebratory -- "You helped us: Hire two editors ..."
+       p = the line as it reads under "You helped us:"; t = the line while the goal is still being funded. */
+    { n: 'Editing Act 1', c: 75000, b: [{ t: 'Hire two editors full-time for ~3 months on the first pass of Act 1 ✂️', p: 'Hire two editors full-time for ~3 months on the first pass of Act 1 ✂️' }, { t: 'Editorial setup, media management &amp; project organization 🗂️', p: 'Set up editorial, media management &amp; project organization 🗂️' }, { t: 'Assistant-editor support and footage syncing 🎞️', p: 'Bring on assistant-editor support and sync our footage 🎞️' }] },
+    { n: 'Production &amp; Filming — Fall 2026', c: 50000, b: [{ t: 'Hire a part-time archival producer for 3 months 👩', p: 'Hire a part-time archival producer for 3 months 👩', done: true }, { t: 'Hire a part-time production coordinator for fundraising events (3 months) 💸', p: 'Hire a part-time production coordinator for fundraising events (3 months) 💸', done: true }, { t: 'Hire a part-time concept artist for story-boards and AI pre-vis (3 months) 🎨', p: 'Fund a part-time concept artist for story-boards and AI pre-vis (3 months) 🎨' }, { t: 'Funds travel &amp; filming if MDMA is rescheduled 🎥 ✈️', p: 'Get ready to travel &amp; film if MDMA is rescheduled 🎥 ✈️' }] },
+    { n: 'Editing Act 2', c: 75000, b: [{ t: 'Hire two editors full-time for 3 months (Nov 2026 – Jan 2027) ✂️', p: 'Keep two editors working full-time for 3 months (Nov 2026 – Jan 2027) ✂️' }, { t: 'Story development &amp; scene assembly for Act 2 📝', p: 'Develop the story &amp; assemble the scenes of Act 2 📝' }] },
+    { n: 'Editing Act 3', c: 75000, b: [{ t: 'Hire two editors full-time for 3 months (Feb – Apr 2027) ✂️', p: 'Keep two editors working full-time for 3 months (Feb – Apr 2027) ✂️' }, { t: 'Cutting Act 3 toward a complete rough-cut assembly 🎬', p: 'Cut Act 3 toward a complete rough-cut assembly 🎬' }] },
+    { n: 'Animation Sequences', c: 100000, b: [{ t: 'Animated story-boards and sequences ✨', p: 'Create animated story-boards and sequences ✨' }, { t: 'AI &amp; artist visualizations that fill archival gaps 🎨', p: 'Fill archival gaps with AI &amp; artist visualizations 🎨' }, { t: 'Tie concepts together and simplify the narrative 🧩', p: 'Tie concepts together and simplify the narrative 🧩' }] },
+    { n: 'Interviews &amp; B-roll', c: 75000, b: [{ t: 'Interviews still needed with key figures in the story 🎤', p: 'Film the interviews still needed with key figures in the story 🎤' }, { t: 'Supplemental B-roll shoots and archival pickups 📹', p: 'Shoot supplemental B-roll and archival pickups 📹' }] },
+    { n: 'Music &amp; Archival', c: 100000, b: [{ t: 'Music licensing and score work 🎵', p: 'License music and begin score work 🎵' }, { t: 'Archival footage &amp; photo research and licensing 🗄️', p: 'Research and license archival footage &amp; photos 🗄️' }] },
+    { n: 'Admin &amp; Fees', c: 150000, b: [{ t: 'Production admin, insurance &amp; accounting 📊', p: 'Cover production admin, insurance &amp; accounting 📊' }, { t: 'Hard drives, storage &amp; backup 💾', p: 'Buy hard drives, storage &amp; backup 💾' }, { t: 'Platform, processing &amp; fiscal-sponsorship fees 💳', p: 'Cover platform, processing &amp; fiscal-sponsorship fees 💳' }] }
   ];
   var FINAL = [
     { n: 'final cut editing to full picture lock', c: 120000, b: ['Edit team cuts from the rough cut down to final picture lock ✂️', 'Conform the edit to finishing specs for post-production 🔒'] },
@@ -1234,7 +1236,7 @@
     bulletsEl.classList.toggle('wb-bullets-check', _items.length > 0);   // empty-checkbox marker (checked once the goal is funded)
     bulletsEl.style.display = _items.length ? '' : 'none';
     var _fh = el('wb-fund-head');
-    if (_fh) { _fh.style.display = _items.length ? '' : 'none'; _fh.textContent = _doneSec ? 'This funding helped us:' : 'This funding will help us:'; }
+    if (_fh) { _fh.style.display = _items.length ? '' : 'none'; _fh.textContent = _doneSec ? (_items.every(function (x) { return x && typeof x === 'object' && x.p; }) ? 'You helped us:' : 'This funding helped us:') : 'This funding will help us:';   /* (qq) */ }
     setBullets(_bulHTML, _animBul);
     if (isHeader || totalMacro) { moreBtn.style.display = 'none'; if (sepEl) sepEl.style.display = 'none'; setMore(true); }
     else { if (sepEl) sepEl.style.display = ''; setMore(fundOpen); }   // KEEP the expand state when moving between sections (don't auto-collapse on hover)
@@ -2636,35 +2638,39 @@
   var ROUGH_GOALS = [
     { amount: 75000, icon: 'people', lead: 'Editing Act 1', slug: 'editing-act-1',
       desc: 'Hires 2 full-time editors to cut <strong>Act 1</strong> of our Rough Cut (by Oct 2026)',
-      done_desc: 'Hired 2 full-time editors to cut <strong>Act 1</strong> of our Rough Cut (by Oct 2026)',
+      done_desc: 'You helped us hire 2 full-time editors to cut <strong>Act 1</strong> of our Rough Cut',
       done_label: 'Funded &amp; Hired!',
-      details: '<ul><li>We hired 2 full-time editors for ~3 months to assemble the first pass of Act 1</li><li>Funds helped with editorial setup, hard drives for media management &amp; project organization</li><li>Assistant-editor support and syncing of footage</li></ul>' },
+      details: '<ul><li>Hire 2 full-time editors for ~3 months to assemble the first pass of Act 1</li><li>Editorial setup, hard drives for media management &amp; project organization</li><li>Assistant-editor support and syncing of footage</li></ul>',
+      done_details: '<p class="wat-ml-thanks">You helped us:</p><ul><li>Hire 2 full-time editors for ~3 months to assemble the first pass of Act 1</li><li>Set up editorial, hard drives for media management &amp; project organization</li><li>Bring on assistant-editor support and sync our footage</li></ul>' },
     { amount: 50000, icon: 'camera', lead: 'Production &amp; Filming', slug: 'production-filming',
       desc: 'For film shoots if MDMA is rescheduled this fall',
-      done_desc: 'Funded &mdash; we&rsquo;re ready to film this fall if MDMA is rescheduled',
+      done_desc: 'You helped us get ready to film this fall if MDMA is rescheduled',
       done_label: 'Funded!',
-      details: '<ul><li>Hired a part-time archival producer and a production coordinator for fundraising events (3 months)</li><li>A part-time concept artist for story-boards and AI pre-vis (3 months)</li><li>Travel, crew &amp; equipment to film on short notice if MDMA is rescheduled</li></ul>' },
+      details: '<ul><li>Hire a part-time archival producer and a production coordinator for fundraising events (3 months)</li><li>A part-time concept artist for story-boards and AI pre-vis (3 months)</li><li>Travel, crew &amp; equipment to film on short notice if MDMA is rescheduled</li></ul>',
+      done_details: '<p class="wat-ml-thanks">You helped us:</p><ul><li>Hire a part-time archival producer and a production coordinator for fundraising events (3 months)</li><li>Bring on a part-time concept artist for story-boards and AI pre-vis (3 months)</li><li>Set aside travel, crew &amp; equipment funds to film on short notice if MDMA is rescheduled</li></ul>' },
     { amount: 75000, icon: 'people', lead: 'Editing Act 2', slug: 'editing-act-2',
       desc: 'Keeps our 2 editors working full-time for another 3 months to cut Act 2 (Nov 2026 &ndash; Jan 2027)',
-      done_desc: 'Our 2 editors are cutting Act 2 full-time (Nov 2026 &ndash; Jan 2027)',
+      done_desc: 'You helped us keep our 2 editors cutting Act 2 full-time (Nov 2026 &ndash; Jan 2027)',
       done_label: 'Funded &amp; In Production!',
-      details: '<ul><li>Two editors full-time for 3 months, Nov 2026 &ndash; Jan 2027</li><li>Continue editing, story development and scene assembly for Act 2</li></ul>' },
+      details: '<ul><li>Two editors full-time for 3 months, Nov 2026 &ndash; Jan 2027</li><li>Continue editing, story development and scene assembly for Act 2</li></ul>',
+      done_details: '<p class="wat-ml-thanks">You helped us:</p><ul><li>Keep two editors working full-time for 3 months, Nov 2026 &ndash; Jan 2027</li><li>Continue editing, story development and scene assembly for Act 2</li></ul>' },
     { amount: 75000, icon: 'people', lead: 'Editing Act 3', slug: 'editing-act-3',
       desc: 'Keeps our 2 editors cutting full-time for 3 months to finish Act 3 (Feb &ndash; April 2027)',
-      done_desc: 'Our 2 editors are cutting Act 3 full-time (Feb &ndash; April 2027)',
-      done_label: 'Funded &amp; In Production!',
-      details: '<ul><li>Two editors full-time for 3 months, Feb &ndash; April 2027</li><li>Cutting Act 3 toward a complete rough-cut assembly</li></ul>' },
+      done_desc: 'You helped us keep our 2 editors cutting Act 3 full-time (Feb &ndash; April 2027)',
+      done_label: 'Funded!',
+      details: '<ul><li>Two editors full-time for 3 months, Feb &ndash; April 2027</li><li>Cutting Act 3 toward a complete rough-cut assembly</li></ul>',
+      done_details: '<p class="wat-ml-thanks">You helped us:</p><ul><li>Keep two editors working full-time for 3 months, Feb &ndash; April 2027</li><li>Cut Act 3 toward a complete rough-cut assembly</li></ul>' },
     { amount: 100000, icon: 'sparkle', lead: 'Animation Sequences', slug: 'animation',
-      desc: 'Produces animation sequences and design assets for the Rough Cut', done_label: 'Funded!',
+      desc: 'Produces animation sequences and design assets for the Rough Cut', done_desc: 'You helped us produce animation sequences and design assets for the Rough Cut', done_label: 'Funded!',
       details: '<ul><li>Design and production of animated story-boards and sequences</li><li>AI and artist visualizations of key concepts that help fill archival gaps</li><li>Helps tie together concepts and simplify complex narrative</li></ul>' },
     { amount: 75000, icon: 'camera', lead: 'Interviews &amp; B-roll', slug: 'interviews-b-roll',
-      desc: 'Additional interviews and B-roll footage', done_label: 'Funded!',
+      desc: 'Additional interviews and B-roll footage', done_desc: 'You helped us film additional interviews and B-roll footage', done_label: 'Funded!',
       details: '<ul><li>Produce interviews still needed with key figures in the story</li><li>Supplemental B-roll shoots and archival pickups</li></ul>' },
     { amount: 100000, icon: 'music', lead: 'Music &amp; Archival', slug: 'music-archival',
-      desc: 'Music and archival licensing for the Rough Cut', done_label: 'Funded!',
+      desc: 'Music and archival licensing for the Rough Cut', done_desc: 'You helped us license music and archival for the Rough Cut', done_label: 'Funded!',
       details: '<ul><li>Music licensing and score work</li><li>Archival footage and photo research and licensing for our rough cut assembly</li></ul>' },
     { amount: 150000, icon: 'drive', lead: 'Admin &amp; Fees', slug: 'admin-fees',
-      desc: 'Admin, hard drives &amp; fees', done_label: 'Funded!',
+      desc: 'Admin, hard drives &amp; fees', done_desc: 'You helped us cover admin, hard drives &amp; fees', done_label: 'Funded!',
       details: '<ul><li>Production admin, insurance &amp; accounting</li><li>Hard drives, storage &amp; backup</li><li>Platform and processing fees</li><li>Fundraising costs, including processing fees and fiscal-sponsorship fees</li></ul>' }
   ];
   var FINAL_GOALS = [
@@ -2745,7 +2751,7 @@
           +   '<span class="wat-ml-chev" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 8l4 4 4-4"/></svg></span></div>'
           + '<div class="wat-ml-progress"><div class="wat-ml-track"><div class="wat-ml-ticks"></div><div class="wat-ml-fill"></div></div>'
           + '<div class="wat-ml-stats"><span class="wat-ml-raised">' + (st === 'upcoming' ? '' : money(0) + ' raised') + '</span>' + right + '</div></div>'
-          + '<div class="wat-ml-details"><div class="wat-ml-details-inner">' + g.details + '</div></div></div>';
+          + '<div class="wat-ml-details"><div class="wat-ml-details-inner">' + ((st === 'done' && g.done_details) ? g.done_details : g.details) + '</div></div></div>';   /* (qq) a met goal thanks you: "You helped us: ..." */
         listEl.appendChild(row); ticks(row.querySelector('.wat-ml-ticks'), g.amount);
         row.classList.add('has-details'); row.setAttribute('role', 'button'); row.setAttribute('tabindex', '0');
         row.setAttribute('aria-expanded', openRows[i] ? 'true' : 'false');
@@ -2907,6 +2913,8 @@
 
   /* (pp) direct links: the copy-link icon + where a linked heading lands */
   #bp-secs .bp-card, #bp-secs .wat-ml-row { scroll-margin-top: 96px; }
+  #bp-secs .wat-ml-thanks { margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--ml-line); font-weight: 700; font-size: 14px; color: var(--ml-accent-dk, #33697f); }   /* (qq) */
+  #bp-secs .wat-ml-thanks + ul { margin-top: 4px; padding-top: 0; border-top: 0; }
   #bp-secs .bp-link, #bp-secs .wat-ml-link { position: relative; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; color: #9aa3b2; cursor: pointer; text-decoration: none; transition: color .15s ease, background .15s ease, opacity .15s ease; }
   #bp-secs .wat-ml-link { width: 22px; height: 22px; margin-top: 0; opacity: .55; }
   #bp-secs .bp-link svg, #bp-secs .wat-ml-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; display: block; }

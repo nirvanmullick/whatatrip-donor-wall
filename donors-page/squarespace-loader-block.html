@@ -1,0 +1,51 @@
+<!-- WHAT A TRIP - /donors (donor wall) LOADER (11/12/2026, v19.37).
+     Paste this ENTIRE small block into the ONE Code Block on /donors, replacing the big donor wall code.
+     The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> donors-page/donors-block.html
+     Claude publishes changes there; this page picks them up within ~5 minutes. No more pasting. -->
+<div id="wat-donors-mount">
+  <div class="wat-ld-card"><div class="wat-ld-t">Our Film Donors</div><div class="wat-ld-bar"></div><div class="wat-ld-s">Loading&hellip;</div></div>
+</div>
+<style>
+  #wat-donors-mount.wat-ld-wait { min-height: 2400px; }
+  #wat-donors-mount .wat-ld-card { background: #fff; border-radius: 18px; padding: 22px 22px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.08); font-family: inherit; }
+  #wat-donors-mount .wat-ld-t { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5a6b78; text-align: center; margin-bottom: 14px; }
+  #wat-donors-mount .wat-ld-bar { height: 10px; border-radius: 6px; background: linear-gradient(90deg,#e8eef2 0%,#f4f7f9 50%,#e8eef2 100%); background-size: 200% 100%; animation: watLdD 1.4s ease-in-out infinite; }
+  #wat-donors-mount .wat-ld-s { margin-top: 12px; font-size: 13px; color: #8a98a3; text-align: center; }
+  @keyframes watLdD { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+</style>
+<script>
+/* Loader: VERSION holds the commit to load; jsDelivr serves that exact commit from a fast CDN and browsers
+   keep it cached. Falls back to GitHub directly if needed. */
+(function () {
+  var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'donors-page/', FILE = DIR + 'donors-block.html';
+  var mount = document.getElementById('wat-donors-mount'); if (!mount || mount.__watStarted) return;
+  mount.__watStarted = 1; mount.className = 'wat-ld-wait';
+  function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
+  var html = get('https://raw.githubusercontent.com/' + REPO + '/main/' + DIR + 'VERSION', { cache: 'no-store' })
+    .then(function (v) {
+      v = (v || '').trim(); if (!/^[0-9a-f]{7,40}$/.test(v)) throw new Error('version');
+      return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
+        .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); });
+    })
+    .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE, { cache: 'no-store' }); });
+  function inject(s) {
+    var tpl = document.createElement('template'); tpl.innerHTML = s;
+    var scripts = [].slice.call(tpl.content.querySelectorAll('script'));
+    var marks = scripts.map(function (sc) { var c = document.createComment('wat'); sc.parentNode.replaceChild(c, sc); return c; });
+    mount.innerHTML = ''; mount.className = ''; mount.appendChild(tpl.content);
+    var i = 0;
+    (function next() {
+      if (i >= scripts.length) return;
+      var old = scripts[i], m = marks[i]; i++;
+      var n = document.createElement('script');
+      [].forEach.call(old.attributes, function (a) { n.setAttribute(a.name, a.value); });
+      n.text = old.text; m.parentNode.replaceChild(n, m);
+      setTimeout(next, 0);
+    })();
+  }
+  html.then(inject, function () {
+    mount.className = '';
+    mount.innerHTML = '<div class="wat-ld-card"><div class="wat-ld-t">Our Film Donors</div><div class="wat-ld-s">The donor wall could not load. Please refresh the page.</div></div>';
+  });
+})();
+</script>
