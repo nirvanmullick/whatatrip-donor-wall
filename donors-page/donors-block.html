@@ -37,9 +37,6 @@
   #dw-boot { min-height: 100vh; }
   /* until it is ready the wall is laid out (it measures itself) but not shown, and takes no room */
   #wat-dw:not(.dw-ready) { position: absolute !important; left: 0; right: 0; top: 0; height: 100vh; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; }
-  #wat-dw.dw-ready { animation: dwBootIn .28s ease both; }
-  @keyframes dwBootIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { #wat-dw.dw-ready { animation: none; } }
 </style>
 <div id="dw-boot"><div class="watld"><div class="watld-dw"><div class="watld-dw-in"><div class="watld-dw-h">Help Bring the Rick Doblin Story to the Screen</div><div class="watld-dw-s"><b>Add Your Name</b> and get <i>higher</i> level perks.</div><span class="watld-sh pu" style="width:100%;height:10px;border-radius:6px;margin:22px 0 6px"></span><div class="watld-cap" aria-live="polite" style="text-align:left">Almost there&hellip;</div><div class="watld-perks"><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/76b2e2e5-27bc-454e-9bc1-db04bae5638e/WAT+5+add+your+name+pic.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Add Your Name</b><span>Join our donor wall with everyone helping make this film.</span><i>$5+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/b9c48c42-1e1d-4d74-9c65-e533da7e89b3/WAT_theater_pre_visual.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Get a Film Credit</b><span>Get a Special Thanks or more in our film and on IMDb.</span><i>$5k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Stay in Arcturus</b><span>A week in the house Rick built at 21 for psychedelic journeys.</span><i>$25k+</i></div><div class="watld-perk"><img src="https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=500w" alt="" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"><b>Guided Therapy w Rick</b><span>Guided session w Rick in home he built for psychedelic therapy</span><i>$250k+</i></div></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div><div class="watld-lvl"><span class="watld-sh pu" style="width:90px;height:18px;margin:0 auto 8px"></span><span class="watld-sh " style="width:220px;height:13px;margin:0 auto"></span></div></div></div></div></div>
 <script>
@@ -29772,11 +29769,9 @@ window.dwResize = (function () {
    the browser painted between them: the dark base wall, then the pale name wall, then this one. The boot block at the
    top of the page keeps the wall hidden behind the loading picture; this is the last line of the last layer, so two
    frames from now everything has been drawn and it can be shown. */
-(function () {
-  var go = function () { if (window.WAT_DW_READY) window.WAT_DW_READY(); };
-  if (window.requestAnimationFrame) requestAnimationFrame(function () { requestAnimationFrame(function () { setTimeout(go, 60); }); });
-  else setTimeout(go, 120);
-})();
+/* Shown straight away, not a frame or two later: measured live, the page is busy for 2-3 seconds after this point
+   (pictures, the donor feeds) and a requestAnimationFrame wait kept the loading picture up for all of it. */
+if (window.WAT_DW_READY) window.WAT_DW_READY();
 
 </script>
 
