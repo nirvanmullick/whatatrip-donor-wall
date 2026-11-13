@@ -15141,6 +15141,21 @@ window.dwResize = (function () {
 }
 #wat-dw.sk-full .dw-quote .dw-more.skf-more-off{display:none !important;}
 
+/* v19.57: the names suggested under "Find your name" (the wall itself no longer changes while you type) */
+#wat-dw.sk-full .dw-searchwrap{overflow:visible;}
+#wat-dw.sk-full .skf-sug{position:absolute;left:0;top:calc(100% + 8px);min-width:max(100%,260px);max-width:min(340px,86vw);z-index:60;
+  background:#fff;border-radius:14px;padding:6px;box-shadow:0 14px 36px rgba(30,22,80,.28),0 0 0 1px rgba(90,78,163,.14);}
+#wat-dw.sk-full .skf-sug[hidden]{display:none;}
+#wat-dw.sk-full .skf-sug-i{all:unset;box-sizing:border-box;display:block;width:100%;padding:9px 12px;border-radius:9px;cursor:pointer;
+  font:500 15px/1.25 inherit;color:#2a2740;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#wat-dw.sk-full .skf-sug-i b{font-weight:800;color:#5b4ea3;}
+#wat-dw.sk-full .skf-sug-i.is-on,#wat-dw.sk-full .skf-sug-i:hover{background:#eeebfa;}
+#wat-dw.sk-full .skf-sug-none{padding:10px 12px;font-size:14px;color:#7a8194;white-space:nowrap;}
+/* the row you asked for, lit up for a moment when you arrive */
+@keyframes skfFound{0%{box-shadow:0 0 0 0 rgba(255,214,102,0);}18%{box-shadow:0 0 0 4px rgba(255,214,102,.95),0 0 26px 6px rgba(255,214,102,.55);}70%{box-shadow:0 0 0 4px rgba(255,214,102,.9),0 0 22px 4px rgba(255,214,102,.4);}100%{box-shadow:0 0 0 0 rgba(255,214,102,0);}}
+#wat-dw.sk-full .skf-found{animation:skfFound 3.1s ease both;border-radius:12px;position:relative;z-index:3;}
+@media(prefers-reduced-motion:reduce){#wat-dw.sk-full .skf-found{animation-duration:.01s;}}
+
 </style>
 
     <div class="dw-panel">
@@ -26735,7 +26750,7 @@ window.dwResize = (function () {
       window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }, 340);
   }
-  root.addEventListener('input', scrollToMatch, true);
+  /* v19.57: typing no longer filters or scrolls the wall (see the suggestions block at the end of this file) */
 
   /* ---- the Host an Event panel, in Nirvan's words --------------------------------------
      Rewritten in place rather than in the base file, so the original block is untouched and
@@ -30224,6 +30239,84 @@ window.dwResize = (function () {
       pend = gap > 0 ? setTimeout(runS, gap) : requestAnimationFrame(runS);
     }).observe(side, { childList: true, subtree: true, characterData: true });
   }
+})();
+
+/* v19.57 -- FIND YOUR NAME WITHOUT THE WALL MOVING (Nirvan: "every time I put in a D or an A, the screen blinks, and
+   all the names blink and shift ... I'd like everything to feel solid. Maybe we can just show suggested names
+   underneath it, and then you ... click on a name, or wait till you press Enter, and then it takes you down to where
+   that name is.") Typing used to re-draw the whole wall filtered to the letters so far, on every keystroke. Now the
+   wall is left alone: matching names are listed under the field; clicking one (or Enter for the top one, arrows to
+   choose) glides to that person on the wall and lights their row up for a moment. */
+(function () {
+  var root = document.getElementById('wat-dw'); if (!root) return;
+  var inp = root.querySelector('#dw-search'), wrap = inp && inp.closest('.dw-searchwrap'); if (!inp || !wrap) return;
+  var clr = root.querySelector('#dw-searchclear');
+  var box = document.createElement('div'); box.className = 'skf-sug'; box.hidden = true; box.setAttribute('role', 'listbox');
+  wrap.appendChild(box);
+  var items = [], act = 0;
+  function nameOf(c) {
+    var n = c.querySelector('.dw-chip-who, .dw-lname') || c, w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT, null), t;
+    while ((t = w.nextNode())) { var v = (t.nodeValue || '').replace(/\s+/g, ' ').trim(); if (v.length > 1) return v; }
+    return (c.getAttribute('data-id') || '').replace(/\b[a-z]/g, function (m) { return m.toUpperCase(); });
+  }
+  function people() {
+    var seen = {}, out = [], cs = root.querySelectorAll('.dw-tier-body .dw-card[data-id], .dw-tier-body .dw-chip[data-id]');
+    for (var i = 0; i < cs.length; i++) { var id = cs[i].getAttribute('data-id'); if (!id || seen[id]) continue; seen[id] = 1; out.push({ id: id, name: nameOf(cs[i]) }); }
+    return out;
+  }
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+  function paint() {
+    var q = (inp.value || '').trim().toLowerCase();
+    if (clr) clr.hidden = !q;
+    if (!q) { box.hidden = true; items = []; return; }
+    var all = people(), hit = [];
+    for (var i = 0; i < all.length; i++) {
+      var n = all[i].name.toLowerCase(), k = n.indexOf(q); if (k < 0) continue;
+      hit.push({ p: all[i], k: k, r: k === 0 ? 0 : (n.charAt(k - 1) === ' ' ? 1 : 2) });
+    }
+    hit.sort(function (a, b) { return (a.r - b.r) || a.p.name.localeCompare(b.p.name); });
+    items = hit.slice(0, 8); if (act >= items.length) act = 0;
+    box.innerHTML = items.length ? items.map(function (h, i) {
+      var nm = h.p.name;
+      return '<button type="button" role="option" class="skf-sug-i' + (i === act ? ' is-on' : '') + '" data-i="' + i + '">' +
+        esc(nm.slice(0, h.k)) + '<b>' + esc(nm.slice(h.k, h.k + q.length)) + '</b>' + esc(nm.slice(h.k + q.length)) + '</button>';
+    }).join('') : '<div class="skf-sug-none">No name like that yet</div>';
+    box.hidden = false;
+  }
+  function go(i) {
+    var h = items[i]; if (!h) return;
+    var sel = '[data-id="' + h.p.id.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]';
+    var el = root.querySelector('.dw-tier-body .dw-card' + sel + ', .dw-tier-body .dw-chip' + sel);
+    inp.value = ''; if (clr) clr.hidden = true; box.hidden = true; items = []; inp.blur(); root.classList.remove('sk-searching');
+    if (!el) return;
+    var sec = el.closest('.dw-tier');
+    if (sec && sec.getAttribute('data-open') === '0') { var hd = sec.querySelector('.dw-tier-head, [aria-controls]'); if (hd) hd.click(); }
+    setTimeout(function () {
+      var bar = root.querySelector('.dw-pin-bar') || root.querySelector('.dw-topbar');
+      var pad = (bar ? bar.getBoundingClientRect().height : 0) + 28, r = el.getBoundingClientRect();
+      var y = window.pageYOffset + r.top - Math.max(pad, (window.innerHeight - r.height) * 0.35);
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      el.classList.remove('skf-found'); void el.offsetWidth; el.classList.add('skf-found');
+      setTimeout(function () { el.classList.remove('skf-found'); }, 3200);
+    }, 60);
+  }
+  /* caught on the way down, before the page's own listener on the field can re-draw the wall */
+  root.addEventListener('input', function (e) { if (e.target !== inp) return; e.stopPropagation(); act = 0; root.classList.add('sk-searching'); paint(); }, true);
+  root.addEventListener('search', function (e) { if (e.target !== inp) return; e.stopPropagation(); paint(); }, true);
+  inp.addEventListener('keydown', function (e) {
+    if (box.hidden || !items.length) { if (e.key === 'Enter') e.preventDefault(); return; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); act = (act + 1) % items.length; paint(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); act = (act + items.length - 1) % items.length; paint(); }
+    else if (e.key === 'Enter') { e.preventDefault(); go(act); }
+  });
+  inp.addEventListener('focus', function () { if ((inp.value || '').trim()) paint(); });
+  inp.addEventListener('blur', function () { setTimeout(function () { box.hidden = true; }, 160); });
+  box.addEventListener('mousedown', function (e) { e.preventDefault(); });               /* the field keeps its focus while you pick */
+  box.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('.skf-sug-i'); if (b) go(+b.getAttribute('data-i')); });
+  if (clr) root.addEventListener('click', function (e) {
+    if (!(e.target.closest && e.target.closest('#dw-searchclear'))) return;
+    e.stopPropagation(); e.preventDefault(); inp.value = ''; clr.hidden = true; box.hidden = true; items = []; inp.focus();
+  }, true);
 })();
 
 /* v19.56: "Read more" only on a quote that is really cut short. The page decides it by length (over 150 characters);
