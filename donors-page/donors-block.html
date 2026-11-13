@@ -27396,11 +27396,6 @@ window.dwResize = (function () {
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=1500w',
           alt: 'The exterior of Arcturus, the house Rick Doblin designed and built in Sarasota at twenty-one.',
           cap: 'The exterior of Arcturus in Sarasota, Florida.' },
-        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. SECOND in the set (mine, flagged):
-           the house first, then the film about it. */
-        { yt: 'MTd_3sjg4SU',
-          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
-          cap: 'Watch the Dwell video about Arcturus' },
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=1500w',
           alt: 'The living room at Arcturus.',
           cap: 'The living room of Arcturus.',
@@ -27416,7 +27411,12 @@ window.dwResize = (function () {
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/33bffd51-cabe-4b71-9a99-5b84e95e7d77/Screenshot+2026-09-27+at+5.23.12%E2%80%AFPM.jpg?format=1500w',
           alt: 'Dwell magazine feature on Arcturus: The House That Helped Build the Modern Psychedelics Movement.',
           cap: '&ldquo;The House That Helped Build the Modern Psychedelics Movement&rdquo; &mdash; as featured in DWELL.',
-          fit: 'contain', clip: '9.6% 0 7.2% 0', bg: '#fff' }
+          fit: 'contain', clip: '9.6% 0 7.2% 0', bg: '#fff' },
+        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. v19.45, his: "make the Dwell video the
+           LAST slide on the carousel". Linkable: /donors#perk-<slug>-video opens the pop-up on this slide. */
+        { yt: 'MTd_3sjg4SU',
+          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
+          cap: 'Watch the Dwell video about Arcturus' }
       ],
       /* His copy, with the wording change he approved: "for psychedelic journeys" rather
          than "for doing psychedelics", so the perk does not read as if psychedelics come
@@ -27557,11 +27557,6 @@ window.dwResize = (function () {
              1983. Both are his, both are now on the same screen. */
           cap: 'The living room of Arcturus.',
           pos: '50% 85%' },
-        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. SECOND in the set (mine, flagged):
-           the house first, then the film about it. */
-        { yt: 'MTd_3sjg4SU',
-          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
-          cap: 'Watch the Dwell video about Arcturus' },
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=1500w',
           alt: 'The exterior of Arcturus, the house Rick Doblin designed and built in Sarasota at twenty-one.',
           cap: 'The exterior of Arcturus in Sarasota, Florida.' },
@@ -27578,7 +27573,12 @@ window.dwResize = (function () {
         { u: 'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/33bffd51-cabe-4b71-9a99-5b84e95e7d77/Screenshot+2026-09-27+at+5.23.12%E2%80%AFPM.jpg?format=1500w',
           alt: 'Dwell magazine feature on Arcturus: The House That Helped Build the Modern Psychedelics Movement.',
           cap: '&ldquo;The House That Helped Build the Modern Psychedelics Movement&rdquo; &mdash; as featured in DWELL.',
-          fit: 'contain', clip: '9.6% 0 7.2% 0', bg: '#fff' }
+          fit: 'contain', clip: '9.6% 0 7.2% 0', bg: '#fff' },
+        /* v19.43 (Nirvan, 2026-11-13): the Dwell VIDEO, playable right here. v19.45, his: "make the Dwell video the
+           LAST slide on the carousel". Linkable: /donors#perk-<slug>-video opens the pop-up on this slide. */
+        { yt: 'MTd_3sjg4SU',
+          alt: 'Dwell video about Arcturus, the house Rick Doblin built in Sarasota.',
+          cap: 'Watch the Dwell video about Arcturus' }
       ] },
     /* THE $100K CARD SAYS "CO-PRODUCER", HIS WORD -- the wall's $100K level is still named
        "Contributing Producer". FLAGGED. The figure is typed (`amt`) because the chart has
@@ -28504,8 +28504,20 @@ window.dwResize = (function () {
   function exFromHash() {
     var m = /#perk-([a-z0-9-]+)/i.exec(location.hash || '');
     if (!m) return;
+    /* v19.45: "#perk-<slug>-video" opens the pop-up ON its video slide */
+    var want = m[1].toLowerCase(), vid = /-video$/.test(want), base = vid ? want.replace(/-video$/, '') : want;
     for (var i = 0; i < SLID.length; i++) {
-      if (perkSlug(SLID[i]) === m[1].toLowerCase()) { openExp(i); return; }
+      var sg = perkSlug(SLID[i]);
+      if (sg === want || (vid && sg === base)) {
+        openExp(i);
+        if (vid && sg !== want) [120, 500, 1100].forEach(function (ms) { setTimeout(function () {
+          if (!exPop || exPop.hidden) return;
+          var fs = exPop.querySelectorAll('.skf-expop-f'), vp2 = exPop.querySelector('.skf-expop-vp'), k = -1;
+          [].forEach.call(fs, function (f, n) { if (k < 0 && f.classList.contains('skf-expop-yt')) k = n; });
+          if (k > -1 && vp2 && fs[0]) { var sb = vp2.style.scrollBehavior; vp2.style.scrollBehavior = 'auto'; vp2.scrollLeft = k * (fs[0].getBoundingClientRect().width + 12); vp2.style.scrollBehavior = sb; if (exPop.exSync) exPop.exSync(); }
+        }, ms); });
+        return;
+      }
     }
   }
 
