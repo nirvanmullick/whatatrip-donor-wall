@@ -3663,7 +3663,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       var date = dt ? ' <span class="wat-sup-date">&middot; ' + esc(dt) + '</span>' : '';
       return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span> <span class="wat-match-tag"><span class="wat-seal-mini" aria-hidden="true"></span> Match &#127881;</span>' + date + '</span><span class="wat-sup-amt">' + money(s.amount) + '</span></div>';
     }).join('');
-    return '<div class="wat-ch-supporters">' + rows + (ch ? challengeMatcherRow(ch) : '') + '</div>';
+    var _sl = ch ? (ch.slug || ch.matcher.split(' ')[0].toLowerCase().replace(/[^a-z0-9]+/g, '')) : '';
+    return '<div class="wat-ch-supporters">' + rows + (ch ? challengeMatcherRow(ch) : '') + (ch ? chShare(_sl) : '') + '</div>';
   }
   function challengeMatcherRow(ch) {
     // Bottom-of-list rows: the matcher's FULL name + their match (added on top, shown with a "+"), then the grand total raised.
@@ -3839,6 +3840,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     order = order.filter(function (i) { var st = 0; for (var k = 0; k < i; k++) st += L[k].cap; return ended ? false : got < st + L[i].cap; });
     return order.map(function (i) { return liveMatchCard(i); }).filter(Boolean);
   }
+  /* (an) "a link in the bottom right corner of the expanded challenge windows so I can share these challenges" (Nirvan).
+     Each challenge has its own address -- .../donate#wat-challenge-osters -- and the link copies it. Anyone landing on
+     that address gets the Challenges tab with that challenge open, and the page glides down to it. */
+  var LM_SLUGS = ['osters', 'kasey-david', 'rachel-50k'];
+  function chUrl(slug) { return location.origin + location.pathname + '#wat-challenge-' + slug; }
+  function chShare(slug) { return '<div class="wat-ch-sharebar"><a class="wat-ch-share" href="' + esc(chUrl(slug)) + '" data-slug="' + esc(slug) + '">Share this challenge <span aria-hidden="true">&#128279;</span></a></div>'; }
   function liveMatchDoneCards() {
     var M = window.WAT_LIVE_MATCH; if (!M || !M.on) return [];
     var got = window.WAT_MATCHED ? window.WAT_MATCHED() : 0, L = poolLegsOf(M), out = [];
@@ -3869,8 +3876,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
                : got > 0 ? ' ' + they.have + ' matched <span class="wat-amt">' + money(got) + '</span> of ' + they.their + ' ' + money(W.cap) + ' Matching Challenge!'
                : ' ' + they.are + ' matching every gift up to <span class="wat-amt">' + money(W.cap) + '</span> &mdash; be the first to join ' + they.their + ' challenge!';
     var js = liveMatchJoiners().filter(function (d) { return leg === 2 ? (d._rmatch || 0) > 0 : leg ? (d._nmatch || 0) > 0 : ((d._omatch || 0) - (d._nmatch || 0) - (d._rmatch || 0)) > 0 || M.test; }), n = js.length;
+    /* (an) 2026-11-14 (Nirvan: "it says 77 people ... on the video you put 76"): this counted GIFTS. One donor gave
+       twice, so 77 gifts came from 76 people. People are counted now: each name once, each anonymous gift as one. */
+    var seenP = {}, np = 0; js.forEach(function (d) { if (d.anonymous || !d.name) { np++; return; } var k = String(d.name).trim().toLowerCase(); if (!seenP[k]) { seenP[k] = 1; np++; } });
     var open = !!lmOpen[leg];
-    var who = n ? '<button type="button" class="wat-lm-toggle" aria-expanded="' + open + '"><strong>' + n + '</strong> ' + (n === 1 ? 'person has' : 'people have') +
+    var who = n ? '<button type="button" class="wat-lm-toggle" aria-expanded="' + open + '"><strong>' + np + '</strong> ' + (np === 1 ? 'person has' : 'people have') +
       ' joined ' + they.their + ' challenge <span class="wat-lm-chev" aria-hidden="true">&#8250;</span></button>' : '';
     /* 2026-09-29 (Nirvan): a summary at the top of the opened list -- "$1,968 raised by 10 people:" */
     /* (pp) each list shows the part of a gift THIS matcher matched (a gift that crosses the line is split) */
@@ -3878,7 +3888,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var jsTot = js.reduce(function (t, s) { return t + legShare(s); }, 0);
     if (window.WAT_LM_ORDER) js = window.WAT_LM_ORDER(js, legShare);   /* largest first unless toggled */
     var list = n ? '<div class="wat-lm-list"' + (open ? '' : ' hidden') + '>' +
-      '<div class="wat-lm-sum"><span><b>' + money(jsTot) + '</b> raised by ' + n + ' ' + (n === 1 ? 'person' : 'people') + ':</span>' + (window.WAT_LM_SORTBTN ? window.WAT_LM_SORTBTN('wat-lm-sort') : '') + '</div><div class="wat-lm-rows">' + js.map(function (s) {
+      '<div class="wat-lm-sum"><span><b>' + money(jsTot) + '</b> raised by ' + np + ' ' + (np === 1 ? 'person' : 'people') + ':</span>' + (window.WAT_LM_SORTBTN ? window.WAT_LM_SORTBTN('wat-lm-sort') : '') + '</div><div class="wat-lm-rows">' + js.map(function (s) {
         var nm = (s.anonymous || !s.name) ? 'Anonymous' : esc(s.name);
         var date = s.time ? ' <span class="wat-sup-date">&middot; ' + esc(s.time) + '</span>' : '';
         /* (ae) 2026-11-13 (Nirvan): "I just don't want it to look like she didn't give 5k." A gift that finished one
@@ -3890,8 +3900,8 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
           split = '<span class="wat-sup-split">' + money(here) + ' matched here' + parts.filter(function (p, i) { return i !== leg && p[0] > 0; }).map(function (p) { return ' &middot; ' + money(p[0]) + ' by ' + p[1]; }).join('') + '</span>';
         }
         return '<div class="wat-sup-row"><span class="wat-sup-main"><span class="wat-sup-name">' + nm + '</span>' + date + split + '</span><span class="wat-sup-amt">' + money(split ? whole : here) + '</span></div>';
-      }).join('') + '</div></div>' : '';
-    return '<div class="wat-donor-card wat-live-match' + (doneBy ? ' wat-lm-done' : '') + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
+      }).join('') + '</div>' + chShare(LM_SLUGS[leg] || ('match' + leg)) + '</div>' : '';
+    return '<div id="wat-challenge-' + (LM_SLUGS[leg] || ('match' + leg)) + '" class="wat-donor-card wat-live-match' + (doneBy ? ' wat-lm-done' : '') + (open ? ' wat-lm-on' : '') + (started ? '' : ' wat-lm-next') + '" data-leg="' + leg + '"><div class="wat-donor-head">' + certWrap(av) +
       '<div class="wat-row-main"><div class="wat-row-top"><span class="wat-name">' + esc(W.name) + '</span>' + line + '</div>' + who + '</div></div>' + list + '</div>';
   }
   function clamp0(v, hi) { return Math.max(0, Math.min(v, hi)); }
@@ -3904,6 +3914,13 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     render(); if (window.WAT_LM_REFRESH) window.WAT_LM_REFRESH();
   }, true);
   window.addEventListener('wat-lm-sort', function () { try { render(); } catch (x) {} });
+  listEl.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('.wat-ch-share') : null; if (!a) return;
+    e.preventDefault(); e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    var url = chUrl(a.getAttribute('data-slug')), done = function (ok) { var o = a.innerHTML; a.textContent = ok ? 'Link copied!' : url; a.classList.add('is-copied'); setTimeout(function () { a.innerHTML = o; a.classList.remove('is-copied'); }, ok ? 1800 : 6000); };
+    try { if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) { navigator.share({ title: 'What a Trip matching challenge', url: url }).catch(function () {}); return; } } catch (x) {}
+    try { navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); }); } catch (x) { done(false); }
+  }, true);
   listEl.addEventListener('click', function (e) {
     /* 2026-09-28 (Nirvan): a tap ANYWHERE on the Osters' card opens / closes the supporters list, not just on
        "N people have joined" -- links inside the card still work as links */
@@ -4033,13 +4050,18 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     [].forEach.call(document.querySelectorAll('#wat-wall .wat-tab'), function (b) {
       b.className = 'wat-tab' + (b.getAttribute('data-tab') === 'challenges' ? ' wat-tab-active' : '');
     });
+    var lg = LM_SLUGS.indexOf(h.replace(/^wat-challenge-/, '')); if (lg > -1) lmOpen[lg] = true;   /* (an) a running or just-finished challenge */
     render();
-    requestAnimationFrame(function () {
+    var go = function (smooth) {
       var c = document.getElementById(h);
       if (!c) return;
-      c.classList.add('wat-ch-open'); c.setAttribute('aria-expanded', 'true');
-      try { c.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { c.scrollIntoView(); }
-    });
+      if (lg < 0) { c.classList.add('wat-ch-open'); c.setAttribute('aria-expanded', 'true'); }
+      var y = window.pageYOffset + c.getBoundingClientRect().top - 110;
+      try { window.scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' }); } catch (e) { window.scrollTo(0, Math.max(0, y)); }
+    };
+    requestAnimationFrame(function () { go(true); });
+    [900, 2200, 4000].forEach(function (ms) { setTimeout(function () { if (!window.__watChTouched) go(true); }, ms); });   /* the page above is still arriving: land on it again once it has */
+    if (!window.__watChWatch) { window.__watChWatch = 1; ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.addEventListener(ev, function () { window.__watChTouched = 1; }, { passive: true, once: true }); }); }
   }
   window.addEventListener('hashchange', deepLinkChallenge);
 
@@ -4118,6 +4140,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-wall .wat-live-match.wat-lm-next { opacity: .8; }
   #wat-wall .wat-live-match .wat-lm-when { display: block; margin-top: 3px; font-weight: 400; }   /* (rr) */
   #wat-wall .wat-live-match.wat-lm-done { margin-top: 10px; margin-bottom: 10px; }
+  #wat-wall .wat-ch-sharebar { display: flex; justify-content: flex-end; padding: 10px 2px 2px; }
+  #wat-wall .wat-ch-share { font-size: 0.78rem; font-weight: 700; color: #33697f; text-decoration: none; border: 1px solid rgba(51,105,127,.35); border-radius: 999px; padding: 5px 12px; background: rgba(255,255,255,.7); cursor: pointer; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  #wat-wall .wat-ch-share:hover, #wat-wall .wat-ch-share.is-copied { background: #33697f; color: #fff; }
+  #wat-wall .wat-live-match { scroll-margin-top: 110px; }
   /* (am) a completed challenge on the Challenges tab: the site's blue, not the running gold */
   #wat-wall .wat-live-match.wat-lm-blue { background: #eaf3f7; border-color: #bcd7e2; margin: 0 -4px 12px !important; }
   #wat-wall .wat-live-match.wat-lm-blue .wat-amt { color: #33697f; }
