@@ -3711,7 +3711,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var _adl = document.getElementById('wat-alldonors');
     if (_adl && window.WAT_DONOR_COUNT) _adl.innerHTML = 'See all ' + window.WAT_DONOR_COUNT + ' donors &rarr;';
     if (activeTab === 'challenges') {
-      var _chRows = renderChallenges(); _chRows = liveMatchCards().concat(_chRows);
+      /* (am) 2026-11-14 -- THE OSTERS' FINISHED CHALLENGE HAD VANISHED FROM THIS TAB (Nirvan). A finished match stops being
+         pinned (it moves into the Recent timeline at the gift that completed it), and this tab only ever showed the pinned
+         ones plus the older recorded challenges -- so the moment the $60k was met, its card had nowhere to be. It is listed
+         here again, in the completed blue instead of the running gold, above the earlier completed challenges (newest
+         first), and it still opens to show everyone who joined it. */
+      var _chRows = renderChallenges(); _chRows = liveMatchCards().concat(liveMatchDoneCards(), _chRows);
       var _chWasOpen = [].map.call(listEl.querySelectorAll('.wat-ch-card.wat-ch-open'), function (c) { return c.id; });   /* (kk) the order toggle re-renders: keep open cards open */
       listEl.innerHTML = _chRows.join('');
       _chWasOpen.forEach(function (id) { var c = document.getElementById(id); if (c) { c.classList.add('wat-ch-open'); c.setAttribute('aria-expanded', 'true'); } });
@@ -3833,6 +3838,19 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var ended = Date.now() > new Date(M.end).getTime();
     order = order.filter(function (i) { var st = 0; for (var k = 0; k < i; k++) st += L[k].cap; return ended ? false : got < st + L[i].cap; });
     return order.map(function (i) { return liveMatchCard(i); }).filter(Boolean);
+  }
+  function liveMatchDoneCards() {
+    var M = window.WAT_LIVE_MATCH; if (!M || !M.on) return [];
+    var got = window.WAT_MATCHED ? window.WAT_MATCHED() : 0, L = poolLegsOf(M), out = [];
+    var clean = cleanDonors(wall.donors); allocateMatch(clean);
+    for (var i = L.length - 1; i >= 0; i--) {                       /* the most recently finished first */
+      var st = 0; for (var k = 0; k < i; k++) st += L[k].cap;
+      if (got < st + L[i].cap) continue;
+      var by = null; clean.forEach(function (d) { if (!by && d._done && d._done.indexOf(i) > -1) by = d; });
+      var c = liveMatchCard(i, by || {});
+      if (c) out.push(c.replace('wat-live-match wat-lm-done', 'wat-live-match wat-lm-done wat-lm-blue'));
+    }
+    return out;
   }
   function liveMatchCard(leg, doneBy) {   /* doneBy (rr) = the gift that completed this match, when the card sits in the timeline */
     var M = window.WAT_LIVE_MATCH; if (!M || !M.on) return '';
@@ -4099,7 +4117,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   #wat-wall .wat-lm-toggle:hover { text-decoration: underline; }
   #wat-wall .wat-live-match.wat-lm-next { opacity: .8; }
   #wat-wall .wat-live-match .wat-lm-when { display: block; margin-top: 3px; font-weight: 400; }   /* (rr) */
-  #wat-wall .wat-live-match.wat-lm-done { margin-top: 10px; margin-bottom: 10px; }   /* (ff) Kasey & David's card until their match starts */
+  #wat-wall .wat-live-match.wat-lm-done { margin-top: 10px; margin-bottom: 10px; }
+  /* (am) a completed challenge on the Challenges tab: the site's blue, not the running gold */
+  #wat-wall .wat-live-match.wat-lm-blue { background: #eaf3f7; border-color: #bcd7e2; margin: 0 -4px 12px !important; }
+  #wat-wall .wat-live-match.wat-lm-blue .wat-amt { color: #33697f; }
+  #wat-wall .wat-live-match.wat-lm-blue .wat-lm-when { color: #4b7f95; }   /* (ff) Kasey & David's card until their match starts */
   #wat-wall .wat-lm-chev { display: inline-block; transition: transform .2s ease; }
   #wat-wall .wat-lm-on .wat-lm-chev { transform: rotate(90deg); }
   #wat-wall .wat-lm-list { margin: 10px 0 0 44px; }
