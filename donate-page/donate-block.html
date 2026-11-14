@@ -3990,11 +3990,51 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   var tiersToggle = document.getElementById('wat-tiers-toggle');
   var tiersPanel = document.getElementById('wat-tiers-panel');
   if (tiersToggle && tiersPanel) {
-    tiersToggle.addEventListener('click', function () {
-      var open = tiersPanel.hasAttribute('hidden');
-      if (open) { tiersPanel.removeAttribute('hidden'); } else { tiersPanel.setAttribute('hidden', ''); }
-      tiersToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    /* (ao) 2026-11-14 (Nirvan): "It should open as a pop up on the page, not embedded into that widget ... can't see all
+       the info as it is too much." The perks + credit levels now open in a window over the page (scrolls inside itself;
+       closes with the x, a click outside it, or Esc). The panel itself is the same one, moved into the window, and its
+       styling is carried over by repeating the widget's rules for the window. */
+    var tPop = null;
+    function tStyles() {
+      if (document.getElementById('wat-tiers-pop-css')) return;
+      var out = [], re = /wat-(tiers|tier|pk)/;
+      var take = function (rules, wrap) { for (var i = 0; i < rules.length; i++) { var r = rules[i];
+        if (r.selectorText && r.selectorText.indexOf('#wat-wall') > -1 && re.test(r.selectorText)) { var t = r.cssText.split('#wat-wall').join('#wat-tiers-pop'); out.push(wrap ? wrap + '{' + t + '}' : t); }
+        else if (r.media && r.cssRules && !wrap) take(r.cssRules, '@media ' + r.media.mediaText); } };
+      [].forEach.call(document.styleSheets, function (ss) { try { take(ss.cssRules); } catch (e) {} });
+      var st = document.createElement('style'); st.id = 'wat-tiers-pop-css';
+      st.textContent = out.join('\n') +
+        '#wat-tiers-pop{position:fixed;inset:0;z-index:2147482500;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(30,24,60,.6);opacity:0;transition:opacity .2s;font-family:"Source Sans Pro","Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1f2430;box-sizing:border-box}' +
+        '#wat-tiers-pop.is-on{opacity:1}#wat-tiers-pop *{box-sizing:border-box}' +
+        '#wat-tiers-pop .wat-tp-box{position:relative;width:min(760px,100%);max-height:min(88vh,900px);overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;border-radius:18px;box-shadow:0 24px 70px rgba(15,8,50,.45);padding:22px 22px 20px;transform:translateY(14px) scale(.98);transition:transform .22s}' +
+        '#wat-tiers-pop.is-on .wat-tp-box{transform:none}' +
+        '#wat-tiers-pop .wat-tp-title{font-size:1.25rem;font-weight:800;margin:0 40px 12px 2px}' +
+        '#wat-tiers-pop .wat-tp-x{position:sticky;float:right;top:0;margin:-6px -6px 0 0;width:38px;height:38px;border:0;border-radius:50%;background:#eef0f5;color:#3a4051;font-size:22px;line-height:1;cursor:pointer;z-index:5}' +
+        '#wat-tiers-pop .wat-tp-x:hover{background:#dfe3ec}' +
+        '#wat-tiers-pop .wat-tiers-panel{margin-top:0;border:0;padding:0;background:transparent}' +
+        '@media(max-width:560px){#wat-tiers-pop{padding:10px}#wat-tiers-pop .wat-tp-box{padding:16px 14px;max-height:92vh}}';
+      document.head.appendChild(st);
+    }
+    var tHome = document.createComment('wat-tiers-home'); tiersPanel.parentNode.insertBefore(tHome, tiersPanel);
+    function tClose() {
+      if (!tPop) return; var p = tPop; tPop = null; p.classList.remove('is-on');
+      tiersToggle.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = '';
+      setTimeout(function () { tiersPanel.setAttribute('hidden', ''); tHome.parentNode.insertBefore(tiersPanel, tHome.nextSibling); if (p.parentNode) p.parentNode.removeChild(p); }, 200);
+      try { tiersToggle.focus(); } catch (e) {}
+    }
+    function tOpen() {
+      if (tPop) return; tStyles();
+      tPop = document.createElement('div'); tPop.id = 'wat-tiers-pop'; tPop.setAttribute('role', 'dialog'); tPop.setAttribute('aria-modal', 'true'); tPop.setAttribute('aria-label', 'Donor perks and film credits');
+      tPop.innerHTML = '<div class="wat-tp-box"><button type="button" class="wat-tp-x" aria-label="Close">&times;</button><div class="wat-tp-title">Donor perks &amp; film credits</div></div>';
+      tPop.firstChild.appendChild(tiersPanel); tiersPanel.removeAttribute('hidden');
+      document.body.appendChild(tPop); document.documentElement.style.overflow = 'hidden';
+      tiersToggle.setAttribute('aria-expanded', 'true');
+      tPop.addEventListener('click', function (e) { if (e.target === tPop || (e.target.closest && e.target.closest('.wat-tp-x'))) tClose(); });
+      requestAnimationFrame(function () { if (tPop) tPop.classList.add('is-on'); });
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && tPop) tClose(); });
+    tiersToggle.addEventListener('click', function () { if (tPop) tClose(); else tOpen(); });
   }
 
   var wthBtnW = document.getElementById('wat-wth-btn');
