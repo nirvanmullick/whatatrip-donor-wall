@@ -2063,5 +2063,12 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/zem-and-james-joaquin",
   "goes_to": "https://whatatrip.com/donors#donor-zem-and-james-joaquin"
+ },
+ {
+  "slug": "zhana-vrangalova",
+  "name": "Zhana Vrangalova",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/zhana-vrangalova",
+  "goes_to": "https://whatatrip.com/donors#donor-zhana-vrangalova"
  }
 ]
