@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T03:38:22.166Z",
+  "updated": "2026-11-14T10:59:26.627Z",
   "count": 95,
   "source": "pledge-json-v2",
   "totals": {
@@ -50,7 +50,7 @@
       "name": "Jamie Frankenberg",
       "anonymous": false,
       "amount": 5,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -68,7 +68,7 @@
       "name": "Nathen Willard",
       "anonymous": false,
       "amount": 500,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -169,7 +169,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -340,7 +340,7 @@
       "name": "Lyubomir-Michele Uzunov",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -349,7 +349,7 @@
       "name": "Lauren Elizabeth Taus",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -358,7 +358,7 @@
       "name": "valerie beltran",
       "anonymous": false,
       "amount": 50,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -846,7 +846,7 @@
       "name": "Peter Kennedy",
       "anonymous": false,
       "amount": 10000,
-      "time": "3 months ago",
+      "time": "4 months ago",
       "matched": true
     },
     {
@@ -855,7 +855,7 @@
       "name": "Charles Johnston",
       "anonymous": false,
       "amount": 100,
-      "time": "3 months ago",
+      "time": "4 months ago",
       "matched": true
     }
   ]
