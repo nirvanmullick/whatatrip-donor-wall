@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T23:42:14.215Z",
+  "updated": "2026-11-14T03:38:22.166Z",
   "count": 95,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "David Roth",
       "anonymous": false,
       "amount": 15000,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -367,7 +367,7 @@
       "name": "Kayla Soibelman",
       "anonymous": false,
       "amount": 111,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
