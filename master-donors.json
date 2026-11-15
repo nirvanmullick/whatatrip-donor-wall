@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-15T08:50:08.031Z",
- "count": 299,
+ "updated": "2026-11-15T20:33:46.131Z",
+ "count": 300,
  "gifts": [
+  {
+   "date": "2026-11-15T09:30:03.529-08:00",
+   "name": "",
+   "name_on_record": "",
+   "amount": 1000,
+   "source": "pledge",
+   "anonymous": true,
+   "matched": true,
+   "pledge_id": 34037736,
+   "via": "",
+   "comment": "Thanks for this awesome + inspiring + important work - it was great to be part of the salon at Lightening Society too!",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-14T07:26:23.185-08:00",
    "name": "Zhana Vrangalova",
