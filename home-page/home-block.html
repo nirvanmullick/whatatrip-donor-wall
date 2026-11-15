@@ -377,13 +377,20 @@ function renderLive(){renderHero();renderBudget();renderChallenges()}
 function toast(t){var e=document.getElementById('wath-toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},3200)}
 function openOv(id){var o=T.querySelector('#'+id);o.classList.add('on');document.documentElement.style.overflow='hidden';var x=o.querySelector('.x');if(x)x.focus()}
 function closeOv(){$$('.ov.on',T).forEach(function(o){o.classList.remove('on')});document.documentElement.style.overflow=''}
-function give(){var a=document.getElementById('wath-plg');if(a)a.click();else location.href='/donate'}
+/* Pledge's pop-up is an iframe on pledge.to; "amount" in its address pre-fills the form (checked 2026-11-15). */
+var giveAmt=0,giveObs=null;
+function plgFrames(){return [].slice.call(document.querySelectorAll('iframe.plg-donate-iframe,iframe[src*="pledge.to/widgets/donate"]'))}
+function setAmt(f){try{var u=new URL(f.src),cur=u.searchParams.get('amount')||'';var want=giveAmt>0?String(giveAmt):'';if(cur===want)return;if(want)u.searchParams.set('amount',want);else u.searchParams.delete('amount');f.src=u.toString()}catch(e){}}
+function give(amt){giveAmt=+amt>0?Math.round(+amt):0;var a=document.getElementById('wath-plg');if(!a){location.href='/donate';return}
+  if(!giveObs&&window.MutationObserver){giveObs=new MutationObserver(function(){plgFrames().forEach(setAmt)});giveObs.observe(document.body,{childList:true,subtree:true})}
+  plgFrames().forEach(setAmt);a.click();
+  var n=0,t=setInterval(function(){plgFrames().forEach(setAmt);if(++n>12)clearInterval(t)},250)}
 function onClick(e){var t=e.target.closest&&e.target.closest('[data-trailer],[data-give],[data-chart],[data-close],[data-copy],[data-toast],[data-lock],[data-sup],[data-supmore],[data-comsort],[data-more],[data-car],a[href^="#wath-"]');
   if(e.target.classList&&e.target.classList.contains('ov')){closeOv();return}
   if(!t||!(R.contains(t)||T.contains(t))||t.id==='wath-plg')return;
   if(t.hasAttribute('data-trailer')){e.preventDefault();if(!t.classList.contains('playing')){t.classList.add('playing');t.removeAttribute('href');t.innerHTML='<iframe src="https://player.vimeo.com/video/1234707304?h=313cfa6ae7&autoplay=1&title=0&byline=0&portrait=0" title="WHAT A TRIP: The Rick Doblin Story (work-in-progress trailer)" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'}}
   else if(t.hasAttribute('data-chart')){e.preventDefault();renderChart();openOv('ov-chart')}
-  else if(t.hasAttribute('data-give')){e.preventDefault();give()}
+  else if(t.hasAttribute('data-give')){e.preventDefault();give(t.getAttribute('data-give'))}
   else if(t.hasAttribute('data-close'))closeOv();
   else if(t.hasAttribute('data-sup')){supTab=t.getAttribute('data-sup');renderDonations()}
   else if(t.hasAttribute('data-supmore')){supN[supTab]+=20;renderDonations()}
