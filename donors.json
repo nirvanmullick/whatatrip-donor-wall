@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T07:56:17.248Z",
+  "updated": "2026-11-15T15:36:28.250Z",
   "count": 96,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Zhana Vrangalova",
       "anonymous": false,
       "amount": 100,
-      "time": "16 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "David Roth",
       "anonymous": false,
       "amount": 15000,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
       "name": "Alexa Albert",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -50,7 +50,7 @@
       "ts": "2026-11-10T17:41:30.520-08:00",
       "anonymous": true,
       "amount": 250,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
@@ -68,7 +68,7 @@
       "name": "Don Wirtshafter",
       "anonymous": false,
       "amount": 500,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -242,7 +242,7 @@
       "name": "Elizabeth Gillooly",
       "anonymous": false,
       "amount": 50,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -251,7 +251,7 @@
       "name": "Wendy c Franco",
       "anonymous": false,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -259,7 +259,7 @@
       "ts": "2026-10-15T19:00:03.305-07:00",
       "anonymous": true,
       "amount": 20,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -268,7 +268,7 @@
       "name": "Julissa Vasquez",
       "anonymous": false,
       "amount": 150,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -277,7 +277,7 @@
       "name": "Anya Kamenetz",
       "anonymous": false,
       "amount": 1000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -286,7 +286,7 @@
       "name": "Valentin Somma",
       "anonymous": false,
       "amount": 50,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -295,7 +295,7 @@
       "name": "Cicek Erdem",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -304,7 +304,7 @@
       "name": "Santos Rodriguez",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -313,7 +313,7 @@
       "name": "Chris Kantrowitz",
       "anonymous": false,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -322,7 +322,7 @@
       "name": "Adriaan Kolff",
       "anonymous": false,
       "amount": 100,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "comment": "What an incredible story! Thank you!!",
       "matched": true
     },
@@ -331,7 +331,7 @@
       "ts": "2026-10-15T18:47:59.940-07:00",
       "anonymous": true,
       "amount": 200,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
