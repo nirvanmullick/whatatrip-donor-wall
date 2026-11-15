@@ -337,6 +337,12 @@
 :is(#wath,#wath-top) .hero .match{padding:9px 14px;font-size:14.5px;line-height:1.4}
 :is(#wath,#wath-top) .hero .fine{font-size:12.5px;margin-top:-2px}
 :is(#wath,#wath-top) [data-hero] b,:is(#wath,#wath-top) [data-hero] .nms,:is(#wath,#wath-top) [data-hero] .hsub,:is(#wath,#wath-top) .kstats b,:is(#wath,#wath-top) [data-mneed]{font-variant-numeric:tabular-nums}
+:is(#wath,#wath-top) .video{container-type:inline-size}
+:is(#wath,#wath-top) .video:not(.playing):before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,21,38,.5) 0%,rgba(27,21,38,.12) 38%,rgba(27,21,38,0) 60%)}
+:is(#wath,#wath-top) .vt{position:absolute;left:0;right:0;top:9%;display:flex;flex-direction:column;align-items:center;gap:1.4cqw;text-align:center;color:#fff;padding:0 4%;text-shadow:0 2px 18px rgba(27,21,38,.45)}
+:is(#wath,#wath-top) .vt b{font-size:10.5cqw;line-height:.95;font-weight:900;letter-spacing:.01em;white-space:nowrap}
+:is(#wath,#wath-top) .vt i{font-style:normal;font-size:3.5cqw;line-height:1.1;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#d9e2ff;white-space:nowrap}
+:is(#wath,#wath-top) .play{top:60%}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -428,7 +434,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 <div id="wath">
 <section class="hero"><div class="wrap">
 <h1>Help bring Rick Doblin&rsquo;s story to the screen</h1><p class="sub" style="font-size:18px">A documentary following Rick&rsquo;s 40+ year journey with MAPS to bring psychedelics back into culture.</p>
-<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="background-image:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=1500w)"><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg></span></a>
+<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="background-image:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=1500w)"><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><i>The Rick Doblin Story</i></span><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg></span></a>
 <div style="display:flex;flex-direction:column;gap:16px"><div data-hero style="display:flex;flex-direction:column;gap:12px"></div>
 
 <div class="kstats" data-kstats></div><div class="match" data-matchline></div>
