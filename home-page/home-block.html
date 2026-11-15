@@ -443,6 +443,8 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .fa-win.g2 .fa-t{aspect-ratio:16/10}
 :is(#wath,#wath-top) .fa svg{height:96px;width:auto}
 :is(#wath,#wath-top) .ups{max-width:none}
+:is(#wath,#wath-top) .match .mh{display:block;color:#2c2208;font-size:16.5px;font-weight:800;margin-bottom:2px}
+:is(#wath,#wath-top) .match b{color:#2c2208}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -616,7 +618,7 @@ function paintHero(r){var need=Math.max(0,ROUGH_GOAL-r),pct=Math.min(100,Math.ro
   var ms=now?'<a class="nm" href="#wath-budget"><span class="nmrow"><span class="nmt"><span class="tag" style="color:#6152a0">NEXT MILESTONE</span><b>'+short(now.c)+' for '+esc(now.n)+'</b></span><b class="nmgo">'+money(now.c-now.r)+' to go</b></span><span class="nmbar"><i style="width:'+(now.r/now.c*100).toFixed(2)+'%"></i></span><span class="nms">'+money(now.r)+' raised of '+money(now.c)+' · '+Math.round(now.r/now.c*100)+'% funded</span></a>':'';
   $$('[data-hero]').forEach(function(el){el.innerHTML='<div><b style="font-size:38px;color:#33697f;line-height:1">'+money(need)+'</b><div class="sub" style="margin:2px 0 0;font-size:16px;color:#1f2430;font-weight:600">still needed to finish the Rough Cut</div></div><div class="bar"><i style="width:'+Math.min(100,r/ROUGH_GOAL*100).toFixed(2)+'%;background:#33697f"></i></div><div class="hsub" style="font-size:14px;color:#5b6478;margin-top:-4px">'+money(r)+' raised of '+short(ROUGH_GOAL)+(S.count?' by '+S.count+' supporters':'')+' · '+pct+'% funded</div>'+ms});
   var dl=Math.max(0,Math.ceil((new Date(new Date().getFullYear(),11,31,23,59,59)-new Date())/864e5));$$('[data-kstats]').forEach(function(el){el.innerHTML='<div><b>'+money(r)+'</b><span>raised of '+short(ROUGH_GOAL)+'</span></div><div><b>'+(S.count||'')+'</b><span>supporters</span></div><div><b>'+dl+'</b><span>days left to match</span></div>'});$$('[data-mneed]',T).forEach(function(el){el.textContent=money(need)});
-  var left=pool()-matched();$$('[data-matchline]').forEach(function(el){el.hidden=left<=0;el.innerHTML='<strong style="color:#2c2208">Every gift is doubled right now.</strong> '+money(left)+' left in matching challenges through '+MATCH_END+'.'});
+  var left=pool()-matched();$$('[data-matchline]').forEach(function(el){el.hidden=left<=0;el.innerHTML='<strong class="mh">'+money(pool())+' Matching Challenge</strong>Every gift is being doubled right now. <b>'+money(left)+' left</b> in '+short(pool()).toLowerCase()+' matching challenge pool through '+MATCH_END+'.'});
   $$('[data-supcount]').forEach(function(el){el.textContent=S.count?S.count+' supporters and counting':'Our supporters'})}
 /* The hero figures count the last stretch on arrival (and again whenever a new gift lands), so the page feels alive. */
 var HA={shown:null,raf:0};
