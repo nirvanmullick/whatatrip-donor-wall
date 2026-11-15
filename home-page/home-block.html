@@ -228,9 +228,9 @@
 :is(#wath,#wath-top) .dgrid>.card{min-height:0}
 :is(#wath,#wath-top) .stages{flex-direction:column}}
 @media(max-width:520px){}
-/* test page only: the short main menu (Donor Wall, Impact, Donate). The logo already goes home. */
-.header-nav-item:has(> a[href="/about"]),.header-nav-item:has(> a[href="/trailer"]),.header-nav-item:has(> a[href="/budget"]),
-.header-menu-nav-item:has(a[href="/about"]),.header-menu-nav-item:has(a[href="/trailer"]),.header-menu-nav-item:has(a[href="/budget"]){display:none!important}
+/* test page only: the short main menu (About, Donor Wall, Impact, Donate). The logo already goes home. */
+.header-nav-item:has(> a[href="/trailer"]),.header-nav-item:has(> a[href="/budget"]),
+.header-menu-nav-item:has(a[href="/trailer"]),.header-menu-nav-item:has(a[href="/budget"]){display:none!important}
 
 #wath-top{font-family:'Source Sans 3',system-ui,sans-serif;color:#1f2430;line-height:1.45;text-align:left}
 :is(#wath,#wath-top) :where(h1,h2,h3,p,ul,ol,li,a,button,b,span,table,th,td,summary){font-family:inherit;letter-spacing:normal;text-transform:none}
@@ -403,6 +403,13 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 :is(#wath,#wath-top) .msd[open]>summary:hover{background:#e3def2}
 :is(#wath,#wath-top) .fq>summary{margin:0 -12px;padding:15px 12px;border-radius:10px;transition:background .15s}
 :is(#wath,#wath-top) .fq>summary:hover,:is(#wath,#wath-top) .fq>summary:focus-visible{background:#e3def2}
+:is(#wath,#wath-top) .subnav .snl{position:relative;gap:2px}
+:is(#wath,#wath-top) .subnav .snl a{position:relative;z-index:1;padding:13px 12px;transition:color .2s}
+:is(#wath,#wath-top) .subnav .snl a.on,:is(#wath,#wath-top) .subnav .snl a.on:hover{color:#fff}
+:is(#wath,#wath-top) .snp{position:absolute;left:0;top:50%;width:0;height:30px;margin-top:-15px;border-radius:999px;background:#6152a0;opacity:0;transition:left .28s cubic-bezier(.3,.7,.3,1),width .28s cubic-bezier(.3,.7,.3,1),opacity .2s;z-index:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .snp{transition:none}}
+@media(max-width:700px){:is(#wath,#wath-top) .subnav .snl{gap:0;padding-right:18px}:is(#wath,#wath-top) .subnav .wrap{padding-left:8px}}
+@media(min-width:701px){:is(#wath,#wath-top) .subnav .snl{margin-left:-12px}}
 :is(#wath,#wath-top) .skel{color:transparent!important;background:linear-gradient(90deg,#e9e6f1,#f5f3fa,#e9e6f1);border-radius:8px}
 </style>
 <div id="wath">
@@ -596,6 +603,15 @@ function askCount(){return get(U.count).then(function(j){if(j&&Number(j.donors)>
 renderUpdates();askPledge();askList();askCount();askUpdates();
 setInterval(function(){if(!document.hidden)askPledge()},45000);
 setInterval(function(){if(!document.hidden){askList();askCount()}},300000);
+/* the pill in the menu bar slides to whichever section you are reading */
+(function(){var snl=$('.subnav .snl');if(!snl)return;var pill=document.createElement('span');pill.className='snp';snl.insertBefore(pill,snl.firstChild);var links=$$('.subnav .snl a'),cur=null,tick=0,lock=0;
+  function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
+    pill.style.left=a.offsetLeft+'px';pill.style.width=a.offsetWidth+'px';pill.style.opacity='1';
+    if(snl.scrollWidth>snl.clientWidth){var want=a.offsetLeft-Math.max(12,(snl.clientWidth-a.offsetWidth)/2);try{snl.scrollTo({left:Math.max(0,want),behavior:'smooth'})}catch(e){snl.scrollLeft=Math.max(0,want)}}}
+  function spy(){tick=0;if(Date.now()<lock)return;var bar=$('.subnav').getBoundingClientRect().bottom+24,best=null,bestTop=-1e9;
+    links.forEach(function(l){var el=document.getElementById(l.getAttribute('href').slice(1));if(!el)return;var t=el.getBoundingClientRect().top;if(t<=bar&&t>bestTop){bestTop=t;best=l}});set(best)}
+  window.addEventListener('scroll',function(){if(!tick)tick=requestAnimationFrame(spy)},{passive:true});window.addEventListener('resize',function(){var a=cur;cur=null;set(a)});
+  snl.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a){set(a);lock=Date.now()+900}});setTimeout(spy,300)})();
 var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fitCommunity,200)});setTimeout(fitCommunity,400);setTimeout(fitCommunity,1500);
 /* phone preview (test page) */
 if(window.self!==window.top)document.documentElement.classList.add('wath-framed');
