@@ -1463,6 +1463,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-mckayan-may"
  },
  {
+  "slug": "meg-and-david-roth",
+  "name": "Meg & David Roth",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/meg-and-david-roth",
+  "goes_to": "https://whatatrip.com/donors#donor-meg-and-david-roth"
+ },
+ {
   "slug": "megan-portnoy",
   "name": "Megan Portnoy",
   "kind": "donor",
