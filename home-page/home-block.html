@@ -667,6 +667,10 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mck{justify-content:flex-start}
 #wath-top .mlogo,#wath-top .msamp,#wath-top .mswap{white-space:nowrap}
 @media(max-width:700px){#wath-top .mtop .minner:first-child{gap:8px}#wath-top .mlogo{font-size:15px}#wath-top .msamp:after{content:"Sample";font-size:11.5px}#wath-top .msamp{padding:3px 8px}#wath-top .mx2{width:34px;height:34px}}
+:is(#wath,#wath-top) .vk .k2,:is(#wath,#wath-top) .vk .k3{display:none}
+:is(#wath,#wath-top) .vk .k1{transform-origin:50% 71%;animation:wathZoom 30s linear infinite}
+@keyframes wathZoom{0%{transform:scale(1.1);opacity:0}3%{opacity:1}82%{transform:scale(2.6);opacity:1}95%{transform:scale(2.6);opacity:1}100%{transform:scale(2.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .vk .k1{transform:scale(1.7)}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
