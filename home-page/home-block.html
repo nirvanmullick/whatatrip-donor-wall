@@ -228,6 +228,10 @@
 :is(#wath,#wath-top) .dgrid>.card{min-height:0}
 :is(#wath,#wath-top) .stages{flex-direction:column}}
 @media(max-width:520px){}
+/* test page only: the short main menu (Donor Wall, Impact, Donate). The logo already goes home. */
+.header-nav-item:has(> a[href="/about"]),.header-nav-item:has(> a[href="/trailer"]),.header-nav-item:has(> a[href="/budget"]),
+.header-menu-nav-item:has(a[href="/about"]),.header-menu-nav-item:has(a[href="/trailer"]),.header-menu-nav-item:has(a[href="/budget"]){display:none!important}
+
 #wath-top{font-family:'Source Sans 3',system-ui,sans-serif;color:#1f2430;line-height:1.45;text-align:left}
 :is(#wath,#wath-top) :where(h1,h2,h3,p,ul,ol,li,a,button,b,span,table,th,td,summary){font-family:inherit;letter-spacing:normal;text-transform:none}
 :is(#wath,#wath-top) :where(h1,h2,h3){font-weight:800;color:#1f2430;margin:0;line-height:1.15}
@@ -270,6 +274,16 @@
 :is(#wath,#wath-top) .fq summary::-webkit-details-marker{display:none}
 :is(#wath,#wath-top) .fq[open] .chev{transform:rotate(180deg)}
 :is(#wath,#wath-top) .fq p{margin:0 0 16px;color:#3a4051;font-size:16px;line-height:1.55;max-width:680px}
+:is(#wath,#wath-top) .card.tndd{background:#1b1e2b;border-color:#1b1e2b;color:#fff;gap:28px;padding:28px}
+:is(#wath,#wath-top) .tndl{flex:0 0 auto;width:min(300px,100%);height:auto;display:block}
+:is(#wath,#wath-top) .tndt{flex:1;min-width:260px}
+:is(#wath,#wath-top) .tndt .tag{color:#9db7ff}
+:is(#wath,#wath-top) .tndt h2{color:#fff;font-size:24px;margin:6px 0 8px;line-height:1.2}
+:is(#wath,#wath-top) .tndt p{color:#d6d9e6;margin:0 0 16px;font-size:16px;line-height:1.5}
+:is(#wath,#wath-top) .tndb{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+:is(#wath,#wath-top) .btn.tj{background:#2f8cff;border-color:#2f8cff;color:#fff;display:inline-flex;align-items:center;text-decoration:none;padding:0 26px}
+:is(#wath,#wath-top) .tm{color:#fff;font-weight:700}
+@media(max-width:700px){:is(#wath,#wath-top) .card.tndd{justify-content:center}:is(#wath,#wath-top) .tndl{margin:0 auto}}
 :is(#wath,#wath-top) .skel{color:transparent!important;background:linear-gradient(90deg,#e9e6f1,#f5f3fa,#e9e6f1);border-radius:8px}
 </style>
 <div id="wath">
@@ -392,7 +406,7 @@ function renderTiles(){var T2=[['VIDEO','A public teaser clip','Open to everyone
 var IMG='https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/';
 var FEAT=[[25000,'$25K+','A week at Arcturus','Stay for a week in Arcturus.','a',IMG+'1175374f-153d-4c3f-a06c-693efe0c820a/Arcturus_Exterior.png?format=750w'],[100000,'$100K+','Private dinner with Rick','Sit down to dinner with Rick Doblin.','b'],[250000,'$250K+','Guided therapy with Rick','A guided session with Rick in Arcturus.','c',IMG+'2cd821c0-6504-4f70-829a-280be526ee4b/Arcturus_Therapy_blurred.png?format=750w'],[25000,'$25K+','Zoom with Rick Doblin','Join a Zoom with Rick as part of the Inner Circle.','d'],[25000,'$25K+','Premiere invite','Join us at the premiere.','e',IMG+'b9c48c42-1e1d-4d74-9c65-e533da7e89b3/WAT_theater_pre_visual.png?format=750w'],[5000,'$5K+','Your name in the film','A Special Thanks credit in the film itself.','f'],[5000,'$5K+','Zoom with the filmmakers','Plus the Film Advisory WhatsApp group.','c'],[500,'$500+','Legalize Rick Inception shirts <span class="soon">Coming soon</span>','Give or raise $500 to unlock the supporters-only shirts in our store.','e'],[500,'$500+','Extra film features','And exclusive updates from the edit room.','d'],[5,'$5+','Your name on the donor wall','Every donor is listed on our online donor wall.','a']];
 function renderFeat(){$$('[data-feat]').forEach(function(el){el.innerHTML=FEAT.map(function(f){return '<div class="ft ft-'+f[4]+(f[5]?' ph':'')+'"'+(f[5]?' style="background-image:url('+f[5]+')"':'')+'><span class="fpr"><span class="fp">'+f[1]+'</span><span class="fl">'+levelFor(f[0]).n+' level</span></span><div class="fb"><b>'+f[2]+'</b><p>'+f[3]+'</p><button class="btn gold" data-gor="'+f[0]+'" data-lab="'+f[1].replace('+','')+'" data-gold="1" aria-expanded="false">Give or raise '+f[1].replace('+','')+'</button></div></div>'}).join('')+'<div class="ft ft-x"><span class="fpr"><span class="fp" style="background:#6152a0;color:#fff">Have something to offer?</span></span><div class="fb"><b>Donate an experience</b><p>Offer a stay, a dinner, a session or something else special, and we can offer it to supporters as a perk.</p><a class="btn pri" style="display:inline-flex;align-items:center;text-decoration:none" href="/contact">Send us a message</a></div></div>'})}
-function renderTnd(){$$('[data-tnd]').forEach(function(el){el.innerHTML='<div style="flex:1;min-width:240px"><div class="tag" style="color:#6152a0">OUR IMPACT CAMPAIGN · LAUNCHING WITH THE FILM</div><h2 style="margin:4px 0">TRUTH Not DARE</h2><p style="margin:0 0 8px;color:#3a4051">An honest conversation about the real risks and benefits of psychedelics.</p><a href="/impact" style="font-weight:700">See the impact campaign</a></div>'})}
+function renderTnd(){$$('[data-tnd]').forEach(function(el){el.classList.add('tndd');el.innerHTML='<img class="tndl" src="https://truthnotdare.org/logo.webp" width="1200" height="844" loading="lazy" alt="T.R.U.T.H. Not D.A.R.E."><div class="tndt"><div class="tag">OUR IMPACT CAMPAIGN · LAUNCHING WITH THE FILM</div><h2>An honest conversation about the real risks and benefits of psychedelics.</h2><p>We are building T.R.U.T.H. Not D.A.R.E. with Rick Doblin as our co-founder, and adding partners, advisers and collaborators. Join us.</p><div class="tndb"><a class="btn tj" target="_blank" rel="noopener" href="https://truthnotdare.org/#join">Join us</a><a class="tm" href="/impact">See the impact campaign</a></div></div>'})}
 function renderChart(){var el=$('[data-chartbody]',T);if(el)el.innerHTML='<table><thead><tr><th scope="col" style="text-align:left;color:#5b6478;font-size:12px;letter-spacing:.08em">WHAT YOU GET</th>'+LEVELS.map(function(l){return '<th scope="col">'+l.l+'<small>'+l.n+'</small></th>'}).join('')+'</tr></thead><tbody>'+PERKS.map(function(p){return '<tr><th scope="row">'+p[0]+'</th>'+LEVELS.map(function(l){return '<td>'+(l.min>=p[1]?'<span class="yes" aria-label="Included">✓</span>':'<span class="no" aria-label="Not included">–</span>')+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>'}
 function renderLive(){renderHero();renderBudget();renderChallenges()}
 function toast(t){var e=document.getElementById('wath-toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},3200)}
@@ -430,6 +444,8 @@ document.addEventListener('click',onClick);
 R.addEventListener('toggle',function(e){var d=e.target;if(d&&d.getAttribute&&d.getAttribute('data-ms')&&d.__u)budOpen[d.getAttribute('data-ms')]=d.open},true);
 R.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('details.msd>summary');if(s)s.parentNode.__u=1},true);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeOv()});
+/* the main menu's Donate opens the pop-up here instead of leaving the page */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('header a[href="/donate"]');if(a&&!e.metaKey&&!e.ctrlKey){e.preventDefault();give()}},true);
 if(!document.querySelector('script[src*="pledge.to/embed/widget.js"]')){var s=document.createElement('script');s.src='https://www.pledge.to/embed/widget.js';s.async=true;document.head.appendChild(s)}
 /* ---- first paint from what this browser remembers, then the live answers ---- */
 renderLevels();renderTiles();renderFeat();renderTnd();renderDonations();renderLive();
