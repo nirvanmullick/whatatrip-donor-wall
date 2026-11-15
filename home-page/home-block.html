@@ -777,6 +777,12 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mimb{display:flex;height:10px;overflow:hidden}
 #wath-top .mimb i{display:block;height:100%;border-radius:0}
 @media(max-width:700px){#wath-top .mimr{grid-template-columns:1fr}#wath-top .mlogo img{width:28px;height:28px}}
+:is(#wath,#wath-top) .tndb .btn.tj,:is(#wath,#wath-top) .tndb .btn.tf{background:linear-gradient(90deg,#2f9bff 0%,#a46ef2 25%,#e5311f 50%,#a46ef2 75%,#2f9bff 100%);background-size:200% 100%;animation:wathTnd 7s linear infinite;border:0;border-radius:3px;color:#fff;text-transform:uppercase;letter-spacing:.04em;font-weight:600;font-size:15px;min-height:50px;padding:0 26px;box-shadow:0 5px 21px rgba(144,98,135,.44),0 0 0 1px rgba(164,110,242,.08);display:inline-flex;align-items:center;text-decoration:none;transition:transform .15s,box-shadow .15s}
+:is(#wath,#wath-top) .tndb .btn.tf{animation-delay:-3.5s}
+:is(#wath,#wath-top) .tndb .btn.tj:hover,:is(#wath,#wath-top) .tndb .btn.tf:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(164,110,242,.55);color:#fff}
+@keyframes wathTnd{from{background-position:0% 0}to{background-position:200% 0}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .tndb .btn.tj,:is(#wath,#wath-top) .tndb .btn.tf{animation:none}}
+#header .wath-hlogo{margin:-9px 0}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
