@@ -336,6 +336,7 @@
 :is(#wath,#wath-top) .hero-grid>div{gap:12px!important}
 :is(#wath,#wath-top) .hero .match{padding:9px 14px;font-size:14.5px;line-height:1.4}
 :is(#wath,#wath-top) .hero .fine{font-size:12.5px;margin-top:-2px}
+:is(#wath,#wath-top) [data-hero] b,:is(#wath,#wath-top) [data-hero] .nms,:is(#wath,#wath-top) [data-hero] .hsub,:is(#wath,#wath-top) .kstats b,:is(#wath,#wath-top) [data-mneed]{font-variant-numeric:tabular-nums}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -474,7 +475,7 @@ function giftsRaised(){return ROUGH_BASE+S.pledge}
 function matched(){return Math.max(0,Math.min(pool(),giftsRaised()-MATCH_START))}
 function rough(){return giftsRaised()+matched()}
 function alloc(goals,amt){var left=amt;return goals.map(function(g){var r=Math.max(0,Math.min(g[1],left));left-=r;return {n:g[0],c:g[1],r:r,st:r>=g[1]?'done':''}})}
-function roughMs(){var A=alloc(ROUGHG,Math.min(rough(),ROUGH_GOAL)),f=false;A.forEach(function(m){if(!f&&m.st!=='done'){m.st='now';f=true}});return A}
+function roughMs(rv){var A=alloc(ROUGHG,Math.min(typeof rv==='number'?rv:rough(),ROUGH_GOAL)),f=false;A.forEach(function(m){if(!f&&m.st!=='done'){m.st='now';f=true}});return A}
 var LEVELS=[
  {min:5,l:'$5+',n:'Hitchhikers',p:['Your name on our online donor wall']},
  {min:500,l:'$500+',n:'MAPS Makers',p:['Extra film features','Exclusive updates','Access to buy Legalize Rick Inception shirts <span class="soon">Coming soon</span>']},
@@ -504,12 +505,22 @@ function tally(){TOTALS={};var disp={};S.gifts.forEach(function(g){if(isAnon(g))
 function ini(n){return n.split(/[ &]+/).filter(Boolean).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
 function av(n){var p=PHOTOS[String(n).toLowerCase()];if(!p)return '<span class="av">'+esc(ini(n))+'</span>';var st=(p.pos?'object-position:'+p.pos+';transform-origin:'+p.pos+';':'')+(p.zoom?'transform:scale('+p.zoom+');':'');return '<span class="av"><img alt="" loading="lazy" src="'+esc(p.src)+'" style="'+st+'"></span>'}
 /* ---- renderers ---- */
-function renderHero(){var r=rough(),need=Math.max(0,ROUGH_GOAL-r),pct=Math.min(100,Math.round(r/ROUGH_GOAL*100)),M=roughMs(),now=M.filter(function(m){return m.st==='now'})[0];
-  var ms=now?'<a class="nm" href="#wath-budget"><span class="nmrow"><span class="nmt"><span class="tag" style="color:#6152a0">NEXT MILESTONE</span><b>'+short(now.c)+' for '+esc(now.n)+'</b></span><b class="nmgo">'+money(now.c-now.r)+' to go</b></span><span class="nmbar"><i style="width:'+Math.round(now.r/now.c*100)+'%"></i></span><span class="nms">'+money(now.r)+' raised of '+money(now.c)+' · '+Math.round(now.r/now.c*100)+'% funded</span></a>':'';
-  $$('[data-hero]').forEach(function(el){el.innerHTML='<div><b style="font-size:38px;color:#33697f;line-height:1">'+money(need)+'</b><div class="sub" style="margin:2px 0 0;font-size:16px;color:#1f2430;font-weight:600">still needed to finish the Rough Cut</div></div><div class="bar"><i style="width:'+pct+'%;background:#33697f"></i></div><div class="hsub" style="font-size:14px;color:#5b6478;margin-top:-4px">'+money(r)+' raised of '+short(ROUGH_GOAL)+(S.count?' by '+S.count+' supporters':'')+' · '+pct+'% funded</div>'+ms});
+function paintHero(r){var need=Math.max(0,ROUGH_GOAL-r),pct=Math.min(100,Math.round(r/ROUGH_GOAL*100)),M=roughMs(r),now=M.filter(function(m){return m.st==='now'})[0];
+  var ms=now?'<a class="nm" href="#wath-budget"><span class="nmrow"><span class="nmt"><span class="tag" style="color:#6152a0">NEXT MILESTONE</span><b>'+short(now.c)+' for '+esc(now.n)+'</b></span><b class="nmgo">'+money(now.c-now.r)+' to go</b></span><span class="nmbar"><i style="width:'+(now.r/now.c*100).toFixed(2)+'%"></i></span><span class="nms">'+money(now.r)+' raised of '+money(now.c)+' · '+Math.round(now.r/now.c*100)+'% funded</span></a>':'';
+  $$('[data-hero]').forEach(function(el){el.innerHTML='<div><b style="font-size:38px;color:#33697f;line-height:1">'+money(need)+'</b><div class="sub" style="margin:2px 0 0;font-size:16px;color:#1f2430;font-weight:600">still needed to finish the Rough Cut</div></div><div class="bar"><i style="width:'+Math.min(100,r/ROUGH_GOAL*100).toFixed(2)+'%;background:#33697f"></i></div><div class="hsub" style="font-size:14px;color:#5b6478;margin-top:-4px">'+money(r)+' raised of '+short(ROUGH_GOAL)+(S.count?' by '+S.count+' supporters':'')+' · '+pct+'% funded</div>'+ms});
   var dl=Math.max(0,Math.ceil((new Date(new Date().getFullYear(),11,31,23,59,59)-new Date())/864e5));$$('[data-kstats]').forEach(function(el){el.innerHTML='<div><b>'+money(r)+'</b><span>raised of '+short(ROUGH_GOAL)+'</span></div><div><b>'+(S.count||'')+'</b><span>supporters</span></div><div><b>'+dl+'</b><span>days left to match</span></div>'});$$('[data-mneed]',T).forEach(function(el){el.textContent=money(need)});
   var left=pool()-matched();$$('[data-matchline]').forEach(function(el){el.hidden=left<=0;el.innerHTML='<strong style="color:#2c2208">Every gift is doubled right now.</strong> '+money(left)+' left in matching challenges through '+MATCH_END+'.'});
   $$('[data-supcount]').forEach(function(el){el.textContent=S.count?S.count+' supporters and counting':'Our supporters'})}
+/* The hero figures count the last stretch on arrival (and again whenever a new gift lands), so the page feels alive. */
+var HA={shown:null,raf:0};
+function renderHero(){var target=rough(),calm=false;try{calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  if(HA.raf){cancelAnimationFrame(HA.raf);HA.raf=0}
+  var from=HA.shown;
+  if(from===null){var now=roughMs(target).filter(function(m){return m.st==='now'})[0];from=Math.max(0,target-Math.min(ROUGH_GOAL*0.03,now?now.r:ROUGH_GOAL*0.03))}
+  if(calm||!window.requestAnimationFrame||Math.abs(target-from)<1){HA.shown=target;paintHero(target);return}
+  var t0=0,dur=1900;paintHero(from);HA.shown=from;
+  function step(ts){if(!t0)t0=ts+250;var k=Math.max(0,Math.min(1,(ts-t0)/dur)),e=1-Math.pow(1-k,3),v=Math.round(from+(target-from)*e);HA.shown=v;paintHero(v);HA.raf=k<1?requestAnimationFrame(step):0}
+  HA.raf=requestAnimationFrame(step)}
 var supTab='top',comSort='amt',supN={top:10,recent:10,comments:10};
 function comments(){var C=[];S.gifts.forEach(function(g){var c=String(g.comment||'').replace(/\s+/g,' ').trim();if(c.length>3)C.push({n:isAnon(g)?'Anonymous':nm(g),amt:isAnon(g)?(+g.amount||0):(TOTALS[nm(g).toLowerCase()]||+g.amount||0),d:String(g.date||''),t:c})});
   HANDQ.forEach(function(h){var k=h[0].toLowerCase();if(C.some(function(c){return c.n.toLowerCase()===k&&c.t===h[1]}))return;C.push({n:h[0],amt:TOTALS[k]||0,d:'',t:h[1]})});
