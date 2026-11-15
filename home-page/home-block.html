@@ -413,6 +413,36 @@
 @media(max-width:600px){:is(#wath,#wath-top) .upc{padding:20px 18px}:is(#wath,#wath-top) .upc h3{font-size:22px}:is(#wath,#wath-top) .upa{flex-wrap:wrap}:is(#wath,#wath-top) .upa .upd{margin-left:0;width:100%;text-align:left}}
 :is(#wath,#wath-top) .video:not(.playing):before{background:linear-gradient(180deg,rgba(27,21,38,.26) 0%,rgba(27,21,38,.04) 36%,rgba(27,21,38,0) 70%,rgba(27,21,38,.22) 100%);-webkit-backdrop-filter:brightness(1.3) saturate(1.12);backdrop-filter:brightness(1.3) saturate(1.12)}
 :is(#wath,#wath-top) .vt{text-shadow:0 2px 14px rgba(27,21,38,.6),0 0 2px rgba(27,21,38,.35)}
+:is(#wath,#wath-top) .video:not(.playing){background-image:none;background-color:#55507e}
+:is(#wath,#wath-top) .vk{position:absolute;inset:0;overflow:hidden;z-index:0}
+:is(#wath,#wath-top) .vk i{position:absolute;inset:0;background:var(--ph) center 30%/cover no-repeat;will-change:transform,opacity}
+:is(#wath,#wath-top) .vk .k1{transform-origin:50% 68%;transform:scale(1.7);animation:wathK1 26s linear infinite}
+:is(#wath,#wath-top) .vk .k2{transform-origin:50% 62%;opacity:0;animation:wathK2 26s linear infinite}
+:is(#wath,#wath-top) .vk .k3{transform-origin:14% 62%;opacity:0;animation:wathK3 26s linear infinite}
+@keyframes wathK1{0%{transform:scale(1.12)}40%{transform:scale(1.75)}95%{transform:scale(1.75)}95.01%{transform:scale(1.12)}100%{transform:scale(1.12)}}
+@keyframes wathK2{0%,37%{opacity:0;transform:scale(2.35)}40%{opacity:1}66%{opacity:1}69%,100%{opacity:0;transform:scale(2.65)}}
+@keyframes wathK3{0%,66%{opacity:0;transform:scale(1.75) translateX(0)}69%{opacity:1}96%{opacity:1}100%{opacity:0;transform:scale(1.75) translateX(-5%)}}
+:is(#wath,#wath-top) .video:not(.playing):before{z-index:1}
+:is(#wath,#wath-top) .video .vt,:is(#wath,#wath-top) .video .play{z-index:2}
+:is(#wath,#wath-top) .vt>*{opacity:0;animation:wathUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+:is(#wath,#wath-top) .vt>*:nth-child(1){animation-delay:.3s}:is(#wath,#wath-top) .vt>*:nth-child(2){animation-delay:.7s}:is(#wath,#wath-top) .vt>*:nth-child(3){animation-delay:1.2s}:is(#wath,#wath-top) .vt>*:nth-child(4){animation-delay:1.6s}
+:is(#wath,#wath-top) .vt{animation:wathFloat 9s ease-in-out 2.6s infinite}
+@keyframes wathUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes wathFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .vk i,:is(#wath,#wath-top) .vt,:is(#wath,#wath-top) .vt>*{animation:none!important}:is(#wath,#wath-top) .vt>*{opacity:1}:is(#wath,#wath-top) .vk .k2,:is(#wath,#wath-top) .vk .k3{opacity:0}}
+:is(#wath,#wath-top) .tov{position:fixed;inset:0;z-index:100000;background:rgba(14,10,24,.9);display:flex;align-items:center;justify-content:center;padding:56px 24px 24px;animation:wathFade .25s ease}
+:is(#wath,#wath-top) .tovf{position:relative;width:min(100%,calc((100vh - 96px)*16/9));aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+:is(#wath,#wath-top) .tovf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+:is(#wath,#wath-top) .tovx{position:absolute;top:10px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:28px;line-height:1;cursor:pointer}
+:is(#wath,#wath-top) .tovx:hover{background:rgba(255,255,255,.28)}
+@keyframes wathFade{from{opacity:0}to{opacity:1}}
+html.wath-noscroll{overflow:hidden}
+@media(max-width:700px){:is(#wath,#wath-top) .tov{padding:56px 0 24px}:is(#wath,#wath-top) .tovf{border-radius:0}}
+:is(#wath,#wath-top) .fa{bottom:50%}
+:is(#wath,#wath-top) .fa-win.g2{max-width:176px}
+:is(#wath,#wath-top) .fa-win.g2 .fa-t{aspect-ratio:16/10}
+:is(#wath,#wath-top) .fa svg{height:96px;width:auto}
+:is(#wath,#wath-top) .ups{max-width:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -504,7 +534,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 <div id="wath">
 <section class="hero"><div class="wrap">
 <h1>Help bring Rick Doblin&rsquo;s story to the screen</h1><p class="sub" style="font-size:18px">A documentary following Rick&rsquo;s 40+ year journey with MAPS to bring psychedelics back into culture.</p>
-<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="background-image:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vt" aria-hidden="true"><em>From Executive Producer <strong>Darren Aronofsky</strong></em><b>WHAT A TRIP</b><i>The Rick Doblin Story</i><span class="vb">A film by <strong>Nirvan Mullick</strong></span></span><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></a>
+<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><em>From Executive Producer <strong>Darren Aronofsky</strong></em><b>WHAT A TRIP</b><i>The Rick Doblin Story</i><span class="vb">A film by <strong>Nirvan Mullick</strong></span></span><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></a>
 <div style="display:flex;flex-direction:column;gap:16px"><div data-hero style="display:flex;flex-direction:column;gap:12px"></div>
 
 <div class="kstats" data-kstats></div><div class="match" data-matchline></div>
@@ -568,6 +598,7 @@ var BUL={"r": [["Hire two editors full-time for ~3 months on the first pass of A
 
 var PHOTOS={"anna & scott oster": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/e1731a77-c913-49a4-af5e-b007bc273f1e/Screenshot+2026-09-28+at+3.43.57%E2%80%AFPM.png?format=500w", "pos": "45.2% 35.3%", "zoom": 1.354}, "will nathan": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/5335b64a-7868-4faf-82cc-28f9cccf5e9b/profile_will_nathan.webp?format=500w"}, "jade netanya ullmann": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/f3cd8af6-2a4b-497f-a846-1ea8a70345c6/profile_jade-ullmann.png?format=500w"}, "analise roland": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/f0ebd1d6-3394-4946-80c3-16e9a1636b82/profile_analise_roland.jpeg?format=500w"}, "lyn lear": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/e8084fd7-5bbc-4da0-98de-f6d5ab141ef8/profile_Lyn%2BLear%2BHeadshot.webp?format=500w"}, "thor halvorssen": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/02bc9b40-77ac-453f-bc01-8a1821b71a6c/Profile-Thor-Halvorssen-V1.webp?format=500w"}, "blake mycoskie": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/027cbc72-a1fd-403b-9d95-b67cfcfda3a6/pic_blake_mycoskie.jpg?format=500w", "pos": "48% 20%", "zoom": 2.2}, "alex enchin": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/a166b89a-21a7-4916-b936-46c7c04be8bc/profile_alex-enchin.jpeg?format=300w"}, "khaliya khan": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/2ca245ef-7bd1-4815-99de-101a0a23c010/profile+_+khaliya_Khan.jpg?format=750w", "pos": "29% 20%", "zoom": 2.4}, "david choe": {"src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHXsFCv1EQWgvbbb5yeLvnlA1earrrmxVTN-gP4EqcLA&s=10", "pos": "50% 18%", "zoom": 2.3}, "rachel hamilton": {"src": "https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/b4f47436-f528-4275-9249-ee476b67d384/rachel-hamilton_1.jpg?format=500w"}, "meg & david roth": {"src": "https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@main/home-page/img/roth.jpg"}};
 var HANDQ=[["Rachel Hamilton", "I'm super inspired by this film! As a believer in the power of documentaries, the promise of psychedelic science and the magic of Rick Doblin, I've been an enthusiastic supporter of this project since meeting Nirvan and learning about it at PS25. I have donated $135k so far and am inspired to donate more to keep the momentum going. To push it further, I'm putting up a $30,000 matching challenge grant. If we can collectively raise $30k in the next two weeks (by August 8th), I'll match it dollar-for-dollar, giving the production another $60k. If we meet this challenge, the team can finish editing the first act of the rough cut and set aside $30k for critical upcoming filming... including the possibility of MDMA being rescheduled as soon as this fall! It's been a gift to support this incredible story and watch it take shape. Let's get it to the finish line!"], ["Thor Halvorssen", "The 2023 FDA decision rejecting MDMA for PTSD was devastating, not just for Rick and MAPS, but for the broader movement for legalization and therapeutic access. What happened there exposed how fear, stigma, and institutional cowardice can still derail life-changing science. The human cost of that failure is profound, and I'm glad this film will face it directly and honestly. This story matters, Rick's work matters, and the reckoning this film documents is an important one."], ["Sarena Snider", "I believe psychedelic-assisted therapy holds real promise for people living with complex PTSD and trauma. That possibility exists today largely because of Rick Doblin, who spent decades pushing for rigorous research when almost no one else would. He had the vision."]];
+PHOTOS['nirvan mullick']=PHOTOS['nirvan mullick']||{src:'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1555433778223-YF44T2R77O4M3UTN9J4O/nirvan_bw.jpg?format=300w',pos:'50% 30%'};PHOTOS['dream mullick']=PHOTOS['dream mullick']||{src:'https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/1555431858411-Z2NV78ZE78PGR5BTJ8GZ/Dream_Mullick.jpg?format=300w',pos:'50% 25%'};
 function levelFor(a){var r=null;LEVELS.forEach(function(l){if(a>=l.min)r=l});return r}
 function lvName(a){var l=levelFor(a);return l?l.n:''}
 /* ---- people ---- */
@@ -683,12 +714,18 @@ function give(amt){giveAmt=+amt>0?Math.round(+amt):0;var a=document.getElementBy
   plgFrames().forEach(setAmt);a.click();
   var n=0,t=setInterval(function(){plgFrames().forEach(setAmt);if(++n>12)clearInterval(t)},250)}
 var RAISE_URL='https://www.pledge.to/peer-fundraisers/d33779b9d0a280bb7c145ae18e822ada/a255ae06d98c43581c2553685138d9a4/new';
+/* Trailer: opens over a dimmed page and fills the screen; Esc, the X, or a click outside closes it. */
+function closeTrailer(){var o=T.querySelector('.tov');if(!o)return;o.parentNode.removeChild(o);document.documentElement.classList.remove('wath-noscroll');var b=$('[data-trailer]');if(b)b.focus()}
+function openTrailer(){if(T.querySelector('.tov'))return;var o=document.createElement('div');o.className='tov';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','WHAT A TRIP trailer');
+  o.innerHTML='<button class="tovx" aria-label="Close the trailer">&times;</button><div class="tovf"><iframe src="https://player.vimeo.com/video/1234707304?h=313cfa6ae7&autoplay=1&title=0&byline=0&portrait=0" title="WHAT A TRIP: The Rick Doblin Story (work-in-progress trailer)" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>';
+  o.addEventListener('click',function(ev){if(ev.target===o||ev.target.className==='tovx')closeTrailer()});T.appendChild(o);document.documentElement.classList.add('wath-noscroll');o.querySelector('.tovx').focus()}
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape')closeTrailer()});
 function onClick(e){var t=e.target.closest&&e.target.closest('[data-gor],[data-trailer],[data-give],[data-chart],[data-close],[data-copy],[data-toast],[data-lock],[data-sup],[data-supmore],[data-commore],[data-updmore],[data-upd],[data-gor-give],[data-comsort],[data-more],[data-car],a[href^="#wath-"]');
   if(e.target.classList&&e.target.classList.contains('ov')){closeOv();return}
   if(!t||!(R.contains(t)||T.contains(t))||t.id==='wath-plg')return;
   if(t.hasAttribute('data-gor')){e.preventDefault();var amt=t.getAttribute('data-gor'),lab=t.getAttribute('data-lab'),gold=t.getAttribute('data-gold'),w=document.createElement('span');w.className='gor';
     w.innerHTML='<button class="btn '+(gold?'gold':'pri')+'" data-give="'+amt+'">Give '+lab+'</button><a class="btn'+(gold?' lite':'')+'" target="_blank" rel="noopener" href="'+RAISE_URL+'">Raise '+lab+'</a>';t.parentNode.replaceChild(w,t);var f=w.querySelector('button');if(f)f.focus()}
-  else if(t.hasAttribute('data-trailer')){e.preventDefault();if(!t.classList.contains('playing')){t.classList.add('playing');t.removeAttribute('href');t.innerHTML='<iframe src="https://player.vimeo.com/video/1234707304?h=313cfa6ae7&autoplay=1&title=0&byline=0&portrait=0" title="WHAT A TRIP: The Rick Doblin Story (work-in-progress trailer)" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'}}
+  else if(t.hasAttribute('data-trailer')){e.preventDefault();openTrailer()}
   else if(t.hasAttribute('data-chart')){e.preventDefault();renderChart();openOv('ov-chart')}
   else if(t.hasAttribute('data-give')){e.preventDefault();give(t.getAttribute('data-give'))}
   else if(t.hasAttribute('data-close'))closeOv();
