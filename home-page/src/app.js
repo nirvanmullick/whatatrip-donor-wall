@@ -375,8 +375,8 @@ function askPledge(){return get(U.pledge).then(function(d){var v=d&&Number(d.rai
 function askList(){return Promise.all([get(U.master).catch(function(){return null}),get(U.manual).catch(function(){return null})]).then(function(a){if(a[1]&&a[1].renames){S.renames=a[1].renames;keep('renames',S.renames)}if(a[0]&&a[0].gifts&&a[0].gifts.length){S.gifts=a[0].gifts.map(function(g){return {name:g.name,amount:+g.amount||0,date:g.date,anonymous:!!g.anonymous,comment:g.comment||''}});keep('gifts',S.gifts)}renderDonations();setTimeout(fitCommunity,60)})}
 function askCount(){return get(U.count).then(function(j){if(j&&Number(j.donors)>0){S.count=Number(j.donors);keep('count',S.count);renderHero()}}).catch(function(){})}
 renderUpdates();askPledge();askList();askCount();askUpdates();
-setInterval(function(){if(!document.hidden)askPledge()},45000);
-setInterval(function(){if(!document.hidden){askList();askCount()}},300000);
+setInterval(function(){if(!document.hidden&&!window.__watEdit)askPledge()},45000);
+setInterval(function(){if(!document.hidden&&!window.__watEdit){askList();askCount()}},300000);
 /* the pill in the menu bar slides to whichever section you are reading */
 (function(){var snl=$('.subnav .snl');if(!snl)return;var pill=document.createElement('span');pill.className='snp';snl.insertBefore(pill,snl.firstChild);var links=$$('.subnav .snl a'),cur=null,tick=0,lock=0;
   function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
@@ -394,3 +394,54 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   else{o.classList.remove('on');f.innerHTML='';document.documentElement.style.overflow=''}});
 window.WATH={state:S,rough:rough,matched:matched};
 })();
+
+/* ---- Edit-text mode (test page only): add ?edit=1 to the address. Click any text, type, then copy the list of changes. ---- */
+(function(){
+if(!/[?&]edit=1/.test(location.search)||window.__watEditBar)return;
+var roots=[document.getElementById('wath'),document.getElementById('wath-top')].filter(Boolean);if(!roots.length)return;
+var KEY='wat-copy-edits-v1',log=[],on=false,live=new Map();
+try{log=JSON.parse(localStorage.getItem(KEY)||'[]')||[]}catch(e){log=[]}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(log))}catch(e){}}
+function clean(t){return String(t||'').replace(/ /g,' ').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim()}
+function inRoots(n){return roots.some(function(r){return r.contains(n)})}
+function blockOf(n){var e=n&&n.nodeType===1?n:n&&n.parentElement;while(e&&inRoots(e)&&roots.indexOf(e)<0){var d=getComputedStyle(e).display;if(d.indexOf('inline')!==0||e.tagName==='BUTTON'||e.tagName==='A')break;e=e.parentElement}return e&&inRoots(e)&&roots.indexOf(e)<0?e:null}
+function where(e){var sec='',x=e;while(x&&roots.indexOf(x)<0){if(x.id&&/^wath-/.test(x.id)){sec=x.id.replace(/^wath-/,'');break}x=x.parentElement}
+ var h='',y=e;while(y&&roots.indexOf(y)<0&&!h){var p=y.previousElementSibling;while(p&&!h){if(/^H[1-4]$/.test(p.tagName))h=clean(p.innerText);else{var q=p.querySelector&&p.querySelector('h1,h2,h3,h4');if(q)h=clean(q.innerText)}p=p.previousElementSibling}y=y.parentElement}
+ var kind=e.tagName==='BUTTON'||(e.tagName==='A'&&/\bbtn\b/.test(e.className))?'button':e.tagName==='A'?'link':/^H[1-4]$/.test(e.tagName)?'heading':'text';
+ return {sec:sec||(roots[1]&&roots[1].contains(e)?'member or admin area':'page'),near:h.slice(0,70),kind:kind}}
+var bar=document.createElement('div');window.__watEditBar=bar;
+bar.setAttribute('style','position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#f1edfa;border-top:1px solid #cfc7e6;color:#1b1526;font:15px/1.4 Inter,system-ui,-apple-system,sans-serif;box-shadow:0 -6px 24px rgba(27,21,38,.12)');
+var B='text-transform:none;letter-spacing:0;line-height:1.2;margin:0;width:auto;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #6152a0;font:600 14px Inter,system-ui,sans-serif;cursor:pointer;';
+bar.innerHTML='<div data-list hidden style="max-height:42vh;overflow:auto;padding:14px 18px 4px;border-bottom:1px solid #cfc7e6;background:#fff"></div>'
+ +'<div style="display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:10px 18px">'
+ +'<button data-tog style="'+B+'"></button><span data-msg style="flex:1;min-width:200px"></span>'
+ +'<button data-show style="'+B+'background:#fff;color:#1b1526"></button>'
+ +'<button data-copy style="'+B+'background:#fff;color:#1b1526">Copy changes</button>'
+ +'<button data-clear style="'+B+'background:#fff;color:#1b1526;border-color:#cfc7e6">Clear list</button></div>';
+document.body.appendChild(bar);document.body.style.paddingBottom='70px';
+var q=function(s){return bar.querySelector(s)},list=q('[data-list]');
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function label(c){return (c.kind==='text'?'':c.kind.charAt(0).toUpperCase()+c.kind.slice(1)+' in ')+c.sec+(c.near?' (under "'+c.near+'")':'')}
+function draw(){var t=q('[data-tog]');t.textContent=on?'Editing is ON':'Editing is OFF';t.style.background=on?'#6152a0':'#fff';t.style.color=on?'#fff':'#1b1526';
+ q('[data-msg]').textContent=on?'Click any text and type. Buttons and links are paused while editing.':'The page works normally. Turn editing on to change text.';
+ q('[data-show]').textContent=(list.hidden?'Show ':'Hide ')+log.length+' change'+(log.length===1?'':'s');
+ list.innerHTML=log.length?log.map(function(c,i){return '<div style="margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #eee9f8"><div style="font-size:12.5px;color:#6152a0;font-weight:600;display:flex;justify-content:space-between;gap:12px"><span>'+(i+1)+'. '+esc(label(c))+'</span><button data-rm="'+i+'" style="text-transform:none;letter-spacing:0;margin:0;padding:0;min-height:0;width:auto;border-radius:0;flex:none;border:0;background:none;color:#5b6478;cursor:pointer;font:13px Inter,system-ui,sans-serif;text-decoration:underline">Remove</button></div><div style="color:#5b6478;white-space:pre-wrap">Was: '+esc(c.was)+'</div><div style="white-space:pre-wrap">Now: '+esc(c.now)+'</div></div>'}).join(''):'<p style="margin:0 0 12px;color:#5b6478">No changes yet.</p>'}
+function text(){return 'WHAT A TRIP home page: text changes ('+log.length+')\n\n'+log.map(function(c,i){return (i+1)+'. '+label(c)+'\nWAS: '+c.was+'\nNOW: '+c.now}).join('\n\n')}
+function setOn(v){on=v;window.__watEdit=v;roots.forEach(function(r){if(v){r.setAttribute('contenteditable','true');r.setAttribute('spellcheck','true');r.style.outline='none'}else r.removeAttribute('contenteditable')});draw()}
+function entry(e){var c=live.get(e);if(!c){var w=where(e);c={was:clean(e.innerText),now:'',sec:w.sec,near:w.near,kind:w.kind};live.set(e,c)}return c}
+document.addEventListener('beforeinput',function(e){if(!on)return;var s=getSelection(),b=s&&s.anchorNode&&blockOf(s.anchorNode);if(b)entry(b)},true);
+document.addEventListener('input',function(e){if(!on)return;var s=getSelection(),b=s&&s.anchorNode&&blockOf(s.anchorNode);if(!b)return;var c=entry(b);c.now=clean(b.innerText);var i=log.indexOf(c);
+ if(c.now===c.was){if(i>=0)log.splice(i,1)}else if(i<0)log.push(c);save();draw()},true);
+['click','auxclick','submit'].forEach(function(ev){window.addEventListener(ev,function(e){if(on&&!bar.contains(e.target)&&inRoots(e.target)){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation()}},true)});
+window.addEventListener('keydown',function(e){if(on&&inRoots(e.target)&&e.key!=='Escape')e.stopPropagation()},true);
+bar.addEventListener('click',function(e){var t=e.target;
+ if(t.closest('[data-tog]'))setOn(!on);
+ else if(t.closest('[data-show]')){list.hidden=!list.hidden;draw()}
+ else if(t.closest('[data-rm]')){log.splice(+t.closest('[data-rm]').getAttribute('data-rm'),1);save();draw()}
+ else if(t.closest('[data-clear]')){if(log.length){log=[];live=new Map();save();draw()}}
+ else if(t.closest('[data-copy]')){var b=t.closest('[data-copy]'),done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy changes'},1600)},fb=function(){var a=document.createElement('textarea');a.value=text();document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(x){}a.remove();done()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text()).then(done,fb);else fb()}});
+window.addEventListener('beforeunload',function(e){if(on&&log.length){save()}});
+setOn(true);
+})();
+

@@ -857,6 +857,15 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mlor{display:flex;align-items:center;gap:12px;margin:18px 0 12px;color:#5b6478;font-size:13px}
 #wath-top .mlor:before,#wath-top .mlor:after{content:"";flex:1;height:1px;background:#d9d3ec}
 #wath-top .mlogin .msub{margin-top:12px}
+:is(#wath,#wath-top) #wath-levels.vB [data-levels]{border:0!important;overflow:visible!important;background:none!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv{border:1px solid #cfc7e6!important;margin:0 0 16px!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv:last-child{border-bottom:1px solid #cfc7e6!important;margin-bottom:0!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv .lh{padding:13px 18px}
+:is(#wath,#wath-top) #wath-levels.vB .lv .t{padding:18px 18px 20px}
+:is(#wath,#wath-top) #wath-levels.vB .lv li{margin:5px 0}
+:is(#wath,#wath-top) #wath-levels.vB .lv .gorb,:is(#wath,#wath-top) #wath-levels.vB .lv .gor{margin-top:20px}
+:is(#wath,#wath-top) #wath-levels.vB .div{margin:6px 0 16px!important}
+:is(#wath,#wath-top) #wath-levels.vB [data-levels]+*{margin-top:16px}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
