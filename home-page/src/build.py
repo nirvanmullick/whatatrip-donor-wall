@@ -868,6 +868,17 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) #wath-levels.vB .div{margin:6px 0 16px!important}
 :is(#wath,#wath-top) #wath-levels.vB [data-levels]+*{margin-top:16px}
 :is(#wath,#wath-top) #wath-levels .lv .gor .btn{flex:1 1 0;min-width:0;justify-content:center;min-height:42px;padding:0 8px;white-space:nowrap}
+:is(#wath,#wath-top) .pcr{display:block;text-align:center;margin-top:9px;font-size:13.5px;font-weight:600;color:#6152a0;text-decoration:underline;text-underline-offset:2px}
+:is(#wath,#wath-top) .pcr:hover{color:#1b1526}
+:is(#wath,#wath-top) .pkd .pkdi{height:190px;border-radius:12px;background:#d9d3ec center/cover no-repeat;margin:0 44px 16px 0}
+:is(#wath,#wath-top) .pkd .pkdl{display:block;font-size:13px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding-right:40px}
+:is(#wath,#wath-top) .pkd .pkdt{display:block;font-size:24px;line-height:1.2;margin:4px 0 8px;padding-right:40px}
+:is(#wath,#wath-top) .pkd .pkdm{font-size:14.5px;font-weight:700;color:#6152a0;margin-top:8px}
+:is(#wath,#wath-top) .pkd .pkdh{display:block;font-size:14px;font-weight:800;margin:18px 0 6px;color:#1b1526}
+:is(#wath,#wath-top) .pkd .pkdu{margin:0;padding-left:20px;font-size:15.5px;line-height:1.55;color:#3a4051}
+:is(#wath,#wath-top) .pkd .pkdn{font-size:14px;color:#5b6478;margin-top:14px}
+:is(#wath,#wath-top) .pkd .pkdb{margin-top:16px}
+:is(#wath,#wath-top) .pkd .pkdb .btn{width:100%;min-height:46px}
 #wath-top .msmain2{min-width:0}
 #wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
