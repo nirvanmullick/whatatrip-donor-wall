@@ -1,0 +1,59 @@
+// Live sign-in path (whatatrip.com host) against a mocked members database. Run: node live.js
+const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
+const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
+const LIB=process.env.SBLIB||'/tmp/sbjs/node_modules/@supabase/supabase-js/dist/umd/supabase.js';
+const lib=fs.readFileSync(LIB,'utf8');
+const b64=o=>Buffer.from(JSON.stringify(o)).toString('base64url');
+const UID='11111111-1111-4111-8111-111111111111',MID='22222222-2222-4222-8222-222222222222';
+const user={id:UID,aud:'authenticated',role:'authenticated',email:'tester@example.com',app_metadata:{provider:'google'},user_metadata:{}};
+const exp=Math.floor(Date.now()/1000)+3600;
+const sess={access_token:b64({alg:'HS256',typ:'JWT'})+'.'+b64({sub:UID,role:'authenticated',exp,email:user.email})+'.x',token_type:'bearer',expires_in:3600,expires_at:exp,refresh_token:'r',user};
+const page='<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0"><header id="header" style="background:#6f74aa;padding:14px 30px;text-align:right"><div class="header-nav-list" style="display:flex;gap:24px;justify-content:flex-end"><div class="header-nav-item"><a href="/about" style="color:#fff">About</a></div></div></header><div style="max-width:1100px;margin:0 auto;padding:20px 30px 0">'+block+'</div></body></html>';
+async function run(w,loggedIn){const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:w,height:900}});const p=await ctx.newPage();const errs=[],calls=[];p.on('pageerror',e=>errs.push(String(e).slice(0,300)));
+ let pending=null;
+ await ctx.route('**/*',r=>{const q=r.request(),u=q.url(),J=(o,s)=>r.fulfill({status:s||200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(o)});
+  if(q.method()==='OPTIONS')return r.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'*'}});
+  if(u.includes('/macros/'))return J({raised:114509});
+  if(u.startsWith('https://whatatrip.com/home-test'))return r.fulfill({contentType:'text/html',body:page});
+  if(u.includes('cdn.jsdelivr.net'))return r.fulfill({contentType:'application/javascript',body:lib});
+  if(u.startsWith('https://auth.whatatrip.com/')){const path=u.slice(26);calls.push(q.method()+' '+path.split('?')[0]+(q.postData()?' '+q.postData():''));
+   if(path.startsWith('/auth/v1/authorize'))return r.fulfill({contentType:'text/html',body:'GOOGLE '+u});
+   if(path.startsWith('/auth/v1/otp'))return J({});
+   if(path.startsWith('/auth/v1/logout'))return r.fulfill({status:204,headers:{'access-control-allow-origin':'*'}});
+   if(path.startsWith('/auth/v1/user'))return J(user);
+   if(path.startsWith('/rest/v1/rpc/review_profile')){pending=null;return J(null)}
+   const one=(q.headers()['accept']||'').includes('vnd.pgrst.object'),admin=!path.includes('eq.');
+   if(q.method()==='PATCH'){if(path.includes('public_profiles')){try{pending=JSON.parse(q.postData()).pending_changes}catch(e){}}return r.fulfill({status:204,headers:{'access-control-allow-origin':'*'}})}
+   if(path.includes('/members'))return J(admin?[{id:MID,auth_user_id:UID,is_sample:false,created_at:'2026-11-16T00:00:00Z'},{id:'a1',auth_user_id:null,is_sample:true,created_at:'2026-11-15T00:00:00Z'},{id:'a2',auth_user_id:null,is_sample:true,created_at:'2026-11-15T00:00:00Z'}]:{id:MID,created_at:'2026-11-16T00:00:00Z',onboarded_at:null,status:'active'});
+   if(path.includes('/member_private'))return J(admin?[{member_id:MID,first_name:'Testy',last_name:'McTester',primary_email:'tester@example.com'},{member_id:'a1',first_name:'Avery',last_name:'Sample',primary_email:'avery@example.com'},{member_id:'a2',first_name:'Harper',last_name:'Sample',primary_email:'harper@example.com'}]:{member_id:MID,first_name:'Testy',last_name:'McTester',primary_email:'tester@example.com',mobile_number:null,city:'Ojai'});
+   if(path.includes('/public_profiles'))return J(admin?[{member_id:MID,display_name:'Testy McTester',is_anonymous:false,pending_changes:pending},{member_id:'a1',display_name:'Avery Sample',is_anonymous:false,pending_changes:{about_me:'Hello from Avery',link_website:''}},{member_id:'a2',display_name:'Harper Sample',is_anonymous:false,pending_changes:null}]:{member_id:MID,display_name:'Testy McTester',is_anonymous:false,about_me:'Old about',pending_changes:pending});
+   if(path.includes('/member_totals'))return J([{member_id:'a1',total_given:100000,level_name:'Co-Producer'},{member_id:'a2',total_given:10,level_name:'Hitchhikers'}]);
+   if(path.includes('/gifts'))return J([]);
+   if(path.includes('/staff_roles'))return J(admin?[{member_id:MID,role:'owner'}]:{role:'owner'});
+   return J([])}
+  return r.abort()});
+ if(loggedIn)await ctx.addInitScript(s=>{try{localStorage.setItem('sb-auth-auth-token',s);localStorage.setItem('wath:memSeen','1')}catch(e){}},JSON.stringify(sess));
+ await p.goto('https://whatatrip.com/home-test');await p.waitForTimeout(2500);const L=[];
+ const chip=()=>p.evaluate(()=>document.querySelector('[data-wath-login]').textContent.trim());
+ const over=()=>p.evaluate(()=>{const o=document.querySelector('.mov');if(!o)return -1;const e=[...o.querySelectorAll('.mmain *')].filter(x=>x.children.length===0&&x.textContent.trim()&&x.getClientRects().length);let n=0;for(const x of e){const r=x.getBoundingClientRect();if(r.right>innerWidth+1)n++}return n});
+ if(!loggedIn){L.push('chip:'+await chip());await p.click('[data-wath-login]');await p.waitForTimeout(400);
+  L.push('login h2:'+await p.evaluate(()=>document.querySelector('.mov h2').textContent)+' apple:'+await p.evaluate(()=>/Apple/.test(document.querySelector('.mov').textContent))+' sample:'+await p.evaluate(()=>/Sample/.test(document.querySelector('.mov').textContent)));
+  await p.screenshot({path:'live-login-'+w+'.png'});
+  await p.click('.mov [data-m=elogin]');await p.waitForTimeout(200);L.push('empty email:'+await p.evaluate(()=>(document.querySelector('.mov [role=alert]')||{}).textContent));
+  await p.fill('.mov [data-lemail]','Donor@Example.com');await p.click('.mov [data-m=elogin]');await p.waitForTimeout(600);L.push('sent:'+await p.evaluate(()=>document.querySelector('.mov h2').textContent));
+  await p.click('.mov [data-m=eagain]');await p.waitForTimeout(200);await p.click('.mov [data-m=glogin]');await p.waitForTimeout(1200);L.push('google:'+decodeURIComponent(p.url()).slice(0,140));
+ }else{L.push('chip:'+await chip());await p.click('[data-wath-login]');await p.waitForTimeout(300);L.push('menu admin:'+await p.evaluate(()=>!!document.querySelector('.acm [data-acct=admin]'))+' note:'+await p.evaluate(()=>!!document.querySelector('.acm .acms')));
+  await p.click('.acm [data-acct=home]');await p.waitForTimeout(500);L.push('dash:'+await p.evaluate(()=>document.querySelector('.mov h2').textContent)+' sampleToggle:'+await p.evaluate(()=>!!document.querySelector('.mov .msamp'))+' off:'+await over());await p.screenshot({path:'live-dash-'+w+'.png'});
+  await p.evaluate(()=>{const b=[...document.querySelectorAll('.mov [data-m=tab]')].find(x=>x.getAttribute('data-t')==='profile');b.click()});await p.waitForTimeout(400);
+  L.push('profile first:'+await p.inputValue('.mov [data-f=first]')+' about:'+await p.inputValue('.mov [data-pf=about_me]')+' city:'+await p.inputValue('.mov [data-pf=city]')+' email:'+await p.inputValue('.mov input[type=email]')+' off:'+await over());
+  await p.fill('.mov [data-pf=about_me]','New about me');await p.fill('.mov [data-pf=mobile_number]','805 555 0100');await p.click('.mov [data-m=saveprof]');await p.waitForTimeout(700);
+  L.push('pending notice:'+await p.evaluate(()=>/waiting for review/.test(document.querySelector('.mov').textContent))+' about now:'+await p.inputValue('.mov [data-pf=about_me]'));await p.screenshot({path:'live-profile-'+w+'.png',fullPage:false});
+  await p.click('.mov .mx2');await p.click('[data-wath-login]');await p.waitForTimeout(300);await p.click('.acm [data-acct=admin]');await p.waitForTimeout(400);
+  await p.evaluate(()=>{const b=[...document.querySelectorAll('.mov [data-a=tab]')].find(x=>x.getAttribute('data-t')==='sup');if(b)b.click()});await p.waitForTimeout(900);
+  L.push('admin rows:'+await p.evaluate(()=>[...document.querySelectorAll('.mov [data-arows] tr')].map(t=>t.querySelector('b').textContent+'/'+t.children[2].textContent+'/'+t.children[3].textContent.trim()).join(' ; '))+' off:'+await over());
+  await p.evaluate(()=>{[...document.querySelectorAll('.mov [data-a=msel]')][0].click()});await p.waitForTimeout(300);await p.screenshot({path:'live-admin-'+w+'.png'});
+  L.push('manage:'+await p.evaluate(()=>document.querySelector('.mov .amng').textContent.slice(0,160)));
+  await p.click('.mov [data-a=review][data-t="1"]');await p.waitForTimeout(900);
+  await p.click('.mov .mx2');await p.click('[data-wath-login]');await p.waitForTimeout(300);await p.click('.acm [data-acct=out]');await p.waitForTimeout(600);L.push('out:'+await chip());}
+ console.log(w,loggedIn?'IN':'OUT','\n  '+L.join('\n  '),'\n  calls:',calls.filter(c=>!c.startsWith('GET')).join(' | ').slice(0,900),'\n  errors:',errs);await b.close()}
+(async()=>{await run(1300,false);await run(1300,true);await run(390,true);await run(390,false)})();

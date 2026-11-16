@@ -10,6 +10,14 @@
 - `tests/`: Playwright checks. They expect the repo at `/home/claude/whatatrip-donor-wall` and Playwright at
   `/opt/npm-tools/node_modules/playwright`.
 
+## Real sign-in ("live" mode)
+On whatatrip.com the Log in button is real: `app.js` (block starting `LIVE sign-in`) loads supabase-js from jsdelivr and talks to
+the members database at `https://auth.whatatrip.com` with the public (publishable) key. Google and email-link sign-in, the
+member's own profile and gifts, profile edits (private details saved at once, public ones as `pending_changes`), and the admin
+Members list with Approve / Reject. Anywhere else, or with `?sample=1`, the old sample preview runs, which is what the other
+tests use. `node tests/live.js` exercises live mode against a mocked database (needs supabase-js at
+`/tmp/sbjs`: `mkdir -p /tmp/sbjs && cd /tmp/sbjs && npm i @supabase/supabase-js@2.119.0`). Never put a secret key in this file.
+
 ## Adding CSS
 In `build.py`, insert new rules before the LAST occurrence of `:is(#wath,#wath-top) .upx{display:flex;`
 (`i=b.rindex(k)`). Scope selectors by hand: `:is(#wath,#wath-top) ...` for the page, `#wath-top ...` for the
