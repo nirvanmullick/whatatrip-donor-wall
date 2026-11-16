@@ -867,6 +867,7 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) #wath-levels.vB .lv .gorb,:is(#wath,#wath-top) #wath-levels.vB .lv .gor{margin-top:20px}
 :is(#wath,#wath-top) #wath-levels.vB .div{margin:6px 0 16px!important}
 :is(#wath,#wath-top) #wath-levels.vB [data-levels]+*{margin-top:16px}
+:is(#wath,#wath-top) #wath-levels .lv .gor .btn{flex:1 1 0;min-width:0;justify-content:center;min-height:42px;padding:0 8px;white-space:nowrap}
 #wath-top .msmain2{min-width:0}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
 #wath-top .mslab.tm{border-top:1px solid #ebe7f5;margin-top:6px;padding-top:14px}
