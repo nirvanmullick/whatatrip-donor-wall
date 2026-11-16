@@ -1,0 +1,46 @@
+<!-- WHAT A TRIP - new home page DEV-PREVIEW LOADER v1 (11/16/2026). For the hidden /home-dev page ONLY.
+     Paste this ENTIRE small block into one Code Block on the hidden /home-dev page. It serves the commit named in home-page/VERSION-DEV,
+     so new versions can be tried here before /home-test (which reads VERSION) moves.
+     The real code lives on GitHub: nirvanmullick/whatatrip-donor-wall -> home-page/home-block.html -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<div id="wat-home-mount" style="min-height:900px"></div>
+<script>
+(function () {
+  var REPO = 'nirvanmullick/whatatrip-donor-wall', DIR = 'home-page/', FILE = DIR + 'home-block.html', VFILE = DIR + 'VERSION-DEV', KEY = 'wat-ver-dev:' + DIR;
+  var mount = document.getElementById('wat-home-mount'); if (!mount || mount.__watStarted) return; mount.__watStarted = 1;
+  function get(u, opt) { return fetch(u, opt).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }
+  function ok(v) { return /^[0-9a-f]{7,40}$/.test(v || ''); }
+  function file(v) { return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE).catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); }); }
+  function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var known = null; try { known = localStorage.getItem(KEY); } catch (e) {}
+  if (!ok(known)) known = null;
+  var ver = get('https://raw.githubusercontent.com/' + REPO + '/main/' + VFILE, { cache: 'no-store' }).then(function (v) { v = (v || '').trim(); if (!ok(v)) throw new Error('version'); return v; });
+  var fresh = function () { return ver.then(function (v) { save(v); return file(v); }).catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE, { cache: 'no-store' }); }); };
+  var html;
+  if (known) {
+    var mine = file(known);
+    html = Promise.race([ver.catch(function () { return null; }), new Promise(function (res) { setTimeout(function () { res(null); }, 600); })])
+      .then(function (v) { if (v && v !== known) { save(v); return file(v).catch(function () { return mine; }); } return mine; })
+      .catch(fresh);
+    ver.then(save, function () {});
+  } else html = fresh();
+  function inject(s) {
+    var tpl = document.createElement('template'); tpl.innerHTML = s;
+    var scripts = [].slice.call(tpl.content.querySelectorAll('script'));
+    var marks = scripts.map(function (sc) { var c = document.createComment('wat'); sc.parentNode.replaceChild(c, sc); return c; });
+    mount.innerHTML = ''; mount.style.minHeight = ''; mount.appendChild(tpl.content);
+    var i = 0;
+    (function next() {
+      if (i >= scripts.length) return;
+      var old = scripts[i], m = marks[i]; i++;
+      var n = document.createElement('script');
+      [].forEach.call(old.attributes, function (a) { n.setAttribute(a.name, a.value); });
+      n.text = old.text; m.parentNode.replaceChild(n, m);
+      setTimeout(next, 0);
+    })();
+  }
+  html.then(inject, function () { mount.style.minHeight = ''; mount.innerHTML = '<p style="text-align:center"><a href="/donate">Donate to What a Trip &rarr;</a></p>'; });
+})();
+</script>
