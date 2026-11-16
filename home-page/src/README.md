@@ -19,6 +19,10 @@ sidebar menu, and the admin Members list. Anywhere else, or with `?sample=1`, th
 tests use. `node tests/live.js` exercises live mode against a mocked database (needs supabase-js at
 `/tmp/sbjs`: `mkdir -p /tmp/sbjs && cd /tmp/sbjs && npm i @supabase/supabase-js@2.119.0`). Never put a secret key in this file.
 
+Team invitations are emailed by the Supabase Edge Function `invite-email` (source kept in `../supabase/functions/invite-email/index.ts`;
+deploy it to the What a Trip project when it changes). It needs the function secret `RESEND_API_KEY`. Without the secret the
+role is still given and the page says the email could not be sent.
+
 ## Adding CSS
 In `build.py`, insert new rules before the LAST occurrence of `:is(#wath,#wath-top) .upx{display:flex;`
 (`i=b.rindex(k)`). Scope selectors by hand: `:is(#wath,#wath-top) ...` for the page, `#wath-top ...` for the
