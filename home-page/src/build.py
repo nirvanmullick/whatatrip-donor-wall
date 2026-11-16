@@ -530,7 +530,7 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .apill.warn{background:#f1d28a;color:#2c2208}
 #wath-top .aperm .ainvt{min-width:640px}
 .wath-chip{display:inline-flex;align-items:center;gap:7px;vertical-align:middle}
-.wath-chip-arr{display:inline-flex;align-items:center;align-self:stretch;padding:6px 0 6px 8px;margin:-6px 0;border-left:1px solid rgba(255,255,255,.45);cursor:pointer}
+.wath-chip-arr{display:inline-flex;align-items:center;align-self:stretch;padding:6px 0 6px 4px;margin:-6px 0;cursor:pointer}
 .wath-chip-av{width:28px;height:28px;border-radius:50%;background:#fff;color:#6152a0;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;letter-spacing:0}
 .wath-chip-av img{width:100%;height:100%;object-fit:cover;display:block}
 #wath-top .acm{position:fixed;z-index:99990;width:264px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 18px 50px rgba(27,21,38,.25);padding:8px;display:flex;flex-direction:column;animation:wathFade .15s ease;color:#1b1526}
@@ -899,7 +899,7 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mslab.tm{border-top:1px solid #ebe7f5;margin-top:6px;padding-top:14px}
 #wath-top .msn.msw{display:none}
 @media(max-width:1000px){#wath-top .mme>span.marr{display:inline-flex}}
-#wath-top .marr{display:inline-flex;align-items:center;align-self:stretch;padding:0 2px 0 9px;margin:-4px 0 -4px 2px;border-left:1px solid rgba(255,255,255,.4)}
+#wath-top .marr{display:inline-flex;align-items:center;align-self:stretch;padding:0 2px 0 6px;margin:-4px 0 -4px 0}
 @media(max-width:800px){#wath-top .mslab{display:none}#wath-top .msn.msw{display:block;border:1px solid #cfc7e8;color:#6152a0;font-weight:700;border-radius:999px;margin-right:4px}#wath-top .msnav[data-grp=me] .g-team,#wath-top .msnav[data-grp=team] .g-me{display:none}}
 #wath-top .msn.par{font-weight:800;color:#6152a0}
 #wath-top .msn.sub{padding-left:24px;font-size:14px}
