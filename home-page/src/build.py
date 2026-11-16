@@ -1067,7 +1067,7 @@ _shr=('<div class="shr"><span class="shl">Share our campaign</span><div class="s
  +'<a class="sh1" aria-label="Share on X" title="X" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url='+_u+'&text='+_t+'">'+_ic('<path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78zm-1.08 16.17h1.7L7.4 4.74H5.58z"/>')+'</a>'
  +'<a class="sh1" aria-label="Share by email" title="Email" href="mailto:?subject=WHAT%20A%20TRIP%3A%20The%20Rick%20Doblin%20Story&body='+_t+'%0A%0A'+_u+'">'+_ic('<path d="M3 6.6A1.6 1.6 0 0 1 4.6 5h14.8A1.6 1.6 0 0 1 21 6.6v.25l-9 5.6-9-5.6zm0 2.6v8.2A1.6 1.6 0 0 0 4.6 19h14.8a1.6 1.6 0 0 0 1.6-1.6V9.2l-9 5.6z"/>')+'</a>'
  +'<button class="sh1" aria-label="Copy the link" title="Copy link" data-copy="https://whatatrip.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></button>'
- +'</div><a class="shc" href="/matching">Start a matching challenge &rarr;</a></div>')
+ +'</div></div>')
 _tax='<div class="taxn"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><b>Donations are tax-deductible</b><span>Made through Creative Visions, our nonprofit fiscal sponsor. Deductible less the fair market value of any perk you receive.</span></div></div>'
 home=home.replace(_end,_tax+'</div>'+_shr+'</div>',1)
 
