@@ -17,6 +17,8 @@ async function run(w,loggedIn){const b=await chromium.launch();const ctx=await b
   if(u.startsWith('https://whatatrip.com/home-test'))return r.fulfill({contentType:'text/html',body:page});
   if(u.includes('cdn.jsdelivr.net'))return r.fulfill({contentType:'application/javascript',body:lib});
   if(u.startsWith('https://auth.whatatrip.com/')){const path=u.slice(26);calls.push(q.method()+' '+path.split('?')[0]+(q.postData()?' '+q.postData():''));
+   if(path.startsWith('/storage/v1/object/public/'))return r.fulfill({contentType:'image/png',headers:{'access-control-allow-origin':'*'},body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==','base64')});
+   if(path.startsWith('/storage/v1/object/'))return J(q.method()==='DELETE'?[]:{Key:'profile-photos/x',Id:'1'});
    if(path.startsWith('/functions/v1/invite-email'))return J({result:'invited',emailed:true});
    if(path.startsWith('/auth/v1/authorize'))return r.fulfill({contentType:'text/html',body:'GOOGLE '+u});
    if(path.startsWith('/auth/v1/otp'))return J({});
@@ -39,10 +41,10 @@ async function run(w,loggedIn){const b=await chromium.launch();const ctx=await b
    return J([])}
   return r.abort()});
  if(loggedIn)await ctx.addInitScript(s=>{try{localStorage.setItem('sb-auth-auth-token',s);localStorage.setItem('wath:memSeen','1');if(/"provider":"email"/.test(s))sessionStorage.setItem('wath:signing','1')}catch(e){}},JSON.stringify(sess));
- await p.goto('https://whatatrip.com/home-test');await p.waitForTimeout(2500);const L=[];
+ await p.goto('https://whatatrip.com/home-test'+(process.env.WELCOME?'?welcome=team':''));await p.waitForTimeout(2500);const L=[];
  const chip=()=>p.evaluate(()=>document.querySelector('[data-wath-login]').textContent.trim());
  const over=()=>p.evaluate(()=>{const o=document.querySelector('.mov');if(!o)return -1;const e=[...o.querySelectorAll('.mmain *')].filter(x=>x.children.length===0&&x.textContent.trim()&&x.getClientRects().length);let n=0;for(const x of e){const r=x.getBoundingClientRect();if(r.right>innerWidth+1)n++}return n});
- if(!loggedIn){L.push('chip:'+await chip());await p.click('[data-wath-login]');await p.waitForTimeout(400);
+ if(!loggedIn){L.push('chip:'+await chip());if(process.env.WELCOME){L.push('welcome auto-open:'+await p.evaluate(()=>(document.querySelector('.mov h2')||{}).textContent));await p.screenshot({path:'live-welcome-'+w+'.png'})}else await p.click('[data-wath-login]');await p.waitForTimeout(400);
   L.push('login h2:'+await p.evaluate(()=>document.querySelector('.mov h2').textContent)+' apple:'+await p.evaluate(()=>/Apple/.test(document.querySelector('.mov').textContent))+' sample:'+await p.evaluate(()=>/Sample/.test(document.querySelector('.mov').textContent)));
   await p.screenshot({path:'live-login-'+w+'.png'});
   await p.click('.mov [data-m=elogin]');await p.waitForTimeout(200);L.push('empty email:'+await p.evaluate(()=>(document.querySelector('.mov [role=alert]')||{}).textContent));
@@ -52,7 +54,7 @@ async function run(w,loggedIn){const b=await chromium.launch();const ctx=await b
   await p.click('.acm [data-acct=home]');await p.waitForTimeout(500);L.push('dash:'+await p.evaluate(()=>document.querySelector('.mov h2').textContent)+' sampleToggle:'+await p.evaluate(()=>!!document.querySelector('.mov .msamp'))+' off:'+await over());await p.screenshot({path:'live-dash-'+w+'.png'});
   await p.evaluate(()=>{const b=[...document.querySelectorAll('.mov [data-m=tab]')].find(x=>x.getAttribute('data-t')==='profile');b.click()});await p.waitForTimeout(400);
   L.push('profile first:'+await p.inputValue('.mov [data-f=first]')+' about:'+await p.inputValue('.mov [data-pf=about_me]')+' city:'+await p.inputValue('.mov [data-pf=city]')+' email:'+await p.inputValue('.mov input[type=email]')+' off:'+await over());
-  await p.fill('.mov [data-pf=about_me]','New about me');L.push('sms before:'+await p.isChecked('.mov .mpv [data-pref=sms]'));await p.fill('.mov [data-pf=mobile_number]','805 555 0100');L.push('sms after:'+await p.isChecked('.mov .mpv [data-pref=sms]'));await p.click('.mov [data-m=saveprof]');await p.waitForTimeout(700);
+  await p.fill('.mov [data-pf=about_me]','New about me');await p.setInputFiles('.mov [data-photo]',{name:'me.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==','base64')});await p.waitForTimeout(1200);L.push('photo:'+await p.evaluate(()=>{const i=document.querySelector('.mov .mprof .mav img');return i?i.getAttribute('src').slice(0,95):'none'})+' chip img:'+await p.evaluate(()=>!!document.querySelector('[data-wath-login] img')));L.push('sms before:'+await p.isChecked('.mov .mpv [data-pref=sms]'));await p.fill('.mov [data-pf=mobile_number]','805 555 0100');L.push('sms after:'+await p.isChecked('.mov .mpv [data-pref=sms]'));await p.click('.mov [data-m=saveprof]');await p.waitForTimeout(700);
   L.push('review notice (want false):'+await p.evaluate(()=>/waiting for review|approved/.test(document.querySelector('.mov .msmain').textContent))+' about now:'+await p.inputValue('.mov [data-pf=about_me]'));await p.screenshot({path:'live-profile-'+w+'.png',fullPage:false});
   await p.click('.mov .mx2');await p.click('.wath-chip-arr');await p.waitForTimeout(300);await p.click('.acm [data-acct=admin]');await p.waitForTimeout(400);
   await p.evaluate(()=>{const b=[...document.querySelectorAll('.mov [data-a=tab]')].find(x=>x.getAttribute('data-t')==='sup');if(b)b.click()});await p.waitForTimeout(900);

@@ -6,7 +6,7 @@
 // The email goes out through Resend. The key lives in the function secret RESEND_API_KEY and is never in the page.
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-const SITE = "https://whatatrip.com/home-test"; // change when the new home page goes live
+const SITE = "https://whatatrip.com/home-test?welcome=team"; // opens the welcome + log-in screen. Change the page when the new home page goes live
 const FROM = "WHAT A TRIP: The Rick Doblin Story <members@whatatrip.com>";
 const REPLY_TO = "support@whatatrip.com";
 const ORIGINS = ["https://whatatrip.com", "https://www.whatatrip.com"];
@@ -72,7 +72,7 @@ ${can}
 To get started, log in with this email address (${email}):
 ${SITE}
 
-Click "Log in", type this address and choose "Email me a log-in link". You can set a password once you are in. Your team tools will be in the menu on your dashboard.
+That link opens a welcome page. Type this address there and choose "Email me a log-in link". You can set a password once you are in. Your team tools will be in the menu on your dashboard.
 
 Questions? Just reply to this email.
 
@@ -85,7 +85,7 @@ whatatrip.com`;
 <p style="margin:0 0 18px">${esc(can)}</p>
 <p style="margin:0 0 18px">To get started, log in with this email address (<b>${esc(email)}</b>).</p>
 <p style="margin:0 0 22px"><a href="${SITE}" style="display:inline-block;background:#6152a0;color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Log in to What a Trip</a></p>
-<p style="margin:0 0 18px;color:#5b6478;font-size:14px">Click “Log in”, type this address and choose “Email me a log-in link”. You can set a password once you are in. Your team tools will be in the menu on your dashboard.</p>
+<p style="margin:0 0 18px;color:#5b6478;font-size:14px">The button opens a welcome page. Type this address there and choose “Email me a log-in link”. You can set a password once you are in. Your team tools will be in the menu on your dashboard.</p>
 <p style="margin:0;color:#5b6478;font-size:14px">Questions? Just reply to this email.</p>
 </div>`;
 
