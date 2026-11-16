@@ -898,7 +898,7 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .msn .mbug{color:#9488cf;vertical-align:-3px;margin-right:7px;flex:none}
 #wath-top .msn.on .mbug{color:#6152a0}
 #wath-top .msmain2{min-width:0}
-#wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
+#wath-top select[data-lrole],#wath-top select[data-rstatus],#wath-top select[data-blv]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
 #wath-top .mslab.tm{border-top:1px solid #ebe7f5;margin-top:6px;padding-top:14px}
 #wath-top .msn.msw{display:none}
