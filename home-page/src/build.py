@@ -1065,6 +1065,23 @@ _c='<div class="chs" data-challenges></div>'
 assert home.count(_c)==1
 home=home.replace(_c,_c+'<div class="chf"><a class="btn" href="/matching">See all challenges</a><a class="btn pri" href="/contact">Start a challenge</a></div>')
 
+# Budget / "Where the money goes" sits under the supporters in the first (left) column, beside the level list.
+def _section(html,start):
+    i=html.index(start);d=0;k=i
+    while True:
+        o=html.find('<section',k+1);c=html.find('</section>',k+1)
+        if o!=-1 and o<c: d+=1;k=o
+        else:
+            if d==0: return i,c+len('</section>')
+            d-=1;k=c
+_a,_b=_section(home,'<section class="sec" id="wath-budget"')
+_bud=home[_a:_b];home=home[:_a]+home[_b:]
+_a,_b=_section(home,'<section class="sec" id="wath-recent"')
+home=home[:_b]+_bud+home[_b:]
+_n1='<a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a><a href="#wath-budget">Budget</a>'
+assert home.count(_n1)==1
+home=home.replace(_n1,'<a href="#wath-budget">Budget</a><a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a>')
+
 out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-donor-wall home-page/home-block.html -->\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">\n<style>\n'+scoped+extra+'</style>\n<div id="wath">'+home+'</div>\n<div id="wath-top">'+top+'</div>\n<script>\n'+js+'\n</script>\n'
 os.makedirs('../img',exist_ok=True)
 open('../home-block.html','w').write(out)

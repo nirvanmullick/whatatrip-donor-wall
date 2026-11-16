@@ -33,7 +33,7 @@ check for an existing rule before adding another.
 1. Extract the last `<script>` of `home-block.html` and run `node --check` on it.
 2. `node tests/hm.js` should end with `1300 hscroll 0 []` and `390 hscroll 0 []`.
 3. `node tests/mem.js` (member screens, 16 lines ending `0 ]`), `node tests/adm.js` (admin, 14 lines `0, 0 ]`),
-   `node tests/acct.js` (login, account menu, referral link), `node tests/fit.js` (Show more lines up; slow).
+   `node tests/acct.js` (login, account menu, referral link), `node tests/fit.js` (older check from when "Show more" lined up with "Compare all perks"; now informational), `node tests/cols.js` (15 supporters on desktop, budget under the supporters beside the level list), `node tests/perk.js` (Give / Details buttons and pop-ups).
 4. Look at screenshots at 1300 and 390 wide. The sandbox cannot load squarespace-cdn images, so photos are blank
    there; check real photos on the live test page.
 
