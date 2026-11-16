@@ -883,6 +883,8 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .pkd .pkdw{font-size:14px;color:#1b1526;margin:10px 0 2px}
 :is(#wath,#wath-top) #wath-levels .lv .pcr{margin-top:10px}
 :is(#wath,#wath-top) #wath-levels.vB .lv .gor button.btn:not(.pri){background:#fff!important;border-color:#1b1526!important;color:#1b1526!important}
+:is(#wath,#wath-top) .pkd .pkcta{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;text-decoration:none}
+:is(#wath,#wath-top) .pkd .bovh b em{font-style:italic}
 #wath-top .msmain2{min-width:0}
 #wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
@@ -995,7 +997,7 @@ home=home.replace('<h2>280 supporters and counting</h2>','<h2 data-supcount>Supp
 home=home.replace('href="https://whatatrip.com/','href="/')
 for i in ['story','recent','budget','perks','challenges','store','access','levels']:
     home=home.replace('id="%s"'%i,'id="wath-%s"'%i).replace('href="#%s"'%i,'href="#wath-%s"'%i)
-home=home.replace('<button class="btn pri" data-toast="Preview only: this would start your own fundraiser page, e.g. whatatrip.com/yourname.">Start a fundraiser</button><span class="soon">Coming soon</span>','<a class="btn pri" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="https://www.pledge.to/peer-fundraisers/d33779b9d0a280bb7c145ae18e822ada/a255ae06d98c43581c2553685138d9a4/new">Start a fundraiser</a>')
+home=home.replace('<button class="btn pri" data-toast="Preview only: this would start your own fundraiser page, e.g. whatatrip.com/yourname.">Start a fundraiser</button><span class="soon">Coming soon</span>','<a class="btn pri" data-fund="0" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="https://www.pledge.to/peer-fundraisers/d33779b9d0a280bb7c145ae18e822ada/a255ae06d98c43581c2553685138d9a4/new">Start a fundraiser</a>')
 home=home.replace('data-toast="Preview only: this would open the shirt in the store."','data-toast="The store is coming soon."').replace('data-toast="Preview only: this would open the store."','data-toast="The store is coming soon."')
 home=home.replace('<a href="#wath-levels" data-chart','<a href="#wath-levels" data-chart')
 
