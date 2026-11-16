@@ -879,6 +879,10 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .pkd .pkdn{font-size:14px;color:#5b6478;margin-top:14px}
 :is(#wath,#wath-top) .pkd .pkdb{margin-top:16px}
 :is(#wath,#wath-top) .pkd .pkdb .btn{width:100%;min-height:46px}
+:is(#wath,#wath-top) .pkd .pkdq{font-size:13px;font-weight:700;color:#6152a0;white-space:nowrap;margin-left:6px}
+:is(#wath,#wath-top) .pkd .pkdw{font-size:14px;color:#1b1526;margin:10px 0 2px}
+:is(#wath,#wath-top) #wath-levels .lv .pcr{margin-top:10px}
+:is(#wath,#wath-top) #wath-levels.vB .lv .gor button.btn:not(.pri){background:#fff!important;border-color:#1b1526!important;color:#1b1526!important}
 #wath-top .msmain2{min-width:0}
 #wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
