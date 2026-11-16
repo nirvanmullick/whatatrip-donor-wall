@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-15T20:33:46.131Z",
- "count": 300,
+ "updated": "2026-11-16T16:56:36.434Z",
+ "count": 301,
  "gifts": [
+  {
+   "date": "2026-11-16T07:51:26.889-08:00",
+   "name": "Chris Pinault",
+   "name_on_record": "Chris Pinault",
+   "amount": 200,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 34065061,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-15T09:30:03.529-08:00",
    "name": "",

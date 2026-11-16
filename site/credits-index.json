@@ -686,6 +686,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-chris-kantrowitz"
  },
  {
+  "slug": "chris-pinault",
+  "name": "Chris Pinault",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/chris-pinault",
+  "goes_to": "https://whatatrip.com/donors#donor-chris-pinault"
+ },
+ {
   "slug": "christine-mason",
   "name": "Christine Mason",
   "kind": "donor",
