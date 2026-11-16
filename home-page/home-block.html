@@ -937,6 +937,20 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .pci .fa-dw .av,:is(#wath,#wath-top) .pci .fa-dw .you{width:52px;height:52px}
 :is(#wath,#wath-top) .pci .fa-dw .you{border-color:#b9aee6;color:#d9d3ec}
 :is(#wath,#wath-top) #wath-levels .lv .t b{font-size:15px!important;letter-spacing:.07em!important;line-height:1.25;display:block;margin-bottom:3px}
+:is(#wath,#wath-top) #wath-levels.vB .lv{display:block!important;padding:0!important;background:#f8f6fd!important;border-bottom:0!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv .lh{display:flex;align-items:baseline;gap:10px;background:#1b1526;padding:9px 16px}
+:is(#wath,#wath-top) #wath-levels.vB .lv .lh .amt{flex:none!important;padding:0!important;font-size:15px!important;font-weight:800;color:#fff!important;letter-spacing:.04em}
+:is(#wath,#wath-top) #wath-levels.vB .lv .lh b{font-size:15px!important;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#cfc6f0!important;line-height:1.25;margin:0!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv .t{display:block;padding:12px 16px 16px}
+:is(#wath,#wath-top) #wath-levels.vB .lv ul{list-style:none!important;padding:0!important;margin:0!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv li{position:relative;padding-left:14px;margin:3px 0}
+:is(#wath,#wath-top) #wath-levels.vB .lv li:before{content:"";position:absolute;left:1px;top:.62em;width:5px;height:5px;border-radius:50%;background:#8a84a0}
+:is(#wath,#wath-top) #wath-levels.vB .lv li.hl{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+:is(#wath,#wath-top) #wath-levels.vB .lv li.hl .lim{flex:none;display:inline!important;margin:0;font-size:12.5px;white-space:nowrap;text-align:right}
+:is(#wath,#wath-top) #wath-levels.vB .lv li.hl>span:first-child{color:inherit!important;font-size:inherit!important}
+:is(#wath,#wath-top) #wath-levels.vB .lv .gorb{width:100%;margin-top:12px;min-height:42px}
+:is(#wath,#wath-top) #wath-levels.vB .lv .gor{display:flex;gap:8px;margin-top:12px}
+:is(#wath,#wath-top) #wath-levels.vB .lv .gor .btn{flex:1;justify-content:center;min-height:42px}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -1174,7 +1188,7 @@ function renderBudget(){var r=Math.min(rough(),ROUGH_GOAL),over=Math.max(0,rough
   '<div class="bsec"><div class="bh"><b>2. Rough Cut</b><span class="bt now">'+short(ROUGH_GOAL)+' · funding now</span></div><div style="font-size:15px;color:#5b6478">'+money(r)+' raised so far. '+money(ROUGH_GOAL-r)+' still needed.</div><div class="bar" style="margin:8px 0 4px"><i style="width:'+Math.round(r/ROUGH_GOAL*100)+'%;background:#6152a0"></i></div>'+M.map(function(m,i){return msRow(m,BUL.r[i],m.st==='now')}).join('')+'</div>'+
   '<div class="bsec"><div class="bh"><b>3. Final Cut</b><span class="bt">'+short(FINAL_GOAL)+' · next</span></div><div style="font-size:15px;color:#5b6478">Begins once the Rough Cut is funded.</div>'+F.map(function(m,i){return msRow(m,BUL.f[i])}).join('')+'</div>';})}
 function renderLevels(){var lvA=document.getElementById('wath-levels');if(lvA&&!/\bv[ABC]\b/.test(lvA.className))lvA.classList.add('vB');$$('[data-levels]').forEach(function(el){var h='<div class="div blue">$5+ GETS YOUR NAME ON OUR ONLINE DONOR WALL</div>';LEVELS.forEach(function(l,i){if(l.credit&&!LEVELS[i-1].credit)h+='<div class="div">$5K+ ALSO GETS YOUR NAME IN THE FILM CREDITS</div>';
-  h+='<div class="lv k'+i+(l.gold?' gold':'')+'"><span class="amt">'+l.l+'</span><span class="t"><b>'+l.n+'</b><ul>'+l.p.map(function(x){var ik=String(x).replace(/<[^>]+>/g,'').trim(),iv=INV[{'1-week stay in Arcturus':'A week at Arcturus','Guided therapy with Rick in Arcturus':'Guided therapy with Rick'}[ik]||ik];return '<li>'+x+(iv&&iv.lim?' <span class="lim'+(invLeft(iv)>0?'':' out')+'"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+(invLeft(iv)>0?'Limited: '+invLeft(iv)+' of '+iv.total+(iv.unit?' '+iv.unit:'')+' left':'Fully claimed')+'</span>':'')+'</li>'}).join('')+'</ul><button class="btn gorb" data-gor="'+l.min+'" data-lab="'+l.l.replace('+','')+'" aria-expanded="false">Give or Raise</button></span></div>'});el.innerHTML=h})}
+  h+='<div class="lv k'+i+'"><div class="lh"><span class="amt">'+l.l+'</span><b>'+l.n+'</b></div><div class="t"><ul>'+l.p.map(function(x){var ik=String(x).replace(/<[^>]+>/g,'').trim(),iv=INV[{'1-week stay in Arcturus':'A week at Arcturus','Guided therapy with Rick in Arcturus':'Guided therapy with Rick'}[ik]||ik];return iv&&iv.lim?'<li class="hl"><span>'+x+'</span><span class="lim'+(invLeft(iv)>0?'':' out')+'">'+(invLeft(iv)>0?invLeft(iv)+' of '+iv.total+(iv.unit?' '+iv.unit:'')+' left':'Fully claimed')+'</span></li>':'<li>'+x+'</li>'}).join('')+'</ul><button class="btn gorb" data-gor="'+l.min+'" data-lab="'+l.l.replace('+','')+'" aria-expanded="false">Give or raise '+l.l.replace('+','')+'</button></div></div>'});el.innerHTML=h})}
 function renderChallenges(){var m=matched(),st=0,cur=false;var cards=LEGS.map(function(l){var got=Math.max(0,Math.min(l.cap,m-st));st+=l.cap;var done=got>=l.cap,live=!done&&!cur;if(live)cur=true;
   return {l:l,got:got,done:done,live:live}});
   var order=cards.filter(function(c){return c.live}).concat(cards.filter(function(c){return !c.live&&!c.done}),cards.filter(function(c){return c.done}).reverse());
