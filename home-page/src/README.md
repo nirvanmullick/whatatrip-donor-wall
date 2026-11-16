@@ -39,7 +39,12 @@ check for an existing rule before adding another.
 
 ## Publish
 1. Commit `home-block.html` (and the source), push to `main`.
-2. Write that commit's id into `home-page/VERSION`, commit, push.
+2. Write that commit's id into `home-page/VERSION-DEV`, commit, push (and into `home-page/VERSION` only when Nirvan approves moving /home-test).
 3. Verify with `git show origin/main:home-page/VERSION`. raw.githubusercontent caches for about 5 minutes.
 
-The page is loaded only by the hidden test page whatatrip.com/home-test.
+Two hidden pages load this block:
+- **whatatrip.com/home-dev** reads `VERSION-DEV` (loader: `../squarespace-loader-block-dev.html`). Publish here FIRST.
+- **whatatrip.com/home-test** reads `VERSION`. Testers use it. Only write a commit id into `VERSION` when Nirvan says to move it.
+
+Members: Site Management > Members has "Add a member" (Owner, Admin; `staff_add_member`) and, in a member's view,
+"Delete this member" (Owner only; `staff_delete_member`, which keeps gift records). Migration `staff_add_and_delete_member`.

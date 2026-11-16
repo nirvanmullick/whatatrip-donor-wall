@@ -908,6 +908,11 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .msn.par{font-weight:800;color:#6152a0}
 #wath-top .msn.sub{padding-left:24px;font-size:14px}
 @media(max-width:800px){#wath-top .msn.sub{padding-left:11px}}
+#wath-top .mbtns{display:flex;gap:8px;flex-wrap:wrap}
+#wath-top .mdelc{margin-top:14px;padding:14px 16px;border:1px solid #d9d2ec;border-radius:10px;background:#f6f3fb}
+#wath-top .mdelc b{color:#1b1526}
+#wath-top .mdelb{display:flex;gap:16px;align-items:center;margin-top:12px;flex-wrap:wrap}
+#wath-top .mdelb .mlink{align-self:center}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
