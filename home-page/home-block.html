@@ -1104,6 +1104,9 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mdelb{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;justify-content:space-between}
 #wath-top .mdelp .mdelgo{background:#4a3f7a;border-color:#4a3f7a;color:#fff}
 #wath-top .mdelp .mdelgo[disabled]{background:#e4dff0;border-color:#e4dff0;color:#8d86a3;cursor:not-allowed}
+:is(#wath,#wath-top) .video .vt .play{position:static;transform:none;margin-top:1.6cqw;display:inline-flex;align-items:center;text-shadow:none}
+:is(#wath,#wath-top) .video:hover .vt .play{transform:scale(1.04)}
+:is(#wath,#wath-top) .video>.vb{position:absolute;left:0;right:0;bottom:5%;margin:0;text-align:center;z-index:2;text-shadow:0 2px 14px rgba(27,21,38,.6),0 0 2px rgba(27,21,38,.35)}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -1195,7 +1198,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 <div id="wath">
 <section class="hero"><div class="wrap">
 <h1>Help bring Rick Doblin&rsquo;s story to the screen</h1><p class="sub" style="font-size:18px">A documentary following Rick&rsquo;s 40+ year journey with MAPS to bring psychedelics back into culture.</p>
-<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><em>From Executive Producer <strong>Darren Aronofsky</strong></em><b>WHAT A TRIP</b><i>The Rick Doblin Story</i><span class="vb">A film by <strong>Nirvan Mullick</strong></span></span><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></a>
+<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><em>From Executive Producer <strong>Darren Aronofsky</strong></em><b>WHAT A TRIP</b><i>The Rick Doblin Story</i><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></span><span class="vb" aria-hidden="true">A film by <strong>Nirvan Mullick</strong></span></a>
 <div style="display:flex;flex-direction:column;gap:16px"><div data-hero style="display:flex;flex-direction:column;gap:12px"></div>
 
 <div class="kstats" data-kstats></div><div class="match" data-matchline></div>
