@@ -86,14 +86,14 @@ function renderDonations(){tally();var tabs=[['top','Top supporters'],['recent',
   else{var G=S.gifts.slice().sort(function(a,b){return String(a.date)<String(b.date)?1:-1});tot=G.length;h=G.slice(0,supN.recent).map(function(g){var a=isAnon(g),n=a?'Anonymous':nm(g);return '<div class="dn"><span class="who">'+(a?'<span class="av">A</span>':av(n))+'<b>'+esc(n)+'</b></span><span class="amtc"><b class="a">'+money(g.amount)+'</b><span class="when">'+lvName(a?g.amount:(TOTALS[n.toLowerCase()]||g.amount))+' · '+when(g.date)+'</span></span></div>'}).join('')}
   if(!S.gifts.length)h='<p class="fine" style="padding:16px 0">Loading our supporters…</p>';
   var left=(tot||0)-supN[supTab];
-  $$('[data-donations]').forEach(function(el){el.innerHTML='<div class="seg" role="tablist" style="margin-bottom:6px">'+tabs.map(function(t){return '<button role="tab" aria-selected="'+(supTab===t[0])+'" class="'+(supTab===t[0]?'on':'')+'" data-sup="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div class="suplist">'+h+'</div>'+(left>0?'<button class="btn" style="width:100%;margin-top:10px" data-supmore>Show '+Math.min(20,left)+' more</button>':'')});
+  $$('[data-donations]').forEach(function(el){el.innerHTML='<div class="seg" role="tablist" style="margin-bottom:6px">'+tabs.map(function(t){return '<button role="tab" aria-selected="'+(supTab===t[0])+'" class="'+(supTab===t[0]?'on':'')+'" data-sup="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div class="suplist">'+h+'</div>'+(left>0?'<button class="btn" style="width:100%;margin-top:10px" data-supmore>Show '+Math.min(10,left)+' more</button>':'')});
   renderComments()}
 var cntSeen={};function setCnt(k,n){if(cntSeen[k]===n)return;cntSeen[k]=n;$$('[data-cnt="'+k+'"]').forEach(function(el){el.textContent=n>0?n:''});try{window.dispatchEvent(new Event('resize'))}catch(e){}}
 var PINNED=[{n:'Darren Aronofsky',role:'Executive Producer, WHAT A TRIP',t:'Rick Doblin is a once-in-a-generation historical figure. When I heard WHAT A TRIP had been documenting his journey, I knew I wanted to support it. The film is intimate, urgent, and strangely mythic. I’m proud to be part of bringing his story to the screen.'}];
 var supAuto=true,supBase=10;
 function fitCommunity(){if(!supAuto)return;var sec=document.getElementById('wath-recent'),aside=$('aside'),stack=sec&&sec.parentNode,list=sec&&sec.querySelector('.suplist');if(!sec||!aside||!list||!list.children.length)return;
-  /* two columns (desktop): 15 supporters, then "Show 20 more". One column (phone): 10. */
-  var two=Math.abs(aside.getBoundingClientRect().top-stack.getBoundingClientRect().top)<60&&aside.getBoundingClientRect().left>stack.getBoundingClientRect().right-10,n=two?15:10;
+  /* 10 supporters everywhere, then "Show 10 more" (Nirvan, Nov 16 2026: 15 was still too long). */
+  var n=10;
   if(n!==supBase){supBase=n;supN.top=n;supN.recent=n;renderDonations()}}
 function renderComments(){var C=PINNED.concat(comments()),left=C.length-supN.comments;setCnt('com',C.length);
   var h='<div style="display:flex;justify-content:flex-end"><button class="srtb" data-comsort aria-label="Sorted by '+(comSort==='amt'?'most donated':'most recent')+'. Click to change."><svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2.5v11M2.5 11 5 13.5 7.5 11"/><path d="M11 13.5v-11M8.5 5 11 2.5 13.5 5"/></svg><span class="tip">'+(comSort==='amt'?'Most donated':'Most recent')+'</span></button></div><div class="suplist">'+C.slice(0,supN.comments).map(function(c){var long=c.t.length>330;return '<div class="dn" style="justify-content:flex-start;align-items:flex-start;gap:12px">'+(c.n==='Anonymous'?'<span class="av">A</span>':av(c.n))+'<div style="flex:1;min-width:0"><p class="q'+(long?' clamp':'')+'">“'+esc(c.t)+'”</p>'+(long?'<button class="srt" style="padding:0 0 4px;min-height:28px" data-more><b>Read more</b></button><br>':'')+'<span class="when"><b style="color:#1f2430">'+esc(c.n)+'</b> · '+(c.role?esc(c.role):money(c.amt)+' · '+lvName(c.amt)+(c.d?' · '+when(c.d):''))+'</span></div></div>'}).join('')+'</div>'+(left>0?'<button class="btn" style="width:100%;margin-top:10px" data-commore>Show '+Math.min(20,left)+' more</button>':'');
@@ -215,7 +215,7 @@ function onClick(e){var t=e.target.closest&&e.target.closest('[data-gor],[data-t
   else if(t.hasAttribute('data-give')){e.preventDefault();closeBio();give(t.getAttribute('data-give'))}
   else if(t.hasAttribute('data-close'))closeOv();
   else if(t.hasAttribute('data-sup')){supTab=t.getAttribute('data-sup');renderDonations()}
-  else if(t.hasAttribute('data-supmore')){supAuto=false;supN[supTab]+=20;renderDonations()}
+  else if(t.hasAttribute('data-supmore')){supAuto=false;supN[supTab]+=10;renderDonations()}
   else if(t.hasAttribute('data-commore')){supN.comments+=20;renderComments()}
   else if(t.hasAttribute('data-bio')){openBio(t.getAttribute('data-bio'))}
   else if(t.hasAttribute('data-mx')){mxOpen=!mxOpen;renderMatch()}

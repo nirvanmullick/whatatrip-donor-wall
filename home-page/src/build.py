@@ -885,6 +885,14 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) #wath-levels.vB .lv .gor button.btn:not(.pri){background:#fff!important;border-color:#1b1526!important;color:#1b1526!important}
 :is(#wath,#wath-top) .pkd .pkcta{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;text-decoration:none}
 :is(#wath,#wath-top) .pkd .bovh b em{font-style:italic}
+/* breathing room: more space between sections, with a hairline between them */
+#wath .stack{gap:40px}
+#wath .stack>.sec+.sec{border-top:1px solid #d5cfe9;padding-top:44px}
+#wath .cols{padding-top:56px;padding-bottom:84px}
+#wath .cols.second{padding-top:60px}
+#wath .band{padding:58px 0 62px}
+#wath .sec{gap:16px}
+@media(max-width:700px){#wath .stack{gap:30px}#wath .stack>.sec+.sec{padding-top:32px}#wath .cols{padding-top:34px;padding-bottom:52px}#wath .cols.second{padding-top:40px}#wath .band{padding:40px 0 44px}}
 #wath-top .msmain2{min-width:0}
 #wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
