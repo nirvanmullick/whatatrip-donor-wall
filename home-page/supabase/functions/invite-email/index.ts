@@ -1,5 +1,5 @@
 // What a Trip: give a teammate a role AND email them about it.
-// Called from Team tools > Team & roles on whatatrip.com. Deployed to the "What a Trip" Supabase project.
+// Called from Site Management > Team & roles on whatatrip.com. Deployed to the "What a Trip" Supabase project.
 //
 // Who may do this is decided by the database function invite_staff(), which runs as the signed-in caller:
 // Owner may give Admin, Manager or Editor; an Admin may give Manager or Editor. This function only adds the email.
@@ -72,7 +72,7 @@ ${can}
 To get started, log in with this email address (${email}):
 ${SITE}
 
-That link opens a welcome page. Type this address there and choose "Email me a log-in link". You can set a password once you are in. Your team tools will be in the menu on your dashboard.
+That link opens a welcome page. Type this address there and choose "Email me a log-in link". You can set a password once you are in. You will find Site Management in the menu on your dashboard.
 
 Questions? Just reply to this email.
 
@@ -85,7 +85,7 @@ whatatrip.com`;
 <p style="margin:0 0 18px">${esc(can)}</p>
 <p style="margin:0 0 18px">To get started, log in with this email address (<b>${esc(email)}</b>).</p>
 <p style="margin:0 0 22px"><a href="${SITE}" style="display:inline-block;background:#6152a0;color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Log in to What a Trip</a></p>
-<p style="margin:0 0 18px;color:#5b6478;font-size:14px">The button opens a welcome page. Type this address there and choose “Email me a log-in link”. You can set a password once you are in. Your team tools will be in the menu on your dashboard.</p>
+<p style="margin:0 0 18px;color:#5b6478;font-size:14px">The button opens a welcome page. Type this address there and choose “Email me a log-in link”. You can set a password once you are in. You will find Site Management in the menu on your dashboard.</p>
 <p style="margin:0;color:#5b6478;font-size:14px">Questions? Just reply to this email.</p>
 </div>`;
 
