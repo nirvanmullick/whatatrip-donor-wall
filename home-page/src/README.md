@@ -47,4 +47,6 @@ Two hidden pages load this block:
 - **whatatrip.com/home-test** reads `VERSION`. Testers use it. Only write a commit id into `VERSION` when Nirvan says to move it.
 
 Members: Site Management > Members has "Add a member" (Owner, Admin; `staff_add_member`) and, in a member's view,
-"Delete this member" (Owner only; `staff_delete_member`, which keeps gift records). Migration `staff_add_and_delete_member`.
+"Delete this member…" (Owner, or an Admin for anyone below Admin; `staff_delete_member`, which keeps gift records). It opens a pop-up that
+explains what is removed and only acts once DELETE is typed. Staff profiles have a "role on the film" field (`public_profiles.film_role`).
+Migrations `staff_add_and_delete_member`, `film_role_and_admin_delete`.
