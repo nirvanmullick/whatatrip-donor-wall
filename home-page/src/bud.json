@@ -1,0 +1,134 @@
+{
+ "ROUGH": [
+  {
+   "n": "Editing Act 1",
+   "c": 75000,
+   "b": [
+    "Hire two editors full-time for ~3 months on the first pass of Act 1 ✂️",
+    "Editorial setup, media management &amp; project organization 🗂️",
+    "Assistant-editor support and footage syncing 🎞️"
+   ]
+  },
+  {
+   "n": "Production &amp; Filming — Fall 2026",
+   "c": 50000,
+   "b": [
+    "Hire a part-time archival producer for 3 months 👩",
+    "Hire a part-time production coordinator for fundraising events (3 months) 💸",
+    "Hire a part-time concept artist for story-boards and AI pre-vis (3 months) 🎨",
+    "Funds travel &amp; filming if MDMA is rescheduled 🎥 ✈️"
+   ]
+  },
+  {
+   "n": "Editing Act 2",
+   "c": 75000,
+   "b": [
+    "Hire two editors full-time for 3 months (Nov 2026 – Jan 2027) ✂️",
+    "Story development &amp; scene assembly for Act 2 📝"
+   ]
+  },
+  {
+   "n": "Editing Act 3",
+   "c": 75000,
+   "b": [
+    "Hire two editors full-time for 3 months (Feb – Apr 2027) ✂️",
+    "Cutting Act 3 toward a complete rough-cut assembly 🎬"
+   ]
+  },
+  {
+   "n": "Animation Sequences",
+   "c": 100000,
+   "b": [
+    "Animated story-boards and sequences ✨",
+    "AI &amp; artist visualizations that fill archival gaps 🎨",
+    "Tie concepts together and simplify the narrative 🧩"
+   ]
+  },
+  {
+   "n": "Interviews &amp; B-roll",
+   "c": 75000,
+   "b": [
+    "Interviews still needed with key figures in the story 🎤",
+    "Supplemental B-roll shoots and archival pickups 📹"
+   ]
+  },
+  {
+   "n": "Music &amp; Archival",
+   "c": 100000,
+   "b": [
+    "Music licensing and score work 🎵",
+    "Archival footage &amp; photo research and licensing 🗄️"
+   ]
+  },
+  {
+   "n": "Admin &amp; Fees",
+   "c": 150000,
+   "b": [
+    "Production admin, insurance &amp; accounting 📊",
+    "Hard drives, storage &amp; backup 💾",
+    "Platform, processing &amp; fiscal-sponsorship fees 💳"
+   ]
+  }
+ ],
+ "FINAL": [
+  {
+   "n": "final cut editing to full picture lock",
+   "c": 120000,
+   "b": [
+    "Edit team cuts from the rough cut down to final picture lock ✂️",
+    "Conform the edit to finishing specs for post-production 🔒"
+   ]
+  },
+  {
+   "n": "color grading &amp; finishing the final cut",
+   "c": 130000,
+   "b": [
+    "Professional colorist grades the film for its final theatrical look 🎨",
+    "Picture finishing and conform to delivery specs 🎞️"
+   ]
+  },
+  {
+   "n": "sound design &amp; final mix",
+   "c": 150000,
+   "b": [
+    "Full sound design and effects editing 🔊",
+    "Professional final mix for theatrical &amp; festival playback 🎚️"
+   ]
+  },
+  {
+   "n": "original score &amp; music licensing",
+   "c": 200000,
+   "b": [
+    "Commission an original score for the film 🎼",
+    "Clear final music rights and licensing 🎵"
+   ]
+  },
+  {
+   "n": "titles, VFX &amp; motion graphics for the final cut",
+   "c": 100000,
+   "b": [
+    "Main and end title design 🎬",
+    "Visual effects and motion graphics ✨"
+   ]
+  },
+  {
+   "n": "festival delivery, marketing &amp; distribution",
+   "c": 200000,
+   "b": [
+    "Trailer editing 🎞️",
+    "Poster and marketing materials 🖼️",
+    "Festival deliverables and distribution to reach audiences 🎪"
+   ]
+  }
+ ],
+ "DEV": [
+  {
+   "n": "Development, Production &amp; Filming",
+   "c": 1800000,
+   "b": [
+    "Years of access filming &amp; principal photography already completed",
+    "Development, research &amp; production funded by early supporters"
+   ]
+  }
+ ]
+}
