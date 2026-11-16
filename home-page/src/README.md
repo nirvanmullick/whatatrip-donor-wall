@@ -13,8 +13,9 @@
 ## Real sign-in ("live" mode)
 On whatatrip.com the Log in button is real: `app.js` (block starting `LIVE sign-in`) loads supabase-js from jsdelivr and talks to
 the members database at `https://auth.whatatrip.com` with the public (publishable) key. Google and email-link sign-in, the
-member's own profile and gifts, profile edits (private details saved at once, public ones as `pending_changes`), and the admin
-Members list with Approve / Reject. Anywhere else, or with `?sample=1`, the old sample preview runs, which is what the other
+member's own profile and gifts, profile edits (saved at once; public fields through `save_my_profile()`, no approval step),
+an optional password (asked once after a first email-link log in; `PROV=email node tests/live.js` covers it), the member
+sidebar menu, and the admin Members list. Anywhere else, or with `?sample=1`, the old sample preview runs, which is what the other
 tests use. `node tests/live.js` exercises live mode against a mocked database (needs supabase-js at
 `/tmp/sbjs`: `mkdir -p /tmp/sbjs && cd /tmp/sbjs && npm i @supabase/supabase-js@2.119.0`). Never put a secret key in this file.
 

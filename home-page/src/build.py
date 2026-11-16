@@ -866,6 +866,10 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) #wath-levels.vB .lv .gorb,:is(#wath,#wath-top) #wath-levels.vB .lv .gor{margin-top:20px}
 :is(#wath,#wath-top) #wath-levels.vB .div{margin:6px 0 16px!important}
 :is(#wath,#wath-top) #wath-levels.vB [data-levels]+*{margin-top:16px}
+#wath-top .msmain2{min-width:0}
+#wath-top .msn.par{font-weight:800;color:#6152a0}
+#wath-top .msn.sub{padding-left:24px;font-size:14px}
+@media(max-width:800px){#wath-top .msn.sub{padding-left:11px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
