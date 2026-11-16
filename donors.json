@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T20:33:46.090Z",
+  "updated": "2026-11-16T00:20:35.814Z",
   "count": 97,
   "source": "pledge-json-v2",
   "totals": {
@@ -14,7 +14,7 @@
       "ts": "2026-11-15T09:30:03.529-08:00",
       "anonymous": true,
       "amount": 1000,
-      "time": "3 hours ago",
+      "time": "7 hours ago",
       "comment": "Thanks for this awesome + inspiring + important work - it was great to be part of the salon at Lightening Society too!",
       "matched": true
     },
@@ -42,7 +42,7 @@
       "name": "Theresa Daniello",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": true
     },
     {
