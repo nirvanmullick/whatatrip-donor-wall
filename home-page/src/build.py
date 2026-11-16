@@ -893,6 +893,10 @@ html.wath-noscroll{overflow:hidden}
 #wath .band{padding:58px 0 62px}
 #wath .sec{gap:16px}
 @media(max-width:700px){#wath .stack{gap:30px}#wath .stack>.sec+.sec{padding-top:32px}#wath .cols{padding-top:34px;padding-bottom:52px}#wath .cols.second{padding-top:40px}#wath .band{padding:40px 0 44px}}
+#wath-top .mbdg{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:#6152a0;color:#fff;font-size:11.5px;font-weight:800;line-height:1;vertical-align:1px}
+.acm .mbdg{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:#6152a0;color:#fff;font-size:11.5px;font-weight:800;line-height:1}
+#wath-top .msn .mbug{color:#9488cf;vertical-align:-3px;margin-right:7px;flex:none}
+#wath-top .msn.on .mbug{color:#6152a0}
 #wath-top .msmain2{min-width:0}
 #wath-top select[data-lrole],#wath-top select[data-rstatus]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #cfc7e8;border-radius:10px;background:#fff;color:#1b1526;flex:none;max-width:100%}
 #wath-top .mslab{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px}
