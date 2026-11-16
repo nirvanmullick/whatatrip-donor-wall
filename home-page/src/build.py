@@ -1111,6 +1111,20 @@ _n1='<a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a><a href="
 assert home.count(_n1)==1
 home=home.replace(_n1,'<a href="#wath-budget">Budget</a><a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a>')
 
+# Tabs: FAQs, Comments and Updates each open in place of the campaign scroll (Story to Impact stays one scroll).
+_t1='<a href="#wath-faq">FAQs</a>'
+assert home.count(_t1)==1
+home=home.replace(_t1,'<i class="snd" aria-hidden="true"></i>'+_t1)
+extra+="""
+#wath:not([data-tabv]) :is(#wath-faq,#wath-comments,#wath-updates){display:none}
+#wath[data-tabv]>:not(.hero):not(.subnav):not(.cols.second){display:none}
+#wath[data-tabv] .cols.second .stack>.sec{display:none}
+#wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
+#wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
+:is(#wath,#wath-top) .subnav .snl .snd{flex:none;align-self:center;width:1px;height:18px;margin:0 8px;background:rgba(27,21,38,.24)}
+@media(max-width:700px){#wath[data-tabv] .cols.second{padding-top:28px}}
+"""
+
 out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-donor-wall home-page/home-block.html -->\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">\n<style>\n'+scoped+extra+'</style>\n<div id="wath">'+home+'</div>\n<div id="wath-top">'+top+'</div>\n<script>\n'+js+'\n</script>\n'
 os.makedirs('../img',exist_ok=True)
 open('../home-block.html','w').write(out)

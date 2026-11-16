@@ -1194,6 +1194,14 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 @media(max-width:700px){:is(#wath,#wath-top) .subnav .snl{gap:0;padding-right:18px}:is(#wath,#wath-top) .subnav .wrap{padding-left:8px}}
 @media(min-width:701px){:is(#wath,#wath-top) .subnav .snl{margin-left:-12px}}
 :is(#wath,#wath-top) .skel{color:transparent!important;background:linear-gradient(90deg,#e9e6f1,#f5f3fa,#e9e6f1);border-radius:8px}
+
+#wath:not([data-tabv]) :is(#wath-faq,#wath-comments,#wath-updates){display:none}
+#wath[data-tabv]>:not(.hero):not(.subnav):not(.cols.second){display:none}
+#wath[data-tabv] .cols.second .stack>.sec{display:none}
+#wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
+#wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
+:is(#wath,#wath-top) .subnav .snl .snd{flex:none;align-self:center;width:1px;height:18px;margin:0 8px;background:rgba(27,21,38,.24)}
+@media(max-width:700px){#wath[data-tabv] .cols.second{padding-top:28px}}
 </style>
 <div id="wath">
 <section class="hero"><div class="wrap">
@@ -1204,7 +1212,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 <div class="kstats" data-kstats></div><div class="match" data-matchline></div>
 <button class="btn pri big" data-give>Donate now</button>
 <div class="taxn"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><b>Donations are tax-deductible</b><span>Made through Creative Visions, our nonprofit fiscal sponsor. Deductible less the fair market value of any perk you receive.</span></div></div></div><div class="shr"><span class="shl">Share our campaign</span><div class="shb"><a class="sh1" aria-label="Share on Facebook" title="Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatatrip.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 21v-7.6h2.55l.4-3H13.6V8.5c0-.87.25-1.46 1.5-1.46h1.6V4.36c-.28-.04-1.23-.12-2.33-.12-2.3 0-3.87 1.4-3.87 3.98v2.2H7.9v3h2.6V21z"/></svg></a><a class="sh1" aria-label="Share on X" title="X" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwhatatrip.com&text=Help%20bring%20Rick%20Doblin%E2%80%99s%20story%20to%20the%20screen.%20WHAT%20A%20TRIP%2C%20executive%20produced%20by%20Darren%20Aronofsky."><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78zm-1.08 16.17h1.7L7.4 4.74H5.58z"/></svg></a><a class="sh1" aria-label="Share by email" title="Email" href="mailto:?subject=WHAT%20A%20TRIP%3A%20The%20Rick%20Doblin%20Story&body=Help%20bring%20Rick%20Doblin%E2%80%99s%20story%20to%20the%20screen.%20WHAT%20A%20TRIP%2C%20executive%20produced%20by%20Darren%20Aronofsky.%0A%0Ahttps%3A%2F%2Fwhatatrip.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6.6A1.6 1.6 0 0 1 4.6 5h14.8A1.6 1.6 0 0 1 21 6.6v.25l-9 5.6-9-5.6zm0 2.6v8.2A1.6 1.6 0 0 0 4.6 19h14.8a1.6 1.6 0 0 0 1.6-1.6V9.2l-9 5.6z"/></svg></a><button class="sh1" aria-label="Copy the link" title="Copy link" data-copy="https://whatatrip.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></button></div></div></div></div></section>
-<div class="subnav"><div class="wrap"><div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-budget">Budget</a><a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><a href="#wath-faq">FAQs</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div><button class="btn pri" data-give>Donate</button></div></div>
+<div class="subnav"><div class="wrap"><div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-budget">Budget</a><a href="#wath-perks">Perks</a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><i class="snd" aria-hidden="true"></i><a href="#wath-faq">FAQs</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div><button class="btn pri" data-give>Donate</button></div></div>
 <div class="wrap cols"><div class="stack">
 <section class="sec" id="wath-story"><h2>The story</h2><p style="font-size:18px;line-height:1.6;color:#3a4051;margin:0"><em>What a Trip</em> tells the story of Rick Doblin&rsquo;s 50-year journey to bring psychedelic therapy back into our culture. Twelve years in the making, the film is executive produced by Darren Aronofsky.</p><p style="font-size:18px;line-height:1.6;color:#3a4051;margin:0">Your gift now funds the edit that turns those twelve years of footage into a finished film.</p></section>
 <section class="sec" id="wath-recent"><h2 data-supcount>Supporters</h2><div data-donations></div><a href="/donors" style="font-weight:700">See everyone on the donor wall</a></section><section class="sec" id="wath-budget"><h2>Where the money goes</h2><p class="sub">A $3.4M film, raised one milestone at a time.</p><div class="card" data-budget></div></section>
@@ -1462,7 +1470,7 @@ function onClick(e){var t=e.target.closest&&e.target.closest('[data-gor],[data-t
   else if(t.hasAttribute('data-copy')){var u=t.getAttribute('data-copy');try{navigator.clipboard.writeText(u).then(function(){toast('Link copied: '+u)},function(){toast(u)})}catch(x){toast(u)}}
   else if(t.hasAttribute('data-toast'))toast(t.getAttribute('data-toast'));
   else if(t.hasAttribute('data-lock')){var l=levelFor(+t.getAttribute('data-lock'));toast(l?'Opens for '+l.n+' supporters ('+l.l+') once member sign-in is ready.':'Opens for members once sign-in is ready.')}
-  else{var id=t.getAttribute('href').slice(1),el=document.getElementById(id);if(t.getAttribute('data-tab')){supTab=t.getAttribute('data-tab');renderDonations()}if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}}}
+  else{var id=t.getAttribute('href').slice(1),el=document.getElementById(id);if(watGoTab&&watGoTab(id)){e.preventDefault();return}if(t.getAttribute('data-tab')){supTab=t.getAttribute('data-tab');renderDonations()}if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}}}
 document.addEventListener('click',onClick);
 R.addEventListener('toggle',function(e){var d=e.target;if(d&&d.getAttribute&&d.getAttribute('data-ms')&&d.__u)budOpen[d.getAttribute('data-ms')]=d.open},true);
 R.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('details.msd>summary');if(s)s.parentNode.__u=1},true);
@@ -1867,14 +1875,24 @@ renderUpdates();askPledge();askList();askCount();askUpdates();
 setInterval(function(){if(!document.hidden&&!window.__watEdit)askPledge()},45000);
 setInterval(function(){if(!document.hidden&&!window.__watEdit){askList();askCount()}},300000);
 /* the pill in the menu bar slides to whichever section you are reading */
+var watGoTab=null;
 (function(){var snl=$('.subnav .snl');if(!snl)return;var pill=document.createElement('span');pill.className='snp';snl.insertBefore(pill,snl.firstChild);var links=$$('.subnav .snl a'),cur=null,tick=0,lock=0;
   function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
     pill.style.left=a.offsetLeft+'px';pill.style.width=a.offsetWidth+'px';pill.style.opacity='1';
     if(snl.scrollWidth>snl.clientWidth){var want=a.offsetLeft-Math.max(12,(snl.clientWidth-a.offsetWidth)/2);try{snl.scrollTo({left:Math.max(0,want),behavior:'smooth'})}catch(e){snl.scrollLeft=Math.max(0,want)}}}
-  function spy(){tick=0;if(Date.now()<lock)return;var bar=$('.subnav').getBoundingClientRect().bottom+24,best=null,bestTop=-1e9;
+  /* FAQs, Comments and Updates are real tabs: each replaces the campaign scroll below the menu bar */
+  var TABS={'wath-faq':'faq','wath-comments':'comments','wath-updates':'updates'},tab=null;
+  function tabLink(k){for(var i=0;i<links.length;i++)if(links[i].getAttribute('href')==='#wath-'+k)return links[i];return null}
+  function tabTop(smooth){var p=$('.cols.second'),sb=$('.subnav');if(!p)return;var y=p.getBoundingClientRect().top+(window.pageYOffset||0)-sb.offsetHeight;try{window.scrollTo({top:Math.max(0,y),behavior:smooth?'smooth':'auto'})}catch(x){window.scrollTo(0,Math.max(0,y))}}
+  function setTab(k,quiet){if(k===tab)return;tab=k;if(k)R.setAttribute('data-tabv',k);else R.removeAttribute('data-tabv');
+    links.forEach(function(l){var t=TABS[l.getAttribute('href').slice(1)];if(t)l.setAttribute('aria-current',t===k?'page':'false')});
+    if(!quiet){try{if(k)history.replaceState(null,'','#wath-'+k);else if(/^#wath-(faq|comments|updates)$/.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}catch(x){}}}
+  watGoTab=function(id){var k=TABS[id];if(!k)return false;setTab(k);set(tabLink(k));lock=Date.now()+900;tabTop(true);return true};
+  function spy(){tick=0;if(Date.now()<lock)return;if(tab){set(tabLink(tab));return}var bar=$('.subnav').getBoundingClientRect().bottom+24,best=null,bestTop=-1e9;
     links.forEach(function(l){var el=document.getElementById(l.getAttribute('href').slice(1));if(!el)return;var t=el.getBoundingClientRect().top;if(t<=bar&&t>bestTop){bestTop=t;best=l}});set(best)}
   window.addEventListener('scroll',function(){if(!tick)tick=requestAnimationFrame(spy)},{passive:true});window.addEventListener('resize',function(){var a=cur;cur=null;set(a)});
-  snl.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a){set(a);lock=Date.now()+900;if(a.hasAttribute('data-top')){e.preventDefault();e.stopPropagation();try{window.scrollTo({top:0,behavior:'smooth'})}catch(x){window.scrollTo(0,0)}}}});setTimeout(spy,300)})();
+  snl.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a){var tk=TABS[a.getAttribute('href').slice(1)];if(tk){e.preventDefault();e.stopPropagation();watGoTab('wath-'+tk);return}setTab(null);set(a);lock=Date.now()+900;if(a.hasAttribute('data-top')){e.preventDefault();e.stopPropagation();try{window.scrollTo({top:0,behavior:'smooth'})}catch(x){window.scrollTo(0,0)}}}});var h0=/^#wath-(faq|comments|updates)$/.exec(location.hash||'');if(h0){setTab(h0[1],true);setTimeout(function(){set(tabLink(h0[1]));tabTop(false)},350)}
+  setTimeout(spy,300)})();
 var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fitCommunity,200)});setTimeout(fitCommunity,400);setTimeout(fitCommunity,1500);
 /* phone preview (test page) */
 if(window.self!==window.top)document.documentElement.classList.add('wath-framed');
