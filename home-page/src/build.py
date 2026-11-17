@@ -1088,7 +1088,7 @@ _shr=('<div class="shr"><span class="shl">Share our campaign</span><div class="s
  +'<a class="sh1" aria-label="Share by email" title="Email" href="mailto:?subject=WHAT%20A%20TRIP%3A%20The%20Rick%20Doblin%20Story&body='+_t+'%0A%0A'+_u+'">'+_ic('<path d="M3 6.6A1.6 1.6 0 0 1 4.6 5h14.8A1.6 1.6 0 0 1 21 6.6v.25l-9 5.6-9-5.6zm0 2.6v8.2A1.6 1.6 0 0 0 4.6 19h14.8a1.6 1.6 0 0 0 1.6-1.6V9.2l-9 5.6z"/>')+'</a>'
  +'<button class="sh1" aria-label="Copy the link" title="Copy link" data-copy="https://whatatrip.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></button>'
  +'</div></div>')
-_tax='<div class="taxn"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><b>Donations are tax-deductible</b><span>Made through Creative Visions, our nonprofit fiscal sponsor. Deductible less the fair market value of any perk you receive.</span></div></div>'
+_tax='<div class="taxn"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><b>Donations are tax-deductible</b><span>Less the fair market value of any perk you receive.</span></div></div>'
 home=home.replace(_end,_tax+'</div>'+_shr+'</div>',1)
 
 _c='<div class="chs" data-challenges></div>'
@@ -1203,13 +1203,14 @@ extra+="""
 #wath .tndt{flex:1 1 0;max-width:600px}
 /* Trailer card (Nov 16): title + play button up top; credits sit low in the desert either side of Rick */
 :is(#wath,#wath-top) .video .vt{top:3.5%!important}
-:is(#wath,#wath-top) .video .vc{position:absolute;bottom:7%;z-index:2;width:30%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5cqw;font-size:2.15cqw;line-height:1.2;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#e6ebff;text-shadow:0 2px 14px rgba(27,21,38,.7),0 0 2px rgba(27,21,38,.4);opacity:0;animation:wathUp .9s cubic-bezier(.2,.7,.2,1) 1.9s forwards}
-:is(#wath,#wath-top) .video .vc strong{display:block;font-size:2.9cqw;font-weight:800;letter-spacing:.1em;color:#fff}
-:is(#wath,#wath-top) .video .vcl{left:3%}
-:is(#wath,#wath-top) .video .vcr{right:3%}
+:is(#wath,#wath-top) .video .vc{position:absolute;bottom:7%;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6cqw;white-space:nowrap;transform:translateX(-50%);font-size:1.9cqw;line-height:1.2;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e6ebff;text-shadow:0 2px 14px rgba(27,21,38,.7),0 0 2px rgba(27,21,38,.4);opacity:0;animation:wathUpX .9s cubic-bezier(.2,.7,.2,1) 1.9s forwards}
+@keyframes wathUpX{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+:is(#wath,#wath-top) .video .vc strong{display:block;font-size:2.6cqw;font-weight:800;letter-spacing:.08em;color:#fff}
+:is(#wath,#wath-top) .video .vcl{left:18.5%}
+:is(#wath,#wath-top) .video .vcr{left:81.5%}
 :is(#wath,#wath-top) .video.playing .vc{display:none}
-@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vc{animation:none;opacity:1}}
-@media(max-width:900px){:is(#wath,#wath-top) .video .vc{font-size:2.6cqw;width:34%;bottom:6%}:is(#wath,#wath-top) .video .vc strong{font-size:3.4cqw}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vc{animation:none;opacity:1;transform:translateX(-50%)}}
+@media(max-width:700px){:is(#wath,#wath-top) .video .vc{font-size:2.3cqw;bottom:6%;letter-spacing:.08em}:is(#wath,#wath-top) .video .vc strong{font-size:2.9cqw;letter-spacing:.04em}:is(#wath,#wath-top) .video .vcl{left:19.5%}:is(#wath,#wath-top) .video .vcr{left:80.5%}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
