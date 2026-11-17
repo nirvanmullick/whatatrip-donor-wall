@@ -964,13 +964,12 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
    top of the screen behind the menu button, and the trailer's big title sits level with that button, so the name shows once.
    Other pages keep the normal header (this code only loads on the home page). */
 (function(){var H=document.getElementById('header'),v=R.querySelector('.hero .video');if(!H||!v)return;var de=document.documentElement,vt=v.querySelector('.vt');
-  function upd(){v.style.marginTop='';if(vt)vt.style.removeProperty('--wath-hm');de.classList.remove('wath-hmerge');
-    if(window.innerWidth>767||getComputedStyle(H).position==='fixed')return;
-    de.classList.add('wath-hmerge');var top=v.getBoundingClientRect().top+window.scrollY,mt=parseFloat(getComputedStyle(v).marginTop)||0;
-    v.style.marginTop=(mt-top)+'px';
+  function upd(){if(window.innerWidth>767||getComputedStyle(H).position==='fixed'){v.style.marginTop='';if(vt)vt.style.removeProperty('--wath-hm');de.classList.remove('wath-hmerge');return}
+    de.classList.add('wath-hmerge');if(!v.offsetHeight)return;var top=v.getBoundingClientRect().top+window.scrollY,mt=parseFloat(getComputedStyle(v).marginTop)||0;
+    if(Math.abs(top)>.5)v.style.marginTop=(mt-top)+'px';if(vt)vt.style.removeProperty('--wath-hm');
     var bg=H.querySelector('.header-burger-btn')||H.querySelector('.header-burger'),tb=vt&&vt.querySelector('b');
     if(bg&&tb){var a=bg.getBoundingClientRect(),c=tb.getBoundingClientRect();if(a.height){var d=(a.top+a.height/2)-(c.top+c.height/2);if(d>0)vt.style.setProperty('--wath-hm',Math.round(d)+'px')}}}
-  var t;function later(){clearTimeout(t);t=setTimeout(upd,120)}window.addEventListener('resize',later);window.addEventListener('load',later);setTimeout(upd,0);setTimeout(upd,900);
+  var t;function later(){clearTimeout(t);t=setTimeout(upd,120)}window.addEventListener('resize',later);window.addEventListener('load',later);[0,300,900,2000,4000].forEach(function(ms){setTimeout(upd,ms)});if(window.ResizeObserver)new ResizeObserver(later).observe(H);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later)})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
