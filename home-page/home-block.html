@@ -1850,7 +1850,7 @@ function plgFrames(){return [].slice.call(document.querySelectorAll('iframe.plg-
 function setAmt(f){try{var u=new URL(f.src),cur=u.searchParams.get('amount')||'';var want=giveAmt>0?String(giveAmt):'';if(cur===want)return;if(want)u.searchParams.set('amount',want);else u.searchParams.delete('amount');f.src=u.toString()}catch(e){}}
 /* Nov 17 (Nirvan): TEST checkout on /home-dev and the sample preview. Shows how perk choice + fair market value
    would work before Pledge. Nothing is charged. FMV figures are placeholders until confirmed with Creative Visions. */
-var GCO_TEST=!LIVE||/\/home-dev/.test(location.pathname);
+var GCO_TEST=!LIVE||/\/home-(dev|test)/.test(location.pathname);
 var GPK=[
  {id:'shirt',min:500,auto:1,n:'Access to buy Legalize Rick Inception shirts',fmv:0,inv:'',what:'A discount code to buy the supporters-only shirt at cost in our store. The shirt and shipping are paid separately and are not part of your donation.',terms:[]},
  {id:'zoomf',min:5000,auto:1,n:'Zoom with the filmmakers',fmv:0,inv:'',what:'A group Zoom with Nirvan and the team, plus the Film Advisory WhatsApp group.',terms:['Group sessions, scheduled by the team.']},
