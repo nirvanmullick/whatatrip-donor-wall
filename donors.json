@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T16:56:36.233Z",
+  "updated": "2026-11-17T00:45:59.792Z",
   "count": 98,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Chris Pinault",
       "anonymous": false,
       "amount": 200,
-      "time": "1 hour ago",
+      "time": "9 hours ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "ts": "2026-11-15T09:30:03.529-08:00",
       "anonymous": true,
       "amount": 1000,
-      "time": "23 hours ago",
+      "time": "1 day ago",
       "comment": "Thanks for this awesome + inspiring + important work - it was great to be part of the salon at Lightening Society too!",
       "matched": true
     },
@@ -51,7 +51,7 @@
       "name": "Theresa Daniello",
       "anonymous": false,
       "amount": 5000,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -634,7 +634,7 @@
       "ts": "2026-10-01T20:48:05.576-07:00",
       "anonymous": true,
       "amount": 500,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -643,7 +643,7 @@
       "name": "Dan Fleitman Broder",
       "anonymous": false,
       "amount": 180,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
