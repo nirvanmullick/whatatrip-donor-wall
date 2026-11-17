@@ -1135,9 +1135,8 @@ _ia='<section class="sec" id="wath-impact"><div class="card tnd" data-tnd>'
 assert home.count(_ia)==1
 home=home.replace(_ia,'<section class="sec" id="wath-impact"><h2 class="imph">Impact</h2><div class="card tnd" data-tnd>')
 
-# Nov 17 (Nirvan): a second photo band (Rick in coloured light) before the impact campaign
-_im=home.find('<div class="wrap cols second">')
-assert _im>0
+# Nov 17 (Nirvan): a second photo band (Rick in coloured light), moved to the very bottom under Updates, just above the footer
+_im=len(home)
 home=home[:_im]+'<section class="rband fband" aria-label="Rick Doblin"><div class="rbimg" role="img" aria-label="Close-up of Rick Doblin lit in red and blue" style="background-image:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@4bea9baf0ec58ab40213efe8896f314c05fa861e/home-page/img/rick-face-light.jpg)"></div><div class="wrap rbw"><div class="rbt"><p class="rbk">Fifty years. One mission.</p><h2>Bring psychedelic therapy out of prohibition and into medicine.</h2><div class="rbb"><button class="btn pri" data-give>Help finish the film</button></div></div></div></section>\n'+home[_im:]
 
 # Nov 17 (Nirvan): Kickstarter-style light band under the hero; Perks out of the menu (the column is beside it)
@@ -1416,6 +1415,25 @@ extra+="""
 #wath .upt.uplk:has(.upimg.lk)::after{display:none!important}
 #wath .upimg.lk img{max-height:320px}
 #wath .tmc .tmi{width:84px;height:84px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e4dff2;color:#5a4f8f;font-size:24px;font-weight:800;margin-bottom:8px;flex:none}
+#wath .msd ul{background:#efeaf9;border-radius:10px;padding:10px 14px 10px 30px!important;margin:6px 0 12px 30px!important}
+#wath .msd.ms-now{border:2px solid #6152a0!important;border-radius:14px;background:#f6f3fd;padding:10px 14px 6px;margin:12px 0}
+#wath .msd.ms-now>summary{margin:0 -6px}
+#wath .msd.ms-now ul{background:#e7e0f8}
+#wath .msd.ms-next{border:1.5px dashed #b9addf!important;border-radius:14px;padding:10px 14px 6px;margin:12px 0}
+#wath .msd.ms-next>summary{margin:0 -6px}
+#wath .mstag{display:inline-block;margin:2px 0 2px;padding:3px 9px;border-radius:999px;background:#6152a0;color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em}
+#wath .mstag.nx{background:#ece7fa;color:#5d4fa6}
+#wath .msbar{margin:4px 0 8px 30px}
+#wath .msbar .bar{display:block;height:10px}
+#wath .msbar .bar i{background:#6152a0}
+#wath .msbl{display:block;margin-top:5px;font-size:13.5px;color:#5b6478}
+#wath .msd.msflash{animation:wathMsFlash 1.6s ease}
+@keyframes wathMsFlash{0%,100%{box-shadow:0 0 0 0 rgba(97,82,160,0)}25%{box-shadow:0 0 0 6px rgba(97,82,160,.25)}}
+@media(max-width:520px){#wath .msbar,#wath .msd ul{margin-left:0!important}}
+#wath .msd.ms-now>summary,#wath .msd.ms-next>summary{flex-wrap:wrap;row-gap:4px}
+#wath .msd>summary .mstagw{flex:0 0 100%;display:block;line-height:1}
+#wath .msd>summary .msbar{flex-basis:100%;margin:4px 0 2px 30px}
+#wath .msd.ms-now>summary{background:transparent!important}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
