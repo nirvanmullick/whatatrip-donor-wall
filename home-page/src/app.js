@@ -1052,8 +1052,8 @@ try{var _q=location.search;if(/[?&]deco4\b/.test(_q))R.classList.add('wdeco4');e
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later)})();
 
 /* Nov 17 1pm (Nirvan): on phones, the Rick banner and More ways to help come right after the perks (before Community, FAQs and the rest) */
-(function(){var rb=R.querySelector('.rband:not(.fband)'),mw=document.getElementById('wath-help'),cols=R.querySelector('.cols:not(.second)');if(!rb||!mw||!cols)return;var home=mw.nextSibling;
-  function place(){var ph=window.innerWidth<=900;if(ph&&rb.parentNode!==cols){cols.appendChild(rb);cols.appendChild(mw)}else if(!ph&&rb.parentNode===cols){cols.parentNode.insertBefore(rb,cols.nextSibling);rb.parentNode.insertBefore(mw,rb.nextSibling)}}
+(function(){var rb=R.querySelector('.rband:not(.fband)'),cols=R.querySelector('.cols:not(.second)');if(!rb||!cols)return;
+  function place(){var ph=window.innerWidth<=900;if(ph&&rb.parentNode!==cols){cols.appendChild(rb)}else if(!ph&&rb.parentNode===cols){cols.parentNode.insertBefore(rb,cols.nextSibling)}}
   place();var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(place,150)})})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
