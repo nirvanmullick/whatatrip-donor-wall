@@ -1265,6 +1265,15 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 #wath .tndside .tndl{width:100%;margin:0}
 #wath .tndside .tndb .btn.tj{min-width:150px;justify-content:center}
 #wath .tndt{flex:1 1 0;max-width:600px}
+/* Trailer card (Nov 16): title + play button up top; credits sit low in the desert either side of Rick */
+:is(#wath,#wath-top) .video .vt{top:3.5%!important}
+:is(#wath,#wath-top) .video .vc{position:absolute;bottom:7%;z-index:2;width:30%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5cqw;font-size:2.15cqw;line-height:1.2;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#e6ebff;text-shadow:0 2px 14px rgba(27,21,38,.7),0 0 2px rgba(27,21,38,.4);opacity:0;animation:wathUp .9s cubic-bezier(.2,.7,.2,1) 1.9s forwards}
+:is(#wath,#wath-top) .video .vc strong{display:block;font-size:2.9cqw;font-weight:800;letter-spacing:.1em;color:#fff}
+:is(#wath,#wath-top) .video .vcl{left:3%}
+:is(#wath,#wath-top) .video .vcr{right:3%}
+:is(#wath,#wath-top) .video.playing .vc{display:none}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vc{animation:none;opacity:1}}
+@media(max-width:900px){:is(#wath,#wath-top) .video .vc{font-size:2.6cqw;width:34%;bottom:6%}:is(#wath,#wath-top) .video .vc strong{font-size:3.4cqw}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
@@ -1293,7 +1302,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 <div id="wath">
 <section class="hero"><div class="wrap">
 <h1>Help bring Rick Doblin&rsquo;s story to the screen</h1><p class="sub" style="font-size:18px">A documentary following Rick&rsquo;s 40+ year journey with MAPS to bring psychedelics back into culture.</p>
-<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><em>From Executive Producer <strong>Darren Aronofsky</strong></em><b>WHAT A TRIP</b><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></span><span class="vb" aria-hidden="true">A film by <strong>Nirvan Mullick</strong></span></a>
+<div class="hero-grid"><a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>
 <div style="display:flex;flex-direction:column;gap:16px"><div data-hero style="display:flex;flex-direction:column;gap:12px"></div>
 
 <div class="kstats" data-kstats></div><div class="match" data-matchline></div>
