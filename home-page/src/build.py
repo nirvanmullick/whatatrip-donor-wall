@@ -1161,6 +1161,14 @@ extra+="""
 @media(min-width:901px){#wath .subnav .btn[data-give]{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
 #wath.sngive .subnav .btn[data-give]{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease,transform .28s ease,visibility 0s}}
 @media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
+#wath .mx.mxg{display:block;padding:14px 16px 14px}
+#wath .mx.mxg .mh{font-size:19px;line-height:1.25;margin:0 0 2px;padding-right:26px}
+#wath .mx.mxg .mxs2{display:block}
+#wath .mx.mxg .mxrow{display:flex;align-items:center;margin-top:12px}
+#wath .mx.mxg .mxi{width:40px;height:40px;z-index:1;box-shadow:0 0 0 3px #fbf3df}
+#wath .mx.mxg .mxrow .mxb{flex:1;height:10px;margin:0 0 0 -8px;border-radius:0 999px 999px 0}
+#wath .mx.mxg .mxrow .mxb i{border-radius:0 999px 999px 0}
+#wath .mx.mxg .mxl{margin-top:8px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
