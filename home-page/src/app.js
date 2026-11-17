@@ -193,7 +193,7 @@ var CHCOL={live:'#c99a3e',next:'#6152a0',done:'#33697f'};
 function chShort(n){return '$'+Math.round(n/1000)+'K'}
 function chTitle(l){return esc(l.n)+'&rsquo;s '+chShort(l.cap)+' matching challenge'}
 function chDoneDate(l,H){if(l.doneOn)return l.doneOn;if(H&&H.length)return chDate(H[0].date);return l.when||''}
-var CHSORT={};function chAmt(g){return g.part!=null&&g.part<(+g.amount||0)?+g.part:(+g.amount||0)}
+var CHSORT={};function chAmt(g){return +g.amount||0}
 function chCard(c,by){var l=c.l,pc=Math.round(c.got/l.cap*100),srt=CHSORT[l.slug]||'top',H=(by[l.slug]||[]).slice().reverse();if(srt==='top')H=H.map(function(g,k){return [g,k]}).sort(function(a,b){return chAmt(b[0])-chAmt(a[0])||a[1]-b[1]}).map(function(x){return x[0]});var op=!!CHOPEN[l.slug],st=c.live?'live':c.done?'done':'next',col=CHCOL[st],n=l.people||H.length;
   var line=c.done?'<b>'+chShort(l.cap)+' goal fully funded</b>'+(chDoneDate(l,H)?' · '+chDoneDate(l,H):'')+(n?' · '+n+' '+(n===1?'person':'people')+' gave':''):c.live?'<b>'+money(l.cap-c.got)+' left</b> · '+money(c.got)+' matched of '+money(l.cap):'Starts when the active challenge is fully funded';
   var list=H.length?'<ul class="chp">'+H.map(function(g){var a=isAnon(g);return '<li><span>'+esc(a?'Anonymous':nm(g))+'</span><b>'+(g.part!=null&&g.part<(+g.amount||0)?money(g.part)+'<small> of '+money(+g.amount||0)+'</small>':money(+g.amount||0))+'</b><em>'+chDate(g.date)+'</em></li>'}).join('')+'</ul>'+(l.people&&l.people>H.length?'<p class="chno">'+H.length+' of '+l.people+' gifts are in our records so far.</p>':''):'<p class="chno">'+(c.live||c.done?'We are still gathering the list of people who helped meet this match.':'No gifts yet. This challenge starts when the active one is fully funded.')+'</p>';
