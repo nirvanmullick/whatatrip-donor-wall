@@ -1082,7 +1082,7 @@ assert home.count(_end)==1
 _ic=lambda d:'<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">'+d+'</svg>'
 _u='https%3A%2F%2Fwhatatrip.com'
 _t='Help%20bring%20Rick%20Doblin%E2%80%99s%20story%20to%20the%20screen.%20WHAT%20A%20TRIP%2C%20executive%20produced%20by%20Darren%20Aronofsky.'
-_shr=('<div class="shr"><span class="shl">Share our campaign</span><div class="shb">'
+_shr=('<div class="shr"><span class="shl">Share</span><div class="shb">'
  +'<a class="sh1" aria-label="Share on Facebook" title="Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u='+_u+'">'+_ic('<path d="M13.6 21v-7.6h2.55l.4-3H13.6V8.5c0-.87.25-1.46 1.5-1.46h1.6V4.36c-.28-.04-1.23-.12-2.33-.12-2.3 0-3.87 1.4-3.87 3.98v2.2H7.9v3h2.6V21z"/>')+'</a>'
  +'<a class="sh1" aria-label="Share on X" title="X" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url='+_u+'&text='+_t+'">'+_ic('<path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78zm-1.08 16.17h1.7L7.4 4.74H5.58z"/>')+'</a>'
  +'<a class="sh1" aria-label="Share by email" title="Email" href="mailto:?subject=WHAT%20A%20TRIP%3A%20The%20Rick%20Doblin%20Story&body='+_t+'%0A%0A'+_u+'">'+_ic('<path d="M3 6.6A1.6 1.6 0 0 1 4.6 5h14.8A1.6 1.6 0 0 1 21 6.6v.25l-9 5.6-9-5.6zm0 2.6v8.2A1.6 1.6 0 0 0 4.6 19h14.8a1.6 1.6 0 0 0 1.6-1.6V9.2l-9 5.6z"/>')+'</a>'
@@ -1162,7 +1162,7 @@ home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
 assert _ss>0
-_shr=home[_ss:_se].replace('<div class="shr">','<div class="shr snshr">',1).replace('<span class="shl">Share our campaign</span>','<span class="shl">Share</span>',1)
+_shr=home[_ss:_se].replace('<div class="shr">','<div class="shr snshr">',1).replace('<span class="shl">Share</span>','<span class="shl">Share</span>',1)
 _db='<button class="btn pri" data-give>Donate</button></div></div>'
 assert home.count(_db)==1
 home=home.replace(_db,'<span class="snr">'+_shr+'<button class="btn pri" data-give>Donate</button></span></div></div>',1)
