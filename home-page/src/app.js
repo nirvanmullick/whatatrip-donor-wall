@@ -257,15 +257,16 @@ function bondsDraw(){$$('#wath-recent .suplist').forEach(function(L){var avs=[].
   var old=L.querySelector(':scope>svg.bonds');if(!avs.length){if(old)old.remove();return}
   var lr=L.getBoundingClientRect(),P=avs.map(function(a){var r=a.getBoundingClientRect();return {x:r.left-lr.left,y:r.top-lr.top,w:r.width,h:r.height}});
   var sig=P.map(function(p){return Math.round(p.x)+','+Math.round(p.y)}).join(';');if(old&&old.getAttribute('data-sig')===sig)return;
-  var f=function(n){return Math.round(n*10)/10},d='',c='',pat=[0,1,2,1,3,0,1,2,3,1];
-  var dot=function(x,y,r){c+='<circle cx="'+f(x)+'" cy="'+f(y)+'" r="'+(r||2.9)+'"/>'};
-  for(var i=0;i<P.length-1;i++){var a=P[i],n=P[i+1],cx=a.x+a.w/2,ncx=n.x+n.w/2,v=pat[i%pat.length];
-    if(v===1||v===3){/* out from a side corner at a bond angle, down, and back in to the same corner of the next hexagon, with a dot at each corner */
-      var R=v===1,x1=R?a.x+a.w*.933:a.x+a.w*.067,y1=a.y+a.h*.75,x4=R?n.x+n.w*.933:n.x+n.w*.067,y4=n.y+n.h*.25,dx=R?12:-12;
-      if(!R&&a.x<20)dx=-Math.max(6,a.x*.6);
-      d+='M'+f(x1)+' '+f(y1)+'L'+f(x1+dx)+' '+f(y1+7)+'L'+f(x4+dx)+' '+f(y4-7)+'L'+f(x4)+' '+f(y4);dot(x1,y1);dot(x4,y4)}
-    else{d+='M'+f(cx)+' '+f(a.y+a.h)+'L'+f(ncx)+' '+f(n.y);if(v===2)c+='<circle class="f" cx="'+f((cx+ncx)/2)+'" cy="'+f((a.y+a.h+n.y)/2)+'" r="2.4"/>'}
-    if(i%5===3){var sx=a.x+a.w*.933,sy=a.y+a.h*.25;d+='M'+f(sx)+' '+f(sy)+'l9 -5.2';dot(sx+11,sy-6.3,2.5)}}
+  var f=function(n){return Math.round(n*10)/10},d='',c='';
+  var dot=function(x,y,r,fl){c+='<circle'+(fl?' class="f"':'')+' cx="'+f(x)+'" cy="'+f(y)+'" r="'+(r||2.9)+'"/>'};
+  /* Nov 17 2:39pm (Nirvan): honeycomb zig-zag. Neighbours nest; bonds vary: a short bond between facing sides, a straight bond
+     skipping down to the next hexagon in the same column, or a bend out to the left and back, with the odd dangling side chain. */
+  for(var i=0;i<P.length-1;i++){var a=P[i],n=P[i+1],ax=a.x+a.w/2,ay=a.y+a.h/2,nx=n.x+n.w/2,ny=n.y+n.h/2,k=P[i+2],left=a.x<n.x,m=i%4;
+    var dx=nx-ax,dy=ny-ay,L=Math.sqrt(dx*dx+dy*dy)||1,ri=a.w*.433+3,rn=n.w*.433+3;
+    d+='M'+f(ax+dx/L*ri)+' '+f(ay+dy/L*ri)+'L'+f(nx-dx/L*rn)+' '+f(ny-dy/L*rn);
+    if(m===3&&k){var kx=k.x+k.w/2;d+='M'+f(ax)+' '+f(a.y+a.h+3)+'L'+f(kx)+' '+f(k.y-3);dot((ax+kx)/2,(a.y+a.h+k.y)/2,2.4,1)}
+    if(m===1&&k&&left){var x1=a.x+a.w*.067,y1=a.y+a.h*.75,x4=k.x+k.w*.067,y4=k.y+k.h*.25,ox=Math.max(4,Math.min(x1,x4)-12);d+='M'+f(x1)+' '+f(y1)+'L'+f(ox)+' '+f(y1+7)+'L'+f(ox)+' '+f(y4-7)+'L'+f(x4)+' '+f(y4);dot(x1,y1);dot(x4,y4)}
+    if(i%5===2&&left){var sx=a.x+a.w*.067,sy=a.y+a.h*.25;d+='M'+f(sx)+' '+f(sy)+'l-9 -5.2';dot(sx-11,sy-6.3,2.5)}}
   var rg='';P.forEach(function(p){var g=3,cx=p.x+p.w/2,cy=p.y+p.h/2,rx=p.w/2+g,ry=p.h/2+g;rg+='<path class="hxo" d="M'+f(cx)+' '+f(cy-ry)+'L'+f(cx+rx*.866)+' '+f(cy-ry/2)+'L'+f(cx+rx*.866)+' '+f(cy+ry/2)+'L'+f(cx)+' '+f(cy+ry)+'L'+f(cx-rx*.866)+' '+f(cy+ry/2)+'L'+f(cx-rx*.866)+' '+f(cy-ry/2)+'Z"/>'});c+=rg;
   var svg=old||document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','bonds');svg.setAttribute('aria-hidden','true');svg.setAttribute('data-sig',sig);svg.innerHTML='<path d="'+d+'"/>'+c;if(!old)L.insertBefore(svg,L.firstChild)})}
 (function(){var t;function later(){clearTimeout(t);t=setTimeout(bondsDraw,120)}if(window.MutationObserver)new MutationObserver(function(ms){for(var k=0;k<ms.length;k++){var tg=ms[k].target;if(!(tg.closest&&tg.closest('svg.bonds'))&&!(ms[k].addedNodes.length===1&&ms[k].addedNodes[0].nodeName==='svg')){later();return}}}).observe(R,{childList:true,subtree:true});window.addEventListener('resize',later);setTimeout(bondsDraw,800)})();
