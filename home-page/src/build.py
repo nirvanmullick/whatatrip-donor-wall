@@ -1314,6 +1314,14 @@ extra+="""
 .mov .mladd span:first-child::before,.mov .mladd span:last-child::before{margin-left:-7px;margin-right:-7px}
 .mov .mnext{margin-top:4px}
 @media(max-width:560px){.mov .mladd span b{font-size:10.5px}.mov .mladd span:nth-child(even):not(.nx) b{display:none}}
+#wath .upbar{margin:14px 0 16px;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid #ebe7f3}
+#wath .upbh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:14px}
+#wath .upbh span{color:#5b6478}
+#wath .upbar .bar{height:10px}
+#wath .upbar .bar i{background:#6152a0}
+#wath .upbar.live .bar i{background:#c99a3e}
+#wath .upbar.done .bar i{background:#33697f}
+#wath .upt a{color:#5d4fa6;font-weight:600}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
