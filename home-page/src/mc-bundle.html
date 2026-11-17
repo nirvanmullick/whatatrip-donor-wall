@@ -1,0 +1,659 @@
+<!-- ==========================================================================
+     WHAT A TRIP — bundled "Start a Matching Challenge" modal (from the /matching page).
+     Opened by the "Make a Matching Challenge" Ways-to-Help buttons via window.openModal().
+     Scoped under #wat-mc so its styles can't disturb the rest of the donate page.
+     ========================================================================== -->
+<div id="wat-mc">
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)attemptCloseChallenge()">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal-head">
+<button class="modal-close" onclick="attemptCloseChallenge()" aria-label="Close">×</button>
+<div id="modalTitleWrap">
+<div class="eyebrow">🎬 WHAT A TRIP FUNDING POOL</div>
+<h3 id="modalTitle">Start a Matching Challenge</h3>
+</div>
+<div class="progress-steps" id="progressSteps">
+<div class="ps active" data-step="1" onclick="goToStep(1)"><div class="bar"></div><div class="lbl">Pledge</div></div>
+<div class="ps" data-step="2" onclick="goToStep(2)"><div class="bar"></div><div class="lbl">Your Info</div></div>
+<div class="ps" data-step="3" onclick="goToStep(3)"><div class="bar"></div><div class="lbl">Review</div></div>
+<div class="ps" data-step="4"><div class="bar"></div><div class="lbl">Complete pledge</div></div>
+</div>
+</div>
+<div class="modal-body" id="modalBody">
+<div id="resumeBanner" class="resume-banner" style="display:none">👋 Welcome back! We saved your details — review everything below and complete your pledge.</div>
+<div class="fstep active" data-step="1">
+<div class="field">
+<label>Choose your pledge <span class="req">*</span></label>
+<div class="presets" id="presets">
+<button type="button" class="preset" data-amt="5000"><span class="p-amt">$5,000</span><span class="p-lvl">Special Thanks</span></button>
+<button type="button" class="preset" data-amt="25000"><span class="p-amt">$25,000</span><span class="p-lvl">Made Possible By</span></button>
+<button type="button" class="preset" data-amt="100000"><span class="p-amt">$100,000</span><span class="p-lvl">Contributing Producer</span></button>
+<button type="button" class="preset" data-amt="250000"><span class="p-amt">$250,000</span><span class="p-lvl">Co-Executive Producer</span></button>
+<button type="button" class="preset preset-other" data-amt="other"><span class="p-amt">Other amount</span></button>
+</div>
+<div class="amount-input" style="margin-top:12px"><span>$</span><input type="text" id="pledgeAmount" inputmode="numeric" placeholder="Pledge Amount" /></div>
+<div class="hint">$2,500 minimum pledge.</div>
+</div>
+<div class="impact-box" id="impactBox">
+<div class="imp-label">Impact</div>
+<div class="imp-head" id="impHead"></div>
+<ul class="imp-bullets" id="impBullets"></ul>
+</div>
+<div class="credit-box" id="creditBox">
+<div class="credit-box-head"><span class="cb-label">Your Credit</span><button type="button" class="rv-info cb-info" onclick="openCreditTiers(event)" aria-label="About film credit tiers">i</button></div>
+<div class="cb-body" id="cbBody"></div>
+</div>
+<div class="field">
+<label>Match ratio</label>
+<select id="matchRatio" onchange="updateRatioHint()">
+<option value="1:1">Dollar for dollar (1:1) — doubles every gift</option>
+<option value="2:1">Two-for-one (2:1) — triples every gift</option>
+<option value="custom">Something else — let's talk</option>
+</select>
+</div>
+</div>
+<div class="fstep" data-step="2">
+<div class="field-row">
+<div class="field"><label>First name <span class="req">*</span></label><input type="text" id="firstName" placeholder="First name" /></div>
+<div class="field"><label>Last name <span class="req">*</span></label><input type="text" id="lastName" placeholder="Last name" /></div>
+</div>
+<div class="field"><label>Email <span class="req">*</span></label><input type="email" id="email" placeholder="you@example.com" /></div>
+<div class="field"><label>Phone</label><input type="tel" id="phone" placeholder="(555) 555-5555" /></div>
+<div class="field">
+<select id="credit">
+<option>Use my name publicly to promote this match</option>
+<option>Anonymous — don't list my name</option>
+<option>Let's discuss</option>
+</select>
+</div>
+<div class="field"><label>A message to inspire others <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="message" rows="3" placeholder="Why this film, why now — a line we might feature alongside your challenge."></textarea></div>
+</div>
+<div class="fstep" data-step="3">
+<p style="font-size:.85rem;color:var(--muted);margin:0 0 12px;">Tap any field to edit it before you continue.</p>
+<div class="review-card" id="reviewCard">
+<div class="rv-row"><label>Your pledge</label><div class="rv-ctrl rv-amt"><span>$</span><input id="rvPledge" inputmode="numeric" oninput="rvSync()"></div></div>
+<div class="rv-row"><label>Name</label><div class="rv-ctrl rv-two"><input id="rvFirst" placeholder="First" oninput="rvSync()"><input id="rvLast" placeholder="Last" oninput="rvSync()"></div></div>
+<div class="rv-row"><label>Email</label><div class="rv-ctrl"><input id="rvEmail" type="email" oninput="rvSync()"></div></div>
+<div class="rv-row"><label>Phone</label><div class="rv-ctrl"><input id="rvPhone" type="tel" placeholder="(555) 555-5555"></div></div>
+<div class="rv-row"><label>Match ratio</label><div class="rv-ctrl"><select id="rvRatio" onchange="rvSync()"><option value="1:1">Dollar for dollar (1:1)</option><option value="2:1">Two-for-one (2:1)</option><option value="custom">Something else</option></select></div></div>
+<div class="rv-row"><label>Publicity</label><div class="rv-ctrl"><select id="rvCredit" onchange="rvSync()"><option>Use my name publicly to promote this match</option><option>Anonymous — don't list my name</option><option>Let's discuss</option></select></div></div>
+<div class="rv-row"><label>Your Credit</label><div class="rv-static rv-static-credit" id="rvLevel">—</div><span class="rv-info-wrap"><button type="button" class="rv-info" onclick="toggleCreditInfo(event)" aria-label="What determines my credit?">i</button><div class="rv-tip" id="creditTip">Whatever you donate or help raise contributes to a total that determines what film credit you receive. If you've given before, this pledge counts toward that total contribution. If matched contributions total over $5k, you'll receive (at least) a Special Thanks credit. This will be added to any other donations/support you've helped with. Thank you!</div></span></div>
+</div>
+</div>
+<div class="success" id="success">
+<p class="donate-intro">Complete your tax-deductible donation below to fund your match. Almost done — thank you!</p>
+<div id="donateEmbed" class="donate-embed"></div>
+</div>
+</div>
+<div class="modal-foot" id="modalFoot">
+<button class="btn btn-back" id="backBtn" onclick="prevStep()" style="visibility:hidden">Back</button>
+<button class="btn btn-blue" id="nextBtn" onclick="nextStep()">Next →</button>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="poolModal" onclick="if(event.target===this)closePoolModal()">
+<div class="modal" style="max-width:480px" role="dialog" aria-modal="true">
+<div class="modal-head">
+<button class="modal-close" onclick="closePoolModal()" aria-label="Close">×</button>
+<div class="eyebrow" style="color:var(--gold)">Challenge Pool</div>
+<h3>Donate to the Pool</h3>
+</div>
+<div class="modal-body"><div id="poolEmbed" class="donate-embed"></div></div>
+</div>
+</div>
+<div class="modal-overlay" id="minNotice" onclick="if(event.target===this)closeMinNotice()">
+<div class="modal notice" role="dialog" aria-modal="true">
+<div class="notice-body">
+<div class="notice-icon">$</div>
+<h3>Matching challenges start at $2,500</h3>
+<p>These campaigns take extra work to set up and manage, so our matching form has a $2,500 minimum. For a gift under $2,500, please use our donation portal — your contribution goes straight toward the next stage of production. Thank you!</p>
+<div class="notice-actions">
+<a class="btn btn-blue btn-lg" href="https://whatatrip.film/donate">Go to Donation Portal</a>
+<button class="btn btn-back" onclick="closeMinNotice()">Back</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="creditTiersModal" onclick="if(event.target===this)closeCreditTiers()">
+<div class="modal" role="dialog" aria-modal="true" style="max-width:470px">
+<div class="modal-head">
+<button class="modal-close" onclick="closeCreditTiers()" aria-label="Close">×</button>
+<div class="eyebrow" style="color:var(--gold)">Film Credits</div>
+<h3 style="font-size:1.35rem">How Film Credit Tiers Work</h3>
+</div>
+<div class="modal-body">
+<p class="ct-intro">Whatever you donate <em>and</em> help raise adds to a running total that determines your on-screen credit. A matching challenge you complete counts in full — and if you've given before, this pledge counts toward that total, too.</p>
+<div class="ct-list">
+<div class="ct-row"><span class="ct-amt">$1,000,000+</span><span class="ct-lvl">Presented By <i>(Executive Producer credit + guided therapy with Rick)</i></span></div>
+<div class="ct-row"><span class="ct-amt">$500,000+</span><span class="ct-lvl">Executive Producer <i>(title credit + guided therapy with Rick)</i></span></div>
+<div class="ct-row"><span class="ct-amt">$250,000+</span><span class="ct-lvl">Co-Executive Producer <i>(+ guided therapy with Rick)</i></span></div>
+<div class="ct-row"><span class="ct-amt">$100,000+</span><span class="ct-lvl">Contributing Producer</span></div>
+<div class="ct-row"><span class="ct-amt">$25,000+</span><span class="ct-lvl">Made Possible By</span></div>
+<div class="ct-row"><span class="ct-amt">$5,000+</span><span class="ct-lvl">Special Thanks</span></div>
+</div>
+</div>
+<div class="modal-foot"><button class="btn btn-blue" onclick="closeCreditTiers()" style="margin-left:auto">Got it</button></div>
+</div>
+</div>
+<div class="modal-overlay" id="remindModal" onclick="if(event.target===this)dismissReminder()">
+<div class="modal notice" role="dialog" aria-modal="true" style="max-width:430px">
+<div class="notice-body" id="remindAsk">
+<div class="notice-icon">⏰</div>
+<h3>Save your progress?</h3>
+<p>Leaving already? We can email you a link so you can pick up your Matching Challenge right where you left off.</p>
+<input type="email" id="remindEmail" class="remind-input" placeholder="you@example.com" />
+<div class="notice-actions">
+<button class="btn btn-blue btn-lg" onclick="sendReminder()">Yes, remind me</button>
+<button class="btn btn-back" onclick="dismissReminder()">No thanks</button>
+</div>
+</div>
+<div class="notice-body" id="remindDone" style="display:none;">
+<div class="notice-icon">✓</div>
+<h3>Reminder on the way!</h3>
+<p>We'll email you a link to finish your Matching Challenge. Thank you — talk soon!</p>
+<div class="notice-actions"><button class="btn btn-blue btn-lg" onclick="closeReminderDone()">Close</button></div>
+</div>
+</div>
+</div>
+</div>
+<style>
+:root{--blue:#5a93af;--blue-dark:#4a7f99;--navy:#2f3d4d;--navy-2:#28333f;--gold:#d8b46a;--periwinkle:#828fb5;--mist:#eef1f6;--mist-2:#e4e9f1;--slate:#33414f;--ink:#45525f;--muted:#7d8794;--line:#e2e7ee;--card:#ffffff;--radius:16px;--shadow:0 6px 24px rgba(20,30,55,.10);--shadow-lg:0 18px 44px rgba(20,30,55,.20);--brandblue:#c5e2fd;--desert:#83718b}
+#wat-mc{position:relative;z-index:2147483000;font-family:'Helvetica Neue',Arial,'Source Sans 3',sans-serif}
+#wat-mc *{box-sizing:border-box}
+#wat-mc .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;border:0 none!important;outline:0 none!important;box-shadow:rgba(20,30,55,.12) 0 2px 8px!important;border-radius:12px!important;padding:16px 26px;cursor:pointer;text-decoration:none!important;transition:transform .15s,box-shadow .15s,background .15s}
+#wat-mc .btn-blue{background:var(--blue)!important;color:#fff!important}
+#wat-mc .btn-blue:hover{background:var(--blue-dark)!important;transform:translateY(-2px)}
+#wat-mc .btn-gold{background:var(--gold)!important;color:#2f2408!important}
+#wat-mc .btn-gold:hover{background:#c7a04b!important;transform:translateY(-2px)}
+#wat-mc .btn-white{background:#fff!important;color:var(--blue)!important}
+#wat-mc .btn-white:hover{transform:translateY(-2px)}
+#wat-mc .btn-lg{padding:18px 32px;font-size:.9rem}
+#wat-mc .eyebrow{font-family:'Source Sans 3',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:.76rem;color:var(--gold)}
+#wat-mc .modal-overlay{position:fixed;inset:0;background:rgba(30,38,52,.68);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:22px;z-index:100}
+#wat-mc .modal-overlay.open{display:flex}
+#wat-mc .modal{background:#fff;border-radius:20px;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 40px 90px -28px rgba(0,0,0,.55);position:relative}
+#wat-mc .mock-flag{background:#fff5d6;color:#7a5b00;text-align:center;font-size:.78rem;padding:8px;border-bottom:1px solid #e6cf7a}
+#wat-mc .modal-head{padding:24px 30px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+#wat-mc .modal-head .eyebrow{color:var(--gold)}
+#wat-mc .modal-head h3{font-size:1.5rem;font-weight:700;margin-top:6px;color:var(--slate)}
+#wat-mc .modal-close{position:absolute;top:18px;right:22px;background:var(--mist);border:none;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;color:var(--slate);line-height:1}
+#wat-mc .modal-close:hover{background:var(--blue);color:#fff}
+#wat-mc #minNotice{z-index:120}
+#wat-mc #remindModal{z-index:140}
+#wat-mc #creditTiersModal{z-index:130}
+#wat-mc .remind-input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;font-size:1rem;font-family:inherit;color:var(--slate);margin:0 0 16px;text-align:left}
+#wat-mc .remind-input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(90,147,175,.2)}
+#wat-mc .notice{max-width:430px}
+#wat-mc .notice-body{padding:36px 32px;text-align:center}
+#wat-mc .notice-icon{width:54px;height:54px;border-radius:50%;background:var(--mist);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3';font-weight:700;font-size:1.5rem;margin:0 auto 16px}
+#wat-mc .notice-body h3{font-size:1.35rem;font-weight:700;color:var(--slate)}
+#wat-mc .notice-body p{color:var(--muted);font-size:.98rem;line-height:1.55;margin:12px 0 22px}
+#wat-mc .notice-actions{display:flex;flex-direction:column;gap:10px}
+#wat-mc .notice-actions .btn{width:100%}
+#wat-mc .progress-steps{display:flex;gap:8px;margin-top:18px}
+#wat-mc .progress-steps .ps{flex:1;text-align:center}
+#wat-mc .progress-steps .ps .bar{height:6px;border-radius:4px;background:var(--line);transition:background .2s}
+#wat-mc .progress-steps .ps.active .bar,#wat-mc .progress-steps .ps.done .bar{background:var(--blue)}
+#wat-mc .progress-steps .ps .lbl{font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:6px;font-family:'Source Sans 3';font-weight:600}
+#wat-mc .progress-steps .ps.active .lbl{color:var(--blue)}
+#wat-mc .progress-steps .ps.clickable{cursor:pointer}
+#wat-mc .progress-steps .ps.clickable:hover .lbl{color:var(--blue);text-decoration:underline}
+#wat-mc .modal-body{padding:24px 30px}
+#wat-mc .fstep{display:none}
+#wat-mc .fstep.active{display:block;animation:watmcFade .25s ease}
+@keyframes watmcFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#wat-mc .field{margin-bottom:18px}
+#wat-mc .field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:7px;color:var(--slate)}
+#wat-mc .field label .req{color:#c0603a}
+#wat-mc .field input,#wat-mc .field select,#wat-mc .field textarea{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:11px;font-size:1rem;font-family:inherit;color:var(--slate);background:#fff;transition:border .15s,box-shadow .15s}
+#wat-mc .field input:focus,#wat-mc .field select:focus,#wat-mc .field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(90,147,175,.2)}
+#wat-mc .field .hint{font-size:.78rem;color:var(--muted);margin-top:6px}
+#wat-mc .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#wat-mc .amount-input{position:relative}
+#wat-mc .amount-input span{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+#wat-mc .amount-input input{padding-left:30px}
+#wat-mc .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+#wat-mc .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:.9rem;cursor:pointer;font-weight:600;color:var(--slate);transition:all .15s}
+#wat-mc .chip:hover{border-color:var(--blue)}
+#wat-mc .chip.sel{background:var(--blue);color:#fff;border-color:var(--blue)}
+#wat-mc .presets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#wat-mc .preset{display:flex;flex-direction:column;align-items:center;gap:2px;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;cursor:pointer;text-align:center;transition:all .15s;font-family:inherit}
+#wat-mc .preset:hover{border-color:var(--blue);box-shadow:0 3px 10px rgba(90,147,175,.18)}
+#wat-mc .preset.sel{border-color:var(--blue);background:#eef4f7;box-shadow:0 0 0 3px rgba(90,147,175,.18)}
+#wat-mc .preset .p-amt{font-family:'Source Sans 3';font-weight:700;font-size:1.05rem;color:var(--slate)}
+#wat-mc .preset .p-lvl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:700}
+#wat-mc .preset-other{align-items:center;justify-content:center;flex-direction:row;color:var(--muted)}
+#wat-mc .preset-other .p-amt{color:var(--slate);font-size:1.05rem}
+#wat-mc .impact-box{background:#dfeaf1;border:1px solid #c6dae7;border-radius:12px;padding:16px 18px;margin:2px 0 18px;display:none;text-align:left}
+#wat-mc .field-err{position:absolute;z-index:40;background:linear-gradient(180deg,#e6c87f 0%,#cfa551 100%);color:#241c04;font-size:.8rem;font-weight:600;line-height:1.35;text-align:left;padding:8px 12px;border-radius:3px;border:1px solid #b8913f;box-shadow:0 12px 28px rgba(70,50,10,.32);max-width:min(280px,78vw);pointer-events:none;animation:watmcFieldErrIn .22s cubic-bezier(.34,1.56,.64,1)}
+#wat-mc .field-err::after{content:"";position:absolute;bottom:100%;left:20px;border:7px solid transparent;border-bottom-color:#e6c87f}
+@keyframes watmcFieldErrIn{from{opacity:0;transform:translateY(-5px) scale(.96)}to{opacity:1;transform:none}}
+#wat-mc .field-invalid{border-color:#b8913f!important;box-shadow:0 0 0 3px rgba(216,180,106,.28)!important}
+#wat-mc .resume-banner{background:#eef4f7;border:1px solid #cfe0e8;color:var(--ink);border-radius:10px;padding:11px 14px;font-size:.86rem;line-height:1.45;margin-bottom:16px}
+#wat-mc .impact-box.show{display:block;animation:watmcFade .25s ease}
+#wat-mc .impact-box .imp-label{font-family:'Source Sans 3';font-weight:700;font-size:.72rem;letter-spacing:.16em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+#wat-mc .impact-box .imp-head{font-size:.95rem;color:var(--slate);line-height:1.5;margin-bottom:10px}
+#wat-mc .impact-box .imp-head b{color:var(--blue-dark)}
+#wat-mc .impact-box .imp-bullets{list-style:none;margin:0;padding:0 6px 0 0;max-height:132px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#a9c6da transparent}
+#wat-mc .impact-box .imp-bullets::-webkit-scrollbar{width:6px}
+#wat-mc .impact-box .imp-bullets::-webkit-scrollbar-thumb{background:#a9c6da;border-radius:3px}
+#wat-mc .impact-box .imp-bullets::-webkit-scrollbar-track{background:transparent}
+#wat-mc .impact-box .imp-bullets li:last-child{margin-bottom:0}
+#wat-mc .impact-box .imp-bullets li{position:relative;padding-left:24px;margin-bottom:7px;font-size:.92rem;color:var(--slate);line-height:1.4}
+#wat-mc .impact-box .imp-bullets li::before{content:"✓";position:absolute;left:0;top:0;color:var(--blue);font-weight:700}
+#wat-mc .impact-box .imp-foot{font-size:.8rem;color:var(--muted);line-height:1.45;border-top:1px solid #c6dae7;padding-top:10px}
+#wat-mc .impact-box .imp-foot b{color:var(--blue-dark)}
+#wat-mc .credit-box{background:#fffdf7;border:1.5px solid var(--gold);border-radius:12px;padding:13px 16px;margin:2px 0 18px;display:none;text-align:left}
+#wat-mc .credit-box.show{display:block;animation:watmcFade .25s ease}
+#wat-mc .credit-box .credit-box-head{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+#wat-mc .credit-box .cb-label{font-family:'Source Sans 3';font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#b98f34}
+#wat-mc .credit-box .cb-info{border-color:#d8b46a;color:#b98f34}
+#wat-mc .credit-box .cb-info:hover{border-color:#b98f34;color:#8f6d1f}
+#wat-mc .credit-box .cb-body{font-size:.86rem;color:var(--slate);line-height:1.5}
+#wat-mc .credit-box .cb-body b{color:#b98f34}
+#wat-mc .ct-intro{font-size:.9rem;color:var(--ink);line-height:1.55;margin:0 0 14px}
+#wat-mc .ct-list{display:flex;flex-direction:column;gap:8px}
+#wat-mc .ct-row{display:flex;gap:12px;align-items:baseline;padding:9px 13px;background:var(--mist);border:1px solid var(--line);border-radius:10px}
+#wat-mc .ct-amt{font-family:'Source Sans 3';font-weight:700;color:var(--gold);font-size:.9rem;min-width:100px;white-space:nowrap}
+#wat-mc .ct-lvl{color:var(--slate);font-weight:600;font-size:.9rem;line-height:1.35}
+#wat-mc .ct-lvl i{color:var(--muted);font-weight:500;font-style:italic;font-size:.82rem}
+#wat-mc .review-card{background:var(--mist);border:1px solid var(--line);border-radius:14px;padding:6px 16px}
+#wat-mc .rv-row{display:flex;align-items:center;justify-content:flex-start;gap:7px;padding:9px 0;border-bottom:1px dashed var(--line)}
+#wat-mc .rv-row:last-child{border-bottom:none}
+#wat-mc .rv-row>label{color:var(--muted);font-size:.9rem;font-weight:600;flex:0 0 112px;text-align:right}
+#wat-mc .rv-row>label::after{content:":"}
+#wat-mc .rv-ctrl{flex:0 1 auto;min-width:0;max-width:100%}
+#wat-mc .rv-ctrl.rv-two{display:flex;gap:1px;align-items:center}
+#wat-mc .rv-ctrl.rv-two input{width:auto;flex:0 0 auto;padding:8px 1px}
+#wat-mc .rv-ctrl.rv-two input:first-child{padding-left:10px}
+#wat-mc .rv-static.rv-static-credit{flex:0 1 auto;padding-left:10px}
+#wat-mc .rv-info-wrap{position:relative;display:inline-flex;flex:0 0 auto}
+#wat-mc .rv-tip{position:absolute;bottom:100%;right:0;margin-bottom:8px;z-index:30;width:250px;max-width:70vw;background:var(--slate);color:#fff;font-size:.78rem;line-height:1.45;font-weight:400;padding:10px 12px;border-radius:10px;box-shadow:0 10px 26px rgba(20,30,55,.3);display:none;text-align:left}
+#wat-mc .rv-tip.show{display:block;animation:watmcFade .18s ease}
+#wat-mc .rv-tip::after{content:"";position:absolute;bottom:-6px;right:13px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid var(--slate)}
+#wat-mc .rv-row input,#wat-mc .rv-row select{width:auto;max-width:100%;padding:8px 10px;border:1.5px solid transparent;border-radius:8px;font-size:.92rem;font-family:inherit;color:var(--slate);font-weight:600;background:transparent;text-align:left;cursor:pointer;transition:border .15s,background .15s}
+#wat-mc .rv-row input:hover,#wat-mc .rv-row select:hover{border-color:var(--line);background:#fff}
+#wat-mc .rv-row input:focus,#wat-mc .rv-row select:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(90,147,175,.15);cursor:text}
+#wat-mc .rv-static{color:var(--slate);font-weight:600;font-size:.92rem;text-align:left;flex:1 1 auto;min-width:0}
+#wat-mc .rv-amt{position:relative}
+#wat-mc .rv-amt>span{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600;font-size:.9rem;z-index:1}
+#wat-mc .rv-amt input{padding-left:22px}
+#wat-mc .rv-info{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--muted);background:transparent;color:var(--muted);font-size:.68rem;font-style:italic;font-family:Georgia,serif;font-weight:700;line-height:1;padding:0;margin-left:5px;cursor:pointer;vertical-align:middle;transition:border .15s,color .15s}
+#wat-mc .rv-info:hover{border-color:var(--blue);color:var(--blue)}
+#wat-mc .rv-note{font-size:.8rem;color:var(--ink);background:#eef4f7;border:1px solid #cfe0e8;border-radius:10px;padding:10px 12px;margin:4px 0 6px;line-height:1.45}
+#wat-mc .donate-intro{font-size:.9rem;color:var(--muted);line-height:1.5;margin:0 0 4px;text-align:center}
+#wat-mc .donate-embed{margin-top:18px;min-height:120px;text-align:left}
+#wat-mc .modal-foot{display:flex;justify-content:space-between;gap:12px;padding:18px 30px 26px;border-top:1px solid var(--line);position:sticky;bottom:0;background:#fff}
+#wat-mc .modal-foot .btn{padding:12px 26px;font-size:.92rem}
+#wat-mc .btn-back{background:var(--mist)!important;color:var(--slate)!important}
+#wat-mc .btn-back:hover{background:var(--mist-2)!important}
+#wat-mc .success{text-align:center;padding:40px 30px;display:none}
+#wat-mc .success.show{display:block;animation:watmcFade .3s ease}
+#wat-mc .success .check{width:76px;height:76px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.3rem;margin:0 auto 20px}
+#wat-mc .success h3{font-size:1.55rem;font-weight:700;color:var(--slate)}
+#wat-mc .success p{color:var(--muted);max-width:400px;margin:12px auto 0}
+@media(max-width:560px){#wat-mc .field-row{grid-template-columns:1fr}#wat-mc .progress-steps .ps .lbl{display:none}}
+</style>
+<script>
+var current=1, totalSteps=3, maxReached=1;
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';updateImpact();}
+function closeModal(){
+document.getElementById('modal').classList.remove('open');document.body.style.overflow='';
+setTimeout(function(){current=1;maxReached=1;renderStep();document.getElementById('success').classList.remove('show');
+document.getElementById('modalFoot').style.display='flex';document.getElementById('progressSteps').style.display='flex';
+var de=document.getElementById('donateEmbed');if(de)de.innerHTML='';
+document.getElementById('modalTitleWrap').style.display='';
+var rb=document.getElementById('resumeBanner');if(rb)rb.style.display='none';
+document.querySelectorAll('.fstep').forEach(function(s){s.style.display='';});},200);
+}
+function renderStep(){
+if(current>maxReached)maxReached=current;
+document.querySelectorAll('.fstep').forEach(function(s){s.classList.toggle('active',+s.dataset.step===current);});
+document.querySelectorAll('.progress-steps .ps').forEach(function(ps,i){
+ps.classList.toggle('active',i+1===current);
+ps.classList.toggle('done',i+1<current);
+ps.classList.toggle('clickable',(i+1)!==current && (i+1)<=maxReached);
+});
+document.getElementById('backBtn').style.visibility=current===1?'hidden':'visible';
+document.getElementById('nextBtn').textContent=current===totalSteps?'Complete your pledge →':'Next →';
+if(current===totalSteps)fillReview();
+}
+function goToStep(n){ if(n<=maxReached && n!==current){ current=n; renderStep(); } }
+function nextStep(){
+if(current===totalSteps){ if(validateReview()) submitChallenge(); return; }
+if(!validate(current))return;
+if(current<totalSteps){current++;renderStep();}
+}
+function prevStep(){if(current>1){current--;renderStep();}}
+function clearFieldError(el){ if(el._errB){ el._errB.remove(); el._errB=null; } if(el._errT){ clearTimeout(el._errT); el._errT=null; } el.classList.remove('field-invalid'); }
+function showFieldError(el,msg){
+clearFieldError(el);
+var p=el.parentElement; if(getComputedStyle(p).position==='static') p.style.position='relative';
+var b=document.createElement('div'); b.className='field-err'; b.textContent=msg;
+b.style.top=(el.offsetTop+el.offsetHeight+8)+'px';
+b.style.left=Math.max(0,el.offsetLeft)+'px';
+p.appendChild(b); el._errB=b; el.classList.add('field-invalid');
+el._errT=setTimeout(function(){ clearFieldError(el); },5000);
+}
+function requireField(id,msg){
+var el=document.getElementById(id);
+showFieldError(el,msg);
+try{el.focus();}catch(e){}
+var clear=function(){ clearFieldError(el); el.removeEventListener('input',clear); el.removeEventListener('change',clear); };
+el.addEventListener('input',clear); el.addEventListener('change',clear);
+return false;
+}
+function validate(step){
+if(step===1){
+var pa=parseAmt(document.getElementById('pledgeAmount').value);
+if(!pa)return requireField('pledgeAmount','Please enter how much you’d like to pledge.');
+if(pa<MIN_PLEDGE){showMinNotice();return false;}
+}
+if(step===2){
+if(!document.getElementById('firstName').value.trim())return requireField('firstName','Please enter your first name.');
+if(!document.getElementById('lastName').value.trim())return requireField('lastName','Please enter your last name.');
+var e=document.getElementById('email');
+if(!e.value.trim())return requireField('email','Please enter your email address.');
+if(e.value.indexOf('@')<0)return requireField('email','Please enter a valid email address (including an @).');
+}
+return true;
+}
+function val(id){return document.getElementById(id).value;}
+function fillReview(){
+var amtNum=parseAmt(val('pledgeAmount'));
+document.getElementById('rvPledge').value = amtNum? amtNum.toLocaleString('en-US') : '';
+document.getElementById('rvLevel').textContent = amtNum? (creditFor(amtNum)||'TBD') : '—';
+document.getElementById('rvRatio').value = val('matchRatio');
+document.getElementById('rvFirst').value = val('firstName');
+document.getElementById('rvLast').value  = val('lastName');
+document.getElementById('rvEmail').value = val('email');
+document.getElementById('rvPhone').value = val('phone');
+document.getElementById('rvCredit').value= val('credit');
+fitName();
+}
+var _measureCtx;
+function fitField(el){
+if(!el)return;
+if(!_measureCtx)_measureCtx=document.createElement('canvas').getContext('2d');
+el.removeAttribute('size');
+var cs=getComputedStyle(el);
+_measureCtx.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+var txt=el.value||el.placeholder||'';
+var pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+3;
+el.style.width=Math.ceil(_measureCtx.measureText(txt).width+pad)+'px';
+}
+function fitName(){ ['rvPledge','rvFirst','rvLast','rvEmail','rvPhone'].forEach(function(id){fitField(document.getElementById(id));}); }
+function rvSync(){
+document.getElementById('pledgeAmount').value=val('rvPledge');
+document.getElementById('matchRatio').value=val('rvRatio');
+document.getElementById('firstName').value=val('rvFirst');
+document.getElementById('lastName').value=val('rvLast');
+document.getElementById('email').value=val('rvEmail');
+document.getElementById('phone').value=val('rvPhone');
+document.getElementById('credit').value=val('rvCredit');
+var amtNum=parseAmt(val('rvPledge'));
+document.getElementById('rvLevel').textContent=amtNum?(creditFor(amtNum)||'TBD'):'—';
+fitName();
+updateRatioHint();
+}
+function validateReview(){
+var rvpa=parseAmt(val('rvPledge'));
+if(!rvpa) return requireField('rvPledge','Please enter your pledge amount.');
+if(rvpa<MIN_PLEDGE){showMinNotice();return false;}
+if(!val('rvFirst').trim())  return requireField('rvFirst','Please enter your first name.');
+if(!val('rvLast').trim())   return requireField('rvLast','Please enter your last name.');
+var e=val('rvEmail').trim();
+if(!e) return requireField('rvEmail','Please enter your email address.');
+if(e.indexOf('@')<0) return requireField('rvEmail','Please enter a valid email address (including an @).');
+return true;
+}
+function renderDonateWidget(host, opts){
+opts=opts||{}; if(!host) return; host.innerHTML='';
+var d=document.createElement('div'); d.className='plg-donate';
+d.setAttribute('data-widget-id', POOL_WIDGET_ID);
+if(opts.amount)    d.setAttribute('data-amount', opts.amount);
+if(opts.firstName) d.setAttribute('data-first-name', opts.firstName);
+if(opts.lastName)  d.setAttribute('data-last-name', opts.lastName);
+if(opts.email)     d.setAttribute('data-email', opts.email);
+host.appendChild(d);
+}
+function sendChallengeEmail(data){
+if(!FORM_ENDPOINT) return;
+try{ fetch(FORM_ENDPOINT,{method:'POST',body:JSON.stringify(data)}); }catch(e){}
+}
+function submitChallenge(){
+rvSync();
+var amt=parseAmt(val('pledgeAmount'));
+var fn=val('firstName').trim(), ln=val('lastName').trim(), em=val('email').trim();
+var ratioLabels={'1:1':'Dollar for dollar (1:1) — doubles every gift','2:1':'Two-for-one (2:1) — triples every gift','custom':'To be discussed'};
+var rec=amt?creditFor(amt):null;
+var extra='Match ratio: '+(ratioLabels[val('matchRatio')]||val('matchRatio'))+' | Recognition tier: '+(rec||'—')+' | Credit preference: '+val('credit');
+var userMsg=val('message').trim();
+sendChallengeEmail({
+subject:'What a Trip — New Matching Challenge Pledge',
+name:(fn+' '+ln).trim(), email:em, phone:val('phone').trim(),
+amount:amt||'', start:'',
+message:(userMsg?userMsg+'\n\n':'')+'[Matching Challenge Pool pledge] '+extra,
+matchRatio:val('matchRatio'), recognition:rec, credit:val('credit')
+});
+renderDonateWidget(document.getElementById('donateEmbed'), {amount:amt, firstName:fn, lastName:ln, email:em});
+document.querySelectorAll('.fstep').forEach(function(s){s.style.display='none';});
+document.getElementById('modalFoot').style.display='none';
+document.querySelectorAll('.progress-steps .ps').forEach(function(ps,i){
+ps.classList.remove('clickable');
+ps.classList.toggle('active',i===3);
+ps.classList.toggle('done',i<3);
+});
+document.getElementById('success').classList.add('show');
+}
+var MIN_PLEDGE = 2500;
+var POOL_WIDGET_ID = "tvBVG1iB8mSWqT1U";
+var FORM_ENDPOINT  = "https://script.google.com/macros/s/AKfycby5MB_qlZS4N2WCmxzzNWCagHYXBnwypdZB6nQEbE4LiuXNsV6niJy7PaV5LuNbrvGv8w/exec";
+var RESUME_URL     = "https://script.google.com/macros/s/AKfycbx8qkqGsGwwNrfobN21wNATdHpUA4QirnmmnLM9O9jRMPU7-Bsam6nMHCcI5Ays4eM/exec";
+var MATCH_PAGE_URL = "https://whatatrip.film/matching";
+var CREDIT_TIERS = [   /* 2026-09-29 (t): matched to the donor wall's levels */
+{min:1000000, name:"Presented By"},
+{min:500000, name:"Executive Producer"},
+{min:250000, name:"Co-Executive Producer"},
+{min:100000, name:"Contributing Producer"},
+{min:25000,  name:"Made Possible By"},
+{min:5000,   name:"Special Thanks"}
+];
+var MILESTONES = [
+{label:"us prep to film this fall (especially if MDMA gets rescheduled!)", cost:50000, goal:"for production in fall of 2026"},
+{label:"edit Act 2 of the rough cut", cost:75000, goal:"to edit Act 2 of our rough cut by Q4 2026"},
+{label:"edit Act 3 of the rough cut", cost:75000, goal:"to edit Act 3 of our rough cut by April 2027"},
+{label:"fund animation & archival sequences", cost:100000, goal:"for animation sequences"},
+{label:"fund additional interviews & B-roll", cost:75000, goal:"for additional interviews & B-roll"},
+{label:"license music & archival footage", cost:100000, goal:"to license music & archival footage"},
+{label:"cover post-production, admin & fees", cost:150000, goal:"for post-production, admin & fees"}
+];
+/* 2026-10-02 (cc): what's already raised INTO these goals (everything past Act 1's $75K) is now
+   read live from the budget widget at the top of the page -- it was typed in by hand ($16,200)
+   and so kept saying "Our next goal is to raise ... for production" after production was funded. */
+var RAISED_INTO_STACK = 16200;   // fallback only, until the live total lands
+function raisedIntoStack(){ try { if (window.WAT_ROUGH_LIVE && typeof window.WAT_ROUGH_RAISED === 'function') return Math.max(0, window.WAT_ROUGH_RAISED() - 75000); } catch(e){} return RAISED_INTO_STACK; }
+var FINAL_CUT_TOTAL   = 900000;
+var FINAL_CUT_BLURB   = "the final cut — color, sound mix, original score & festival delivery";
+var ROUGHCUT_RAISED_URL = "https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec";
+var STACK_TOTAL = MILESTONES.reduce(function(s,m){return s+m.cost;},0);
+function parseAmt(v){v=(''+v).replace(/[^0-9.]/g,'');var n=parseFloat(v);return isNaN(n)?0:Math.round(n);}
+function fmt(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function creditFor(a){for(var i=0;i<CREDIT_TIERS.length;i++){if(a>=CREDIT_TIERS[i].min)return CREDIT_TIERS[i].name;}return null;}
+function impactBullets(total){
+var s=raisedIntoStack(), e=s+total, bl=[];
+if(total<=0) return bl;
+if(e>=STACK_TOTAL){
+bl.push('Helps finish editing the rough cut');
+} else {
+var acc=0;
+MILESTONES.forEach(function(m){
+var a=acc, b=acc+m.cost; acc=b;
+if(e<a||s>=b) return;
+bl.push('Helps '+m.label);
+});
+}
+var spill=e-STACK_TOTAL;
+if(spill>0){ spill=Math.min(spill,FINAL_CUT_TOTAL); bl.push('Helps put '+fmt(spill)+' toward '+FINAL_CUT_BLURB); }
+return bl;
+}
+function nextGoalsList(){
+/* (cc) the goal being funded NOW, then the two after it -- moves on by itself as goals are met */
+var r=raisedIntoStack(), acc=0, i=0;
+while(i<MILESTONES.length && r>=acc+MILESTONES[i].cost){ acc+=MILESTONES[i].cost; i++; }
+if(i>=MILESTONES.length) return ["Our rough cut goals are fully funded &mdash; thank you! Gifts now go toward "+FINAL_CUT_BLURB];
+var out=["Our next goal is to raise <b>"+fmt(MILESTONES[i].cost-(r-acc))+"</b> "+MILESTONES[i].goal];
+for(var j=i+1;j<Math.min(i+3,MILESTONES.length);j++) out.push("Raise <b>$"+(MILESTONES[j].cost/1000)+"k</b> "+MILESTONES[j].goal);
+return out;
+}
+window.addEventListener('wat-rough', function(){ try { var b=document.getElementById('impactBox'); if(b && b.classList.contains('show')) updateImpact(); } catch(e){} });
+function updateImpact(){
+var amt=parseAmt(document.getElementById('pledgeAmount').value);
+var box=document.getElementById('impactBox'), creditBox=document.getElementById('creditBox');
+if(amt<=0){
+document.getElementById('impHead').innerHTML='Your donation contributes toward our next production goals:';
+document.getElementById('impBullets').innerHTML=nextGoalsList().map(function(g){return '<li>'+g+'</li>';}).join('');
+box.classList.add('show');
+if(creditBox)creditBox.classList.remove('show');
+return;
+}
+var matched=amt*2;
+document.getElementById('impHead').innerHTML='If matched, your <b>'+fmt(amt)+'</b> would add a total of <b>'+fmt(matched)+'</b> toward our production, helping us to:';
+var bl=impactBullets(matched);
+document.getElementById('impBullets').innerHTML = bl.map(function(t){return '<li>'+t+'</li>';}).join('');
+var tier=creditFor(matched), cb=document.getElementById('cbBody');
+if(cb){
+if(tier){ var art=/^[aeiou]/i.test(tier)?'an':'a'; cb.innerHTML='The total you help us raise counts toward your contribution and film credit — so if this <b>'+fmt(amt)+'</b> pledge unlocks <b>'+fmt(matched)+'</b>, you’d receive (at least) '+art+' <b>'+tier+'</b> credit.'; }
+else { cb.innerHTML='The total you help us raise counts toward your contribution and film credit.'; }
+}
+box.classList.add('show'); if(creditBox)creditBox.classList.add('show');
+}
+function openCreditTiers(e){if(e)e.preventDefault();document.getElementById('creditTiersModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeCreditTiers(){document.getElementById('creditTiersModal').classList.remove('open');document.body.style.overflow='hidden';}
+function updateRatioHint(){
+var h=document.getElementById('ratioHint');
+if(!h) return;
+var r=document.getElementById('matchRatio').value;
+if(r==='1:1') h.textContent='For every $1 donated, you add $1 — so a $100 gift becomes $200 — up to your total pledge.';
+else if(r==='2:1') h.textContent='For every $1 donated, you add $2 — so a $100 gift becomes $300 — up to your total pledge.';
+else h.textContent='We’ll define the match terms with you.';
+}
+document.querySelectorAll('#presets .preset').forEach(function(b){
+b.addEventListener('click',function(){
+document.querySelectorAll('#presets .preset').forEach(function(x){x.classList.remove('sel');});
+b.classList.add('sel');
+var amt=b.dataset.amt, input=document.getElementById('pledgeAmount');
+if(amt==='other'){input.value='';input.focus();updateImpact();}
+else {input.value=parseInt(amt,10).toLocaleString('en-US');updateImpact();}
+});
+});
+document.getElementById('pledgeAmount').addEventListener('input',function(){
+document.querySelectorAll('#presets .preset').forEach(function(x){x.classList.remove('sel');});
+updateImpact();
+});
+function openPoolModal(){ renderDonateWidget(document.getElementById('poolEmbed'), {}); document.getElementById('poolModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closePoolModal(){ document.getElementById('poolModal').classList.remove('open'); document.body.style.overflow=''; setTimeout(function(){var e=document.getElementById('poolEmbed');if(e)e.innerHTML='';},200); }
+function toggleCreditInfo(e){if(e){e.preventDefault();e.stopPropagation();}var t=document.getElementById('creditTip');if(t)t.classList.toggle('show');}
+function closeCreditTip(){var t=document.getElementById('creditTip');if(t)t.classList.remove('show');}
+document.addEventListener('click',function(e){var t=document.getElementById('creditTip');if(t&&t.classList.contains('show')&&!(e.target.closest&&e.target.closest('.rv-info-wrap')))closeCreditTip();});
+function showMinNotice(){document.getElementById('minNotice').classList.add('open');document.body.style.overflow='hidden';}
+function closeMinNotice(){document.getElementById('minNotice').classList.remove('open');document.body.style.overflow='hidden';}
+function challengeInProgress(){
+if(document.getElementById('success').classList.contains('show')) return false;
+var amt=parseAmt((document.getElementById('pledgeAmount')||{}).value||'');
+var em=(((document.getElementById('email')||{}).value)||((document.getElementById('rvEmail')||{}).value)||'').trim();
+return (amt>0 || em.length>0);
+}
+function attemptCloseChallenge(){ if(challengeInProgress()){ showReminder(); } else { closeModal(); } }
+function showReminder(){
+document.getElementById('remindAsk').style.display='';
+document.getElementById('remindDone').style.display='none';
+var em=((document.getElementById('email').value)||(document.getElementById('rvEmail').value)||'').trim();
+document.getElementById('remindEmail').value=em;
+document.getElementById('remindModal').classList.add('open');
+}
+function dismissReminder(){ document.getElementById('remindModal').classList.remove('open'); closeModal(); }
+function closeReminderDone(){ document.getElementById('remindModal').classList.remove('open'); closeModal(); }
+function sendReminder(){
+var email=(document.getElementById('remindEmail').value||'').trim();
+if(!email || email.indexOf('@')<0){ requireField('remindEmail','Please enter a valid email so we can send your reminder.'); return; }
+var fn=(val('firstName')||'').trim(), ln=(val('lastName')||'').trim();
+var amt=parseAmt(val('pledgeAmount'));
+var payload={
+type:'reminder',
+resumeBase: MATCH_PAGE_URL,
+first:fn, last:ln, name:(fn+' '+ln).trim(),
+email:email, phone:(val('phone')||'').trim(),
+amount:amt||'',
+matchRatio:val('matchRatio'), credit:val('credit'), message:(val('message')||'').trim()
+};
+var url = RESUME_URL || FORM_ENDPOINT;
+if(url){ try{ fetch(url,{method:'POST',body:JSON.stringify(payload)}); }catch(e){} }
+document.getElementById('remindAsk').style.display='none';
+document.getElementById('remindDone').style.display='';
+}
+function resumeFromParams(){
+var token;
+try{ token=new URLSearchParams(window.location.search).get('resume'); }catch(e){ return; }
+if(!token || !RESUME_URL) return;
+fetch(RESUME_URL+'?token='+encodeURIComponent(token))
+.then(function(r){ return r.json(); })
+.then(function(d){ if(d && !d.error && (d.email||d.amount)) applyResume(d); })
+.catch(function(){});
+}
+function applyResume(d){
+var amt=parseInt(d.amount,10);
+if(amt>0){ var pa=document.getElementById('pledgeAmount'); if(pa){ pa.value=amt.toLocaleString('en-US'); document.querySelectorAll('#presets .preset').forEach(function(x){x.classList.remove('sel');}); updateImpact(); } }
+if(d.matchRatio){ var mr=document.getElementById('matchRatio'); if(mr){ mr.value=d.matchRatio; updateRatioHint(); } }
+var first=d.first||d.firstName, last=d.last||d.lastName;
+if(first){ document.getElementById('firstName').value=first; }
+if(last){ document.getElementById('lastName').value=last; }
+if(d.email){ document.getElementById('email').value=d.email; }
+if(d.phone){ document.getElementById('phone').value=d.phone; }
+if(d.credit){ var cr=document.getElementById('credit'); if(cr){ for(var i=0;i<cr.options.length;i++){ if(cr.options[i].value===d.credit||cr.options[i].text===d.credit){ cr.selectedIndex=i; break; } } } }
+if(d.message){ document.getElementById('message').value=d.message; }
+var banner=document.getElementById('resumeBanner'); if(banner)banner.style.display='';
+openModal();
+var hasInfo = first && last && d.email;
+maxReached=3;
+current = hasInfo ? 3 : (amt>=MIN_PLEDGE ? 2 : 1);
+renderStep();
+}
+document.addEventListener('keydown',function(e){
+if(e.key!=='Escape') return;
+var rm=document.getElementById('remindModal'), ct=document.getElementById('creditTiersModal'), mn=document.getElementById('minNotice');
+if(rm.classList.contains('open')){ dismissReminder(); return; }
+if(ct.classList.contains('open')){ closeCreditTiers(); return; }
+if(mn.classList.contains('open')){ closeMinNotice(); return; }
+closeCreditTip(); closePoolModal();
+if(document.getElementById('modal').classList.contains('open')) attemptCloseChallenge();
+});
+(function(){
+var TMPL="(___) ___-____";
+var SLOTS=[]; for(var i=0;i<TMPL.length;i++){ if(TMPL.charAt(i)==='_') SLOTS.push(i); }
+function digitsOf(s){ return (''+s).replace(/\D/g,'').slice(0,10); }
+function build(d){ var out=TMPL.split(''); for(var i=0;i<SLOTS.length;i++){ out[SLOTS[i]] = (i<d.length? d.charAt(i) : '_'); } return out.join(''); }
+function caretAfter(n){ return n<=0 ? SLOTS[0] : (n>=SLOTS.length ? TMPL.length : SLOTS[n-1]+1); }
+function mask(el, sync){
+if(!el) return;
+function render(d,caret){
+el.value=build(d);
+var pos = caret!=null?caret:caretAfter(d.length);
+try{ el.setSelectionRange(pos,pos); }catch(e){}
+if(sync && typeof rvSync==='function') rvSync();
+}
+el.addEventListener('focus',function(){ if(digitsOf(el.value).length===0) render(''); });
+el.addEventListener('blur',function(){ if(digitsOf(el.value).length===0){ el.value=''; if(sync && typeof rvSync==='function') rvSync(); } });
+el.addEventListener('beforeinput',function(e){ if(e.inputType==='insertText' && e.data && /\D/.test(e.data)) e.preventDefault(); });
+el.addEventListener('input',function(){ render(digitsOf(el.value)); });
+el.addEventListener('keydown',function(e){
+if(e.key==='Backspace'){ e.preventDefault(); render(digitsOf(el.value).slice(0,-1)); }
+else if(e.key==='Delete'){ e.preventDefault(); render(digitsOf(el.value)); }
+});
+}
+mask(document.getElementById('phone'), false);
+mask(document.getElementById('rvPhone'), true);
+})();
+resumeFromParams();
+</script>
+

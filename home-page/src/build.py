@@ -1513,5 +1513,7 @@ extra+="""
 
 out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-donor-wall home-page/home-block.html -->\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">\n<style>\n'+scoped+extra+'</style>\n<div id="wath">'+home+'</div>\n<div id="wath-top">'+top+'</div>\n<script>\n'+js+'\n</script>\n'
 os.makedirs('../img',exist_ok=True)
+# Nov 17 3pm (Nirvan): the 'Start a Matching Challenge' pop-up from the /matching page (same bundle the donate page carries)
+out+='\n'+open('mc-bundle.html').read()+'\n'
 open('../home-block.html','w').write(out)
 print(len(out))
