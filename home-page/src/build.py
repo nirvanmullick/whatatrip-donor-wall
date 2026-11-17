@@ -1250,6 +1250,40 @@ extra+="""
 :is(#wath,#wath-top) .video .vt .play.pq{width:clamp(56px,9cqw,84px);height:clamp(56px,9cqw,84px);padding:0;border-radius:14px;background:#6152a0;justify-content:center;gap:0;margin-top:2.4cqw;box-shadow:0 10px 28px rgba(27,21,38,.35)}
 :is(#wath,#wath-top) .video .vt .play.pq svg{width:50%;height:50%;margin-left:6%}
 :is(#wath,#wath-top) .video:hover .vt .play.pq{background:#54479a}
+#wath .mwh{margin-top:18px;display:flex;flex-direction:column;gap:14px}
+#wath .mwh .mwt{font-size:22px;margin:10px 0 0}
+#wath .mwa{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#1b1526;color:#fff;box-shadow:0 8px 24px rgba(27,21,38,.18);transition:transform .2s ease}
+#wath .mwa:hover{transform:translateY(-2px)}
+#wath .mwa:focus-visible{outline:3px solid #6152a0;outline-offset:3px}
+#wath .mwai{display:block;aspect-ratio:16/9;background:#3a3350 center/cover}
+#wath .mwab{display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px}
+#wath .mwak{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#c9bff0}
+#wath .mwab b{font-size:20px;line-height:1.15}
+#wath .mwab span{font-size:14px;line-height:1.4;color:#e4dff5}
+#wath .mwab .mwago{margin-top:6px;font-weight:700;color:#fff}
+#wath .mwl{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,21,38,.1);border-radius:14px;overflow:hidden}
+#wath .mwr{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-top:1px solid rgba(27,21,38,.08);color:#1b1526;text-decoration:none}
+#wath .mwr:first-child{border-top:0}
+#wath .mwr:hover{background:#f6f3fc}
+#wath .mwr:focus-visible{outline:2px solid #6152a0;outline-offset:-2px}
+#wath .mwic{flex:none;width:36px;height:36px;border-radius:10px;background:#ece7fa;color:#5d4fa6;display:inline-flex;align-items:center;justify-content:center}
+#wath .mwtx{display:flex;flex-direction:column;gap:2px;min-width:0}
+#wath .mwtx b{font-size:15px}
+#wath .mwtx span{font-size:13.5px;line-height:1.4;color:#5b6478}
+.arcov .arcc{max-width:860px;width:min(860px,94vw);padding:0;overflow:hidden}
+.arcov .arcs{position:relative;background:#1b1526}
+.arcov .arcs img{display:block;width:100%;max-height:62vh;object-fit:cover}
+.arcov .arcp,.arcov .arcn{position:absolute;top:50%;transform:translateY(-50%);width:44px!important;height:44px!important;padding:0!important;display:flex;align-items:center;justify-content:center;border-radius:50%!important;border:0;background:rgba(255,255,255,.9);color:#1b1526;font-size:26px;line-height:1;cursor:pointer}
+.arcov .arcp{left:12px}.arcov .arcn{right:12px}
+.arcov .arcdot{position:absolute;bottom:10px;right:14px;font-size:13px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.arcov .arct{padding:18px 22px 22px}
+.arcov .arct>b{font-size:22px}
+.arcov .arct ul{margin:8px 0 0;padding-left:18px}
+.arcov .arct li{margin:6px 0}
+.arcov .arct a{color:#5d4fa6}
+.arcov .arcf{margin:14px 0 0;font-weight:600}
+.arcov .bovx{z-index:2}
+#wath .socc{font-size:14px;font-weight:700;color:#4a4560}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
