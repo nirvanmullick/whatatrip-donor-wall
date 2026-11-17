@@ -485,7 +485,7 @@ function onClick(e){var t=e.target.closest&&e.target.closest('[data-gor],[data-t
   else if(t.hasAttribute('data-more')){var q=t.previousElementSibling,o=q.classList.toggle('clamp');t.firstChild.textContent=o?'Read more':'Read less'}
   else if(t.hasAttribute('data-car')){var tr=t.closest('.carwrap').querySelector('.car');tr.scrollBy({left:(+t.getAttribute('data-car'))*Math.max(300,tr.clientWidth*.8),behavior:'smooth'})}
   else if(t.hasAttribute('data-embed')){e.preventDefault();openEmbed()}
-  else if(t.hasAttribute('data-remind')){e.preventDefault();if(memIn()){toast('You are signed up. Your dashboard has your updates.');openMember()}else{WSIGN=true;openMember()}}
+  else if(t.hasAttribute('data-remind')){e.preventDefault();if(memIn()){toast('You are signed up for updates. Your dashboard has them all.');openMember()}else{WSIGN=true;openMember()}}
   else if(t.hasAttribute('data-copy')){var u=t.getAttribute('data-copy');try{navigator.clipboard.writeText(u).then(function(){toast('Link copied: '+u)},function(){toast(u)})}catch(x){toast(u)}}
   else if(t.hasAttribute('data-toast'))toast(t.getAttribute('data-toast'));
   else if(t.hasAttribute('data-lock')){var l=levelFor(+t.getAttribute('data-lock'));toast(l?'Opens for '+l.n+' supporters ('+l.l+') once member sign-in is ready.':'Opens for members once sign-in is ready.')}
