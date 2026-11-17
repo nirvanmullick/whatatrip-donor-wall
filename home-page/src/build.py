@@ -1016,7 +1016,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 home=P[P.index('<main id="v-home">')+len('<main id="v-home">'):P.index('</main>')]
 # hero video -> link to trailer with real photo
 a=home.index('<div class="video">'); b=home.index('</div>',home.index('</button>',a))+6
-home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#6152a0"/></svg><span>Watch the trailer</span></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
+home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play pq"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
 # remove hero stats block
 a=home.index('<div data-hero-stats'); b=home.index('</div></div>',a)+12
 home=home[:a]+home[b:]
@@ -1247,6 +1247,9 @@ extra+="""
 #wath.sngive .subnav .snshr{opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s linear .2s}
 @media(min-width:1240px){#wath .hero-grid>.shr{display:none!important}}
 @media(max-width:1239px){#wath .subnav .snshr{display:none}}
+:is(#wath,#wath-top) .video .vt .play.pq{width:clamp(56px,9cqw,84px);height:clamp(56px,9cqw,84px);padding:0;border-radius:14px;background:#6152a0;justify-content:center;gap:0;margin-top:2.4cqw;box-shadow:0 10px 28px rgba(27,21,38,.35)}
+:is(#wath,#wath-top) .video .vt .play.pq svg{width:50%;height:50%;margin-left:6%}
+:is(#wath,#wath-top) .video:hover .vt .play.pq{background:#54479a}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
