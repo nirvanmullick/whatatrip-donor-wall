@@ -728,6 +728,7 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .pcf .gor{display:flex;gap:8px}
 :is(#wath,#wath-top) .pcf .gor .btn{flex:1;justify-content:center;min-height:42px;font-size:14.5px;display:inline-flex;align-items:center;text-decoration:none}
 :is(#wath,#wath-top) .pc.out .pci{filter:grayscale(.7) opacity(.8)}
+@media(min-width:901px) and (max-width:1099px){:is(#wath,#wath-top) .hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr)}}
 @media(min-width:901px){:is(#wath,#wath-top) .hero-grid{grid-template-rows:1fr auto!important}
 :is(#wath,#wath-top) .hero-grid>.video{aspect-ratio:auto!important;align-self:stretch!important;height:auto;min-height:320px}}
 :is(#wath,#wath-top) .lim,:is(#wath,#wath-top) .lim.out{display:block;background:none!important;box-shadow:none!important;border-radius:0;padding:0;margin-top:1px;font-size:12.5px;font-weight:600;letter-spacing:0;color:#6152a0!important;white-space:normal;vertical-align:baseline}
@@ -1157,6 +1158,9 @@ extra+="""
 #wath .dn .amtc .when{white-space:nowrap}
 #wath .dn .who{min-width:0}
 @media(max-width:520px){#wath .cmf{flex-direction:column;align-items:stretch}}
+@media(min-width:901px){#wath .subnav .btn[data-give]{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
+#wath.sngive .subnav .btn[data-give]{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease,transform .28s ease,visibility 0s}}
+@media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}

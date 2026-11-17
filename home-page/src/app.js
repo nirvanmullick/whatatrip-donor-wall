@@ -724,6 +724,10 @@ var watGoTab=null;
   function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
     pill.style.left=a.offsetLeft+'px';pill.style.width=a.offsetWidth+'px';pill.style.opacity='1';
     if(snl.scrollWidth>snl.clientWidth){var want=a.offsetLeft-Math.max(12,(snl.clientWidth-a.offsetWidth)/2);try{snl.scrollTo({left:Math.max(0,want),behavior:'smooth'})}catch(e){snl.scrollLeft=Math.max(0,want)}}}
+/* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
+(function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
+  var set=function(on){R.classList.toggle('sngive',!!on)};
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){set(!e.isIntersecting&&e.boundingClientRect.top<(sn.getBoundingClientRect().bottom||80))})},{rootMargin:'-70px 0px 0px 0px'}).observe(big)}else set(true)})();
   /* FAQs, Comments and Updates open alone as tabs from the menu, and also stay at the end of the campaign scroll (Nirvan, Nov 16) */
   var TABS={'wath-faq':'faq','wath-comments':'comments','wath-updates':'updates'},tab=null;
   function tabLink(k){for(var i=0;i<links.length;i++)if(links[i].getAttribute('href')==='#wath-'+k)return links[i];return null}

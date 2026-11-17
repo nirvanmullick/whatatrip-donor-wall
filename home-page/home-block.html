@@ -16,7 +16,7 @@
 :is(#wath,#wath-top) .sub{color:#5b6478;margin:4px 0 0;font-size:16px}
 :is(#wath,#wath-top) .card{background:#fff;border:1px solid #e3dfee;border-radius:16px;padding:24px}
 :is(#wath,#wath-top) .hero{background:#fff;border-bottom:1px solid #e3dfee;padding:32px 0 36px}
-:is(#wath,#wath-top) .hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:34px;margin-top:22px}
+:is(#wath,#wath-top) .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,32vw,390px);gap:34px;margin-top:22px}
 :is(#wath,#wath-top) .video{position:relative;border-radius:16px;overflow:hidden;min-height:380px;background:#8796ca none center/cover;display:flex;align-items:flex-end;justify-content:center}
 :is(#wath,#wath-top) .video img{height:92%;position:absolute;bottom:0}
 :is(#wath,#wath-top) .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
@@ -912,6 +912,7 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .pcf .gor{display:flex;gap:8px}
 :is(#wath,#wath-top) .pcf .gor .btn{flex:1;justify-content:center;min-height:42px;font-size:14.5px;display:inline-flex;align-items:center;text-decoration:none}
 :is(#wath,#wath-top) .pc.out .pci{filter:grayscale(.7) opacity(.8)}
+@media(min-width:901px) and (max-width:1099px){:is(#wath,#wath-top) .hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr)}}
 @media(min-width:901px){:is(#wath,#wath-top) .hero-grid{grid-template-rows:1fr auto!important}
 :is(#wath,#wath-top) .hero-grid>.video{aspect-ratio:auto!important;align-self:stretch!important;height:auto;min-height:320px}}
 :is(#wath,#wath-top) .lim,:is(#wath,#wath-top) .lim.out{display:block;background:none!important;box-shadow:none!important;border-radius:0;padding:0;margin-top:1px;font-size:12.5px;font-weight:600;letter-spacing:0;color:#6152a0!important;white-space:normal;vertical-align:baseline}
@@ -1236,6 +1237,9 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 #wath .dn .amtc .when{white-space:nowrap}
 #wath .dn .who{min-width:0}
 @media(max-width:520px){#wath .cmf{flex-direction:column;align-items:stretch}}
+@media(min-width:901px){#wath .subnav .btn[data-give]{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
+#wath.sngive .subnav .btn[data-give]{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease,transform .28s ease,visibility 0s}}
+@media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
@@ -2024,6 +2028,10 @@ var watGoTab=null;
   function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
     pill.style.left=a.offsetLeft+'px';pill.style.width=a.offsetWidth+'px';pill.style.opacity='1';
     if(snl.scrollWidth>snl.clientWidth){var want=a.offsetLeft-Math.max(12,(snl.clientWidth-a.offsetWidth)/2);try{snl.scrollTo({left:Math.max(0,want),behavior:'smooth'})}catch(e){snl.scrollLeft=Math.max(0,want)}}}
+/* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
+(function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
+  var set=function(on){R.classList.toggle('sngive',!!on)};
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){set(!e.isIntersecting&&e.boundingClientRect.top<(sn.getBoundingClientRect().bottom||80))})},{rootMargin:'-70px 0px 0px 0px'}).observe(big)}else set(true)})();
   /* FAQs, Comments and Updates open alone as tabs from the menu, and also stay at the end of the campaign scroll (Nirvan, Nov 16) */
   var TABS={'wath-faq':'faq','wath-comments':'comments','wath-updates':'updates'},tab=null;
   function tabLink(k){for(var i=0;i<links.length;i++)if(links[i].getAttribute('href')==='#wath-'+k)return links[i];return null}
