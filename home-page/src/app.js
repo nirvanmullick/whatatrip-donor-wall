@@ -955,7 +955,7 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
    While the page's button is on screen the pinned bar steps aside (the two "merge"). Once it scrolls away above,
    the pinned bar returns with the amount still needed. */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]');if(!big)return;
-  function cls(a,b){[R,T].forEach(function(e){if(e){e.classList.toggle('mpre',a);e.classList.toggle('min',b)}})}
+  var last='';function cls(a,b){var post=!a&&!b,rise=post&&last!==''&&last!=='post';[R,T].forEach(function(e){if(e){e.classList.toggle('mpre',a);e.classList.toggle('min',b);if(rise)e.classList.add('mrise');else if(!post)e.classList.remove('mrise')}});last=a?'pre':b?'min':'post'}
   function upd(){if(window.innerWidth>900){cls(false,false);return}var r=big.getBoundingClientRect(),vh=window.innerHeight,bar=(T||R).querySelector('.mcta'),pb=bar&&bar.querySelector('.btn'),bt=bar&&pb&&bar.offsetHeight?vh-bar.offsetHeight+pb.offsetTop:vh-60;
     var st=r.top>bt?'mpre':r.bottom<0?'mpost':'min';cls(st==='mpre',st==='min')}
   var q=0;window.addEventListener('scroll',function(){if(!q)q=requestAnimationFrame(function(){q=0;upd()})},{passive:true});window.addEventListener('resize',upd);setTimeout(upd,200);upd()})();
