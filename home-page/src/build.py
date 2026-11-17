@@ -1408,6 +1408,13 @@ extra+="""
 @media(min-width:901px){#wath .card.tndd{gap:28px 72px!important;padding:48px 52px 46px!important}#wath .tndt{padding-left:8px}}
 #wath .imph{margin:0 0 18px}
 .wath-nbdg{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin-left:4px;border-radius:999px;background:#6152a0;color:#fff;font-size:11px;font-weight:800;line-height:1;vertical-align:middle}
+#wath .upimg.lk{position:relative;overflow:hidden;border-radius:12px;max-width:520px;margin-left:auto;margin-right:auto}
+#wath .upimg.lk img{filter:blur(16px) brightness(.75) saturate(.9);transform:scale(1.08);max-height:420px;width:100%;object-fit:cover;border-radius:0}
+#wath .upimg.lk .lkv{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;text-align:center;padding:20px;font-size:15px}
+#wath .upimg.lk .lkv b{display:inline-flex;align-items:center;gap:6px;font-size:18px}
+#wath .upt.uplk:has(.upimg.lk){max-height:none!important;-webkit-mask-image:none!important;mask-image:none!important;overflow:visible!important}
+#wath .upt.uplk:has(.upimg.lk)::after{display:none!important}
+#wath .upimg.lk img{max-height:320px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
