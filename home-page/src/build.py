@@ -1348,6 +1348,7 @@ extra+="""
 #wath .upsh:hover{background:#f4f1fb}
 #wath .upsh:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath .up{scroll-margin-top:80px}
+#wath #wath-levels .lv .lvi.lvshirt{aspect-ratio:4/3;background-size:cover;background-position:50% 14%}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
