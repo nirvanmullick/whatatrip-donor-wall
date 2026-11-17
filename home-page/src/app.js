@@ -638,7 +638,7 @@ var watGoTab=null;
   function set(a,fromClick){if(a===cur)return;cur=a;links.forEach(function(l){l.classList.toggle('on',l===a)});if(!a){pill.style.opacity='0';return}
     pill.style.left=a.offsetLeft+'px';pill.style.width=a.offsetWidth+'px';pill.style.opacity='1';
     if(snl.scrollWidth>snl.clientWidth){var want=a.offsetLeft-Math.max(12,(snl.clientWidth-a.offsetWidth)/2);try{snl.scrollTo({left:Math.max(0,want),behavior:'smooth'})}catch(e){snl.scrollLeft=Math.max(0,want)}}}
-  /* FAQs, Comments and Updates are real tabs: each replaces the campaign scroll below the menu bar */
+  /* FAQs, Comments and Updates open alone as tabs from the menu, and also stay at the end of the campaign scroll (Nirvan, Nov 16) */
   var TABS={'wath-faq':'faq','wath-comments':'comments','wath-updates':'updates'},tab=null;
   function tabLink(k){for(var i=0;i<links.length;i++)if(links[i].getAttribute('href')==='#wath-'+k)return links[i];return null}
   function tabTop(smooth){var p=$('.cols.second'),sb=$('.subnav');if(!p)return;var y=p.getBoundingClientRect().top+(window.pageYOffset||0)-sb.offsetHeight;try{window.scrollTo({top:Math.max(0,y),behavior:smooth?'smooth':'auto'})}catch(x){window.scrollTo(0,Math.max(0,y))}}

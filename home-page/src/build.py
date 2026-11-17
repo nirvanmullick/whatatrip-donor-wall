@@ -1116,7 +1116,6 @@ _t1='<a href="#wath-faq">FAQs</a>'
 assert home.count(_t1)==1
 home=home.replace(_t1,'<i class="snd" aria-hidden="true"></i>'+_t1)
 extra+="""
-#wath:not([data-tabv]) :is(#wath-faq,#wath-comments,#wath-updates){display:none}
 #wath[data-tabv]>:not(.hero):not(.subnav):not(.cols.second){display:none}
 #wath[data-tabv] .cols.second .stack>.sec{display:none}
 #wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
