@@ -963,13 +963,22 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
 /* Nov 17 (Nirvan): on phones the home page skips the site's own "WHAT A TRIP" header bar. The trailer's sky runs up to the
    top of the screen behind the menu button, and the trailer's big title sits level with that button, so the name shows once.
    Other pages keep the normal header (this code only loads on the home page). */
-(function(){var H=document.getElementById('header'),v=R.querySelector('.hero .video');if(!H||!v)return;var de=document.documentElement,vt=v.querySelector('.vt');
-  function upd(){if(window.innerWidth>767||getComputedStyle(H).position==='fixed'){v.style.marginTop='';if(vt)vt.style.removeProperty('--wath-hm');de.classList.remove('wath-hmerge');return}
-    de.classList.add('wath-hmerge');if(!v.offsetHeight)return;var top=v.getBoundingClientRect().top+window.scrollY,mt=parseFloat(getComputedStyle(v).marginTop)||0;
-    if(Math.abs(top)>.5)v.style.marginTop=(mt-top)+'px';if(vt)vt.style.removeProperty('--wath-hm');
+(function(){var H=document.getElementById('header');if(!H||!R.querySelector('.hero .video'))return;var de=document.documentElement,v,vt;
+  /* Only the very top of the page gets the see-through header. Once scrolled, Squarespace's own header (the one that
+     slides back in on scroll-up) keeps its normal colour, logo and title. Measuring never resets the layout, so nothing jumps. */
+  function top0(){de.classList.toggle('wath-htop',window.scrollY<8)}
+  /* The hero is re-drawn whenever the live totals refresh, so the offsets live as CSS variables on <html>, not on the elements. */
+  function gv(n){return parseFloat(de.style.getPropertyValue(n))||0}
+  function upd(){v=R.querySelector('.hero .video');if(!v)return;vt=v.querySelector('.vt');
+    if(window.innerWidth>767){de.classList.remove('wath-hmerge','wath-htop');de.style.removeProperty('--wath-hmt');de.style.removeProperty('--wath-hm');return}
+    de.classList.add('wath-hmerge');top0();if(!v.offsetHeight)return;
+    var top=v.getBoundingClientRect().top+window.scrollY,cur=gv('--wath-hmt');if(Math.abs(top)>.5)de.style.setProperty('--wath-hmt',Math.round(cur-top)+'px');
+    if(window.scrollY>2)return;
     var bg=H.querySelector('.header-burger-btn')||H.querySelector('.header-burger'),tb=vt&&vt.querySelector('b');
-    if(bg&&tb){var a=bg.getBoundingClientRect(),c=tb.getBoundingClientRect();if(a.height){var d=(a.top+a.height/2)-(c.top+c.height/2);if(d>0)vt.style.setProperty('--wath-hm',Math.round(d)+'px')}}}
-  var t;function later(){clearTimeout(t);t=setTimeout(upd,120)}window.addEventListener('resize',later);window.addEventListener('load',later);[0,300,900,2000,4000].forEach(function(ms){setTimeout(upd,ms)});if(window.ResizeObserver)new ResizeObserver(later).observe(H);
+    if(bg&&tb){var a=bg.getBoundingClientRect(),c=tb.getBoundingClientRect(),cu=gv('--wath-hm');if(a.height){var d=Math.round((a.top+a.height/2)-(c.top+c.height/2)+cu);if(d>=0&&Math.abs(d-cu)>1)de.style.setProperty('--wath-hm',d+'px')}}}
+  var t,lw=window.innerWidth;function later(){clearTimeout(t);t=setTimeout(upd,120)}
+  window.addEventListener('resize',function(){if(window.innerWidth!==lw){lw=window.innerWidth;later()}});
+  window.addEventListener('scroll',top0,{passive:true});window.addEventListener('load',later);[0,300,900,2000].forEach(function(ms){setTimeout(upd,ms)});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later)})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
