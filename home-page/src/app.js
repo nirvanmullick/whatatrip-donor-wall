@@ -103,7 +103,14 @@ function renderDonations(){tally();var tabs=[['top','Top supporters'],['recent',
   var left=(tot||0)-supN[supTab];
   $$('[data-donations]').forEach(function(el){el.innerHTML='<div class="seg" role="tablist" style="margin-bottom:6px">'+tabs.map(function(t){return '<button role="tab" aria-selected="'+(supTab===t[0])+'" class="'+(supTab===t[0]?'on':'')+'" data-sup="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div class="suplist">'+h+'</div>'+(left>0?'<button class="btn" style="width:100%;margin-top:10px" data-supmore>Show '+Math.min(10,left)+' more</button>':'')});
   renderComments()}
-var cntSeen={};function setCnt(k,n){if(cntSeen[k]===n)return;cntSeen[k]=n;$$('[data-cnt="'+k+'"]').forEach(function(el){el.textContent=n>0?n:''});try{window.dispatchEvent(new Event('resize'))}catch(e){}}
+var cntSeen={};
+/* Nov 17 (Nirvan): counts are a plain purple number; the pill only shows when there is something new since the last visit.
+   The last count each browser saw is kept in localStorage; a first visit has nothing "new". */
+function cntNew(k,n){try{var v=localStorage.getItem('wath:seen:'+k);if(v===null){localStorage.setItem('wath:seen:'+k,String(n));return false}return n>+v}catch(e){return false}}
+function cntMark(k){var n=cntSeen[k];if(n==null)return;try{localStorage.setItem('wath:seen:'+k,String(n))}catch(e){}$$('[data-cnt="'+k+'"]').forEach(function(el){el.classList.remove('cntn')})}
+(function(){if(!window.IntersectionObserver)return;var m={'wath-faq':'faq','wath-comments':'com','wath-updates':'upd'},io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.target.offsetHeight)setTimeout(function(){cntMark(m[e.target.id])},1500)})},{threshold:.15});
+  function watch(){Object.keys(m).forEach(function(id){var el=document.getElementById(id);if(el&&!el.__cw){el.__cw=1;io.observe(el)}})}watch();setTimeout(watch,1500)})();
+function setCnt(k,n){if(cntSeen[k]===n)return;cntSeen[k]=n;var nw=cntNew(k,n);$$('[data-cnt="'+k+'"]').forEach(function(el){el.textContent=n>0?n:'';el.classList.toggle('cntn',nw)});try{window.dispatchEvent(new Event('resize'))}catch(e){}}
 var PINNED=[{n:'Darren Aronofsky',role:'Executive Producer, WHAT A TRIP',t:'Rick Doblin is a once-in-a-generation historical figure. When I heard WHAT A TRIP had been documenting his journey, I knew I wanted to support it. The film is intimate, urgent, and strangely mythic. I’m proud to be part of bringing his story to the screen.'}];
 var supAuto=true,supBase=10;
 function fitCommunity(){if(!supAuto)return;var sec=document.getElementById('wath-recent'),aside=$('aside'),stack=sec&&sec.parentNode,list=sec&&sec.querySelector('.suplist');if(!sec||!aside||!list||!list.children.length)return;
