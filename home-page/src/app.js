@@ -253,8 +253,8 @@ function openEmbed(){closeBio();var o=document.createElement('div');o.className=
 /* Nov 17 (Nirvan): the supporters' hexagon photos are drawn as one molecule: bonds run from a corner of one hexagon
    to the next, sometimes straight down, sometimes bending out to the right or left through a small atom,
    with the odd dangling side chain. The pattern is fixed per position so it doesn't shuffle on refresh. */
-function bondsDraw(){$$('#wath .suplist').forEach(function(L){var avs=[].slice.call(L.querySelectorAll(':scope>.dn .av')).filter(function(a){return a.offsetHeight});
-  var old=L.querySelector(':scope>svg.bonds');if(avs.length<2){if(old)old.remove();return}
+function bondsDraw(){$$('#wath-recent .suplist').forEach(function(L){var avs=[].slice.call(L.querySelectorAll(':scope>.dn .av')).filter(function(a){return a.offsetHeight});
+  var old=L.querySelector(':scope>svg.bonds');if(!avs.length){if(old)old.remove();return}
   var lr=L.getBoundingClientRect(),P=avs.map(function(a){var r=a.getBoundingClientRect();return {x:r.left-lr.left,y:r.top-lr.top,w:r.width,h:r.height}});
   var sig=P.map(function(p){return Math.round(p.x)+','+Math.round(p.y)}).join(';');if(old&&old.getAttribute('data-sig')===sig)return;
   var f=function(n){return Math.round(n*10)/10},d='',c='',pat=[0,1,2,1,3,0,1,2,3,1];
@@ -266,6 +266,7 @@ function bondsDraw(){$$('#wath .suplist').forEach(function(L){var avs=[].slice.c
       d+='M'+f(x1)+' '+f(y1)+'L'+f(x1+dx)+' '+f(y1+7)+'L'+f(x4+dx)+' '+f(y4-7)+'L'+f(x4)+' '+f(y4);dot(x1,y1);dot(x4,y4)}
     else{d+='M'+f(cx)+' '+f(a.y+a.h)+'L'+f(ncx)+' '+f(n.y);if(v===2)c+='<circle class="f" cx="'+f((cx+ncx)/2)+'" cy="'+f((a.y+a.h+n.y)/2)+'" r="2.4"/>'}
     if(i%5===3){var sx=a.x+a.w*.933,sy=a.y+a.h*.25;d+='M'+f(sx)+' '+f(sy)+'l9 -5.2';dot(sx+11,sy-6.3,2.5)}}
+  var rg='';P.forEach(function(p){var g=3,cx=p.x+p.w/2,cy=p.y+p.h/2,rx=p.w/2+g,ry=p.h/2+g;rg+='<path class="hxo" d="M'+f(cx)+' '+f(cy-ry)+'L'+f(cx+rx*.866)+' '+f(cy-ry/2)+'L'+f(cx+rx*.866)+' '+f(cy+ry/2)+'L'+f(cx)+' '+f(cy+ry)+'L'+f(cx-rx*.866)+' '+f(cy+ry/2)+'L'+f(cx-rx*.866)+' '+f(cy-ry/2)+'Z"/>'});c+=rg;
   var svg=old||document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','bonds');svg.setAttribute('aria-hidden','true');svg.setAttribute('data-sig',sig);svg.innerHTML='<path d="'+d+'"/>'+c;if(!old)L.insertBefore(svg,L.firstChild)})}
 (function(){var t;function later(){clearTimeout(t);t=setTimeout(bondsDraw,120)}if(window.MutationObserver)new MutationObserver(function(ms){for(var k=0;k<ms.length;k++){var tg=ms[k].target;if(!(tg.closest&&tg.closest('svg.bonds'))&&!(ms[k].addedNodes.length===1&&ms[k].addedNodes[0].nodeName==='svg')){later();return}}}).observe(R,{childList:true,subtree:true});window.addEventListener('resize',later);setTimeout(bondsDraw,800)})();
 
