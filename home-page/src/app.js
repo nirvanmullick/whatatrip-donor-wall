@@ -968,14 +968,17 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
      slides back in on scroll-up) keeps its normal colour, logo and title. Measuring never resets the layout, so nothing jumps. */
   function top0(){de.classList.toggle('wath-htop',window.scrollY<8)}
   /* The hero is re-drawn whenever the live totals refresh, so the offsets live as CSS variables on <html>, not on the elements. */
-  function gv(n){return parseFloat(de.style.getPropertyValue(n))||0}
+  /* Squarespace rewrites <html style>, so the offsets go in a little <style> tag of our own. */
+  var st=document.getElementById('wath-hm-css');if(!st){st=document.createElement('style');st.id='wath-hm-css';document.head.appendChild(st)}
+  var hmt=0,hm=0;function put(){st.textContent='html.wath-hmerge #wath .hero .video{margin-top:'+hmt+'px!important}html.wath-hmerge #wath .hero .video .vt{transform:translateY('+hm+'px)}'}
+  function vis(sel){var l=H.querySelectorAll(sel);for(var k=0;k<l.length;k++){var q=l[k].getBoundingClientRect();if(q.height)return q}return null}
   function upd(){v=R.querySelector('.hero .video');if(!v)return;vt=v.querySelector('.vt');
-    if(window.innerWidth>767){de.classList.remove('wath-hmerge','wath-htop');de.style.removeProperty('--wath-hmt');de.style.removeProperty('--wath-hm');return}
-    de.classList.add('wath-hmerge');top0();if(!v.offsetHeight)return;
-    var top=v.getBoundingClientRect().top+window.scrollY,cur=gv('--wath-hmt');if(Math.abs(top)>.5)de.style.setProperty('--wath-hmt',Math.round(cur-top)+'px');
+    if(window.innerWidth>767){de.classList.remove('wath-hmerge','wath-htop');st.textContent='';hmt=hm=0;return}
+    de.classList.add('wath-hmerge');top0();put();if(!v.offsetHeight)return;
+    var top=v.getBoundingClientRect().top+window.scrollY;if(Math.abs(top)>.5){hmt=Math.round(hmt-top);put()}
     if(window.scrollY>2)return;
-    var bg=H.querySelector('.header-burger-btn')||H.querySelector('.header-burger'),tb=vt&&vt.querySelector('b');
-    if(bg&&tb){var a=bg.getBoundingClientRect(),c=tb.getBoundingClientRect(),cu=gv('--wath-hm');if(a.height){var d=Math.round((a.top+a.height/2)-(c.top+c.height/2)+cu);if(d>=0&&Math.abs(d-cu)>1)de.style.setProperty('--wath-hm',d+'px')}}}
+    var a=vis('.header-burger-btn')||vis('.header-burger'),tb=vt&&vt.querySelector('b');
+    if(a&&tb){var c=tb.getBoundingClientRect(),d=Math.round((a.top+a.height/2)-(c.top+c.height/2)+hm);if(d>=0&&Math.abs(d-hm)>1){hm=d;put()}}}
   var t,lw=window.innerWidth;function later(){clearTimeout(t);t=setTimeout(upd,120)}
   window.addEventListener('resize',function(){if(window.innerWidth!==lw){lw=window.innerWidth;later()}});
   window.addEventListener('scroll',top0,{passive:true});window.addEventListener('load',later);[0,300,900,2000].forEach(function(ms){setTimeout(upd,ms)});
