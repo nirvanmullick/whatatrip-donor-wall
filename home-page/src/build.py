@@ -1152,19 +1152,19 @@ home=home.replace('<i class="k4"','<span class="play pq kplay">'+_play[len('<spa
 home=home.replace('<a href="#wath-levels">Perks</a>','',1)
 _sn=home.find('<div class="subnav">')
 _ic=lambda d:'<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'
-_bi=lambda d:'<svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1b1526" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'
+_bi=lambda d:'<svg aria-hidden="true" width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#1b1526" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'
 _HX='M30 3l23.4 13.5v27L30 57 6.6 43.5v-27z'
 def _blob(c,dk,deco):
     return '<svg class="kbb" aria-hidden="true" viewBox="-8 -8 76 76"><path fill="'+c+'" d="'+_HX+'"/><g fill="none" stroke="'+dk+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+deco+'</g></svg>'
 # four different molecule touches: an echo outline, a fused five-ring with two oxygens, a zig-zag side chain, inner benzene bonds
-_decos=[('#f3c9b9','#e3a48c','<path d="M30 -3.5l29 16.7v33.6L30 63.5"/><path d="M53.4 16.5l8-4.6"/><circle cx="63.6" cy="10.6" r="2.6" fill="#f3c9b9"/>'),
- ('#cfe3c2','#9fc68c','<path d="M6.6 16.5L-3 11.5-7.5 30-3 48.5l9.6-5"/><circle cx="-3" cy="11.5" r="3" fill="#cfe3c2"/><circle cx="-3" cy="48.5" r="3" fill="#cfe3c2"/>'),
- ('#f5dc8a','#dcb94c','<path d="M53.4 43.5l9 5.2v10.4l9 5.2"/><circle cx="71.4" cy="64.3" r="2.6" fill="#dcb94c"/><path d="M30 3V-5"/>'),
- ('#d9cdf3','#a995da','<path d="M14 20.3L30 11l16 9.3M46 39.7L30 49 14 39.7"/><circle cx="6.6" cy="16.5" r="2.8" fill="#d9cdf3"/><circle cx="53.4" cy="43.5" r="2.8" fill="#d9cdf3"/>')]
+_decos=[('#f3c9b9','#e3a48c','<path d="M53.4 16.5l7.4-4.3"/><circle cx="62.5" cy="11" r="2.4" fill="#e3a48c" stroke="none"/>'),
+ ('#cfe3c2','#9fc68c','<path d="M30 57v7.5"/><circle cx="30" cy="66.5" r="2.4" fill="#9fc68c" stroke="none"/>'),
+ ('#f5dc8a','#dcb94c','<path d="M6.6 43.5l-7.4 4.3"/><circle cx="-2.9" cy="49" r="2.4" fill="#dcb94c" stroke="none"/>'),
+ ('#d9cdf3','#a995da','<path d="M30 3v-7.5"/><circle cx="30" cy="-6.5" r="2.4" fill="#a995da" stroke="none"/>')]
 _items=[(_bi('<path d="M4 9h16v11H4z"/><path d="M4 9l2.5-5 13 2.5L20 9"/><path d="M9 4.6L7.6 9M14.5 5.7L13 9"/>'),'12 years in the making.','Filmed since 2014, with rare access to Rick and MAPS.'),
  (_bi('<circle cx="6.5" cy="6.5" r="2.8"/><circle cx="6.5" cy="17.5" r="2.8"/><path d="M8.6 8.4L20 18M8.6 15.6L20 6"/>'),'$50 = one hour of editing.','Every gift goes straight into finishing the film.'),
  (_bi('<path d="M8.5 7.5a3.5 3.5 0 0 0-6 2.5c0 3.5 6 7 6 7s6-3.5 6-7a3.5 3.5 0 0 0-6-2.5z"/><path d="M15.5 7.2a3.5 3.5 0 0 1 6 2.6c0 3.4-5.2 6.6-6 7.1"/>'),'Every gift doubled.','A $135K matching fund doubles gifts through Dec 31.'),
- (_bi('<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>'),'Tax-deductible,','less the fair market value of any perk you receive.')]
+ (_bi('<g stroke-width="1.8"><path d="M14.6 8.6c-.5-1.1-1.4-1.7-2.6-1.7-1.6 0-2.6.9-2.6 2 0 2.7 5.4 1.6 5.4 4.6 0 1.2-1.1 2.1-2.8 2.1-1.3 0-2.3-.6-2.8-1.8M12 5v1.9M12 15.6V18"/><path d="M8.4 10.4C6.4 7.9 4.2 6.5 1.4 5.8c.6 1.6 1.6 2.9 2.9 3.8-.9.1-1.6.4-2 .9 1.3.8 2.6 1.1 3.9 1-.5.5-.8 1.1-.9 1.8 1.3.1 2.3-.4 3.1-1.3M15.6 10.4c2-2.5 4.2-3.9 7-4.6-.6 1.6-1.6 2.9-2.9 3.8.9.1 1.6.4 2 .9-1.3.8-2.6 1.1-3.9 1 .5.5.8 1.1.9 1.8-1.3.1-2.3-.4-3.1-1.3"/></g>'),'Tax-deductible,','less the fair market value of any perk you receive.')]
 home=home[:_sn]+'<div class="kband" role="list"><div class="wrap kbw">'+''.join('<div class="kbi" role="listitem"><span class="kbic">'+_blob(*_decos[n])+it[0]+'</span><p><b>'+it[1]+'</b> '+it[2]+'</p></div>' for n,it in enumerate(_items))+'</div></div>\n'+home[_sn:]
 
 # Nov 17 (Nirvan): the close-up of Rick breaks up the page, between the columns and the Filmmakers band
