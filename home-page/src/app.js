@@ -1060,10 +1060,15 @@ try{var _q=location.search;if(/[?&]deco4\b/.test(_q))R.classList.add('wdeco4');e
   window.addEventListener('scroll',top0,{passive:true});window.addEventListener('load',later);[0,300,900,2000].forEach(function(ms){setTimeout(upd,ms)});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later)})();
 
-/* Nov 17 1pm (Nirvan): on phones, the Rick banner and More ways to help come right after the perks (before Community, FAQs and the rest) */
-(function(){var rb=R.querySelector('.rband:not(.fband)'),cols=R.querySelector('.cols:not(.second)');if(!rb||!cols)return;
-  function place(){var ph=window.innerWidth<=900;if(ph&&rb.parentNode!==cols){cols.appendChild(rb)}else if(!ph&&rb.parentNode===cols){cols.parentNode.insertBefore(rb,cols.nextSibling)}}
-  place();var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(place,150)})})();
+
+
+/* Nov 17 2:47pm (Nirvan): on a computer, lift Matching challenges (then Impact) into the left column only while that keeps the
+   left column from running past the perks; otherwise they stay below Filmmakers. Keeps the Rick banner close after the perks. */
+(function(){var cols=R.querySelector('.cols:not(.second)'),stack=cols&&cols.querySelector(':scope>.stack'),aside=cols&&cols.querySelector(':scope>aside'),ch=document.getElementById('wath-challenges'),im=document.getElementById('wath-impact'),chHome=R.querySelector('[data-chhome]'),imHome=R.querySelector('[data-imphome] .wrap');if(!stack||!aside||!ch||!im||!chHome||!imHome)return;
+  function home(){if(ch.parentNode!==chHome)chHome.appendChild(ch);if(im.parentNode!==imHome)imHome.appendChild(im);chHome.style.display='';imHome.parentNode.style.display=''}
+  function fit(){home();if(window.innerWidth<=900)return;var gap=aside.getBoundingClientRect().bottom-stack.getBoundingClientRect().bottom;
+    var hc=ch.offsetHeight+40;if(hc<gap+160){stack.appendChild(ch);gap-=hc;chHome.style.display='none';var hi=im.offsetHeight+40;if(hi<gap+160){stack.appendChild(im);imHome.parentNode.style.display='none'}}}
+  var t;function later(){clearTimeout(t);t=setTimeout(fit,200)}fit();window.addEventListener('resize',later);window.addEventListener('load',later);setTimeout(fit,2500)})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
   var set=function(on){R.classList.toggle('sngive',!!on)};
