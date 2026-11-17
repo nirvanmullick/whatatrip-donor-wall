@@ -959,6 +959,19 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
   function upd(){if(window.innerWidth>900){cls(false,false);return}var r=big.getBoundingClientRect(),vh=window.innerHeight,bar=(T||R).querySelector('.mcta'),pb=bar&&bar.querySelector('.btn'),bt=bar&&pb&&bar.offsetHeight?vh-bar.offsetHeight+pb.offsetTop:vh-60;
     var st=r.top>bt?'mpre':r.bottom<0?'mpost':'min';cls(st==='mpre',st==='min')}
   var q=0;window.addEventListener('scroll',function(){if(!q)q=requestAnimationFrame(function(){q=0;upd()})},{passive:true});window.addEventListener('resize',upd);setTimeout(upd,200);upd()})();
+
+/* Nov 17 (Nirvan): on phones the home page skips the site's own "WHAT A TRIP" header bar. The trailer's sky runs up to the
+   top of the screen behind the menu button, and the trailer's big title sits level with that button, so the name shows once.
+   Other pages keep the normal header (this code only loads on the home page). */
+(function(){var H=document.getElementById('header'),v=R.querySelector('.hero .video');if(!H||!v)return;var de=document.documentElement,vt=v.querySelector('.vt');
+  function upd(){v.style.marginTop='';if(vt)vt.style.removeProperty('--wath-hm');de.classList.remove('wath-hmerge');
+    if(window.innerWidth>767||getComputedStyle(H).position==='fixed')return;
+    de.classList.add('wath-hmerge');var top=v.getBoundingClientRect().top+window.scrollY,mt=parseFloat(getComputedStyle(v).marginTop)||0;
+    v.style.marginTop=(mt-top)+'px';
+    var bg=H.querySelector('.header-burger-btn')||H.querySelector('.header-burger'),tb=vt&&vt.querySelector('b');
+    if(bg&&tb){var a=bg.getBoundingClientRect(),c=tb.getBoundingClientRect();if(a.height){var d=(a.top+a.height/2)-(c.top+c.height/2);if(d>0)vt.style.setProperty('--wath-hm',Math.round(d)+'px')}}}
+  var t;function later(){clearTimeout(t);t=setTimeout(upd,120)}window.addEventListener('resize',later);window.addEventListener('load',later);setTimeout(upd,0);setTimeout(upd,900);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later)})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
   var set=function(on){R.classList.toggle('sngive',!!on)};
