@@ -1120,6 +1120,22 @@ extra+="""
 #wath[data-tabv] .cols.second .stack>.sec{display:none}
 #wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
 #wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
+.mov .adots{position:relative;display:inline-flex}
+.mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.mov .amng button.adotb:hover{background:#f1eef8}
+.mov .amng .mbtns{display:inline-flex;align-items:center;gap:14px}
+.mov .amng .mbtns>.mlink{margin:0;padding:0;line-height:36px}
+.mov .amng button.adotb{border-radius:50%!important;border:1px solid rgba(27,21,38,.16)!important;background:#fff!important}
+.mov .adotm{position:absolute;right:0;top:42px;z-index:20;min-width:240px;background:#fff;border:1px solid rgba(27,21,38,.14);border-radius:10px;box-shadow:0 10px 30px rgba(27,21,38,.14);padding:6px;display:flex;flex-direction:column}
+.mov .adotm button{all:unset;cursor:pointer;padding:10px 12px;border-radius:8px;font-size:15px;color:#1b1526}
+.mov .adotm button:hover,.mov .adotm button:focus-visible{background:#f1eef8}
+.mov .aphr{display:flex;align-items:center;gap:16px;margin:4px 0 12px}
+.mov .aphv{width:72px;height:72px;border-radius:50%;background:#e4dff2;color:#5a4f8f;font-weight:700;font-size:22px;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+.mov .aphv img{width:100%;height:100%;object-fit:cover}
+.mov .aphb{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mov .aphb label.btn{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1.2;padding:10px 18px;min-height:0;height:auto;width:auto}
+.mov .aflag{border-color:#c9b8ee;background:#f6f2fd}
+.mov .aflag .mrow{gap:12px;margin-top:6px}
 .mov .mdd{margin-top:10px;max-width:420px;border:1px solid rgba(27,21,38,.16);border-radius:10px;background:#fff}
 .mov .mdd>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;font-size:15px;color:#1b1526}
 .mov .mdd>summary::-webkit-details-marker{display:none}
