@@ -1781,8 +1781,8 @@ function bondsDraw(){$$('#wath-recent .suplist').forEach(function(L){var avs=[].
   /* Nov 17 2:39pm (Nirvan): honeycomb zig-zag. Neighbours nest; bonds vary: a short bond between facing sides, a straight bond
      skipping down to the next hexagon in the same column, or a bend out to the left and back, with the odd dangling side chain. */
   for(var i=0;i<P.length-1;i++){var a=P[i],n=P[i+1],ax=a.x+a.w/2,ay=a.y+a.h/2,nx=n.x+n.w/2,ny=n.y+n.h/2,k=P[i+2],left=a.x<n.x,m=i%4;
-    var dx=nx-ax,dy=ny-ay,L=Math.sqrt(dx*dx+dy*dy)||1,ri=a.w*.433+3,rn=n.w*.433+3;
-    d+='M'+f(ax+dx/L*ri)+' '+f(ay+dy/L*ri)+'L'+f(nx-dx/L*rn)+' '+f(ny-dy/L*rn);
+    var dx=nx-ax,dy=ny-ay,ln=Math.sqrt(dx*dx+dy*dy)||1,ri=a.w*.433+3,rn=n.w*.433+3;
+    d+='M'+f(ax+dx/ln*ri)+' '+f(ay+dy/ln*ri)+'L'+f(nx-dx/ln*rn)+' '+f(ny-dy/ln*rn);
     if(m===3&&k){var kx=k.x+k.w/2;d+='M'+f(ax)+' '+f(a.y+a.h+3)+'L'+f(kx)+' '+f(k.y-3);dot((ax+kx)/2,(a.y+a.h+k.y)/2,2.4,1)}
     if(m===1&&k&&left){var x1=a.x+a.w*.067,y1=a.y+a.h*.75,x4=k.x+k.w*.067,y4=k.y+k.h*.25,ox=Math.max(4,Math.min(x1,x4)-12);d+='M'+f(x1)+' '+f(y1)+'L'+f(ox)+' '+f(y1+7)+'L'+f(ox)+' '+f(y4-7)+'L'+f(x4)+' '+f(y4);dot(x1,y1);dot(x4,y4)}
     if(i%5===2&&left){var sx=a.x+a.w*.067,sy=a.y+a.h*.25;d+='M'+f(sx)+' '+f(sy)+'l-9 -5.2';dot(sx-11,sy-6.3,2.5)}}
