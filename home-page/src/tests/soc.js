@@ -11,8 +11,8 @@ await p.evaluate(()=>document.querySelector('#wath-updates .rx').click());await 
 await p.evaluate(()=>{var x=document.querySelector('.mov [data-m=close]');if(x)x.click()});await p.waitForTimeout(300);
 // sample log in
 await p.click('[data-wath-login]');await p.waitForTimeout(300);await p.click('.mov [data-m=login]');await p.waitForTimeout(200);if(await p.$('.mov [data-m=obskip]'))await p.click('.mov [data-m=obskip]');await p.evaluate(()=>{var x=document.querySelector('.mov [data-m=close]');if(x)x.click()});await p.waitForTimeout(400);
-await p.evaluate(()=>document.querySelector('#wath-updates .rx[data-e="❤️"]').click());await p.waitForTimeout(200);
-console.log(W,'heart on:',await p.evaluate(()=>{var b=document.querySelector('#wath-updates .rx[data-e="❤️"]');return b.className+' '+b.textContent}));
+await p.evaluate(()=>document.querySelector('#wath-updates .rx[data-e="👏"]').click());await p.waitForTimeout(200);
+console.log(W,'heart on:',await p.evaluate(()=>{var b=document.querySelector('#wath-updates .rx[data-e="👏"]');return b.className+' '+b.textContent}));
 await p.evaluate(()=>document.querySelector('#wath-updates [data-cmt]').click());await p.waitForTimeout(300);
 await p.evaluate(()=>document.querySelector('#wath-updates [data-cbox]').scrollIntoView({block:'center'}));
 await p.fill('#wath-updates [data-cbox]','So glad to see this coming together!');await p.evaluate(()=>document.querySelector('#wath-updates [data-cm=post]').click());await p.waitForTimeout(300);

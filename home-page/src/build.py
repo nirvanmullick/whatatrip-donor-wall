@@ -1130,6 +1130,11 @@ _rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section
 assert _rs>0
 home=home[:_re]+_faq+home[_re:]
 home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+# Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
+_ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
+assert _ns>0
+home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs</a><a href="#wath-budget">Budget</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-levels">Perks</a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
+
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
 assert _ss>0
@@ -1162,14 +1167,15 @@ extra+="""
 #wath .soc{margin-top:16px;padding-top:14px;border-top:1px solid #ece8f4}
 #wath .socr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 #wath .rxb{display:inline-flex;flex-wrap:wrap;gap:6px}
-#wath .rx{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 10px;border-radius:999px;border:1px solid #e3def0;background:#fff;font-family:inherit;font-size:13px;font-weight:600;line-height:1;color:#4a4560;transition:background .15s,border-color .15s}
-#wath .rx .rxe{font-size:16px;line-height:1;filter:grayscale(.35);opacity:.8}
-#wath .rx.has .rxe,#wath .rx:hover .rxe,#wath .rx.on .rxe{filter:none;opacity:1}
+#wath .rx{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:30px;height:30px;padding:0 7px;border-radius:8px;border:1px solid #e3def0;background:#fff;font-family:inherit;font-size:12.5px;font-weight:700;line-height:1;color:#4a4560;transition:background .15s,border-color .15s}
+#wath .rx .rxe{font-size:14px;line-height:1}
 #wath .rx:hover{background:#f4f1fb;border-color:#d4cce9}
 #wath .rx.on{background:#ece7fa;border-color:#8f7fd0;color:#3d3175}
-#wath .rx:focus-visible,#wath .socn:focus-visible,#wath .cml button:focus-visible{outline:2px solid #5d4fa6;outline-offset:2px}
-#wath .rxb.sm .rx{height:28px;padding:0 8px}
-#wath .rxb.sm .rx .rxe{font-size:14px}
+#wath .rx:focus-visible,#wath .cml button:focus-visible{outline:2px solid #5d4fa6;outline-offset:2px}
+#wath .rxb.sm .rx{min-width:26px;height:26px;padding:0 5px;border-radius:7px}
+#wath .rxb.sm .rx .rxe{font-size:12.5px}
+#wath .dncm{padding:4px 0 14px 46px;border-bottom:1px solid #ece8f4}
+@media(max-width:520px){#wath .dncm{padding-left:0}}
 #wath .socn{all:unset;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;color:#5d4fa6;padding:6px 2px}
 #wath .socn:hover{text-decoration:underline}
 #wath .socl{margin-top:14px;display:flex;flex-direction:column;gap:14px}
@@ -1199,14 +1205,16 @@ extra+="""
 @media(min-width:901px){#wath .subnav .btn[data-give]{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
 #wath.sngive .subnav .btn[data-give]{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease,transform .28s ease,visibility 0s}}
 @media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
-#wath .mx.mxg{display:block;padding:14px 16px 14px}
-#wath .mx.mxg .mh{font-size:19px;line-height:1.25;margin:0 0 2px;padding-right:26px}
-#wath .mx.mxg .mxs2{display:block}
-#wath .mx.mxg .mxrow{display:flex;align-items:center;margin-top:12px}
-#wath .mx.mxg .mxi{width:40px;height:40px;z-index:1;box-shadow:0 0 0 3px #fbf3df}
-#wath .mx.mxg .mxrow .mxb{flex:1;height:10px;margin:0 0 0 -8px;border-radius:0 999px 999px 0}
+#wath .mx.mxg{display:grid!important;grid-template-columns:40px minmax(0,1fr);column-gap:12px;row-gap:0;align-items:center;padding:14px 16px 14px 14px;position:relative}
+#wath .mx.mxg>*{grid-column:2}
+#wath .mx.mxg .mh{font-size:18px;line-height:1.25;margin:0;padding-right:26px}
+#wath .mx.mxg .mxs2{display:block;margin-top:2px}
+#wath .mx.mxg .mxrow{display:contents}
+#wath .mx.mxg .mxi{grid-column:1;grid-row:3;width:40px;height:40px;margin-top:10px;z-index:1;box-shadow:0 0 0 3px #fbf3df}
+#wath .mx.mxg .mxrow .mxb{grid-column:2;grid-row:3;height:10px;margin:10px 0 0 -14px;border-radius:0 999px 999px 0}
 #wath .mx.mxg .mxrow .mxb i{border-radius:0 999px 999px 0}
-#wath .mx.mxg .mxl{margin-top:8px}
+#wath .mx.mxg .mxl{grid-row:4;margin-top:8px}
+#wath .mx.mxg .chev{position:absolute;top:16px;right:14px}
 #wath #wath-levels .lv .lvi{aspect-ratio:16/9;display:flex}
 #wath #wath-levels .lv .lvi .fa-cr b{font-size:20px!important}
 #wath #wath-levels .lvlim{margin-top:16px;padding:10px 12px;border-radius:10px;background:#efeaf9;display:flex;flex-direction:column;gap:2px}
