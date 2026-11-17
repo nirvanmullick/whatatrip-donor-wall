@@ -950,6 +950,15 @@ try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');e
     if(window.IntersectionObserver){new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(step)}).observe(f)}else{vis=true;raf=requestAnimationFrame(step)}}
   function scan(){[].forEach.call(R.querySelectorAll('[data-peek]'),start)}
   setTimeout(scan,600);if(window.MutationObserver)new MutationObserver(function(){setTimeout(scan,50)}).observe(R,{childList:true,subtree:true})})();
+
+/* Nov 17 (Nirvan): phone donate bar. Before the page's own Donate now: a plain "Donate now" pinned at the bottom.
+   While the page's button is on screen the pinned bar steps aside (the two "merge"). Once it scrolls away above,
+   the pinned bar returns with the amount still needed. */
+(function(){var big=R.querySelector('.hero .btn.big[data-give]');if(!big)return;
+  function cls(a,b){[R,T].forEach(function(e){if(e){e.classList.toggle('mpre',a);e.classList.toggle('min',b)}})}
+  function upd(){if(window.innerWidth>900){cls(false,false);return}var r=big.getBoundingClientRect(),vh=window.innerHeight,bar=(T||R).querySelector('.mcta'),pb=bar&&bar.querySelector('.btn'),bt=bar&&pb&&bar.offsetHeight?vh-bar.offsetHeight+pb.offsetTop:vh-60;
+    var st=r.top>bt?'mpre':r.bottom<0?'mpost':'min';cls(st==='mpre',st==='min')}
+  var q=0;window.addEventListener('scroll',function(){if(!q)q=requestAnimationFrame(function(){q=0;upd()})},{passive:true});window.addEventListener('resize',upd);setTimeout(upd,200);upd()})();
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
   var set=function(on){R.classList.toggle('sngive',!!on)};
