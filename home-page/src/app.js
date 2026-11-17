@@ -735,7 +735,7 @@ var watGoTab=null;
   /* FAQs, Comments and Updates open alone as tabs from the menu, and also stay at the end of the campaign scroll (Nirvan, Nov 16) */
   var TABS={'wath-faq':'faq','wath-comments':'comments','wath-updates':'updates'},tab=null;
   function tabLink(k){for(var i=0;i<links.length;i++)if(links[i].getAttribute('href')==='#wath-'+k)return links[i];return null}
-  function tabTop(smooth){var p=$('.cols.second'),sb=$('.subnav');if(!p)return;var y=p.getBoundingClientRect().top+(window.pageYOffset||0)-sb.offsetHeight;try{window.scrollTo({top:Math.max(0,y),behavior:smooth?'smooth':'auto'})}catch(x){window.scrollTo(0,Math.max(0,y))}}
+  function tabTop(smooth){var sec=tab&&document.getElementById('wath-'+tab),p=(sec&&sec.closest('.cols'))||$('.cols.second'),sb=$('.subnav');if(!p)return;var y=p.getBoundingClientRect().top+(window.pageYOffset||0)-sb.offsetHeight;try{window.scrollTo({top:Math.max(0,y),behavior:smooth?'smooth':'auto'})}catch(x){window.scrollTo(0,Math.max(0,y))}}
   function setTab(k,quiet){if(k===tab)return;tab=k;if(k)R.setAttribute('data-tabv',k);else R.removeAttribute('data-tabv');
     links.forEach(function(l){var t=TABS[l.getAttribute('href').slice(1)];if(t)l.setAttribute('aria-current',t===k?'page':'false')});
     if(!quiet){try{if(k)history.replaceState(null,'','#wath-'+k);else if(/^#wath-(faq|comments|updates)$/.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}catch(x){}}}

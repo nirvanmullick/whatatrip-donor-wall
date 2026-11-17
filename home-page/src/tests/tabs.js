@@ -23,7 +23,7 @@ header.sq{position:fixed;top:0;left:0;right:0;height:80px;background:rgba(255,25
    return {tab:document.getElementById('wath').getAttribute('data-tabv'),on:(document.querySelector('#wath .subnav .snl a.on')||{}).innerText,
    shown:['wath-story','wath-recent','wath-budget','wath-perks','wath-team','wath-impact','wath-faq','wath-comments','wath-updates','wath-levels'].filter(v).map(x=>x.slice(5)).join(','),
    kids:[...document.getElementById('wath').children].map(c=>(c.id||c.className)+':'+(c.offsetParent!==null?1:0)).join(' '),
-   navTop:Math.round(document.querySelector('#wath .subnav').getBoundingClientRect().top),secTop:Math.round((document.querySelector('#wath .cols.second')||document.body).getBoundingClientRect().top),
+   navTop:Math.round(document.querySelector('#wath .subnav').getBoundingClientRect().top),secTop:Math.round(((document.getElementById('wath-'+(document.getElementById('wath').getAttribute('data-tabv')||'x')))||document.querySelector('#wath .cols.second')||document.body).getBoundingClientRect().top),
    hscroll:document.documentElement.scrollWidth-document.documentElement.clientWidth}});
  console.log(W,'start',JSON.stringify(await vis()));
  for(const k of ['faq','comments','updates']){ await p.click('#wath .subnav a[href="#wath-'+k+'"]'); await p.waitForTimeout(1300); console.log(W,k,JSON.stringify(await vis())); await p.screenshot({path:'tab-'+k+'-'+W+'.png'}); }

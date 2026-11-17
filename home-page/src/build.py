@@ -1130,16 +1130,27 @@ _rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section
 assert _rs>0
 home=home[:_re]+_faq+home[_re:]
 home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+# Nov 16 11pm (Nirvan): Matching challenges, then Comments, move to the left column under the budget
+def _cut(h,sid):
+    s=h.find('<section class="sec" id="'+sid+'">');e=h.find('</section>',s)+len('</section>')
+    assert s>0
+    return h[:s]+h[e:],h[s:e]
+home,_chal=_cut(home,'wath-challenges')
+home,_coms=_cut(home,'wath-comments')
+_bs=home.find('<section class="sec" id="wath-budget">');_be=home.find('</section>',_bs)+len('</section>')
+assert _bs>0
+home=home[:_be]+_chal+_coms+home[_be:]
+
 
 extra+="""
 #wath[data-tabv]>:not(.hero):not(.subnav):not(.cols.second){display:none}
-#wath[data-tabv="faq"]>.cols:not(.second){display:block!important;min-height:78vh;padding-top:44px}
-#wath[data-tabv="faq"]>.cols:not(.second)>aside,#wath[data-tabv="faq"]>.cols:not(.second) .stack>.sec:not(#wath-faq){display:none!important}
-#wath[data-tabv="faq"]>.cols:not(.second) #wath-faq{border-top:0;padding-top:0}
-#wath[data-tabv="faq"]>.cols.second{display:none}
+#wath:is([data-tabv="faq"],[data-tabv="comments"])>.cols:not(.second){display:block!important;min-height:100vh;padding-top:44px}
+#wath:is([data-tabv="faq"],[data-tabv="comments"])>.cols:not(.second)>aside,#wath[data-tabv="faq"]>.cols:not(.second) .stack>.sec:not(#wath-faq),#wath[data-tabv="comments"]>.cols:not(.second) .stack>.sec:not(#wath-comments){display:none!important}
+#wath:is([data-tabv="faq"],[data-tabv="comments"])>.cols:not(.second) :is(#wath-faq,#wath-comments){border-top:0;padding-top:0}
+#wath:is([data-tabv="faq"],[data-tabv="comments"])>.cols.second{display:none}
 #wath[data-tabv] .cols.second .stack>.sec{display:none}
 #wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
-#wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
+#wath[data-tabv] .cols.second{min-height:100vh;padding-top:44px}
 #wath .soc{margin-top:16px;padding-top:14px;border-top:1px solid #ece8f4}
 #wath .socr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 #wath .rxb{display:inline-flex;flex-wrap:wrap;gap:6px}
