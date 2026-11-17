@@ -1120,6 +1120,12 @@ extra+="""
 #wath[data-tabv] .cols.second .stack>.sec{display:none}
 #wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
 #wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
+.mov .mdd{margin-top:10px;max-width:420px;border:1px solid rgba(27,21,38,.16);border-radius:10px;background:#fff}
+.mov .mdd>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;font-size:15px;color:#1b1526}
+.mov .mdd>summary::-webkit-details-marker{display:none}
+.mov .mdd[open]>summary svg{transform:rotate(180deg)}
+.mov .mdd .mddl{padding:2px 14px 10px;border-top:1px solid rgba(27,21,38,.08)}
+.mov .mdd .mddl .mck{display:flex;margin:8px 0}
 :is(#wath,#wath-top) .subnav .snl .snd{flex:none;align-self:center;width:1px;height:18px;margin:0 8px;background:rgba(27,21,38,.24)}
 @media(max-width:700px){#wath[data-tabv] .cols.second{padding-top:28px}}
 """
