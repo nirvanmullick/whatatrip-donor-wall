@@ -195,15 +195,17 @@ footer{background:#ece7f7;color:#5b6478;border-top:1px solid #e3dfee;padding:26p
 var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 var money=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
 var LEVELS=[
- {min:5,l:'$5+',n:'Hitchhikers',p:['Your name on our online donor wall']},
+ {min:5,l:'$5+',n:'Hitchhikers',p:['Your name on our online donor wall','Help bring Rick&rsquo;s story to the screen!']},
+ {min:50,l:'$50+',n:'Road Trippers',p:[]},
+ {min:250,l:'$250+',n:'Mile Markers',p:[]},
  {min:500,l:'$500+',n:'MAPS Makers',p:['Extra film features','Exclusive updates','Access to buy Legalize Rick Inception shirts <span class="soon">Coming soon</span>']},
  {min:5000,l:'$5K+',n:'Special Thanks',p:['Special Thanks credit in the film','Zoom with the filmmakers','Film Advisory WhatsApp'],credit:1},
- {min:25000,l:'$25K+',n:'Made Possible By',p:['Made Possible By credit on screen','1-week stay in Arcturus','Zoom with Rick Doblin','Premiere invite'],credit:1},
+ {min:25000,l:'$25K+',n:'Made Possible By',p:['Made Possible By credit on screen','1-week stay in Arcturus','Zoom with Rick Doblin','Premiere invite','Inner Circle','Photo &amp; social links on the donor wall','Get High with Rick'],credit:1},
  {min:100000,l:'$100K+',n:'Co-Producer',p:['Co-Producer credit','Private dinner with Rick'],credit:1},
  {min:250000,l:'$250K+',n:'Co-Executive Producer',p:['Executive Producer credit on IMDb','Guided therapy with Rick in Arcturus'],credit:1,gold:1},
- {min:500000,l:'$500K+',n:'Executive Producer',p:['Executive Producer title credit'],credit:1,gold:1},
- {min:1000000,l:'$1M+',n:'Presented By',p:['Presented By credit'],credit:1,gold:1}];
-var PERKS=[['Name on our online donor wall',5],['Extra film features',500],['Exclusive updates',500],['Access to buy Legalize Rick Inception shirts <span class="soon">Coming soon</span>',500],['On-screen credit',5000],['Film Advisory WhatsApp',5000],['Zoom with the filmmakers',5000],['Inner Circle',25000],['Zoom with Rick Doblin',25000],['Photo & social links on the donor wall',25000],['Premiere invite',25000],['1-week stay in Arcturus',25000],['Private dinner with Rick',100000],['Executive Producer IMDb credit',250000],['Guided therapy with Rick in Arcturus',250000],['Executive Producer title credit',500000],['Presented By credit',1000000]];
+ {min:500000,l:'$500K+',n:'Executive Producer',p:['Executive Producer title credit','Private party with Rick'],credit:1,gold:1},
+ {min:1000000,l:'$1M+',n:'Presented By',p:['Presented By credit','Animated logo in the title credits'],credit:1,gold:1}];
+var PERKS=[['Name on our online donor wall',5],['Help bring Rick&rsquo;s story to the screen!',5],['Extra film features',500],['Exclusive updates',500],['Access to buy Legalize Rick Inception shirts <span class="soon">Coming soon</span>',500],['On-screen credit',5000],['Film Advisory WhatsApp',5000],['Zoom with the filmmakers',5000],['Inner Circle',25000],['Zoom with Rick Doblin',25000],['Photo & social links on the donor wall',25000],['Premiere invite',25000],['Get High with Rick',25000],['1-week stay in Arcturus',25000],['Private dinner with Rick',100000],['Executive Producer IMDb credit',250000],['Guided therapy with Rick in Arcturus',250000],['Executive Producer title credit',500000],['Private party with Rick',500000],['Presented By credit',1000000],['Animated logo in the title credits',1000000]];
 var STAGES=[
  {n:'Filming',s:'Filmed & invested since 2014',t:1800000,st:'done',sub:'Raised and invested since 2014 while following Rick and the FDA trials.',ms:[['Development, production & filming',1800000,'done']]},
  {n:'Rough Cut',s:'Rough Cut',t:700000,st:'now',raised:266248,sub:'$266,248 raised so far. $433,752 still needed.',ms:[['Editing Act 1',75000,'done'],['Production & Filming',50000,'done'],['Editing Act 2',75000,'done'],['Editing Act 3 · 88% funded',75000,'now'],['Animation Sequences',100000,''],['Interviews & B-roll',75000,''],['Music & Archival',100000,''],['Admin & Fees',150000,'']]},
