@@ -1130,6 +1130,14 @@ _rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section
 assert _rs>0
 home=home[:_re]+_faq+home[_re:]
 home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+# Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
+_ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
+assert _ss>0
+_shr=home[_ss:_se].replace('<div class="shr">','<div class="shr snshr">',1).replace('<span class="shl">Share our campaign</span>','<span class="shl">Share</span>',1)
+_db='<button class="btn pri" data-give>Donate</button></div></div>'
+assert home.count(_db)==1
+home=home.replace(_db,'<span class="snr">'+_shr+'<button class="btn pri" data-give>Donate</button></span></div></div>',1)
+
 # Nov 16 11pm (Nirvan): Matching challenges, then Comments, move to the left column under the budget
 def _cut(h,sid):
     s=h.find('<section class="sec" id="'+sid+'">');e=h.find('</section>',s)+len('</section>')
@@ -1222,6 +1230,15 @@ extra+="""
 :is(#wath,#wath-top) .video.playing .vc{display:none}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vc{animation:none;opacity:1;transform:translateX(-50%)}}
 @media(max-width:700px){:is(#wath,#wath-top) .video .vc{font-size:2.3cqw;bottom:6%;letter-spacing:.08em}:is(#wath,#wath-top) .video .vc strong{font-size:2.9cqw;letter-spacing:.04em}:is(#wath,#wath-top) .video .vcl{left:19.5%}:is(#wath,#wath-top) .video .vcr{left:80.5%}}
+#wath .subnav .snr{display:grid;flex:none;align-items:center;justify-items:end}
+#wath .subnav .snr>*{grid-area:1/1}
+#wath .subnav .snshr{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;margin:0!important;padding:0!important;border:0!important;transition:opacity .25s ease,visibility 0s linear 0s}
+#wath .subnav .snshr .shl{width:auto;font-size:11.5px}
+#wath .subnav .snshr .shb{flex-wrap:nowrap;gap:6px}
+#wath .subnav .snshr .sh1{width:34px;height:34px}
+#wath.sngive .subnav .snshr{opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s linear .2s}
+@media(min-width:1240px){#wath .hero-grid>.shr{display:none!important}}
+@media(max-width:1239px){#wath .subnav .snshr{display:none}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
