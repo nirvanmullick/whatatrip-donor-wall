@@ -1116,8 +1116,27 @@ home=home.replace(_n1,'<a href="#wath-budget">Budget</a><a href="#wath-perks">Pe
 _t1='<a href="#wath-faq">FAQs</a>'
 assert home.count(_t1)==1
 home=home.replace(_t1,'<i class="snd" aria-hidden="true"></i>'+_t1)
+# Nov 16 (Nirvan): perks carousel folded into Choose your level; Filmmakers becomes the full-width band in its place; FAQs move up under the supporters
+_ps=home.find('<section class="band" id="wath-perks">');_pe=home.find('<div class="wrap cols second">',_ps)
+assert _ps>0 and _pe>_ps
+_ts=home.find('<section class="sec" id="wath-team">');_te=home.find('</section>',_ts)+len('</section>')
+_team=home[_ts:_te];home=home[:_ts]+home[_te:]
+_inner=_team[len('<section class="sec" id="wath-team">'):-len('</section>')]
+_ps=home.find('<section class="band" id="wath-perks">');_pe=home.find('<div class="wrap cols second">',_ps)
+home=home[:_ps]+'<section class="band tband" id="wath-team"><div class="wrap">'+_inner+'</div></section>\n'+home[_pe:]
+_fs=home.find('<section class="sec" id="wath-faq">');_fe=home.find('</section>',_fs)+len('</section>')
+_faq=home[_fs:_fe];home=home[:_fs]+home[_fe:]
+_rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section>',_rs)+len('</section>')
+assert _rs>0
+home=home[:_re]+_faq+home[_re:]
+home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+
 extra+="""
 #wath[data-tabv]>:not(.hero):not(.subnav):not(.cols.second){display:none}
+#wath[data-tabv="faq"]>.cols:not(.second){display:block!important;min-height:78vh;padding-top:44px}
+#wath[data-tabv="faq"]>.cols:not(.second)>aside,#wath[data-tabv="faq"]>.cols:not(.second) .stack>.sec:not(#wath-faq){display:none!important}
+#wath[data-tabv="faq"]>.cols:not(.second) #wath-faq{border-top:0;padding-top:0}
+#wath[data-tabv="faq"]>.cols.second{display:none}
 #wath[data-tabv] .cols.second .stack>.sec{display:none}
 #wath[data-tabv="faq"] .cols.second .stack>#wath-faq,#wath[data-tabv="comments"] .cols.second .stack>#wath-comments,#wath[data-tabv="updates"] .cols.second .stack>#wath-updates{display:block;border-top:0;padding-top:0}
 #wath[data-tabv] .cols.second{min-height:78vh;padding-top:44px}
@@ -1169,6 +1188,19 @@ extra+="""
 #wath .mx.mxg .mxrow .mxb{flex:1;height:10px;margin:0 0 0 -8px;border-radius:0 999px 999px 0}
 #wath .mx.mxg .mxrow .mxb i{border-radius:0 999px 999px 0}
 #wath .mx.mxg .mxl{margin-top:8px}
+#wath #wath-levels .lv .lvi{aspect-ratio:16/9;display:flex}
+#wath #wath-levels .lv .lvi .fa-cr b{font-size:20px!important}
+#wath #wath-levels .lvlim{margin-top:16px;padding:10px 12px;border-radius:10px;background:#efeaf9;display:flex;flex-direction:column;gap:2px}
+#wath #wath-levels .lvlt{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6152a0}
+#wath #wath-levels .lvla{font-size:14px;font-weight:600;color:#1b1526}
+#wath #wath-levels .lvla.out{color:#8a3b3b}
+#wath .tband{padding:56px 0}
+#wath .tband h2{margin-top:0}
+#wath .card.tndd{align-items:flex-start}
+#wath .tndside{flex:0 0 auto;width:min(320px,100%);display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+#wath .tndside .tndl{width:100%;margin:0}
+#wath .tndside .tndb .btn.tj{min-width:150px;justify-content:center}
+#wath .tndt{flex:1 1 0;max-width:600px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
