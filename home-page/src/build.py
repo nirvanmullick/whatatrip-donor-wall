@@ -1212,7 +1212,8 @@ extra+="""
 @media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
 #wath .mx.mxg{display:grid!important;grid-template-columns:58px minmax(0,1fr);column-gap:12px;row-gap:0;align-items:center;padding:14px 16px 14px 14px;position:relative}
 #wath .mx.mxg>*{grid-column:2}
-#wath .mx.mxg .mh{grid-column:1/-1;font-size:18px;line-height:1.25;margin:0;padding-right:26px}
+#wath .mx.mxg .mh{grid-column:1/-1;font-size:18px;line-height:1.25;margin:0;padding:0 26px;text-align:center}
+@media(max-width:520px){#wath .mx.mxg .mh{font-size:16px;padding:0 22px}}
 #wath .mx.mxg .mxs2{display:block;grid-row:2;margin-top:8px}
 #wath .mx.mxg .mxrow{display:contents}
 #wath .mx.mxg .mxi2{grid-column:1;grid-row:3;align-self:center;position:relative;width:58px;height:34px;margin-top:4px;z-index:1}
