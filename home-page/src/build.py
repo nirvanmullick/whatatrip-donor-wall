@@ -1016,7 +1016,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 home=P[P.index('<main id="v-home">')+len('<main id="v-home">'):P.index('</main>')]
 # hero video -> link to trailer with real photo
 a=home.index('<div class="video">'); b=home.index('</div>',home.index('</button>',a))+6
-home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@20759526d18f6ccd6ec0c0754a4b07b556a0a469/home-page/img/rick-desert-wide.jpg)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play pq"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
+home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@a16e9d9153ce12938211d08a74ccbc5c0c4cc9f5/home-page/img/rick-desert-plate.jpg)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i><i class="k4" style="background-image:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@fd6230f0f72d410652fb346dd0c300434590a829/home-page/img/rick-desert-fg-full.webp)"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play pq"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
 # remove hero stats block
 a=home.index('<div data-hero-stats'); b=home.index('</div></div>',a)+12
 home=home[:a]+home[b:]
@@ -1130,6 +1130,26 @@ _rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section
 assert _rs>0
 home=home[:_re]+_faq+home[_re:]
 home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+# Nov 17 (Nirvan): a clear "Impact" heading above the T.R.U.T.H. Not D.A.R.E. card
+_ia='<section class="sec" id="wath-impact"><div class="card tnd" data-tnd>'
+assert home.count(_ia)==1
+home=home.replace(_ia,'<section class="sec" id="wath-impact"><h2 class="imph">Impact</h2><div class="card tnd" data-tnd>')
+
+# Nov 17 (Nirvan): a second photo band (Rick in coloured light) before the impact campaign
+_im=home.find('<div class="wrap cols second">')
+assert _im>0
+home=home[:_im]+'<section class="rband fband" aria-label="Rick Doblin"><div class="rbimg" role="img" aria-label="Close-up of Rick Doblin lit in red and blue" style="background-image:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@4bea9baf0ec58ab40213efe8896f314c05fa861e/home-page/img/rick-face-light.jpg)"></div><div class="wrap rbw"><div class="rbt"><p class="rbk">Fifty years. One mission.</p><h2>Bring psychedelic therapy out of prohibition and into medicine.</h2><div class="rbb"><button class="btn pri" data-give>Help finish the film</button></div></div></div></section>\n'+home[_im:]
+
+# Nov 17 (Nirvan): Kickstarter-style light band under the hero; Perks out of the menu (the column is beside it)
+home=home.replace('<a href="#wath-levels">Perks</a>','',1)
+_sn=home.find('<div class="subnav">')
+_ic=lambda d:'<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'
+_items=[(_ic('<rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2z"/>'),'12 years in the making','Filmed since 2014, with rare access to Rick and MAPS.'),
+ (_ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),'$50 = one hour of editing','Every gift goes straight into finishing the film.'),
+ (_ic('<rect x="3.5" y="9" width="17" height="4" rx="1"/><path d="M5 13v7h14v-7M12 9v11"/>'),'Every gift doubled','A $135K matching fund doubles gifts through Dec 31.'),
+ (_ic('<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/>'),'Tax-deductible','Less the fair market value of any perk you receive.')]
+home=home[:_sn]+'<div class="kband" role="list">'+'<div class="wrap kbw">'+''.join('<div class="kbi" role="listitem"><span class="kbic">'+i+'</span><span><b>'+t+'</b><span>'+d+'</span></span></div>' for i,t,d in _items)+'</div></div>\n'+home[_sn:]
+
 # Nov 17 (Nirvan): the close-up of Rick breaks up the page, between the columns and the Filmmakers band
 _tb=home.find('<section class="band tband" id="wath-team">')
 assert _tb>0
@@ -1138,7 +1158,7 @@ home=home[:_tb]+'<section class="rband" aria-label="About Rick Doblin"><div clas
 # Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
 _ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
 assert _ns>0
-home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs</a><a href="#wath-budget">Budget</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-levels">Perks</a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
+home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs</a><a href="#wath-budget">Budget</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
 
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
@@ -1349,7 +1369,44 @@ extra+="""
 #wath .upsh:hover{background:#f4f1fb}
 #wath .upsh:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath .up{scroll-margin-top:80px}
-#wath #wath-levels .lv .lvi.lvshirt{aspect-ratio:4/3;background-size:cover;background-position:50% 14%}
+#wath #wath-levels .lv .lvi.lvshirt{aspect-ratio:3/4;background-size:cover;background-position:50% 0}
+#wath .kband{background:#f6f3ec;border-top:1px solid rgba(27,21,38,.06);border-bottom:1px solid rgba(27,21,38,.06);margin:26px 0 0}
+#wath .kband .kbw{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:22px;padding-bottom:22px}
+#wath .kbi{display:flex;gap:12px;align-items:flex-start}
+#wath .kbic{flex:none;color:#6152a0;margin-top:2px}
+#wath .kbi b{display:block;font-size:15.5px;color:#1b1526}
+#wath .kbi span span{display:block;font-size:14px;line-height:1.4;color:#5b6478;margin-top:2px}
+@media(max-width:900px){#wath .kband .kbw{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:520px){#wath .kband .kbw{grid-template-columns:1fr;gap:14px}}
+#wath h2 .h2s{font-weight:500;color:#5b6478;font-size:.62em;letter-spacing:0}
+@media(min-width:1100px){#wath .hero>.wrap>h1,#wath .hero>.wrap>h1+.sub{margin-right:calc(clamp(300px,32vw,390px) + 34px);margin-left:0;max-width:none}}
+@media(min-width:901px) and (max-width:1099px){#wath .hero>.wrap>h1,#wath .hero>.wrap>h1+.sub{margin-right:calc(39.2% + 13px);margin-left:0;max-width:none}}
+#wath .cmtz{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:12px;max-width:min(100%,560px);padding:10px 16px 10px 12px;border-radius:999px;background:#fff;border:1px solid #e3def0;box-shadow:0 2px 10px rgba(27,21,38,.05);transition:border-color .15s,box-shadow .15s}
+#wath .cmtz:hover{border-color:#c9bff0;box-shadow:0 6px 18px rgba(27,21,38,.09)}
+#wath .cmtz:focus-visible{outline:2px solid #6152a0;outline-offset:3px}
+#wath .cmta{display:inline-flex;flex:none}
+#wath .cmta .av{width:30px;height:30px;font-size:11px;border:2px solid #fff;margin-left:-9px}
+#wath .cmta .av:first-child{margin-left:0}
+#wath .cmtt{display:flex;flex-direction:column;min-width:0}
+#wath .cmtt b{font-size:14px;color:#1b1526}
+#wath .cmtt span{font-size:13.5px;color:#5b6478;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#wath .cmtgo{flex:none;color:#6152a0;font-weight:800}
+#wath .socx{max-width:680px}
+#wath .socr .socn{margin-left:auto}
+:is(#wath,#wath-top) .vk .k1{animation-name:wathZoomBg}
+:is(#wath,#wath-top) .vk .k4{background-position:center 30%;background-size:cover;background-repeat:no-repeat;transform-origin:50% 74%;animation:wathZoomFg 30s linear infinite}
+@keyframes wathZoomBg{0%{transform:scale(1.1);opacity:0}3%{opacity:1}82%{transform:scale(1.9);opacity:1}95%{transform:scale(1.9);opacity:1}100%{transform:scale(1.9);opacity:0}}
+@keyframes wathZoomFg{0%{transform:scale(1.1) translateY(0);opacity:0}3%{opacity:1}82%{transform:scale(2.45) translateY(-2.2%);opacity:1}95%{transform:scale(2.45) translateY(-2.2%);opacity:1}100%{transform:scale(2.45) translateY(-2.2%);opacity:0}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .vk .k1,:is(#wath,#wath-top) .vk .k4{animation:none!important;transform:scale(1.7)}}
+#wath .rband.fband{background:#07060c}
+#wath .rband.fband .rbimg{background-position:62% center}
+#wath .rband.fband .rbimg::after{background:linear-gradient(90deg,rgba(7,6,12,.85) 0%,rgba(7,6,12,.45) 30%,rgba(7,6,12,0) 50%)}
+#wath .rband.fband .rbt{max-width:440px}
+@media(max-width:760px){#wath .rband.fband{background:#07060c}#wath .rband.fband .rbimg{background-position:62% center}}
+#wath .tndside{align-items:center!important}
+#wath .tndside .tndb{display:flex;justify-content:center;width:100%}
+@media(min-width:901px){#wath .card.tndd{gap:28px 72px!important;padding:48px 52px 46px!important}#wath .tndt{padding-left:8px}}
+#wath .imph{margin:0 0 18px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
