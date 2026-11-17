@@ -1016,7 +1016,7 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 home=P[P.index('<main id="v-home">')+len('<main id="v-home">'):P.index('</main>')]
 # hero video -> link to trailer with real photo
 a=home.index('<div class="video">'); b=home.index('</div>',home.index('</button>',a))+6
-home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://images.squarespace-cdn.com/content/v1/5cb1600577b90384f9245e9e/876eaca8-ad5c-42e5-8c35-3a37a50f8e00/rick_doblin_+purple.jpg?format=2500w)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play pq"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
+home=home[:a]+'<a class="video" href="/trailer" data-trailer aria-label="Play the trailer" style="--ph:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@20759526d18f6ccd6ec0c0754a4b07b556a0a469/home-page/img/rick-desert-wide.jpg)"><span class="vk" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></span><span class="vt" aria-hidden="true"><b>WHAT A TRIP</b><span class="play pq"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span></span><span class="vc vcl" aria-hidden="true">From Executive Producer<strong>Darren Aronofsky</strong></span><span class="vc vcr" aria-hidden="true">A film by<strong>Nirvan Mullick</strong></span></a>'+home[b:]
 # remove hero stats block
 a=home.index('<div data-hero-stats'); b=home.index('</div></div>',a)+12
 home=home[:a]+home[b:]
@@ -1130,6 +1130,11 @@ _rs=home.find('<section class="sec" id="wath-recent">');_re=home.find('</section
 assert _rs>0
 home=home[:_re]+_faq+home[_re:]
 home=home.replace('<a href="#wath-perks">Perks</a>','<a href="#wath-levels">Perks</a>')
+# Nov 17 (Nirvan): the close-up of Rick breaks up the page, between the columns and the Filmmakers band
+_tb=home.find('<section class="band tband" id="wath-team">')
+assert _tb>0
+home=home[:_tb]+'<section class="rband" aria-label="About Rick Doblin"><div class="rbimg" role="img" aria-label="Rick Doblin on the phone in the desert at dusk" style="background-image:url(https://cdn.jsdelivr.net/gh/nirvanmullick/whatatrip-donor-wall@20759526d18f6ccd6ec0c0754a4b07b556a0a469/home-page/img/rick-closeup.jpg)"></div><div class="wrap rbw"><div class="rbt"><p class="rbk">The Rick Doblin Story</p><h2>When he was 18, Rick Doblin decided to become a psychedelic therapist.</h2><p class="rbs">But first he would have to change the law.</p><div class="rbb"><button class="btn pri" data-give>Donate now</button><button class="btn rbtr" data-trailer>Watch the trailer</button></div></div></div></section>\n'+home[_tb:]
+
 # Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
 _ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
 assert _ns>0
@@ -1205,13 +1210,16 @@ extra+="""
 @media(min-width:901px){#wath .subnav .btn[data-give]{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
 #wath.sngive .subnav .btn[data-give]{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease,transform .28s ease,visibility 0s}}
 @media(prefers-reduced-motion:reduce){#wath .subnav .btn[data-give]{transition:none!important;transform:none!important}}
-#wath .mx.mxg{display:grid!important;grid-template-columns:40px minmax(0,1fr);column-gap:12px;row-gap:0;align-items:center;padding:14px 16px 14px 14px;position:relative}
+#wath .mx.mxg{display:grid!important;grid-template-columns:58px minmax(0,1fr);column-gap:12px;row-gap:0;align-items:center;padding:14px 16px 14px 14px;position:relative}
 #wath .mx.mxg>*{grid-column:2}
 #wath .mx.mxg .mh{grid-column:1/-1;font-size:18px;line-height:1.25;margin:0;padding-right:26px}
 #wath .mx.mxg .mxs2{display:block;grid-row:2;margin-top:8px}
 #wath .mx.mxg .mxrow{display:contents}
-#wath .mx.mxg .mxi{grid-column:1;grid-row:2/4;align-self:end;width:40px;height:40px;margin-top:0;z-index:1;box-shadow:0 0 0 3px #fbf3df}
-#wath .mx.mxg .mxrow .mxb{grid-column:2;grid-row:3;align-self:center;height:10px;margin:4px 0 0 -14px;border-radius:0 999px 999px 0}
+#wath .mx.mxg .mxi2{grid-column:1;grid-row:3;align-self:center;position:relative;width:58px;height:34px;margin-top:4px;z-index:1}
+#wath .mx.mxg .mxi2 .mxi{position:absolute;top:0;width:34px;height:34px;margin:0;box-shadow:0 0 0 3px #fbf3df}
+#wath .mx.mxg .mxi2 .g1{left:0}
+#wath .mx.mxg .mxi2 .g2{left:24px}
+#wath .mx.mxg .mxrow .mxb{grid-column:2;grid-row:3;align-self:center;height:10px;margin:4px 0 0 -16px;border-radius:0 999px 999px 0}
 #wath .mx.mxg .mxrow .mxb i{border-radius:0 999px 999px 0}
 #wath .mx.mxg .mxl{grid-row:4;margin-top:6px}
 #wath .mx.mxg .chev{position:absolute;top:16px;right:14px}
@@ -1322,6 +1330,24 @@ extra+="""
 #wath .upbar.live .bar i{background:#c99a3e}
 #wath .upbar.done .bar i{background:#33697f}
 #wath .upt a{color:#5d4fa6;font-weight:600}
+#wath .rband{position:relative;overflow:hidden;background:#8d93c6;min-height:clamp(420px,42vw,620px);display:flex;align-items:center}
+#wath .rband .rbimg{position:absolute;inset:0;background:center right/cover no-repeat}
+#wath .rband .rbimg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(35,28,70,.55) 0%,rgba(35,28,70,.25) 38%,rgba(35,28,70,0) 60%)}
+#wath .rband .rbw{position:relative;z-index:1;width:100%}
+#wath .rband .rbt{max-width:520px;color:#fff;text-shadow:0 2px 18px rgba(27,21,38,.35)}
+#wath .rband .rbk{margin:0 0 10px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#e6e2ff}
+#wath .rband h2{margin:0;color:#fff;font-size:clamp(26px,3vw,40px);line-height:1.15}
+#wath .rband .rbs{margin:14px 0 0;font-size:clamp(17px,1.6vw,21px);color:#f2f0ff}
+#wath .rband .rbb{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;text-shadow:none}
+#wath .rband .rbtr{background:rgba(255,255,255,.92);color:#1b1526;border-color:transparent}
+@media(max-width:760px){#wath .rband{display:block;min-height:0;background:#2b2450}#wath .rband .rbimg{position:relative;inset:auto;aspect-ratio:16/10;background-position:72% center}#wath .rband .rbimg::after{display:none}#wath .rband .rbw{padding-top:22px;padding-bottom:28px}#wath .rband .rbt{text-shadow:none}}
+#wath .upimg{margin:4px 0 16px}
+#wath .upimg img{display:block;max-width:100%;max-height:560px;width:auto;margin:0 auto;border-radius:12px}
+#wath .upimg figcaption{margin-top:8px;text-align:center;font-size:13.5px;color:#5b6478}
+#wath .upsh{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin-left:12px;padding:5px 10px;border-radius:999px;border:1px solid #e3def0;font-size:13px;font-weight:700;color:#5d4fa6}
+#wath .upsh:hover{background:#f4f1fb}
+#wath .upsh:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .up{scroll-margin-top:80px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
