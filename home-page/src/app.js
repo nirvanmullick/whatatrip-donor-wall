@@ -932,7 +932,7 @@ var watGoTab=null;
   R.addEventListener('mousemove',mv);R.addEventListener('touchmove',mv,{passive:true});R.addEventListener('touchstart',function(e){var f=e.target.closest&&e.target.closest('[data-peek]');if(f){f.classList.add('touch');mv(e)}},{passive:true});R.addEventListener('mouseout',out);R.addEventListener('touchend',function(e){var f=e.target.closest&&e.target.closest('[data-peek]');if(f)setTimeout(function(){f.classList.remove('peeking')},400)})})();
 
 /* Nov 17: preview of WHAT A TRIP in the Arcturus-cover style: add ?deco to the URL */
-try{if(/[?&]deco\b/.test(location.search))R.classList.add('wdeco')}catch(e){}
+try{var _q=location.search;if(/[?&]deco2\b/.test(_q))R.classList.add('wdeco2');else if(/[?&]deco3\b/.test(_q))R.classList.add('wdeco3');else if(/[?&]deco\b/.test(_q))R.classList.add('wdeco')}catch(e){}
 /* Small Donate button in the menu bar slides up into view once the big hero Donate button scrolls away (Kickstarter style, Nirvan Nov 16) */
 (function(){var big=R.querySelector('.hero .btn.big[data-give]'),sn=R.querySelector('.subnav');if(!big||!sn)return;
   var set=function(on){R.classList.toggle('sngive',!!on)};
