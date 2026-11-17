@@ -1407,6 +1407,7 @@ extra+="""
 #wath .tndside .tndb{display:flex;justify-content:center;width:100%}
 @media(min-width:901px){#wath .card.tndd{gap:28px 72px!important;padding:48px 52px 46px!important}#wath .tndt{padding-left:8px}}
 #wath .imph{margin:0 0 18px}
+.wath-nbdg{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin-left:4px;border-radius:999px;background:#6152a0;color:#fff;font-size:11px;font-weight:800;line-height:1;vertical-align:middle}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
