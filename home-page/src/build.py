@@ -1697,6 +1697,8 @@ extra+="""
 #wath .chi2 .g2{z-index:2}
 :is(#wath,#wath-top) .mxi2 .hz .hrt path,:is(#wath,#wath-top) .mxi.hz .hrt path{fill:#f1d28a;stroke:#fbf3df;stroke-width:2.6;stroke-linejoin:round}
 #wath .chrow .chb{margin-left:-12px!important}
+:is(#wath,#wath-top) .gctot{margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #e6e0f4;font-size:15px;line-height:1.5;color:#3a3245}
+:is(#wath,#wath-top) .gcnew{display:inline-block;margin-left:6px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:#6152a0;border-radius:999px;padding:1px 7px;vertical-align:1px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
