@@ -1759,6 +1759,10 @@ extra+="""
 #wath #wath-recent .lvb .tip{display:none;position:absolute;left:0;top:calc(100% + 8px);background:#1f2430;color:#fff;font-weight:500;font-size:12.5px;line-height:1.45;padding:8px 11px;border-radius:9px;width:max-content;max-width:260px;z-index:6;text-align:left;white-space:normal;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 #wath #wath-recent .lvb:hover .tip,#wath #wath-recent .lvb:focus-visible .tip{display:block}
 @media (hover:none){#wath #wath-recent .lvb .tip{display:none!important}}
+#wath-top .spov .spsl{position:relative;display:inline-flex;flex:none;margin:4px 6px 4px 4px}
+#wath-top .spov .spsl .spseal{position:absolute;left:50%;top:50%;width:92px;height:92px;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 1px 3px rgba(150,110,30,.3))}
+#wath-top .spov .spsl>.hxw,#wath-top .spov .spsl>.av{position:relative;z-index:1}
+#wath-top .spov .spsl .hxw{background:#d4a23a!important}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
