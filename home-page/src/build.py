@@ -1629,6 +1629,25 @@ extra+="""
 #wath-top .mdl li.ok em{color:#33697f}
 #wath-top .mdk{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid #cfc8e6;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900;box-sizing:border-box}
 #wath-top .mdl li.ok .mdk{background:#33697f;border-color:#33697f}
+.mov .pfd.pfpend{opacity:.62;background:#faf9fc}
+.mov .pfd.pfpend .pfsum{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.mov .pfd.pfpend .pft span{display:block;font-size:13.5px;color:#5b6478}
+.mov .pfd.pfpend .apill{flex:none;white-space:nowrap}
+.mov .pfint{all:unset;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start;width:100%;padding:12px 14px;border:1.5px solid #e3def0;border-radius:12px;cursor:pointer;background:#fff;margin:0 0 10px}
+.mov .pfint.on{border-color:#6152a0;background:#f8f6fe}
+.mov .pfint:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+.mov .pfint b{display:block;font-size:15px;color:#1b1526}
+.mov .pfint em{display:block;font-style:normal;font-size:13.5px;color:#5b6478;margin-top:2px}
+.mov .pfib{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid #b9b0dc;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:13px;box-sizing:border-box;margin-top:1px}
+.mov .pfint.on .pfib{background:#6152a0;border-color:#6152a0}
+.mov .pfn2{font-size:14px;color:#3a3245;line-height:1.5;margin:0 0 8px}
+.mov .pfn2 .soon{margin-left:4px}
+.mov .pfsv{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+#wath-top .mov .pfsv button{all:unset;box-sizing:border-box;cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid #e3def0;font-size:13.5px;font-weight:700;color:#5d4fa6;background:#fff}
+#wath-top .mov .pfsv button.on{background:#6152a0;border-color:#6152a0;color:#fff}
+#wath-top .mov .pfsv button span{opacity:.75;margin-left:3px}
+.mov .pfsk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:#5b6478;margin-bottom:8px}
+.mov .pfsk select,.mov .pfdt{border:1px solid #cfc8e6;border-radius:8px;padding:4px 8px;font:inherit;font-size:13.5px;background:#fff}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
