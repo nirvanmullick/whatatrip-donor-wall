@@ -1608,8 +1608,9 @@ extra+="""
 :is(#wath,#wath-top) .gcos .gcst.on{color:#6152a0}
 :is(#wath,#wath-top) .gcos .gcst.dn{color:#33697f}
 @media(max-width:560px){:is(#wath,#wath-top) .gcos{font-size:12px!important;gap:4px!important}}
-:is(#wath,#wath-top) .gcos .gcmw .gcst{margin-left:6px!important}
-:is(#wath,#wath-top) .gcos>.gca{margin:0 6px!important}
+:is(#wath,#wath-top) .gcos .gcmw .gcst{margin-left:6px!important;margin-right:0!important}
+:is(#wath,#wath-top) .gcos>.gca{margin:0 9px!important}
+:is(#wath,#wath-top) .gcos .gcmw>.gca{margin:0 3px 0 9px!important}
 :is(#wath,#wath-top) .gclv{padding:6px 0 2px;text-align:left}
 :is(#wath,#wath-top) .gclvi{font-size:30px;line-height:1;margin:6px 0 8px}
 :is(#wath,#wath-top) .gci{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#6152a0;color:#fff;font:italic 700 12px/1 Georgia,serif;cursor:pointer;vertical-align:1px;margin-left:4px}
@@ -1648,6 +1649,25 @@ extra+="""
 #wath-top .mov .pfsv button span{opacity:.75;margin-left:3px}
 .mov .pfsk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:#5b6478;margin-bottom:8px}
 .mov .pfsk select,.mov .pfdt{border:1px solid #cfc8e6;border-radius:8px;padding:4px 8px;font:inherit;font-size:13.5px;background:#fff}
+:is(#wath,#wath-top) .gcos{position:relative;padding:5px 0 5px 8px;isolation:isolate;overflow:visible!important}
+:is(#wath,#wath-top) .gcos .gcpill{position:absolute!important;left:0;top:calc(50% - 13px)!important;height:26px;margin:0!important;padding:0!important;border-radius:999px;background:#ece7fb;border:1px solid #cdbff3;z-index:-1;pointer-events:none;box-sizing:border-box}
+:is(#wath,#wath-top) .gcos .gcst.on{color:#4a3d8f}
+:is(#wath,#wath-top) .gcdcar{position:relative;margin:-22px -22px 14px;border-radius:16px 16px 0 0;overflow:hidden;background:#1b1526;aspect-ratio:16/10}
+:is(#wath,#wath-top) .gcdtr{display:flex;height:100%;transition:transform .45s cubic-bezier(.3,.8,.3,1)}
+:is(#wath,#wath-top) .gcdtr img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block}
+:is(#wath,#wath-top) .gcdar{all:unset;position:absolute;top:50%;margin-top:-18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);color:#1b1526;font-size:24px;line-height:34px;text-align:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+:is(#wath,#wath-top) .gcdar.l{left:10px}:is(#wath,#wath-top) .gcdar.r{right:10px}
+:is(#wath,#wath-top) .gcddots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px}
+:is(#wath,#wath-top) .gcddots button{all:unset;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer}
+:is(#wath,#wath-top) .gcddots button.on{background:#fff}
+:is(#wath,#wath-top) .gcdc .gcox{z-index:3;background:rgba(255,255,255,.9)!important;border-radius:50%;width:34px;height:34px;line-height:32px;text-align:center;font-size:24px}
+:is(#wath,#wath-top) .gcdc{max-width:560px!important}
+:is(#wath,#wath-top) .gcp{flex-wrap:wrap}
+:is(#wath,#wath-top) .gcph{flex:1 1 100%;display:block;margin:0 16px 14px 54px;font-size:13.5px;font-weight:700;color:#3a3245}
+:is(#wath,#wath-top) .gcph input{display:block;width:100%;max-width:320px;margin-top:6px;border:1px solid #cfc8e6;border-radius:10px;padding:9px 12px;font:inherit;font-weight:400;font-size:15px;box-sizing:border-box}
+:is(#wath,#wath-top) .gcph em{display:block;font-style:normal;font-weight:400;color:#5b6478;margin-top:5px}
+:is(#wath,#wath-top) .gcmng{font-size:14px;color:#5d4fa6!important;font-weight:600}
+@media(max-width:560px){:is(#wath,#wath-top) .gcph{margin-left:46px}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
