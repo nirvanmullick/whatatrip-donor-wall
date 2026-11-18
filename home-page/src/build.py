@@ -1897,6 +1897,25 @@ extra+="""
 .mov .blph{margin:8px auto 0;max-width:300px;padding:18px 14px 14px;border-radius:26px;background:#fff;border:1px solid #e3ddf3}
 .mov .blbub{display:inline-block;max-width:85%;padding:10px 13px;border-radius:18px 18px 18px 6px;background:#ece9f3;color:#1b1526;font-size:14px;line-height:1.4}
 .mov .blphf{display:block;margin-top:8px;font-size:11.5px;color:#8a849a}
+#wath-top .spov .sppv{max-width:380px}
+#wath-top .spov .sppl{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:26px 10px 18px}
+#wath-top .spov .spplk{width:76px;height:76px;display:flex;align-items:center;justify-content:center;background:#ece7f7;color:#6152a0;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+#wath-top .spov .sppl b{font-size:20px;color:#1b1526}#wath-top .spov .sppl>span:last-child{color:#6b6478;font-size:14px}
+.mov .acln{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.mov .acln .aclp{font-size:13px;color:#6b6478;word-break:break-all}
+.mov .acln input{flex:1 1 180px;min-width:0;font:inherit;font-size:15px;font-weight:600;padding:9px 11px;border:1px solid #d9d1ee;border-radius:10px;background:#fff}
+.mov .acms{margin-top:6px}.mov .acms.ok{color:#2f7d55;font-weight:600}
+.mov .aclk{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:10px;background:#f5f2fc}.mov .aclk b{word-break:break-all}.mov .aclk span{font-size:13px;color:#6b6478}
+.mov .acna{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.mov .acna input{flex:1 1 220px;font:inherit;font-size:14px;padding:9px 11px;border:1px solid #d9d1ee;border-radius:10px}
+:is(#wath,#wath-top) .cmpend{color:#a9925a;font-weight:700}
+.mov tr.cmwait td{background:#fffaf0}
+.mov .mchip:disabled{opacity:.55;cursor:default}
+.mov .mfbar{display:flex;flex-direction:column;gap:8px;margin:12px 0 14px;padding:12px;border-radius:12px;background:#f7f5fc}
+.mov .mfbar>div{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.mov .mfbar>div>span{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8a849a;min-width:92px}
+.mov .mfbar select{font:inherit;font-size:13.5px;padding:6px 9px;border:1px solid #d9d1ee;border-radius:9px;background:#fff}
+.mov .mchip.sm{padding:5px 11px;font-size:13px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
