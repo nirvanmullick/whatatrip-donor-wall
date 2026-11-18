@@ -468,8 +468,8 @@ var GPF={arc:'1-week stay in Arcturus',prem:'Premiere invite',din:'Private dinne
 function gcoLeft(p){if(!p.inv||!INV[p.inv]||!INV[p.inv].lim)return null;return invLeft(INV[p.inv])}
 function gcoElig(){return GPK.filter(function(p){return !p.auto&&GCO.amt>=p.min&&!(INV[p.inv]&&INV[p.inv].on===0)})}
 function gcoAuto(){return GPK.filter(function(p){return p.auto&&GCO.amt>=p.min&&!(p.id==='zoomf'&&GCO.amt>=25000)})}
-/* Nov 17 5:21pm (Nirvan): no 'Also included with your gift' box; step 1 already lists them */
-function gcoAutoHtml(){return '';var A=gcoAuto();return A.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+A.map(function(p){return '<li><b>'+esc(p.n)+'.</b> '+esc(p.what)+'</li>'}).join('')+'</ul></div>':''}
+/* Nov 17 5:22pm (Nirvan): 'Also included' kept, as short bullets */
+function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy Legalize Rick Inception shirts (purchased separately in our store)');if(g>=5000)L.push(g>=25000?'Zoom with Rick Doblin &amp; the filmmakers':'Zoom with the filmmakers');if(g>=25000)L.push('Inner Circle WhatsApp group invite');else if(g>=5000)L.push('Film Advisory WhatsApp group invite');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';var A=gcoAuto();return A.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+A.map(function(p){return '<li><b>'+esc(p.n)+'.</b> '+esc(p.what)+'</li>'}).join('')+'</ul></div>':''}
 function gcoOpen(a){GCO={on:1,step:1,pvMid:a>0&&GPK.some(function(p){return !p.auto&&a>=p.min}),amt:a>0?a:0,sa:a>0?a:0,ans:{},ack:{},agree:{}};gcoDraw();document.documentElement.classList.add('wath-noscroll')}
 /* Nov 17 5:09pm (Nirvan): leaving the checkout part-way offers an email reminder to finish later (same reminder service as the matching-challenge form) */
 var GIFT_REMIND_URL='https://script.google.com/macros/s/AKfycbx8qkqGsGwwNrfobN21wNATdHpUA4QirnmmnLM9O9jRMPU7-Bsam6nMHCcI5Ays4eM/exec';
