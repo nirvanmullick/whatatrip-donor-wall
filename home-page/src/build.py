@@ -1885,6 +1885,9 @@ extra+="""
 @media (max-width:640px){.mov ul.hlist li{grid-template-columns:1fr}.mov ul.hlist .hby{white-space:normal}}
 #wath .msd .msnote{margin:10px 0 4px 28px;padding:10px 13px;border-radius:12px;background:#fbf3dc;border:1px solid #f0e0b0;color:#5c4a1e;font-size:14px;line-height:1.5}
 #wath .msd .msnote a{color:#6152a0;font-weight:600}
+#wath .suplist.scr{max-height:var(--suph);overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;scrollbar-width:thin;scrollbar-color:#cfc6ea transparent;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);padding-top:6px;padding-bottom:22px}
+#wath .suplist.scr::-webkit-scrollbar{width:6px}#wath .suplist.scr::-webkit-scrollbar-thumb{background:#cfc6ea;border-radius:6px}
+#wath .suplist>.dn.bgrow.bgin .av{transition:transform .26s cubic-bezier(.2,1.6,.4,1)!important}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
