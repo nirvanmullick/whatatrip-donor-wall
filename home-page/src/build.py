@@ -1888,6 +1888,15 @@ extra+="""
 #wath .suplist.scr{max-height:var(--suph);overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;scrollbar-width:thin;scrollbar-color:#cfc6ea transparent;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);padding-top:6px;padding-bottom:22px}
 #wath .suplist.scr::-webkit-scrollbar{width:6px}#wath .suplist.scr::-webkit-scrollbar-thumb{background:#cfc6ea;border-radius:6px}
 #wath .suplist>.dn.bgrow.bgin .av{transition:transform .26s cubic-bezier(.2,1.6,.4,1)!important}
+.mov .blg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.mov .blg{grid-template-columns:1fr}}
+.mov .blpv{padding:12px;border-radius:14px;background:#f5f2fc}
+.mov .blem{border-radius:12px;overflow:hidden;border:1px solid #e3ddf3;background:#fff;margin-top:8px}
+.mov .blemh{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-bottom:1px solid #ece7f7;font-size:12.5px;color:#6b6478}
+.mov .blemh .blsub{font-size:14px;font-weight:700;color:#1b1526}
+.mov .blph{margin:8px auto 0;max-width:300px;padding:18px 14px 14px;border-radius:26px;background:#fff;border:1px solid #e3ddf3}
+.mov .blbub{display:inline-block;max-width:85%;padding:10px 13px;border-radius:18px 18px 18px 6px;background:#ece9f3;color:#1b1526;font-size:14px;line-height:1.4}
+.mov .blphf{display:block;margin-top:8px;font-size:11.5px;color:#8a849a}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
