@@ -1855,6 +1855,7 @@ extra+="""
 .mov .bdsum{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
 .mov .bdsum>div{flex:1 1 200px;padding:12px 14px;border-radius:12px;background:#f5f2fc;display:flex;flex-direction:column;gap:2px}
 .mov .bdsum span{font-size:12.5px;color:#6b6478}.mov .bdsum b{font-size:20px;color:#1b1526}
+.mov .tmname{border:0;background:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:left}.mov .tmname:hover b{color:#6152a0;text-decoration:underline;text-underline-offset:3px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
