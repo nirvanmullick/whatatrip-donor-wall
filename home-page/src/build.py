@@ -1883,6 +1883,8 @@ extra+="""
 .mov ul.hlist .hch{display:block;margin-top:3px;font-size:12.5px;color:#6b6478}
 .mov ul.hlist .hby{font-size:12.5px;color:#6152a0;font-weight:600;white-space:nowrap}
 @media (max-width:640px){.mov ul.hlist li{grid-template-columns:1fr}.mov ul.hlist .hby{white-space:normal}}
+#wath .msd .msnote{margin:10px 0 4px 28px;padding:10px 13px;border-radius:12px;background:#fbf3dc;border:1px solid #f0e0b0;color:#5c4a1e;font-size:14px;line-height:1.5}
+#wath .msd .msnote a{color:#6152a0;font-weight:600}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
