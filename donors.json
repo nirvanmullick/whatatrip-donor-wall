@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T07:42:57.840Z",
+  "updated": "2026-11-18T16:44:06.655Z",
   "count": 98,
   "source": "pledge-json-v2",
   "totals": {
@@ -42,7 +42,7 @@
       "name": "David Roth",
       "anonymous": false,
       "amount": 15000,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -51,7 +51,7 @@
       "name": "Theresa Daniello",
       "anonymous": false,
       "amount": 5000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
@@ -142,7 +142,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -864,7 +864,7 @@
       "name": "Laura Lochraine",
       "anonymous": false,
       "amount": 3000,
-      "time": "3 months ago",
+      "time": "4 months ago",
       "matched": false
     },
     {
