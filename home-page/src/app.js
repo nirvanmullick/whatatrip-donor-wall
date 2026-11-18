@@ -55,7 +55,7 @@ var TOTALS={},TOPL=[];
 function tally(){TOTALS={};var disp={};S.gifts.forEach(function(g){if(isAnon(g))return;var n=nm(g),k=n.toLowerCase();TOTALS[k]=(TOTALS[k]||0)+(+g.amount||0);disp[k]=n});
   Object.keys(PLEDGED).forEach(function(k){TOTALS[k]=(TOTALS[k]||0)+PLEDGED[k][0];if(!disp[k])disp[k]=PLEDGED[k][2]||k});
   TOPL=Object.keys(TOTALS).map(function(k){return [disp[k],TOTALS[k],k]}).sort(function(a,b){return b[1]-a[1]||(a[0]<b[0]?-1:1)})}
-function ini(n){if(/^anonymous/i.test(String(n||'').trim()))return 'AN';return n.split(/[ &]+/).filter(Boolean).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
+function ini(n){if(/^anonymous/i.test(String(n||'').trim()))return '?';return n.split(/[ &]+/).filter(Boolean).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
 function av(n){var p=PHOTOS[String(n).toLowerCase()];if(!p)return '<span class="av">'+esc(ini(n))+'</span>';var st=(p.pos?'object-position:'+p.pos+';transform-origin:'+p.pos+';':'')+(p.zoom?'transform:scale('+p.zoom+');':'');return '<span class="av"><img alt="" loading="lazy" src="'+esc(p.src)+'" style="'+st+'"></span>'}
 /* ---- renderers ---- */
 function paintHero(r,rm){if(typeof rm!=='number')rm=r;var need=Math.max(0,ROUGH_GOAL-r),pct=Math.min(100,Math.round(r/ROUGH_GOAL*100)),M=roughMs(rm),now=M.filter(function(m){return m.st==='now'})[0];
