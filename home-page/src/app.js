@@ -306,6 +306,13 @@ function openEmbed(){closeBio();var o=document.createElement('div');o.className=
    to the next, sometimes straight down, sometimes bending out to the right or left through a small atom,
    with the odd dangling side chain. The pattern is fixed per position so it doesn't shuffle on refresh. */
 var BONDLAST={k:'',n:0};
+/* Nov 18 5:56am (Nirvan): people who put up a matching challenge get the Gold Seal: a gold starburst edge around their hexagon, the hexagon version of the seal on the /donors wall */
+var GSDEF='<defs><radialGradient id="wgs" cx="50%" cy="34%" r="70%"><stop offset="0%" stop-color="#f9e4a8"/><stop offset="52%" stop-color="#e9ba46"/><stop offset="100%" stop-color="#c48a26"/></radialGradient></defs>',MKR=null;
+function MAKERS(){if(!MKR){MKR={};LEGS.concat(PAST).forEach(function(l){MKR[String(l.n).toLowerCase()]=1})}return MKR}
+function goldSeal(cx,cy,r,soft){var f=function(n){return Math.round(n*10)/10},hp=function(R,t){var a=Math.floor(t)%6,u=t-Math.floor(t),A0=(-90+60*a)*Math.PI/180,A1=(-90+60*(a+1))*Math.PI/180,x0=cx+R*Math.cos(A0),y0=cy+R*Math.sin(A0),x1=cx+R*Math.cos(A1),y1=cy+R*Math.sin(A1);return [x0+(x1-x0)*u,y0+(y1-y0)*u]},N=48,pts=[];
+  for(var k=0;k<N;k++){var t=k*6/N,q=hp(k%2?r+5:r+9.5,t);pts.push(f(q[0])+','+f(q[1]))}
+  var ring=[];for(var j=0;j<6;j++){var q2=hp(r+5.4,j);ring.push((j?'L':'M')+f(q2[0])+' '+f(q2[1]))}
+  return '<g class="gseal'+(soft?' soft':'')+'"><polygon points="'+pts.join(' ')+'" fill="url(#wgs)"/><path d="'+ring.join('')+'Z" fill="#edb84e" stroke="#fff8e6" stroke-width="1.2"/></g>'}
 function bondsDraw(){$$('#wath-recent .suplist').forEach(function(L){var rows=[].slice.call(L.querySelectorAll(':scope>.dn')).filter(function(r){var a=r.querySelector('.av');return a&&a.offsetHeight}),avs=rows.map(function(r){return r.querySelector('.av')});
   var old=L.querySelector(':scope>svg.bonds');if(!avs.length){if(old)old.remove();return}
   var lr=L.getBoundingClientRect(),P=avs.map(function(a){var r=a.getBoundingClientRect();return {x:r.left-lr.left,y:r.top-lr.top,w:r.width,h:r.height}});
@@ -320,8 +327,8 @@ function bondsDraw(){$$('#wath-recent .suplist').forEach(function(L){var rows=[]
     else{d='M'+f(cx)+' '+f(a.y+a.h)+'L'+f(ncx)+' '+f(n.y);if(v===2)dt((cx+ncx)/2,my,2.4,1)}
     if(i%5===3&&!dg){var tx=a.x+a.w*.933,ty=a.y+a.h*.25;d+='M'+f(tx)+' '+f(ty)+'l9 -5.2';dt(tx+11,ty-6.3,2.5)}
     segs.push('<g class="bs'+(dg?' bm':'')+'" data-k="'+(i+1)+'"><path d="'+d+'"/>'+c+'</g>')}
-  var rg='';P.forEach(function(p,k){var g=3,cx=p.x+p.w/2,cy=p.y+p.h/2,rx=p.w/2+g,ry=p.h/2+g;rg+='<path class="hxo'+(rows[k].classList.contains('dnm')?' m':'')+'" data-k="'+k+'" d="M'+f(cx)+' '+f(cy-ry)+'L'+f(cx+rx*.866)+' '+f(cy-ry/2)+'L'+f(cx+rx*.866)+' '+f(cy+ry/2)+'L'+f(cx)+' '+f(cy+ry)+'L'+f(cx-rx*.866)+' '+f(cy+ry/2)+'L'+f(cx-rx*.866)+' '+f(cy-ry/2)+'Z"/>'});
-  var svg=old||document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','bonds');svg.setAttribute('aria-hidden','true');svg.setAttribute('data-sig',sig);svg.innerHTML=segs.join('')+rg;if(!old)L.insertBefore(svg,L.firstChild);
+  var rg='',sl='';P.forEach(function(p,k){var g=3,cx=p.x+p.w/2,cy=p.y+p.h/2,rx=p.w/2+g,ry=p.h/2+g,isM=rows[k].classList.contains('dnm'),nmk=String(rows[k].getAttribute('data-supp')||'').toLowerCase();if(isM||MAKERS()[nmk])sl+=goldSeal(cx,cy,p.h/2,isM);rg+='<path class="hxo'+(isM?' m':'')+(!isM&&MAKERS()[nmk]?' g':'')+'" data-k="'+k+'" d="M'+f(cx)+' '+f(cy-ry)+'L'+f(cx+rx*.866)+' '+f(cy-ry/2)+'L'+f(cx+rx*.866)+' '+f(cy+ry/2)+'L'+f(cx)+' '+f(cy+ry)+'L'+f(cx-rx*.866)+' '+f(cy+ry/2)+'L'+f(cx-rx*.866)+' '+f(cy-ry/2)+'Z"/>'});
+  var svg=old||document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','bonds');svg.setAttribute('aria-hidden','true');svg.setAttribute('data-sig',sig);svg.innerHTML=GSDEF+segs.join('')+sl+rg;if(!old)L.insertBefore(svg,L.firstChild);
   /* "Show more": the new supporters grow out of the chain one at a time: the bond draws down, then the next hexagon appears */
   var key=(rows[0].textContent||'').slice(0,40),from=(BONDLAST.k===key&&rows.length>BONDLAST.n&&BONDLAST.n>0)?BONDLAST.n:-1;BONDLAST={k:key,n:rows.length};
   if(from>0&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){

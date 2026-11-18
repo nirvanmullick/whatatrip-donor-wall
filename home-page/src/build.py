@@ -1751,6 +1751,9 @@ extra+="""
 #wath #wath-challenges .chw.chflash{animation:chfl 1.8s ease}
 @keyframes chfl{0%,100%{box-shadow:0 0 0 0 rgba(201,154,62,0)}20%,60%{box-shadow:0 0 0 4px rgba(201,154,62,.45)}}
 @media (max-width:600px){#wath .suplist>.dn{padding-left:8px!important;padding-right:10px!important}#wath #wath-recent .suplist>.dn.dnm>.who{padding-left:44px}#wath #wath-recent .suplist>.dn.dnm::before{left:92px}#wath #wath-recent .dnx{margin-left:28px;padding:14px}}
+#wath .suplist>svg.bonds .gseal.soft{opacity:.45}
+#wath .suplist>svg.bonds path.hxo.g{stroke:#d4a23a;stroke-width:1.6}
+#wath .suplist>svg.bonds .gseal{filter:drop-shadow(0 1px 2px rgba(150,110,30,.25))}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
