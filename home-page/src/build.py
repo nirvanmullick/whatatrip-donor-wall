@@ -1699,6 +1699,18 @@ extra+="""
 #wath .chrow .chb{margin-left:-12px!important}
 :is(#wath,#wath-top) .gctot{margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #e6e0f4;font-size:15px;line-height:1.5;color:#3a3245}
 :is(#wath,#wath-top) .gcnew{display:inline-block;margin-left:6px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:#6152a0;border-radius:999px;padding:1px 7px;vertical-align:1px}
+#wath #wath-recent .suplist>.dn.dnm{padding-top:2px;padding-bottom:2px;margin:-12px 0}
+#wath #wath-recent .dnm .who{padding-left:28px}
+#wath #wath-recent .dnm .wn{display:flex!important;flex-direction:column;align-items:flex-start;min-width:0}
+#wath #wath-recent .dnm .wn b{white-space:normal;line-height:1.25}
+#wath #wath-recent .dnm .av.avm{background:#f7ecc9!important;color:#9a8550!important;font-size:11px}
+#wath #wath-recent .dnm .wn b{font-weight:600;font-size:13.5px;color:#8a849a}
+#wath #wath-recent .dnm .dnms{display:block;font-size:12.5px;color:#a7a1b4;margin-top:1px}
+#wath #wath-recent .dnm .amtc .a{font-size:14px;font-weight:700;color:#a9925a}
+#wath #wath-recent .x2{display:inline-block;margin-top:3px;font-size:11px;font-weight:800;color:#6b5210;background:#f8e08e;border-radius:999px;padding:0 7px;line-height:16px;align-self:flex-end}
+#wath .suplist svg.bonds .hxo.m{stroke:#ecdcae}
+#wath .suplist svg.bonds .bs.bm path{stroke:#ecdcae}
+#wath .suplist svg.bonds .bs.bm circle{stroke:#ecdcae;fill:#fffaf0}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
