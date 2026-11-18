@@ -1594,11 +1594,12 @@ extra+="""
 :is(#wath,#wath-top) .gcgets li{margin:4px 0}
 :is(#wath,#wath-top) .gcgets li::marker{color:#8a7cc8}
 :is(#wath,#wath-top) .gclim{margin:10px 0 0;padding-top:10px;border-top:1px solid #e6e0f4;font-size:14px;color:#5d4fa6;font-weight:600}
-:is(#wath,#wath-top) .gcgets li.gnew{animation:gnew .45s cubic-bezier(.2,.9,.3,1.2) both}
 @keyframes gnew{0%{opacity:0;transform:translateY(8px) scale(.97);background:rgba(97,82,160,.18)}60%{opacity:1;transform:none;background:rgba(97,82,160,.12)}100%{background:transparent}}
-:is(#wath,#wath-top) .gcgets li{border-radius:6px}
+:is(#wath,#wath-top) .gcgets li{border-radius:6px;padding:0 4px;margin-left:-4px}
+:is(#wath,#wath-top) .gcgets li.gout{pointer-events:none}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .gcgets li.gnew{animation:none}}
 #wath #wath-levels .crh.crh1 span{margin-top:0;font-size:15px;font-weight:700;opacity:1;line-height:1.4}
+:is(#wath,#wath-top) .pki{display:inline-block;vertical-align:-3px;margin-left:6px;flex:none}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
