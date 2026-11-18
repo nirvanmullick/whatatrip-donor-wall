@@ -6,7 +6,7 @@ var money=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
 function short(n){return n>=1e6?'$'+(Math.round(n/1e5)/10)+'M':n>=1000?'$'+(Math.round(n/100)/10)+'K':'$'+n}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 /* ---- figures: the same arithmetic as the /donate budget widget ---- */
-var ROUGH_BASE=75000,MATCH_START=112770,ROUGH_GOAL=700000,DEV_DONE=1800000,FINAL_GOAL=900000,TOTAL=3400000,FALLBACK_PLEDGE=114509,MATCH_END='Dec 31';
+var ROUGH_BASE=75000,MATCH_START=112770,ROUGH_GOAL=700000,DEV_DONE=1800000,FINAL_GOAL=915000,TOTAL=3415000,FALLBACK_PLEDGE=114509,MATCH_END='Dec 31';
 var LEGS=[{slug:'osters',n:'Anna & Scott Oster',cap:60000,people:76,col:'#33697f'},{slug:'kasey-david',n:'Kasey Crown & David Comfort',cap:25000,col:'#c99a3e'},{slug:'rachel-50k',n:'Rachel Hamilton',cap:50000,col:'#6152a0'}];
 /* Nov 17 (Nirvan): completed earlier challenges count in the pool total ($135K live + $55K past = $190K). Match window for listing who helped: [from,to). Thor's window is unknown, so no list yet. */
 var PAST=[{slug:'rachel-30k',n:'Rachel Hamilton',cap:30000,when:'Summer 2026',from:'2026-07-01',to:'2026-09-27',col:'#b5527a'},{slug:'thor',n:'Thor Halvorssen',cap:25000,when:'2024',doneOn:'2024',who:['Lyn Lear'],col:'#4f8a5b'}];var MATCH_FROM='2026-09-27',CHOPEN={},MXR={};
@@ -21,8 +21,8 @@ var STRETCHG=[
  {n:'Extra features for the release',c:100000,b:['Edit more extra features from twelve years of footage','Bonus scenes and stories for supporters and the release']},
  {n:'Impact campaign: leadership and staff',c:1000000,lab:'$500K&ndash;$1M',b:['$500K to $1M to hire an executive director and staff for 1 to 2 years to get the project built out','Includes editing and creating content and videos to supplement the T.R.U.T.H. Not D.A.R.E. Safety First curriculum for educators']},
  {n:'Impact campaign: editing and content creation',c:150000,b:['Editors and creators making short pieces for classrooms, partners and social media','Turning the film into tools for honest drug education']}];
-/* Nov 18 8:03am (Nirvan): $75K for final interviews, taken from marketing (-$60K) and score and music (-$15K). 8:04am: final animation joins the titles/VFX line, which keeps its $100K. Total stays $900K */
-var FINALG=[['Final Interviews',75000],['Final Cut Editing',120000],['Color Grading & Finishing',130000],['Sound Design & Final Mix',150000],['Original Score & Music Licensing',185000],['Titles, VFX, Animation & Graphics',100000],['Festival Delivery, Marketing & Distribution',140000]];
+/* Nov 18 8:14am (Nirvan): $75K for final interviews: $50K from festival delivery, $5K from color grading, $5K from score and music; the Final Cut rises to $915K. Final animation sits in the titles/VFX line. */
+var FINALG=[['Final Interviews',75000],['Final Cut Editing',120000],['Color Grading & Finishing',125000],['Sound Design & Final Mix',150000],['Original Score & Music Licensing',195000],['Titles, VFX, Animation & Graphics',100000],['Festival Delivery, Marketing & Distribution',150000]];
 var U={pledge:'https://script.google.com/macros/s/AKfycby307o55LbT03mbFsh5_bqyxWB9zpLrxXFlDQ0ggTlPn_mV9QaBk3t4DmAqQk9WxRCt/exec?t=',master:'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/master-donors.json?t=',manual:'https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/manual.json?t=',count:'https://nanavjvwnmkujuxllsir.supabase.co/functions/v1/wat-donor-count'};
 function kept(k){try{var c=JSON.parse(localStorage.getItem('wath:'+k)||'null');if(c&&Date.now()-c.t<14*864e5)return c.v}catch(e){}return null}
 function keep(k,v){try{localStorage.setItem('wath:'+k,JSON.stringify({t:Date.now(),v:v}))}catch(e){}}
