@@ -1832,6 +1832,10 @@ extra+="""
 #wath .suplist>.dn:hover,#wath .suplist>.dn:focus-within{z-index:8}
 #wath li:has(>.pkt:hover),#wath li:has(>.pkt.on),#wath li:has(>.pkt:focus-visible){position:relative;z-index:8}
 #wath .mi .tip,#wath .srtb .tip{background:#4b3f8c!important;color:#fff!important;border-radius:11px!important;padding:9px 12px!important;z-index:60!important;box-shadow:0 10px 28px rgba(45,32,100,.32),0 2px 6px rgba(45,32,100,.18)}
+#wath #wath-recent .suplist>.dn{padding-right:48px!important}
+#wath #wath-recent .dn .amtc{position:relative}
+#wath #wath-recent .dn .amtc .x2{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);margin:0!important}
+@media (max-width:600px){#wath #wath-recent .suplist>.dn{padding-right:40px!important}#wath #wath-recent .dn .amtc .x2{left:calc(100% + 5px)}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
