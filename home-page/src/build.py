@@ -1619,6 +1619,16 @@ extra+="""
 :is(#wath,#wath-top) .gcp .gcpm{font-size:14px;color:#1b1526}
 :is(#wath,#wath-top) .gcpa{font-size:12.5px;font-weight:700;color:#7a6230;background:#fff3d6;border-radius:999px;padding:1px 8px;align-self:flex-start}
 @media(max-width:560px){:is(#wath,#wath-top) .gcpi{width:56px;height:56px}}
+#wath-top .mdisc .mdh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 2px}
+#wath-top .mdisc .mdh .mh3{margin:0;font-size:24px}
+#wath-top .mdisc .mcode{font-weight:800;letter-spacing:.06em;background:#f4f1fb;border:1px dashed #b9b0dc;border-radius:8px;padding:4px 10px;color:#3f3478}
+#wath-top .mdl{list-style:none;margin:10px 0 12px;padding:0}
+#wath-top .mdl li{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #f0edf7;font-size:14.5px}
+#wath-top .mdl li>span:nth-child(2){flex:1}
+#wath-top .mdl em{font-style:normal;font-weight:700;color:#8a849a;font-size:13px}
+#wath-top .mdl li.ok em{color:#33697f}
+#wath-top .mdk{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid #cfc8e6;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900;box-sizing:border-box}
+#wath-top .mdl li.ok .mdk{background:#33697f;border-color:#33697f}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
