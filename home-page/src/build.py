@@ -1615,6 +1615,10 @@ extra+="""
 :is(#wath,#wath-top) .gci{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#6152a0;color:#fff;font:italic 700 12px/1 Georgia,serif;cursor:pointer;vertical-align:1px;margin-left:4px}
 :is(#wath,#wath-top) .gci:focus-visible{outline:2px solid #1b1526;outline-offset:2px}
 :is(#wath,#wath-top) .gcix{display:block;margin-top:6px;font-size:13.5px;color:#5b6478;line-height:1.45}
+:is(#wath,#wath-top) .gcpi{flex:none;width:72px;height:72px;border-radius:10px;object-fit:cover;background:#e9e4f7}
+:is(#wath,#wath-top) .gcp .gcpm{font-size:14px;color:#1b1526}
+:is(#wath,#wath-top) .gcpa{font-size:12.5px;font-weight:700;color:#7a6230;background:#fff3d6;border-radius:999px;padding:1px 8px;align-self:flex-start}
+@media(max-width:560px){:is(#wath,#wath-top) .gcpi{width:56px;height:56px}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
