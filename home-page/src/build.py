@@ -1836,6 +1836,25 @@ extra+="""
 #wath #wath-recent .dn .amtc{position:relative}
 #wath #wath-recent .dn .amtc .x2{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);margin:0!important}
 @media (max-width:600px){#wath #wath-recent .suplist>.dn{padding-right:40px!important}#wath #wath-recent .dn .amtc .x2{left:calc(100% + 5px)}}
+.mov .bde .bdr{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}
+.mov .bde input.bdn{flex:1 1 220px;min-width:0;font-size:14.5px;font-weight:600;padding:9px 11px;border:1px solid #d9d1ee;border-radius:10px;background:#fff}
+.mov .bde .bdn.bdfix{flex:1 1 220px;font-size:14.5px;font-weight:600;color:#3a3245}
+.mov .bde .bdmo{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:#6b6478}
+.mov .bde .bdmo input{width:130px;font-size:14.5px;font-weight:600;padding:9px 11px;border:1px solid #d9d1ee;border-radius:10px;background:#fff;text-align:right}
+.mov .bde .pkeo{display:flex;gap:4px;flex:none}
+.mov .bde .pkeo button{height:36px;min-width:34px;padding:0 8px;border:1px solid #e0d9f2;border-radius:9px;background:#fff;color:#3a3245;cursor:pointer}
+.mov .bde .pkeo button:disabled{opacity:.35;cursor:default}
+.mov .bde .pkeo button.pkedel:hover{background:#fbecef;color:#8a1f3d;border-color:#f0c9d3}
+.mov .bde .pkeadd{width:100%;border-style:dashed;margin-top:4px}
+.mov .bde .bdtot{font-size:13px;color:#6b6478}.mov .bde .bdtot b{color:#1b1526;font-size:15px}
+.mov .bde .pkei{border:1px solid #e6e0f4;border-radius:14px;padding:12px 14px;margin:0 0 12px;background:#fdfcff}
+.mov .bde .pkei.off{opacity:.6}
+.mov .bde .pkef{display:flex;flex-direction:column;gap:5px;margin:10px 0 0;font-size:13px;font-weight:700;color:#3a3245}
+.mov .bde .pkef em{font-style:normal;font-weight:500;color:#8a849a;margin-left:6px}
+.mov .bde .pkef textarea,.mov .bde .pkef input{font:inherit;font-weight:500;font-size:14px;padding:8px 11px;border:1px solid #d9d1ee;border-radius:10px;background:#fff;width:100%;box-sizing:border-box}
+.mov .bdsum{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.mov .bdsum>div{flex:1 1 200px;padding:12px 14px;border-radius:12px;background:#f5f2fc;display:flex;flex-direction:column;gap:2px}
+.mov .bdsum span{font-size:12.5px;color:#6b6478}.mov .bdsum b{font-size:20px;color:#1b1526}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
