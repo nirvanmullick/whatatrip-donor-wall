@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T17:51:30.894Z",
+  "updated": "2026-11-18T00:15:17.988Z",
   "count": 98,
   "source": "pledge-json-v2",
   "totals": {
@@ -51,7 +51,7 @@
       "name": "Theresa Daniello",
       "anonymous": false,
       "amount": 5000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": true
     },
     {
@@ -215,7 +215,7 @@
       "name": "Eva Dillon",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": false
     },
     {
@@ -580,7 +580,7 @@
       "name": "ALI RAD",
       "anonymous": false,
       "amount": 500,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
