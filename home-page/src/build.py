@@ -1990,6 +1990,7 @@ extra+="""
 .spov .spst:empty{display:none}.spov .spmi:has(+.spst:empty){display:none}
 .msgear{vertical-align:-2px;margin-right:6px}
 .mov .mrhive{position:relative;margin:6px 0 12px}.mov .mrhive .cnhx{position:absolute;padding:0;border:0;background:#b9abe0;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);display:flex;align-items:center;justify-content:center;cursor:pointer}.mov .mrhive .cnhx .av{width:calc(100% - 4px);height:calc(100% - 4px);clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);font-size:12px;display:flex;align-items:center;justify-content:center;background:#ece7f7;color:#4b3f8c;overflow:hidden}.mov .mrhive .cnhx img{width:100%;height:100%;object-fit:cover}.mov .mref .mrefu{word-break:break-all}
+.refov .rfh{max-width:480px}.refov .rfh .bovh{padding-right:40px}.refov .rfmsg{margin:14px 0 4px;padding:16px 18px;border-radius:16px;background:#f6f3fc}.refov .rfmsg p{margin:0 0 10px!important;font-size:16px;line-height:1.55;color:#2c2438}.refov .rfmsg p:last-child{margin:0}.refov .rfsig{font-weight:700;color:#4b3f8c!important}.refov .rfb{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
