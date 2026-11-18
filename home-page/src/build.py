@@ -1921,6 +1921,39 @@ extra+="""
 .mov .inbtabs button{display:inline-flex!important;align-items:center;gap:7px;border:1px solid #ddd5f0!important;background:#fff;border-radius:999px!important;padding:7px 16px!important;font:inherit;font-size:14.5px;font-weight:700;color:#3a3245;cursor:pointer}
 .mov .inbtabs button.on{background:#6152a0!important;border-color:#6152a0!important;color:#fff!important}
 .mov .inbtabs .inbn{font-size:12px;font-weight:700;opacity:.7}
+#wath-top .spov .spq1:not(:has(blockquote)){display:none}
+#wath-top .spov .spq1{margin:14px 0 4px;padding:16px 18px;border-radius:16px;background:#4b3f8c;color:#fff}
+#wath-top .spov .spq1 .spql{display:block;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#d9d1ee;margin-bottom:6px}
+#wath-top .spov .spq1 blockquote{margin:0;padding:0;border:0;background:none;color:#fff;font-size:16px;line-height:1.5;font-weight:600;font-style:normal}
+#wath-top .spov .spq1 blockquote+blockquote{margin-top:10px}
+#wath-top .spov .spmi{margin:16px 0 8px;font-size:18px;font-weight:800;color:#1b1526}
+#wath-top .spov .cnhive{position:relative;margin:8px 0 4px;max-width:100%}
+#wath-top .spov .cnhx{position:absolute;padding:0;border:0;background:#b9abe0;cursor:pointer;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);display:flex;align-items:center;justify-content:center}
+#wath-top .spov .cnhx .av,#wath-top .spov .cnhx .hxw{width:calc(100% - 4px)!important;height:calc(100% - 4px)!important;font-size:12px;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);padding:0!important;background:#cfc3ea}
+#wath-top .spov .cnhx .hxw .av{width:100%!important;height:100%!important}
+#wath-top .spov .cnhx:hover{background:#6152a0}
+#wath-top .spov .cnby{margin:4px 0 6px;font-size:14.5px;color:#5b5368}
+#wath-top .spov .cnsum{margin:6px 0 0;font-size:13.5px;color:#5b5368}
+#wath-top .spov .cnvf{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#1b1526;margin-top:8px}
+#wath-top .spov .cnvf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#wath-top .spov .cnvt{margin:6px 0 0;font-size:13.5px;color:#5b5368}
+.mov .cnadd{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}
+.mov .cnadd input{flex:1 1 180px;min-width:0;font:inherit;font-size:14px;padding:9px 11px;border:1px solid #d9d1ee;border-radius:10px;background:#fff}
+.mov .cnadd>span{font-size:14px;color:#6b6478}
+.mov .cngrp{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 0;border-top:1px solid #eee9f7}
+.mov .cngrp>b{min-width:180px}
+.mov .cnchips{display:flex;flex-wrap:wrap;gap:6px}
+.mov .cnchip{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 11px;border-radius:999px;background:#efeafb;font-size:13.5px;font-weight:600;color:#3f3478}
+.mov .cnchip button{border:0;background:#fff;border-radius:50%;width:22px;height:22px;font-size:11px;cursor:pointer;color:#8a1f3d}
+.mov .cnform{margin:0 0 14px;padding:14px;border-radius:14px;background:#f5f2fc}
+.mov .cnrow{display:flex;flex-wrap:wrap;gap:12px}
+.mov .cnrow .mf{margin:0 0 10px}
+.mov .cnform input,.mov .cnform select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid #d9d1ee;border-radius:9px;background:#fff}
+.mov .cnform .bdmo input{width:120px}
+#wath-top .spov .spq1 blockquote{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+#wath-top .spov .spq1.open blockquote{display:block;-webkit-line-clamp:unset}
+#wath-top .spov .spchi{margin:2px 0 8px;font-size:14.5px;line-height:1.5;color:#5b5368}
+.mov .cnform .mf .bdmo{display:inline-flex!important;flex-direction:row}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
