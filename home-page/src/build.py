@@ -1533,6 +1533,24 @@ extra+="""
 @media(max-width:560px){:is(#wath,#wath-top) .gcps{padding:12px 6px 12px 12px;gap:10px}:is(#wath,#wath-top) .gcpd{margin-right:8px;padding:6px 10px}}
 #wath .tmc .tmw{display:inline-flex;flex:none;width:90px;height:90px;padding:3px;box-sizing:border-box;margin-bottom:8px;background:#7d6bc6;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
 #wath .tmc .tmw>.tmp,#wath .tmc .tmw>.tmi{width:100%!important;height:100%!important;margin:0!important}
+#wath .crewt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#6152a0;margin-top:2px}
+#wath .crewt:focus-visible{outline:2px solid #6152a0;outline-offset:3px;border-radius:4px}
+#wath .crewt .crc,#wath .crewt[aria-expanded=true] .crs{display:none}
+#wath .crewt[aria-expanded=true] .crc{display:inline}
+#wath .crewt[aria-expanded=true] .chev{transform:rotate(180deg)}
+#wath .crewb .crew5{margin:0 0 14px}
+#wath .suplist>.dn.sp{cursor:pointer;border-radius:12px;transition:background .15s}
+#wath .suplist>.dn.sp:hover,#wath .suplist>.dn.sp:focus-visible{background:rgba(97,82,160,.08);outline:0}
+#wath .suplist>.dn.sp:focus-visible{box-shadow:0 0 0 2px #6152a0}
+#wath .spcm{display:inline-flex;align-items:center;color:#8a7cc8;margin-left:6px;vertical-align:-2px}
+#wath-top .spov .spvh .av{text-transform:none;width:64px;height:64px;font-size:20px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:#cfc3ea;color:#3f3478;font-weight:800;overflow:hidden}
+#wath-top .spov .spvh .av img{width:100%;height:100%;object-fit:cover}
+#wath-top .spst{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+#wath-top .spst>div{flex:1 1 120px;background:#f6f3fd;border-radius:12px;padding:10px 12px}
+#wath-top .spst b{display:block;font-size:17px;color:#1b1526}
+#wath-top .spst span{font-size:13px;color:#5b6478}
+#wath-top .spq blockquote{margin:0 0 10px;padding:10px 14px;border-left:3px solid #8a7cc8;background:#faf9fd;border-radius:0 10px 10px 0;color:#3a3245;font-size:15px;line-height:1.5}
+#wath-top .spnq{color:#5b6478;font-size:14.5px}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
@@ -1561,6 +1579,12 @@ extra+="""
 
 # Nov 17 4:06pm (Nirvan): a purple hexagon outline around the filmmaker photos so they read as molecules
 import re as _re
+# Nov 17 4:07pm (Nirvan): the crew opens above the toggle, which then reads Collapse
+_c0=home.find('<details class="crew"><summary>');_c1=home.find('</summary>',_c0)+len('</summary>');_c2=home.find('</details>',_c1)
+assert _c0>0 and _c2>_c1
+_chv=home[_c0:_c1][home[_c0:_c1].find('<svg'):home[_c0:_c1].find('</svg>')+6]
+home=home[:_c0]+'<div class="crew"><div class="crewb" hidden>'+home[_c1:_c2]+'</div><button type="button" class="crewt" aria-expanded="false"><span class="crs">See the full crew</span><span class="crc">Collapse</span>'+_chv+'</button></div>'+home[_c2+len('</details>'):]
+home=home.replace('<div class="tmc tmn"><span class="tmp tmi" aria-hidden="true">JC</span><b>Juli Crockett</b><span>Assistant to the Director</span></div>','<button class="tmc tmn" data-bio="juli" aria-haspopup="dialog"><span class="tmp tmi" aria-hidden="true">JC</span><b>Juli Crockett</b><span>Assistant to the Director</span></button>')
 home=_re.sub(r'(<img class="tmp"[^>]*>|<(span|i) class="tmp tmi"[^>]*>[^<]*</\2>)',r'<span class="tmw">\1</span>',home)
 out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-donor-wall home-page/home-block.html -->\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">\n<style>\n'+scoped+extra+'</style>\n<div id="wath">'+home+'</div>\n<div id="wath-top">'+top+'</div>\n<script>\n'+js+'\n</script>\n'
 os.makedirs('../img',exist_ok=True)
