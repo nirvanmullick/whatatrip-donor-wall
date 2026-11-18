@@ -1665,17 +1665,57 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 :is(#wath,#wath-top) .gctot{margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #e6e0f4;font-size:15px;line-height:1.5;color:#3a3245}
 :is(#wath,#wath-top) .gcnew{display:inline-block;margin-left:6px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:#6152a0;border-radius:999px;padding:1px 7px;vertical-align:1px}
 #wath #wath-recent .suplist>.dn.dnm{padding-top:2px;padding-bottom:2px;margin:-12px 0}
-#wath #wath-recent .dnm .who{padding-left:28px}
 #wath #wath-recent .dnm .wn{display:flex!important;flex-direction:column;align-items:flex-start;min-width:0}
 #wath #wath-recent .dnm .wn b{white-space:normal;line-height:1.25}
 #wath #wath-recent .dnm .av.avm{background:#f7ecc9!important;color:#9a8550!important;font-size:11px}
-#wath #wath-recent .dnm .wn b{font-weight:600;font-size:13.5px;color:#8a849a}
-#wath #wath-recent .dnm .dnms{display:block;font-size:12.5px;color:#a7a1b4;margin-top:1px}
-#wath #wath-recent .dnm .amtc .a{font-size:14px;font-weight:700;color:#a9925a}
 #wath #wath-recent .x2{display:inline-block;margin-top:3px;font-size:11px;font-weight:800;color:#6b5210;background:#f8e08e;border-radius:999px;padding:0 7px;line-height:16px;align-self:flex-end}
 #wath .suplist svg.bonds .hxo.m{stroke:#ecdcae}
 #wath .suplist svg.bonds .bs.bm path{stroke:#ecdcae}
 #wath .suplist svg.bonds .bs.bm circle{stroke:#ecdcae;fill:#fffaf0}
+#wath .suplist>.dn{padding-left:14px!important;padding-right:18px!important;border-radius:14px}
+#wath .suplist>.dn.hv{border-radius:14px;transition:background .15s}
+#wath .suplist>.dn.hv:hover{background:rgba(97,82,160,.08)}
+#wath #wath-recent .suplist>.dn.rc>.who{padding-left:28px}
+#wath #wath-recent .suplist>.dn:is(.rc,.dnm)>.who .wn{display:flex!important;flex-direction:column;align-items:flex-start;row-gap:0;min-width:0}
+#wath #wath-recent .wn .wn1{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;row-gap:4px;min-width:0}
+#wath #wath-recent .wn .dnms{display:flex;align-items:center;gap:4px;font-size:12.5px;font-weight:500;color:#8a849a;margin-top:2px;line-height:1.3}
+#wath #wath-recent .dnm .dnms{color:#a7a1b4}
+#wath #wath-recent .dnm .wn b{font-weight:600;font-size:13.5px;color:#8a849a}
+#wath #wath-recent .dn:is(.rc,.dnm) .amtc{display:flex;flex-direction:column;align-items:flex-end}
+#wath #wath-recent .dnm .amtc .a{font-weight:700;color:#a9925a}
+#wath #wath-recent .suplist>.dn.dnm>.who{padding-left:56px}
+#wath #wath-recent .suplist>.dn.dnm{cursor:pointer;background:none!important}
+#wath #wath-recent .suplist>.dn.dnm::before{content:"";position:absolute;left:108px;right:0;top:9px;bottom:9px;border-radius:12px;background:transparent;transition:background .15s;z-index:-1}
+#wath #wath-recent .suplist>.dn.dnm:hover::before,#wath #wath-recent .suplist>.dn.dnm.on::before{background:rgba(201,154,62,.11)}
+#wath #wath-recent .suplist>.dn.dnm:focus-visible{outline:0}
+#wath #wath-recent .suplist>.dn.dnm:focus-visible::before{box-shadow:0 0 0 2px #c99a3e}
+#wath #wath-recent .dnm .dnms{display:block}#wath #wath-recent .dnm .chev{display:inline-block;vertical-align:-2px;margin-left:4px;transition:transform .25s;opacity:.8}
+#wath #wath-recent .dnm.on .chev{transform:rotate(180deg)}
+#wath #wath-recent .dnm:hover .dnms,#wath #wath-recent .dnm.on .dnms{color:#9a8550}
+#wath #wath-recent .dnm .av.avp{opacity:.82}
+#wath #wath-recent .dnx{position:relative;z-index:2;margin:14px 0 18px 108px;padding:16px 18px 16px;background:#fffaf0;border:1px solid #f0e3bf;border-radius:16px;box-shadow:0 6px 18px rgba(154,133,80,.10)}
+#wath #wath-recent .dnxh{display:flex;align-items:center;gap:12px}
+#wath #wath-recent .dnxh .chi2{flex:none}
+#wath #wath-recent .dnxt{display:flex;flex-direction:column;min-width:0}
+#wath #wath-recent .dnxt b{font-size:14.5px;font-weight:700;color:#3a3245;line-height:1.3}
+#wath #wath-recent .dnxt span{font-size:13px;color:#6b6478;margin-top:2px}
+#wath #wath-recent .dnxt span b{font-size:13px;color:#3a3245}
+#wath #wath-recent .dnxb{display:block;height:8px;margin:12px 0 4px;border-radius:999px;background:#f1e7cd;overflow:hidden}
+#wath #wath-recent .dnxb i{display:block;height:100%;border-radius:999px;background:var(--cc)}
+#wath #wath-recent .dnxl{display:block;margin:12px 0 6px;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#a9925a}
+#wath #wath-recent p.dnxl{text-transform:none;letter-spacing:0;font-weight:500;font-size:13px;color:#6b6478}
+#wath #wath-recent ul.dnxp{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:2px}
+#wath #wath-recent ul.dnxp li{display:flex!important;align-items:center;gap:10px;margin:0!important;padding:5px 8px!important;border-radius:10px;font-size:13.5px;color:#3a3245}
+#wath #wath-recent ul.dnxp li::before{display:none!important}
+#wath #wath-recent ul.dnxp li.me{background:#f8e9bd}
+#wath #wath-recent ul.dnxp li .av{width:26px!important;height:26px!important;font-size:9.5px!important;flex:none}
+#wath #wath-recent ul.dnxp .dnxn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#wath #wath-recent ul.dnxp .dnxn em{font-style:normal;font-size:11px;font-weight:800;color:#6b5210;background:#f8e08e;border-radius:999px;padding:0 6px;margin-left:4px}
+#wath #wath-recent ul.dnxp b{font-weight:700;color:#a9925a}
+#wath #wath-recent .dnxa{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+#wath #wath-challenges .chw.chflash{animation:chfl 1.8s ease}
+@keyframes chfl{0%,100%{box-shadow:0 0 0 0 rgba(201,154,62,0)}20%,60%{box-shadow:0 0 0 4px rgba(201,154,62,.45)}}
+@media (max-width:600px){#wath .suplist>.dn{padding-left:8px!important;padding-right:10px!important}#wath #wath-recent .suplist>.dn.dnm>.who{padding-left:44px}#wath #wath-recent .suplist>.dn.dnm::before{left:92px}#wath #wath-recent .dnx{margin-left:28px;padding:14px}}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
@@ -1847,7 +1887,7 @@ function comments(){var C=[];S.gifts.forEach(function(g){var c=String(g.comment|
   return C.sort(function(x,y){return comSort==='amt'?(y.amt-x.amt)||(x.d<y.d?1:-1):(x.d<y.d?1:-1)})}
 function renderDonations(){tally();SUPQ=null;GMATCH=null;var tabs=[['top','Top supporters'],['recent','Recent donations']],h,tot;if(supTab==='comments')supTab='top';
   if(supTab==='top'){tot=TOPL.length;h=TOPL.slice(0,supN.top).map(function(d,i){var tip=PLEDGED[d[2]]&&PLEDGED[d[2]][1];return '<div class="dn sp" data-supp="'+esc(d[0])+'" tabindex="0" role="button" aria-label="'+esc(d[0])+', see their profile"><span class="who"><span class="rk">'+(i+1)+'</span>'+av(d[0])+'<b>'+esc(d[0])+'</b>'+supCm(d[0])+(tip?'<button class="mi" data-toast="'+esc(tip)+'" aria-label="'+esc(tip)+'"><span aria-hidden="true">2×</span><span class="tip">'+esc(tip)+'</span></button>':'')+'</span><span class="amtc"><b class="a">'+money(d[1])+'</b><span class="when">'+lvName(d[1])+'</span></span></div>'}).join('')}
-  else{var G=S.gifts.slice().sort(function(a,b){return String(a.date)<String(b.date)?1:-1});tot=G.length;h=G.slice(0,supN.recent).map(function(g){var a=isAnon(g),n=a?'Anonymous':nm(g);return '<div class="dn'+(a?'':' sp')+'"'+(a?'':' data-supp="'+esc(n)+'" tabindex="0" role="button" aria-label="'+esc(n)+', see their profile"')+'><span class="who">'+(a?'<span class="av">A</span>':av(n))+'<span class="wn"><b>'+esc(n)+'</b>'+(a?'':supCm(n))+'</span></span><span class="amtc"><b class="a">'+money(g.amount)+'</b><span class="when">'+lvName(a?g.amount:(TOTALS[n.toLowerCase()]||g.amount))+' · '+when(g.date)+'</span>'+(giftMatches(g).length?'<span class="x2">×2</span>':'')+'</span></div>'+giftMatches(g).map(function(m){return '<div class="dn dnm"><span class="who"><span class="av avm" aria-hidden="true">'+mIni(m.l.n)+'</span><span class="wn"><b>'+esc(m.l.n)+' matched this gift</b><span class="dnms">'+chShort(m.l.cap)+' Matching Challenge</span></span></span><span class="amtc"><b class="a">+'+money(m.part)+'</b></span></div>'}).join('')+(SOC.open[giftKey(g)]?'<div class="dncm">'+socThread(giftKey(g))+'</div>':'')}).join('');socAsk(G.slice(0,supN.recent).map(giftKey))}
+  else{var G=S.gifts.slice().sort(function(a,b){return String(a.date)<String(b.date)?1:-1});tot=G.length;h=G.slice(0,supN.recent).map(function(g){var a=isAnon(g),n=a?'Anonymous':nm(g);var gk=giftKey(g);return '<div class="dn rc'+(a?' hv':' sp')+'"'+(a?'':' data-supp="'+esc(n)+'" tabindex="0" role="button" aria-label="'+esc(n)+', see their profile"')+'><span class="who">'+(a?'<span class="av">A</span>':av(n))+'<span class="wn"><span class="wn1"><b>'+esc(n)+'</b>'+(a?'':supCm(n))+'</span><span class="dnms">'+lvName(a?g.amount:(TOTALS[n.toLowerCase()]||g.amount))+' · '+when(g.date)+'</span></span></span><span class="amtc"><b class="a">'+money(g.amount)+'</b>'+(giftMatches(g).length?'<span class="x2">×2</span>':'')+'</span></div>'+giftMatches(g).map(function(m){var ok=gk+'|'+m.l.slug,op=!!RMX[ok];return '<div class="dn dnm'+(op?' on':'')+'" data-rmx="'+esc(ok)+'" tabindex="0" role="button" aria-expanded="'+op+'" aria-label="'+esc(m.l.n)+' matched this gift with their '+chShort(m.l.cap)+' Matching Challenge. '+(op?'Hide':'Show')+' the challenge"><span class="who">'+(PHOTOS[String(m.l.n).toLowerCase()]?av(m.l.n).replace('class="av"','class="av avm avp"'):'<span class="av avm" aria-hidden="true">'+mIni(m.l.n)+'</span>')+'<span class="wn"><b>'+esc(m.l.n)+' matched this gift</b><span class="dnms">'+chShort(m.l.cap)+' Matching Challenge<svg class="chev" aria-hidden="true" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></span></span><span class="amtc"><b class="a">+'+money(m.part)+'</b></span></div>'+(op?rmxPanel(m.l,gk):'')}).join('')+(SOC.open[giftKey(g)]?'<div class="dncm">'+socThread(giftKey(g))+'</div>':'')}).join('');socAsk(G.slice(0,supN.recent).map(giftKey))}
   if(!S.gifts.length)h='<p class="fine" style="padding:16px 0">Loading our supporters…</p>';
   var left=(tot||0)-supN[supTab];
   $$('[data-donations]').forEach(function(el){el.innerHTML='<div class="seg" role="tablist" style="margin-bottom:6px">'+tabs.map(function(t){return '<button role="tab" aria-selected="'+(supTab===t[0])+'" class="'+(supTab===t[0]?'on':'')+'" data-sup="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div class="suplist">'+h+'</div>'+(left>0?'<button class="btn" style="width:100%;margin-top:10px" data-supmore>Show '+Math.min(10,left)+' more</button>':'')});
@@ -1967,6 +2007,20 @@ function chHelpers(){var G=(S.gifts||[]).filter(function(g){return g.matched&&g.
   var live=G.filter(function(g){return String(g.date)>=MATCH_FROM}),sum=live.reduce(function(t,g){return t+(+g.amount||0)},0),pos=matched()-sum,ends=[],acc=0;LEGS.forEach(function(l){ends.push([acc,acc+l.cap]);acc+=l.cap});
   live.forEach(function(g){var a=pos,b=pos+(+g.amount||0);pos=b;LEGS.forEach(function(l,k){var ov=Math.min(b,ends[k][1])-Math.max(a,ends[k][0]);if(ov>0.5){var c={};for(var q in g)c[q]=g[q];c.part=Math.round(ov);(by[l.slug]=by[l.slug]||[]).push(c)}})});
   PAST.forEach(function(l){if(l.who){by[l.slug]=(S.gifts||[]).filter(function(g){return l.who.indexOf(nm(g))>=0});return}if(l.from)by[l.slug]=G.filter(function(g){var d=String(g.date);return d>=l.from&&d<l.to})});return by}
+/* Nov 18 5:50am (Nirvan): tapping a matcher in Recent opens their challenge right there: progress, everyone it matched, and a jump to the full challenge */
+var RMX={};
+function chState(slug){var m=matched(),st=0,cur=false,r=null;LEGS.forEach(function(l){var got=Math.max(0,Math.min(l.cap,m-st));st+=l.cap;var done=got>=l.cap,live=!done&&!cur;if(live)cur=true;if(l.slug===slug)r={l:l,got:got,done:done,live:live}});if(!r)PAST.forEach(function(l){if(l.slug===slug)r={l:l,got:l.cap,done:true}});return r}
+function rmxPanel(l,gk){var c=chState(l.slug)||{l:l,got:0},by=chHelpers(),H=(by[l.slug]||[]).slice().reverse(),pc=Math.round(c.got/l.cap*100),n=l.people||H.length,sh=H.slice(0,8);
+  var line=c.done?'<b>Fully funded</b>'+(n?' · '+n+' '+(n===1?'person':'people')+' gave':''):c.live?'<b>'+money(l.cap-c.got)+' left to match</b> · '+money(c.got)+' of '+money(l.cap):'Starts when the active challenge is fully funded';
+  return '<div class="dnx" style="--cc:'+(l.col||'#c99a3e')+'"><div class="dnxh"><span class="chi2" aria-hidden="true"><span class="chi g1 hz"><svg class="hrt" viewBox="0 0 36 34"><path d="M18 32.5C8 25.5 1.8 19.6 1.8 11.9 1.8 6.3 5.9 2 11 2c3 0 5.5 1.5 7 3.9C19.5 3.5 22 2 25 2c5.1 0 9.2 4.3 9.2 9.9 0 7.7-6.2 13.6-16.2 20.6z"/></svg></span><span class="chi g2 hz"><svg class="hrt" viewBox="0 0 36 34"><path d="M18 32.5C8 25.5 1.8 19.6 1.8 11.9 1.8 6.3 5.9 2 11 2c3 0 5.5 1.5 7 3.9C19.5 3.5 22 2 25 2c5.1 0 9.2 4.3 9.2 9.9 0 7.7-6.2 13.6-16.2 20.6z"/></svg></span></span><span class="dnxt"><b>'+chTitle(l).replace(' matching challenge',' Matching Challenge')+'</b><span>'+line+'</span></span></div><span class="bar dnxb"><i style="width:'+pc+'%"></i></span>'
+   +(sh.length?'<span class="dnxl">'+(H.length>sh.length?'Latest '+sh.length+' of '+H.length+' gifts matched':H.length+' gift'+(H.length===1?'':'s')+' matched')+'</span><ul class="dnxp">'+sh.map(function(g){var a=isAnon(g),nn=a?'Anonymous':nm(g),me=giftKey(g)===gk;return '<li'+(me?' class="me"':'')+'>'+(a?'<span class="av">A</span>':av(nn))+'<span class="dnxn">'+esc(nn)+(me?' <em>this gift</em>':'')+'</span><b>'+money(g.part!=null?g.part:(+g.amount||0))+'</b></li>'}).join('')+'</ul>':'<p class="dnxl">We are still gathering the list of people who helped meet this match.</p>')
+   +'<div class="dnxa">'+(c.live?'<button class="btn pri" data-give>Double my gift</button>':'')+'<button class="btn" data-rmgo="'+esc(l.slug)+'">See the full challenge</button>'+(TOTALS[String(l.n).toLowerCase()]?'<button class="chl" data-supp="'+esc(l.n)+'">'+(/&/.test(l.n)?'Their profile':'Profile')+'</button>':'')+'</div></div>'}
+R.addEventListener('click',function(e){var go=e.target.closest&&e.target.closest('[data-rmgo]');if(go){e.preventDefault();e.stopPropagation();var k=go.getAttribute('data-rmgo');CHOPEN[k]=true;renderChallenges();var el=R.querySelector('#wat-challenge-'+k);if(el){el.scrollIntoView({behavior:WRM?'auto':'smooth',block:'center'});el.classList.add('chflash');setTimeout(function(){el.classList.remove('chflash')},1800)}return}
+  var r=e.target.closest&&e.target.closest('[data-rmx]');if(!r||e.target.closest('.dnx'))return;e.preventDefault();rmxToggle(r)});
+R.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var r=e.target.closest&&e.target.closest('[data-rmx]');if(r&&e.target===r){e.preventDefault();rmxToggle(r)}});
+function rmxToggle(r){var k=r.getAttribute('data-rmx'),gp=function(){var x=R.querySelector('[data-rmx="'+k.replace(/"/g,'\\"')+'"]');return x&&x.nextElementSibling&&x.nextElementSibling.classList.contains('dnx')?x.nextElementSibling:null};
+  if(RMX[k]){var p=gp();wClose(p,function(){RMX[k]=false;renderDonations();bondsDraw()});var t0=Date.now(),tk=function(){bondsDraw();if(Date.now()-t0<600)requestAnimationFrame(tk)};tk()}
+  else{RMX[k]=true;renderDonations();bondsDraw();var q=gp();wOpen(q);var t1=Date.now(),tk2=function(){bondsDraw();if(Date.now()-t1<650)requestAnimationFrame(tk2)};tk2();var f=R.querySelector('[data-rmx="'+k.replace(/"/g,'\\"')+'"]');if(f)f.focus({preventScroll:true})}}
 /* Nov 18 5:37am (Nirvan): Recent shows who matched each gift, as a honeycomb cell nested beside it */
 var GMATCH=null;function giftMatches(g){if(!GMATCH){GMATCH={};try{var by=chHelpers();LEGS.concat(PAST).forEach(function(l){(by[l.slug]||[]).forEach(function(c){var k=giftKey(c);(GMATCH[k]=GMATCH[k]||[]).push({l:l,part:c.part!=null?c.part:(+c.amount||0)})})})}catch(e){}}return GMATCH[giftKey(g)]||[]}
 function mIni(n){return String(n).replace(/&amp;/g,'&').split(/\s*&\s*|\s+and\s+/).map(function(p){return (p.trim()[0]||'').toUpperCase()}).join('&amp;')}
