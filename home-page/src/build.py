@@ -1551,6 +1551,20 @@ extra+="""
 #wath-top .spst span{font-size:13px;color:#5b6478}
 #wath-top .spq blockquote{margin:0 0 10px;padding:10px 14px;border-left:3px solid #8a7cc8;background:#faf9fd;border-radius:0 10px 10px 0;color:#3a3245;font-size:15px;line-height:1.5}
 #wath-top .spnq{color:#5b6478;font-size:14.5px}
+#wath-top .mslab.mshd{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:6px;width:100%;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6152a0;padding:8px 11px 4px;cursor:pointer}
+#wath-top .mslab.mshd .mbeta{letter-spacing:.04em}
+#wath-top .mslab.mshd .chev{margin-left:auto;transition:transform .15s;flex:none}
+#wath-top .mslab.mshd[aria-expanded=false] .chev{transform:rotate(-90deg)}
+#wath-top .mslab.mshd:focus-visible{outline:2px solid #6152a0;outline-offset:-2px;border-radius:8px}
+#wath-top .msgb.cl{display:none}
+#wath-top .mslab.tm.tmtop{border-top:0;margin-top:0;padding-top:8px}
+#wath-top .msgb[data-g=team]+.mslab{border-top:1px solid #ebe7f5;margin-top:6px;padding-top:14px}
+@media(max-width:800px){#wath-top .mslab.mshd{display:none}#wath-top .msgb.cl{display:contents}#wath-top .msgb{display:contents}}
+@media(min-width:801px){#wath-top .msgb{display:flex;flex-direction:column;align-items:stretch}#wath-top .msgb>.msn{text-align:left}#wath-top .msgb.cl{display:none}}
+/* Nov 17 4:19pm (Nirvan): the member's hexagon matches Rick's hexagon (42x46, white outline) in both top bars */
+#header .wath-chip-av,#header .wath-hlog .wath-chip-av,#wath-top .wath-chip .wath-chip-av,.wath-chip .wath-chip-av{width:42px!important;height:46px!important;font-size:13px!important}
+#wath-top .mme .wath-chip-av{width:42px!important;height:46px!important;font-size:13px;font-weight:800;display:inline-flex;flex:none}
+#wath-top .mlogo img{width:42px!important;height:46px!important;padding:2px!important;background:#fff!important;box-sizing:border-box}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
