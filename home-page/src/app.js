@@ -229,7 +229,7 @@ function lvTag(n,gift,tot){var l=levelFor(tot);if(!l)return '';var lab=lvLabel(l
   if(!n)t=esc(lab)+' ('+l.l+'). This anonymous gift of '+money(gift)+' is at that level.';
   else if(tot>gift+0.5)t=esc(lab)+' ('+l.l+'). '+esc(n)+' has given '+money(tot)+' in total, so this '+money(gift)+' gift adds to a higher level.';
   else t=esc(lab)+' ('+l.l+'). '+esc(n)+'’s '+money(gift)+' gift puts them at this level.';
-  t+=l.credit?' Their name goes in the film’s credits.':' Gifts of $5K and up add a film credit.';
+  if(l.credit)t+=' Their name goes in the film’s credits.';
   return '<button class="lvb" data-toast="'+t.replace(/"/g,'&quot;')+'" aria-label="'+t.replace(/"/g,'&quot;')+'"><span>'+esc(lab)+'</span><span class="tip" aria-hidden="true">'+t+'</span></button>'}
 /* Nov 18 5:50am (Nirvan): tapping a matcher in Recent opens their challenge right there: progress, everyone it matched, and a jump to the full challenge */
 var RMX={};

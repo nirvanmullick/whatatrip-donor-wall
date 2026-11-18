@@ -1754,9 +1754,9 @@ extra+="""
 #wath .suplist>svg.bonds .gseal.soft{opacity:.45}
 #wath .suplist>svg.bonds path.hxo.g{stroke:#d4a23a;stroke-width:1.6}
 #wath .suplist>svg.bonds .gseal{filter:drop-shadow(0 1px 2px rgba(150,110,30,.25))}
-#wath #wath-recent .lvb{position:relative;display:inline;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:help;text-decoration:underline dotted rgba(138,132,154,.6);text-underline-offset:3px}
-#wath #wath-recent .lvb:hover{color:#6152a0}
-#wath #wath-recent .lvb .tip{display:none;position:absolute;left:0;top:calc(100% + 8px);background:#1f2430;color:#fff;font-weight:500;font-size:12.5px;line-height:1.45;padding:8px 11px;border-radius:9px;width:max-content;max-width:260px;z-index:6;text-align:left;white-space:normal;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+#wath #wath-recent .lvb{position:relative;display:inline;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:default;text-decoration:none}
+#wath #wath-recent .lvb:hover{color:#6b6390}
+#wath #wath-recent .lvb .tip{display:none;position:absolute;left:0;top:calc(100% + 8px);background:#4b3f8c;color:#fff!important;font-weight:500;font-size:12.5px;line-height:1.45;padding:9px 12px;border-radius:11px;width:max-content;max-width:260px;z-index:60;text-align:left;white-space:normal;box-shadow:0 10px 28px rgba(45,32,100,.32),0 2px 6px rgba(45,32,100,.18)}
 #wath #wath-recent .lvb:hover .tip,#wath #wath-recent .lvb:focus-visible .tip{display:block}
 @media (hover:none){#wath #wath-recent .lvb .tip{display:none!important}}
 #wath-top .spov .spsl{position:relative;display:inline-flex;flex:none;margin:4px 6px 4px 4px}
@@ -1766,8 +1766,8 @@ extra+="""
 :is(#wath,#wath-top) .pkt{position:relative;display:inline-flex;vertical-align:-3px;cursor:help;border-radius:6px;outline:0}
 :is(#wath,#wath-top) .pkt .pki{vertical-align:0}
 :is(#wath,#wath-top) .pkt:focus-visible{box-shadow:0 0 0 2px #6152a0}
-:is(#wath,#wath-top) .pkt .pktip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);background:#1f2430;color:#fff!important;opacity:1!important;font-weight:500;font-size:12.5px;line-height:1.45;padding:8px 11px;border-radius:9px;width:max-content;max-width:240px;z-index:20;text-align:left;white-space:normal;letter-spacing:0;text-transform:none;box-shadow:0 6px 18px rgba(0,0,0,.18)}
-:is(#wath,#wath-top) .pkt .pktip::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#1f2430}
+:is(#wath,#wath-top) .pkt .pktip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);opacity:1!important;letter-spacing:0;text-transform:none;background:#4b3f8c;color:#fff!important;font-weight:500;font-size:12.5px;line-height:1.45;padding:9px 12px;border-radius:11px;width:max-content;max-width:260px;z-index:60;text-align:left;white-space:normal;box-shadow:0 10px 28px rgba(45,32,100,.32),0 2px 6px rgba(45,32,100,.18)}
+:is(#wath,#wath-top) .pkt .pktip::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#4b3f8c}
 @media (hover:hover){:is(#wath,#wath-top) .pkt:hover .pktip{display:block}}
 :is(#wath,#wath-top) .pkt:focus-visible .pktip,:is(#wath,#wath-top) .pkt.on .pktip{display:block}
 #wath .pkedb{display:inline-flex;align-items:center;gap:5px;margin:0 0 0 6px;padding:3px 6px;border:1px dashed #b9abe0;border-radius:7px;background:#fff;color:#6152a0;font:600 12px/1 inherit;cursor:pointer;vertical-align:1px;opacity:.55;transition:opacity .15s,background .15s}
@@ -1829,6 +1829,9 @@ extra+="""
 .mov .tmpp.on i{background:#6152a0}
 .mov .tmpp.on i::after{left:13px}
 #wath-top .spov .sphm{display:block;font-style:normal;font-size:12px;font-weight:600;color:#a9925a;margin-top:1px}
+#wath .suplist>.dn:hover,#wath .suplist>.dn:focus-within{z-index:8}
+#wath li:has(>.pkt:hover),#wath li:has(>.pkt.on),#wath li:has(>.pkt:focus-visible){position:relative;z-index:8}
+#wath .mi .tip,#wath .srtb .tip{background:#4b3f8c!important;color:#fff!important;border-radius:11px!important;padding:9px 12px!important;z-index:60!important;box-shadow:0 10px 28px rgba(45,32,100,.32),0 2px 6px rgba(45,32,100,.18)}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
