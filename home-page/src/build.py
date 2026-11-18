@@ -1916,6 +1916,11 @@ extra+="""
 .mov .mfbar>div>span{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8a849a;min-width:92px}
 .mov .mfbar select{font:inherit;font-size:13.5px;padding:6px 9px;border:1px solid #d9d1ee;border-radius:9px;background:#fff}
 .mov .mchip.sm{padding:5px 11px;font-size:13px}
+@media(min-width:801px){#wath-top .msgb{margin:0 0 4px 12px;padding-left:8px;border-left:2px solid #efeafb}#wath-top .msgb .msn{padding-left:10px}}
+.mov .inbtabs{display:flex;gap:6px;margin:0 0 10px}
+.mov .inbtabs button{display:inline-flex!important;align-items:center;gap:7px;border:1px solid #ddd5f0!important;background:#fff;border-radius:999px!important;padding:7px 16px!important;font:inherit;font-size:14.5px;font-weight:700;color:#3a3245;cursor:pointer}
+.mov .inbtabs button.on{background:#6152a0!important;border-color:#6152a0!important;color:#fff!important}
+.mov .inbtabs .inbn{font-size:12px;font-weight:700;opacity:.7}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
