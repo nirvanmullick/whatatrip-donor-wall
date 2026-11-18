@@ -1182,7 +1182,7 @@ assert _rb>0
 # Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
 _ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
 assert _ns>0
-home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-story">Story</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-team">Filmmakers</a><a href="#wath-impact">Impact</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
+home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a><a href="#wath-team">Filmmakers</a><a href="#wath-comments">Comments<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
 
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
@@ -1221,7 +1221,8 @@ _ch,_che=_section(home,'<section class="sec" id="wath-challenges"')
 _chal2=home[_ch:_che];home=home[:_ch]+home[_che:]
 _tm=home.find('<section class="band tband" id="wath-team">');_tme=home.find('</section>',_tm)+len('</section>')
 assert _tm>0
-home=home[:_tme]+'<div class="wrap chwrap" data-chhome>'+_chal2+'</div><section class="impband" data-imphome><div class="wrap">'+_imp+'</div></section>'+home[_tme:]
+# Nov 17 4:05pm (Nirvan): Impact comes before Filmmakers, to match the menu
+home=home[:_tm]+'<section class="impband" data-imphome><div class="wrap">'+_imp+'</div></section>'+home[_tm:_tme]+'<div class="wrap chwrap" data-chhome>'+_chal2+'</div>'+home[_tme:]
 _fb=home.find('<section class="rband fband"');assert _fb>0
 # Nov 17 1:21pm (Nirvan): More ways to help + Arcturus sit in a right sidebar beside Comments and Updates
 _c2=home.find('<div class="wrap cols second"><div class="stack">');assert _c2>0
@@ -1530,6 +1531,8 @@ extra+="""
 :is(#wath,#wath-top) .gcdc ul{margin:6px 0 8px;padding-left:18px;color:#4a4560;font-size:14.5px;line-height:1.5}
 :is(#wath,#wath-top) .gcdc .gcpm2{font-size:14px;color:#33697f;font-weight:700}
 @media(max-width:560px){:is(#wath,#wath-top) .gcps{padding:12px 6px 12px 12px;gap:10px}:is(#wath,#wath-top) .gcpd{margin-right:8px;padding:6px 10px}}
+#wath .tmc .tmw{display:inline-flex;flex:none;width:90px;height:90px;padding:3px;box-sizing:border-box;margin-bottom:8px;background:#7d6bc6;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+#wath .tmc .tmw>.tmp,#wath .tmc .tmw>.tmi{width:100%!important;height:100%!important;margin:0!important}
 .mov .adots{position:relative;display:inline-flex}
 .mov .amng button.adotb{width:36px!important;height:36px!important;min-width:36px;box-sizing:border-box;flex:none;border-radius:50%;border:1px solid rgba(27,21,38,.16);background:#fff;color:#1b1526;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .mov .amng button.adotb:hover{background:#f1eef8}
@@ -1556,6 +1559,9 @@ extra+="""
 @media(max-width:700px){#wath[data-tabv] .cols.second{padding-top:28px}}
 """
 
+# Nov 17 4:06pm (Nirvan): a purple hexagon outline around the filmmaker photos so they read as molecules
+import re as _re
+home=_re.sub(r'(<img class="tmp"[^>]*>|<(span|i) class="tmp tmi"[^>]*>[^<]*</\2>)',r'<span class="tmw">\1</span>',home)
 out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-donor-wall home-page/home-block.html -->\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">\n<style>\n'+scoped+extra+'</style>\n<div id="wath">'+home+'</div>\n<div id="wath-top">'+top+'</div>\n<script>\n'+js+'\n</script>\n'
 os.makedirs('../img',exist_ok=True)
 # Nov 17 3pm (Nirvan): the 'Start a Matching Challenge' pop-up from the /matching page (same bundle the donate page carries)
