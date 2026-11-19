@@ -89,6 +89,8 @@ else {
     if (/^(nft|art)$/.test(source)) g.art = true;   // a gift of art: the wall marks it with an easel
     if (r.video) { if (!/^https:\/\//.test(r.video)) { errors.push(`${where}: the video "${r.video}" should start with https://`); continue; } g.video = r.video; }
     if (no(r.recent_feed)) g.legacy = true;                        // listed on the wall, left out of Recent Donations
+    if (r.match && !yes(r.match) && !no(r.match)) { errors.push(`${where}: match should be yes, no, or empty.`); continue; }
+    if (yes(r.match)) g.match = true;                              // 2026-11-18: counts toward the running matching challenge
     const key = [(g.name || 'anon').toLowerCase(), amount, ts.slice(0, 10), source].join('|');
     if (seen.has(key)) warnings.push(`${where}: looks the same as line ${seen.get(key)} (same name, amount, day and source). If it's really two gifts, fine.`);
     else seen.set(key, r._line);

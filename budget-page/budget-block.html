@@ -223,7 +223,11 @@
        rough    = pre-Pledge base + Pledge gifts + the Osters' match on top
      The old code halved the rise, showing $980 matched instead of $1,960, and left the
      Osters' match out of the Rough Cut total. */
-  function giftsRaised()  { return ROUGH_BASE + roughPledge + ((LIVE_MATCH.on && LIVE_MATCH.test) ? LIVE_MATCH.sampleGifts : 0); }
+  /* 2026-11-18 (Nirvan): a gift that did NOT come through Pledge but should be matched (manual-gifts.csv,
+     match = yes -- e.g. Allen Hardison's $500 at the Wonder Amazon boat trip auction) counts like a Pledge gift:
+     it adds to the gifts raised and, inside the challenge window, to the match. Read from manual.json. */
+  var manualMatchUsd = (function () { var k = watKept('manualMatch'); return (typeof k === 'number' && isFinite(k) && k >= 0) ? k : 0; })();
+  function giftsRaised()  { return ROUGH_BASE + roughPledge + manualMatchUsd + ((LIVE_MATCH.on && LIVE_MATCH.test) ? LIVE_MATCH.sampleGifts : 0); }
   function matchStart()  { return (LIVE_MATCH.test ? ROUGH_BASE + roughPledge : LIVE_MATCH.startRaised); }
   /* 2026-09-28: also count the gifts the donor feed shows inside the challenge window, and take the larger --
      so a slow or failed totals proxy can never leave the window reading "$0 raised by 10 people" */
@@ -2274,6 +2278,19 @@
     if (introRunning && introSetTarget) { introSetTarget(B.raised); if (_selMoved) setGoal(selIdx, 0, false); }
     else { if (_selMoved || !introRunning) setGoal(selIdx, 0, false); runIntro(0, true); }
   }
+  function pullManualMatch() {
+    fetch('https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/manual.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (m) {
+        if (!m || !Array.isArray(m.gifts)) return;
+        var t0 = new Date(LIVE_MATCH.start).getTime(), t1 = new Date(LIVE_MATCH.end).getTime(), sum = 0;
+        m.gifts.forEach(function (g) { var t = g && new Date(g.ts).getTime(); if (g && g.match && g.amount > 0 && t >= t0 && t <= t1) sum += +g.amount; });
+        if (sum === manualMatchUsd) return;
+        manualMatchUsd = sum; watKeep('manualMatch', sum);
+        var cur = roughPledge; roughPledge = -1; applyLivePledge(cur);   // refresh the figures in place
+      }).catch(function () {});
+  }
+  setTimeout(pullManualMatch, 400);
   function pullPledge() {
     if (!WAT_PROXY_URL) return;
     watGet('pledge', WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())

@@ -33,6 +33,7 @@ both read from it, so a donor added here shows up on both.
    - **link** (optional): a web address that the "via" words link to.
    - **video** (optional): an embeddable video player address. It plays small under the person's history when their name is opened.
    - **notes**: for us only. Never shown on the site.
+   - **match** (optional): `yes` if this gift should count toward the matching challenge running on its date.
 3. Click **Commit changes**.
 
 Within a minute or two GitHub checks the file and rebuilds the master list. Both web pages
@@ -69,9 +70,11 @@ addresses by itself once credits.whatatrip.com answers.
 
 **A gift made on Pledge never goes in `manual-gifts.csv`**, because it comes in by itself. To change how a Pledge name is shown, add a line to `name-fixes.csv` instead.
 
-**Matching challenges.** A gift in `manual-gifts.csv` is never counted toward a matching
-challenge. The Osters' challenge only matches Pledge gifts made after it started, and
-Rachel's challenge list is kept in the page code.
+**Matching challenges.** A gift in `manual-gifts.csv` is not counted toward a matching challenge
+unless its `match` column says `yes`. Then it counts like a Pledge gift: it is added to the Rough Cut
+total and, if it was made while a challenge was running, it is matched (for example Allen Hardison's
+$500 from the Wonder Amazon boat trip auction, paid through Insider Expeditions). The `match` column is
+the last one; leave it empty for gifts that should not be matched.
 
 ## What runs when (`.github/workflows/scrape.yml`)
 - **Every 15 minutes:** read new Pledge gifts into `donors.json`, then rebuild the master list.

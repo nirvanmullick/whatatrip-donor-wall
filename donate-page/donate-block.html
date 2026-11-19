@@ -247,7 +247,11 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
        rough    = pre-Pledge base + Pledge gifts + the Osters' match on top
      The old code halved the rise, showing $980 matched instead of $1,960, and left the
      Osters' match out of the Rough Cut total. */
-  function giftsRaised()  { return ROUGH_BASE + roughPledge + ((LIVE_MATCH.on && LIVE_MATCH.test) ? LIVE_MATCH.sampleGifts : 0); }
+  /* 2026-11-18 (Nirvan): a gift that did NOT come through Pledge but should be matched (manual-gifts.csv,
+     match = yes -- e.g. Allen Hardison's $500 at the Wonder Amazon boat trip auction) counts like a Pledge gift:
+     it adds to the gifts raised and, inside the challenge window, to the match. Read from manual.json. */
+  var manualMatchUsd = (function () { var k = watKept('manualMatch'); return (typeof k === 'number' && isFinite(k) && k >= 0) ? k : 0; })();
+  function giftsRaised()  { return ROUGH_BASE + roughPledge + manualMatchUsd + ((LIVE_MATCH.on && LIVE_MATCH.test) ? LIVE_MATCH.sampleGifts : 0); }
   function matchStart()  { return (LIVE_MATCH.test ? ROUGH_BASE + roughPledge : LIVE_MATCH.startRaised); }
   /* 2026-09-28: also count the gifts the donor feed shows inside the challenge window, and take the larger --
      so a slow or failed totals proxy can never leave the window reading "$0 raised by 10 people" */
@@ -2298,6 +2302,19 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (introRunning && introSetTarget) { introSetTarget(B.raised); if (_selMoved) setGoal(selIdx, 0, false); }
     else { if (_selMoved || !introRunning) setGoal(selIdx, 0, false); runIntro(0, true); }
   }
+  function pullManualMatch() {
+    fetch('https://raw.githubusercontent.com/nirvanmullick/whatatrip-donor-wall/main/manual.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (m) {
+        if (!m || !Array.isArray(m.gifts)) return;
+        var t0 = new Date(LIVE_MATCH.start).getTime(), t1 = new Date(LIVE_MATCH.end).getTime(), sum = 0;
+        m.gifts.forEach(function (g) { var t = g && new Date(g.ts).getTime(); if (g && g.match && g.amount > 0 && t >= t0 && t <= t1) sum += +g.amount; });
+        if (sum === manualMatchUsd) return;
+        manualMatchUsd = sum; watKeep('manualMatch', sum);
+        var cur = roughPledge; roughPledge = -1; applyLivePledge(cur);   // refresh the figures in place
+      }).catch(function () {});
+  }
+  setTimeout(pullManualMatch, 400);
   function pullPledge() {
     if (!WAT_PROXY_URL) return;
     watGet('pledge', WAT_PROXY_URL + (WAT_PROXY_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
@@ -3319,7 +3336,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var w = s.split(/\s+/);
     return w[w.length - 1].replace(/[^a-z0-9À-ɏ'-]/g, '') + ' ' + s;
   }
-  function suppList(){return SUPPLEMENTAL_DONORS.map(function(d){return {name:d.name,anonymous:d.anonymous,amount:d.amount,comment:d.comment,source:d.source,via:d.via,viaUrl:d.viaUrl,time:relTime(d.ts),_ts:new Date(d.ts).getTime()};});}
+  function suppList(){return SUPPLEMENTAL_DONORS.map(function(d){return {name:d.name,anonymous:d.anonymous,amount:d.amount,comment:d.comment,source:d.source,via:d.via,viaUrl:d.viaUrl,time:relTime(d.ts),_ts:new Date(d.ts).getTime(),match:!!d.match};});}
+  /* 2026-11-18: off-Pledge gifts marked match = yes join the Pledge gifts for the challenge arithmetic (one row each) */
+  function manualMatchedRows(){return SUPPLEMENTAL_DONORS.filter(function(d){return d.match;}).map(function(d){return {id:'man:'+d.ts+':'+(d.name||'anon'),ts:d.ts,name:d.name,anonymous:d.anonymous,amount:d.amount,comment:d.comment,source:d.source,via:d.via,viaUrl:d.viaUrl,time:relTime(d.ts),_ts:new Date(d.ts).getTime(),manualMatch:true};});}
+  function matchPool(){return cleanDonors(wall.donors).concat(manualMatchedRows());}
   /* 2026-10-02: how a gift came in, as a "via ..." tag -- GoFundMe, or a gift's own words (`via`, linked by `viaUrl`) */
   function viaTag(g){
     if (g.via) return ' <span class="wat-via">via <span class="wat-via-src">'+(g.viaUrl ? '<a href="'+esc(g.viaUrl)+'" target="_blank" rel="noopener" style="color:inherit">'+esc(g.via)+'</a>' : esc(g.via))+'</span></span>';
@@ -3349,6 +3369,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (g.anonymous || !g.name) r.anonymous = true; else r.name = g.name;
       if (g.comment) r.comment = g.comment;
       if (g.via) r.via = g.via; if (g.viaUrl) r.viaUrl = g.viaUrl; if (g.video) r.video = g.video;   // 2026-10-02
+      if (g.match) r.match = true;   // 2026-11-18: an off-Pledge gift that counts toward the running matching challenge
       if (g.legacy) { r.legacy = true; r.time = relTime(g.ts); leg.push(r); }
       else supp.push(r);
     });
@@ -3725,12 +3746,12 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
       if (/^wat-challenge-/.test(hh)) { var hc = document.getElementById(hh); if (hc) { hc.classList.add('wat-ch-open'); hc.setAttribute('aria-expanded', 'true'); } }
       return;
     }
-    var clean = cleanDonors(wall.donors);
+    var clean = matchPool();   // 2026-11-18: + off-Pledge gifts marked for matching
     var totalMatched = allocateMatch(clean);
     var cap = (MATCH_DONOR && MATCH_DONOR.cap) || 30000;
     var complete = !!MATCH_DONOR && totalMatched >= cap;
     var contributors = clean.filter(function (d) { return d._match > 0; }).length;
-    var supp = suppList();
+    var supp = suppList().filter(function (d) { return !d.match; });   // matched ones are already in `clean`
     var rows;
     if (activeTab === 'top') {
       // Top CONSOLIDATES each person's gifts into one summed row (across every source); multi-gift rows expand to a chronological gift history. Anonymous gifts stay separate.
@@ -3818,7 +3839,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     var M = window.WAT_LIVE_MATCH; if (!M) return [];
     if (M.test) return (M.sampleSupporters || []).slice();
     var t0 = new Date(M.start).getTime();
-    var c = cleanDonors(wall.donors); allocateMatch(c);
+    var c = matchPool(); allocateMatch(c);
     /* 2026-10-02 (Nirvan): "I'd like it to be the most recent donors shown first." This list came out in
        the stored list's order -- newest first for the gifts written into the code, then every gift the live
        feed added since tacked on at the END -- so Oct 1's two gifts showed last. Now: newest first, by the
@@ -3849,7 +3870,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   function liveMatchDoneCards() {
     var M = window.WAT_LIVE_MATCH; if (!M || !M.on) return [];
     var got = window.WAT_MATCHED ? window.WAT_MATCHED() : 0, L = poolLegsOf(M), out = [];
-    var clean = cleanDonors(wall.donors); allocateMatch(clean);
+    var clean = matchPool(); allocateMatch(clean);
     for (var i = L.length - 1; i >= 0; i--) {                       /* the most recently finished first */
       var st = 0; for (var k = 0; k < i; k++) st += L[k].cap;
       if (got < st + L[i].cap) continue;
