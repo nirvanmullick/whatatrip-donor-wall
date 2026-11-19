@@ -15406,6 +15406,9 @@ window.dwResize = (function () {
     },
     // Render these people as "Anonymous" no matter what the feed says.
     anonymize: [],
+    // 2026-11-18 (Nirvan): a Pledge gift ticked "anonymous" by mistake, credited by its Pledge id.
+    // Filled from pledge-names.csv (manual.json `pledgeNames`); this seed is the fallback.
+    credit: { 34037736: 'Ashley Montgomery' },
     // v18.79: feed rows that DUPLICATE a gift already on the wall under the donors' chosen
     // name. Matched on name + amount, so a NEW gift from the same person still comes through.
     // Nirvan, 2026-09-26: "Daniel & Kerry McMurtrie" is how they wanted to be named; Pledge's
@@ -15436,6 +15439,10 @@ window.dwResize = (function () {
       }
       var e = {}, k;
       for (k in d) { if (Object.prototype.hasOwnProperty.call(d, k)) e[k] = d[k]; }
+      if (e.id != null && DONOR_FIXUPS.credit && Object.prototype.hasOwnProperty.call(DONOR_FIXUPS.credit, e.id)) {   // pledge-names.csv
+        applied.push('credited: ' + e.id + ' -> ' + DONOR_FIXUPS.credit[e.id]);
+        e.name = DONOR_FIXUPS.credit[e.id]; e.anonymous = false;
+      }
       var key = fixupKey(e.name);
       if (key && Object.prototype.hasOwnProperty.call(DONOR_FIXUPS.rename, key)) {
         applied.push('renamed: ' + e.name + ' -> ' + DONOR_FIXUPS.rename[key]);
@@ -16341,6 +16348,7 @@ window.dwResize = (function () {
     if (m.renames) for (var k in m.renames) {
       if (Object.prototype.hasOwnProperty.call(m.renames, k)) DONOR_FIXUPS.rename[String(k).toLowerCase()] = m.renames[k];
     }
+    if (m.pledgeNames) for (var pn in m.pledgeNames) { if (Object.prototype.hasOwnProperty.call(m.pledgeNames, pn)) DONOR_FIXUPS.credit[pn] = m.pledgeNames[pn]; }   // pledge-names.csv
     if (m.pledgeVia) for (var pv in m.pledgeVia) { if (Object.prototype.hasOwnProperty.call(m.pledgeVia, pv)) PLEDGE_VIA[pv] = m.pledgeVia[pv]; }   // pledge-via.csv
     try { window.WAT_MANUAL = { updated: m.updated, gifts: supp.length + leg.length }; } catch (e) {}
     return true;
@@ -16348,9 +16356,9 @@ window.dwResize = (function () {
   function pullManual() {
     (window.WAT_PREGET || function (k, u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }); })('manual', MANUAL_URL + '?t=' + Date.now())
       .then(function (m) {
-        var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia);
+        var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia) + JSON.stringify(m && m.pledgeNames);
         if (sig === manualSig) { firstDone('manual'); return; }
-        if (applyManual(m)) { manualSig = sig; lastManual = { gifts: m.gifts, renames: m.renames, pledgeVia: m.pledgeVia, updated: m.updated }; renderData(); }
+        if (applyManual(m)) { manualSig = sig; lastManual = { gifts: m.gifts, renames: m.renames, pledgeVia: m.pledgeVia, pledgeNames: m.pledgeNames, updated: m.updated }; renderData(); }
         firstDone('manual');
       })
       .catch(function () { firstDone('manual'); });
@@ -19782,7 +19790,7 @@ window.dwResize = (function () {
   try {
     var kept = JSON.parse(localStorage.getItem('wat-dw-data') || 'null');
     if (kept && kept.v === 1 && Date.now() - kept.t < 14 * 864e5) {
-      if (kept.manual && applyManual(kept.manual)) manualSig = JSON.stringify(kept.manual.gifts) + JSON.stringify(kept.manual.renames) + JSON.stringify(kept.manual.pledgeVia);
+      if (kept.manual && applyManual(kept.manual)) manualSig = JSON.stringify(kept.manual.gifts) + JSON.stringify(kept.manual.renames) + JSON.stringify(kept.manual.pledgeVia) + JSON.stringify(kept.manual.pledgeNames);
       if (kept.rows && kept.rows.length) { jsonRows = kept.rows; wall = { updated: kept.updated, donors: mergeWall(jsonRows.concat(liveRows)) }; }
     }
   } catch (e) {}

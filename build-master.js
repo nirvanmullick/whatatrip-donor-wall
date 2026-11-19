@@ -120,6 +120,18 @@ if (existsSync('pledge-via.csv')) {
   }
 }
 
+/* ---------- pledge-names.csv: a Pledge gift credited by its id (2026-11-18) ----------
+   For a donor who ticked "anonymous" by mistake (or whose Pledge name is wrong on one gift only)
+   and asked to be named. Keyed by Pledge's gift id, so only that one gift changes. */
+const pledgeNames = {};
+if (existsSync('pledge-names.csv')) {
+  for (const r of parseCSV(readFileSync('pledge-names.csv', 'utf8'))) {
+    const id = String(r.pledge_id || '').trim(), to = String(r.show_as || '').trim().replace(/\s+/g, ' ');
+    if (!/^\d+$/.test(id) || !to) { errors.push(`pledge-names.csv line ${r._line}: needs a pledge_id (a number) and show_as.`); continue; }
+    pledgeNames[id] = to;
+  }
+}
+
 /* ---------- report ---------- */
 function summary(md) { if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + '\n'); }
 if (errors.length) {
@@ -131,7 +143,7 @@ if (errors.length) {
 
 /* ---------- manual.json (what the pages load) ---------- */
 gifts.sort((a, b) => (a.ts < b.ts ? 1 : a.ts > b.ts ? -1 : 0));
-const manual = { updated: new Date().toISOString(), count: gifts.length, gifts, renames, pledgeVia };
+const manual = { updated: new Date().toISOString(), count: gifts.length, gifts, renames, pledgeVia, pledgeNames };
 const prevManual = existsSync('manual.json') ? readFileSync('manual.json', 'utf8') : '';
 const strip = (s) => { try { const o = JSON.parse(s); delete o.updated; return JSON.stringify(o); } catch (e) { return ''; } };
 if (strip(prevManual) !== strip(JSON.stringify(manual))) writeFileSync('manual.json', JSON.stringify(manual, null, 1) + '\n');
@@ -144,7 +156,7 @@ if (existsSync('donors.json')) {
 }
 const shown = (n) => (n && renames[n.trim().toLowerCase()]) || n;
 const all = [
-  ...pledge.map((d) => ({ date: d.ts, name: d.anonymous ? '' : shown(d.name), name_on_record: d.anonymous ? '' : d.name,
+  ...pledge.map((d) => (pledgeNames[d.id] ? { ...d, anonymous: false, name: pledgeNames[d.id] } : d)).map((d) => ({ date: d.ts, name: d.anonymous ? '' : shown(d.name), name_on_record: d.anonymous ? '' : d.name,
     amount: d.amount, source: 'pledge', anonymous: !!d.anonymous, matched: !!d.matched, pledge_id: d.id, via: pledgeVia[d.id] || '',
     // a donor who typed their preferred name into Pledge's comment box: once renamed, that comment is just the name again
     comment: (d.comment && shown(d.name) && d.comment.trim().toLowerCase() === shown(d.name).toLowerCase()) ? '' : (d.comment || ''),

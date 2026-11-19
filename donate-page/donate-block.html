@@ -2913,6 +2913,9 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     },
     // Render these people as "Anonymous" no matter what the feed says.
     anonymize: [],
+    // 2026-11-18 (Nirvan): a Pledge gift ticked "anonymous" by mistake, credited by its Pledge id.
+    // Filled from pledge-names.csv (manual.json `pledgeNames`); this seed is the fallback.
+    credit: { 34037736: 'Ashley Montgomery' },
     // MATCH ROWS -- the general fix, driven by Pledge's own data.
     // Pledge lists a matched gift TWICE: once for the donor's actual gift, and once for the
     // match credit, which it flags `matched: true`. Left alone that renders as "Mo & Elisa
@@ -2932,6 +2935,10 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     (list || []).forEach(function (d) {
       var e = {}, k;
       for (k in d) { if (Object.prototype.hasOwnProperty.call(d, k)) e[k] = d[k]; }
+      if (e.id != null && DONOR_FIXUPS.credit && Object.prototype.hasOwnProperty.call(DONOR_FIXUPS.credit, e.id)) {   // pledge-names.csv
+        applied.push('credited: ' + e.id + ' -> ' + DONOR_FIXUPS.credit[e.id]);
+        e.name = DONOR_FIXUPS.credit[e.id]; e.anonymous = false;
+      }
       var key = fixupKey(e.name);
       if (key && Object.prototype.hasOwnProperty.call(DONOR_FIXUPS.rename, key)) {
         applied.push('renamed: ' + e.name + ' -> ' + DONOR_FIXUPS.rename[key]);
@@ -3378,6 +3385,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
     if (m.renames) for (var k in m.renames) {
       if (Object.prototype.hasOwnProperty.call(m.renames, k)) DONOR_FIXUPS.rename[String(k).toLowerCase()] = m.renames[k];
     }
+    if (m.pledgeNames) for (var pn in m.pledgeNames) { if (Object.prototype.hasOwnProperty.call(m.pledgeNames, pn)) DONOR_FIXUPS.credit[pn] = m.pledgeNames[pn]; }   // pledge-names.csv
     if (m.pledgeVia) for (var pv in m.pledgeVia) { if (Object.prototype.hasOwnProperty.call(m.pledgeVia, pv)) PLEDGE_VIA[pv] = m.pledgeVia[pv]; }   // pledge-via.csv
     try { window.WAT_MANUAL = { updated: m.updated, gifts: supp.length + leg.length }; } catch (e) {}
     return true;
@@ -3385,7 +3393,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   function pullManual() {
     watGet('manual', MANUAL_URL + '?t=' + Date.now())
       .then(function (m) {
-        var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia);
+        var sig = JSON.stringify(m && m.gifts) + JSON.stringify(m && m.renames) + JSON.stringify(m && m.pledgeVia) + JSON.stringify(m && m.pledgeNames);
         if (sig === manualSig) return;
         if (applyManual(m)) { manualSig = sig; watKeep('manual', m); render(); }
       })
@@ -4129,7 +4137,7 @@ WAT_AFTER_FORM(function () {   // (ll) waits for the Pledge form -- see the gate
   /* (ac) start from what this browser saw last time, so the first paint is the real list, not the built-in one */
   (function () {
     try {
-      var m = watKept('manual'); if (m && applyManual(m)) manualSig = JSON.stringify(m.gifts) + JSON.stringify(m.renames) + JSON.stringify(m.pledgeVia);
+      var m = watKept('manual'); if (m && applyManual(m)) manualSig = JSON.stringify(m.gifts) + JSON.stringify(m.renames) + JSON.stringify(m.pledgeVia) + JSON.stringify(m.pledgeNames);
       var j = watKept('list'), l = watKept('live'), r = watKept('recent');
       if (j && j.donors && j.donors.length) { jsonRows = j.donors; listSig = JSON.stringify(j.donors); }
       if (l && l.donors && l.donors.length) { liveRows = l.donors; liveSig = JSON.stringify(l.donors); }
