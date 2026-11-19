@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-19T02:38:32.014Z",
- "count": 204,
+ "updated": "2026-11-19T02:55:26.051Z",
+ "count": 205,
  "gifts": [
   {
    "ts": "2026-11-08T12:00:00",
@@ -8,6 +8,13 @@
    "source": "other",
    "name": "Allen Hardison",
    "via": "Wonder Amazon boat trip auction",
+   "match": true
+  },
+  {
+   "ts": "2026-10-15T12:00:00",
+   "amount": 5000,
+   "source": "private",
+   "name": "Rae Richman & Tomas McCabe",
    "match": true
   },
   {
@@ -1204,7 +1211,7 @@
    "ts": "2018-12-03T12:09:00",
    "amount": 2500,
    "source": "private",
-   "name": "Rae & Tomas"
+   "name": "Rae Richman & Tomas McCabe"
   },
   {
    "ts": "2018-12-02T12:08:00",

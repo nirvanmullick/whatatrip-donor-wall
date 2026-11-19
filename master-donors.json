@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-19T01:25:37.344Z",
- "count": 302,
+ "updated": "2026-11-19T02:55:26.055Z",
+ "count": 303,
  "gifts": [
   {
    "date": "2026-11-16T07:51:26.889-08:00",
@@ -521,6 +521,19 @@
    "via": "",
    "comment": "",
    "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Rae Richman & Tomas McCabe",
+   "name_on_record": "Rae Richman & Tomas McCabe",
+   "amount": 5000,
+   "source": "private",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
   },
   {
    "date": "2026-10-14T15:22:53.129-07:00",
@@ -3839,8 +3852,8 @@
   },
   {
    "date": "2018-12-03T12:09:00",
-   "name": "Rae & Tomas",
-   "name_on_record": "Rae & Tomas",
+   "name": "Rae Richman & Tomas McCabe",
+   "name_on_record": "Rae Richman & Tomas McCabe",
    "amount": 2500,
    "source": "private",
    "anonymous": false,

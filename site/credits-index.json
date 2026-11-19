@@ -1722,6 +1722,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-rae-and-tomas"
  },
  {
+  "slug": "rae-richman-and-tomas-mccabe",
+  "name": "Rae Richman & Tomas McCabe",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/rae-richman-and-tomas-mccabe",
+  "goes_to": "https://whatatrip.com/donors#donor-rae-richman-and-tomas-mccabe"
+ },
+ {
   "slug": "randy-baird",
   "name": "Randy Baird",
   "kind": "donor",
