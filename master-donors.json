@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T02:55:26.055Z",
+ "updated": "2026-11-19T03:07:25.239Z",
  "count": 303,
  "gifts": [
   {
@@ -17,11 +17,11 @@
   },
   {
    "date": "2026-11-15T09:30:03.529-08:00",
-   "name": "",
-   "name_on_record": "",
+   "name": "Ashley Montgomery",
+   "name_on_record": "Ashley Montgomery",
    "amount": 1000,
    "source": "pledge",
-   "anonymous": true,
+   "anonymous": false,
    "matched": true,
    "pledge_id": 34037736,
    "via": "",

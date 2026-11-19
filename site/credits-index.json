@@ -511,6 +511,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-armada"
  },
  {
+  "slug": "ashley-montgomery",
+  "name": "Ashley Montgomery",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/ashley-montgomery",
+  "goes_to": "https://whatatrip.com/donors#donor-ashley-montgomery"
+ },
+ {
   "slug": "ashley-palmer",
   "name": "Ashley Palmer",
   "kind": "donor",
