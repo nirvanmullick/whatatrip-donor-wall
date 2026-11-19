@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-16T16:56:36.434Z",
- "count": 301,
+ "updated": "2026-11-19T01:25:37.344Z",
+ "count": 302,
  "gifts": [
   {
    "date": "2026-11-16T07:51:26.889-08:00",
@@ -131,6 +131,19 @@
    "via": "",
    "comment": "",
    "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-11-08T12:00:00",
+   "name": "Allen Hardison",
+   "name_on_record": "Allen Hardison",
+   "amount": 500,
+   "source": "other",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "Wonder Amazon boat trip auction",
+   "added_by": "by hand (manual-gifts.csv)"
   },
   {
    "date": "2026-11-02T11:31:28.645-08:00",

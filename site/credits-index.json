@@ -112,6 +112,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-alice-lin"
  },
  {
+  "slug": "allen-hardison",
+  "name": "Allen Hardison",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/allen-hardison",
+  "goes_to": "https://whatatrip.com/donors#donor-allen-hardison"
+ },
+ {
   "slug": "allison-brekke",
   "name": "Allison Brekke",
   "kind": "donor",

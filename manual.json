@@ -1,7 +1,14 @@
 {
- "updated": "2026-11-15T08:50:08.023Z",
- "count": 203,
+ "updated": "2026-11-19T01:25:37.340Z",
+ "count": 204,
  "gifts": [
+  {
+   "ts": "2026-11-08T12:00:00",
+   "amount": 500,
+   "source": "other",
+   "name": "Allen Hardison",
+   "via": "Wonder Amazon boat trip auction"
+  },
   {
    "ts": "2026-08-08T09:00:00",
    "amount": 30000,
