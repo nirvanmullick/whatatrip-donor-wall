@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T16:27:25.116Z",
+ "updated": "2026-11-20T16:27:56.523Z",
  "count": 304,
  "gifts": [
   {
@@ -133,19 +133,6 @@
    "added_by": "automatic (Pledge)"
   },
   {
-   "date": "2026-11-08T12:00:00",
-   "name": "Allen Hardison",
-   "name_on_record": "Allen Hardison",
-   "amount": 500,
-   "source": "other",
-   "anonymous": false,
-   "matched": false,
-   "pledge_id": "",
-   "comment": "",
-   "via": "Wonder Amazon boat trip auction",
-   "added_by": "by hand (manual-gifts.csv)"
-  },
-  {
    "date": "2026-11-08T07:53:55.467-08:00",
    "name": "Nathen Willard",
    "name_on_record": "Nathen Willard",
@@ -157,6 +144,19 @@
    "via": "",
    "comment": "",
    "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-11-08T12:00:00",
+   "name": "Allen Hardison",
+   "name_on_record": "Allen Hardison",
+   "amount": 500,
+   "source": "other",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "Wonder Amazon boat trip auction",
+   "added_by": "by hand (manual-gifts.csv)"
   },
   {
    "date": "2026-11-02T11:31:28.645-08:00",
@@ -523,19 +523,6 @@
    "added_by": "automatic (Pledge)"
   },
   {
-   "date": "2026-10-15T12:00:00",
-   "name": "Rae Richman & Tomas McCabe",
-   "name_on_record": "Rae Richman & Tomas McCabe",
-   "amount": 5000,
-   "source": "private",
-   "anonymous": false,
-   "matched": false,
-   "pledge_id": "",
-   "comment": "",
-   "via": "",
-   "added_by": "by hand (manual-gifts.csv)"
-  },
-  {
    "date": "2026-10-15T10:54:41.744-07:00",
    "name": "Aubrey Marcus",
    "name_on_record": "Aubrey Marcus",
@@ -547,6 +534,19 @@
    "via": "",
    "comment": "",
    "added_by": "automatic (Pledge)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Rae Richman & Tomas McCabe",
+   "name_on_record": "Rae Richman & Tomas McCabe",
+   "amount": 5000,
+   "source": "private",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
   },
   {
    "date": "2026-10-14T15:22:53.129-07:00",
