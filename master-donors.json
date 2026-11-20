@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-19T03:07:25.239Z",
- "count": 303,
+ "updated": "2026-11-20T11:34:20.342Z",
+ "count": 304,
  "gifts": [
+  {
+   "date": "2026-11-20T02:51:53.943-08:00",
+   "name": "Dr. Ioana Bina & James Ehrhart",
+   "name_on_record": "Dr. Ioana Bina & James Ehrhart",
+   "amount": 25000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": 34169953,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-16T07:51:26.889-08:00",
    "name": "Chris Pinault",

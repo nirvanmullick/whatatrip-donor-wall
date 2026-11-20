@@ -1,14 +1,23 @@
 {
-  "updated": "2026-11-20T10:36:49.447Z",
-  "count": 98,
+  "updated": "2026-11-20T11:34:20.291Z",
+  "count": 99,
   "source": "pledge-json-v2",
   "totals": {
-    "raised": 115709,
-    "raised_with_matching": 210204,
+    "raised": 140709,
+    "raised_with_matching": 235204,
     "goal": 500000,
-    "donors": 98
+    "donors": 99
   },
   "donors": [
+    {
+      "id": 34169953,
+      "ts": "2026-11-20T02:51:53.943-08:00",
+      "name": "Dr. Ioana Bina & James Ehrhart",
+      "anonymous": false,
+      "amount": 25000,
+      "time": "42 minutes ago",
+      "matched": false
+    },
     {
       "id": 34065061,
       "ts": "2026-11-16T07:51:26.889-08:00",
@@ -187,7 +196,7 @@
       "name": "Lieberman Lynn And Paul",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {

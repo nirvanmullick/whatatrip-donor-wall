@@ -868,6 +868,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-douglas-frey"
  },
  {
+  "slug": "dr-ioana-bina-and-james-ehrhart",
+  "name": "Dr. Ioana Bina & James Ehrhart",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/dr-ioana-bina-and-james-ehrhart",
+  "goes_to": "https://whatatrip.com/donors#donor-dr-ioana-bina-and-james-ehrhart"
+ },
+ {
   "slug": "edyta-c",
   "name": "Edyta C",
   "kind": "donor",
