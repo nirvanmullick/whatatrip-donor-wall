@@ -2060,8 +2060,17 @@ function keep(k,v){try{localStorage.setItem('wath:'+k,JSON.stringify({t:Date.now
 var S={pledge:kept('pledge'),gifts:kept('gifts')||[],renames:kept('renames')||{},count:kept('count'),live:false};
 if(typeof S.pledge!=='number'||!isFinite(S.pledge)||S.pledge<0)S.pledge=FALLBACK_PLEDGE;
 function pool(){return LEGS.reduce(function(t,l){return t+l.cap},0)}
-function giftsRaised(){return ROUGH_BASE+S.pledge}
-function matched(){return Math.max(0,Math.min(pool(),giftsRaised()-MATCH_START))}
+/* Nov 20 (Nirvan): same rules as /donate. Raised adds the matched gifts that aren't on Pledge (manual-gifts.csv match=yes).
+   Every Pledge gift and every match=yes manual gift made inside the window is matched, oldest first, until the pool runs out. */
+var MATCH_T0=Date.parse('2026-09-27T10:52:00-07:00'),MATCH_T1=Date.parse('2026-12-31T23:59:59-08:00');
+if(typeof S.mmUsd!=='number')S.mmUsd=kept('mmUsd')||0;
+function giftsRaised(){return ROUGH_BASE+S.pledge+S.mmUsd}
+function gTs(g){var t=Date.parse(String(g.date||'').replace(' ','T'));return isFinite(t)?t:NaN}
+var MAC=null,MAG=null;function mAlloc(){if(MAG===S.gifts&&MAC)return MAC;MAG=S.gifts;return MAC=mAlloc0()}
+function mAlloc0(){var left=pool(),pos=0,out=[];(S.gifts||[]).filter(function(g){var t=gTs(g);return (g.src==null?!!g.pid:(g.src==='pledge'||g.mm))&&t>=MATCH_T0&&t<=MATCH_T1})
+  .sort(function(a,b){return gTs(a)-gTs(b)}).forEach(function(g){var m=Math.max(0,Math.min(+g.amount||0,left));if(m>0){out.push({g:g,a:pos,b:pos+m});pos+=m;left-=m}});return out}
+function feedMatched(){return mAlloc().reduce(function(t,x){return t+(x.b-x.a)},0)}
+function matched(){return Math.max(0,Math.min(pool(),Math.max(giftsRaised()-MATCH_START,feedMatched())))}
 function rough(){return giftsRaised()+matched()}
 function alloc(goals,amt){var left=amt;return goals.map(function(g){var r=Math.max(0,Math.min(g[1],left));left-=r;return {n:g[0],c:g[1],r:r,st:r>=g[1]?'done':''}})}
 function roughMs(rv){var A=alloc(ROUGHG,Math.min(typeof rv==='number'?rv:rough(),ROUGH_GOAL)),f=false;A.forEach(function(m){if(!f&&m.st!=='done'){m.st='now';f=true}});return A}
@@ -2302,8 +2311,8 @@ R.addEventListener('click',function(e){var sm=e.target.closest&&e.target.closest
   else{var cur=d.offsetHeight;d.open=false;var ch=d.offsetHeight;d.open=true;d.style.overflow='hidden';var b=d.animate([{height:cur+'px'},{height:ch+'px'}],{duration:Math.min(380,180+cur*.12),easing:'cubic-bezier(.4,0,.2,1)'});b.onfinish=function(){d.open=false;d.style.overflow=''}}},true);
 function chHelpers(){var G=(S.gifts||[]).filter(function(g){return g.matched&&g.date}).sort(function(a,b){return String(a.date)<String(b.date)?-1:1}),by={};
   /* Relay: line the recorded gifts up so the newest one ends at the matched total from Pledge, then split each gift across the challenges it straddles (Nov 17: Meg & David Roth's $15K mostly went to Kasey & David). */
-  var live=G.filter(function(g){return String(g.date)>=MATCH_FROM}),sum=live.reduce(function(t,g){return t+(+g.amount||0)},0),pos=matched()-sum,ends=[],acc=0;LEGS.forEach(function(l){ends.push([acc,acc+l.cap]);acc+=l.cap});
-  live.forEach(function(g){var a=pos,b=pos+(+g.amount||0);pos=b;LEGS.forEach(function(l,k){var ov=Math.min(b,ends[k][1])-Math.max(a,ends[k][0]);if(ov>0.5){var c={};for(var q in g)c[q]=g[q];c.part=Math.round(ov);(by[l.slug]=by[l.slug]||[]).push(c)}})});
+  var ends=[],acc=0;LEGS.forEach(function(l){ends.push([acc,acc+l.cap]);acc+=l.cap});
+  mAlloc().forEach(function(x){var g=x.g,a=x.a,b=x.b;LEGS.forEach(function(l,k){var ov=Math.min(b,ends[k][1])-Math.max(a,ends[k][0]);if(ov>0.5){var c={};for(var q in g)c[q]=g[q];c.part=Math.round(ov);(by[l.slug]=by[l.slug]||[]).push(c)}})});
   PAST.forEach(function(l){if(l.who){by[l.slug]=(S.gifts||[]).filter(function(g){return l.who.indexOf(nm(g))>=0});return}if(l.from)by[l.slug]=G.filter(function(g){var d=String(g.date);return d>=l.from&&d<l.to})});return by}
 /* Nov 18 6:00am (Nirvan): Recent says "Road Tripper level" (singular) below the credit line and "Special Thanks film credit" from $5K, always from the person's total; hover or tap explains it */
 var LVONE={'Hitchhikers':'Hitchhiker','Road Trippers':'Road Tripper','Mile Markers':'Mile Marker','MAPS Makers':'MAPS Maker','Wayfinders':'Wayfinder','Trailblazers':'Trailblazer'};
@@ -3741,7 +3750,8 @@ if(!document.querySelector('script[src*="pledge.to/embed/widget.js"]')){var s=do
 renderLevels();renderMWH();renderTiles();renderFeat();renderTnd();renderDonations();renderLive();
 function get(u){return fetch(u+(/t=$/.test(u)?Date.now():''),/t=$/.test(u)?{cache:'no-store'}:undefined).then(function(r){if(!r.ok)throw 0;return r.json()})}
 function askPledge(){return get(U.pledge).then(function(d){var v=d&&Number(d.raised);if(v>=0&&isFinite(v)){S.pledge=v;S.live=true;keep('pledge',v);renderLive()}}).catch(function(){})}
-function askList(){return Promise.all([get(U.master).catch(function(){return null}),get(U.manual).catch(function(){return null})]).then(function(a){if(a[1]&&a[1].renames){S.renames=a[1].renames;keep('renames',S.renames)}if(a[0]&&a[0].gifts&&a[0].gifts.length){S.gifts=a[0].gifts.map(function(g){return {name:g.name,amount:+g.amount||0,date:g.date,anonymous:!!g.anonymous,comment:g.comment||'',pid:g.pledge_id||'',matched:!!g.matched}});keep('gifts',S.gifts)}renderDonations();try{renderChallenges();renderMatch()}catch(x){}setTimeout(fitCommunity,60)})}
+function mmKey(n,a,d){return String(n||'').trim().toLowerCase()+'|'+(+a||0)+'|'+String(d||'').slice(0,10)}
+function askList(){return Promise.all([get(U.master).catch(function(){return null}),get(U.manual).catch(function(){return null})]).then(function(a){if(a[1]&&a[1].renames){S.renames=a[1].renames;keep('renames',S.renames)}var MMK={};if(a[1]&&a[1].gifts){var mu=0;a[1].gifts.forEach(function(g){if(!g.match)return;MMK[mmKey(g.name,g.amount,g.ts)]=1;var t=Date.parse(g.ts);if(t>=MATCH_T0&&t<=MATCH_T1)mu+=+g.amount||0});S.mmUsd=mu;keep('mmUsd',mu)}if(a[0]&&a[0].gifts&&a[0].gifts.length){S.gifts=a[0].gifts.map(function(g){return {name:g.name,amount:+g.amount||0,date:g.date,anonymous:!!g.anonymous,comment:g.comment||'',pid:g.pledge_id||'',matched:!!g.matched,src:g.source||'',mm:!!MMK[mmKey(g.name,g.amount,g.date)]}});keep('gifts',S.gifts)}renderDonations();try{renderLive()}catch(x){}setTimeout(fitCommunity,60)})}
 function askCount(){return get(U.count).then(function(j){if(j&&Number(j.donors)>0){S.count=Number(j.donors);keep('count',S.count);renderHero()}}).catch(function(){})}
 renderUpdates();askPledge();askList();askCount();askUpdates();
 setInterval(function(){if(!document.hidden&&!window.__watEdit)askPledge()},45000);
