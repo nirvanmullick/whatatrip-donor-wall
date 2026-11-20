@@ -120,6 +120,18 @@ if (existsSync('pledge-via.csv')) {
   }
 }
 
+/* ---------- pledge-match.csv: a Pledge gift we count as matched (2026-11-20) ----------
+   Pledge only matches online gifts. An offline gift entered on Pledge during a live challenge
+   is listed here by its Pledge id so it counts toward the match. */
+const pledgeMatch = {};
+if (existsSync('pledge-match.csv')) {
+  for (const r of parseCSV(readFileSync('pledge-match.csv', 'utf8'))) {
+    const id = String(r.pledge_id || '').trim();
+    if (!/^\d+$/.test(id)) { errors.push(`pledge-match.csv line ${r._line}: needs a pledge_id (a number).`); continue; }
+    pledgeMatch[id] = true;
+  }
+}
+
 /* ---------- pledge-names.csv: a Pledge gift credited by its id (2026-11-18) ----------
    For a donor who ticked "anonymous" by mistake (or whose Pledge name is wrong on one gift only)
    and asked to be named. Keyed by Pledge's gift id, so only that one gift changes. */
@@ -157,7 +169,7 @@ if (existsSync('donors.json')) {
 const shown = (n) => (n && renames[n.trim().toLowerCase()]) || n;
 const all = [
   ...pledge.map((d) => (pledgeNames[d.id] ? { ...d, anonymous: false, name: pledgeNames[d.id] } : d)).map((d) => ({ date: d.ts, name: d.anonymous ? '' : shown(d.name), name_on_record: d.anonymous ? '' : d.name,
-    amount: d.amount, source: 'pledge', anonymous: !!d.anonymous, matched: !!d.matched, pledge_id: d.id, via: pledgeVia[d.id] || '',
+    amount: d.amount, source: 'pledge', anonymous: !!d.anonymous, matched: !!d.matched || !!pledgeMatch[d.id], pledge_id: d.id, via: pledgeVia[d.id] || '',
     // a donor who typed their preferred name into Pledge's comment box: once renamed, that comment is just the name again
     comment: (d.comment && shown(d.name) && d.comment.trim().toLowerCase() === shown(d.name).toLowerCase()) ? '' : (d.comment || ''),
     added_by: 'automatic (Pledge)' })),
