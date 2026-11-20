@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T02:41:24.459Z",
+  "updated": "2026-11-20T10:36:49.447Z",
   "count": 98,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Chris Pinault",
       "anonymous": false,
       "amount": 200,
-      "time": "3 days ago",
+      "time": "4 days ago",
       "matched": true
     },
     {
@@ -23,7 +23,7 @@
       "ts": "2026-11-15T09:30:03.529-08:00",
       "anonymous": true,
       "amount": 1000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "comment": "Thanks for this awesome + inspiring + important work - it was great to be part of the salon at Lightening Society too!",
       "matched": true
     },
@@ -33,7 +33,7 @@
       "name": "Zhana Vrangalova",
       "anonymous": false,
       "amount": 100,
-      "time": "5 days ago",
+      "time": "6 days ago",
       "matched": true
     },
     {
@@ -77,7 +77,7 @@
       "name": "Jamie Frankenberg",
       "anonymous": false,
       "amount": 5,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -104,7 +104,7 @@
       "name": "Andrew Bujalski",
       "anonymous": false,
       "amount": 50,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -133,7 +133,7 @@
       "name": "Oriel Poole",
       "anonymous": false,
       "amount": 50,
-      "time": "3 weeks ago",
+      "time": "4 weeks ago",
       "matched": true
     },
     {
@@ -196,7 +196,7 @@
       "name": "Lindsay Caspi",
       "anonymous": false,
       "amount": 5000,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
@@ -846,7 +846,7 @@
       "name": "Elana Horwich",
       "anonymous": false,
       "amount": 3000,
-      "time": "3 months ago",
+      "time": "4 months ago",
       "matched": true
     },
     {
