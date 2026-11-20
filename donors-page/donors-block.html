@@ -2787,7 +2787,10 @@ window.dwResize = (function () {
      only as it matches (this copy still stopped at the Osters' $60K; /donate counted the pool since ff). */
   var POOL_ADDED_CAP = 135000;   /* v19.37: Rachel's match is $50K */
   function matchFor(pledge) { return Math.max(0, Math.min(ROUGH_BASE + pledge - OSTER_MATCH.startRaised, POOL_ADDED_CAP)); }
-  function roughRaised() { return ROUGH_BASE + roughPledge + matchFor(roughPledge); }
+  /* v19.58 (2026-11-20, Nirvan: "match /donate"): matched gifts that aren't on Pledge (manual-gifts.csv match=yes)
+     count toward raised, and are matched, exactly as /donate does (its manualMatchUsd). Set when manual.json lands. */
+  function mmUsd() { return +window.WAT_MMUSD || 0; }
+  function roughRaised() { return ROUGH_BASE + roughPledge + mmUsd() + matchFor(roughPledge + mmUsd()); }
   /* v19.54: the figure this page was BUILT with, for the top progress count to start from before the live one lands */
   try { window.WAT_ROUGH0 = { raised: roughRaised(), goal: (typeof roughGoal === 'function' ? roughGoal() : 700000) }; } catch (e) {}
   var RAISED_RC_UNFILLED = 14000;
@@ -4184,13 +4187,18 @@ window.dwResize = (function () {
           /* v18.82: announce the LIVE figure the moment it lands, before anything animates,
              so the page's progress bar can run one smooth count to it instead of mirroring
              this widget's own staged count-up (fallback figure, pause, then the real one). */
-          try { window.WAT_ROUGH = { raised: ROUGH_BASE + d.raised + matchFor(d.raised), goal: roughGoal(), live: true };   // v19.13: + the Osters' match
+          try { window.WAT_ROUGH = { raised: ROUGH_BASE + d.raised + mmUsd() + matchFor(d.raised + mmUsd()), goal: roughGoal(), live: true };   // v19.13: + the Osters' match
                 window.dispatchEvent(new Event('wat-rough')); } catch (e) {}
           applyLivePledge(d.raised);
         }
       })
       .catch(function () {});                                     // offline/blocked -> keep the fallback figure
   }
+  /* v19.58: manual.json landed with a new matched-offline total -> redraw the bar and the top count */
+  window.WAT_REPAINT_ROUGH = function () {
+    try { if (window.WAT_ROUGH && window.WAT_ROUGH.live) { window.WAT_ROUGH = { raised: roughRaised(), goal: roughGoal(), live: true }; window.dispatchEvent(new Event('wat-rough')); } } catch (e) {}
+    if (barBusy) return; var v = roughPledge; roughPledge = -1; applyLivePledge(v);
+  };
   pullPledge();
   var _pledgeTimer = setInterval(pullPledge, POLL_MS);
   document.addEventListener('visibilitychange', function () {     // don't poll a hidden tab
@@ -16333,13 +16341,14 @@ window.dwResize = (function () {
   var manualSig = '';
   function applyManual(m) {
     if (!m || !m.gifts || !m.gifts.length || m.gifts.length < 0.8 * MANUAL_BUILTIN) return false;
-    var supp = [], leg = [];
+    var supp = [], leg = [], mmSum = 0, MM_T0 = Date.parse('2026-09-27T10:52:00-07:00'), MM_T1 = Date.parse('2026-12-31T23:59:59-08:00');
     m.gifts.forEach(function (g) {
       if (!g || !(g.amount > 0) || !g.ts || isNaN(new Date(g.ts).getTime())) return;
       var r = { source: g.source || 'private', amount: +g.amount, ts: g.ts };
       if (g.anonymous || !g.name) r.anonymous = true; else r.name = g.name;
       if (g.comment) r.comment = g.comment;
       if (g.via) r.via = g.via; if (g.viaUrl) r.viaUrl = g.viaUrl; if (g.video) r.video = g.video; if (g.art) r.art = true;   // 2026-10-02
+      if (g.match) { r.match = true; var mt = new Date(g.ts).getTime(); if (mt >= MM_T0 && mt <= MM_T1) mmSum += +g.amount; }   // v19.58
       if (g.legacy) { r.legacy = true; r.time = relTime(g.ts); leg.push(r); }
       else supp.push(r);
     });
@@ -16351,6 +16360,7 @@ window.dwResize = (function () {
     if (m.pledgeNames) for (var pn in m.pledgeNames) { if (Object.prototype.hasOwnProperty.call(m.pledgeNames, pn)) DONOR_FIXUPS.credit[pn] = m.pledgeNames[pn]; }   // pledge-names.csv
     if (m.pledgeVia) for (var pv in m.pledgeVia) { if (Object.prototype.hasOwnProperty.call(m.pledgeVia, pv)) PLEDGE_VIA[pv] = m.pledgeVia[pv]; }   // pledge-via.csv
     try { window.WAT_MANUAL = { updated: m.updated, gifts: supp.length + leg.length }; } catch (e) {}
+    if (mmSum !== (+window.WAT_MMUSD || 0)) { window.WAT_MMUSD = mmSum; try { if (window.WAT_REPAINT_ROUGH) window.WAT_REPAINT_ROUGH(); } catch (e) {} }   // v19.58
     return true;
   }
   function pullManual() {
@@ -16436,7 +16446,7 @@ window.dwResize = (function () {
       /* v19.32: a chained match (Kasey & David) skips the dollars the match before it took */
       var skip = 0;
       if (ch.after) skip = chainBefore(ch);   /* v19.33: cumulative -- Rachel skips the Osters' $60K + K&D's $25K */
-      cleanDonors(wall.donors).map(function(d){
+      cleanDonors(wall.donors).concat(SUPPLEMENTAL_DONORS.filter(function(d){ return d.match; })).map(function(d){   /* v19.58: + matched offline gifts, as /donate */
         return { d: d, t: d.ts ? new Date(d.ts).getTime() : parseAge(d.time) };
       }).filter(function(x){ return x.t >= t0 && x.t <= t1 && keyOf(x.d.name) !== keyOf(ch.matcher); })
         .sort(function(a, b){ return a.t - b.t; })                       /* oldest first: first come, first matched */
@@ -18453,7 +18463,7 @@ window.dwResize = (function () {
     var t0 = new Date(ch.start).getTime(), t1 = new Date(ch.end).getTime();
     pool.slice().sort(function(a,b){ return (a._ts||0)-(b._ts||0); }).forEach(function(d){
       d._om = 0; d._omBy = null;
-      if (d.source && d.source !== 'pledge') return;
+      if (d.source && d.source !== 'pledge' && !d.match) return;   /* v19.58: matched offline gifts count, as /donate */
       if (mk[keyOf(d.name)]) return;
       if ((d._ts||0) < t0 || (d._ts||0) > t1) return;
       var a = d.amount || 0;
