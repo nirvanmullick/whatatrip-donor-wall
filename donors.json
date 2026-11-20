@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T21:46:13.301Z",
+  "updated": "2026-11-20T02:41:24.459Z",
   "count": 98,
   "source": "pledge-json-v2",
   "totals": {
@@ -42,7 +42,7 @@
       "name": "David Roth",
       "anonymous": false,
       "amount": 15000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
