@@ -2308,11 +2308,9 @@ function chHelpers(){var G=(S.gifts||[]).filter(function(g){return g.matched&&g.
 /* Nov 18 6:00am (Nirvan): Recent says "Road Tripper level" (singular) below the credit line and "Special Thanks film credit" from $5K, always from the person's total; hover or tap explains it */
 var LVONE={'Hitchhikers':'Hitchhiker','Road Trippers':'Road Tripper','Mile Markers':'Mile Marker','MAPS Makers':'MAPS Maker','Wayfinders':'Wayfinder','Trailblazers':'Trailblazer'};
 function lvLabel(l){return l.credit?l.n+' film credit':(LVONE[l.n]||l.n)+' level'}
+/* Nov 20 (Nirvan): hover says only the gift and the level, e.g. "$5,000 Special Thanks gift" -- no name, no explanation */
 function lvTag(n,gift,tot){var l=n?personLevel(n,tot):levelFor(tot);if(!l||!l.credit)return '';var lab=lvLabel(l),t;
-  if(!n)t=esc(lab)+' ('+l.l+'). This anonymous gift of '+money(gift)+' is at that level.';
-  else if(tot>gift+0.5)t=esc(lab)+' ('+l.l+'). '+esc(n)+' has given '+money(tot)+' in total, so this '+money(gift)+' gift adds to a higher level.';
-  else t=esc(lab)+' ('+l.l+'). '+esc(n)+'’s '+money(gift)+' gift puts them at this level.';
-  if(l.credit)t+=' Their name goes in the film’s credits.';
+  t=n&&tot>gift+0.5?money(tot)+' given in total · '+esc(l.n):money(gift)+' '+esc(l.n)+' gift';
   return '<button class="lvb" data-toast="'+t.replace(/"/g,'&quot;')+'" aria-label="'+t.replace(/"/g,'&quot;')+'"><span>'+esc(lab)+'</span><span class="tip" aria-hidden="true">'+t+'</span></button>'}
 /* Nov 18 5:50am (Nirvan): tapping a matcher in Recent opens their challenge right there: progress, everyone it matched, and a jump to the full challenge */
 var RMX={};
