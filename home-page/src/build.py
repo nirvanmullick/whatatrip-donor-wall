@@ -1255,6 +1255,8 @@ html.wath-noscroll{overflow:hidden}
 @media(prefers-reduced-motion:reduce){#wath-top .wath-hc .hcwave{animation:none}}
 #wath-top .sppgcd .btn.crall{margin-top:16px}
 #wath-top .sppgcd .btn.crall[hidden]{display:none}
+#wath #wath-recent .suplist>svg.bonds{transition:opacity .25s ease}
+#wath #wath-recent .suplist.shuf>svg.bonds{opacity:0;transition:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
