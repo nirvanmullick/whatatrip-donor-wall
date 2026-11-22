@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ab13acd317598c45e73bdc54962cc13969204957` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `1cc5a3f10701654e39a021d02ea00b72bf0c56fb` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -254,6 +254,11 @@ Claude Code updates this file at the end of each session.
    Join hexagon: the level colours travel slowly around its edge (conic gradient on the ring, `@property --wja`) and it breathes a faint
    glow; both off for reduced motion. FAQs are never lifted beside the perks any more: below the Rick banner the order is always
    FAQs, Voices, Updates (checked on the live dev page: FAQs start 44px under the banner).
+   Perk lists shortened (Nirvan, Nov 22): $5 reads "Your own supporter profile, with your photo and social links"; $50 and $250 list
+   only their editing line plus "Plus everything in..."; the $25K perk is "Your photo featured in our supporter grids".
+   BEHAVIOUR: in honeycomb grids a photo now shows only from the $25K level by giving or raising (`av()` adds class `lo` below that;
+   CSS hides the image inside `.chhive`). Profiles, lists and preview cards still show everyone's photo. He said "maybe" to this rule,
+   so it is flagged for him to confirm.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
