@@ -1111,8 +1111,8 @@ html.wath-noscroll{overflow:hidden}
 #wath #wath-recent .seg button{flex:1 1 0;min-width:0;white-space:normal}
 @media(max-width:480px){#wath #wath-recent .seg button{padding-left:8px;padding-right:8px;font-size:14px;line-height:1.25}}
 #wath .suphv .chhive{margin:0}
-#wath .suphv .joinhx{cursor:pointer}
-#wath .suphv .joinhx .av{font-size:15px}
+:is(#wath .suphv,#wath-top .sppgall) .joinhx{cursor:pointer}
+:is(#wath .suphv,#wath-top .sppgall) .joinhx .av{font-size:15px}
 :is(#wath,#wath-top) .chhx[data-join]:is(:hover,:focus-visible) .av.lvc{background:var(--ls)!important}
 #wath .suphd{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:0 0 12px;min-width:0}
 #wath .suphd h2{margin-top:0;margin-bottom:0}
