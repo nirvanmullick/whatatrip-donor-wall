@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `b62bb510b4318509df6144f66e7017c3f6663d41` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `5d7dda9a9a7d85a540c85a3259da0947de1a68e6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -67,7 +67,11 @@ Claude Code updates this file at the end of each session.
    saved under `voices` in the `settings` row of `site_content` (no migration). Managers cannot use the menu yet because
    `save_site_content` only lets owner/admin write `settings`; widening that needs a migration and Nirvan's OK.
    There is no screen yet to restore a removed voice (edit `settings.voices.rem`).
-   SUPPORTER COUNT: /home-dev shows 286 from the Nirvana `wat-donor-count` function (266 known people + 20 anonymous
+   SUPPORTER COUNT (decided Nov 22: match /donors): the page now counts it itself (`suppCount`): every named person
+   once (donors in `TOTALS`, challenge makers in `LEGS`/`PAST`, people in `CONN.act` credited for raising without a gift)
+   plus every anonymous gift. That is the /donors rule (its people list minus the "Unnamed Community Credit" row).
+   The Nirvana count is only a stand-in until gifts load. Older note follows.
+   SUPPORTER COUNT (old): /home-dev showed 286 from the Nirvana `wat-donor-count` function (266 known people + 20 anonymous
    gifts it cannot tie to a known person). whatatrip.com/donors shows 293-294 because it counts every anonymous gift
    (36) as its own supporter and adds a few names credited without a gift. Waiting on Nirvan: which rule to use.
    Asked for next: hero mockups (supporter hexagons filling the hero after the zoom / after the trailer, and Rick's
