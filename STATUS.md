@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `1705cbe8c36ed512c902d611d4958ab61965f5e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d073ce3125402a783b394005dabd50277d430ed2` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -106,7 +106,17 @@ Claude Code updates this file at the end of each session.
    `#wat-challenge-<slug>`, or the phone share sheet). Arriving on such a link scrolls to and opens that challenge
    (`chGo`). Card titles lead with the amount: "$60,000 matching challenge by NAME" (`chTitleCard`; the name shows the
    preview card when the person has gifts).
-   ALSO ASKED Nov 22 (not built): supporters honeycomb grid (4 rows + "See all") above the Top/Recent tabs in the
+   DONE Nov 22: supporters honeycomb at the top of the Supporters section (`supHive`, container `.suphv` inserted
+   before `[data-donations]`; `data-rows="4"` caps a hive in `chHiveLay`; "See all supporters" links to /donors until
+   the Members page exists). It re-sorts with the Top/Recent tabs via `chResort` and hovering a hexagon highlights the
+   whole list row (`.dn.hl`). Also fixed an older bug: at phone widths the Supporters section was ~28px wider than
+   the screen because the two tabs could not shrink (amounts were cut off at the right).
+   STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
+   hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
+   filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
+   their own referral link and network); admins adding referrals by hand so they show in a person's connections
+   (`staff_set_referral` already exists in the database).
+   ALSO ASKED Nov 22 (older list): supporters honeycomb grid (4 rows + "See all") above the Top/Recent tabs in the
    Supporters section, shuffling when the tab changes and highlighting the matching list row on hover; move the
    "Learn about Arcturus" block up under the perk levels with a divider; mock up the doubling icon as two overlapping
    hexagons instead of hearts; Creative Visions/Stripe admin idea (discussion only).
