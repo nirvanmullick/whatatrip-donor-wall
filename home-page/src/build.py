@@ -1022,7 +1022,8 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .sppgwl li:first-child{border-top:0}
 #wath-top .sppgwl a{color:#6152a0;font-weight:700}
 #wath-top .sppgwl span{color:#5b6478;font-size:14px;text-align:right}
-#wath-top .sppgall{margin-top:32px}
+#wath-top .sppgall{margin-top:0}
+#wath-top .sppgL{display:flex;flex-direction:column;gap:16px;min-width:0}
 #wath-top .sppgah{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:0 0 16px}
 #wath-top .sppgah .sppgl{margin:0}
 #wath-top .sppgall .sppgah .sphso{margin:0 0 0 auto}
@@ -1031,7 +1032,7 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .sppgall .chhx{transition:opacity .2s ease}
 #wath-top .sppgall .chhx.dim{opacity:.16}
 #wath-top .sppgn{margin:8px 0 0}
-@media(max-width:900px){#wath-top .sppgc{grid-template-columns:minmax(0,1fr);gap:16px}#wath-top .sppgall{margin-top:16px}}
+@media(max-width:900px){#wath-top .sppgc{grid-template-columns:minmax(0,1fr);gap:16px}#wath-top .sppgall{margin-top:0}}
 @media(max-width:560px){#wath-top .sppgw{padding:12px 16px 48px}#wath-top .sppgm{padding:20px 16px}#wath-top .sppgcd,#wath-top .sppgall{padding:20px 16px}#wath-top .sppgacts .btn{flex:1 1 100%}#wath-top .sppgall .sppgah .sphso{margin-left:-8px}}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgall .chhx{transition:none}}
 /* Nov 22 (Nirvan): Add your voice: one button under the Voices list, and a small pop-up for people who are not members yet */
@@ -1107,6 +1108,13 @@ html.wath-noscroll{overflow:hidden}
 #wath #wath-recent .seg button{flex:1 1 0;min-width:0;white-space:normal}
 @media(max-width:480px){#wath #wath-recent .seg button{padding-left:8px;padding-right:8px;font-size:14px;line-height:1.25}}
 #wath .suphv .chhive{margin:0}
+#wath .suphs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 8px;min-height:44px}
+#wath .suphsb{all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-10px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#7d6bc6}
+#wath .suphsb:hover,#wath .suphsb[aria-expanded=true]{background:rgba(97,82,160,.12);color:#6152a0}
+#wath .suphsb:focus-visible,#wath .suphsi:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .suphsi{flex:1 1 200px;min-width:0;max-width:360px;min-height:44px;box-sizing:border-box;padding:8px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
+#wath .suphsi[hidden]{display:none}
+#wath .suphsn{font-size:14px;color:#5b6478}
 #wath .suphva{display:inline-flex;align-items:center;min-height:44px;margin-top:4px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px}
 #wath .suphva[hidden]{display:none}
 #wath #wath-recent .suplist .dn{transition:background-color .15s ease}
