@@ -1041,6 +1041,22 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .voiceov .voicego{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;box-sizing:border-box}
 #wath-top .voiceov .voicealt{margin:16px 0 0!important;font-size:14.5px!important;line-height:2!important;color:#5b6478!important}
 #wath-top .voiceov .voicealt .mlink{font-size:14.5px;align-self:auto;display:inline}
+/* Nov 22 (Nirvan): tools on each voice: reactions and reply, a flag for members, a three-dot menu for Owners and Admins */
+#wath .vrow{position:relative}
+#wath .vrow.vhid>*:not(.vmw){opacity:.5}
+#wath .vact{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+#wath .vtag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6152a0;margin:0 12px 4px 0}
+#wath .vflag,#wath .vdots{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;border-radius:10px;color:#6b6478}
+#wath .vflag{width:32px;height:32px;border-radius:8px}
+#wath .vflag:hover,#wath .vdots:hover,#wath .vdots[aria-expanded=true]{background:#ece7f7;color:#6152a0}
+#wath .vflag:focus-visible,#wath .vdots:focus-visible,#wath .vmenu button:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .vmw{position:relative;flex:none;margin:-8px -8px 0 0}
+#wath .vmenu{position:absolute;right:0;top:44px;z-index:30;display:flex;flex-direction:column;width:max-content;min-width:200px;max-width:calc(100vw - 48px);padding:6px;background:#fff;border:1px solid #d9d3ec;border-radius:12px;box-shadow:0 10px 30px rgba(27,21,38,.16)}
+#wath .vmenu button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:8px;font-size:14.5px;font-weight:600;color:#1b1526}
+#wath .vmenu button:hover{background:#f6f3fc}
+@media(hover:hover) and (pointer:fine){#wath .vrow .vflag,#wath .vrow .vdots{opacity:0;transition:opacity .15s ease}#wath .vrow:hover .vflag,#wath .vrow:hover .vdots,#wath .vrow:focus-within .vflag,#wath .vrow:focus-within .vdots,#wath .vrow .vdots[aria-expanded=true]{opacity:1}}
+@media(pointer:coarse){#wath .vflag{width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){#wath .vrow .vflag,#wath .vrow .vdots{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
