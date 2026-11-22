@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `e9824425b3d972c739fec0734c2e0e61eebcc65c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d00e6ff64238ac175d127252610424d1bf5daf09` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -94,6 +94,14 @@ Claude Code updates this file at the end of each session.
    Asked, not built: the log-in screen itself as a small pop-up (today it is the full-screen dashboard overlay);
    a "Members" page replacing the donor wall, one grid of supporters and filmmakers, with filmmaker profile pages
    (bio, films, testimonial) and per-field privacy (public / connections only).
+   Submenu (Nov 22): Campaign, Story, Filmmakers, Supporters + count (`data-cnt="sup"`, set in `renderHero`), FAQs,
+   Budget, Impact, Voices, Updates. Only the FINAL menu string in build.py (the `_ne` replacement) was changed; the
+   first copy is rewritten by later build steps and must stay as it is. Menu order no longer matches scroll order
+   (the Filmmakers section is still lower on the page), so the highlight jumps; moving the section is a layout change
+   to offer Nirvan.
+   QUEUE he asked for, in his words "build these next": (1) log-in as a small pop-up, (2) Members page replacing the
+   donor wall with supporters + filmmakers in one grid, filmmaker profiles, per-field privacy (needs a migration: ask),
+   (3) hero mockups, (4) four-row community grid on the home page, (5) donor wall mockup, (6) Connect button (migration).
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
