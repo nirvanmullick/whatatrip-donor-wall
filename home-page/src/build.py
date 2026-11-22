@@ -1270,6 +1270,10 @@ html.wath-noscroll{overflow:hidden}
 #wath .bfwrap>.sec:first-child{border-top:0;padding-top:0}
 #wath .bfwrap:empty{display:none}
 @media(max-width:900px){#wath .bfwrap{padding:28px 18px 0}#wath .bfwrap>.sec{max-width:none}}
+/* Nov 22 (Nirvan): hexagons cast a shadow while a honeycomb reshuffles */
+:is(#wath,#wath-top) .chhive>.chhx{transition:opacity .2s ease,filter .3s ease}
+:is(#wath,#wath-top) .chhive.shuf>.chhx{filter:drop-shadow(0 4px 5px rgba(27,21,38,.32))}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhive>.chhx{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
