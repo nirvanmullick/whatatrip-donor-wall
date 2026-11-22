@@ -1,9 +1,9 @@
 # What a Trip website: status
-Last updated Nov 21, 2026 (written from the claude.ai session notes of Nov 15–18).
+Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–18).
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `a7bda0ade8648167b01652e638fb4b6b8a20880d` (Nov 21: level colours, badges, honeycombs, hover cards, three-way sort).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `c971c786d066bd463d6082799b5ac3d7330b055a` (Nov 22: honeycomb grid of supporters: column fill, wave in, shuffle re-sort, two orders, list icons, anonymous cards, roomier preview card).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -28,6 +28,20 @@ Claude Code updates this file at the end of each session.
    profile card (`.wath-hc`) that opens the full profile. One sort button steps through largest / most recent /
    order given (`CHORD`); hexagons grow in after a re-sort. "N people gave" is now computed (`chDonors`: each named
    person once, each anonymous gift as one donor), no longer the fixed 76. Waiting on his reaction.
+   Nov 22: Nirvan calls it the "honeycomb grid of supporters". Now: two orders only (largest first, most recent first;
+   `CHORD`), filled column by column so colour runs left to right (`chHiveLay`), grows in as a wave when a challenge
+   opens (script animation, `grow` class), and on a re-sort hexagons and list rows glide to their new places
+   (`chResort`, no re-render). Lists show a small profile hexagon by each name. Anonymous gifts take the colour of the
+   level of that gift and have their own card (Anonymous, level, amount, their comment) via `anonAt`. The preview card
+   is bigger with a white "View full profile" button and previews a quote (`seedOf`). Challenge makers get a quiet
+   second outline in grids and lists (`isMaker`, `.av.mk`). Waiting on his reaction.
+2a. NEW REQUESTS Nov 22, not built (mock up first, then ask before any database change):
+   - Full profile as a page, not a pop-up, laid out like the dashboard profile. Three views: your own (logged in),
+     a visitor (right column markets "Become a member"), and a logged-in member viewing someone else. Columns hold a
+     honeycomb grid of all members/donors you can hover, and a member search bar.
+   - Member connections: each member chooses who may connect (people I already know via a contacts upload and match,
+     only members at chosen levels, or nobody) and how to be told (site inbox, email, text). Needs schema, privacy
+     review (contacts upload is sensitive) and Nirvan's OK on migrations.
    Done Nov 21: the staff-only note for the two Oct 15 manual gifts is stored in the members database
    (`gift_private.staff_note`, Owner/Admin only; migration `gift_private_staff_note`). The two gifts were added to
    `gifts` as real, unlinked records (source `event_cost`; migrations `gifts_source_allow_private` and `gifts_source_allow_event_cost` added those types).
