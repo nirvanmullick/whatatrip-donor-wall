@@ -1208,6 +1208,18 @@ html.wath-noscroll{overflow:hidden}
 #wath .fqall{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;flex:none;min-height:44px;padding:0 4px;color:#6152a0;font-size:13px;font-weight:700}
 #wath .fqall:hover span{text-decoration:underline}
 #wath .fqall:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+/* Nov 22 (Nirvan): crew profile editor for Owners and Admins; team photos are black and white in the team section */
+#wath #wath-team .tmhx img{filter:grayscale(1)}
+#wath-top .sppg .btn.cred{display:inline-flex;align-items:center;gap:6px}
+#wath-top .crfm{display:grid;gap:20px;min-width:0}
+#wath-top .crff{display:grid;gap:6px;min-width:0}
+#wath-top .crff .sppgl{margin:0}
+#wath-top .crfm :is(input:not([type=file]),textarea){box-sizing:border-box;width:100%;min-height:44px;padding:10px 12px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px;line-height:1.5}
+#wath-top .crfm textarea{resize:vertical}
+#wath-top .crfm input[type=file]{font:inherit;font-size:14px;max-width:100%;min-height:44px}
+#wath-top .crfm :is(input,textarea):focus-visible{outline:2px solid #6152a0;outline-offset:1px}
+#wath-top .crfh{font-size:13px;line-height:1.45;color:#5b6478;overflow-wrap:anywhere}
+#wath-top .crfm .sppgacts{margin:0}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
