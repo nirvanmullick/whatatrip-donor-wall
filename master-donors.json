@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-20T16:27:56.523Z",
- "count": 304,
+ "updated": "2026-11-22T05:06:20.379Z",
+ "count": 306,
  "gifts": [
   {
    "date": "2026-11-20T02:51:53.943-08:00",
@@ -540,6 +540,32 @@
    "name": "Rae Richman & Tomas McCabe",
    "name_on_record": "Rae Richman & Tomas McCabe",
    "amount": 5000,
+   "source": "private",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Eva Dillon",
+   "name_on_record": "Eva Dillon",
+   "amount": 5028,
+   "source": "private",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Jade Netanya Ullmann",
+   "name_on_record": "Jade Netanya Ullmann",
+   "amount": 4385,
    "source": "private",
    "anonymous": false,
    "matched": false,
