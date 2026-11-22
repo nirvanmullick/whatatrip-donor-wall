@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `af6bc762214e387f64e307713d36a002e48d800a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `c9104f3f9f7083b434906d8d4537d67e063c57b9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -206,6 +206,9 @@ Claude Code updates this file at the end of each session.
    both lists to their new place and fades in the rest (in the `data-sup` click handler). Phone widths: the name side shrinks and the
    level label under the amount may wrap, so nothing overlaps. Built-in team order (`TEAMORD`) now equals the order Nirvan saved.
    NOTED from Nirvan: the Fiscal Sponsor role (Creative Visions) may edit only its own profile, nothing else on the site.
+   CORRECTION (Nirvan, relayed by the Stripe session): Road Trippers stays at $50 on the home page; reverted (LVCOL/LVICON keys back
+   to 50). "Contributing Producer" and "Presented by" stay. The donor wall still says $100 for Road Trippers; nobody has changed it.
+   Team honeycomb now switches 80ms after the pointer stops on a face.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
