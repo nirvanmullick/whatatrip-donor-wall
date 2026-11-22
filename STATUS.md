@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `a8c2209e2be677747903c1db1bee67e22c8014b9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `e0d80f7f3e3c4eeccd4dc96d5ea46e84d2ef5fe3` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -250,6 +250,7 @@ Claude Code updates this file at the end of each session.
    views). Nirvan's stills use the widescreen `mqdefault.jpg` (no black bars); added "A Love Letter from #EarthToParis". His links now
    include YouTube, X and Instagram (handles taken from nirvan.com), and any crew page with an Instagram name shows "Follow on Instagram".
    Live view counts are not shown (would need a YouTube API key held server-side).
+   Join card: the hand now waves as the card opens, then again every ten seconds.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
