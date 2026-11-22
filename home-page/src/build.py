@@ -1264,6 +1264,12 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .fa-tm .tmhx img{filter:grayscale(1)}
 :is(#wath,#wath-top) .fa-tm .tmhx.you{background:#6152a0;color:#fff;font-weight:800;letter-spacing:.06em}
 #wath-top .pkd .pkdi.pkdart{display:flex;align-items:center;justify-content:center;background:#f6f3fc}
+/* Nov 22 (Nirvan): Budget and FAQs when they sit below the perks (page order follows the menu) */
+#wath .bfwrap{padding:44px 28px 8px}
+#wath .bfwrap>.sec{max-width:860px}
+#wath .bfwrap>.sec:first-child{border-top:0;padding-top:0}
+#wath .bfwrap:empty{display:none}
+@media(max-width:900px){#wath .bfwrap{padding:28px 18px 0}#wath .bfwrap>.sec{max-width:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2412,5 +2418,20 @@ _st = '<section class="sec" id="wath-story"'
 assert out.count(_st) == 1
 _s1 = _sec_end(out, out.find(_st))
 out = out[:_s1] + '<section class="sec" id="wath-team"><h2>Our Filmmaking Team</h2><div class="tmA" data-team></div></section>' + out[_s1:]
+# Nov 22 (Nirvan): the page scrolls in the same order as the menu: Story, Perks, Filmmakers, Supporters, Challenges, Impact,
+#   Budget, FAQs, Voices, Updates. Budget and FAQs leave the left column and wait, in that order, after Impact; a script
+#   (app.js, "lift ... into the left column") lifts Challenges, Impact, Budget, FAQs back beside the perks, in order, while they fit.
+_a,_b=_section(out,'<section class="sec" id="wath-budget"');_bud2=out[_a:_b];out=out[:_a]+out[_b:]
+_a,_b=_section(out,'<section class="sec" id="wath-faq"');_faq2=out[_a:_b];out=out[:_a]+out[_b:]
+_c0=out.index('<div class="wrap chwrap" data-chhome>');_a,_b=_section(out,'<section class="sec" id="wath-challenges"')
+assert _a>_c0 and out[_b:_b+6]=='</div>'
+_cw=out[_c0:_b+6];out=out[:_c0]+out[_b+6:]
+_i0,_i1=_section(out,'<section class="impband" data-imphome>')
+out=out[:_i0]+_cw+out[_i0:_i1]+'<div class="wrap bfwrap" data-bfhome>'+_bud2+_faq2+'</div>'+out[_i1:]
+_m1='<a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a>'
+_m2='<a href="#wath-challenges">Challenges<sup class="cnt" data-cnt="chal"></sup></a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a>'
+assert out.count(_m1)>=1 and out.count(_m2)>=1
+out=out.replace(_m1,'<a href="#wath-story">Story</a><a href="#wath-levels" class="snm">Perks</a>')
+out=out.replace(_m2,'<a href="#wath-challenges">Challenges<sup class="cnt" data-cnt="chal"></sup></a><a href="#wath-impact">Impact</a><a href="#wath-budget">Budget</a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a>')
 open('../home-block.html','w').write(out)
 print(len(out))
