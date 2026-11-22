@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d00e6ff64238ac175d127252610424d1bf5daf09` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef7385d3596565afec543f0f9ddb9fad05bb35cf` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -99,7 +99,10 @@ Claude Code updates this file at the end of each session.
    first copy is rewritten by later build steps and must stay as it is. Menu order no longer matches scroll order
    (the Filmmakers section is still lower on the page), so the highlight jumps; moving the section is a layout change
    to offer Nirvan.
-   QUEUE he asked for, in his words "build these next": (1) log-in as a small pop-up, (2) Members page replacing the
+   DONE Nov 22: (1) log-in as a pop-up. `.mov[data-tab="login"|"pw"]` is now a dimmed layover with the `.mlogin`
+   card centred (CSS only, plus a close button `.mlx` in the card and click-outside-to-close). The sign-in logic is
+   untouched; after logging in the full dashboard opens as before. Not verified against real Google/email sign-in.
+   QUEUE he asked for, in his words "build these next": (1) log-in as a small pop-up [done], (2) Members page replacing the
    donor wall with supporters + filmmakers in one grid, filmmaker profiles, per-field privacy (needs a migration: ask),
    (3) hero mockups, (4) four-row community grid on the home page, (5) donor wall mockup, (6) Connect button (migration).
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
