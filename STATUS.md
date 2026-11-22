@@ -24,8 +24,9 @@ Claude Code updates this file at the end of each session.
    pastel rainbow, not saturated). `LVCOL`, `LVICON`, `lvBadge()`, `av()` and `avHex()` in app.js. Not yet done from the
    mockup: badge in the Details pop-up and on member profiles, referral cluster lines, Top/Recent/List tabs, a colour key.
    Waiting on his reaction to the colours.
-   Also open: Nirvan gave a staff-only note for the two Oct 15 manual gifts. It is not stored anywhere yet, because
-   this repo is public. Ask him where it should live (for example the private `gift_private` table).
+   Done Nov 21: the staff-only note for the two Oct 15 manual gifts is stored in the members database
+   (`gift_private.staff_note`, Owner/Admin only; migration `gift_private_staff_note`). The two gifts were added to
+   `gifts` as real, unlinked records (source `in_kind`). Never put staff notes in manual-gifts.csv: this repo is public.
 2. Level and perk mismatches between the donor wall and the home page: Inner Circle at $2.5K or $25K; extra
    features at $1K or $500; Contributing Producer or Co-Producer at $100K; Road Trippers at $100 or $50; and the
    wall still lists "Get High with Rick".
