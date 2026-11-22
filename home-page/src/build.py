@@ -1036,6 +1036,12 @@ html.wath-noscroll{overflow:hidden}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgall .chhx{transition:none}}
 /* Nov 22 (Nirvan): Add your voice: one button under the Voices list, and a small pop-up for people who are not members yet */
 #wath .voice{margin:16px 0 4px}
+#wath .vbox .vboxl{display:block;font-size:16px;font-weight:800;color:#1b1526;margin:0 0 4px}
+#wath .vbox .vboxh{margin:0 0 12px;font-size:14.5px;line-height:1.5;color:#5b6478}
+#wath .vbox textarea{display:block;width:100%;box-sizing:border-box;min-height:112px;padding:12px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px;line-height:1.5;resize:vertical}
+#wath .vbox textarea:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .vbox .vboxa{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#wath .vbox .vboxa .btn{min-height:44px}
 #wath-top .voiceov .bovc{max-width:440px}
 #wath-top .voiceov .bovc p{margin:8px 0 16px;font-size:15.5px;line-height:1.5;color:#3a3245}
 #wath-top .voiceov .voicego{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;box-sizing:border-box}
