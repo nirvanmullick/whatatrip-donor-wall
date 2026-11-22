@@ -1114,10 +1114,14 @@ html.wath-noscroll{overflow:hidden}
 #wath .suphsb{all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-4px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#7d6bc6}
 #wath .suphsb:hover,#wath .suphsb[aria-expanded=true]{background:rgba(97,82,160,.12);color:#6152a0}
 #wath .suphsb:focus-visible,#wath .suphsi:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
-#wath .suphsi{flex:1 1 200px;min-width:0;max-width:360px;min-height:44px;box-sizing:border-box;padding:8px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
-#wath .suphsi[hidden]{display:none}
+#wath .suphsi{flex:1 1 220px;min-width:0;max-width:0;opacity:0;visibility:hidden;min-height:44px;box-sizing:border-box;padding:8px 0;border:1px solid transparent;transition:max-width .34s cubic-bezier(.2,.75,.25,1),padding .34s cubic-bezier(.2,.75,.25,1),opacity .22s ease,border-color .22s ease,visibility 0s linear .34s;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
+#wath .suphd.sopen .suphsi{max-width:360px;opacity:1;visibility:visible;padding:8px 14px;border-color:#cfc8e6;transition-delay:0s}
+#wath .suphsb svg{transition:transform .34s cubic-bezier(.2,.75,.25,1)}
+#wath .suphd.sopen .suphsb svg{transform:rotate(90deg) scale(.9)}
+#wath .suphd:not(.sopen) .suphsn{display:none}
+@media(prefers-reduced-motion:reduce){#wath .suphsi,#wath .suphsb svg{transition:none}}
 #wath .suphsn{font-size:14px;color:#5b6478}
-#wath .suphva{display:flex;width:max-content;max-width:100%;margin-left:auto;align-items:center;min-height:44px;margin-top:12px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px}
+#wath .suphva{flex:none;margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 #wath .suphva[hidden]{display:none}
 #wath #wath-recent .suplist .dn{transition:background-color .15s ease}
 #wath #wath-recent .suplist .dn.hl{background:#e4dcf5!important;box-shadow:0 0 0 2px #cfc8e6 inset}
