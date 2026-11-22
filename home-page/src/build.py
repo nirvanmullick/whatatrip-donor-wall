@@ -1274,6 +1274,17 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .chhive>.chhx{transition:opacity .2s ease,filter .3s ease}
 :is(#wath,#wath-top) .chhive.shuf>.chhx{filter:drop-shadow(0 4px 5px rgba(27,21,38,.32))}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhive>.chhx{transition:none}}
+/* Nov 22 (Nirvan): on-site player for a crew member's films */
+#wath-top .tov.crv{z-index:100002}
+#wath-top .crvb{position:relative;width:min(960px,100%);max-height:100%;display:flex;flex-direction:column;gap:12px}
+#wath-top .crvf{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+#wath-top .crvf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#wath-top .crvx{position:absolute;right:0;top:-48px;width:44px;height:44px;border:0;background:none;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+#wath-top .crvx:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#wath-top .crvm{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding:0 16px;color:#fff;font-size:15px}
+#wath-top .crvm a{color:#d9d1ee;font-size:14px}
+@media(min-width:761px){#wath-top .crvm{padding:0}}
+#wath-top .sppg a.btn.crig{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
