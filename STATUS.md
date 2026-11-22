@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `38d4afff4d6159d274ff71952e83447b4966f702` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `79df87ec97f6d254209a54e44c13589da8f1e801` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -145,6 +145,12 @@ Claude Code updates this file at the end of each session.
    still fold the top one at tight tablet widths. This supersedes "all challenges start open".
    ASKED, not built: an "Import contacts" option in the Invite a friend pop-up. Contact import is not built at all yet
    (needs the privacy decisions and backend discussed Nov 22).
+   Nov 22: anonymous hexagons read "AN" (`avHex`). The home supporters honeycomb ends with a "?" hexagon
+   (`[data-join]`, placed in the last showing slot by `chHiveLay`); its card says "Will you join us?" with a
+   "Join us" button that calls `give(5)`.
+   COORDINATION: the Stripe session was told it may edit `app.js`/`build.py` to put its test checkout on /home-dev
+   after this session's push; pull before editing here again.
+   ASKED, not built: "Offer a perk" form under More ways to help (first version can post to the team inbox).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
