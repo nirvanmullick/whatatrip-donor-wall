@@ -955,11 +955,18 @@ html.wath-noscroll{overflow:hidden}
 @media(prefers-reduced-motion:reduce){#wath-top .wath-hc,:is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:none}}
 #wath-top .spov .spchh{padding:6px 14px 2px;overflow:visible}
 #wath-top .spov .spchh .chhive{margin:4px 0 10px}
-#wath-top .spov .sphh{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5b6478}
-#wath-top .spov .sphso{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;margin:-6px -10px -6px 0;padding:0;border:0;border-radius:10px;background:none;color:#6152a0;cursor:pointer}
+#wath-top .spov .sphh{display:flex;justify-content:flex-end}
+#wath .chd .chso.chsol,#wath-top .spov .sphso{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:0;height:36px;padding:0 8px;border:0;border-radius:10px;background:none;color:#6152a0;cursor:pointer;font:inherit;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;white-space:nowrap}
+#wath .chd .chso.chsol{top:-10px}
+#wath .chd .chso.chsol svg,#wath-top .spov .sphso svg{flex:none}
+#wath-top .spov .sphso{margin:-2px -8px 2px 0}
 #wath-top .spov .sphso:hover{background:#efeafb}
-#wath-top .spov .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
-#wath-top .spov .sphso[data-hivesort=new] svg{transform:scaleX(-1)}
+#wath .chd .chso.chsol:focus-visible,#wath-top .spov .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+@media(max-width:600px){#wath .chd .chso.chsol{position:static;margin:0 0 4px -8px}#wath .chd .chdh{margin-bottom:2px}}
+/* after a re-sort the hexagons grow in one at a time, left to right */
+@keyframes wathHexGrow{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
+:is(#wath,#wath-top) .chhive.grow .chhx{animation:wathHexGrow .3s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:var(--d,0ms)}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhive.grow .chhx{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
