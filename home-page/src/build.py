@@ -956,9 +956,9 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::after{background:var(--lt)}
 /* Nov 22 (Nirvan): in a grid, a photo becomes a soft one-colour image in the person's level colour with their initials over it, so the colour gradient stays clear. Hovering shows the real photo. Challenge makers get the same treatment. */
 :is(#wath,#wath-top) .chhx .av.lvc:has(img){background:var(--lf)!important}
-:is(#wath,#wath-top) .chhx .av.lvc:has(img) img{filter:grayscale(1) contrast(1.1);mix-blend-mode:multiply;opacity:.28;transition:opacity .15s ease,filter .15s ease}
-:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before,:is(#wath,#wath-top) .chhx .av.lvc.mk:has(img)::before{content:attr(data-i);position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;background:none;clip-path:none;opacity:1;color:var(--lt);pointer-events:none;transition:opacity .15s ease}
-:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:has(img) img{filter:none;mix-blend-mode:normal;opacity:1}
+:is(#wath,#wath-top) .chhx .av.lvc:has(img) img{filter:grayscale(1) contrast(1.1);mix-blend-mode:multiply;opacity:.14;transition:opacity .22s ease}
+:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before,:is(#wath,#wath-top) .chhx .av.lvc.mk:has(img)::before{content:attr(data-i);position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;background:none;clip-path:none;opacity:1;color:var(--lt);pointer-events:none;transition:opacity .22s ease}
+:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:has(img) img{opacity:.92}
 :is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:has(img)::before{opacity:0}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhx .av.lvc:has(img) img,:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before{transition:none}}
 #wath .chpn:hover{color:#3f3478}
@@ -966,7 +966,7 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:background-color .15s ease}
 :is(#wath,#wath-top) :is(.chhx[data-supp],.chhx[data-anon],.chpa[data-anon],.cnhx,.dn.sp,.chpn,.spchl .mlink):is(:hover,:focus-visible) .av.lvc:not(:has(img)){background:var(--ls)!important}
 :is(#wath,#wath-top) :is(.chhx[data-supp],.chhx[data-anon],.chpa[data-anon],.cnhx,.dn.sp,.chpn,.spchl .mlink):is(:hover,:focus-visible) .av.lvc::after{background:var(--lt)}
-#wath-top .wath-hc{position:fixed;z-index:2147483000;display:flex;flex-direction:column;gap:16px;width:320px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:20px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 10px 30px rgba(27,21,38,.16);color:#1b1526;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .14s ease,transform .14s ease;text-align:left}
+#wath-top .wath-hc{position:fixed;z-index:2147483000;display:flex;flex-direction:column;gap:16px;width:320px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:20px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 16px 40px rgba(27,21,38,.24),0 2px 6px rgba(27,21,38,.1);color:#1b1526;cursor:pointer;opacity:0;transform:scale(.6);transition:opacity .16s ease,transform .2s cubic-bezier(.2,.9,.3,1.12);text-align:left}
 #wath-top .wath-hc.on{opacity:1;transform:none}
 #wath-top .wath-hc .av{width:60px!important;height:66px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin:0}
 #wath-top .wath-hc .hct{display:flex;flex-direction:column;gap:4px;min-width:0;line-height:1.3}
@@ -975,6 +975,8 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .wath-hc .hcg{font-size:14px;color:#5b6478}
 #wath-top .wath-hc .hcv{display:flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;padding:8px 16px;background:#fff;border:1px solid #cfc8e6;border-radius:10px;font-size:14px;font-weight:700;color:#1b1526;transition:background-color .15s ease}
 #wath-top .wath-hc:hover .hcv{background:#f6f3fc}
+#wath-top .wath-hc .hcv.pri{background:#6152a0;border-color:#6152a0;color:#fff}
+#wath-top .wath-hc:hover .hcv.pri{background:#54468f}
 #wath-top .wath-hc .hcr{display:flex;align-items:center;gap:16px;min-width:0}
 #wath-top .wath-hc .hcq{font-size:13.5px;line-height:1.45;font-style:italic;color:#3a3245;border-top:1px solid #ebe7f5;padding-top:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 @media(prefers-reduced-motion:reduce){#wath-top .wath-hc,:is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:none}}
@@ -1168,6 +1170,28 @@ html.wath-noscroll{overflow:hidden}
 #wath .chdso{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-right:-8px;border-radius:10px;color:#6152a0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 #wath .chdso:hover{background:rgba(97,82,160,.12)}
 #wath .chdso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+/* Nov 22 (Nirvan): crew profile pages, Rick's hexagon, bigger colour photo in the preview card */
+#wath-top .wath-hc .av:has(img){width:84px!important;height:92px!important}
+:is(#wath,#wath-top) .tmhx img[src*="rick-suit-hex"]{filter:grayscale(1) contrast(1.05)}
+:is(#wath,#wath-top) .chhx>.tmhx{width:100%;height:100%}
+#wath-top .sppg .chhx.crx{cursor:pointer}
+#wath-top .crh{display:flex;align-items:center;gap:20px;margin:0 0 20px;min-width:0}
+#wath-top .crh .tmhx{width:88px;height:88px;font-size:28px}
+#wath-top .crht{min-width:0}
+#wath-top .crn{display:block;font-size:28px;line-height:1.2;font-weight:800;color:#1b1526;overflow-wrap:anywhere}
+#wath-top .crr{display:block;margin-top:4px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6152a0}
+#wath-top .crs{margin-top:32px;padding-top:24px;border-top:1px solid #ebe7f5}
+#wath-top .crq{margin:0;padding:0;border:0;font-size:19px;line-height:1.5;font-style:italic;color:#3a3245}
+#wath-top .crp{margin:0;font-size:16px;line-height:1.65;color:#1b1526}
+#wath-top .crlast{margin-bottom:0}
+#wath-top .crcn{margin-top:12px}
+#wath-top .crfg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#wath-top .crf{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;aspect-ratio:2/3;min-width:0;padding:8px;box-sizing:border-box;background:#f6f3fc;border:1px solid #d9d3ec;color:#1b1526;text-decoration:none;transition:background-color .15s ease}
+#wath-top .crf:hover{background:#ece7f7}
+#wath-top .crf:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .crf b{font-size:12.5px;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
+#wath-top .crf span{font-size:11.5px;color:#5b6478}
+@media(max-width:560px){#wath-top .crh{gap:16px}#wath-top .crh .tmhx{width:72px;height:72px;font-size:22px}#wath-top .crn{font-size:24px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2315,6 +2339,6 @@ out = out[:_t0] + out[_t1:]
 _st = '<section class="sec" id="wath-story"'
 assert out.count(_st) == 1
 _s1 = _sec_end(out, out.find(_st))
-out = out[:_s1] + '<section class="sec" id="wath-team"><h2>Filmmakers</h2><div class="tmA" data-team></div></section>' + out[_s1:]
+out = out[:_s1] + '<section class="sec" id="wath-team"><h2>Our Filmmaking Team</h2><div class="tmA" data-team></div></section>' + out[_s1:]
 open('../home-block.html','w').write(out)
 print(len(out))
