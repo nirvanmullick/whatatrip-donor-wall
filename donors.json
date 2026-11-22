@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T21:14:16.473Z",
+  "updated": "2026-11-22T01:25:58.007Z",
   "count": 99,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Dr. Ioana Bina & James Ehrhart",
       "anonymous": false,
       "amount": 25000,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": false
     },
     {
@@ -60,7 +60,7 @@
       "name": "Theresa Daniello",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
