@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `7c63130721bca1a6c69a2ad166547d376b4e7fff` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d2315a5773a4ae89dea195e6bd2210cbf49d28a4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -46,6 +46,12 @@ Claude Code updates this file at the end of each session.
    still say comments). `renderComments` ends with an "Add your voice" block: non-members get Donate $5 / Start a
    fundraiser / Log in; members get a button that opens their own profile page. Member testimonials do NOT yet appear
    in that list (it shows pinned quotes and gift comments only).
+   Nov 22: matching challenges start open (`CHOPEN[slug]!==false`), so their honeycombs show without a click; hovering
+   a hexagon highlights that gift's row in the list under it (`li.hl`). Members' own quotes are wired into the Voices
+   list (`MVOICE`, `voiceLoad`, merged in `comments()` for $5+ members) but need the `member_voices()` database function:
+   SQL is in `home-page/supabase/member_voices.sql`, NOT applied, waiting on Nirvan's OK. Until then the list is unchanged.
+   Profile page side cards for a logged-in member now speak to them: "My referral link" / "Share my link" and
+   "Level up" (works out what they need for the next level; the button opens giving with that amount filled in).
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
