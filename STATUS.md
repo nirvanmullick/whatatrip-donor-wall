@@ -3,9 +3,8 @@ Last updated Nov 21, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) and /home-test (`VERSION`) both serve `210cca4cc14a26ee9f4797ff6c559141f88428e0`.
-- Latest commit on `main` when this file was written: `82bb861` (Nov 22, 01:25 UTC). Check that nothing newer
-  than VERSION-DEV is waiting to be published.
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `5b3713e3af705ebfa680d3724e7816f3daa425d3` (Nov 21: level colours and badges).
+- /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
 - Kickstarter-style home page: zoom-poster hero with the trailer playing in place, the Rough Cut figure and the
@@ -21,9 +20,12 @@ Claude Code updates this file at the end of each session.
   (`site_content settings.forum_open`).
 
 ## Waiting on Nirvan
-1. Level colours and badges mockup (https://claude.ai/artifact/NXnEzpZHqTPBvarAjnyD6K):
-   (a) should badges show an icon only, or an icon and the dollar amount? (b) should challenge hexagons be coloured by
-   gift size, or by the giver's overall level? Build it into /home-dev once he answers.
+1. Level colours and badges: BUILT on /home-dev Nov 21 (his answers: icon only; colour by the giver's overall level;
+   pastel rainbow, not saturated). `LVCOL`, `LVICON`, `lvBadge()`, `av()` and `avHex()` in app.js. Not yet done from the
+   mockup: badge in the Details pop-up and on member profiles, referral cluster lines, Top/Recent/List tabs, a colour key.
+   Waiting on his reaction to the colours.
+   Also open: Nirvan gave a staff-only note for the two Oct 15 manual gifts. It is not stored anywhere yet, because
+   this repo is public. Ask him where it should live (for example the private `gift_private` table).
 2. Level and perk mismatches between the donor wall and the home page: Inner Circle at $2.5K or $25K; extra
    features at $1K or $500; Contributing Producer or Co-Producer at $100K; Road Trippers at $100 or $50; and the
    wall still lists "Get High with Rick".
@@ -43,5 +45,5 @@ Claude Code updates this file at the end of each session.
 - Sample values that still need real ones: Instagram follower count and goal, limited perk counts, filmmaker Instagram handles.
 
 ## Next step
-Get Nirvan's answers on item 1 (badges), then build the level colours and badges into /home-dev.
+Get Nirvan's reaction to the level colours on /home-dev, then finish the remaining mockup pieces in item 1.
 Once the setup commit is pushed, delete the "First-time setup" section from CLAUDE.md.
