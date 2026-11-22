@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `5d7dda9a9a7d85a540c85a3259da0947de1a68e6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `06ee5415b68f1f7621de48ead1be054a45cce916` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -43,7 +43,8 @@ Claude Code updates this file at the end of each session.
    honeycomb grid of all supporters (`TOPL`) with search and the two-order sort. Photos in grids get a wash of the level
    colour, full photo on hover. Preview card no longer vanishes while the pointer travels to it.
    Nov 22: the home page Comments tab is now "Voices" with the heading "Why this film matters" (ids and code names
-   still say comments). `renderComments` ends with an "Add your voice" block: non-members get Donate $5 / Start a
+   still say comments). Later the same day the section heading became "Voices" + count with the subtitle
+   "Why this film matters", so the menu link lands on a matching title. `renderComments` ends with an "Add your voice" block: non-members get Donate $5 / Start a
    fundraiser / Log in; members get a button that opens their own profile page. Member testimonials do NOT yet appear
    in that list (it shows pinned quotes and gift comments only).
    Nov 22: matching challenges start open (`CHOPEN[slug]!==false`), so their honeycombs show without a click; hovering
@@ -70,7 +71,7 @@ Claude Code updates this file at the end of each session.
    SUPPORTER COUNT (decided Nov 22: match /donors): the page now counts it itself (`suppCount`): every named person
    once (donors in `TOTALS`, challenge makers in `LEGS`/`PAST`, people in `CONN.act` credited for raising without a gift)
    plus every anonymous gift. That is the /donors rule (its people list minus the "Unnamed Community Credit" row).
-   The Nirvana count is only a stand-in until gifts load. Older note follows.
+   The Nirvana count is only a stand-in until gifts load. Confirmed live Nov 22: both pages read 293. Older note follows.
    SUPPORTER COUNT (old): /home-dev showed 286 from the Nirvana `wat-donor-count` function (266 known people + 20 anonymous
    gifts it cannot tie to a known person). whatatrip.com/donors shows 293-294 because it counts every anonymous gift
    (36) as its own supporter and adds a few names credited without a gift. Waiting on Nirvan: which rule to use.
