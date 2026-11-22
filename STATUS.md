@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `c241b1d48ab3979460c01b1df1667175ff5ca7b6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `81d081c1566007a2c52fd7875d684f9189601020` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -220,6 +220,14 @@ Claude Code updates this file at the end of each session.
    The 1 Second Film. To confirm with Nirvan: Instagram handles (@rickdoblin, @mapsnews, @darrenaronofsky), poster rights, what "Box"
    meant in his dictated note, and logo files for MAPS and Protozoa (none added). Menu: Supporters is marked with a soft tint, no underline.
    NOT built: a "Connect with me" card with the crew member's referral link (needs their member account linked to the crew page).
+   Nirvan's crew page: seven films linking to YouTube with the video stills as posters (Caine's Arcade 1 and 2, The Box Man, The Three
+   of Us, #EarthToParis, #EarthToMarrakech, The 1 Second Film trailer) and three links (interconnected.is, nirvan.com, imagination.org).
+   He dictated "interconnectedmedia"; interconnected.is was used because it is the company's working site. To confirm.
+   BUG FIXED (Nov 22): the saved site settings (`site_content` key `settings`: team order, crew profile edits, voices pins and hides,
+   comment approval) were never read back on the live site, because the loader near "var CSET=" ran before `LIVE` is set further
+   down the file. It now runs in a `setTimeout(...,0)`. Proven with a test that loads the page as whatatrip.com (scratch t68.js):
+   before, zero settings requests; after, the saved order and a saved crew edit both show. Built-in team order updated to his latest.
+   The same early-run problem was noted before in `seedLoad()` and has not been looked at again.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
