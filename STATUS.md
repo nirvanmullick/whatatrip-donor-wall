@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `86d43c94b298f27ce70343aa7af9b24f7057077f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `8d12a43092311b522b445ea178b0b07b05602ee2` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -61,6 +61,17 @@ Claude Code updates this file at the end of each session.
    "honeycomb grid of supporters" on the site (internal name only); the profile page section is headed "Our community".
    Asked, not designed yet: how a member connects their Pledge fundraiser so it fills their profile, and what a
    member's own fundraising page (whatatrip.com/username) looks like.
+   Nov 22 night: tools on each voice (`renderComments`, `voiceId`, `voiceSet`, `voiceSave`, `voiceFlag`, `VMENU`).
+   Everyone sees two reactions and a reply button (the existing reactions/comments tables, target `voice:<slug>:<hash>`).
+   Members get a flag (sends a team inbox message). Owners and Admins get a three-dot menu: pin, hide, flag, remove;
+   saved under `voices` in the `settings` row of `site_content` (no migration). Managers cannot use the menu yet because
+   `save_site_content` only lets owner/admin write `settings`; widening that needs a migration and Nirvan's OK.
+   There is no screen yet to restore a removed voice (edit `settings.voices.rem`).
+   SUPPORTER COUNT: /home-dev shows 286 from the Nirvana `wat-donor-count` function (266 known people + 20 anonymous
+   gifts it cannot tie to a known person). whatatrip.com/donors shows 293-294 because it counts every anonymous gift
+   (36) as its own supporter and adds a few names credited without a gift. Waiting on Nirvan: which rule to use.
+   Asked for next: hero mockups (supporter hexagons filling the hero after the zoom / after the trailer, and Rick's
+   portrait made of supporter hexagons).
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
