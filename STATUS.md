@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d49545262bbbf4d2f85417f88f0bd028be489def` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ae7c8aeb9b1e6b2455bde83aed224dc81f0422bc` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -111,6 +111,13 @@ Claude Code updates this file at the end of each session.
    the Members page exists). It re-sorts with the Top/Recent tabs via `chResort` and hovering a hexagon highlights the
    whole list row (`.dn.hl`). Also fixed an older bug: at phone widths the Supporters section was ~28px wider than
    the screen because the two tabs could not shrink (amounts were cut off at the right).
+   Both supporter honeycombs (home page `supHive`, profile page `openProfilePage`) now draw from `supAllHex(mode)`:
+   named supporters + people credited without a gift + one hexagon per anonymous gift, so their totals equal
+   `suppCount()` (293 live). Arcturus card moved into the perks column (`[data-arcbox]`, appended to `#wath-levels`).
+   Filmmakers: mockup only in `../mockups/filmmakers-ideas.html` (ideas A/B/C + a filmmaker profile page); waiting on
+   Nirvan's pick, then move the section up under Story.
+   Stripe checkout + Fiscal Sponsor role for Creative Visions runs in its own session ("Stripe checkout for Creative
+   Visions"); do not build it here.
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
