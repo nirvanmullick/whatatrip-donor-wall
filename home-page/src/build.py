@@ -1245,6 +1245,8 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .wath-hc .hcwave{display:inline-block;transform-origin:70% 75%;animation:hcWave 10s ease-in-out 1.2s infinite}
 @keyframes hcWave{0%,84%,100%{transform:none}87%{transform:rotate(16deg)}90%{transform:rotate(-8deg)}93%{transform:rotate(14deg)}96%{transform:rotate(-4deg)}}
 @media(prefers-reduced-motion:reduce){#wath-top .wath-hc .hcwave{animation:none}}
+#wath-top .sppgcd .btn.crall{margin-top:16px}
+#wath-top .sppgcd .btn.crall[hidden]{display:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
