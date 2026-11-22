@@ -945,6 +945,9 @@ html.wath-noscroll{overflow:hidden}
 /* Nov 22 (Nirvan): a small profile hexagon sits next to each name in a challenge's list */
 #wath .chpn,:is(#wath,#wath-top) .chpa,#wath-top .spov ul.spchl .mlink{display:inline-flex;align-items:center;gap:8px;min-width:0;text-align:left;text-decoration:none}
 #wath .chp li,#wath-top .spov ul.spchl li{align-items:center}
+#wath .chp li,#wath-top .spov ul.spchl li{transition:background-color .15s ease}
+#wath .chp li.hl,#wath-top .spov ul.spchl li.hl{background:#ece7f7;box-shadow:-8px 0 0 #ece7f7,8px 0 0 #ece7f7}
+@media(prefers-reduced-motion:reduce){#wath .chp li,#wath-top .spov ul.spchl li{transition:none}}
 #wath .chp li>span{display:flex;min-width:0}
 :is(#wath .chp,#wath-top .spov ul.spchl) .hxw{display:block;flex:none;width:28px;height:28px;padding:0;background:none;clip-path:none;line-height:normal}
 :is(#wath .chp,#wath-top .spov ul.spchl) .av{width:28px!important;height:28px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0}
@@ -1028,6 +1031,13 @@ html.wath-noscroll{overflow:hidden}
 @media(max-width:900px){#wath-top .sppgc{grid-template-columns:minmax(0,1fr);gap:16px}#wath-top .sppgall{margin-top:16px}}
 @media(max-width:560px){#wath-top .sppgw{padding:12px 16px 48px}#wath-top .sppgm{padding:20px 16px}#wath-top .sppgcd,#wath-top .sppgall{padding:20px 16px}#wath-top .sppgacts .btn{flex:1 1 100%}#wath-top .sppgall .sppgah .sphso{margin-left:-8px}}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgall .chhx{transition:none}}
+/* Nov 22 (Nirvan): Add your voice: one button under the Voices list, and a small pop-up for people who are not members yet */
+#wath .voice{margin:16px 0 4px}
+#wath-top .voiceov .bovc{max-width:440px}
+#wath-top .voiceov .bovc p{margin:8px 0 16px;font-size:15.5px;line-height:1.5;color:#3a3245}
+#wath-top .voiceov .voicego{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;box-sizing:border-box}
+#wath-top .voiceov .voicealt{margin:16px 0 0!important;font-size:14.5px!important;line-height:2!important;color:#5b6478!important}
+#wath-top .voiceov .voicealt .mlink{font-size:14.5px;align-self:auto;display:inline}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
