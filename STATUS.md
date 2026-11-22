@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8b4a68b13c979dbd5d8a5b64d192d78144905ea7` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `27135662b8108f174b27d0f6783cebc72a933ac4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -127,6 +127,9 @@ Claude Code updates this file at the end of each session.
    DONE Nov 22: on a profile page the community honeycomb sits in the left column under the profile (`.sppgL`).
    DONE Nov 22: a search button above the home-page supporters honeycomb (`SUPF`, `supFilter`, `[data-supsearch]`);
    typing narrows the grid (class `xq`, skipped by `chHiveLay`) and lifts the four-row cap while searching.
+   DONE Nov 22 (late): Supporters heading reads "Our N supporters" (live count, in `renderHero`); the link under the
+   grid reads "See all N supporters" and is right-aligned. Connections on a profile page are a linked two-row chain
+   (`data-zig` on the hive; the zigzag branch at the top of `chHiveLay`), wrapping into more bands when wide.
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
