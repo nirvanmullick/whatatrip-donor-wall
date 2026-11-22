@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef7385d3596565afec543f0f9ddb9fad05bb35cf` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `1705cbe8c36ed512c902d611d4958ab61965f5e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -102,6 +102,14 @@ Claude Code updates this file at the end of each session.
    DONE Nov 22: (1) log-in as a pop-up. `.mov[data-tab="login"|"pw"]` is now a dimmed layover with the `.mlogin`
    card centred (CSS only, plus a close button `.mlx` in the card and click-outside-to-close). The sign-in logic is
    untouched; after logging in the full dashboard opens as before. Not verified against real Google/email sign-in.
+   DONE Nov 22: each challenge card has a share button (`.chsh`, `data-chshare`; copies `chLink(slug)` = this page +
+   `#wat-challenge-<slug>`, or the phone share sheet). Arriving on such a link scrolls to and opens that challenge
+   (`chGo`). Card titles lead with the amount: "$60,000 matching challenge by NAME" (`chTitleCard`; the name shows the
+   preview card when the person has gifts).
+   ALSO ASKED Nov 22 (not built): supporters honeycomb grid (4 rows + "See all") above the Top/Recent tabs in the
+   Supporters section, shuffling when the tab changes and highlighting the matching list row on hover; move the
+   "Learn about Arcturus" block up under the perk levels with a divider; mock up the doubling icon as two overlapping
+   hexagons instead of hearts; Creative Visions/Stripe admin idea (discussion only).
    QUEUE he asked for, in his words "build these next": (1) log-in as a small pop-up [done], (2) Members page replacing the
    donor wall with supporters + filmmakers in one grid, filmmaker profiles, per-field privacy (needs a migration: ask),
    (3) hero mockups, (4) four-row community grid on the home page, (5) donor wall mockup, (6) Connect button (migration).
