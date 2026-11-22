@@ -1285,6 +1285,12 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .crvm a{color:#d9d1ee;font-size:14px}
 @media(min-width:761px){#wath-top .crvm{padding:0}}
 #wath-top .sppg a.btn.crig{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+@property --wja{syntax:'<angle>';inherits:false;initial-value:0deg}
+:is(#wath,#wath-top) .chhx.joinhx .av.lvc::after{background:conic-gradient(from var(--wja),#a88bd6,#93b1df,#8fcab4,#dccb78,#e6a987,#dd8fa6,#a88bd6);animation:wathJoinSpin 7s linear infinite}
+:is(#wath,#wath-top) .chhive>.chhx.joinhx{animation:wathJoinGlow 4.2s ease-in-out infinite}
+@keyframes wathJoinSpin{to{--wja:360deg}}
+@keyframes wathJoinGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(168,139,214,0))}50%{filter:drop-shadow(0 0 5px rgba(168,139,214,.75))}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhx.joinhx .av.lvc::after,:is(#wath,#wath-top) .chhive>.chhx.joinhx{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
