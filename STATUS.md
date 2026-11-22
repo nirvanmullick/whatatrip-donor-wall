@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ae7c8aeb9b1e6b2455bde83aed224dc81f0422bc` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `1a365fc807a8d1287fec833005ab697d1b6fdff4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -118,6 +118,14 @@ Claude Code updates this file at the end of each session.
    Nirvan's pick, then move the section up under Story.
    Stripe checkout + Fiscal Sponsor role for Creative Visions runs in its own session ("Stripe checkout for Creative
    Visions"); do not build it here.
+   DONE Nov 22: Filmmakers is compact and sits in the left column right after Story. The last step of build.py
+   removes the old full-width band and inserts `<section id="wath-team">` with `[data-team]`; `renderTeam()` draws a
+   two-row zigzag honeycomb (`teamLay`, wraps into more bands as the crew grows) and a list of names and roles (first
+   five, then "Show N more"). Order and membership: `TEAMORD` + `BIOS`. Hovering a face or name shows the preview card
+   (role + first line of the bio); clicking opens the existing bio pop-up. Filmmaker PROFILE PAGES are still only a
+   mockup (`../mockups/filmmakers-ideas.html`).
+   ASKED Nov 22, not built: on a profile page put the community honeycomb in the left column under the profile
+   instead of full width.
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
