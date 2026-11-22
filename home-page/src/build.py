@@ -934,24 +934,39 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .lvb svg .cs{fill:none;stroke:var(--lf);stroke-width:1.3;stroke-linejoin:round}
 :is(#wath,#wath-top) .chhive{position:relative;margin:10px 0 14px}
 :is(#wath,#wath-top) .chhx{position:absolute;display:block;padding:0;margin:0;border:0;background:none;border-radius:0;width:40px;height:40px}
-:is(#wath,#wath-top) .chhx[data-supp]{cursor:pointer}
+:is(#wath,#wath-top) :is(.chhx[data-supp],[data-anon]){cursor:pointer}
+:is(#wath,#wath-top) .chpa:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .wath-hc.anon{cursor:default}
 :is(#wath,#wath-top) .chhx .hxw{display:block;width:100%;height:100%;padding:0;background:none;clip-path:none;line-height:normal}
 :is(#wath,#wath-top) .chhx .av{width:100%!important;height:100%!important;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;margin:0}
 :is(#wath,#wath-top) .chhx:focus-visible,#wath .chpn:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
-#wath .chpn{color:#6152a0;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#wath .chpn{color:#6152a0;font-weight:600;cursor:pointer}
+#wath .chpn>span:last-child,#wath-top .spov ul.spchl .mlink>span:last-child{text-decoration:underline;text-underline-offset:3px;min-width:0;overflow-wrap:anywhere}
+/* Nov 22 (Nirvan): a small profile hexagon sits next to each name in a challenge's list */
+#wath .chpn,:is(#wath,#wath-top) .chpa,#wath-top .spov ul.spchl .mlink{display:inline-flex;align-items:center;gap:8px;min-width:0;text-align:left;text-decoration:none}
+#wath .chp li,#wath-top .spov ul.spchl li{align-items:center}
+#wath .chp li>span{display:flex;min-width:0}
+:is(#wath .chp,#wath-top .spov ul.spchl) .hxw{display:block;flex:none;width:28px;height:28px;padding:0;background:none;clip-path:none;line-height:normal}
+:is(#wath .chp,#wath-top .spov ul.spchl) .av{width:28px!important;height:28px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0}
+/* challenge makers: a quiet second outline inside the hexagon, same size as everyone else */
+:is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lt);opacity:.6;clip-path:polygon(evenodd,50% 10%,84.6% 30%,84.6% 70%,50% 90%,15.4% 70%,15.4% 30%,50% 10%,50% 13.5%,18.4% 31.75%,18.4% 68.25%,50% 86.5%,81.6% 68.25%,81.6% 31.75%,50% 13.5%);pointer-events:none}
+:is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::after{background:var(--lt)}
 #wath .chpn:hover{color:#3f3478}
 /* hover: the hexagon deepens to its ring colour and the ring darkens */
 :is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:background-color .15s ease}
-:is(#wath,#wath-top) :is(.chhx[data-supp],.cnhx,.dn.sp):is(:hover,:focus-visible) .av.lvc:not(:has(img)){background:var(--ls)!important}
-:is(#wath,#wath-top) :is(.chhx[data-supp],.cnhx,.dn.sp):is(:hover,:focus-visible) .av.lvc::after{background:var(--lt)}
-#wath-top .wath-hc{position:fixed;z-index:2147483000;display:flex;align-items:center;gap:12px;width:max-content;max-width:min(280px,calc(100vw - 16px));box-sizing:border-box;padding:12px 14px;background:#fff;border:1px solid #d9d3ec;border-radius:12px;box-shadow:0 10px 30px rgba(27,21,38,.16);color:#1b1526;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .14s ease,transform .14s ease;text-align:left}
+:is(#wath,#wath-top) :is(.chhx[data-supp],.chhx[data-anon],.chpa[data-anon],.cnhx,.dn.sp,.chpn,.spchl .mlink):is(:hover,:focus-visible) .av.lvc:not(:has(img)){background:var(--ls)!important}
+:is(#wath,#wath-top) :is(.chhx[data-supp],.chhx[data-anon],.chpa[data-anon],.cnhx,.dn.sp,.chpn,.spchl .mlink):is(:hover,:focus-visible) .av.lvc::after{background:var(--lt)}
+#wath-top .wath-hc{position:fixed;z-index:2147483000;display:flex;flex-direction:column;gap:16px;width:320px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:20px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 10px 30px rgba(27,21,38,.16);color:#1b1526;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .14s ease,transform .14s ease;text-align:left}
 #wath-top .wath-hc.on{opacity:1;transform:none}
-#wath-top .wath-hc .av{width:48px!important;height:52px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin:0}
-#wath-top .wath-hc .hct{display:flex;flex-direction:column;gap:2px;min-width:0;line-height:1.3}
-#wath-top .wath-hc .hct b{font-size:15.5px;font-weight:800;overflow-wrap:anywhere}
+#wath-top .wath-hc .av{width:60px!important;height:66px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin:0}
+#wath-top .wath-hc .hct{display:flex;flex-direction:column;gap:4px;min-width:0;line-height:1.3}
+#wath-top .wath-hc .hct b{font-size:17px;font-weight:800;overflow-wrap:anywhere}
 #wath-top .wath-hc .hcl{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6152a0}
-#wath-top .wath-hc .hcg{font-size:13.5px;color:#5b6478}
-#wath-top .wath-hc .hcv{font-size:13px;font-weight:700;color:#6152a0;margin-top:4px}
+#wath-top .wath-hc .hcg{font-size:14px;color:#5b6478}
+#wath-top .wath-hc .hcv{display:flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;padding:8px 16px;background:#fff;border:1px solid #cfc8e6;border-radius:10px;font-size:14px;font-weight:700;color:#1b1526;transition:background-color .15s ease}
+#wath-top .wath-hc:hover .hcv{background:#f6f3fc}
+#wath-top .wath-hc .hcr{display:flex;align-items:center;gap:16px;min-width:0}
+#wath-top .wath-hc .hcq{font-size:13.5px;line-height:1.45;font-style:italic;color:#3a3245;border-top:1px solid #ebe7f5;padding-top:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 @media(prefers-reduced-motion:reduce){#wath-top .wath-hc,:is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:none}}
 #wath-top .spov .spchh{padding:6px 14px 2px;overflow:visible}
 #wath-top .spov .spchh .chhive{margin:4px 0 10px}
@@ -963,10 +978,6 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .spov .sphso:hover{background:#efeafb}
 #wath .chd .chso.chsol:focus-visible,#wath-top .spov .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 @media(max-width:600px){#wath .chd .chso.chsol{position:static;margin:0 0 4px -8px}#wath .chd .chdh{margin-bottom:2px}}
-/* after a re-sort the hexagons grow in one at a time, left to right */
-@keyframes wathHexGrow{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
-:is(#wath,#wath-top) .chhive.grow .chhx{animation:wathHexGrow .3s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:var(--d,0ms)}
-@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhive.grow .chhx{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
