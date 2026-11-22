@@ -1241,6 +1241,10 @@ html.wath-noscroll{overflow:hidden}
 #wath #wath-recent .seg.suptabs button.on{background:none;color:#1b1526;border-bottom-color:#6152a0}
 #wath #wath-recent .seg.suptabs button:focus-visible{outline:2px solid #6152a0;outline-offset:-2px}
 @media(max-width:480px){#wath #wath-recent .suplist>.dn{gap:8px}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who{display:grid;grid-template-columns:auto auto minmax(0,1fr);column-gap:8px;row-gap:2px;align-items:center;flex:1 1 0;min-width:0}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>:is(.rk,.av){grid-row:1/3}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>b{grid-column:3;min-width:0;overflow-wrap:break-word}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>:is(.spcm,.mi){grid-column:3;grid-row:2;justify-self:start;margin-left:0}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>.spcm+.mi{margin-left:28px}#wath #wath-recent .suplist>.dn .amtc{max-width:7.6em;text-align:right}#wath #wath-recent .suplist>.dn .amtc .when{white-space:normal;display:block}}
+/* Nov 22 (Nirvan): the waving hand on the join card: still most of the time, one small wave every ten seconds or so */
+#wath-top .wath-hc .hcwave{display:inline-block;transform-origin:70% 75%;animation:hcWave 10s ease-in-out 1.2s infinite}
+@keyframes hcWave{0%,84%,100%{transform:none}87%{transform:rotate(16deg)}90%{transform:rotate(-8deg)}93%{transform:rotate(14deg)}96%{transform:rotate(-4deg)}}
+@media(prefers-reduced-motion:reduce){#wath-top .wath-hc .hcwave{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
