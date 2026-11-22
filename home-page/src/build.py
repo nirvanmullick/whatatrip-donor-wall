@@ -951,13 +951,16 @@ html.wath-noscroll{overflow:hidden}
 #wath .chp li>span{display:flex;min-width:0}
 :is(#wath .chp,#wath-top .spov ul.spchl) .hxw{display:block;flex:none;width:28px;height:28px;padding:0;background:none;clip-path:none;line-height:normal}
 :is(#wath .chp,#wath-top .spov ul.spchl) .av{width:28px!important;height:28px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0}
-/* Nov 22 (Nirvan): in a honeycomb grid a photo sits under a wash of the person's level colour, so the left-to-right gradient still reads; hovering shows the full photo */
-:is(#wath,#wath-top) .chhx .av.lvc:not(.mk):has(img)::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lf);opacity:.6;pointer-events:none;transition:opacity .15s ease}
-:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:not(.mk):has(img)::before{opacity:0}
-@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before{transition:none}}
 /* challenge makers: a quiet second outline inside the hexagon, same size as everyone else */
 :is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lt);opacity:.6;clip-path:polygon(evenodd,50% 10%,84.6% 30%,84.6% 70%,50% 90%,15.4% 70%,15.4% 30%,50% 10%,50% 13.5%,18.4% 31.75%,18.4% 68.25%,50% 86.5%,81.6% 68.25%,81.6% 31.75%,50% 13.5%);pointer-events:none}
 :is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::after{background:var(--lt)}
+/* Nov 22 (Nirvan): in a grid, a photo becomes a soft one-colour image in the person's level colour with their initials over it, so the colour gradient stays clear. Hovering shows the real photo. Challenge makers get the same treatment. */
+:is(#wath,#wath-top) .chhx .av.lvc:has(img){background:var(--lf)!important}
+:is(#wath,#wath-top) .chhx .av.lvc:has(img) img{filter:grayscale(1) contrast(1.1);mix-blend-mode:multiply;opacity:.28;transition:opacity .15s ease,filter .15s ease}
+:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before,:is(#wath,#wath-top) .chhx .av.lvc.mk:has(img)::before{content:attr(data-i);position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;background:none;clip-path:none;opacity:1;color:var(--lt);pointer-events:none;transition:opacity .15s ease}
+:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:has(img) img{filter:none;mix-blend-mode:normal;opacity:1}
+:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:has(img)::before{opacity:0}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhx .av.lvc:has(img) img,:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before{transition:none}}
 #wath .chpn:hover{color:#3f3478}
 /* hover: the hexagon deepens to its ring colour and the ring darkens */
 :is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:background-color .15s ease}
