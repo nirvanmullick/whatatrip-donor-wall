@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `81d081c1566007a2c52fd7875d684f9189601020` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `3443959ea8660f852826f3195b739297435cd513` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -228,6 +228,10 @@ Claude Code updates this file at the end of each session.
    down the file. It now runs in a `setTimeout(...,0)`. Proven with a test that loads the page as whatatrip.com (scratch t68.js):
    before, zero settings requests; after, the saved order and a saved crew edit both show. Built-in team order updated to his latest.
    The same early-run problem was noted before in `seedLoad()` and has not been looked at again.
+   Supporter list tabs: the connector lines (`bondsDraw`) were measured while rows were gliding and stayed wrong. They now hide during
+   the glide (`.suplist.shuf`) and are redrawn 560ms later; scratch test t69.js compares the lines before and after Top/Recent/Top.
+   A separate session, "Interactive fundraising progress bar" (name `progress-bar`), is building a standalone mockup at
+   `whatatrip-site/mockups/progress-bar.html`; it must not edit the home page files and will hand over for integration.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
