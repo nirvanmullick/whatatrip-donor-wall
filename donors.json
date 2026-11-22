@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T16:42:42.731Z",
+  "updated": "2026-11-22T22:10:01.375Z",
   "count": 99,
   "source": "pledge-json-v2",
   "totals": {
@@ -32,7 +32,7 @@
       "ts": "2026-11-15T09:30:03.529-08:00",
       "anonymous": true,
       "amount": 1000,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "comment": "Thanks for this awesome + inspiring + important work - it was great to be part of the salon at Lightening Society too!",
       "matched": true
     },
