@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `c971c786d066bd463d6082799b5ac3d7330b055a` (Nov 22: honeycomb grid of supporters: column fill, wave in, shuffle re-sort, two orders, list icons, anonymous cards, roomier preview card).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `71f2879812d54d35cedb09121f8ce0879574c87d` (Nov 22: honeycomb grid of supporters: column fill, wave in, shuffle re-sort, two orders, list icons, anonymous cards, roomier preview card).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
