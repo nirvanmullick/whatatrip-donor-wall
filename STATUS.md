@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8d12a43092311b522b445ea178b0b07b05602ee2` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `56f94163b404ce7cb7b2ddf07370368b7014c7e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -72,6 +72,11 @@ Claude Code updates this file at the end of each session.
    (36) as its own supporter and adds a few names credited without a gift. Waiting on Nirvan: which rule to use.
    Asked for next: hero mockups (supporter hexagons filling the hero after the zoom / after the trailer, and Rick's
    portrait made of supporter hexagons).
+   Layout fix: opening every challenge made the section too tall to sit beside the perks, so the page's own fit
+   script dropped it below (Nirvan noticed). Now `fit()` folds the lowest challenges (`CHAUTO`) until the section fits;
+   anything the visitor toggles (`CHOPEN`) is kept. Phones and tablets show all open.
+   Add your voice for a logged-in $5+ member is now an inline box under the list (`VBOX`, saves via `spSave` to the
+   profile testimonial; prefilled with a note if they already have one). Non-members still get the join pop-up.
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
