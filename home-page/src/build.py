@@ -1189,11 +1189,18 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .crlast{margin-bottom:0}
 #wath-top .crcn{margin-top:12px}
 #wath-top .crfg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-#wath-top .crf{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;aspect-ratio:2/3;min-width:0;padding:8px;box-sizing:border-box;background:#f6f3fc;border:1px solid #d9d3ec;color:#1b1526;text-decoration:none;transition:background-color .15s ease}
-#wath-top .crf:hover{background:#ece7f7}
-#wath-top .crf:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .crfg{align-items:start}
+#wath-top .crf{display:flex;flex-direction:column;gap:2px;min-width:0;color:#1b1526;text-decoration:none}
+#wath-top .crfp{display:flex;align-items:flex-end;aspect-ratio:2/3;margin-bottom:4px;overflow:hidden;box-sizing:border-box;background:#f6f3fc;border:1px solid #d9d3ec;transition:border-color .15s ease}
+#wath-top .crfp img{display:block;width:100%;height:100%;object-fit:cover}
+#wath-top .crfp.crfn{padding:8px}
+#wath-top .crfp i{font-style:normal;font-size:12.5px;line-height:1.25;font-weight:800;color:#6152a0;overflow-wrap:anywhere}
+#wath-top a.crf:hover .crfp{border-color:#6152a0}
+#wath-top a.crf:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath-top .crf b{font-size:12.5px;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
-#wath-top .crf span{font-size:11.5px;color:#5b6478}
+#wath-top .crf .crfy{font-size:11.5px;color:#5b6478}
+#wath-top .crlk a{display:inline-flex;align-items:center;gap:8px}
+#wath-top .crlk svg{flex:none;color:#6152a0}
 @media(max-width:560px){#wath-top .crh{gap:16px}#wath-top .crh .tmhx{width:72px;height:72px;font-size:22px}#wath-top .crn{font-size:24px}}
 /* Nov 22 (Nirvan): X to clear the supporter search */
 #wath .suphsx{all:unset;box-sizing:border-box;cursor:pointer;position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;margin-left:-40px;margin-right:8px;border-radius:50%;color:#6152a0}
@@ -1232,7 +1239,8 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .sppgfx.now::before{transition:none}
 #wath-top .sppgout{position:fixed;left:0;right:0;bottom:0;z-index:99999;pointer-events:none;background:var(--sppgwp),#f6f3fc;animation:sppgOut .5s ease forwards}
 @keyframes sppgOut{to{opacity:0}}
-#header a.wath-navon{text-decoration:underline;text-underline-offset:6px}
+#header a.wath-navon{text-decoration:none!important;background-image:none!important;background-color:color-mix(in srgb,currentColor 16%,transparent)!important;border-radius:8px;padding:6px 12px;margin:-6px -12px;box-shadow:none!important}
+#header a.wath-navon::after,#header a.wath-navon::before{display:none!important}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgfx::before{transition:none}}
 /* Nov 22 (Nirvan): Top supporters / Recent donations as tabs on a line: the chosen one is dark with a purple bar under it */
 #wath #wath-recent .seg.suptabs{display:flex;gap:8px;padding:0;margin:0 0 8px;background:none;border:0;border-bottom:1px solid #cfc8e6;border-radius:0;box-shadow:none;overflow:visible}

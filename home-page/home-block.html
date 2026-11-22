@@ -1373,11 +1373,18 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .crlast{margin-bottom:0}
 #wath-top .crcn{margin-top:12px}
 #wath-top .crfg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-#wath-top .crf{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;aspect-ratio:2/3;min-width:0;padding:8px;box-sizing:border-box;background:#f6f3fc;border:1px solid #d9d3ec;color:#1b1526;text-decoration:none;transition:background-color .15s ease}
-#wath-top .crf:hover{background:#ece7f7}
-#wath-top .crf:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .crfg{align-items:start}
+#wath-top .crf{display:flex;flex-direction:column;gap:2px;min-width:0;color:#1b1526;text-decoration:none}
+#wath-top .crfp{display:flex;align-items:flex-end;aspect-ratio:2/3;margin-bottom:4px;overflow:hidden;box-sizing:border-box;background:#f6f3fc;border:1px solid #d9d3ec;transition:border-color .15s ease}
+#wath-top .crfp img{display:block;width:100%;height:100%;object-fit:cover}
+#wath-top .crfp.crfn{padding:8px}
+#wath-top .crfp i{font-style:normal;font-size:12.5px;line-height:1.25;font-weight:800;color:#6152a0;overflow-wrap:anywhere}
+#wath-top a.crf:hover .crfp{border-color:#6152a0}
+#wath-top a.crf:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath-top .crf b{font-size:12.5px;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
-#wath-top .crf span{font-size:11.5px;color:#5b6478}
+#wath-top .crf .crfy{font-size:11.5px;color:#5b6478}
+#wath-top .crlk a{display:inline-flex;align-items:center;gap:8px}
+#wath-top .crlk svg{flex:none;color:#6152a0}
 @media(max-width:560px){#wath-top .crh{gap:16px}#wath-top .crh .tmhx{width:72px;height:72px;font-size:22px}#wath-top .crn{font-size:24px}}
 /* Nov 22 (Nirvan): X to clear the supporter search */
 #wath .suphsx{all:unset;box-sizing:border-box;cursor:pointer;position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;margin-left:-40px;margin-right:8px;border-radius:50%;color:#6152a0}
@@ -1416,7 +1423,8 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .sppgfx.now::before{transition:none}
 #wath-top .sppgout{position:fixed;left:0;right:0;bottom:0;z-index:99999;pointer-events:none;background:var(--sppgwp),#f6f3fc;animation:sppgOut .5s ease forwards}
 @keyframes sppgOut{to{opacity:0}}
-#header a.wath-navon{text-decoration:underline;text-underline-offset:6px}
+#header a.wath-navon{text-decoration:none!important;background-image:none!important;background-color:color-mix(in srgb,currentColor 16%,transparent)!important;border-radius:8px;padding:6px 12px;margin:-6px -12px;box-shadow:none!important}
+#header a.wath-navon::after,#header a.wath-navon::before{display:none!important}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgfx::before{transition:none}}
 /* Nov 22 (Nirvan): Top supporters / Recent donations as tabs on a line: the chosen one is dark with a purple bar under it */
 #wath #wath-recent .seg.suptabs{display:flex;gap:8px;padding:0;margin:0 0 8px;background:none;border:0;border-bottom:1px solid #cfc8e6;border-radius:0;box-shadow:none;overflow:visible}
@@ -2619,7 +2627,7 @@ function sppgLife(o,now){var fx=document.createElement('div');fx.className='sppg
       var i=lo+Math.floor(Math.random()*Math.max(1,hi-lo+1)),cx=row?i*W:i*W+W/2,cy=(row?60:24)+72*k,id=row+':'+k+':'+i;if(used[id]||cx-W/2<0||cx+W/2>vw)continue;used[id]=1;
       var h=document.createElement('i');h.style.left=(cx-W/2).toFixed(2)+'px';h.style.top=(cy-24)+'px';h.style.background=C[Math.floor(Math.random()*C.length)];fx.appendChild(h);void h.offsetWidth;h.classList.add('on');break}}
     setTimeout(tick,10000+Math.random()*20000)};setTimeout(tick,4000)}
-function sppgNav(on){try{[].forEach.call(document.querySelectorAll('#header a[href$="/donors"],#header a[href$="/donors/"],.header-menu-nav a[href$="/donors"],.header-menu-nav a[href$="/donors/"]'),function(a){if(!a._wn){a._wn=1;a.textContent='Supporters'}a.classList.toggle('wath-navon',!!on);var it=a.closest('.header-nav-item');if(it)it.classList.toggle('header-nav-item--active',!!on)})}catch(e){}}
+function sppgNav(on){try{[].forEach.call(document.querySelectorAll('#header a[href$="/donors"],#header a[href$="/donors/"],.header-menu-nav a[href$="/donors"],.header-menu-nav a[href$="/donors/"]'),function(a){if(!a._wn){a._wn=1;a.textContent='Supporters'}a.classList.toggle('wath-navon',!!on)})}catch(e){}}
 setTimeout(function(){sppgNav(false)},0);setTimeout(function(){sppgNav(!!T.querySelector('.bov.sppg'))},1800);
 function sppgLeave(o){try{sppgNav(false);if(o._sy!=null)window.scrollTo({top:o._sy,behavior:'instant'});if(WRM)return;var g=document.createElement('div');g.className='sppgout';g.style.top=o.style.top||'0px';T.appendChild(g);setTimeout(function(){if(g.parentNode)g.parentNode.removeChild(g)},560)}catch(e){}}
 function openProfilePage(n,ck){var k=String(n).toLowerCase(),view=spSelf(k)?'own':memIn()?'member':'visitor',fn=String(n).split(/\s*&\s*|\s+/)[0],pl=/&| and /.test(n);closeBio();var gh=T.querySelector('.sppgout');if(gh)gh.parentNode.removeChild(gh);
@@ -3280,10 +3288,12 @@ BIOS.rick=['Rick Doblin','Featured Talent','https://cdn.jsdelivr.net/gh/nirvanmu
 BIOS.eric=['Eric Watson','Executive Producer','','','Eric Watson is an executive producer of WHAT A TRIP. He works with Protozoa Pictures, the production company founded by Darren Aronofsky.'];
 BIOS.interconnected=['Interconnected','Production Company','','','Interconnected is the production company behind WHAT A TRIP.'];
 BIO_IG.eric='';BIO_IG.interconnected='';
-var CREWX={darren:{links:[['IMDb','https://www.imdb.com/name/nm0004716/','Film credits']],films:[['Pi',1998,'tt0138704'],['Requiem for a Dream',2000,'tt0180093'],['The Fountain',2006,'tt0414993'],['The Wrestler',2008,'tt1125849'],['Black Swan',2010,'tt0947798'],['Noah',2014,'tt1959490'],['mother!',2017,'tt5109784'],['The Whale',2022,'tt13833688'],['Postcard from Earth',2023,'tt28363850'],['Caught Stealing',2025,'tt1493274']]},rick:{links:[['MAPS','https://maps.org/','maps.org']]}};
+var CREWX={darren:{links:[['Protozoa Pictures','https://www.protozoa.com/','Production company'],['IMDb','https://www.imdb.com/name/nm0004716/','Film credits']],films:[['Pi',1998,'tt0138704','https://upload.wikimedia.org/wikipedia/en/5/5a/Piposter.jpg'],['Requiem for a Dream',2000,'tt0180093','https://upload.wikimedia.org/wikipedia/en/9/92/Requiem_for_a_dream.jpg'],['The Fountain',2006,'tt0414993','https://upload.wikimedia.org/wikipedia/en/e/ee/Fountain_poster_1.jpg'],['The Wrestler',2008,'tt1125849','https://upload.wikimedia.org/wikipedia/en/3/3e/The_Wrestler_poster.jpg'],['Black Swan',2010,'tt0947798','https://upload.wikimedia.org/wikipedia/en/6/68/Black_Swan_poster.jpg'],['Noah',2014,'tt1959490','https://upload.wikimedia.org/wikipedia/en/4/41/Noah2014Poster.jpg'],['mother!',2017,'tt5109784','https://upload.wikimedia.org/wikipedia/en/9/94/Mother%212017.jpg'],['The Whale',2022,'tt13833688','https://upload.wikimedia.org/wikipedia/en/f/f3/TheWhalePoster.jpg'],['Postcard from Earth',2023,'tt28363850',''],['Caught Stealing',2025,'tt1493274','https://upload.wikimedia.org/wikipedia/en/e/e6/Caught_Stealing_poster.jpg']]},rick:{links:[['MAPS','https://maps.org/','maps.org'],['MAPS on Instagram','https://www.instagram.com/mapsnews/','@mapsnews']]},nirvan:{links:[],films:[['Caine\u2019s Arcade',2012,'https://cainesarcade.com/',''],['The 1 Second Film','','','']]}};BIO_IG.darren='darrenaronofsky';BIO_IG.rick='rickdoblin';
 var CREWBASE=null;
 function crewApply(){var C=(CSET&&CSET.crew)||{};if(!CREWBASE){CREWBASE={};TEAMORD.forEach(function(k){if(BIOS[k])CREWBASE[k]={b:BIOS[k].slice(),ig:BIO_IG[k]||'',x:CREWX[k]||{}}})}
   Object.keys(CREWBASE).forEach(function(k){var o=C[k]||{},Z=CREWBASE[k],B=Z.b;BIOS[k]=[o.name||B[0],o.role!=null?o.role:B[1],o.photo!=null?o.photo:B[2],o.pos||B[3],o.bio!=null?o.bio:B[4]];BIO_IG[k]=o.ig!=null?o.ig:Z.ig;CREWX[k]={links:o.links||Z.x.links||[],films:o.films||Z.x.films||[]}})}
+function crewImg(u){u=String(u||'');return /^https:\/\/\S+$/i.test(u)?u:''}
+function crewLinkIco(u){var g='<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';if(/instagram\.com/i.test(u))return g+'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';if(/imdb\.com/i.test(u))return g+'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l4 3-4 3z" fill="currentColor"/></svg>';return g+'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></svg>'}
 function crewFilmUrl(f){var u=String(f[2]||'');return /^https?:\/\//i.test(u)?u:/^tt\d+$/.test(u)?'https://www.imdb.com/title/'+u+'/':''}
 function crewForm(k){var B=BIOS[k],X=CREWX[k]||{},fld=function(lab,h,hint){return '<label class="crff"><span class="sppgl">'+lab+'</span>'+h+(hint?'<span class="crfh">'+hint+'</span>':'')+'</label>'};
   return '<form class="crfm" onsubmit="return false"><div class="crh">'+teamHex(B[0],B[2],B[3])+'<div class="crht"><b class="crn">Edit profile</b><span class="crr">'+esc(B[0])+'</span></div></div>'
@@ -3293,7 +3303,7 @@ function crewForm(k){var B=BIOS[k],X=CREWX[k]||{},fld=function(lab,h,hint){retur
     +fld('About','<textarea name="bio" rows="8" maxlength="3000">'+esc(String(B[4]||'').replace(/<[^>]+>/g,' '))+'</textarea>')
     +fld('Instagram','<input name="ig" maxlength="40" placeholder="username" value="'+esc(String(BIO_IG[k]||'').replace(/^@/,''))+'">')
     +fld('Links','<textarea name="links" rows="3">'+esc((X.links||[]).map(function(l){return [l[0],l[1],l[2]||''].join(' | ').replace(/ \| $/,'')}).join('\n'))+'</textarea>','One per line: Name | web address | short note (optional). Example: IMDb | https://www.imdb.com/name/nm0004716/ | Film credits')
-    +fld('Films','<textarea name="films" rows="6">'+esc((X.films||[]).map(function(f){return [f[0],f[1]||'',crewFilmUrl(f)].join(' | ').replace(/( \| )+$/,'')}).join('\n'))+'</textarea>','One per line: Title | Year | web address (optional)')
+    +fld('Films','<textarea name="films" rows="6">'+esc((X.films||[]).map(function(f){return [f[0],f[1]||'',crewFilmUrl(f),crewImg(f[3])].join(' | ').replace(/( \| )+$/,'')}).join('\n'))+'</textarea>','One per line: Title | Year | web address | poster image address (the last two are optional)')
     +'<div class="sppgacts"><button type="button" class="btn pri" data-crsave>Save</button><button type="button" class="btn" data-crcancel>Cancel</button></div></form>'}
 function crewPhoto(file,cb){try{var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var m=Math.min(1,600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
     c.toBlob(function(blob){if(!blob)return cb('');var path=LV.member.id+'/crew-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8)+'.jpg';SB.storage.from('profile-photos').upload(path,blob,{contentType:'image/jpeg',cacheControl:'31536000',upsert:false}).then(function(r){cb(r&&r.error?'':livePhotoUrl(path))},function(){cb('')})},'image/jpeg',.85)};im.onerror=function(){cb('')};im.src=u}catch(e){cb('')}}
@@ -3303,7 +3313,7 @@ function crewSave(k,o){var d={},old=CSET,c={};for(var a in CSET)d[a]=CSET[a];for
 function crewEdClick(t,k,into){if(!k||!t.closest)return false;if(t.closest('[data-credit]')){if(!voiceCanMod())return true;into.innerHTML=crewForm(k);try{into.querySelector('input').focus()}catch(e){}return true}
   if(t.closest('[data-crcancel]')){into.innerHTML=crewMain(k);return true}
   if(t.closest('[data-crsave]')){if(!voiceCanMod())return true;var f=into.querySelector('.crfm'),v=function(n){var e=f.querySelector('[name="'+n+'"]');return e?String(e.value).trim():''},url=function(u){return /^https?:\/\/\S+$/i.test(u)?u:''},lines=function(n){return v(n).split(/\n+/).map(function(x){return x.split('|').map(function(y){return y.trim()})}).filter(function(a){return a[0]})};
-    var o={name:v('name')||BIOS[k][0],role:v('role'),bio:v('bio'),ig:v('ig').replace(/^@/,'').replace(/[^A-Za-z0-9._]/g,''),photo:url(v('photo')),pos:BIOS[k][3]||'50% 30%',links:lines('links').map(function(a){return [a[0],url(a[1]||''),a[2]||'']}).filter(function(a){return a[1]}),films:lines('films').map(function(a){return [a[0],a[1]||'',url(a[2]||'')]})};
+    var o={name:v('name')||BIOS[k][0],role:v('role'),bio:v('bio'),ig:v('ig').replace(/^@/,'').replace(/[^A-Za-z0-9._]/g,''),photo:url(v('photo')),pos:BIOS[k][3]||'50% 30%',links:lines('links').map(function(a){return [a[0],url(a[1]||''),a[2]||'']}).filter(function(a){return a[1]}),films:lines('films').map(function(a){return [a[0],a[1]||'',url(a[2]||''),url(a[3]||'')]})};
     var fi=f.querySelector('[name="file"]'),file=fi&&fi.files&&fi.files[0],sb=f.querySelector('[data-crsave]');
     if(file){if(!LIVE||!SB||!LV.member){toast('Photo upload works once you are logged in on the live site.');return true}sb.disabled=true;sb.textContent='Saving\u2026';crewPhoto(file,function(u){if(u){o.photo=u;crewSave(k,o)}else{sb.disabled=false;sb.textContent='Save';toast('That photo could not be saved. Please try again.')}})}else crewSave(k,o);return true}
   return false}
@@ -3313,9 +3323,9 @@ function crewMain(k){crewApply();var B=BIOS[k],fn=B[0].split(' ')[0],pin=PINNED.
     +'<section class="crs"><span class="sppgl">About '+esc(fn)+'</span><p class="crp">'+esc(String(B[4]||'').replace(/<[^>]+>/g,' '))+'</p></section></div>'}
 function crewSide(k,view){crewApply();var X=CREWX[k]||{},C=[],card=function(lab,h){C.push('<section class="sppgcd"><span class="sppgl">'+lab+'</span>'+h+'</section>')},L=(X.links||[]).slice();
   if(BIO_IG[k])L.push(['Instagram','https://www.instagram.com/'+encodeURIComponent(BIO_IG[k].replace(/^@/,''))+'/','@'+BIO_IG[k].replace(/^@/,'')]);
+  if(L.length)card('Links','<ul class="sppgwl crlast crlk">'+L.map(function(l){return '<li><a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+crewLinkIco(l[1])+esc(l[0])+'</a><span>'+esc(l[2])+'</span></li>'}).join('')+'</ul>');
   if(k==='rick'){var c=suppCount(),AH=supAllHex('top');card(c+' Connections','<p class="sppgs">Everyone who supports the film is connected to Rick.</p><div class="chhive grow" data-rows="4">'+AH.html+'</div><button type="button" class="btn crall" data-suphvall data-crall>See all '+c+'</button>')}
-  if(X.films&&X.films.length)card('Films','<div class="crfg">'+X.films.map(function(f){var fu=crewFilmUrl(f),fin='<b>'+esc(f[0])+'</b><span>'+esc(f[1])+'</span>';return fu?'<a class="crf" target="_blank" rel="noopener" href="'+esc(fu)+'" aria-label="'+esc(f[0])+(f[1]?', '+esc(f[1]):'')+', opens in a new tab">'+fin+'</a>':'<span class="crf">'+fin+'</span>'}).join('')+'</div>');
-  if(L.length)card('Links','<ul class="sppgwl crlast">'+L.map(function(l){return '<li><a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a><span>'+esc(l[2])+'</span></li>'}).join('')+'</ul>');
+  if(X.films&&X.films.length)card('Films','<div class="crfg">'+X.films.map(function(f){var fu=crewFilmUrl(f),im=crewImg(f[3]),fin='<span class="crfp'+(im?'':' crfn')+'">'+(im?'<img alt="" loading="lazy" src="'+esc(im)+'">':'<i>'+esc(f[0])+'</i>')+'</span><b>'+esc(f[0])+'</b><span class="crfy">'+esc(f[1])+'</span>';return fu?'<a class="crf" target="_blank" rel="noopener" href="'+esc(fu)+'" aria-label="'+esc(f[0])+(f[1]?', '+esc(f[1]):'')+', opens in a new tab">'+fin+'</a>':'<span class="crf">'+fin+'</span>'}).join('')+'</div>');
   if(view==='visitor')card('Join the trip','<h3>Become a member from $5</h3><ul class="sppgtk"><li>Your name on our online donor wall</li><li>Your own supporter profile</li><li>Exclusive updates from the edit room</li></ul><button class="btn pri" data-give="5">Become a member</button>');
   return C.join('')}
 /* Nov 17: rough cut editors (sample bios, to be replaced with real ones) */
