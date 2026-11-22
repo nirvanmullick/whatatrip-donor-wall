@@ -932,9 +932,34 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .lvb svg{width:54%;height:54%;fill:var(--lt);display:block}
 :is(#wath,#wath-top) .lvb svg .c{fill:var(--lf)}
 :is(#wath,#wath-top) .lvb svg .cs{fill:none;stroke:var(--lf);stroke-width:1.3;stroke-linejoin:round}
-#wath .chhex{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 12px;padding-right:36px}
-#wath .chhex .av{width:34px;height:37px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0}
-@media(max-width:600px){#wath .chhex{gap:3px}#wath .chhex .av{width:30px;height:33px;font-size:10px}}
+:is(#wath,#wath-top) .chhive{position:relative;margin:10px 0 14px}
+:is(#wath,#wath-top) .chhx{position:absolute;display:block;padding:0;margin:0;border:0;background:none;border-radius:0;width:40px;height:40px}
+:is(#wath,#wath-top) .chhx[data-supp]{cursor:pointer}
+:is(#wath,#wath-top) .chhx .hxw{display:block;width:100%;height:100%;padding:0;background:none;clip-path:none;line-height:normal}
+:is(#wath,#wath-top) .chhx .av{width:100%!important;height:100%!important;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;margin:0}
+:is(#wath,#wath-top) .chhx:focus-visible,#wath .chpn:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .chpn{color:#6152a0;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#wath .chpn:hover{color:#3f3478}
+/* hover: the hexagon deepens to its ring colour and the ring darkens */
+:is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:background-color .15s ease}
+:is(#wath,#wath-top) :is(.chhx[data-supp],.cnhx,.dn.sp):is(:hover,:focus-visible) .av.lvc:not(:has(img)){background:var(--ls)!important}
+:is(#wath,#wath-top) :is(.chhx[data-supp],.cnhx,.dn.sp):is(:hover,:focus-visible) .av.lvc::after{background:var(--lt)}
+#wath-top .wath-hc{position:fixed;z-index:2147483000;display:flex;align-items:center;gap:12px;width:max-content;max-width:min(280px,calc(100vw - 16px));box-sizing:border-box;padding:12px 14px;background:#fff;border:1px solid #d9d3ec;border-radius:12px;box-shadow:0 10px 30px rgba(27,21,38,.16);color:#1b1526;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .14s ease,transform .14s ease;text-align:left}
+#wath-top .wath-hc.on{opacity:1;transform:none}
+#wath-top .wath-hc .av{width:48px!important;height:52px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin:0}
+#wath-top .wath-hc .hct{display:flex;flex-direction:column;gap:2px;min-width:0;line-height:1.3}
+#wath-top .wath-hc .hct b{font-size:15.5px;font-weight:800;overflow-wrap:anywhere}
+#wath-top .wath-hc .hcl{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6152a0}
+#wath-top .wath-hc .hcg{font-size:13.5px;color:#5b6478}
+#wath-top .wath-hc .hcv{font-size:13px;font-weight:700;color:#6152a0;margin-top:4px}
+@media(prefers-reduced-motion:reduce){#wath-top .wath-hc,:is(#wath,#wath-top) .av.lvc,:is(#wath,#wath-top) .av.lvc::after{transition:none}}
+#wath-top .spov .spchh{padding:6px 14px 2px;overflow:visible}
+#wath-top .spov .spchh .chhive{margin:4px 0 10px}
+#wath-top .spov .sphh{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5b6478}
+#wath-top .spov .sphso{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;margin:-6px -10px -6px 0;padding:0;border:0;border-radius:10px;background:none;color:#6152a0;cursor:pointer}
+#wath-top .spov .sphso:hover{background:#efeafb}
+#wath-top .spov .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .spov .sphso[data-hivesort=new] svg{transform:scaleX(-1)}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
