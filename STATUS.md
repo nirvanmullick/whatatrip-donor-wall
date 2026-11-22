@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `7dd9b3aabe1dcfc26e6986fdf2a6a3b4ff9f0d65` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `121ccb83b2ab26f15e592a4574ceb0944ebdd6a6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -169,6 +169,9 @@ Claude Code updates this file at the end of each session.
    site at all (it must be unsearchable, maybe password-protected). The older gco test checkout is still on /home-dev.
    FAQs have an Expand all / Collapse all control on the heading (`faqAllSet`, added in `faqCnt`). The profile wallpaper has a second
    tile with a few softly filled hexagons.
+   Event hosts (anyone with a row in `activities`): `isHost` adds class `eh` (darker outline); in the grid they are placed by the
+   level they raised to (`supAllHex`), and the profile reads "Hosted an event that raised $25K+". The wallpaper's filled hexagons
+   use the level colours. Not checked against live data (the test data has no event for Alex Enchin).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
