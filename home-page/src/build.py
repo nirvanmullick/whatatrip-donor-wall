@@ -1188,7 +1188,7 @@ def cut(i):
     a=home.index('<section class="sec" id="wath-%s"'%i); e=home.index('</section>',a)+10
     s=home[a:e]; home=home[:a]+home[e:]; return s
 S={i:cut(i) for i in ['team','budget','challenges','impact','faq','updates','store','access']}
-S['comments']='<section class="sec" id="wath-comments"><h2>Why this film matters<sup class="cnt" data-cnt="com"></sup></h2><div class="card" style="padding:10px 20px 16px" data-comments></div></section>'
+S['comments']='<section class="sec" id="wath-comments"><h2>Voices<sup class="cnt" data-cnt="com"></sup></h2><p class="sub">Why this film matters</p><div class="card" style="padding:10px 20px 16px" data-comments></div></section>'
 mark='<div class="wrap cols second"><div class="stack">'
 assert mark in home
 home=home.replace(mark,mark+''.join(S[i] for i in ['team','budget','challenges','impact','faq','comments','updates']),1)
