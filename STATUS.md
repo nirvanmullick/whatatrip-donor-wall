@@ -3,7 +3,7 @@ Last updated Nov 21, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8e08d7c99ff4247720d44415ca7458547ac429ae` (Nov 21: level colours, badges, honeycombs, hover cards).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `a7bda0ade8648167b01652e638fb4b6b8a20880d` (Nov 21: level colours, badges, honeycombs, hover cards, three-way sort).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -25,7 +25,9 @@ Claude Code updates this file at the end of each session.
    mockup: badge in the Details pop-up and on member profiles, referral cluster lines, Top/Recent/List tabs, a colour key.
    Nov 21 later: challenge gifts are an interlocking honeycomb (`chHive`, `chHiveLay`) on the page and in the profile
    pop-up (all gifts, order given, sort arrow); hexagons darken on hover; hovering a hexagon or name shows a small
-   profile card (`.wath-hc`) that opens the full profile. Waiting on his reaction.
+   profile card (`.wath-hc`) that opens the full profile. One sort button steps through largest / most recent /
+   order given (`CHORD`); hexagons grow in after a re-sort. "N people gave" is now computed (`chDonors`: each named
+   person once, each anonymous gift as one donor), no longer the fixed 76. Waiting on his reaction.
    Done Nov 21: the staff-only note for the two Oct 15 manual gifts is stored in the members database
    (`gift_private.staff_note`, Owner/Admin only; migration `gift_private_staff_note`). The two gifts were added to
    `gifts` as real, unlinked records (source `event_cost`; migrations `gifts_source_allow_private` and `gifts_source_allow_event_cost` added those types).
