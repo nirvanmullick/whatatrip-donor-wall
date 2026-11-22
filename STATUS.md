@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d08b07731916b544d59ad387ec4908b319dc4f66` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `86d43c94b298f27ce70343aa7af9b24f7057077f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -49,7 +49,9 @@ Claude Code updates this file at the end of each session.
    Nov 22: matching challenges start open (`CHOPEN[slug]!==false`), so their honeycombs show without a click; hovering
    a hexagon highlights that gift's row in the list under it (`li.hl`). Members' own quotes are wired into the Voices
    list (`MVOICE`, `voiceLoad`, merged in `comments()` for $5+ members) but need the `member_voices()` database function:
-   SQL is in `home-page/supabase/member_voices.sql`, NOT applied, waiting on Nirvan's OK. Until then the list is unchanged.
+   SQL is in `home-page/supabase/member_voices.sql`, APPLIED Nov 22 with his OK (read-only, 3 quotes today).
+   Note: `seedLoad()` runs before `LIVE` is set (line order), so team-made seed quotes never load from the database;
+   left alone, ask Nirvan before changing since it would change which quotes show.
    Profile page side cards for a logged-in member now speak to them: "My referral link" / "Share my link" and
    "Level up" (works out what they need for the next level; the button opens giving with that amount filled in).
    Nov 22 late: "Add your voice" is one button under the Voices list; non-members get a small pop-up (`voiceAsk`:
