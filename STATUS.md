@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `cdf5e367fdda69e5e0b4a0b2db987ee482809446` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `2bab859fe8f2e5064a3393c4c2d1cfb8488605aa` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -185,6 +185,8 @@ Claude Code updates this file at the end of each session.
    in the site settings under `crew` (no database change) and applied over the built-in text by `crewApply`. Photo upload goes to the
    editor's own folder in the `profile-photos` bucket; NOT tested with a real login yet. Team photos are black and white in the team section.
    Not built: crew members editing their own page (needs their member account linked to the crew page: a database change).
+   Profile wallpaper: `sppgLife` lights one hexagon in the side margins every 10 to 30 seconds (max nine, off for reduced motion,
+   narrow screens and hidden tabs). Team honeycomb now switches only after the pointer has rested on a face for 260ms (mousemove).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
