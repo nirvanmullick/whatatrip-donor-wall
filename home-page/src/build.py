@@ -1143,8 +1143,10 @@ html.wath-noscroll{overflow:hidden}
 #wath .tmgl{min-width:0}
 #wath .tmhv{position:relative}
 #wath .tmh{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;width:64px;height:64px}
-#wath .tmh .tmhx{width:100%;height:100%;opacity:.5;filter:grayscale(.55);transition:opacity .2s ease,filter .2s ease}
+#wath .tmh .tmhx{width:100%;height:100%;opacity:.36;filter:grayscale(.7);transition:opacity .2s ease,filter .2s ease,transform .2s ease}
 #wath .tmh.on .tmhx,#wath .tmedit .tmh .tmhx{opacity:1;filter:none}
+#wath .tmh.on{z-index:1}
+#wath :not(.tmedit)>.tmgl .tmh.on .tmhx{transform:scale(1.1)}
 #wath .tmh:focus-visible,#wath .tmed:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath .tmedit .tmh{cursor:grab;-webkit-user-drag:element;user-select:none;-webkit-user-select:none}
 #wath .tmedit .tmh .tmhx{pointer-events:none}
