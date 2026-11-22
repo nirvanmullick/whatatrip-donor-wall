@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `2bda36e0e91148fe3f3a3998c2636a246b321a03` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `38d4afff4d6159d274ff71952e83447b4966f702` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -139,6 +139,12 @@ Claude Code updates this file at the end of each session.
    not under the grid. While searching the preview stays at four rows, shows names whose first or last name STARTS
    with the query, in the current tab's order, and the hexagons glide to their new spots (`supRelay`). The full grid
    on profile pages keeps everyone in place and dims non-matches (unchanged).
+   Challenges (Nov 22): the submenu has "Challenges" + count (`data-cnt="chal"`, = LEGS + PAST) after Supporters.
+   Completed challenges are sorted largest first, with a button for most recent first (`CHDSORT`, `chDoneTs`). Open
+   by default: any active challenge and the first completed one (`CHDEF`); the rest start folded. The fit script can
+   still fold the top one at tight tablet widths. This supersedes "all challenges start open".
+   ASKED, not built: an "Import contacts" option in the Invite a friend pop-up. Contact import is not built at all yet
+   (needs the privacy decisions and backend discussed Nov 22).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
