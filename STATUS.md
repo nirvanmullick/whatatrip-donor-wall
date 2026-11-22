@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `121ccb83b2ab26f15e592a4574ceb0944ebdd6a6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d96811e1f54c241cef576cf06a5005cf66b789b3` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -172,6 +172,8 @@ Claude Code updates this file at the end of each session.
    Event hosts (anyone with a row in `activities`): `isHost` adds class `eh` (darker outline); in the grid they are placed by the
    level they raised to (`supAllHex`), and the profile reads "Hosted an event that raised $25K+". The wallpaper's filled hexagons
    use the level colours. Not checked against live data (the test data has no event for Alex Enchin).
+   The join hexagon (`JOINHX`) is also the last hexagon of the full community grid on profile pages (bottom row of the last column).
+   Count check Nov 22: /home-dev and /donors both read 293 when loaded fresh (Nirvan saw 294 on /donors once; not reproduced).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
