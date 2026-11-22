@@ -991,7 +991,7 @@ html.wath-noscroll{overflow:hidden}
 #wath .chd .chso.chsol:focus-visible,#wath-top :is(.spov,.sppgall) .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 @media(max-width:600px){#wath .chd .chso.chsol{position:static;margin:0 0 4px -8px}#wath .chd .chdh{margin-bottom:2px}}
 /* Nov 22 (Nirvan): the full-page profile: main column, side column that changes with who is looking, and the honeycomb grid of supporters with search */
-#wath-top .bov.sppg{display:block;padding:0;background:#f6f3fc;overflow-y:auto;overflow-x:hidden;color:#1b1526;-webkit-overflow-scrolling:touch}
+#wath-top .bov.sppg{display:block;padding:0;background:linear-gradient(115deg,rgba(246,243,252,0) 0%,rgba(246,243,252,.82) 42%,rgba(246,243,252,.82) 58%,rgba(222,236,250,.25) 100%),url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2741.57%27 height=%2772%27%3E%3Cpath d=%27M20.78 0L41.57 12V36L20.78 48L0 36V12ZM20.78 48V72%27 fill=%27none%27 stroke=%27%236152a0%27 stroke-opacity=%27.16%27/%3E%3C/svg%3E") 0 0/41.57px 72px,#f6f3fc;overflow-y:auto;overflow-x:hidden;color:#1b1526;-webkit-overflow-scrolling:touch}
 #wath-top .sppgw{max-width:1180px;margin:0 auto;padding:24px 24px 64px;box-sizing:border-box}
 #wath-top .sppgb{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;margin:0 0 8px -8px;background:none;border:0;color:#6152a0;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
 #wath-top .sppgb:hover{text-decoration:underline}
@@ -1192,6 +1192,14 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .crf b{font-size:12.5px;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
 #wath-top .crf span{font-size:11.5px;color:#5b6478}
 @media(max-width:560px){#wath-top .crh{gap:16px}#wath-top .crh .tmhx{width:72px;height:72px;font-size:22px}#wath-top .crn{font-size:24px}}
+/* Nov 22 (Nirvan): X to clear the supporter search */
+#wath .suphsx{all:unset;box-sizing:border-box;cursor:pointer;position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;margin-left:-40px;margin-right:8px;border-radius:50%;color:#6152a0}
+#wath .suphsx[hidden]{display:none}
+#wath .suphsx::after{content:"";position:absolute;inset:-6px}
+#wath .suphsx:hover{background:#ece7f7}
+#wath .suphsx:focus-visible{outline:2px solid #6152a0;outline-offset:1px}
+#wath .suphd.sopen .suphsi{padding-right:40px}
+#wath .suphsi::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
