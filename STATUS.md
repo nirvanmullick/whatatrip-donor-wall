@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `79df87ec97f6d254209a54e44c13589da8f1e801` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `19ee7164db691f2b4e28ccd2373bd403c967f3a9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -151,6 +151,21 @@ Claude Code updates this file at the end of each session.
    COORDINATION: the Stripe session was told it may edit `app.js`/`build.py` to put its test checkout on /home-dev
    after this session's push; pull before editing here again.
    ASKED, not built: "Offer a perk" form under More ways to help (first version can post to the team inbox).
+   Nov 22, crew profiles round:
+   - Crew profile pages: `openBio(k)` now opens `openProfilePage(name,k)` (same page as supporters) with `crewMain`/`crewSide`.
+     Films and links live in `CREWX` (Darren's ten films link to IMDb; tiles are text only, no poster art yet). `?crew=rick` deep link.
+   - Team list: Rick Doblin (Featured Talent, photo `home-page/img/rick-suit-hex.jpg`, bio is a DRAFT), Eric Watson and Interconnected
+     (both with placeholder one-line bios, no photo). Supporters with $100K+ are added automatically (`teamSupp`, skips private profiles);
+     their hexagon opens their supporter profile. Heading is "Our Filmmaking Team"; honeycomb rows are 5 / 4 / 5 (`teamLay`).
+   - New perk at $100K: "A place on our filmmaking team" (level box bullet in the `LEVELS.forEach` near the top, `GPK` id `team`,
+     checkout bullet in `gcoPerkB`). If the level wording has been edited in Site Management, check it still shows.
+   - Everyone's Connections card starts with Rick (`sppgHex(names,1)`); Rick's page says everyone is connected to him.
+   - Grid photos: fainter at rest (.14), one-colour picture in the level's colour on hover; the full-colour photo is in the card.
+   - Preview card: sits just below or above a honeycomb instead of on it, opens out of the hexagon, stronger shadow.
+   - Join hexagon: blue, card says "Want to join us?" with a purple "Donate now" button; an empty search keeps it on its own row.
+   ASKED, not built yet: X to clear the supporter search; search also filtering the Top/Recent list live; hexagon wallpaper
+   behind profile pages (mockup); members posting updates on their profile with public/members/only-me visibility (needs a migration);
+   Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
    filmmakers highlighting Darren Aronofsky) + filmmaker/crew profile mockups (other films with thumbnails, IMDb link,
