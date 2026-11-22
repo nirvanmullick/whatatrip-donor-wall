@@ -1079,6 +1079,15 @@ html.wath-noscroll{overflow:hidden}
 /* reactions on a voice wait for the pointer, unless someone has already reacted or replied; on touch screens they always show */
 @media(hover:hover) and (pointer:fine){#wath .vrow .vact:not(:has(.rx.has,.rx.on)){opacity:0;transition:opacity .15s ease}#wath .vrow:hover .vact:not(:has(.rx.has,.rx.on)),#wath .vrow:focus-within .vact:not(:has(.rx.has,.rx.on)){opacity:1}}
 @media(prefers-reduced-motion:reduce){#wath .vrow .vact{transition:none!important}}
+/* Nov 22 (Nirvan): the log-in and set-a-password steps show as a pop-up card over the dimmed page */
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]){background:rgba(14,10,24,.72);align-items:center;justify-content:center;padding:20px;overflow-y:auto;box-sizing:border-box}
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mtop{display:none}
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mbody{flex:none;width:100%;max-width:460px;padding:0;margin:auto;overflow:visible;background:none}
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .minner{max-width:none;width:100%;padding:0;margin:0}
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mlogin{position:relative;max-width:none;margin:0;padding:32px 28px 24px;border-radius:18px;border:0;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.4)}
+#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mlogin h2{padding-right:40px}
+#wath-top .mov:not([data-tab="login"]):not([data-tab="pw"]) .mlx{display:none}
+@media(max-width:560px){#wath-top .mov:is([data-tab="login"],[data-tab="pw"]){padding:12px}#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mlogin{padding:28px 20px 20px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
