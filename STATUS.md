@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `2bab859fe8f2e5064a3393c4c2d1cfb8488605aa` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `f7c9508a7be7366c6fe4da49c7ac6827c8eeda7f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -187,6 +187,15 @@ Claude Code updates this file at the end of each session.
    Not built: crew members editing their own page (needs their member account linked to the crew page: a database change).
    Profile wallpaper: `sppgLife` lights one hexagon in the side margins every 10 to 30 seconds (max nine, off for reduced motion,
    narrow screens and hidden tabs). Team honeycomb now switches only after the pointer has rested on a face for 260ms (mousemove).
+   Levels now match the donor wall (Nirvan, relayed by the Stripe session): Road Trippers start at $100 (was $50; LVCOL and LVICON keys
+   moved to 100), $100K is "Contributing Producer", top level is "Presented by". Source: `home-page/src/proto/index.html` LEVELS/PERKS,
+   `app.js`, `mc-bundle.html`. NOT ruled on by Nirvan: home page still lists "Smoke a joint with Rick" (donor wall removed it) and hides
+   Wayfinders/Trailblazers (donor wall shows them).
+   THE THREE COUNTS (Nov 22): /donors loading screen shows the number this browser remembered from its last visit (it counts name chips
+   on screen, so it can read 294-296); the wall itself and /home-dev compute 293 = 252 named givers + 36 anonymous gifts + 5 credited
+   non-givers; /donate shows 286 from the Nirvana CRM count service (266 known donors + 20 anonymous gifts it could not match to anyone).
+   Nirvan wants one accurate number and the word "supporters" instead of "donors". Proposal pending his OK (touches the live /donors
+   and /donate pages).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
