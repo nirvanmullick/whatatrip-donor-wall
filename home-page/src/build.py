@@ -1115,7 +1115,7 @@ html.wath-noscroll{overflow:hidden}
 #wath .suphsi{flex:1 1 200px;min-width:0;max-width:360px;min-height:44px;box-sizing:border-box;padding:8px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
 #wath .suphsi[hidden]{display:none}
 #wath .suphsn{font-size:14px;color:#5b6478}
-#wath .suphva{display:inline-flex;align-items:center;min-height:44px;margin-top:4px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px}
+#wath .suphva{display:flex;width:max-content;max-width:100%;margin-left:auto;align-items:center;min-height:44px;margin-top:12px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px}
 #wath .suphva[hidden]{display:none}
 #wath #wath-recent .suplist .dn{transition:background-color .15s ease}
 #wath #wath-recent .suplist .dn.hl{background:#e4dcf5!important;box-shadow:0 0 0 2px #cfc8e6 inset}
