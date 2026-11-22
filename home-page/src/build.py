@@ -924,6 +924,17 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .video .vt .play{position:static;transform:none;margin-top:1.6cqw;display:inline-flex;align-items:center;text-shadow:none}
 :is(#wath,#wath-top) .video:hover .vt .play{transform:scale(1.04)}
 :is(#wath,#wath-top) .video>.vb{position:absolute;left:0;right:0;bottom:5%;margin:0;text-align:center;z-index:2;text-shadow:0 2px 14px rgba(27,21,38,.6),0 0 2px rgba(27,21,38,.35)}
+/* Nov 21 (Nirvan): level colours. A person's hexagon takes the soft colour of their overall level (fill for initials, a ring for photos); each level header carries its icon badge. */
+:is(#wath,#wath-top) .av.lvc{position:relative}
+:is(#wath,#wath-top) .av.lvc:not(:has(img)){background:var(--lf)!important;color:var(--lt)!important}
+:is(#wath,#wath-top) .av.lvc::after,:is(#wath,#wath-top) .lvb::after{content:"";position:absolute;inset:0;background:var(--ls);clip-path:polygon(evenodd,50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%,50% 0,50% 6%,11.9% 28%,11.9% 72%,50% 94%,88.1% 72%,88.1% 28%,50% 6%);pointer-events:none}
+:is(#wath,#wath-top) .lvb{position:relative;display:inline-flex;flex:none;align-self:center;align-items:center;justify-content:center;width:32px;height:35px;background:var(--lf);clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+:is(#wath,#wath-top) .lvb svg{width:54%;height:54%;fill:var(--lt);display:block}
+:is(#wath,#wath-top) .lvb svg .c{fill:var(--lf)}
+:is(#wath,#wath-top) .lvb svg .cs{fill:none;stroke:var(--lf);stroke-width:1.3;stroke-linejoin:round}
+#wath .chhex{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 12px;padding-right:36px}
+#wath .chhex .av{width:34px;height:37px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0}
+@media(max-width:600px){#wath .chhex{gap:3px}#wath .chhex .av{width:30px;height:33px;font-size:10px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
