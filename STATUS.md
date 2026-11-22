@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `56f94163b404ce7cb7b2ddf07370368b7014c7e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `b62bb510b4318509df6144f66e7017c3f6663d41` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -77,6 +77,8 @@ Claude Code updates this file at the end of each session.
    anything the visitor toggles (`CHOPEN`) is kept. Phones and tablets show all open.
    Add your voice for a logged-in $5+ member is now an inline box under the list (`VBOX`, saves via `spSave` to the
    profile testimonial; prefilled with a note if they already have one). Non-members still get the join pop-up.
+   Singular level names for one person (`lvOne(level, name)`, built on `LVONE`): "MAPS Maker" on cards, profiles,
+   lists, the dashboard and Level up; the plural stays for the level itself and for couples ("A & B").
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
