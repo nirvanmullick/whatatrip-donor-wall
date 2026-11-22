@@ -1108,8 +1108,10 @@ html.wath-noscroll{overflow:hidden}
 #wath #wath-recent .seg button{flex:1 1 0;min-width:0;white-space:normal}
 @media(max-width:480px){#wath #wath-recent .seg button{padding-left:8px;padding-right:8px;font-size:14px;line-height:1.25}}
 #wath .suphv .chhive{margin:0}
-#wath .suphs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 8px;min-height:44px}
-#wath .suphsb{all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-10px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#7d6bc6}
+#wath .suphd{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:0 0 12px;min-width:0}
+#wath .suphd h2{margin-top:0;margin-bottom:0}
+#wath .suphs{display:contents}
+#wath .suphsb{all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-4px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#7d6bc6}
 #wath .suphsb:hover,#wath .suphsb[aria-expanded=true]{background:rgba(97,82,160,.12);color:#6152a0}
 #wath .suphsb:focus-visible,#wath .suphsi:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath .suphsi{flex:1 1 200px;min-width:0;max-width:360px;min-height:44px;box-sizing:border-box;padding:8px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
