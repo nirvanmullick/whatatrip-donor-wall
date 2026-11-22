@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d2315a5773a4ae89dea195e6bd2210cbf49d28a4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d08b07731916b544d59ad387ec4908b319dc4f66` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -52,6 +52,13 @@ Claude Code updates this file at the end of each session.
    SQL is in `home-page/supabase/member_voices.sql`, NOT applied, waiting on Nirvan's OK. Until then the list is unchanged.
    Profile page side cards for a logged-in member now speak to them: "My referral link" / "Share my link" and
    "Level up" (works out what they need for the next level; the button opens giving with that amount filled in).
+   Nov 22 late: "Add your voice" is one button under the Voices list; non-members get a small pop-up (`voiceAsk`:
+   Donate $5 to join, quiet links to log in or start a fundraiser), members go to their own profile. Preview cards also
+   show on the Our supporters list, and every card waits 0.6s. Photos in grids are a soft one-colour image in the level
+   colour with initials on top (`data-i` on `.av`), real photo on hover; challenge makers too. PUBLIC NAME: never say
+   "honeycomb grid of supporters" on the site (internal name only); the profile page section is headed "Our community".
+   Asked, not designed yet: how a member connects their Pledge fundraiser so it fills their profile, and what a
+   member's own fundraising page (whatatrip.com/username) looks like.
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
