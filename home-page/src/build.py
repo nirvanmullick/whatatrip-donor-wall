@@ -1116,6 +1116,27 @@ html.wath-noscroll{overflow:hidden}
 #wath .arcbox{margin-top:32px;padding-top:24px;border-top:1px solid #cfc8e6;display:flex;flex-direction:column;gap:8px;min-width:0}
 #wath .arcbox .eyb{margin:0 0 4px}
 #wath .arcbox .mwa{width:100%}
+/* Nov 22 (Nirvan): Filmmakers: a linked two-row honeycomb on top, names and roles in a list under it */
+#wath #wath-team .tmA{display:block}
+:is(#wath,#wath-top) .tmhx{flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;width:72px;height:72px;background:#d9d1ee;color:#4b3f86;font-size:18px;font-weight:800;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+:is(#wath,#wath-top) .tmhx img{width:100%;height:100%;object-fit:cover;display:block}
+#wath .tmhv{position:relative;margin:0 0 16px}
+#wath .tmh{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;width:72px;height:72px}
+#wath .tmh .tmhx{width:100%;height:100%;transition:filter .15s ease}
+#wath .tmh:is(:hover,:focus-visible,.hl) .tmhx{filter:brightness(.9) saturate(1.15)}
+#wath .tmh:focus-visible,#wath .tmr:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .tmrs{display:flex;flex-direction:column}
+#wath .tmr{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px;border-top:1px solid #ebe7f5;min-width:0;transition:background-color .15s ease}
+#wath .tmr:first-child{border-top:0}
+#wath .tmr:is(:hover,.hl){background:#e4dcf5}
+#wath .tmr .tmhx{width:40px;height:40px;font-size:12px}
+#wath .tmrt{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;min-width:0}
+#wath .tmrt b{font-size:17px;line-height:1.25;color:#1b1526}
+#wath .tmrt span{font-size:14.5px;color:#5b6478}
+#wath .tmmore{width:100%;margin-top:10px;min-height:44px}
+#wath-top .wath-hc .tmhx{width:60px;height:60px;font-size:18px}
+#wath-top .wath-hc .hcq.hcb{font-style:normal}
+@media(prefers-reduced-motion:reduce){#wath .tmh .tmhx,#wath .tmr{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2243,5 +2264,25 @@ out='<!-- WHAT A TRIP home page (test build). Source: nirvanmullick/whatatrip-do
 os.makedirs('../img',exist_ok=True)
 # Nov 17 3pm (Nirvan): the 'Start a Matching Challenge' pop-up from the /matching page (same bundle the donate page carries)
 out+='\n'+open('mc-bundle.html').read()+'\n'
+# Nov 22 (Nirvan): Filmmakers is compact and sits in the left column straight after Story, in the same order as the menu.
+# The old full-width band is removed here, at the very end, so the earlier steps that position things around it still work.
+def _sec_end(html, start):
+    d = 0; k = start
+    while True:
+        o = html.find('<section', k + 1); c = html.find('</section>', k + 1)
+        assert c > 0
+        if o != -1 and o < c:
+            d += 1; k = o
+        else:
+            if d == 0: return c + len('</section>')
+            d -= 1; k = c
+_tb1 = '<section class="band tband" id="wath-team">'
+assert out.count(_tb1) == 1
+_t0 = out.find(_tb1); _t1 = _sec_end(out, _t0)
+out = out[:_t0] + out[_t1:]
+_st = '<section class="sec" id="wath-story"'
+assert out.count(_st) == 1
+_s1 = _sec_end(out, out.find(_st))
+out = out[:_s1] + '<section class="sec" id="wath-team"><h2>Filmmakers</h2><div class="tmA" data-team></div></section>' + out[_s1:]
 open('../home-block.html','w').write(out)
 print(len(out))
