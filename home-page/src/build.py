@@ -948,6 +948,10 @@ html.wath-noscroll{overflow:hidden}
 #wath .chp li>span{display:flex;min-width:0}
 :is(#wath .chp,#wath-top .spov ul.spchl) .hxw{display:block;flex:none;width:28px;height:28px;padding:0;background:none;clip-path:none;line-height:normal}
 :is(#wath .chp,#wath-top .spov ul.spchl) .av{width:28px!important;height:28px!important;flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0}
+/* Nov 22 (Nirvan): in a honeycomb grid a photo sits under a wash of the person's level colour, so the left-to-right gradient still reads; hovering shows the full photo */
+:is(#wath,#wath-top) .chhx .av.lvc:not(.mk):has(img)::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lf);opacity:.6;pointer-events:none;transition:opacity .15s ease}
+:is(#wath,#wath-top) .chhx:is(:hover,:focus-visible) .av.lvc:not(.mk):has(img)::before{opacity:0}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhx .av.lvc:has(img)::before{transition:none}}
 /* challenge makers: a quiet second outline inside the hexagon, same size as everyone else */
 :is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lt);opacity:.6;clip-path:polygon(evenodd,50% 10%,84.6% 30%,84.6% 70%,50% 90%,15.4% 70%,15.4% 30%,50% 10%,50% 13.5%,18.4% 31.75%,18.4% 68.25%,50% 86.5%,81.6% 68.25%,81.6% 31.75%,50% 13.5%);pointer-events:none}
 :is(#wath,#wath-top) :is(.chhx,.chp,.spchl,.wath-hc) .av.lvc.mk::after{background:var(--lt)}
@@ -971,13 +975,59 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .spov .spchh{padding:6px 14px 2px;overflow:visible}
 #wath-top .spov .spchh .chhive{margin:4px 0 10px}
 #wath-top .spov .sphh{display:flex;justify-content:flex-end}
-#wath .chd .chso.chsol,#wath-top .spov .sphso{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:0;height:36px;padding:0 8px;border:0;border-radius:10px;background:none;color:#6152a0;cursor:pointer;font:inherit;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;white-space:nowrap}
+#wath .chd .chso.chsol,#wath-top :is(.spov,.sppgall) .sphso{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:0;height:36px;padding:0 8px;border:0;border-radius:10px;background:none;color:#6152a0;cursor:pointer;font:inherit;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;white-space:nowrap}
 #wath .chd .chso.chsol{top:-10px}
-#wath .chd .chso.chsol svg,#wath-top .spov .sphso svg{flex:none}
-#wath-top .spov .sphso{margin:-2px -8px 2px 0}
-#wath-top .spov .sphso:hover{background:#efeafb}
-#wath .chd .chso.chsol:focus-visible,#wath-top .spov .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .chd .chso.chsol svg,#wath-top :is(.spov,.sppgall) .sphso svg{flex:none}
+#wath-top :is(.spov,.sppgall) .sphso{margin:-2px -8px 2px 0}
+#wath-top :is(.spov,.sppgall) .sphso:hover{background:#efeafb}
+#wath .chd .chso.chsol:focus-visible,#wath-top :is(.spov,.sppgall) .sphso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 @media(max-width:600px){#wath .chd .chso.chsol{position:static;margin:0 0 4px -8px}#wath .chd .chdh{margin-bottom:2px}}
+/* Nov 22 (Nirvan): the full-page profile: main column, side column that changes with who is looking, and the honeycomb grid of supporters with search */
+#wath-top .bov.sppg{display:block;padding:0;background:#f6f3fc;overflow-y:auto;overflow-x:hidden;color:#1b1526;-webkit-overflow-scrolling:touch}
+#wath-top .sppgw{max-width:1180px;margin:0 auto;padding:24px 24px 64px;box-sizing:border-box}
+#wath-top .sppgb{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;margin:0 0 8px -8px;background:none;border:0;color:#6152a0;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+#wath-top .sppgb:hover{text-decoration:underline}
+#wath-top .sppgc{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+#wath-top .sppgm{min-width:0;background:#fff;border:1px solid #d9d3ec;padding:32px;box-sizing:border-box}
+#wath-top .sppgm .spov{display:block}
+#wath-top .sppgm .bovh{padding-right:0}
+#wath-top .sppgacts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+#wath-top .sppg .btn{min-height:44px}
+#wath-top .sppga{display:flex;flex-direction:column;gap:16px;min-width:0}
+#wath-top .sppgcd,#wath-top .sppgall{background:#fff;border:1px solid #d9d3ec;padding:24px;box-sizing:border-box}
+#wath-top .sppgcd .btn{display:flex;width:100%;align-items:center;justify-content:center;box-sizing:border-box}
+#wath-top .sppgm .spvh .av{width:88px;height:88px;font-size:28px}
+#wath-top .sppgm .bovh b{font-size:28px;line-height:1.2}
+#wath-top .sppgm .bovh{gap:20px;margin-bottom:20px}
+#wath-top .sppgl{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6152a0;margin:0 0 12px}
+#wath-top .sppgcd h3{font-size:17px;line-height:1.3;margin:0 0 8px;color:#1b1526;font-weight:800}
+#wath-top .sppgs{font-size:14.5px;line-height:1.5;color:#5b6478;margin:0 0 12px}
+#wath-top .sppgem{margin:0;padding:24px 16px;background:#f6f3fc;border:1px dashed #d9d3ec;color:#6b6478;font-size:14.5px;line-height:1.5;text-align:center}
+#wath-top .sppgcd .chhive{margin:0}
+#wath-top .sppgbar{display:block;height:10px;background:#ece7f7;border-radius:999px;overflow:hidden;margin:8px 0 12px}
+#wath-top .sppgbar i{display:block;height:100%;background:#6152a0}
+#wath-top .sppgtk,#wath-top .sppgwl{list-style:none;margin:0 0 16px;padding:0;font-size:15px;line-height:1.45}
+#wath-top .sppgtk li{position:relative;padding:4px 0 4px 26px}
+#wath-top .sppgtk li::before{content:"";position:absolute;left:2px;top:11px;width:12px;height:6px;border-left:2px solid #6152a0;border-bottom:2px solid #6152a0;transform:rotate(-45deg)}
+#wath-top .sppgtk li.todo{color:#5b6478}
+#wath-top .sppgtk li.todo::before{width:12px;height:12px;top:8px;border:2px solid #cfc8e6;border-radius:50%;transform:none;box-sizing:border-box}
+#wath-top .sppgwl{margin:0}
+#wath-top .sppgwl li{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;border-top:1px solid #ebe7f5}
+#wath-top .sppgwl li:first-child{border-top:0}
+#wath-top .sppgwl a{color:#6152a0;font-weight:700}
+#wath-top .sppgwl span{color:#5b6478;font-size:14px;text-align:right}
+#wath-top .sppgall{margin-top:32px}
+#wath-top .sppgah{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:0 0 16px}
+#wath-top .sppgah .sppgl{margin:0}
+#wath-top .sppgall .sppgah .sphso{margin:0 0 0 auto}
+#wath-top .sppgq{flex:1 1 220px;max-width:420px;min-height:44px;box-sizing:border-box;padding:8px 14px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;color:#1b1526;font:inherit;font-size:16px}
+#wath-top .sppgq:focus-visible,#wath-top .sppgb:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath-top .sppgall .chhx{transition:opacity .2s ease}
+#wath-top .sppgall .chhx.dim{opacity:.16}
+#wath-top .sppgn{margin:8px 0 0}
+@media(max-width:900px){#wath-top .sppgc{grid-template-columns:minmax(0,1fr);gap:16px}#wath-top .sppgall{margin-top:16px}}
+@media(max-width:560px){#wath-top .sppgw{padding:12px 16px 48px}#wath-top .sppgm{padding:20px 16px}#wath-top .sppgcd,#wath-top .sppgall{padding:20px 16px}#wath-top .sppgacts .btn{flex:1 1 100%}#wath-top .sppgall .sppgah .sphso{margin-left:-8px}}
+@media(prefers-reduced-motion:reduce){#wath-top .sppgall .chhx{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
