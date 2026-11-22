@@ -1160,6 +1160,11 @@ html.wath-noscroll{overflow:hidden}
 @media(max-width:1100px){#wath #wath-team .tmA{grid-template-columns:minmax(0,1fr)}#wath .tmgr{min-height:0}}
 @media(max-width:480px){#wath .tmgr{align-items:flex-start}#wath .tmgr>.tmhx{width:64px;height:64px;font-size:18px}#wath .tmpa .btn{min-height:44px}}
 @media(prefers-reduced-motion:reduce){#wath .tmh .tmhx{transition:none}}
+/* Nov 22 (Nirvan): sort button on the Completed challenges heading */
+#wath .chsec.d .chsh{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#wath .chdso{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-right:-8px;border-radius:10px;color:#6152a0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+#wath .chdso:hover{background:rgba(97,82,160,.12)}
+#wath .chdso:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -1247,7 +1252,8 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 @media(max-width:700px){:is(#wath,#wath-top) .subnav .snl{gap:0;padding-right:18px}:is(#wath,#wath-top) .subnav .wrap{padding-left:8px}}
 @media(min-width:701px){:is(#wath,#wath-top) .subnav .snl{margin-left:-12px}}
 /* Nov 22: with the supporters count in the menu, tablet widths need slightly tighter links so the last one is not cut off */
-@media(min-width:901px) and (max-width:1140px){:is(#wath,#wath-top) .subnav .snl a{padding-left:8px;padding-right:8px}:is(#wath,#wath-top) .subnav .snl{margin-left:-8px;padding-right:8px}}
+@media(min-width:901px) and (max-width:1240px){:is(#wath,#wath-top) .subnav .snl a{padding-left:6px;padding-right:6px;font-size:11.5px;letter-spacing:.06em}:is(#wath,#wath-top) .subnav .snl{margin-left:-6px;padding-right:6px;gap:0}:is(#wath,#wath-top) .subnav .snl .cnt{margin-left:3px}}
+@media(min-width:901px) and (max-width:1060px){:is(#wath,#wath-top) .subnav .snl a{padding-left:4px;padding-right:4px}}
 :is(#wath,#wath-top) .skel{color:transparent!important;background:linear-gradient(90deg,#e9e6f1,#f5f3fa,#e9e6f1);border-radius:8px}
 '''
 # ---------- markup ----------
@@ -1420,7 +1426,7 @@ assert _rb>0
 # Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
 _ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
 assert _ns>0
-home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a><a href="#wath-team">Filmmakers</a><a href="#wath-recent">Supporters<sup class="cnt" data-cnt="sup"></sup></a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a><a href="#wath-comments">Voices<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
+home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a><a href="#wath-team">Filmmakers</a><a href="#wath-recent">Supporters<sup class="cnt" data-cnt="sup"></sup></a><a href="#wath-challenges">Challenges<sup class="cnt" data-cnt="chal"></sup></a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a><a href="#wath-comments">Voices<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
 
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
