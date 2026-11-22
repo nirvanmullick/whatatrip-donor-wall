@@ -26,7 +26,8 @@ Claude Code updates this file at the end of each session.
    Waiting on his reaction to the colours.
    Done Nov 21: the staff-only note for the two Oct 15 manual gifts is stored in the members database
    (`gift_private.staff_note`, Owner/Admin only; migration `gift_private_staff_note`). The two gifts were added to
-   `gifts` as real, unlinked records (source `in_kind`). Never put staff notes in manual-gifts.csv: this repo is public.
+   `gifts` as real, unlinked records (source `private`; migration `gifts_source_allow_private` added that type).
+   The same note is on both contacts in Nirvana as a history note (Nirvan allowed that one write). Never put staff notes in manual-gifts.csv: this repo is public.
 2. Level and perk mismatches between the donor wall and the home page: Inner Circle at $2.5K or $25K; extra
    features at $1K or $500; Contributing Producer or Co-Producer at $100K; Road Trippers at $100 or $50; and the
    wall still lists "Get High with Rick".
