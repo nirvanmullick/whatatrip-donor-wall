@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `0e9e3c1bcbb0fa5a36e6e76a4d6e26cbb2b0812c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `2a66ea3a3e975eaa7d2045dcdbca5472eb27ece6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -240,6 +240,8 @@ Claude Code updates this file at the end of each session.
    column and wait in `[data-bfhome]` after the Impact band; the Challenges home now comes before the Impact home; the submenu links
    are reordered there too. The fit script in app.js lifts Challenges, Impact, Budget, FAQs beside the perks in that order while they
    fit (at 1300: the first three). Scratch test t73.js compares menu order with scroll order at five widths.
+   Honeycomb shuffle: while a honeycomb re-sorts or is filtered, `hvLift` adds `.shuf` to the hive so every hexagon casts a soft
+   drop shadow and gets a varied z-index (they pass over and under each other); both are removed when the move ends.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
