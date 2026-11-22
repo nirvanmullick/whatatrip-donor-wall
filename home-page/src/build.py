@@ -1088,6 +1088,17 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mlogin h2{padding-right:40px}
 #wath-top .mov:not([data-tab="login"]):not([data-tab="pw"]) .mlx{display:none}
 @media(max-width:560px){#wath-top .mov:is([data-tab="login"],[data-tab="pw"]){padding:12px}#wath-top .mov:is([data-tab="login"],[data-tab="pw"]) .mlogin{padding:28px 20px 20px}}
+/* Nov 22 (Nirvan): share button on each matching challenge */
+#wath .chw{position:relative}
+#wath .chw .chsh{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;top:8px;right:44px;z-index:2;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#6152a0}
+#wath .chw .chsh:hover{background:rgba(97,82,160,.12)}
+#wath .chw .chsh:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .chw .chtop .chev{margin-left:56px;flex:none}
+#wath .chw .chn2 .chby{font-weight:600;color:#5b6478;white-space:normal}
+#wath .chw .chn2 .chbyn{color:#6152a0;font-weight:700;text-decoration:none}
+#wath .chw .chn2 .chbyn:hover{text-decoration:underline}
+@media(hover:hover) and (pointer:fine){#wath .chw .chsh{opacity:0;transition:opacity .15s ease}#wath .chw:hover .chsh,#wath .chw:focus-within .chsh{opacity:1}}
+@media(prefers-reduced-motion:reduce){#wath .chw .chsh{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
