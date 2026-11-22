@@ -4028,7 +4028,13 @@ function get(u){return fetch(u+(/t=$/.test(u)?Date.now():''),/t=$/.test(u)?{cach
 function askPledge(){return get(U.pledge).then(function(d){var v=d&&Number(d.raised);if(v>=0&&isFinite(v)){S.pledge=v;S.live=true;keep('pledge',v);renderLive()}}).catch(function(){})}
 function mmKey(n,a,d){return String(n||'').trim().toLowerCase()+'|'+(+a||0)+'|'+String(d||'').slice(0,10)}
 function askList(){return Promise.all([get(U.master).catch(function(){return null}),get(U.manual).catch(function(){return null})]).then(function(a){if(a[1]&&a[1].renames){S.renames=a[1].renames;keep('renames',S.renames)}var MMK={};if(a[1]&&a[1].gifts){var mu=0;a[1].gifts.forEach(function(g){if(!g.match)return;MMK[mmKey(g.name,g.amount,g.ts)]=1;var t=Date.parse(g.ts);if(t>=MATCH_T0&&t<=MATCH_T1)mu+=+g.amount||0});S.mmUsd=mu;keep('mmUsd',mu)}if(a[0]&&a[0].gifts&&a[0].gifts.length){S.gifts=a[0].gifts.map(function(g){return {name:g.name,amount:+g.amount||0,date:g.date,anonymous:!!g.anonymous,comment:g.comment||'',pid:g.pledge_id||'',matched:!!g.matched,src:g.source||'',mm:!!MMK[mmKey(g.name,g.amount,g.date)]}});keep('gifts',S.gifts)}renderDonations();try{renderLive()}catch(x){}setTimeout(fitCommunity,60);try{if(CHFIT)CHFIT()}catch(x){}})}
-function askCount(){return get(U.count).then(function(j){if(j&&Number(j.donors)>0){S.count=Number(j.donors);keep('count',S.count);renderHero()}}).catch(function(){})}
+/* Nov 22 (Nirvan): the supporters number is counted on the page the same way whatatrip.com/donors counts it, so the two match:
+   every named person once (donors, challenge makers, and people credited for raising without a gift of their own) plus every anonymous gift.
+   The outside count is only a stand-in until the gift list has loaded. */
+function suppCount(){var o={},a=0;(S.gifts||[]).forEach(function(g){if(isAnon(g))a++;else o[nm(g).toLowerCase()]=1});Object.keys(TOTALS).forEach(function(k){o[k]=1});LEGS.concat(PAST).forEach(function(l){if(l.n)o[String(l.n).toLowerCase()]=1});(CONN.act||[]).forEach(function(x){if(x.person_name)o[String(x.person_name).toLowerCase().replace(/\s+/g,' ').trim()]=1});return Object.keys(o).length+a}
+function suppCountSet(){if(!(S.gifts&&S.gifts.length))return;var c=suppCount();if(c!==S.count){S.count=c;keep('count',c);try{renderHero()}catch(e){}}}
+(function(){var rd=renderDonations;renderDonations=function(){var r=rd.apply(this,arguments);try{suppCountSet()}catch(e){}return r}})();
+function askCount(){return get(U.count).then(function(j){if(j&&Number(j.donors)>0&&!(S.gifts&&S.gifts.length)){S.count=Number(j.donors);keep('count',S.count);renderHero()}}).catch(function(){})}
 renderUpdates();askPledge();askList();askCount();askUpdates();
 setInterval(function(){if(!document.hidden&&!window.__watEdit)askPledge()},45000);
 setInterval(function(){if(!document.hidden&&!window.__watEdit){askList();askCount()}},300000);
