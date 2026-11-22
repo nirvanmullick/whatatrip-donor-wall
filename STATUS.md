@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `3493d4c5106b0a36a0561a583fa6e4a6373bf1fd` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `089b09573faf0ddbbf0e5bf20fe612b21a50171c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -213,6 +213,8 @@ Claude Code updates this file at the end of each session.
    "You? Join us!" with a waving-hand emoji that waves once every ten seconds (`.hcwave`).
    Stripe checkout on /home-dev: Nirvan told this session it may go on the dev site only; the Stripe session is confirming with him
    first-hand before doing anything (he had told it not to put it on the site at all). Nothing added yet.
+   Rick's crew page: the Connections card reads "<count> Connections" and shows the supporters honeycomb, four rows, with a
+   "See all" button that opens the rest (`[data-crall]` in the profile page click handler).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
