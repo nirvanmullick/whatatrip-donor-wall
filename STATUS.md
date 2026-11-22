@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `f7c9508a7be7366c6fe4da49c7ac6827c8eeda7f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `3f1da0fa9463ec935c9d3bbad368543a9f35615b` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -196,6 +196,12 @@ Claude Code updates this file at the end of each session.
    non-givers; /donate shows 286 from the Nirvana CRM count service (266 known donors + 20 anonymous gifts it could not match to anyone).
    Nirvan wants one accurate number and the word "supporters" instead of "donors". Proposal pending his OK (touches the live /donors
    and /donate pages).
+   Profile pages: `openProfilePage` scrolls the window to the top, opens the page just below the site header and restores the scroll
+   on close (`sppgLeave`); `sppgNav` renames the header's /donors link to "Supporters" on this page and marks it while a profile is open
+   (the real menu rename has to be done in Squarespace). Wallpaper is the `.sppgfx::before` layer (`--sppgwp`), fades in on arrival and
+   out through a `.sppgout` ghost; filled hexagons stay (max 80), fainter, anywhere on the wallpaper. Join card says "You? Join us! :-)".
+   ASKED, not started: dev versions of the other pages (matching, supporters wall, donate, about, impact) so the dev menu stays in the
+   dev world. Conflict to raise: he told the Stripe session the new checkout must not go on the site, even for development.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
