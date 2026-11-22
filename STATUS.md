@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `1383f1921562979ee8a36c12fd7e4f3496f61889` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `a8c2209e2be677747903c1db1bee67e22c8014b9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -245,6 +245,11 @@ Claude Code updates this file at the end of each session.
    Submenu pill (`spy` in app.js): stays on Campaign until the bar is pinned and the page has scrolled 30px into Story, then slides
    to Story. Clicking Story holds it there (`HELD`) while the bar is pinned; scrolling back to the hero returns it to Campaign.
    Scratch test t76.js steps the scroll around the pin point and reads the active item.
+   Team: built-in order is Nirvan first (as he saved it) and `TEAMFIRST='darren'` is the face highlighted on load.
+   Crew films that link to YouTube open in an on-site player (`crewVideo`, youtube-nocookie embed, Esc closes, link out to YouTube for
+   views). Nirvan's stills use the widescreen `mqdefault.jpg` (no black bars); added "A Love Letter from #EarthToParis". His links now
+   include YouTube, X and Instagram (handles taken from nirvan.com), and any crew page with an Instagram name shows "Follow on Instagram".
+   Live view counts are not shown (would need a YouTube API key held server-side).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
