@@ -1220,6 +1220,11 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .crfm :is(input,textarea):focus-visible{outline:2px solid #6152a0;outline-offset:1px}
 #wath-top .crfh{font-size:13px;line-height:1.45;color:#5b6478;overflow-wrap:anywhere}
 #wath-top .crfm .sppgacts{margin:0}
+/* Nov 22 (Nirvan): hexagons of the profile wallpaper that fill in now and then */
+#wath-top .sppgfx{position:sticky;top:0;height:0;z-index:0;pointer-events:none}
+#wath-top .sppgfx i{position:absolute;width:41.57px;height:48px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);opacity:0;transform:scale(.6);transition:opacity 1.5s ease,transform 1.5s cubic-bezier(.2,.9,.3,1.1)}
+#wath-top .sppgfx i.on{opacity:.3;transform:none}
+#wath-top .sppg .sppgw{position:relative;z-index:1}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
