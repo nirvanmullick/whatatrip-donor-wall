@@ -1,6 +1,6 @@
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
-const R='/home/claude/whatatrip-donor-wall/';
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
+const R=(process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/';
 (async()=>{const b=await chromium.launch();for(const W of [1300,1100,390]){const p=await b.newPage({viewport:{width:W,height:900}});const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 await p.route('**/*',r=>{const u=r.request().url();if(u.includes('/macros/'))return r.fulfill({contentType:'application/json',body:'{"raised":114509}'});if(u.includes('master-donors.json'))return r.fulfill({contentType:'application/json',body:fs.readFileSync(R+'master-donors.json','utf8')});if(u.includes('manual.json'))return r.fulfill({contentType:'application/json',body:fs.readFileSync(R+'manual.json','utf8')});return u.startsWith('about:')?r.continue():r.abort()});
 await p.setContent('<!DOCTYPE html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><body style=margin:0><div style="max-width:1100px;margin:0 auto;padding:60px 30px 0">'+block+'</div>');await p.waitForTimeout(2500);

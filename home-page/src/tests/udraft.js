@@ -1,5 +1,5 @@
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
 const html='<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0"><header id="header"><div class="header-nav-list"><div class="header-nav-item"><a href="/about">About</a></div></div></header><div style="max-width:1100px;margin:0 auto;padding:60px 30px 0">'+block+'</div></body></html>';
 (async()=>{const b=await chromium.launch();for(const W of [1300,390]){const ctx=await b.newContext({viewport:{width:W,height:900}});const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,200)));
 await ctx.route('**/*',r=>{const u=r.request().url();if(u==='http://test.local/')return r.fulfill({contentType:'text/html',body:html});if(u.includes('/macros/'))return r.fulfill({contentType:'application/json',body:'{"raised":114509}'});if(u.includes('master-donors'))return r.fulfill({contentType:'application/json',body:'[]'});return r.abort()});
@@ -9,6 +9,6 @@ await open();await p.fill('.mov [data-ud=title]','Hello from the edit room');awa
 await p.click('.mov [data-a=aud][data-t="pick"]');await p.waitForTimeout(150);await p.check('.mov [data-udlv="500"]');await p.check('.mov [data-udlv="25000"]');console.log(W,'summary',await p.textContent('.mov [data-udsum]'));console.log(W,'after audience switch',JSON.stringify(await val()));
 await p.click('.mov [data-a=udsave]');await p.waitForTimeout(150);
 await open();console.log(W,'after reload',JSON.stringify(await val()),await p.evaluate(()=>/Draft saved/.test(document.querySelector('.mov').innerText)));
-await p.evaluate(()=>{document.querySelector('.mov [data-udd]').open=true});await p.waitForTimeout(100);await p.evaluate(()=>{var e=document.querySelector('.mov [data-udd]');e.scrollIntoView({block:'center'})});await p.waitForTimeout(100);await p.screenshot({path:'/tmp/ud-'+W+'.png'});
+await p.evaluate(()=>{document.querySelector('.mov [data-udd]').open=true});await p.waitForTimeout(100);await p.evaluate(()=>{var e=document.querySelector('.mov [data-udd]');e.scrollIntoView({block:'center'})});await p.waitForTimeout(100);await p.screenshot({path:require('os').tmpdir()+'/ud-'+W+'.png'});
 await p.click('.mov [data-a=udclear]');await p.waitForTimeout(150);console.log(W,'after clear',JSON.stringify(await val()));
 console.log(W,'errors',JSON.stringify(errs));await ctx.close()}await b.close()})();

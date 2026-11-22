@@ -1,5 +1,5 @@
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
 (async()=>{const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:1300,height:900}});const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,200)));
 await ctx.route('**/*',r=>{const u=r.request().url();if(u.includes('/macros/'))return r.fulfill({contentType:'application/json',body:'{"raised":114509}'});if(u.startsWith('http://t.local/')&&!u.includes('?'))return r.fulfill({contentType:'text/html',body:'<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0"><header id="header" style="background:#6f74aa;padding:14px 30px;text-align:right"><div class="header-nav-list" style="display:flex;gap:24px;justify-content:flex-end"><div class="header-nav-item"><a href="/about" style="color:#fff">About</a></div></div></header><div style="max-width:1100px;margin:0 auto;padding:20px 30px 0">'+block+'</div></body></html>'});return r.abort()});
 await p.goto('http://t.local/');await p.waitForTimeout(1300);

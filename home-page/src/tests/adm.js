@@ -1,5 +1,5 @@
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
 (async()=>{const b=await chromium.launch();for(const W of [1300,390]){const ctx=await b.newContext({viewport:{width:W,height:900}});const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,200)));
 await ctx.route('**/*',r=>{const u=r.request().url();if(u.includes('/macros/'))return r.fulfill({contentType:'application/json',body:'{"raised":114509}'});if(u.includes('master-donors'))return r.fulfill({contentType:'application/json',body:JSON.stringify([{name:'Test Person',amount:5000,date:'2026-11-01'},{name:'Another Giver',amount:250,date:'2026-10-20',comment:'Great film idea'},{name:'Third One',amount:25000,date:'2026-09-02'}])});if(u.startsWith('about:'))return r.continue();return r.abort()});
 await p.setContent('<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0"><header id="header"><div class="header-nav-list"><div class="header-nav-item"><a href="/about">About</a></div></div></header><div style="max-width:1100px;margin:0 auto;padding:60px 30px 0">'+block+'</div></body></html>');await p.waitForTimeout(1500);

@@ -1,6 +1,6 @@
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
-const R='/home/claude/whatatrip-donor-wall/';
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
+const R=(process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/';
 const pledge=+(process.argv[2]||114509);
 const page=`<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
 body{margin:0;font-family:Georgia,serif;font-size:19px;line-height:1.9;color:#333;background:#fff}

@@ -7,8 +7,9 @@
   `bud.json` (budget), `photos.json`, and `app.js`. Run from anywhere: `python3 home-page/src/build.py`.
 - `app.js`: all behaviour, including the sample Member Dashboard and admin area.
 - `proto/`: the earlier prototype that `build.py` pulls data blocks from.
-- `tests/`: Playwright checks. They expect the repo at `/home/claude/whatatrip-donor-wall` and Playwright at
-  `/opt/npm-tools/node_modules/playwright`.
+- `tests/`: Playwright checks. One-time setup: `cd home-page/src/tests && npm install && npx playwright install chromium`.
+  Run them from inside `tests/` (`node hm.js`); screenshots land there. The tests find the repo relative to
+  themselves (override with `REPO=/path/to/repo`). Scratch screenshots from the older tests go to the system temp folder.
 
 ## Real sign-in ("live" mode)
 On whatatrip.com the Log in button is real: `app.js` (block starting `LIVE sign-in`) loads supabase-js from jsdelivr and talks to
@@ -16,8 +17,7 @@ the members database at `https://auth.whatatrip.com` with the public (publishabl
 member's own profile and gifts, profile edits (saved at once; public fields through `save_my_profile()`, no approval step),
 an optional password (asked once after a first email-link log in; `PROV=email node tests/live.js` covers it), the member
 sidebar menu, and the admin Members list. Anywhere else, or with `?sample=1`, the old sample preview runs, which is what the other
-tests use. `node tests/live.js` exercises live mode against a mocked database (needs supabase-js at
-`/tmp/sbjs`: `mkdir -p /tmp/sbjs && cd /tmp/sbjs && npm i @supabase/supabase-js@2.119.0`). Never put a secret key in this file.
+tests use. `node tests/live.js` exercises live mode against a mocked database (uses the supabase-js that `npm install` puts in `tests/node_modules`; override with `SBLIB=/path/to/supabase.js`). Never put a secret key in this file.
 
 Team invitations are emailed by the Supabase Edge Function `invite-email` (source kept in `../supabase/functions/invite-email/index.ts`;
 deploy it to the What a Trip project when it changes). It needs the function secret `RESEND_API_KEY`. Without the secret the

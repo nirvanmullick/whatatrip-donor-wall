@@ -1,7 +1,7 @@
 // Live sign-in path (whatatrip.com host) against a mocked members database. Run: node live.js
-const {chromium}=require('/opt/npm-tools/node_modules/playwright');const fs=require('fs');
-const block=fs.readFileSync('/home/claude/whatatrip-donor-wall/home-page/home-block.html','utf8');
-const LIB=process.env.SBLIB||'/tmp/sbjs/node_modules/@supabase/supabase-js/dist/umd/supabase.js';
+const {chromium}=require('playwright');const fs=require('fs');
+const block=fs.readFileSync((process.env.REPO||require('path').resolve(__dirname,'../../..'))+'/home-page/home-block.html','utf8');
+const LIB=process.env.SBLIB||require('path').join(__dirname,'node_modules')+'/@supabase/supabase-js/dist/umd/supabase.js';
 const lib=fs.readFileSync(LIB,'utf8');
 const b64=o=>Buffer.from(JSON.stringify(o)).toString('base64url');
 const UID='11111111-1111-4111-8111-111111111111',MID='22222222-2222-4222-8222-222222222222';
