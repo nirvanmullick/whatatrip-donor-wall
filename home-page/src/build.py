@@ -1165,6 +1165,8 @@ html.wath-framed :is(#wath,#wath-top) .pvb{display:none}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .snp{transition:none}}
 @media(max-width:700px){:is(#wath,#wath-top) .subnav .snl{gap:0;padding-right:18px}:is(#wath,#wath-top) .subnav .wrap{padding-left:8px}}
 @media(min-width:701px){:is(#wath,#wath-top) .subnav .snl{margin-left:-12px}}
+/* Nov 22: with the supporters count in the menu, tablet widths need slightly tighter links so the last one is not cut off */
+@media(min-width:901px) and (max-width:1140px){:is(#wath,#wath-top) .subnav .snl a{padding-left:8px;padding-right:8px}:is(#wath,#wath-top) .subnav .snl{margin-left:-8px;padding-right:8px}}
 :is(#wath,#wath-top) .skel{color:transparent!important;background:linear-gradient(90deg,#e9e6f1,#f5f3fa,#e9e6f1);border-radius:8px}
 '''
 # ---------- markup ----------
@@ -1337,7 +1339,7 @@ assert _rb>0
 # Nov 17 (Nirvan): one scroll, menu in the same order as the page, no tabs
 _ns=home.find('<div class="snl">');_ne=home.find('</div>',_ns)+len('</div>')
 assert _ns>0
-home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a><a href="#wath-recent">Community</a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a><a href="#wath-team">Filmmakers</a><a href="#wath-comments">Voices<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
+home=home[:_ns]+'<div class="snl"><a href="#wath" data-top>Campaign</a><a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a><a href="#wath-team">Filmmakers</a><a href="#wath-recent">Supporters<sup class="cnt" data-cnt="sup"></sup></a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a><a href="#wath-comments">Voices<sup class="cnt" data-cnt="com"></sup></a><a href="#wath-updates">Updates<sup class="cnt" data-cnt="upd"></sup></a></div>'+home[_ne:]
 
 # Nov 16 11pm (Nirvan): on desktop the share icons sit at the right end of the menu bar, under the big Donate button; the small Donate takes their place once you scroll
 _ss=home.find('<div class="shr">');_se=home.find('</div></div>',_ss)+len('</div></div>')
