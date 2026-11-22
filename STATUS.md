@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `089b09573faf0ddbbf0e5bf20fe612b21a50171c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `c241b1d48ab3979460c01b1df1667175ff5ca7b6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -215,6 +215,11 @@ Claude Code updates this file at the end of each session.
    first-hand before doing anything (he had told it not to put it on the site at all). Nothing added yet.
    Rick's crew page: the Connections card reads "<count> Connections" and shows the supporters honeycomb, four rows, with a
    "See all" button that opens the rest (`[data-crall]` in the profile page click handler).
+   Crew pages: Links card comes first, each link with a small icon (`crewLinkIco`); film tiles are a poster on top (hotlinked from
+   Wikipedia; 4th field of a film in `CREWX`, editable in the form) with the title and year under it. Nirvan has Caine's Arcade and
+   The 1 Second Film. To confirm with Nirvan: Instagram handles (@rickdoblin, @mapsnews, @darrenaronofsky), poster rights, what "Box"
+   meant in his dictated note, and logo files for MAPS and Protozoa (none added). Menu: Supporters is marked with a soft tint, no underline.
+   NOT built: a "Connect with me" card with the crew member's referral link (needs their member account linked to the crew page).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
