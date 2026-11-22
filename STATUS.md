@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `71f2879812d54d35cedb09121f8ce0879574c87d` (Nov 22: honeycomb grid of supporters: column fill, wave in, shuffle re-sort, two orders, list icons, anonymous cards, roomier preview card).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d60347f6f183ad42964c7d9c68e1e190384f237a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -35,6 +35,18 @@ Claude Code updates this file at the end of each session.
    level of that gift and have their own card (Anonymous, level, amount, their comment) via `anonAt`. The preview card
    is bigger with a white "View full profile" button and previews a quote (`seedOf`). Challenge makers get a quiet
    second outline in grids and lists (`isMaker`, `.av.mk`). Waiting on his reaction.
+   Nov 22 later: a profile now opens as a full page, not a pop-up (`openProfilePage`, `sppgSide`, `.sppg` CSS; `openSupp(n)`
+   with no target calls it, and the old pop-up code is gone). Main column = the same profile body (`openSupp(n,into)` with
+   `into._page`). Side column by view: visitor (Join the trip, Connections, active match, ways to help), member
+   (Connections, invite link, next level, match), own (Finish your profile, Connections, invite, next level).
+   "Connections" today = referral links both ways (`CONN.ref`), with a grey "will be shown here" when empty. Below: the
+   honeycomb grid of all supporters (`TOPL`) with search and the two-order sort. Photos in grids get a wash of the level
+   colour, full photo on hover. Preview card no longer vanishes while the pointer travels to it.
+   NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
+   Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
+   Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
+   honeycomb at the top, clicking a hexagon scrolls to that person in the list, hovering opens the preview card.
+   Stale tests: `pf.js` also fails (perks form), alongside `acct.js` and `live.js`.
 2a. NEW REQUESTS Nov 22, not built (mock up first, then ask before any database change):
    - Full profile as a page, not a pop-up, laid out like the dashboard profile. Three views: your own (logged in),
      a visitor (right column markets "Become a member"), and a logged-in member viewing someone else. Columns hold a
