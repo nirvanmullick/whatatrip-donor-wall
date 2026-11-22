@@ -1,4 +1,4 @@
--- Migration: member_voices (NOT YET APPLIED: waiting for Nirvan's OK, Nov 22 2026)
+-- Migration: member_voices (applied Nov 22 2026 with Nirvan's OK)
 -- Lets the public home page list what members wrote as "why I'm supporting this film".
 -- Returns only: the name shown, the quote, and when it was last updated.
 -- Leaves out anyone who is anonymous, private, not approved, or who has hidden their quote.
