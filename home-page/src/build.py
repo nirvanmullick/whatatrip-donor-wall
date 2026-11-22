@@ -1099,6 +1099,19 @@ html.wath-noscroll{overflow:hidden}
 #wath .chw .chn2 .chbyn:hover{text-decoration:underline}
 @media(hover:hover) and (pointer:fine){#wath .chw .chsh{opacity:0;transition:opacity .15s ease}#wath .chw:hover .chsh,#wath .chw:focus-within .chsh{opacity:1}}
 @media(prefers-reduced-motion:reduce){#wath .chw .chsh{transition:none}}
+/* Nov 22 (Nirvan): the honeycomb of supporters at the top of the Supporters section */
+#wath .suphv{margin:4px 0 16px}
+/* the Supporters section must never be wider than a phone screen: its parts may shrink, and the two tabs share the row evenly */
+#wath #wath-recent,#wath #wath-recent>*,#wath #wath-recent .suplist,#wath #wath-recent .suplist .dn{min-width:0;max-width:100%;box-sizing:border-box}
+#wath #wath-recent .seg{display:flex;min-width:0;max-width:100%}
+#wath #wath-recent .seg button{flex:1 1 0;min-width:0;white-space:normal}
+@media(max-width:480px){#wath #wath-recent .seg button{padding-left:8px;padding-right:8px;font-size:14px;line-height:1.25}}
+#wath .suphv .chhive{margin:0}
+#wath .suphva{display:inline-flex;align-items:center;min-height:44px;margin-top:4px;font-size:14.5px;font-weight:700;color:#6152a0;text-decoration:underline;text-underline-offset:3px}
+#wath .suphva[hidden]{display:none}
+#wath #wath-recent .suplist .dn{transition:background-color .15s ease}
+#wath #wath-recent .suplist .dn.hl{background:#e4dcf5!important;box-shadow:0 0 0 2px #cfc8e6 inset}
+@media(prefers-reduced-motion:reduce){#wath #wath-recent .suplist .dn{transition:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
