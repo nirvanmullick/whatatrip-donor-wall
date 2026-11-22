@@ -1257,6 +1257,13 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .sppgcd .btn.crall[hidden]{display:none}
 #wath #wath-recent .suplist>svg.bonds{transition:opacity .25s ease}
 #wath #wath-recent .suplist.shuf>svg.bonds{opacity:0;transition:none}
+/* Nov 22 (Nirvan): the "listed with the filmmaking team" perk picture: a small black-and-white team grid with YOU in it */
+:is(#wath,#wath-top) .fa-tm{display:grid;grid-template-columns:repeat(3,48px);gap:2px 4px;justify-content:center}
+:is(#wath,#wath-top) .fa-tm .tmhx{width:48px;height:48px;font-size:12px}
+:is(#wath,#wath-top) .fa-tm .tmhx:nth-child(n+4){transform:translateX(26px)}
+:is(#wath,#wath-top) .fa-tm .tmhx img{filter:grayscale(1)}
+:is(#wath,#wath-top) .fa-tm .tmhx.you{background:#6152a0;color:#fff;font-weight:800;letter-spacing:.06em}
+#wath-top .pkd .pkdi.pkdart{display:flex;align-items:center;justify-content:center;background:#f6f3fc}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
