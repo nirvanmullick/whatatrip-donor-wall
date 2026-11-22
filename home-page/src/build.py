@@ -1112,6 +1112,10 @@ html.wath-noscroll{overflow:hidden}
 #wath #wath-recent .suplist .dn{transition:background-color .15s ease}
 #wath #wath-recent .suplist .dn.hl{background:#e4dcf5!important;box-shadow:0 0 0 2px #cfc8e6 inset}
 @media(prefers-reduced-motion:reduce){#wath #wath-recent .suplist .dn{transition:none}}
+/* Nov 22 (Nirvan): Arcturus under the perk levels, after a divider */
+#wath .arcbox{margin-top:32px;padding-top:24px;border-top:1px solid #cfc8e6;display:flex;flex-direction:column;gap:8px;min-width:0}
+#wath .arcbox .eyb{margin:0 0 4px}
+#wath .arcbox .mwa{width:100%}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
