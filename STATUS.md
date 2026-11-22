@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `cbba3cb2eb18f89804e274eeef62525b248ed51c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `5bd37c43e98fbb223f90b61e56beea725fa221f1` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -179,6 +179,8 @@ Claude Code updates this file at the end of each session.
    lavender and holds the lower-right corner; a short last row is right-aligned up to it.
    Database: Alex Enchin's existing event row (Oct 15 2019, $30,000) was retitled "Fundraising event in Toronto".
    OPEN: Nirvan sees 294 on /donors; fresh loads here show 293 on both pages. Waiting on a screenshot of where he sees it.
+   Team honeycomb: hover switches after 220ms (`TEAMHT`), the unselected faces are fainter and the selected one is slightly larger,
+   clicking any face opens its profile on hover devices, and the button reads "View my crew profile".
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
