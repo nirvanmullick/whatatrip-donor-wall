@@ -1234,6 +1234,13 @@ html.wath-noscroll{overflow:hidden}
 @keyframes sppgOut{to{opacity:0}}
 #header a.wath-navon{text-decoration:underline;text-underline-offset:6px}
 @media(prefers-reduced-motion:reduce){#wath-top .sppgfx::before{transition:none}}
+/* Nov 22 (Nirvan): Top supporters / Recent donations as tabs on a line: the chosen one is dark with a purple bar under it */
+#wath #wath-recent .seg.suptabs{display:flex;gap:8px;padding:0;margin:0 0 8px;background:none;border:0;border-bottom:1px solid #cfc8e6;border-radius:0;box-shadow:none;overflow:visible}
+#wath #wath-recent .seg.suptabs button{flex:0 1 auto;min-height:44px;margin:0 0 -1px;padding:10px 16px;background:none;border:0;border-bottom:3px solid transparent;border-radius:0;box-shadow:none;color:#5b6478;font-weight:700}
+#wath #wath-recent .seg.suptabs button:hover{color:#1b1526}
+#wath #wath-recent .seg.suptabs button.on{background:none;color:#1b1526;border-bottom-color:#6152a0}
+#wath #wath-recent .seg.suptabs button:focus-visible{outline:2px solid #6152a0;outline-offset:-2px}
+@media(max-width:480px){#wath #wath-recent .suplist>.dn{gap:8px}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who{display:grid;grid-template-columns:auto auto minmax(0,1fr);column-gap:8px;row-gap:2px;align-items:center;flex:1 1 0;min-width:0}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>:is(.rk,.av){grid-row:1/3}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>b{grid-column:3;min-width:0;overflow-wrap:break-word}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>:is(.spcm,.mi){grid-column:3;grid-row:2;justify-self:start;margin-left:0}#wath #wath-recent .suplist>.dn.sp:not(.rc)>.who>.spcm+.mi{margin-left:28px}#wath #wath-recent .suplist>.dn .amtc{max-width:7.6em;text-align:right}#wath #wath-recent .suplist>.dn .amtc .when{white-space:normal;display:block}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
