@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `c9104f3f9f7083b434906d8d4537d67e063c57b9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `3493d4c5106b0a36a0561a583fa6e4a6373bf1fd` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -209,6 +209,10 @@ Claude Code updates this file at the end of each session.
    CORRECTION (Nirvan, relayed by the Stripe session): Road Trippers stays at $50 on the home page; reverted (LVCOL/LVICON keys back
    to 50). "Contributing Producer" and "Presented by" stay. The donor wall still says $100 for Road Trippers; nobody has changed it.
    Team honeycomb now switches 80ms after the pointer stops on a face.
+   Join hexagon: a click opens giving (`give(5)`); on touch the first tap shows the card and the second opens giving. The card title is
+   "You? Join us!" with a waving-hand emoji that waves once every ten seconds (`.hcwave`).
+   Stripe checkout on /home-dev: Nirvan told this session it may go on the dev site only; the Stripe session is confirming with him
+   first-hand before doing anything (he had told it not to put it on the site at all). Nothing added yet.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
