@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `19ee7164db691f2b4e28ccd2373bd403c967f3a9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `50ed966a31f06536e14965afacea9cd0ee113925` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -163,8 +163,11 @@ Claude Code updates this file at the end of each session.
    - Grid photos: fainter at rest (.14), one-colour picture in the level's colour on hover; the full-colour photo is in the card.
    - Preview card: sits just below or above a honeycomb instead of on it, opens out of the hexagon, stronger shadow.
    - Join hexagon: blue, card says "Want to join us?" with a purple "Donate now" button; an empty search keeps it on its own row.
-   ASKED, not built yet: X to clear the supporter search; search also filtering the Top/Recent list live; hexagon wallpaper
-   behind profile pages (mockup); members posting updates on their profile with public/members/only-me visibility (needs a migration);
+   Later Nov 22: the supporter search has an X (`[data-supclr]`) and also filters the Top / Recent list as you type
+   (`supV`/`supHit` in `renderDonations`; ranks keep their real number). Profile pages have a faint hexagon wallpaper
+   (background of `.bov.sppg`). The Stripe test checkout was NOT added: Nirvan told the Stripe session not to put it on the
+   site at all (it must be unsearchable, maybe password-protected). The older gco test checkout is still on /home-dev.
+   ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
    hexagon doubling-icon mockup; Filmmakers section redesign (compact, left column, right after Story, honeycomb of
