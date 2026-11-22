@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d60347f6f183ad42964c7d9c68e1e190384f237a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `7c63130721bca1a6c69a2ad166547d376b4e7fff` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -42,6 +42,10 @@ Claude Code updates this file at the end of each session.
    "Connections" today = referral links both ways (`CONN.ref`), with a grey "will be shown here" when empty. Below: the
    honeycomb grid of all supporters (`TOPL`) with search and the two-order sort. Photos in grids get a wash of the level
    colour, full photo on hover. Preview card no longer vanishes while the pointer travels to it.
+   Nov 22: the home page Comments tab is now "Voices" with the heading "Why this film matters" (ids and code names
+   still say comments). `renderComments` ends with an "Add your voice" block: non-members get Donate $5 / Start a
+   fundraiser / Log in; members get a button that opens their own profile page. Member testimonials do NOT yet appear
+   in that list (it shows pinned quotes and gift comments only).
    NOT built, needs a database change he must OK first: a "Connect" button and member-to-member connections.
    Asked for next (Nov 22): a four-row honeycomb grid at the top of the home page community section with Top donors /
    Recent buttons that shuffle it and a "View all" to a donors page; and a new donor wall (mock up first): full
