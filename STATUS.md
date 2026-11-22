@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `e0d80f7f3e3c4eeccd4dc96d5ea46e84d2ef5fe3` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ab13acd317598c45e73bdc54962cc13969204957` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -251,6 +251,9 @@ Claude Code updates this file at the end of each session.
    include YouTube, X and Instagram (handles taken from nirvan.com), and any crew page with an Instagram name shows "Follow on Instagram".
    Live view counts are not shown (would need a YouTube API key held server-side).
    Join card: the hand now waves as the card opens, then again every ten seconds.
+   Join hexagon: the level colours travel slowly around its edge (conic gradient on the ring, `@property --wja`) and it breathes a faint
+   glow; both off for reduced motion. FAQs are never lifted beside the perks any more: below the Rick banner the order is always
+   FAQs, Voices, Updates (checked on the live dev page: FAQs start 44px under the banner).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
