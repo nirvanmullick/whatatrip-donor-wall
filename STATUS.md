@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `9c320ebdbec4fa7e7f444231834080bd9bde50a6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `b6848be2d6cfcb722a091e5da27264c8b9929603` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -341,6 +341,14 @@ Claude Code updates this file at the end of each session.
      of the CSS in build.py; delete them to undo).
    - He asked for mockups of the matching-fund icons (two linked hexagons with bold gift boxes; hexagon with two hearts): see
      whatatrip-site/mockups/matching-icons.html.
+   Nov 22 late (Nirvan, relayed by the parent session), all on /home-dev:
+   - The trailer starts closing about one second before it ends, measured from the video's own length (Vimeo timeupdate /
+     playProgress events), so the suggested-videos screen is not seen. NOT verified against real playback: the bundled test browser
+     cannot play the Vimeo video. Nirvan plans a shorter cut; nothing to change when he uploads it.
+   - After-trailer headline is bigger and now reads "Changing policy needs science. / Changing culture needs stories. / This story
+     needs you." (his later self-correction; still to confirm with him).
+   - Preview cards on the hero mosaic choose a spot that never covers the headline, Join Us or the rewatch button (tested 56 hovers
+     at 768, 1024, 1300, 1440).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
