@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `68384a2d392b97400f17cac016735f29a6448d97` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `173c8162379545cbadfa60a75146e4f59480f636` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -499,6 +499,20 @@ Claude Code updates this file at the end of each session.
    - NOT DONE, needs his yes: merging the storage itself (copy each seed quote into that person's profile testimonial and retire
      seed_testimonials) so the database also has a single place.
    - Note: two member accounts are both named "Nirvan Mullick" and both have a testimonial; the page uses the more recently edited one.
+   Nov 23 (budget row, tour, thank-you card, invite links): all on /home-dev.
+   - Budget: when the Rough Cut is fully funded its row shows a check mark and "Fully funded", closed by default; the chevron opens
+     it to show the eight milestones it paid for (keyboard works). "Still to be raised" now starts after it. Unchanged below the goal.
+   - Dashboard tour (his go-ahead): five stops (Dashboard, My impact, My profile, My perks, More ways to help), a small card at the
+     bottom with Skip tour / Back / Next, the menu item outlined, Esc skips. Shows once per member on a first dashboard visit
+     (real logins only), and can be replayed from More ways to help > "Take the dashboard tour".
+   - Thank-you card after a gift (built by the Stripe session; he called it "way too complicated"): now one line, "Thank you, NAME.
+     Welcome to the crew. This is your Member Dashboard, and only you can see it." with "Take a quick tour" and "Close".
+     NOT seen in a screenshot: it only appears after a real checkout hand-off.
+   - Invite links: the page now also accepts readable link names, e.g. ?invite-to-the-rick-doblin-film=nirvan.mullick
+     (any name containing "invite", or starting "join-"); ?ref= still works. The wording shown to members is NOT changed yet;
+     waiting on his pick. A link with no question mark (whatatrip.com/nirvan.mullick...) cannot work while the site is on
+     Squarespace. The "?from=first-last" link he saw is drawn inside the checkout (Stripe session's file) and is display-only.
+   - ASKED, NOT BUILT YET: simpler perk management in the dashboard (show only the status and one next-action button that expands).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
