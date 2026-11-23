@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `3a5f32a2ae43a82e0363f3e822a67608733bfe3c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `a10c45cdfe35d60172fefc9a755a3bbe2a25106f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -549,6 +549,17 @@ Claude Code updates this file at the end of each session.
    - QUEUED from Nirvan (not built): Member Dashboard reorganisation (click any field on My profile to edit; private contact info
      in its own place; Notifications limited to notifications; a clear anonymous / credit-name setting on the member's own profile);
      the welcome Inbox note should mention the tour; let staff edit the welcome message in Site Management.
+   Nov 23 (anonymous mix-up): Nirvan ticked anonymous on a test gift from his Gmail login, then Edit profile did not show him as
+   anonymous. Found in the database: that profile IS set to anonymous (5 test gifts, $601,250, one of them anonymous). Two causes:
+   - The dashboard kept the profile it had loaded before the gift. FIXED on /home-dev: when the checkout hands back to the
+     dashboard, the member's saved details are read again. Not verified with a real login.
+   - The checkout's record_test_gift() sets the WHOLE PROFILE to anonymous when one gift is marked anonymous (and un-sets it when the
+     next gift is not). That is the Stripe session's database function. Open question for Nirvan: should "anonymous" be per gift,
+     per profile, or both? Not changed.
+   - Where the setting is today: Settings > Edit profile > "Film credit name" > "List me anonymously".
+   PLAN PROPOSED TO HIM, NOT BUILT (Member Dashboard reorganisation): My profile = the public page with click-to-edit fields and an
+   owner-only "Display my credit name as Anonymous" tick box; Contact information = its own private page; Notifications = only how
+   we contact them; referral link, perks and video uploads move to My impact / My perks / My profile.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
