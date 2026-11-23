@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d5529731761910841e2bdc404f49bd9de131848c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `e5b6b1bbe41036c69d762a14087b1c01805cd8d7` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -580,6 +580,27 @@ Claude Code updates this file at the end of each session.
      is not there, allowing for the pinned header. In the test page it lands with the update 70px from the top.
    - Each update already has its own shareable address and a Link button on the home page; the dashboard uses the same address.
    - Needs him to try it on the real /home-dev while logged in.
+   Nov 23 (Member Dashboard reorganisation; Nirvan: "yes build it"). LIVE on /home-dev:
+   - My profile = the public page. Click the name, the testimonial or About me to edit in place (the pencil buttons are still there
+     for keyboards and screen readers, visually hidden). On top, only the member sees "Your credit name" with the tick box
+     "Display my credit name as Anonymous" and Save.
+   - Contact information = its own page under My profile: first and last name, email, mobile, mailing address, extra emails,
+     download my data. Headed "Edit your private contact information."
+   - Settings group is now Profile details (photo, About me, testimonial, links, show/hide sections, profile link, photos and
+     video, private-profile switch), Notifications (how we reach you, what you hear about, time zone) and Password.
+     Removed from Notifications: groups, recognition switches, perks and store, profile link, photos, account.
+   - Saving a page now only writes the fields that are on that page (before, a page without a field would have blanked it).
+   - The welcome note in the Inbox now invites people to take the welcome tour (his wording) with a button. Existing members who
+     already have the note keep the old text.
+   - NOT built: staff editing the welcome message in Site Management (needs a database addition and his yes).
+   Also Nov 23:
+   - Hero past the Rough Cut (his answer): keep "still needed". It now reads "$X still needed to finish the film" against the
+     whole film budget ($1.615M), with "raised of $1.6M · N% funded · Rough Cut fully funded". Only past the full budget does it
+     switch to total raised, "N% of our goal", and the stretch goals.
+   - Inner Circle (his pick, option B): "Inner Circle WhatsApp invite" is now a $5K perk; "Zoom with Rick Doblin & filmmakers"
+     stays at $25K. It shows in My perks. Film Advisory WhatsApp is still listed at $5K too.
+   - Tested in the sample dashboard at 360/390/768/1300/1440. Not tried with a real login; the save paths in particular need a
+     real try (credit name / Anonymous on My profile, Contact information, Profile details).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
