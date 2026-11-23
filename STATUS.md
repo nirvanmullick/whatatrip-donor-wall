@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `a10c45cdfe35d60172fefc9a755a3bbe2a25106f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `b6e6869e1d5c347e8ff2dfebcea7c0337fd3b93b` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -560,6 +560,18 @@ Claude Code updates this file at the end of each session.
    PLAN PROPOSED TO HIM, NOT BUILT (Member Dashboard reorganisation): My profile = the public page with click-to-edit fields and an
    owner-only "Display my credit name as Anonymous" tick box; Contact information = its own private page; Notifications = only how
    we contact them; referral link, perks and video uploads move to My impact / My perks / My profile.
+   Nov 23 (hero vs the whole film goal; anonymous default):
+   - Nirvan: past the Rough Cut the bar "isn't correct because we haven't reached the full film goal"; show the total goal, and
+     past it show a percentage that keeps growing (like Kickstarter's 123%).
+     LIVE on /home-dev: once the Rough Cut goal is passed the hero bar and figures measure against the film goal
+     = Rough Cut $700K + Final Cut $915K = $1,615,000 (added up from the two budgets). Below it: "51% of our $1.6M goal to finish the
+     film · Rough Cut fully funded". Above it the bar stays full and the line reads "113% of our $1.6M goal raised · Now funding
+     our stretch goals". He said "1.4 million"; the budgets on the page add up to $1.615M, so ask which is right.
+   - Anonymous: he wants it to be one saved choice per person. Checkout should start as Anonymous for a returning anonymous donor;
+     unticking it there switches the saved choice back. The database already behaves that way (record_test_gift sets the profile).
+     Added on the page: the checkout is now given the member's saved choice and credit name (cfg.me.anon, cfg.me.credit).
+     The tick box default inside the checkout is the Stripe session's file; told it. His profile is anonymous in the database
+     (last two test gifts ticked it); Settings > Edit profile showed an old copy, fixed earlier today by re-reading after a gift.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
