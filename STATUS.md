@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `b6e6869e1d5c347e8ff2dfebcea7c0337fd3b93b` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d5529731761910841e2bdc404f49bd9de131848c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -572,6 +572,14 @@ Claude Code updates this file at the end of each session.
      Added on the page: the checkout is now given the member's saved choice and credit name (cfg.me.anon, cfg.me.credit).
      The tick box default inside the checkout is the Stripe session's file; told it. His profile is anonymous in the database
      (last two test gifts ticked it); Settings > Edit profile showed an old copy, fixed earlier today by re-reading after a gift.
+   Nov 23 (dashboard Updates): Nirvan clicked an update in the dashboard's Updates list and landed at the top of the home page.
+   - Could NOT reproduce in the test page: there it closed the dashboard and scrolled to the update. Likely something on the real
+     Squarespace page moves the scroll after the first attempt.
+   - LIVE on /home-dev: opening an update from the dashboard now sets that update's own address (#update-<id>), opens it, and checks
+     the landing twice more (after about half a second and again after a second and a half), moving the page onto the update if it
+     is not there, allowing for the pinned header. In the test page it lands with the update 70px from the top.
+   - Each update already has its own shareable address and a Link button on the home page; the dashboard uses the same address.
+   - Needs him to try it on the real /home-dev while logged in.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
