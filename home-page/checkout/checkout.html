@@ -736,7 +736,7 @@ var tT;function toast(m){var t=$('.toast');if(t)t.remove();t=document.createElem
 
 /* ---------- state ---------- */
 var VIEW='donor',CO=null,lastFocus=null;
-var DUR={prod:['Keep it going until production ends','until production ends','We end it for you when the film is finished.',0],dist:['Until 1 year after production','until 1 year after production','Supports distribution and the impact campaign.',0],date:['Keep giving until','until a date you choose','',0],stop:['Keep giving monthly until I say so','until you choose to end','Ongoing gifts after our production ends will continue to support our impact campaign, T.R.U.T.H. Not D.A.R.E.',0]};
+var DUR={prod:['Keep giving monthly until the film premieres','until the film premieres','We end it for you when the film premieres.',0],dist:['Until 1 year after production','until 1 year after production','Supports distribution and the impact campaign.',0],date:['Keep giving until','until a date you choose','',0],stop:['Keep giving monthly until I say so','until you choose to end','Ongoing gifts after our production ends will continue to support our impact campaign, T.R.U.T.H. Not D.A.R.E.',0]};
 function fmtD(v){if(!v)return '';var d=new Date(v+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
 function minDate(){var d=new Date(Date.now()+864e5);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 /* Step 1 can continue once there is an amount and, for 'until a date I choose', a date. */
@@ -1155,7 +1155,7 @@ function drawCO0(){
      +'<div class="amts">'+(CO.freq==='monthly'?[10,25,50,100,250,500]:[50,500,5000,25000,100000,250000]).map(function(v){return '<button class="'+(a===v?'on':'')+'" data-amt="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
      +'<label class="fl">Or enter an amount<span class="amtin"><span aria-hidden="true">$</span><input data-amtin inputmode="numeric" value="'+(a?a.toLocaleString('en-US'):'')+'" placeholder="0"></span></label>'
      +(CO.freq==='monthly'?'<p class="lbl" id="durl" style="margin-top:24px">How long should your monthly gift run?</p><div role="radiogroup" class="durg'+(CO.just==='mo'?' an':'')+'" aria-labelledby="durl">'+['date','prod','stop'].map(function(k){var on=CO.dur===k,rb='<button class="pk rd'+(on?' on':'')+'" role="radio" aria-checked="'+on+'" data-dur="'+k+'"><span class="bx" aria-hidden="true">'+(on?'✓':'')+'</span><span><b>'+DUR[k][0]+'</b>'+(DUR[k][2]?'<small>'+DUR[k][2]+'</small>':'')+'</span></button>';
-       return k==='prod'?'<div class="pkd'+(on?' on':'')+'">'+rb+info('prod','When we expect production to end')+'</div>'+tip('prod','We expect production to end by the end of 2027.')
+       return k==='prod'?'<div class="pkd'+(on?' on':'')+'">'+rb+info('prod','When we expect the film to be completed')+'</div>'+tip('prod','We estimate the film will be completed by the end of 2027 or early 2028.')
         :k==='date'?'<div class="pkd'+(on?' on':'')+'">'+rb+'<input type="date" data-durdate aria-label="End date" value="'+esc(CO.durDate||'')+'" min="'+minDate()+'"></div>':rb}).join('')+'</div><p class="note">You can change these settings at any time.</p>':'')
      +(CO.aerr?'<p class="err aerr" role="alert">'+esc(CO.aerr)+'</p>':'')
      +'<div class="imp1" id="imp1" aria-live="polite">'+impLine(a)+'</div>'
