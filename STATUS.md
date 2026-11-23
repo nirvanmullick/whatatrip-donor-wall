@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `826cf2accb2cb99066ef108979d60f594f76ad59` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `d24dc7d2e435ade246e9ad13c0cc04d467289a32` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -261,6 +261,10 @@ Claude Code updates this file at the end of each session.
    so it is flagged for him to confirm.
    Shirt counter: `shirtN(a)` = one Legalize Rick Inception shirt per $500, shown in the giving flow bullets ("Access to buy N
    shirts ... one for every $500"). The same note was passed to the Stripe checkout session.
+   Trailer: `openTrailer(from)` now zooms. The Vimeo player is created at once (it starts loading within about 50ms of the click),
+   covered by a copy of the preview card (`.tovp`) that grows from the card's position to the full player in 620ms while the page
+   dims, then fades to the playing video. From the "Watch the trailer" button it grows out of the button. No zoom for reduced motion.
+   Scratch test t82.js checks the start, middle and end positions.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
