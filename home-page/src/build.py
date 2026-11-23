@@ -1492,6 +1492,26 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .grt th:last-child{text-align:right}
 #wath-top .mov .grt td span{color:#5b6478}
 #wath [data-hero] .hm .hsub.hsg{display:block!important;margin-top:0!important;line-height:1.45}
+#wath .bfull>summary{list-style:none;cursor:pointer;align-items:center;margin:0 -12px;padding:10px 12px;border-radius:10px}
+#wath .bfull>summary::-webkit-details-marker{display:none}
+#wath .bfull>summary:hover{background:#e3def2}
+#wath .bfull>summary:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
+#wath .bfull>summary .dot{flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:13px;font-weight:800;line-height:1}
+#wath .bfull>summary .bsub{color:#33697f}
+#wath .bfull>summary .chev{flex:none;color:#5b6478;transition:transform .2s}
+#wath .bfull[open]>summary .chev{transform:rotate(180deg)}
+#wath-top .mov .mtour{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;box-sizing:border-box;width:min(460px,calc(100% - 32px));padding:16px 20px;background:#fff;border:1px solid #cfc8e6;border-radius:14px;box-shadow:0 16px 40px rgba(27,21,38,.24);color:#1b1526;text-align:left}
+#wath-top .mov .mtour .mtag{margin-bottom:4px}
+#wath-top .mov .mtourh{display:block;font-size:18px;line-height:1.3;font-weight:800}
+#wath-top .mov .mtour p{margin:4px 0 12px;font-size:15px;line-height:1.5;color:#3a3245}
+#wath-top .mov .mtourb{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#wath-top .mov .mtourb>span{display:flex;gap:8px}
+#wath-top .mov .mtourb .btn{min-height:44px;min-width:88px;margin:0}
+#wath-top .mov .mtourb .mlink{min-height:44px}
+#wath-top .mov .msn.tourhl{outline:2px solid #6152a0;outline-offset:-2px}
+@media(prefers-reduced-motion:reduce){#wath .bfull>summary .chev{transition:none}}
+#wath-top .mthc .mthb{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#wath-top .mthc .mthb .btn{flex:1 1 160px;min-height:44px;margin:0}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
