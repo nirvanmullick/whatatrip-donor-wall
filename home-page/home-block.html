@@ -1456,8 +1456,7 @@ html.wath-noscroll{overflow:hidden}
 #wath .bfwrap:empty{display:none}
 @media(max-width:900px){#wath .bfwrap{padding:28px 18px 0}#wath .bfwrap>.sec{max-width:none}}
 /* Nov 22 (Nirvan): hexagons cast a shadow while a honeycomb reshuffles */
-:is(#wath,#wath-top) .chhive>.chhx{transition:opacity .2s ease,filter .3s ease}
-:is(#wath,#wath-top) .chhive.shuf>.chhx{filter:drop-shadow(0 4px 5px rgba(27,21,38,.32))}
+:is(#wath,#wath-top) .chhive>.chhx{transition:opacity .2s ease}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .chhive>.chhx{transition:none}}
 /* Nov 22 (Nirvan): on-site player for a crew member's films */
 #wath-top .tov.crv{z-index:100002}
@@ -1522,20 +1521,19 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .video .vjh .chhx:is(:hover,:focus-visible) em{color:var(--lt,#5b5368);opacity:1}
 @keyframes wathVjWrite{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0 -4% 0 0);opacity:1}}
 :is(#wath,#wath-top) .video .vjs{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 46% 60% at 26% 46%,rgba(27,21,38,.42),rgba(27,21,38,0) 100%)}
-:is(#wath,#wath-top) .video .vjw{position:absolute;z-index:6;left:3%;width:45%;top:0;bottom:0;box-sizing:border-box;padding-bottom:clamp(40px,8cqw,68px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,2.2cqw,22px);pointer-events:none}
-:is(#wath,#wath-top) .video .vjc{display:flex;flex-direction:column;gap:.35em;max-width:100%;text-align:center;text-wrap:balance;color:#fff;font-size:clamp(13.5px,3.15cqw,30px);line-height:1.16;font-weight:800;text-shadow:0 2px 14px rgba(27,21,38,.8),0 0 2px rgba(27,21,38,.55)}
+:is(#wath,#wath-top) .video .vjw{position:absolute;z-index:6;left:1.5%;width:56%;top:0;bottom:0;box-sizing:border-box;padding-bottom:clamp(40px,8cqw,68px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,2.2cqw,22px);pointer-events:none}
+:is(#wath,#wath-top) .video .vjc{display:flex;flex-direction:column;gap:.35em;max-width:100%;text-align:center;text-wrap:balance;color:#fff;font-size:clamp(12px,3.45cqw,34px);line-height:1.15;white-space:nowrap;font-weight:800;text-shadow:0 2px 14px rgba(27,21,38,.8),0 0 2px rgba(27,21,38,.55)}
 :is(#wath,#wath-top) .video .vjc>span{display:block;animation:wathVjWrite .9s ease-out backwards}
 :is(#wath,#wath-top) .video .vjc>span:nth-child(1){animation-delay:.7s}
 :is(#wath,#wath-top) .video .vjc>span:nth-child(2){animation-delay:1.7s}
-:is(#wath,#wath-top) .video .vjc>span:nth-child(3){animation-delay:2.9s}
 :is(#wath,#wath-top) .video .vjj{flex:none;display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:clamp(88px,13.5cqw,128px);height:clamp(48px,8.4cqw,80px);padding:0;border:3px solid #fff;border-radius:12px;background:#6152a0;color:#fff;font:inherit;font-size:clamp(15px,2.5cqw,22px);font-weight:800;white-space:nowrap;cursor:pointer;pointer-events:auto;box-shadow:0 10px 28px rgba(27,21,38,.35);transition:transform .15s,background .15s;animation:wathFade .6s ease .3s backwards}
 :is(#wath,#wath-top) .video .vjj:hover{background:#54479a;transform:scale(1.04)}
-:is(#wath,#wath-top) .video .vjr{position:absolute;left:50%;bottom:clamp(6px,2.4cqw,24px);transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:0 14px;border:1px solid transparent;border-radius:999px;background:rgba(255,255,255,.8);color:#1b1526;font:inherit;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;pointer-events:auto;transition:background .15s,border-color .15s}
+:is(#wath,#wath-top) .video .vjr{position:absolute;left:43%;bottom:clamp(6px,2.4cqw,24px);transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:0 14px;border:1px solid transparent;border-radius:999px;background:rgba(255,255,255,.8);color:#1b1526;font:inherit;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;pointer-events:auto;transition:background .15s,border-color .15s}
 :is(#wath,#wath-top) .video .vjr:hover{background:#fff;border-color:#6152a0}
 :is(#wath,#wath-top) .video .vjj:focus-visible,:is(#wath,#wath-top) .video .vjr:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(pointer:coarse){:is(#wath,#wath-top) .video .vjr{min-height:44px}}
 @media(max-width:700px){:is(#wath,#wath-top) .video .vjj{border-width:2px;border-radius:10px}}
-@container (max-width:340px){:is(#wath,#wath-top) .video .vjw{left:2%;width:62%;padding-bottom:0;gap:5px}:is(#wath,#wath-top) .video .vjc{font-size:12.5px;gap:.2em}:is(#wath,#wath-top) .video .vjj{height:44px}:is(#wath,#wath-top) .video .vjr{left:auto;right:0;bottom:6px;transform:none;min-width:36px;padding:0}:is(#wath,#wath-top) .video .vjr span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@container (max-width:340px){:is(#wath,#wath-top) .video .vjw{left:1%;width:62%;padding-bottom:0;gap:6px}:is(#wath,#wath-top) .video .vjc{font-size:10.5px;gap:.2em}:is(#wath,#wath-top) .video .vjj{height:44px}:is(#wath,#wath-top) .video .vjr{left:2px;right:auto;bottom:6px;transform:none;min-width:36px;padding:0}:is(#wath,#wath-top) .video .vjr span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vjh{animation:none}:is(#wath,#wath-top) .video .vjh .chhx{animation:none;transition:none}:is(#wath,#wath-top) .video .vjc>span,:is(#wath,#wath-top) .video .vjj{animation:none}}
 :is(#wath,#wath-top) .chhx.cchx{cursor:pointer}
 :is(#wath,#wath-top) .chhx.cchx .av,#wath-top .ccbh .av{color:var(--lt)}
@@ -3454,7 +3452,7 @@ function vjDraw(v,anim){var hv=v.querySelector('.vjh');if(!hv)return;var W=v.cli
     t.innerHTML='<i class="vjp" style="background-image:url('+VJIMG+');background-size:'+bw.toFixed(1)+'px '+bh.toFixed(1)+'px;background-position:'+(ox-x).toFixed(1)+'px '+(oy-y).toFixed(1)+'px"></i><i class="vjk"></i>'+(ts>=22?'<em>'+esc(ini.trim().slice(0,2))+'</em>':'');F.appendChild(t)});
   hv.style.backgroundImage='linear-gradient(rgba(97,82,160,.32),rgba(97,82,160,.32)),url('+VJIMG+')';hv.style.backgroundSize='auto,'+bw.toFixed(1)+'px '+bh.toFixed(1)+'px';hv.style.backgroundPosition='0 0,'+ox.toFixed(1)+'px '+oy.toFixed(1)+'px';hv.style.backgroundRepeat='no-repeat';hv.innerHTML='';hv.appendChild(F)}
 function trailerAfter(){var v=R.querySelector('.video');if(!v||v.querySelector('.vj'))return;var j=document.createElement('span');j.className='vj';
-  j.innerHTML='<span class="vjh"></span><span class="vjs" aria-hidden="true"></span><span class="vjw"><b class="vjc"><span>Changing policy needs science.</span><span>Changing culture needs stories.</span><span>This story needs you.</span></b><button type="button" class="vjj" data-vjjoin>Join Us</button><button type="button" class="vjr" data-trailer aria-label="Rewatch the trailer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><span>Rewatch the trailer</span></button></span>';
+  j.innerHTML='<span class="vjh"></span><span class="vjs" aria-hidden="true"></span><span class="vjw"><b class="vjc"><span>Changing policy needs science.</span><span>Changing culture needs stories.</span></b><button type="button" class="vjj" data-vjjoin>Join Us</button><button type="button" class="vjr" data-trailer aria-label="Rewatch the trailer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><span>Rewatch the trailer</span></button></span>';
   v.removeAttribute('href');v.removeAttribute('data-trailer');v.removeAttribute('aria-label');v.classList.add('vjon');v.appendChild(j);vjDraw(v,false);var hv0=j.querySelector('.vjh');hv0.style.pointerEvents='none';setTimeout(function(){hv0.style.pointerEvents=''},WRM?1000:2600);
   var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(v.clientWidth&&v.clientWidth!==VJW)vjDraw(v,false)},250)})}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-vjjoin]');if(b){e.preventDefault();openJoin(b);return}var t=e.target.closest&&e.target.closest('.vjh .chhx[data-supp]');if(t){e.preventDefault();openSupp(t.getAttribute('data-supp'))}});
