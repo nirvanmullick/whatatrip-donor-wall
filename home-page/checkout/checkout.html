@@ -363,6 +363,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pmc{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 16px;padding:10px 14px;border:1px solid #cfc8e6;border-radius:10px;font-size:15px}
 .pmc span{min-width:0}
 .pmc .lnk{min-height:32px;font-size:14px}
+.sum>div{align-items:center}
+.sum .sl{display:flex;align-items:center;min-width:0}
+.sum .sl>span{min-width:0}
+.sum .ib{margin:-10px -6px -10px 0}
+.sum .tip{margin:8px 0}
+.sum .gift .sl>span,.sum .chg .sl>span{color:#1b1526;font-weight:700;font-size:16px}
+.sum .gift small{font-weight:400;color:#6b6478}
+.sum .gift b{font-size:16px;color:#1b1526}
+.sum .chg{border-bottom:2px solid #cfc8e6;padding:14px 0}
+.sum .chg .sl>span{font-size:17px}
+.sum .chg b{font-size:26px;font-weight:800;color:#6152a0}
+.sum .g{padding:6px 0;border-bottom:0}
+.sum .g .sl>span,.sum .g b{font-size:13.5px;font-weight:400;color:#6b6478}
+.sum .g small{font-size:12.5px}
+.sum .gift+.g{padding-top:10px}
+.sum .tot{border-bottom:0}
+.sum .tot .sl>span{color:#3a3245;font-weight:600;font-size:14.5px}
+.sum .tot b{font-size:16px;color:#3a3245}
 .sbox,.ndg{animation:fillin .28s cubic-bezier(.2,.8,.2,1) both}
 @keyframes fillin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 #pop .pm+.mopt{margin-bottom:8px}
@@ -830,12 +848,15 @@ function openCO(a){lastFocus=document.activeElement;CO=fresh(a);document.documen
 function closeCO(){CO=null;$('#pop').innerHTML='';document.documentElement.classList.remove('lock');if(EMB){if(!LAST)hostClose();return}if(VIEW==='fr')drawFR();if(lastFocus&&lastFocus.focus)try{lastFocus.focus()}catch(e){}}
 function tryClose(){if(CO&&CO.amt>0&&CO.step<5&&!CO.leave){CO.leave=1;drawCO();return}closeCO()}
 function sumRows(){
-  var f=fee(),v=fmv(),tu=topup(),pay=CO.step>=4,h='<div class="sum"><div><span>Your gift'+(CO.freq==='monthly'?' <small>monthly, '+durTxt()+'</small>':'')+'</span><b>'+money(CO.amt)+'</b></div>';
-  if(tu)h+='<div><span>Perk payment <small>not tax-deductible</small></span><b>+ '+money(tu)+'</b></div>';
-  if(pay)h+='<div><span>'+(CO.method==='bank'?'Fees by bank':CO.method==='card'?'Fees by card':CO.method==='gpay'?'Fees by Google Pay':'Fees by Apple Pay')+' <small>'+(CO.cover?'covered by you':'comes out of your gift')+'</small></span><b>'+money(curFee(CO.method))+'</b></div>';
-  if(v)h+='<div><span>Fair market value of perks</span><b>− '+money(v)+'</b></div>';
-  if(pay||tu)h+='<div><span>Total today</span><b>'+money(CO.amt+tu+(pay?f:0))+'</b></div>';
-  return h+'<div class="tot"><span>Total tax-deductible amount</span><b>'+money(Math.max(0,CO.amt+tu+(pay?f:0)-v))+'</b></div></div>';
+  var f=fee(),v=fmv(),tu=topup(),pay=CO.step>=4&&!!CO.method,mo=CO.freq==='monthly',bank=CO.method==='bank',cf=pay?curFee(CO.method):0;
+  var row=function(cls,label,k,val,t){return '<div class="'+cls+'"><span class="sl"><span>'+label+'</span>'+(k?info(k,'About: '+label.replace(/<[^>]+>/g,'')):'')+'</span><b>'+val+'</b></div>'+(k?tip(k,t):'')};
+  var h='<div class="sum">'+row('gift','Your gift'+(mo?' <small>monthly, '+durTxt()+'</small>':''),'',money(CO.amt));
+  if(tu)h+=row('g','Perk payment <small>not tax-deductible</small>','',' + '+money(tu));
+  if(pay)h+=row('g','Processing fee <small>'+(bank?'taken by the bank network':'taken by the credit card company')+(CO.cover?', covered by you':', comes out of your gift')+'</small>','sfee',(CO.cover?'+ ':'')+money(cf),
+    (bank?'Bank transfers cost 0.8%, never more than $5.':'Card companies charge 2.9% + 30¢ on every gift.')+' None of it goes to the film or to us. '+(CO.cover?'You chose to cover it, so the film receives your whole '+money(CO.amt)+'. The fee you cover is tax-deductible too.':'It comes out of your '+money(CO.amt)+' before it reaches the film. Tick the box above to cover it.'));
+  if(pay||tu)h+=row('chg','Total charged '+(bank?'to your bank account':CO.method==='wallet'?'with Apple Pay':CO.method==='gpay'?'with Google Pay':pay?'to your card':'today')+(mo?' each month':pay?' today':''),'',money(CO.amt+tu+(pay?f:0)));
+  if(v)h+=row('g','Value of the perks you chose','sfmv','− '+money(v),'The IRS asks us to subtract the fair market value of any perks you receive from the amount you can deduct. It does not change what you are charged.');
+  return h+row('tot','Amount you can deduct from your taxes','sded',money(Math.max(0,CO.amt+tu+(pay?f:0)-v)),'This is the amount on the tax receipt Creative Visions Foundation, a 501(c)(3) charity, sends you'+(v?': your gift'+(f?', plus the fee you cover,':'')+' minus the value of the perks you chose.':f?': your gift plus the fee you cover.':'. With no perks chosen, your whole gift is deductible.'))+'</div>';
 }
 function plainFee(a,m){if(!(a>0))return 0;return m==='bank'?Math.min(5,Math.round(a*0.8)/100):Math.round(a*2.9+30)/100}
 function curFee(m){m=m==='bank'?'bank':'card';var T=CO.amt+topup();return CO.cover?feeFor(T,m):plainFee(T,m)}
@@ -938,7 +959,7 @@ function drawCO(){
      +'</div>'
      +'<div class="ir"><label class="ck"><input type="checkbox" data-c="cover"'+(CO.cover?' checked':'')+'><span>Cover the '+money(feeFor(a+tu,CO.method==='bank'?'bank':'card'))+' fee so my full gift reaches the film</span></label>'+info('fee','About fees')+'</div>'
      +tip('fee','Every gift carries a processing fee: 2.9% + 30¢ by card or Apple / Google Pay, and 0.8% (never more than $5) by bank. Cover it and the film receives your whole gift. The fee you cover is tax-deductible too.')
-     +(fmv()||tu?sumRows():'<div class="sum"><div class="tot"><span>Total tax-deductible amount</span><b>'+money(a+fee())+'</b></div></div>')
+     +sumRows()
      +'<div class="ft"><button class="btn quiet" data-a="back"'+(CO.busy?' disabled':'')+'>Back</button><button class="btn pri" data-a="pay"'+(CO.busy?' disabled':'')+'>'+(CO.busy?'<span class="spin" aria-hidden="true"></span>Processing…':'Donate '+money(a+tu+fee())+(CO.freq==='monthly'?' a month':''))+'</button></div>'
      +(tu||CO.freq==='monthly'?'<div class="ir fine"><span>'+(tu?money(a)+' to Creative Visions Foundation. '+money(tu)+' perk payment to What a Trip.':'To Creative Visions Foundation, for the film.')+(CO.freq==='monthly'?' Monthly '+durTxt()+'. Cancel any time.':'')+'</span>'+info('cvf','About Creative Visions Foundation')+'</div>'+tip('cvf','Creative Visions Foundation, a 501(c)(3) charity, is the film’s fiscal sponsor. It receives your gift for '+TAG+' and issues your tax receipt.'+(tu?' The perk payment goes to the film’s production company and is not a donation. You’ll see two charges on your statement.':'')+(CO.freq==='monthly'?' Your receipt has a link to change or cancel your monthly gift.':'')):'');
   }else{
