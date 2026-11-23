@@ -1339,7 +1339,7 @@ html.wath-noscroll{overflow:hidden}
 @keyframes wathVjWrite{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0 -4% 0 0);opacity:1}}
 :is(#wath,#wath-top) .video .vjs{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 46% 60% at 26% 46%,rgba(27,21,38,.42),rgba(27,21,38,0) 100%)}
 :is(#wath,#wath-top) .video .vjw{position:absolute;z-index:6;left:3%;width:45%;top:0;bottom:0;box-sizing:border-box;padding-bottom:clamp(40px,8cqw,68px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,2.2cqw,22px);pointer-events:none}
-:is(#wath,#wath-top) .video .vjc{display:flex;flex-direction:column;gap:.35em;max-width:100%;text-align:center;text-wrap:balance;color:#fff;font-size:clamp(12.5px,2.75cqw,25px);line-height:1.16;font-weight:800;text-shadow:0 2px 14px rgba(27,21,38,.8),0 0 2px rgba(27,21,38,.55)}
+:is(#wath,#wath-top) .video .vjc{display:flex;flex-direction:column;gap:.35em;max-width:100%;text-align:center;text-wrap:balance;color:#fff;font-size:clamp(13.5px,3.15cqw,30px);line-height:1.16;font-weight:800;text-shadow:0 2px 14px rgba(27,21,38,.8),0 0 2px rgba(27,21,38,.55)}
 :is(#wath,#wath-top) .video .vjc>span{display:block;animation:wathVjWrite .9s ease-out backwards}
 :is(#wath,#wath-top) .video .vjc>span:nth-child(1){animation-delay:.7s}
 :is(#wath,#wath-top) .video .vjc>span:nth-child(2){animation-delay:1.7s}
@@ -1351,7 +1351,7 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .video .vjj:focus-visible,:is(#wath,#wath-top) .video .vjr:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(pointer:coarse){:is(#wath,#wath-top) .video .vjr{min-height:44px}}
 @media(max-width:700px){:is(#wath,#wath-top) .video .vjj{border-width:2px;border-radius:10px}}
-@container (max-width:340px){:is(#wath,#wath-top) .video .vjw{left:2%;width:62%;padding-bottom:0;gap:5px}:is(#wath,#wath-top) .video .vjc{font-size:11.5px;gap:.2em}:is(#wath,#wath-top) .video .vjj{height:44px}:is(#wath,#wath-top) .video .vjr{left:auto;right:0;bottom:6px;transform:none;min-width:36px;padding:0}:is(#wath,#wath-top) .video .vjr span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@container (max-width:340px){:is(#wath,#wath-top) .video .vjw{left:2%;width:62%;padding-bottom:0;gap:5px}:is(#wath,#wath-top) .video .vjc{font-size:12.5px;gap:.2em}:is(#wath,#wath-top) .video .vjj{height:44px}:is(#wath,#wath-top) .video .vjr{left:auto;right:0;bottom:6px;transform:none;min-width:36px;padding:0}:is(#wath,#wath-top) .video .vjr span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vjh{animation:none}:is(#wath,#wath-top) .video .vjh .chhx{animation:none;transition:none}:is(#wath,#wath-top) .video .vjc>span,:is(#wath,#wath-top) .video .vjj{animation:none}}
 :is(#wath,#wath-top) .chhx.cchx{cursor:pointer}
 :is(#wath,#wath-top) .chhx.cchx .av,#wath-top .ccbh .av{color:var(--lt)}
