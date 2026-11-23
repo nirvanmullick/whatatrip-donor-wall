@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `e0295be234940aa396d84f5cadc739e6ab46e370` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `8a147cf7914b8d33c40109cb1019667d252f4198` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -367,6 +367,10 @@ Claude Code updates this file at the end of each session.
      published home-block.html matches a fresh build.
    - Note for Nirvan: the checkout file now sits in the PUBLIC repo (that is where /home-dev loads from). It is a mockup, noindex.
    - Stripe session reports tests/acct.js times out on `.mov [data-f=ref]` even before its change: pre-existing, not yet looked at.
+   Nov 22 late (Nirvan, direct): after-trailer headline is now "Science can change policy." / "Stories can change culture."
+   (one line each), a little bigger and a little higher, with no write-on: the text and Join Us are simply there when the picture returns.
+   Same round: the honeycomb over the picture is much fainter (more sky and desert show through tiles and lines), the text has no
+   drop shadow, and only a light even darkening on the left keeps the white text readable.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
