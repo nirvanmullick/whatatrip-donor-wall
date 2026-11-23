@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `0784ce53b20057e00de9ba8ea130f1b75d606fc3` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `73696701d51aa350c41b4ede80c66749f980fe44` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -308,6 +308,16 @@ Claude Code updates this file at the end of each session.
    sign off. Summary given to him: a paid-entry drawing is a raffle (California bans selling raffle tickets online); the workable
    route is a sweepstakes with a clearly disclosed free way to enter at equal odds (mail-in is the usual one; it cannot be hidden in
    the terms), official rules, and NY/FL registration if the prize is worth over $5,000. (3) No hover card on the credit's hexagon yet.
+   Nov 22 evening, mosaic refinements from Nirvan (all built): the mosaic is already in place as the trailer shrinks back and eases
+   out from a slight zoom (no tile-by-tile arrival); Rick's cut-out comes from the photo itself (VJM mask in app.js, made by scratch
+   mkmask.js), so tiles over Rick are nearly clear with almost no initials and background initials are very faint; gaps between tiles
+   show the photo with a violet wash (no dark lines); headline is now "Policy change needs science. / Culture change needs stories."
+   centred above the purple Join Us button in the middle of the frame, with a small white "Watch the trailer again" button (play
+   arrow) under it; all three sit above the tiles. Tiles radiate from the button, largest donors first, and within a level people with
+   a testimonial come first; anonymous gifts are not tiles; tiles ignore the pointer until about a second after the picture settles.
+   COMMUNITY CREDIT name ideas: form is live on the credit's page (idea + optional name). Migration `credit_name_ideas` applied
+   Nov 22 with Nirvan's yes: anyone can insert, only Owner/Admin/Manager can read, Owner/Admin can edit or delete. There is no
+   staff screen for the entries yet (read them with SQL), and the vote is not built.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
