@@ -1551,6 +1551,23 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 :is(#wath,#wath-top) .hbsp{flex:none;width:22px;height:22px;border-radius:50%;border:3px solid #d9d1ee;border-top-color:#6152a0;animation:hbSpin .8s linear infinite}
 @keyframes hbSpin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .hbsp{animation:none}}
+#wath-top .mov .chfg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+#wath-top .mov .chf{margin-bottom:16px}
+#wath-top .mov .chf select{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15.5px;background:#fff;color:#1b1526}
+#wath-top .mov .chf .mck{display:flex;align-items:center;gap:8px;min-height:44px}
+#wath-top .mov .chf .pfbar,#wath-top .mov .chb{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+#wath-top .mov .chl{margin-bottom:16px}
+#wath-top .mov .chl .smann span.chb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px;color:#1b1526}
+#wath-top .mov .chf textarea{display:block;width:100%;box-sizing:border-box}
+#wath-top .mov .chl .smann{flex-wrap:wrap}
+#wath-top .mov .chl .smann>div{flex:1 1 260px}
+#wath-top .mov .chl .smann span{overflow-wrap:anywhere}
+#wath-top .mov .chb .btn,#wath-top .mov .chb .mlink{min-height:44px;margin:0}
+#wath-top .mov .chr.st-declined b,#wath-top .mov .chr.st-completed b{color:#5b6478}
+#wath-top .sgo select{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15.5px;background:#fff;color:#1b1526}
+#wath-top .sgo .sgck{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:15px;line-height:1.4}
+#wath-top .sgo .sgck input{margin-top:3px;flex:none}
+@media(max-width:560px){#wath-top .mov .chfg{grid-template-columns:minmax(0,1fr)}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
