@@ -1767,6 +1767,25 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .gaddf select{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15px;background:#fff;color:#1b1526}
 #wath-top .mov .gaddf .mck{display:flex;align-items:flex-start;gap:8px;margin:8px 0;line-height:1.4}
 #wath-top .mov .gaddf .mck input{margin-top:3px;flex:none}
+#wath-top .sppg .sphv{position:relative;overflow:hidden;margin:0!important;width:auto!important;order:0!important;border:1px solid #d9d3ec;border-radius:0;cursor:default;align-self:stretch}
+#wath-top .sppg .sphv:before{display:none!important}
+#wath-top .sppg .sphv .vjme{z-index:3;transform:scale(1.28);filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 8px rgba(27,21,38,.45));animation:none}
+#wath-top .sppg .sphv .vjme em{opacity:1}
+#wath-top .sppg .sphv .vjln{position:absolute;z-index:2;height:2px;background:rgba(255,255,255,.9);transform-origin:0 50%;pointer-events:none;border-radius:2px}
+#wath-top .sppg .sphv .vjj{width:auto!important;min-width:0;max-width:86%;padding:0 20px;white-space:nowrap;font-size:clamp(13px,2.4cqw,17px)}
+#wath-top .sppgc.sphon{grid-template-rows:auto 1fr}
+#wath-top .sppgc>.spme{grid-column:2;grid-row:1}
+#wath-top .sppgc.sphon>.sppgL{grid-column:1;grid-row:1/span 2}
+#wath-top .sppgc.sphon>.sppga{grid-column:2;grid-row:2}
+#wath-top .sppg.sphid .sppgm .bovh,#wath-top .sppg.sphid .sppgm .sppgacts{display:none}
+#wath-top .spme .spmh{display:flex;align-items:center;gap:16px;margin:0 0 16px}
+#wath-top .spme .spmh .av{flex:none;width:72px;height:72px;font-size:24px}
+#wath-top .spme .spmn{min-width:0}
+#wath-top .spme .spmn b{display:block;font-size:22px;line-height:1.2;font-weight:800;color:#1b1526;overflow-wrap:anywhere}
+#wath-top .spme .spmn span{display:block;margin-top:4px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6152a0}
+#wath-top .spme .btn{min-height:44px;margin:0 0 8px}
+#wath-top .spme .spmnote{margin:8px 0 0;font-size:13.5px;line-height:1.45;color:#5b6478}
+@media(max-width:900px){#wath-top .sppgc>.spme,#wath-top .sppgc.sphon>.sppgL,#wath-top .sppgc.sphon>.sppga{grid-column:1;grid-row:auto}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2972,6 +2991,33 @@ function sppgLife(o,now){var fx=document.createElement('div');fx.className='sppg
 function sppgNav(on){try{[].forEach.call(document.querySelectorAll('#header a[href$="/donors"],#header a[href$="/donors/"],.header-menu-nav a[href$="/donors"],.header-menu-nav a[href$="/donors/"]'),function(a){if(!a._wn){a._wn=1;a.textContent='Supporters'}a.classList.toggle('wath-navon',!!on)})}catch(e){}}
 setTimeout(function(){sppgNav(false)},0);setTimeout(function(){sppgNav(!!T.querySelector('.bov.sppg'))},1800);
 function sppgLeave(o){try{sppgNav(false);if(o._sy!=null)window.scrollTo({top:o._sy,behavior:'instant'});if(WRM)return;var g=document.createElement('div');g.className='sppgout';g.style.top=o.style.top||'0px';T.appendChild(g);setTimeout(function(){if(g.parentNode)g.parentNode.removeChild(g)},560)}catch(e){}}
+/* Nov 23 (Nirvan): every public supporter profile opens with the campaign itself: Rick's honeycomb portrait with this person's hexagon lit up
+   beside the button, and the trailer. If you arrived through their own invite link the button says "Join NAME"; otherwise "Give alongside NAME".
+   A gift made from their page credits them as the person who brought you, unless someone else already did. The money always goes to the film.
+   Their picture, name and the buttons sit in the side column, like a campaign page; on phones that card comes first. */
+function spHandle(n){var k=String(n||'').toLowerCase();try{if(SUPSL&&SUPSL.of&&SUPSL.of[k])return String(SUPSL.of[k]).toLowerCase()}catch(e){}return String(supSlugOf(n)||'').toLowerCase()}
+function spViaLink(n){var h=spHandle(n);if(!h)return false;try{if(REFURL&&REFURL===h)return true;if(REF&&REF.h===h)return true}catch(e){}return false}
+function spCredit(n){try{if(REF&&REF.h)return;var h=spHandle(n);if(!h)return;REF={h:h,at:Date.now()};localStorage.setItem('wath:ref',JSON.stringify(REF))}catch(e){}}
+function spHeroDraw(hero,n){try{vjDraw(hero,false)}catch(e){return}var hv=hero.querySelector('.vjh'),bt=hero.querySelector('.vjj'),old=hero.querySelector('.vjln');if(old)old.parentNode.removeChild(old);if(!hv||!bt)return;
+  var T2=[].slice.call(hv.querySelectorAll('.chhx')),mine=T2.filter(function(x){return x.getAttribute('data-supp')===n})[0];if(!mine)return;
+  var hr=hero.getBoundingClientRect(),br=bt.getBoundingClientRect(),bcy=br.top+br.height/2,best=null,bd=1e9;
+  T2.forEach(function(x){var r=x.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;if(cx<br.right+r.width*.95||cx>hr.right-r.width*.4)return;var dd=Math.abs(cy-bcy)*3+(cx-br.right);if(dd<bd){bd=dd;best=x}});if(!best)return;
+  var c=mine.cloneNode(true);c.style.left=best.style.left;c.style.top=best.style.top;c.style.width=best.style.width;c.style.height=best.style.height;c.style.fontSize=best.style.fontSize;c.style.animation='none';c.style.setProperty('--ko','.92');c.style.setProperty('--eo','1');c.classList.add('vjme');c.setAttribute('aria-label',n);best.parentNode.replaceChild(c,best);
+  var cr=c.getBoundingClientRect(),x1=br.right-hr.left,y1=bcy-hr.top,x2=cr.left+cr.width*.2-hr.left,y2=cr.top+cr.height/2-hr.top,len=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)),ln=document.createElement('i');ln.className='vjln';ln.setAttribute('aria-hidden','true');ln.style.cssText='left:'+x1.toFixed(1)+'px;top:'+(y1-1).toFixed(1)+'px;width:'+len.toFixed(1)+'px;transform:rotate('+(Math.atan2(y2-y1,x2-x1)*180/Math.PI).toFixed(2)+'deg)';hero.querySelector('.vj').appendChild(ln)}
+function spHero(o,n,view,into){var grid=o.querySelector('.sppgc'),L=o.querySelector('.sppgL');if(!grid||!L||grid.querySelector('.sphv'))return;var fn=String(n).split(/\s*&\s*|\s+/)[0],pl=/&| and /.test(n),who=pl?n:fn,via=spViaLink(n),lab=(via?'Join ':'Give alongside ')+who;
+  var hero=document.createElement('div');hero.className='video vjon sphv';hero.innerHTML='<span class="vj"><span class="vjh"></span><span class="vjs" aria-hidden="true"></span><span class="vjw"><b class="vjc"><span>Science can change policy.</span><span>Stories can change culture.</span></b><button type="button" class="vjj" data-spjoin>'+esc(lab)+'</button><button type="button" class="vjr" data-sptrailer aria-label="Watch the trailer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><span>Watch the trailer</span></button></span></span>';
+  L.insertBefore(hero,L.firstChild);
+  if(view!=='own'){var hd=into.querySelector('.bovh'),lv=hd&&hd.querySelector('[data-spf="display_name"] span'),me=document.createElement('section');me.className='sppgcd spme';
+    me.innerHTML='<div class="spmh">'+av(n)+'<div class="spmn"><b>'+esc(n)+'</b>'+(lv&&lv.textContent.trim()?'<span>'+esc(lv.textContent.trim())+'</span>':'')+'</div></div><button type="button" class="btn pri" data-spjoin>'+esc(lab)+'</button><button type="button" class="btn" data-spshare>Share this profile</button><p class="spmnote">Every gift goes to the film through Creative Visions. '+esc(who)+' '+(pl?'are':'is')+' credited for the introduction.</p>';
+    grid.insertBefore(me,grid.firstChild);grid.classList.add('sphon');o.classList.add('sphid')}
+  var go=function(){if(view==='own'){toast('This is how your page looks to visitors.');return}spCredit(n);closeBio();give()};
+  o.addEventListener('click',function(ev){var t=ev.target;if(!t.closest)return;if(t.closest('[data-spjoin]')){ev.preventDefault();ev.stopPropagation();go();return}
+    if(t.closest('[data-sptrailer]')){ev.preventDefault();ev.stopPropagation();closeBio();try{var tr=R.querySelector('[data-trailer]');if(tr){tr.scrollIntoView({block:'center'});tr.click()}}catch(e){}return}
+    if(t.closest('[data-spshare]')){ev.preventDefault();ev.stopPropagation();var sb=into.querySelector('[data-spcopy]');if(sb)sb.click();return}
+    var me2=t.closest('.sphv .vjme');if(me2){ev.preventDefault();ev.stopPropagation()}},true);
+  var draw=function(){if(hero.isConnected)spHeroDraw(hero,n)};setTimeout(draw,60);var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(draw,250)})}
+/* What the people someone invited have given. It counts toward their credit the same way money they raise does (automatic up to Made Possible By). */
+function refRaised(k){var t=0;try{refsOf(k).forEach(function(r){t+=TOTALS[String(r.referred_key||'').toLowerCase()]||0})}catch(e){}return t}
 function openProfilePage(n,ck){var k=String(n).toLowerCase(),view=spSelf(k)?'own':memIn()?'member':'visitor',fn=String(n).split(/\s*&\s*|\s+/)[0],pl=/&| and /.test(n);closeBio();var gh=T.querySelector('.sppgout');if(gh)gh.parentNode.removeChild(gh);
   var o=document.createElement('div');o.className='bov sppg';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',n);o.setAttribute('data-view',view);
   var CCP=ck==='community',WALL=ck==='wall',ALLH=CCP?commHive():supAllHex('top'),hive='<div class="chhive grow">'+ALLH.html+JOINHX+'</div>';
@@ -2981,7 +3027,7 @@ function openProfilePage(n,ck){var k=String(n).toLowerCase(),view=spSelf(k)?'own
   var into=o.querySelector('[data-sppgp]');into._page=1;if(ck){o.classList.add('crpg');into.innerHTML=CCP?commMain():WALL?wallMain():crewMain(ck)}else openSupp(n,into);
   var hd=into.querySelector('.bovh'),acts=document.createElement('div');acts.className='sppgacts';
   acts.innerHTML=(view==='own'?'<button class="btn pri" data-spgo="profile">Edit my profile</button>':(into.querySelector('.spmt')?'':'<button class="btn pri" data-spgive>Give alongside '+esc(pl?n:fn)+'</button>'))+'<button class="btn" data-spcopy>'+(view==='own'?'Share my profile':'Share this profile')+'</button>';
-  if(hd&&hd.parentNode)hd.parentNode.insertBefore(acts,hd.nextSibling);
+  if(hd&&hd.parentNode)hd.parentNode.insertBefore(acts,hd.nextSibling);if(!ck){try{spHero(o,n,view,into)}catch(e){}}
   o.addEventListener('click',function(ev){var t=ev.target;if(!t.closest)return;if(t.closest('[data-sppgx]')){closeBio();return}var cfl=t.closest('a.crf');if(cfl){var ym=/youtube\.com\/watch\?v=([\w-]{11})/.exec(cfl.getAttribute('href')||'');if(ym){ev.preventDefault();var cb=cfl.querySelector('b');crewVideo(ym[1],cb?cb.textContent:'',cfl);return}}var ccn=t.closest('.ccl [data-supp]');if(ccn){openSupp(ccn.getAttribute('data-supp'));return}var cvb=t.closest('[data-ccview]');if(cvb){var lon=cvb.getAttribute('aria-pressed')!=='true',sa=cvb.closest('.sppgall');cvb.setAttribute('aria-pressed',lon?'true':'false');cvb.textContent=lon?'Grid view':'List view';sa.classList.toggle('cclon',lon);if(!lon)chHiveLay();return}if(ck&&!CCP&&!WALL&&crewEdClick(t,ck,into))return;var ca=t.closest('[data-crall]');if(ca){var chv=ca.parentNode.querySelector('.chhive');if(chv){chv.removeAttribute('data-rows');chv.classList.add('grow');chHiveLay()}ca.hidden=true;return}var cc=t.closest('[data-crcopy]');if(cc){var cu=location.origin+location.pathname+'?crew='+cc.getAttribute('data-crcopy');try{navigator.clipboard.writeText(cu).then(function(){toast('Link copied. Anyone with it sees this profile.')},function(){prompt('Copy this link',cu)})}catch(x){prompt('Copy this link',cu)}return}if(t.closest('[data-sppgedit]')){spGo('profile');return}
     if(t.closest('[data-sppginv]')){var cp=function(u){try{navigator.clipboard.writeText(u).then(function(){toast('Your link is copied. Paste it to a friend.')},function(){prompt('Copy your link',u)})}catch(x){prompt('Copy your link',u)}};myRef(function(h){var u=h?inviteUrl(h):refLink();if(navigator.share&&window.matchMedia&&matchMedia('(pointer:coarse)').matches){try{navigator.share({title:'What a Trip',text:'Join me in supporting What a Trip',url:u}).catch(function(){})}catch(x){cp(u)}}else cp(u)});return}
     if(into.contains(t))return;var sp=t.closest('.chhx[data-supp]');if(sp)openSupp(sp.getAttribute('data-supp'))});
@@ -4831,7 +4877,7 @@ function refsOf(k){k=String(k).toLowerCase();return CONN.ref.filter(function(r){
 function refBy(k){k=String(k).toLowerCase();return CONN.ref.filter(function(r){return r.referred_key===k})[0]||null}
 function actsOf(k){k=String(k).toLowerCase();return CONN.act.filter(function(a){return a.person_key===k})}
 function raisedOf(k){return actsOf(k).reduce(function(t,a){return t+(+a.raised||0)},0)}
-function personLevel(n,given){var k=String(n||'').toLowerCase(),g=given!=null?given:(TOTALS[k]||0),l=levelFor(g),r=raisedOf(k),pick=function(min){var x=null;LEVELS.forEach(function(v){if(v.min===min)x=v});return x};
+function personLevel(n,given){var k=String(n||'').toLowerCase(),g=given!=null?given:(TOTALS[k]||0),l=levelFor(g),r=raisedOf(k)+refRaised(k),pick=function(min){var x=null;LEVELS.forEach(function(v){if(v.min===min)x=v});return x};
   if(r>=25000&&(!l||l.min<25000))return pick(25000)||l;if(r>=5000&&(!l||l.min<5000))return pick(5000)||l;return l}
 function connNames(){var o={};TOPL.forEach(function(d){o[d[0]]=1});CONN.act.forEach(function(a){o[a.person_name]=1});CONN.ref.forEach(function(r){o[r.referrer_name]=1;o[r.referred_name]=1});(LV.rows||[]).forEach(function(x){if(x.name&&x.name!=='Member')o[x.name]=1});return Object.keys(o).sort()}
 function connChain(names,s){s=s||50;var hw=s*.866+4,per=10,out='',W=0,H=0;names.forEach(function(n,i){var strip=Math.floor(i/per),j=i%per,x=j*hw/2,y=strip*(s*1.75+12)+(j%2?s*.75+2:0);out+='<button class="cnhx cnin" data-supp="'+esc(n)+'" style="left:'+x.toFixed(1)+'px;top:'+y.toFixed(1)+'px;width:'+s+'px;height:'+s+'px;animation-delay:'+(250+i*320)+'ms" title="'+esc(n)+'" aria-label="'+esc(n)+', see their profile">'+av(n)+'</button>';W=Math.max(W,x+s);H=Math.max(H,y+s)});return '<div class="cnhive" style="width:'+Math.ceil(W)+'px;height:'+Math.ceil(H)+'px">'+out+'</div>'}

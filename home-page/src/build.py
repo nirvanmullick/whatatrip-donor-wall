@@ -1583,6 +1583,25 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .gaddf select{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15px;background:#fff;color:#1b1526}
 #wath-top .mov .gaddf .mck{display:flex;align-items:flex-start;gap:8px;margin:8px 0;line-height:1.4}
 #wath-top .mov .gaddf .mck input{margin-top:3px;flex:none}
+#wath-top .sppg .sphv{position:relative;overflow:hidden;margin:0!important;width:auto!important;order:0!important;border:1px solid #d9d3ec;border-radius:0;cursor:default;align-self:stretch}
+#wath-top .sppg .sphv:before{display:none!important}
+#wath-top .sppg .sphv .vjme{z-index:3;transform:scale(1.28);filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 8px rgba(27,21,38,.45));animation:none}
+#wath-top .sppg .sphv .vjme em{opacity:1}
+#wath-top .sppg .sphv .vjln{position:absolute;z-index:2;height:2px;background:rgba(255,255,255,.9);transform-origin:0 50%;pointer-events:none;border-radius:2px}
+#wath-top .sppg .sphv .vjj{width:auto!important;min-width:0;max-width:86%;padding:0 20px;white-space:nowrap;font-size:clamp(13px,2.4cqw,17px)}
+#wath-top .sppgc.sphon{grid-template-rows:auto 1fr}
+#wath-top .sppgc>.spme{grid-column:2;grid-row:1}
+#wath-top .sppgc.sphon>.sppgL{grid-column:1;grid-row:1/span 2}
+#wath-top .sppgc.sphon>.sppga{grid-column:2;grid-row:2}
+#wath-top .sppg.sphid .sppgm .bovh,#wath-top .sppg.sphid .sppgm .sppgacts{display:none}
+#wath-top .spme .spmh{display:flex;align-items:center;gap:16px;margin:0 0 16px}
+#wath-top .spme .spmh .av{flex:none;width:72px;height:72px;font-size:24px}
+#wath-top .spme .spmn{min-width:0}
+#wath-top .spme .spmn b{display:block;font-size:22px;line-height:1.2;font-weight:800;color:#1b1526;overflow-wrap:anywhere}
+#wath-top .spme .spmn span{display:block;margin-top:4px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6152a0}
+#wath-top .spme .btn{min-height:44px;margin:0 0 8px}
+#wath-top .spme .spmnote{margin:8px 0 0;font-size:13.5px;line-height:1.45;color:#5b6478}
+@media(max-width:900px){#wath-top .sppgc>.spme,#wath-top .sppgc.sphon>.sppgL,#wath-top .sppgc.sphon>.sppga{grid-column:1;grid-row:auto}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
