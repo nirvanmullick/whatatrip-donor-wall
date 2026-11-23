@@ -522,11 +522,10 @@ document.getElementById('impHead').innerHTML='If matched, your <b>'+fmt(amt)+'</
 var bl=impactBullets(matched);
 document.getElementById('impBullets').innerHTML = bl.map(function(t){return '<li>'+t+'</li>';}).join('');
 var tier=creditFor(matched), cb=document.getElementById('cbBody');
-if(cb){
-if(tier){ var art=/^[aeiou]/i.test(tier)?'an':'a'; cb.innerHTML='The total you help us raise counts toward your contribution and film credit — so if this <b>'+fmt(amt)+'</b> pledge unlocks <b>'+fmt(matched)+'</b>, you’d receive (at least) '+art+' <b>'+tier+'</b> credit.'; }
-else { cb.innerHTML='The total you help us raise counts toward your contribution and film credit.'; }
-}
-box.classList.add('show'); if(creditBox)creditBox.classList.add('show');
+/* 2026-11-22, Nirvan: the money a challenge helps raise no longer counts toward the sponsor's own contribution or
+   film credit, so the "Your Credit" note that said so is gone and its box stays hidden. */
+if(cb)cb.innerHTML='';
+box.classList.add('show'); if(creditBox)creditBox.classList.remove('show');
 }
 function openCreditTiers(e){if(e)e.preventDefault();document.getElementById('creditTiersModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeCreditTiers(){document.getElementById('creditTiersModal').classList.remove('open');document.body.style.overflow='hidden';}
