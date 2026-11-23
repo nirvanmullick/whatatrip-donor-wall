@@ -1399,6 +1399,22 @@ html.wath-noscroll{overflow:hidden}
 #wath [data-hero]~.match{order:2!important}
 #wath [data-hero]>.nm{order:3!important}
 #wath [data-hero]~.btn.big{order:4!important}
+#wath-top .mov .smbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+#wath-top .mov .smbar .btn{min-height:44px}
+#wath-top .mov .smpick{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0 16px;max-height:208px;overflow:auto;margin:0 0 12px;padding:8px 12px;border:1px solid #d9d3ec;border-radius:8px;background:#fff}
+#wath-top .mov .smpick label{min-height:36px;min-width:0;overflow-wrap:anywhere}
+#wath-top .mov .smpick label[hidden]{display:none}
+#wath-top .mov .smc select{width:100%;min-height:44px;box-sizing:border-box;padding:0 12px;border:1px solid #cfc8e6;border-radius:8px;background:#fff;color:#1b1526;font:inherit}
+#wath-top .mov .smc{margin-bottom:12px}
+#wath-top .mov .smc+.mcard{margin-bottom:16px}
+#wath-top .mov .smc .pfbar{gap:8px}
+#wath-top .mov .smann{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #ebe7f5}
+#wath-top .mov .smann:first-of-type{border-top:0}
+#wath-top .mov .smann>div{min-width:0}
+#wath-top .mov .smann b{display:block;overflow-wrap:anywhere}
+#wath-top .mov .smann span{display:block;font-size:13px;color:#5b6478}
+#wath-top .mov .smann.off b{color:#5b6478;text-decoration:line-through}
+#wath-top .mov .smann .mlink{flex:none;min-height:44px}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
