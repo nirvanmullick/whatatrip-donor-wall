@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `945f378e05db976b55d3217676806fbdf278fee6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `e0295be234940aa396d84f5cadc739e6ab46e370` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -355,6 +355,18 @@ Claude Code updates this file at the end of each session.
    Hexagon grids no longer cast drop shadows while they reshuffle.
    NOT done here on purpose: his "$25,000 gift" perk-preview format for the giving pop-up. The Stripe session is building it into
    the new checkout, which is about to replace this page's giving pop-up on /home-dev (hand-off pending from that session).
+   NEW CHECKOUT ON /home-dev (Nov 22, done by the Stripe session from its own clone after Nirvan told it first-hand "Yes, home-dev
+   only"; he also told this session earlier it could go on the dev site, not /home-test or live):
+   - `home-page/checkout/checkout.html` is the new test checkout (one self-contained page, no payment taken). The Stripe session
+     updates it and `home-page/checkout/VERSION-CHECKOUT` from its own clone; it will not touch app.js, build.py, home-block.html
+     or VERSION-DEV without asking.
+   - app.js: `watCoOpen(a)` just before `gcoOpen(a)`; Give opens the new checkout in a full-window frame only when the page is the
+     live /home-dev (or window.WAT_NEWCO===1 in tests; ?oldco=1 forces the old one). If it cannot load, the old pop-up opens.
+     /home-test and the tests still use the old pop-up.
+   - Every publish must be built on top of commit 48e0981 (publish.sh pulls first, so it is). Checked: 945f378 contains it and the
+     published home-block.html matches a fresh build.
+   - Note for Nirvan: the checkout file now sits in the PUBLIC repo (that is where /home-dev loads from). It is a mockup, noindex.
+   - Stripe session reports tests/acct.js times out on `.mov [data-f=ref]` even before its change: pre-existing, not yet looked at.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
