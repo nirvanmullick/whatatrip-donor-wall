@@ -1322,6 +1322,29 @@ html.wath-noscroll{overflow:hidden}
 #wath .vrow .vside .rxb.sm .rx{height:24px}
 #wath .vrow .vside .rxb{gap:3px}
 @media(pointer:coarse){#wath .vrow .vside .vflag{height:44px}}
+:is(#wath,#wath-top) .video.vjon{cursor:default}
+@keyframes wathVjIn{from{opacity:0;transform:scale(.4)}}
+:is(#wath,#wath-top) .video .vj{position:absolute;inset:0;z-index:5;display:block;overflow:hidden;background:#1b1526;border-radius:inherit}
+:is(#wath,#wath-top) .video .vjh{position:absolute;inset:0;display:block}
+:is(#wath,#wath-top) .video .vjh .chhx{clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);display:flex;align-items:center;justify-content:center;font-weight:800;line-height:1;animation:wathVjIn .7s cubic-bezier(.2,.9,.3,1.15) backwards;transition:transform .16s ease}
+:is(#wath,#wath-top) .video .vjh .chhx>i{position:absolute;inset:0;display:block;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+:is(#wath,#wath-top) .video .vjh .vjp{background-repeat:no-repeat}
+:is(#wath,#wath-top) .video .vjh .vjk{background:var(--ls,#bdbac4);opacity:.5;transition:opacity .16s ease}
+:is(#wath,#wath-top) .video .vjh .rk .vjk{opacity:.14}
+:is(#wath,#wath-top) .video .vjh em{position:relative;font-style:normal;color:var(--lt,#5b5368);opacity:.7;transition:opacity .16s ease}
+:is(#wath,#wath-top) .video .vjh .rk em{color:#fff;opacity:.5}
+:is(#wath,#wath-top) .video .vjh .chhx:is(:hover,:focus-visible){z-index:4;transform:scale(1.4);background:var(--ls,#bdbac4);outline:0}
+:is(#wath,#wath-top) .video .vjh .chhx:is(:hover,:focus-visible) .vjp{opacity:0}
+:is(#wath,#wath-top) .video .vjh .chhx:is(:hover,:focus-visible) .vjk{inset:6%;background:var(--lf,#ecebee);opacity:1}
+:is(#wath,#wath-top) .video .vjh .chhx:is(:hover,:focus-visible) em{color:var(--lt,#5b5368);opacity:1}
+:is(#wath,#wath-top) .video .vjs{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(27,21,38,.55),rgba(27,21,38,0) 42%,rgba(27,21,38,0) 72%,rgba(27,21,38,.5))}
+:is(#wath,#wath-top) .video .vjc{position:absolute;left:clamp(12px,4cqw,40px);top:clamp(10px,3.5cqw,32px);display:block;max-width:min(560px,58%);color:#fff;font-size:clamp(15px,3.6cqw,34px);line-height:1.15;font-weight:800;text-shadow:0 2px 14px rgba(27,21,38,.75),0 0 2px rgba(27,21,38,.5);pointer-events:none;animation:wathFade .8s ease .6s backwards}
+:is(#wath,#wath-top) .video .vjj{position:absolute;left:50%;top:28cqw;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:clamp(88px,13.5cqw,128px);height:clamp(48px,8.4cqw,80px);padding:0;border:3px solid #fff;border-radius:12px;background:#6152a0;color:#fff;font:inherit;font-size:clamp(15px,2.5cqw,22px);font-weight:800;white-space:nowrap;cursor:pointer;box-shadow:0 10px 28px rgba(27,21,38,.35);transition:transform .15s,background .15s;animation:wathFade .8s ease .9s backwards}
+:is(#wath,#wath-top) .video .vjj:hover{background:#54479a;transform:translate(-50%,-50%) scale(1.04)}
+:is(#wath,#wath-top) .video .vjr{position:absolute;left:clamp(8px,3.5cqw,36px);bottom:clamp(2px,2cqw,20px);min-height:44px;padding:0 4px;border:0;background:none;color:#fff;font:inherit;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;cursor:pointer;text-shadow:0 1px 8px rgba(27,21,38,.9)}
+:is(#wath,#wath-top) .video .vjj:focus-visible,:is(#wath,#wath-top) .video .vjr:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:700px){:is(#wath,#wath-top) .video .vjj{top:26cqw;border-width:2px;border-radius:10px}:is(#wath,#wath-top) .video .vjr{font-size:13px}}
+@media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vjh .chhx{animation:none;transition:none}:is(#wath,#wath-top) .video .vjc,:is(#wath,#wath-top) .video .vjj{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
