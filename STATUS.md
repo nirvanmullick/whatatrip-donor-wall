@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8fcbe547d863df352b2fb86d07183d3d36070f47` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `3306ad27532373eded0dba0a1a524b18e9026715` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -413,6 +413,15 @@ Claude Code updates this file at the end of each session.
      It needs his go-ahead typed in this session first (the page already hides Submit behind login; the database still accepts
      an idea from anyone).
    RULE (Nov 23): when reminding Nirvan of a waiting choice, say what it is, where it shows, each option, and re-send the picture.
+   Nov 23 (later): Nirvan typed "Yes, apply it" in this session. Migration `credit_name_ideas_members_only` APPLIED: anonymous
+   visitors can no longer insert; a logged-in member can insert only as themselves (member_id must be their own). Checked the policy
+   and grants afterwards; security advisor shows nothing new for this table.
+   - The gate on the community credit page now reads "You must be a supporter and logged in to submit a name idea." with Log in and
+     Join us (opens the Join us pop-up). Note: the database checks "logged-in member", not "has given"; ask him if he wants a gift required.
+   - His checkout layout request (wider on desktop, summary always visible, tax-deductible amount dropping while the charge stays the
+     same, clear on phones) was forwarded verbatim to the Stripe checkout session for a sketch.
+   - ASKED FOR, NOT BUILT: real sign-up forms for "Donate a perk" and "Start a challenge" (challenge = short how-it-works plus
+     onboarding; he finds live /matching too much information). Needs two new database tables: ask before migrating.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
