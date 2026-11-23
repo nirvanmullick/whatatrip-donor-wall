@@ -11,3 +11,7 @@
 -- clear_test_gifts()          Owner/Admin. Deletes all is_test gifts and test members (and their logins). Audit-logged.
 -- test_gift_status()          anon + authenticated. {enabled, can_clear, gifts, members} (counts for staff only).
 -- set_test_gifts(p_on bool)   Owner/Admin. Turn test gifts on or off. TURN OFF AND CLEAR BEFORE LAUNCH.
+--
+-- Nov 23 2026, migration checkout_test_gifts_total_and_testimonial (approved by Nirvan): record_test_gift() now also
+-- returns total / level / gift_count and has_testimonial to a logged-out donor whose email matches a member, unless that
+-- member's profile is anonymous or private (then those fields are null). Nothing else changed.

@@ -1051,7 +1051,8 @@ function saveNote(){if(!saveOn())return '';var j=CO.saved;
   if(!j)return '<p class="tgn" role="status">Saving this as a test gift…</p>';
   return '<p class="tgn" role="status"><b>Saved as a TEST gift</b> in the members database (no money moved).'
    +(j.signed_in?' Added to the account you’re logged in with.':j.new_member?' A new test supporter was created for '+esc(CO.email)+'.':' We found an existing supporter with this email and added the gift to their record.')
-   +(j.total!=null?' Gift '+(+j.gift_count||1)+' on this record, '+money(+j.total)+' in all'+(j.level?' · '+esc(j.level):'')+'.':'')
+   +(j.total!=null?' This brings '+(j.new_member?'the':'your')+' giving to <b>'+money(+j.total)+'</b> in all'+((+j.gift_count||1)>1?', across '+(+j.gift_count)+' gifts':'')+(j.level?' · '+esc(j.level):'')+'.':'')
+   +(j.matched&&!j.signed_in&&j.has_testimonial&&(CO.comment||'').trim()?' You already have a testimonial on your profile, so the one you typed was saved with this gift only and your profile was not changed. Log in to edit it.':'')
    +' <span class="tgid">Ref '+esc(String(j.gift_id||'').slice(0,8))+'</span>'
    +(j.signed_in?' <button class="lnk" data-tg="member">Open my member page</button>':' Log in on the site with this email to see it in your member area.')+'</p>'}
 function shareMsg(link){return 'I just backed What a Trip, the documentary about Rick Doblin and the fight to bring psychedelic therapy to the people who need it. Join me: '+shareFull(link)}
