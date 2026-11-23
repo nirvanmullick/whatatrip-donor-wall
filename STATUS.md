@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `3306ad27532373eded0dba0a1a524b18e9026715` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `b2ee33371af362dc0a9541d86ced35ff4ae6cc95` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -422,6 +422,17 @@ Claude Code updates this file at the end of each session.
      same, clear on phones) was forwarded verbatim to the Stripe checkout session for a sketch.
    - ASKED FOR, NOT BUILT: real sign-up forms for "Donate a perk" and "Start a challenge" (challenge = short how-it-works plus
      onboarding; he finds live /matching too much information). Needs two new database tables: ask before migrating.
+   Nov 23 (evening): Nirvan said "Yes, build both". Sign-up forms are live on /home-dev:
+   - "Donate a perk" (Join us pop-up) opens a form: what, where/when, how many, rough value, name, email (marked private).
+   - "Start a challenge" opens a three-step how-it-works screen, then a form: amount ($25,000 minimum), credit name, preferred start,
+     note, name, email. It no longer sends people to the long /matching page.
+   - Migration `perk_offers_and_challenge_signups` APPLIED: tables perk_offers and challenge_signups. Anyone can submit (insert only,
+     limited columns); only Owner/Admin/Manager can read; Owner/Admin can update or delete. No email is sent.
+   - Staff: Site Management > Member messages shows a "Sign-ups" card listing both kinds. NOT looked at in a screenshot and not
+     tried with a real login; the forms were tested in sample mode plus a rolled-back database insert as an anonymous visitor.
+   - The "Donate an experience" card in the perks grid also got an "Offer a perk" button, but that card did not appear in the test
+     page, so it is unverified. Other /matching and /contact links (More ways to help lists) are unchanged.
+   - Open: should name ideas require a gift, not just a login? Staff cannot yet mark a sign-up as handled.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
