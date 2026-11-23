@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `c29dd0d7789c26bdadc846a11ceb0ad76f0c4381` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `0de5d9b892c7dad0180a9ffc9db33b9b95bed9e4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -716,6 +716,10 @@ Claude Code updates this file at the end of each session.
      portrait itself was not seen; the referral being remembered could not be checked there (browser storage is blocked).
    - NOT built: cascading impact numbers; the referral shown in the checkout with Remove (checkout session); the alert at $100K+;
      filmmaker pages still use their own layout; intro videos; personal goals.
+   Nov 23 (referral in the checkout): the Stripe session added a "Your referral" row with Remove to the checkout and the hand-off
+   in app.js (cfg.ref, and clearing the remembered referral on {wat:'checkout-ref-remove'}). This session added cfg.ref.photo so the
+   checkout can show the person's photo hexagon. OPEN for Nirvan: a gift made through a referral is noted on the gift, but the
+   person-to-person referral link is only created when the new donor signs in (claim_referral). Should the gift itself create it?
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
