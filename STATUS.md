@@ -450,6 +450,11 @@ Claude Code updates this file at the end of each session.
      No database change was needed. Tested in sample mode only; not tried with a real login or real test gifts.
    - He did not ask for the test-mode on/off switch; not built.
    - Pre-existing, not fixed: the staff screens scroll sideways by 1px at 360 wide.
+   Nov 23 (last): Nirvan typed "Yes, both". Migration `name_ideas_supporters_only_and_offline_gift_source` APPLIED:
+   - credit_name_ideas insert now also requires private.is_supporter (staff, or gifts >= $5, or recorded raising >= $5).
+     Still open: "invited people who then gave" does not count yet; test gifts count until cleared.
+   - gifts_source_check now allows 'offline', so adding an offline gift in Site Management should work. Checked the rule and
+     the constraint in the database; neither was tried from the page with a real login.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
