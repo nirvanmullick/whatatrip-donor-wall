@@ -518,6 +518,28 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #pop .x:focus{outline:none}
 #pop .x:focus-visible{outline:2px solid #6152a0;outline-offset:-8px;border-radius:50%}
 #pop h3:focus{outline:none}
+.calo{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0 4px 0 auto;padding:8px 12px;border:1px solid #cfc8e6;border-radius:10px;background:#fff;font-weight:600;font-size:15px;color:#3a3245;white-space:nowrap}
+.calo svg{color:#6152a0}
+.calo:hover{background:#f6f3fc}
+.cal{margin:8px 0 4px;padding:12px;border:1px solid #cfc8e6;border-radius:12px;background:#fff;animation:fillin .28s cubic-bezier(.2,.8,.2,1) both}
+.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.calh b{font-size:15.5px}
+.calb{width:44px;height:44px;border:0;background:none;border-radius:50%;font-size:24px;line-height:1;color:#6152a0;transition:background .18s}
+.calb:hover:not(:disabled){background:#ece7f7}
+.calb:disabled{opacity:.3}
+.calg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;justify-items:center}
+.calw{font-size:12px;font-weight:700;color:#6b6478;padding:4px 0}
+.cald{width:100%;max-width:44px;aspect-ratio:1;min-height:38px;border:0;border-radius:50%;background:none;font-size:15px;color:#1b1526;transition:background .18s,color .18s}
+.cald:hover:not(:disabled),.cald.sug{background:#ece7f7}
+.cald.sel,.cald.sel:hover:not(:disabled){background:#6152a0;color:#fff;font-weight:700}
+.cald.sel.just{animation:calsel .42s ease both}
+@keyframes calsel{from{background:#ece7f7;color:#1b1526}to{background:#6152a0;color:#fff}}
+.cald:disabled{color:#a39db5}
+@media(max-width:700px){.calo{margin:0 0 12px 52px}}
+@media(prefers-reduced-motion:reduce){.cal,.cald.sel.just{animation:none}}
+.mtk{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #e3def0;font-size:14.5px;color:#3a3245}
+.mtk .ib{margin:-10px -8px -10px 0}
+.mtk+.tip{background:#fff;margin-top:6px}
 .sbox,.ndg{animation:fillin .28s cubic-bezier(.2,.8,.2,1) both}
 @keyframes fillin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 #pop .pm+.mopt{margin-bottom:8px}
@@ -762,6 +784,14 @@ var tT;function toast(m){var t=$('.toast');if(t)t.remove();t=document.createElem
 var VIEW='donor',CO=null,lastFocus=null;
 var DUR={prod:['Keep giving monthly until the film premieres','until the film premieres','We end it for you when the film premieres.',0],dist:['Until 1 year after production','until 1 year after production','Supports distribution and the impact campaign.',0],date:['Keep giving until','until a date you choose','',0],stop:['Keep giving monthly until I say so','until you choose to end','Monthly gifts that continue after our film premieres will help support our film’s impact campaign, T.R.U.T.H. Not D.A.R.E.',0]};
 function fmtD(v){if(!v)return '';var d=new Date(v+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
+function isoD(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+/* Our own calendar for the monthly end date. The day a month from now is lightly marked as a starting point; hovering lights a day in lavender; choosing one turns it purple. */
+function calSug(){var d=new Date();d.setMonth(d.getMonth()+1);return isoD(d)}
+function calHtml(){var c=CO.cal,min=minDate(),sug=calSug(),first=new Date(c.y,c.m,1),sd=first.getDay(),nd=new Date(c.y,c.m+1,0).getDate(),now=new Date(),noPrev=c.y<now.getFullYear()||(c.y===now.getFullYear()&&c.m<=now.getMonth());
+  var h='<div class="cal" role="group" aria-label="Choose the date your monthly gift ends"><div class="calh"><button class="calb" data-cal="prev" aria-label="Previous month"'+(noPrev?' disabled':'')+'>‹</button><b aria-live="polite">'+first.toLocaleDateString('en-US',{month:'long',year:'numeric'})+'</b><button class="calb" data-cal="next" aria-label="Next month">›</button></div><div class="calg">'+['S','M','T','W','T','F','S'].map(function(x){return '<span class="calw" aria-hidden="true">'+x+'</span>'}).join('');
+  for(var i=0;i<sd;i++)h+='<span></span>';
+  for(var d=1;d<=nd;d++){var v=c.y+'-'+('0'+(c.m+1)).slice(-2)+'-'+('0'+d).slice(-2),on=v===CO.durDate;h+='<button class="cald'+(on?' sel'+(c.just===v?' just':''):v===sug&&!CO.durDate?' sug':'')+'" data-cald="'+v+'"'+(v<min?' disabled':'')+' aria-label="'+fmtD(v)+'"'+(on?' aria-pressed="true"':'')+'>'+d+'</button>'}
+  return h+'</div></div>'}
 function minDate(){var d=new Date(Date.now()+864e5);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 /* Step 1 can continue once there is an amount and, for 'until a date I choose', a date. */
 function spName(){return (CO.spCredit||'').trim()||((CO.first||'')+' '+(CO.last||'')).trim()||'your name'}
@@ -919,7 +949,7 @@ function getsTxt(n){var lv=levelFor(n+PRIOR),was=PRIOR?levelFor(PRIOR):null,mo=C
   if(!CO.sp){
     var pkb=paid().length?'<button class="lnk gpk" data-a="gmore" aria-expanded="'+!!CO.gmore+'">+ fun perks</button>':'';
     if(cr)h+=creditHtml(n+PRIOR,pkb);else h+='<div class="g1">'+(n+PRIOR<5000?'<span class="gl0">You’ll be listed on our <b>online donor wall</b></span>':'')+pkb+'</div>';
-    if(mo)h+=fundHtml('Monthly support lets us plan ahead for',MONTHLY);
+    if(mo)h+=fundHtml('Monthly support lets us plan ahead for',MONTHLY)+'<div class="mtk"><span>Monthly gifts add up toward perks.</span>'+info('mtok','How perks work with monthly gifts')+'</div>'+tip('mtok','As your monthly gifts add up and reach a perk level, you earn a token for that perk. Every monthly gift is fully tax-deductible, so when you redeem a token you pay the perk’s fair market value separately, and that payment is not tax-deductible. This keeps the tax receipts you have already received accurate. You’ll find your tokens under My perks.');
     if(PRIOR)h+='<span class="gl3">Added to the <b>'+money(PRIOR)+'</b> you’ve given, this brings you to <b>'+money(n+PRIOR)+'</b>'+(lv&&(!was||lv[0]>was[0])?' and the <b>'+esc(lv[1])+'</b> level':'')+'.</span>';
     if(pkb&&CO.gmore)h+='<ul class="g25">'+paid().map(function(q){return '<li>'+esc(q.n)+'</li>'}).join('')+'</ul>';
     return h}
@@ -1186,7 +1216,7 @@ function drawCO0(){
      +'<label class="fl">Or enter an amount<span class="amtin"><span aria-hidden="true">$</span><input data-amtin inputmode="numeric" value="'+(a?a.toLocaleString('en-US'):'')+'" placeholder="0"></span></label>'
      +(CO.freq==='monthly'?'<p class="lbl" id="durl" style="margin-top:24px">How long should your monthly gift run?</p><div role="radiogroup" class="durg'+(CO.just==='mo'?' an':'')+'" aria-labelledby="durl">'+['date','prod','stop'].map(function(k){var on=CO.dur===k,rb='<button class="pk rd'+(on?' on':'')+'" role="radio" aria-checked="'+on+'" data-dur="'+k+'"><span class="bx" aria-hidden="true">'+(on?'✓':'')+'</span><span><b>'+DUR[k][0]+'</b>'+(DUR[k][2]?'<small>'+DUR[k][2]+'</small>':'')+'</span></button>';
        return k==='prod'?'<div class="pkd'+(on?' on':'')+'">'+rb+info('prod','When we expect the film to be completed')+'</div>'+tip('prod','We estimate the film will be completed by the end of 2027 or early 2028.')
-        :k==='date'?'<div class="pkd'+(on?' on':'')+'">'+rb+'<input type="date" data-durdate aria-label="End date" value="'+esc(CO.durDate||'')+'" min="'+minDate()+'"></div>':rb}).join('')+'</div><p class="note">You can change these settings at any time.</p>':'')
+        :k==='date'?'<div class="pkd'+(on?' on':'')+'">'+rb+'<button class="calo" data-cal="open" aria-expanded="'+!!(CO.cal&&CO.cal.open)+'"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>'+(fmtD(CO.durDate)||'Choose a date')+'</span></button></div>'+(CO.cal&&CO.cal.open?calHtml():''):rb}).join('')+'</div><p class="note">You can change these settings at any time.</p>':'')
      +(CO.aerr?'<p class="err aerr" role="alert">'+esc(CO.aerr)+'</p>':'')
      +'<div class="imp1" id="imp1" aria-live="polite">'+impLine(a)+'</div>'
      +'<div class="gets" id="gets1" aria-live="polite">'+getsTxt(a)+'</div>'
@@ -1446,7 +1476,12 @@ document.addEventListener('click',function(e){
   if(!CO)return;
   if((v=t.getAttribute('data-pd'))){openPD(v);return}
   if((v=t.getAttribute('data-wopen'))){openAW(+v);return}
-  if((v=t.getAttribute('data-dur'))){var sd=$('#pop .ov').scrollTop;CO.dur=v;drawCO();$('#pop .ov').scrollTop=sd;$('[data-dur="'+v+'"]').focus({preventScroll:true});return}
+  if((v=t.getAttribute('data-cal'))||(v=t.getAttribute('data-cald'))){var cy=$('#pop .ov').scrollTop,isDay=t.hasAttribute('data-cald');
+    if(isDay){CO.durDate=v;CO.dur='date';CO.aerr='';CO.cal.just=v;var cc=CO;setTimeout(function(){if(CO!==cc||!CO.cal)return;CO.cal.open=false;CO.cal.just='';var y2=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=y2;var ob=$('#pop [data-cal="open"]');if(ob)ob.focus({preventScroll:true})},520)}
+    else if(v==='open'){var base=new Date((CO.durDate||calSug())+'T12:00:00');CO.dur='date';CO.cal=CO.cal&&CO.cal.open?{open:false}:{open:true,y:base.getFullYear(),m:base.getMonth(),just:''}}
+    else{var nm=new Date(CO.cal.y,CO.cal.m+(v==='prev'?-1:1),1);CO.cal.y=nm.getFullYear();CO.cal.m=nm.getMonth()}
+    drawCO();$('#pop .ov').scrollTop=cy;var cf=isDay?$('#pop [data-cald="'+v+'"]'):$('#pop [data-cal="'+v+'"]:not(:disabled)')||$('#pop [data-cal="next"]');if(cf)cf.focus({preventScroll:true});return}
+  if((v=t.getAttribute('data-dur'))){var sd=$('#pop .ov').scrollTop;CO.dur=v;if(CO.cal&&v!=='date')CO.cal.open=false;drawCO();$('#pop .ov').scrollTop=sd;$('[data-dur="'+v+'"]').focus({preventScroll:true});return}
   if((v=t.getAttribute('data-sppay'))){var qy=$('#pop .ov').scrollTop;CO.spPay=v;drawCO();$('#pop .ov').scrollTop=qy;$('#pop [data-sppay="'+v+'"]').focus({preventScroll:true});return}if((v=t.getAttribute('data-freq'))){var fy0=$('#pop .ov').scrollTop;CO.freq=v;CO.just=v==='monthly'?'mo':'';if(CO.dur==='dist')CO.dur='prod';CO.perks={};CO.noperks=false;drawCO();$('#pop .ov').scrollTop=fy0;var fb0=$('#pop [data-freq="'+v+'"]');if(fb0)fb0.focus({preventScroll:true});if(v==='monthly'&&fb0&&!RM){var hb=document.createElement('span');hb.className='hb';hb.setAttribute('aria-hidden','true');for(var hi=0;hi<16;hi++){var he=document.createElement('i');he.innerHTML=HEART;var hr=Math.random,hc=['#6152a0','#8a7fc0','#cfc8e6','#e8609c','#f7a3c6','#c0397a'];he.style.cssText='--x:'+Math.round((hr()-.5)*190)+'px;--y:'+Math.round(-44-hr()*84)+'px;--d:'+Math.round(hr()*240)+'ms;--t:'+Math.round(1300+hr()*1400)+'ms;--dx:'+Math.round((hr()-.5)*36)+'px;--fall:'+Math.round(28+hr()*56)+'px;--s:'+(0.6+hr()*0.7).toFixed(2)+';color:'+hc[Math.floor(hr()*hc.length)];hb.appendChild(he)}fb0.appendChild(hb);setTimeout(function(){if(hb.parentNode)hb.parentNode.removeChild(hb)},3200)}return}
   if((v=t.getAttribute('data-amt'))){var ay0=$('#pop .ov').scrollTop;CO.amt=+v;CO.aerr='';CO.perks={};CO.noperks=false;drawCO();$('#pop .ov').scrollTop=ay0;var ab0=$('#pop [data-amt="'+v+'"]');if(ab0)ab0.focus({preventScroll:true});return}
   if((v=t.getAttribute('data-ord'))){var O=CO.ord||(CO.ord={shipped:false,edit:false,err:''}),oy=$('#pop .ov').scrollTop;if(v==='edit'){if(!CO.shipOther){CO.sname=(CO.first+' '+CO.last).trim();CO.saddr1=CO.addr1;CO.scity=CO.city;CO.sstate=CO.state;CO.szip=CO.zip;CO.scountry=CO.country}O.keep={tsize:CO.tsize,shipOther:CO.shipOther,sname:CO.sname,saddr1:CO.saddr1,scity:CO.scity,sstate:CO.sstate,szip:CO.szip,scountry:CO.scountry};CO.shipOther=true;O.edit=true;O.err=''}else if(v==='cancel'){for(var ok in O.keep)CO[ok]=O.keep[ok];O.edit=false;O.err=''}else if(v==='save'){if(!(CO.sname||'').trim()||!addrOk('s')){O.err='Please fill in the name and full address for the package.'}else{O.edit=false;O.err='';toast('Saved. We’ll ship to the new details.')}}else if(v==='ship'){O.shipped=!O.shipped;O.edit=false}drawCO();$('#pop .ov').scrollTop=oy;var of=$('#pop [data-ord="'+(v==='edit'?'save':v==='ship'?'ship':'edit')+'"]');if(of)of.focus({preventScroll:true});return}
@@ -1513,6 +1548,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&PD){closePD
   if(e.key==='Escape'&&AW){closeAW();return}
   if(e.key==='Escape'&&!CO&&LAST&&(LAST.welcome||LAST.tour>=0)){LAST.welcome=false;LAST.tour=-1;drawPage();return}
   if(e.key==='Escape'&&!CO&&RMD){RMD=null;rmdDraw();if(EMB&&VIEW!=='fr')hostClose();else drawPage();return}
+  if(e.key==='Escape'&&CO&&CO.cal&&CO.cal.open){CO.cal.open=false;var ey2=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=ey2;var eo=$('#pop [data-cal="open"]');if(eo)eo.focus({preventScroll:true});return}
   if(e.key==='Escape'&&CO){if(CO.info){var k0=CO.info;CO.info=null;var s0=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=s0;$('[data-info="'+k0+'"]').focus({preventScroll:true})}else tryClose()}
   if(e.key==='Tab'&&CO){var R=(AW||PD)?'#pop2':'#pop',f=[].filter.call(document.querySelectorAll(R+' button,'+R+' input,'+R+' textarea,'+R+' a'),function(x){return !x.disabled});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
 if(EMB){document.documentElement.classList.add('emb');PRIOR=+EMB.prior||0;if(EMB.match&&EMB.match.left>0){MATCH.on=true;MATCH.legs=(EMB.match.legs||[]).map(function(l){return {by:String(l.by||''),cap:+l.cap||0,left:+l.left||0}});MATCH.by=String(EMB.match.by||MATCH.by);MATCH.cap=+EMB.match.cap||MATCH.cap;MATCH.left=+EMB.match.left}else MATCH.on=false}
