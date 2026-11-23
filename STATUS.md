@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `4ada5d385af339a35174708d2cfb464c1381fe08` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `a8e50ace14a7aef9d02db3c935443589d8fd9dfb` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -401,6 +401,9 @@ Claude Code updates this file at the end of each session.
    directly under it; section jumps allow for the taller bar. Phones are unchanged. Code: the small block before closeTrailer in
    app.js and the `html.wath-pin` rules at the end of the CSS. Tested with a stand-in header, NOT with the real Squarespace header.
    If he likes it, make it the default; if not, delete those two pieces.
+   PINNED HEADER is now ON for everyone on /home-dev (Nirvan, Nov 22: "The pinned header is the way to go ... implement it on
+   the site now"). Desktop only (900px and wider); the ?pin=1 switch is gone. Still not checked against the real Squarespace
+   header (tests use a stand-in). Lesson noted: when he asks to "see" a change on the dev site, just build it on /home-dev.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
