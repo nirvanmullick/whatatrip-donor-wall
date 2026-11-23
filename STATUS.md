@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `33ab3c97e80d383d6d526fe294d5aec285afbbf9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `726dc88fd2beb50e95b63d7dc9cec7861475b48e` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -275,6 +275,11 @@ Claude Code updates this file at the end of each session.
    hexagon focused it, and pressing the mouse on the card closed the card (focusout) before its button got the click.
    IDEA from Nirvan, not built: joining is free, but a profile is only activated and listed once the member has helped (gave,
    raised, offered a perk that raised money, or invited friends who gave). Needs a membership rule and database work.
+   FAQs moved into the lower two-column block (first in `.cols.second>.stack`), so "More ways to help" sits beside them; then Voices,
+   then Updates. FAQs got a two-line heading like Voices ("FAQs 11" label over "Questions and answers") so the two boxes start level
+   (measured equal at 1024/1300/1440). `[data-bfhome]` now holds only Budget.
+   Voices rows: new right column `.vside` with the editor menu or, for everyone else including guests, a flag (guests are asked to log
+   in), and the reactions stacked under it. Nothing sits under the quote any more.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
