@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `c5a84abc661d3540c4f453968612f2527e8123db` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `aba7ff748bb0138feceb5f26fd5ee8700f68af02` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -468,6 +468,18 @@ Claude Code updates this file at the end of each session.
    - Tested with pretend test gifts fed into the test page (count 291 -> 294, raised +$12,700 for $6,350 of gifts with the match,
      match left -$6,350, hide switch restores real numbers). NOT tried on the real /home-dev with a real test gift.
    - Noticed, not changed: in Recent donations the level text under a name ("Special Thanks") is squeezed when the row also has a date.
+   Nov 23 (giving reports): Nirvan asked to export donation gifts from Site Management with a chosen time range, plus tools to
+   see giving reports.
+   - LIVE on /home-dev: Site Management > Giving reports (Owner, Admin, Manager). Time range buttons (this month, last month, last
+     30 days, this year, all time, custom From/To dates); four totals computed from the rows (gifts, total, average, largest);
+     a by-level table; the gifts in range (latest 100 shown); and "Export N gifts", which downloads a CSV of every gift in the range
+     (date, name, amount, level, anonymous, source, matched, Pledge ID, comment).
+   - Source is the same gift feed the page uses (master-donors.json). It has no emails or addresses, leaves out test gifts, and does
+     NOT yet include gifts added by hand in Site Management (those live in the database). No database change was made.
+   - Checked: totals equal sums taken straight from master-donors.json (all time 306 gifts / $583,706; Oct 2026 62 / $62,739);
+     the export file downloads with the right rows. Sample login only, not a real one.
+   - Earlier the same day: my publish hit a merge conflict with the Stripe session's push in build.py; kept both sets of CSS and
+     rebuilt (c5a84ab). Always pull right before publish.sh.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
