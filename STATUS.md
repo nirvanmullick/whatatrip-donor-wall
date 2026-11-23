@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `aa36134fe718ee6062e0b9914201ad54e3652311` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `c29dd0d7789c26bdadc846a11ceb0ad76f0c4381` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -698,6 +698,24 @@ Claude Code updates this file at the end of each session.
      +2, export shows both rows. The staff add-gift form only exists with a real login, so it was NOT exercised.
    - Watch for double counting: a gift entered here that is also in Pledge or in manual-gifts.csv would count twice.
    - Also: for logged-in members perk answers are no longer kept in the browser; they are read from the database each visit.
+   Nov 23 (profiles become campaign pages, step 1; Nirvan: "Yes").
+   HIS DECISIONS: every supporter's profile carries the campaign (no separate fundraiser needed); a gift from their page credits
+   them as the referral; gifts always go to the film; referrals count toward a credit like money raised, automatic up to Made
+   Possible By ($25K); $100K+ producer credits are his call (site should alert him), not automatic; tokens and perks for referrals
+   wait for the tax answer; personal goals are optional and later.
+   - LIVE on /home-dev, no database change:
+     * Every public supporter profile opens with Rick's honeycomb portrait, the person's own hexagon lit up beside the button with
+       a line joining them, and "Watch the trailer". The button says "Join NAME" when the visitor arrived through that person's
+       own invite link, otherwise "Give alongside NAME".
+     * Picture, name, credit level, the Give/Join button and Share sit in the side column (first on phones), with the line
+       "Every gift goes to the film through Creative Visions. NAME is credited for the introduction."
+     * Giving from the page remembers that person as the referral unless another referral is already remembered.
+     * What a person's referrals have given now counts toward their credit level (same cap as before, Made Possible By).
+     * The owner's own view keeps its header in the main column (so click-to-edit keeps working) and the button only explains.
+   - Tested on Blake Mycoskie's profile in the sample page at five widths. Rick's photo does not load in the test page, so the
+     portrait itself was not seen; the referral being remembered could not be checked there (browser storage is blocked).
+   - NOT built: cascading impact numbers; the referral shown in the checkout with Remove (checkout session); the alert at $100K+;
+     filmmaker pages still use their own layout; intro videos; personal goals.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
