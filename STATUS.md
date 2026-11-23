@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `d24dc7d2e435ade246e9ad13c0cc04d467289a32` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `9048105838866fe5d805c36661851436707062c2` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -265,6 +265,9 @@ Claude Code updates this file at the end of each session.
    covered by a copy of the preview card (`.tovp`) that grows from the card's position to the full player in 620ms while the page
    dims, then fades to the playing video. From the "Watch the trailer" button it grows out of the button. No zoom for reduced motion.
    Scratch test t82.js checks the start, middle and end positions.
+   Trailer auto-close: a `message` listener trusts only https://player.vimeo.com messages from the trailer's own iframe; on "ready"
+   it asks for the "ended" event, and on "ended" the overlay fades out and closes. Tested with a stand-in player (scratch t83.js),
+   NOT yet with the real Vimeo player playing to the end.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
