@@ -1568,6 +1568,8 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .sgo .sgck{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:15px;line-height:1.4}
 #wath-top .sgo .sgck input{margin-top:3px;flex:none}
 @media(max-width:560px){#wath-top .mov .chfg{grid-template-columns:minmax(0,1fr)}}
+#wath-top .mov .mdsoonc{opacity:.6;background:#f6f3fc}
+#wath-top .mov .mdsoonc .mlink{pointer-events:none;text-decoration:none;color:#5b6478}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
