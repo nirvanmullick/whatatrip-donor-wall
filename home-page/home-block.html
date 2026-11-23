@@ -3305,7 +3305,7 @@ function gcoElig(){var T0=GCO.amt>0?GCO.amt+gcoPrior():0;return GPK.filter(funct
 function gcoAuto(){return GPK.filter(function(p){return p.auto&&GCO.amt>=p.min&&!(p.id==='zoomf'&&GCO.amt>=25000)})}
 /* Nov 17 5:22pm (Nirvan): 'Also included' kept, as short bullets */
 function shirtN(a){return Math.max(0,Math.floor((+a||0)/500))}
-function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy '+shirtN(g)+' Legalize Rick Inception shirt'+(shirtN(g)===1?'':'s')+' (one for every $500; purchased separately in our store)');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';}
+function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy '+shirtN(g)+' Legalize Rick Inception shirt'+(shirtN(g)===1?'':'s')+' in our store');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';}
 function gcoOpen(a){GCO={on:1,step:1,pill:null,pvMid:a>0&&GPK.some(function(p){return !p.auto&&a>=p.min}),amt:a>0?a:0,sa:a>0?a:0,ans:{},ack:{},agree:{}};gcoDraw();document.documentElement.classList.add('wath-noscroll')}
 /* Nov 17 5:09pm (Nirvan): leaving the checkout part-way offers an email reminder to finish later (same reminder service as the matching-challenge form) */
 var GIFT_REMIND_URL='https://script.google.com/macros/s/AKfycbx8qkqGsGwwNrfobN21wNATdHpUA4QirnmmnLM9O9jRMPU7-Bsam6nMHCcI5Ays4eM/exec';
