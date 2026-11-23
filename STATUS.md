@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8776975f163a4cb8786e7e3ffbd2e408baffc432` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `7ce7d99006686afb70e8d73a49014b20d98ff17d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -618,6 +618,21 @@ Claude Code updates this file at the end of each session.
      referrals. Needs a plan and a database function.
    - NOT fixed, on the "should these be connected?" list given to him: the hero strip tile still says "Every gift doubled... $190K
      matching challenge pool doubles gifts through Dec 31" when every challenge is met.
+   Nov 23 ("should these be connected?" answers 1-6 from Nirvan; 7-14 still to come):
+   - LIVE on /home-dev: the strip under the hero follows the matching pool. Match open: "Every gift doubled. $X in matching funds
+     is still open, through Dec 31." None open: "$190K in matching challenges met. No match is open right now. Start the next
+     challenge and double every gift." (the link opens the challenge sign-up).
+   HIS DECISIONS, NOT BUILT YET (each needs database work and his yes on the migration):
+   1-3. Matching challenge management. Staff create and manage challenges: who is credited, amount, how long it runs, ratio
+        (1:1, 2:1, 3:1), team challenges with more than one contributor. Members or new donors can start one through a form with a
+        donation: ratio, length, start, whether it may be pooled with others, contact details. They see a thank-you; admins are
+        notified with the details and a Launch button. Launching makes it live everywhere: matching, checkout, recent donations,
+        the challenge pool list, the challenger's hexagon frame. The $190K figure is the running total of all challenges ever.
+        Pauses with no active challenge are normal.
+   4.   Gifts added by hand count on the supporters wall and in totals (a tick box per gift), and go in the Giving reports export
+        marked offline, with how it was given, the date and notes.
+   5.   Test gifts are NOT ignored anywhere; clear them all before launch.
+   6.   Anonymous applies to a member's whole giving history, however and whenever each gift came in.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
