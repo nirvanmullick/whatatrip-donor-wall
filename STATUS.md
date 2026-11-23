@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ac1b960df12b346569877a57045fb7e46ff4657d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `0da466bc9417b78a20213b890f63543665f5dddd` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -320,6 +320,14 @@ Claude Code updates this file at the end of each session.
    staff screen for the entries yet (read them with SQL), and the vote is not built.
    Nov 22 (Nirvan, relayed by the Stripe session): the shirt line in the giving pop-up is shortened to one line:
    "Access to buy N Legalize Rick Inception shirt(s) in our store" (the "one for every $500" detail is removed; the count is unchanged).
+   Nov 22 late (Nirvan, relayed by the parent session): after-trailer copy and layout changed. The headline, Join Us and the rewatch
+   button now sit in the open space left of Rick (wrapper `.vjw`), not in the centre. Copy writes on line by line after the image
+   returns: "Changing psychedelic policy needs science. / Changing culture needs stories. / This story needs you."
+   TO CONFIRM with Nirvan: his dictation began "Changing policy needs changing. Psychedelic policy needs science." which I read as
+   a restart, so line 1 is my reading. The button is now "Rewatch the trailer", bottom of that left space (icon only when the hero
+   is very small). Tiles radiate from wherever the Join Us button sits.
+   Level colours (Nirvan): MAPS Makers ($500) is now an aqua blue (#d2eef2 / #7cc7d3 / #1d5d6b) so it no longer looks like Mile
+   Markers ($250); the levels step red, orange, yellow, green, aqua, blue, indigo, purple from highest to lowest.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
