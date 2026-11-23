@@ -280,6 +280,15 @@ Claude Code updates this file at the end of each session.
    (measured equal at 1024/1300/1440). `[data-bfhome]` now holds only Budget.
    Voices rows: new right column `.vside` with the editor menu or, for everyone else including guests, a flag (guests are asked to log
    in), and the reactions stacked under it. Nothing sits under the quote any more.
+   MOCKUPS waiting on Nirvan (in `whatatrip-site/mockups/`, not in the repo, nothing built):
+   - `after-trailer-hero.html`: what the trailer spot becomes after the trailer has been watched. Three versions: wide shot with
+     supporter hexagons around Rick; close-up with hexagons beside him; close-up built out of supporter hexagons. Copy options:
+     "Join us to help bring Rick's story to the screen." / "Be part of sharing Rick Doblin's legacy." Button becomes "Join us".
+   - `join-us-popup.html`: three layouts for the Join us pop-up with four ways to help (Donate $5+, Start a fundraiser, Donate a
+     perk, Start a matching challenge of $25K+). He decided against a "join for free" option.
+   NOTE: on Nov 22 one test (scratch t84.js) launched the installed Google Chrome in the background to play the real Vimeo trailer.
+   Nirvan saw a macOS permission prompt and asked to be told before any installed app is opened; use the bundled test browser only,
+   and tell him first if an installed app is ever needed.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
