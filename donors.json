@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T12:17:02.572Z",
+  "updated": "2026-11-23T21:30:08.664Z",
   "count": 99,
   "source": "pledge-json-v2",
   "totals": {
@@ -24,7 +24,7 @@
       "name": "Chris Pinault",
       "anonymous": false,
       "amount": 200,
-      "time": "7 days ago",
+      "time": "1 week ago",
       "matched": true
     },
     {
