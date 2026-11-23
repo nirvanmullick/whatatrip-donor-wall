@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `726dc88fd2beb50e95b63d7dc9cec7861475b48e` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `28c33bb69b7ac91db4033b4ffe097e7dc939e34f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -289,6 +289,14 @@ Claude Code updates this file at the end of each session.
    NOTE: on Nov 22 one test (scratch t84.js) launched the installed Google Chrome in the background to play the real Vimeo trailer.
    Nirvan saw a macOS permission prompt and asked to be told before any installed app is opened; use the bundled test browser only,
    and tell him first if an installed app is ever needed.
+   AFTER THE TRAILER (Nov 22, Nirvan picked mockup 3 and refined it): when the trailer closes, the trailer spot becomes a photo
+   mosaic of Rick's close-up made of supporter profile tiles (one hexagon each, initials, level colour). Sky and desert tiles keep
+   much of their own colour; tiles over Rick take on his. Headline "Be part of sharing Rick Doblin's legacy." sits up in the sky;
+   the purple "Join Us" button sits where the play button was and opens the Join us pop-up; "Watch the trailer again" bottom left.
+   Hovering a tile turns it into a clear profile tile and shows the usual preview card; clicking opens the profile.
+   Code: trailerAfter / vjDraw / vjRick in app.js, `.video .vj*` CSS. Shows after ANY close of the trailer, for that page view only.
+   Also fixed: moving from one hexagon to the next no longer cancels the next preview card (site-wide).
+   Join us pop-up redesign (layouts A/B/C in mockups/join-us-popup.html) still waits on his pick.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
