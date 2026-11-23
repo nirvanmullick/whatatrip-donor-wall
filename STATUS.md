@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `5023e649bd994e3c040ea562b63aec889657409a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `1aef9bb45827738ef1695f61605bec462938b786` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -665,6 +665,23 @@ Claude Code updates this file at the end of each session.
    - The store discount card in the dashboard is greyed and marked "Coming soon".
    - His site-map notes (film team role, store locking, start-your-own-fundraiser flow, impact stats and honeycomb connections on
      profiles, own view vs public view) were sent verbatim to the site-map session.
+   Nov 23 (perk interest reaches staff; Nirvan picked this next).
+   - Migration `perk_requests` APPLIED: table public.perk_requests (one row per member per perk: kind, interested, details, status,
+     date it happened, staff note). No direct table access. Functions: save_my_perk_request, withdraw_my_perk_request,
+     my_perk_requests (member, own rows only); staff_perk_requests, staff_update_perk_request (Owner, Admin, or anyone with the
+     existing "Perks Management" permission; email is returned to Owner/Admin only; updates write the audit log).
+   - LIVE on /home-dev:
+     * My perks: pressing "I'm interested", confirming a name, or sending details now also saves to the database. Unticking
+       interest withdraws it. When the dashboard opens it reads the member's requests back, so the status the team sets shows
+       in My perks on any device.
+     * Site Management > Perk requests (new): every request with the member, their city, what they answered, a Status select
+       (Waiting on us, Scheduled, Shipped, Done, Waiting on supporter), the date it happened, Save. A badge on the menu counts
+       those waiting on us. Perk managers = Owner, Admins, and anyone switched on for Perks Management under Team & roles.
+     * My perks no longer says "we emailed you": no email is sent when a status changes.
+   - Tested as a round trip in sample mode only (member answers, staff sets Scheduled + date, member sees it). The database
+     functions were checked for permissions, NOT run with a real login.
+   - NOT built: emailing the perk manager or the member; auto-drafted emails by perk and location; tasks in NIRVANA.
+   - Known, not changed: perk answers remembered in the browser are shared by anyone using that same browser profile.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
