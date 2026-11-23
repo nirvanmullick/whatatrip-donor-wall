@@ -1491,6 +1491,7 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .grl td:nth-child(2),#wath-top .mov .grl th:nth-child(2){width:1%;white-space:nowrap;text-align:right;padding-right:16px}
 #wath-top .mov .grt th:last-child{text-align:right}
 #wath-top .mov .grt td span{color:#5b6478}
+#wath [data-hero] .hm .hsub.hsg{display:block!important;margin-top:0!important;line-height:1.45}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2283,7 +2284,7 @@ extra+="""
 #wath #wath-recent .suplist>.dn.rc>.who{padding-left:28px}
 #wath #wath-recent .suplist>.dn:is(.rc,.dnm)>.who .wn{display:flex!important;flex-direction:column;align-items:flex-start;row-gap:0;min-width:0}
 #wath #wath-recent .wn .wn1{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;row-gap:4px;min-width:0}
-#wath #wath-recent .wn .dnms{display:flex;align-items:center;gap:4px;font-size:12.5px;font-weight:500;color:#8a849a;margin-top:2px;line-height:1.3}
+#wath #wath-recent .wn .dnms{display:flex;flex-wrap:wrap;align-items:center;gap:0 4px;white-space:nowrap;font-size:12.5px;font-weight:500;color:#8a849a;margin-top:2px;line-height:1.3}
 #wath #wath-recent .dnm .dnms{color:#a7a1b4}
 #wath #wath-recent .dnm .wn b{font-weight:600;font-size:13.5px;color:#8a849a}
 #wath #wath-recent .dn:is(.rc,.dnm) .amtc{display:flex;flex-direction:column;align-items:flex-end}
@@ -2324,7 +2325,7 @@ extra+="""
 #wath .suplist>svg.bonds .gseal.soft{opacity:.45}
 #wath .suplist>svg.bonds path.hxo.g{stroke:#d4a23a;stroke-width:1.6}
 #wath .suplist>svg.bonds .gseal{filter:drop-shadow(0 1px 2px rgba(150,110,30,.25))}
-#wath #wath-recent .lvb{position:relative;display:inline;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:default;text-decoration:none}
+#wath #wath-recent .lvb{position:relative;display:inline;flex:none;width:auto;height:auto;clip-path:none;white-space:nowrap;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:default;text-decoration:none}
 #wath #wath-recent .lvb:hover{color:#6b6390}
 #wath #wath-recent .lvb .tip{display:none;position:absolute;left:0;top:calc(100% + 8px);background:#4b3f8c;color:#fff!important;font-weight:500;font-size:12.5px;line-height:1.45;padding:9px 12px;border-radius:11px;width:max-content;max-width:260px;z-index:60;text-align:left;white-space:normal;box-shadow:0 10px 28px rgba(45,32,100,.32),0 2px 6px rgba(45,32,100,.18)}
 #wath #wath-recent .lvb:hover .tip,#wath #wath-recent .lvb:focus-visible .tip{display:block}
