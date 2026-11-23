@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `a9d3791f58c7c380befb5d542014defe33fb08e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `68384a2d392b97400f17cac016735f29a6448d97` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -490,6 +490,15 @@ Claude Code updates this file at the end of each session.
    - Recent donations: the level under a name ("Executive Producer film credit") was being squeezed onto two clipped lines; it now
      stays on one line and wraps cleanly with the date on phones.
    - Tested with pretend test gifts of $500K and $1.5M and with none (unchanged). Not re-checked on the real /home-dev.
+   Nov 23 (one testimonial): Nirvan saw his test donor join the Filmmakers list at $500K but with no testimonial in the preview,
+   though his profile has one. Cause: three separate stores. (1) public_profiles.testimonial, what a member writes on their own
+   profile, was only used in the Voices list. (2) seed_testimonials, starting quotes the team entered (12 rows), fed profile pages,
+   hover previews and the Filmmakers list. (3) Pledge gift comments feed Voices.
+   - LIVE on /home-dev: one rule everywhere a person's quote shows (profile page, hover preview, Filmmakers list, sort order):
+     the member's own words first, the team's starting quote only as a fallback (quoteOf). Front-end only; no database change.
+   - NOT DONE, needs his yes: merging the storage itself (copy each seed quote into that person's profile testimonial and retire
+     seed_testimonials) so the database also has a single place.
+   - Note: two member accounts are both named "Nirvan Mullick" and both have a testimonial; the page uses the more recently edited one.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
