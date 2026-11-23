@@ -1422,6 +1422,24 @@ html.wath-pin :is(#wath,#wath-top) .sec{scroll-margin-top:calc(70px + var(--wath
 html.wath-pin :is(#wath,#wath-top) .band{scroll-margin-top:calc(56px + var(--wath-hh,0px))}
 html.wath-pin #wath .up{scroll-margin-top:calc(80px + var(--wath-hh,0px))}
 html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
+#wath-top .sgo .jovc{width:min(560px,100%)}
+#wath-top .sgs{list-style:none;margin:8px 0 0;padding:0;counter-reset:sg;display:grid;gap:8px}
+#wath-top .sgs li{counter-increment:sg;display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:12px;row-gap:2px;align-items:start;padding:12px 16px;background:#f6f3fc;border:1px solid #d9d3ec}
+#wath-top .sgs li:before{content:counter(sg);grid-row:1/3;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#d9d1ee;color:#1b1526;font-size:14px;font-weight:800;clip-path:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+#wath-top .sgs b{display:block;font-size:16px;line-height:1.3;font-weight:800}
+#wath-top .sgs span{display:block;grid-column:2;font-size:14.5px;line-height:1.45;color:#5b6478}
+#wath-top .sgo .mf{margin:12px 0}
+#wath-top .sgo .mf input{min-height:44px}
+#wath-top .sgo .mf textarea{display:block;min-height:88px;resize:vertical}
+#wath-top .sgo .mf input:focus-visible,#wath-top .sgo .mf textarea:focus-visible{outline:2px solid #6152a0;outline-offset:1px}
+#wath-top .sgf2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:start}
+#wath-top .sgm{margin:8px 0 0;font-size:14.5px;line-height:1.45;color:#1b1526;font-weight:700}
+#wath-top .sgm:empty{display:none}
+#wath-top .sgbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin:16px 0 8px}
+#wath-top .sgbar .btn{min-height:44px;min-width:120px;margin:0;white-space:nowrap}
+#wath-top .mov .sgl{margin-bottom:16px}
+#wath-top .mov .sgl .smann span{overflow-wrap:anywhere}
+@media(max-width:560px){#wath-top .sgf2{grid-template-columns:minmax(0,1fr)}#wath-top .sgbar .btn{flex:1 1 auto;min-width:0}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
