@@ -1509,6 +1509,15 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .mtourb .btn{min-height:44px;min-width:88px;margin:0}
 #wath-top .mov .mtourb .mlink{min-height:44px}
 #wath-top .mov .msn.tourhl{outline:2px solid #6152a0;outline-offset:-2px}
+#wath-top .mov .mtsp{position:absolute;z-index:4;border-radius:12px;box-shadow:0 0 0 3px #fff,0 0 0 9999px rgba(27,21,38,.6);pointer-events:none;transition:left .55s cubic-bezier(.2,.8,.2,1),top .55s cubic-bezier(.2,.8,.2,1),width .55s cubic-bezier(.2,.8,.2,1),height .55s cubic-bezier(.2,.8,.2,1)}
+#wath-top .mov .mtour{transition:left .55s cubic-bezier(.2,.8,.2,1),top .55s cubic-bezier(.2,.8,.2,1)}
+#wath-top .mov .mtour.mtfirst{animation:wathFade .35s ease}
+#wath-top .mov .mtour .mtar{position:absolute;width:14px;height:14px;background:#fff;transform:rotate(45deg);display:none}
+#wath-top .mov .mtour.l .mtar{display:block;left:-8px;top:26px;border-left:1px solid #cfc8e6;border-bottom:1px solid #cfc8e6}
+#wath-top .mov .mtour.u .mtar{display:block;top:-8px;left:var(--ax,40px);border-left:1px solid #cfc8e6;border-top:1px solid #cfc8e6}
+#wath-top .mov .tourin{animation:wathTourIn .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes wathTourIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#wath-top .mov .mtsp,#wath-top .mov .mtour{transition:none}#wath-top .mov .tourin,#wath-top .mov .mtour.mtfirst{animation:none}}
 @media(prefers-reduced-motion:reduce){#wath .bfull>summary .chev{transition:none}}
 #wath-top .mthc .mthb{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 #wath-top .mthc .mthb .btn{flex:1 1 160px;min-height:44px;margin:0}

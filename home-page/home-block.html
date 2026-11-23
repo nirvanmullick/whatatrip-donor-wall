@@ -1693,6 +1693,15 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .mtourb .btn{min-height:44px;min-width:88px;margin:0}
 #wath-top .mov .mtourb .mlink{min-height:44px}
 #wath-top .mov .msn.tourhl{outline:2px solid #6152a0;outline-offset:-2px}
+#wath-top .mov .mtsp{position:absolute;z-index:4;border-radius:12px;box-shadow:0 0 0 3px #fff,0 0 0 9999px rgba(27,21,38,.6);pointer-events:none;transition:left .55s cubic-bezier(.2,.8,.2,1),top .55s cubic-bezier(.2,.8,.2,1),width .55s cubic-bezier(.2,.8,.2,1),height .55s cubic-bezier(.2,.8,.2,1)}
+#wath-top .mov .mtour{transition:left .55s cubic-bezier(.2,.8,.2,1),top .55s cubic-bezier(.2,.8,.2,1)}
+#wath-top .mov .mtour.mtfirst{animation:wathFade .35s ease}
+#wath-top .mov .mtour .mtar{position:absolute;width:14px;height:14px;background:#fff;transform:rotate(45deg);display:none}
+#wath-top .mov .mtour.l .mtar{display:block;left:-8px;top:26px;border-left:1px solid #cfc8e6;border-bottom:1px solid #cfc8e6}
+#wath-top .mov .mtour.u .mtar{display:block;top:-8px;left:var(--ax,40px);border-left:1px solid #cfc8e6;border-top:1px solid #cfc8e6}
+#wath-top .mov .tourin{animation:wathTourIn .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes wathTourIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#wath-top .mov .mtsp,#wath-top .mov .mtour{transition:none}#wath-top .mov .tourin,#wath-top .mov .mtour.mtfirst{animation:none}}
 @media(prefers-reduced-motion:reduce){#wath .bfull>summary .chev{transition:none}}
 #wath-top .mthc .mthb{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 #wath-top .mthc .mthb .btn{flex:1 1 160px;min-height:44px;margin:0}
@@ -4313,14 +4322,28 @@ var TOURS=[['home','Dashboard','This is your Member Dashboard. Only you can see 
 function tourKey(){return 'wath:tour'+(LIVE?':'+((LV.member&&LV.member.id)||'none'):'')}
 function tourSeen(){try{return localStorage.getItem(tourKey())==='1'}catch(e){return true}}
 function tourMark(){try{localStorage.setItem(tourKey(),'1')}catch(e){}}
-function tourEnd(){TOUR.on=false;tourMark();var o=T.querySelector('.mov'),c=o&&o.querySelector('.mtour');if(c)c.parentNode.removeChild(c);if(o)[].forEach.call(o.querySelectorAll('.tourhl'),function(x){x.classList.remove('tourhl')})}
+function tourEnd(){TOUR.on=false;TOUR.r=null;TOUR.lastTab=null;tourMark();var o=T.querySelector('.mov'),c=o&&o.querySelector('.mtour');if(c)c.parentNode.removeChild(c);var sx=o&&o.querySelector('.mtsp');if(sx)sx.parentNode.removeChild(sx);if(o)[].forEach.call(o.querySelectorAll('.tourhl'),function(x){x.classList.remove('tourhl')})}
 function tourGo(i){TOUR.on=true;TOUR.i=Math.max(0,Math.min(TOURS.length-1,i));tourMark();ADM.on=false;var id=TOURS[TOUR.i][0],bt=T.querySelector('.mov .msn[data-m="tab"][data-t="'+id+'"]');if(bt)bt.click();else{MEM.tab=id;renderMember()}if(!T.querySelector('.mov .mtour'))memTour()}
 function memTour(){var o=T.querySelector('.mov');if(!o||MEM.ob>=0||ADM.on||!memIn())return;
   if(!TOUR.on){if(!LIVE||WCO_THX||o.querySelector('.mthx')||tourSeen()||MEM.tab!=='home')return;TOUR.on=true;TOUR.i=0;tourMark()}
   var old=o.querySelector('.mtour');if(old)old.parentNode.removeChild(old);var s=TOURS[TOUR.i],last=TOUR.i===TOURS.length-1,d=document.createElement('div');d.className='mtour';d.setAttribute('role','dialog');d.setAttribute('aria-label','Dashboard tour');
   d.innerHTML='<span class="mtag">TOUR · '+(TOUR.i+1)+' OF '+TOURS.length+'</span><b class="mtourh">'+s[1]+'</b><p aria-live="polite">'+s[2]+'</p><div class="mtourb"><button type="button" class="mlink" data-tour="skip">Skip tour</button><span>'+(TOUR.i?'<button type="button" class="btn" data-tour="back">Back</button>':'')+'<button type="button" class="btn pri" data-tour="'+(last?'done':'next')+'">'+(last?'Done':'Next')+'</button></span></div>';
   o.appendChild(d);[].forEach.call(o.querySelectorAll('.msn'),function(x){var on=x.getAttribute('data-m')==='tab'&&x.getAttribute('data-t')===s[0];x.classList.toggle('tourhl',on);if(on)try{var nv=x.closest('.msnav');if(nv&&nv.scrollWidth>nv.clientWidth+2)nv.scrollLeft=Math.max(0,x.offsetLeft-nv.offsetLeft-14)}catch(e){}});
-  if(TOUR.focus){TOUR.focus=0;try{d.querySelector('.btn.pri').focus({preventScroll:true})}catch(e){}}}
+  tourSpot();if(TOUR.focus){TOUR.focus=0;try{d.querySelector('.btn.pri').focus({preventScroll:true})}catch(e){}}}
+/* Nov 23 (Nirvan): the tour dims the rest of the page, lights the menu item it is about, and the card slides next to that item and points at it.
+   Each stop starts from where the last one was and moves a frame later, so the light and the card travel instead of jumping; the page behind eases in. */
+function tourSpot(){var o=T.querySelector('.mov'),d=o&&o.querySelector('.mtour');if(!o||!d||!TOUR.on)return;var el=o.querySelector('.msn.tourhl'),sp=o.querySelector('.mtsp'),made=!sp;
+  if(!sp){sp=document.createElement('div');sp.className='mtsp';sp.setAttribute('aria-hidden','true');o.insertBefore(sp,d)}
+  if(!d.querySelector('.mtar')){var ar=document.createElement('i');ar.className='mtar';ar.setAttribute('aria-hidden','true');d.insertBefore(ar,d.firstChild)}
+  var place=function(){if(!d.parentNode)return;var W=o.clientWidth,H=o.clientHeight,pw=Math.min(340,W-24);d.style.width=pw+'px';d.style.bottom='auto';d.style.transform='none';var ph=d.offsetHeight;
+    if(!el){sp.style.left=W/2+'px';sp.style.top=H/2+'px';sp.style.width='0px';sp.style.height='0px';d.classList.remove('l','u');d.style.left=Math.round((W-pw)/2)+'px';d.style.top=Math.round(H-ph-16)+'px'}
+    else{var ob=o.getBoundingClientRect(),r=el.getBoundingClientRect(),x=r.left-ob.left-6,y=r.top-ob.top-4,w=r.width+12,h=r.height+8;sp.style.left=x+'px';sp.style.top=y+'px';sp.style.width=w+'px';sp.style.height=h+'px';
+      if(x+w+18+pw<=W-8){d.classList.add('l');d.classList.remove('u');d.style.left=(x+w+18)+'px';d.style.top=Math.max(8,Math.min(H-ph-8,y-10))+'px'}
+      else{var px=Math.max(12,Math.min(W-pw-12,x+w/2-pw/2));d.classList.add('u');d.classList.remove('l');d.style.left=px+'px';d.style.top=Math.max(8,Math.min(H-ph-8,y+h+16))+'px';d.style.setProperty('--ax',Math.max(18,Math.min(pw-32,x+w/2-px-7))+'px')}}
+    TOUR.r={sp:sp.style.cssText,d:d.style.cssText,l:d.classList.contains('l'),u:d.classList.contains('u')}};
+  if(TOUR.r){if(made)sp.style.cssText=TOUR.r.sp;d.style.cssText=TOUR.r.d;d.classList.toggle('l',TOUR.r.l);d.classList.toggle('u',TOUR.r.u);void d.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(place)})}else{d.classList.add('mtfirst');place()}
+  var mm=o.querySelector('.msmain,.msmain2');if(mm&&TOUR.lastTab!==MEM.tab)mm.classList.add('tourin');TOUR.lastTab=MEM.tab}
+window.addEventListener('resize',function(){if(TOUR.on){TOUR.r=null;tourSpot()}});
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-tour]');if(t&&t.closest('.mov')){e.preventDefault();e.stopPropagation();var a=t.getAttribute('data-tour');TOUR.focus=1;if(a==='skip'||a==='done'){tourEnd();if(a==='done')toast('That’s the tour. You can replay it from More ways to help.')}else tourGo(TOUR.i+(a==='back'?-1:1));return}
   var st=e.target.closest&&e.target.closest('.mov [data-m="tour"]');if(st){e.preventDefault();e.stopPropagation();var th=st.closest('.mthx');if(th){var cx=th.querySelector('.btn[data-thx]');if(cx)cx.click()}TOUR.focus=1;tourGo(0);return}
   if(e.target.closest&&e.target.closest('.mov [data-thx]'))tourMark()},true);

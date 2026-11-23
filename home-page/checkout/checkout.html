@@ -338,11 +338,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cfd{margin:4px 0 0;font-size:13px;line-height:1.45;color:#3a3245}
 .freq button{position:relative}
 .hb{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
-.hb i{position:absolute;left:-13px;top:-13px;width:26px;height:26px;color:#6152a0;opacity:0;animation:hbf 1.5s cubic-bezier(.2,.7,.3,1) var(--d) both}
-.hb i:nth-child(3n){color:#cfc8e6}
-.hb i:nth-child(3n+1){color:#8a7fc0}
+.hb i{position:absolute;left:-13px;top:-13px;width:26px;height:26px;color:#6152a0;opacity:0;animation:hbf var(--t,1.6s) linear var(--d) both}
 .hb i svg{width:26px;height:26px;display:block}
-@keyframes hbf{0%{opacity:0;transform:translate(0,0) scale(.3)}15%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(var(--s))}}
+@keyframes hbf{0%{opacity:0;transform:translate(0,0) scale(.3);animation-timing-function:cubic-bezier(.15,.8,.3,1)}10%{opacity:1}38%{opacity:1;transform:translate(var(--x),var(--y)) scale(var(--s));animation-timing-function:ease-in}100%{opacity:0;transform:translate(calc(var(--x) + var(--dx)),calc(var(--y) + var(--fall))) scale(var(--s))}}
 .aerr{margin-top:8px}
 .pw{position:relative}
 .pw .pk,.pw .pk.on{padding:10px 56px 10px 12px;gap:10px;min-height:0;align-items:center}
@@ -421,9 +419,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .freq.mo .fsl{transform:translateX(calc(100% + 4px))}
 .fhe{display:inline-grid;vertical-align:-3px;margin-right:6px;color:#6152a0}
 .fhe svg{width:16px;height:16px}
-.hb i:nth-child(2n){color:#e8609c}
-.hb i:nth-child(4n){color:#f7a3c6}
-.hb i:nth-child(6n+1){color:#c0397a}
 .x2.hx2{background:none;padding:0;color:#6152a0;display:grid;place-items:center}
 .x2.hx2 svg{width:18px;height:18px}
 .ord{border:1px solid #cfc8e6;border-radius:10px;padding:14px 16px;margin-top:12px;min-width:0}
@@ -758,7 +753,7 @@ function impLine(n){var mo=CO.freq==='monthly',own=n>=5&&n<50000?impact(n):'';if
   if(!mo&&n>=50000&&!CO.sp){var rl=roughLeft(),big=n>rl+FINALCUT?'finishes production and starts our stretch goals':n>=rl?'finishes our Rough Cut and funds the Final Cut':'funds major production milestones';
     return '<span class="imt">'+money(n)+' = <b>'+big+'</b></span>'+info('fund','What this gift funds')+tip('fund',fundList(n).map(function(x){return x[1]}).join('<br>'))}
   return ''}
-function matchTop(n){var M0=curMatch();if(CO.freq==='monthly'&&!CO.sp)return '<p class="mx"><span class="x2 hx2">'+HEART+'</span><span>Monthly gifts help us plan ahead and budget.</span></p>';if(CO.sp||!M0.on||!(M0.left>0))return '';var L=(M0.legs&&M0.legs.length?M0.legs:[M0]).filter(function(l){return l.left>0}),nm=L.length?L[0].by:M0.by,m=n>0?Math.min(n,M0.left):0;return '<p class="mx"><span class="x2">2x</span><span><b>'+esc(nm)+'</b> is matching '+(m&&m<n?'<b>'+money(m)+'</b> of your gift.':m?'your gift: '+money(n)+' becomes <b>'+money(n+m)+'</b>.':'your gift!')+'</span></p>'}
+function matchTop(n){var M0=curMatch();if(CO.freq==='monthly'&&!CO.sp)return '<p class="mx"><span class="x2 hx2">'+HEART+'</span><span>Monthly gifts help us plan ahead and budget ahead for impact.</span></p>';if(CO.sp||!M0.on||!(M0.left>0))return '';var L=(M0.legs&&M0.legs.length?M0.legs:[M0]).filter(function(l){return l.left>0}),nm=L.length?L[0].by:M0.by,m=n>0?Math.min(n,M0.left):0;return '<p class="mx"><span class="x2">2x</span><span><b>'+esc(nm)+'</b> is matching '+(m&&m<n?'<b>'+money(m)+'</b> of your gift.':m?'your gift: '+money(n)+' becomes <b>'+money(n+m)+'</b>.':'your gift!')+'</span></p>'}
 function can1(){if(CO.sp)return CO.amt>=25000;return CO.amt>=5&&!(CO.freq==='monthly'&&CO.dur==='date'&&!fmtD(CO.durDate))}
 function durTxt(){return CO.freq!=='monthly'?'':CO.dur==='date'&&fmtD(CO.durDate)?'until '+fmtD(CO.durDate):DUR[CO.dur][1]}
 /* Perk pictures: small copies of the ones the site already shows for each perk. */
@@ -1418,7 +1413,7 @@ document.addEventListener('click',function(e){
   if((v=t.getAttribute('data-pd'))){openPD(v);return}
   if((v=t.getAttribute('data-wopen'))){openAW(+v);return}
   if((v=t.getAttribute('data-dur'))){var sd=$('#pop .ov').scrollTop;CO.dur=v;drawCO();$('#pop .ov').scrollTop=sd;$('[data-dur="'+v+'"]').focus({preventScroll:true});return}
-  if((v=t.getAttribute('data-sppay'))){var qy=$('#pop .ov').scrollTop;CO.spPay=v;drawCO();$('#pop .ov').scrollTop=qy;$('#pop [data-sppay="'+v+'"]').focus({preventScroll:true});return}if((v=t.getAttribute('data-freq'))){var fy0=$('#pop .ov').scrollTop;CO.freq=v;CO.just=v==='monthly'?'mo':'';if(CO.dur==='dist')CO.dur='prod';CO.perks={};CO.noperks=false;drawCO();$('#pop .ov').scrollTop=fy0;var fb0=$('#pop [data-freq="'+v+'"]');if(fb0)fb0.focus({preventScroll:true});if(v==='monthly'&&fb0&&!RM){var hb=document.createElement('span');hb.className='hb';hb.setAttribute('aria-hidden','true');for(var hi=0;hi<16;hi++){var he=document.createElement('i');he.innerHTML=HEART;he.style.cssText='--x:'+Math.round((hi-7.5)*11+(hi%2?7:-7))+'px;--y:'+(-56-(hi%4)*24)+'px;--d:'+hi*38+'ms;--s:'+(0.7+(hi%3)*0.25);hb.appendChild(he)}fb0.appendChild(hb);setTimeout(function(){if(hb.parentNode)hb.parentNode.removeChild(hb)},2300)}return}
+  if((v=t.getAttribute('data-sppay'))){var qy=$('#pop .ov').scrollTop;CO.spPay=v;drawCO();$('#pop .ov').scrollTop=qy;$('#pop [data-sppay="'+v+'"]').focus({preventScroll:true});return}if((v=t.getAttribute('data-freq'))){var fy0=$('#pop .ov').scrollTop;CO.freq=v;CO.just=v==='monthly'?'mo':'';if(CO.dur==='dist')CO.dur='prod';CO.perks={};CO.noperks=false;drawCO();$('#pop .ov').scrollTop=fy0;var fb0=$('#pop [data-freq="'+v+'"]');if(fb0)fb0.focus({preventScroll:true});if(v==='monthly'&&fb0&&!RM){var hb=document.createElement('span');hb.className='hb';hb.setAttribute('aria-hidden','true');for(var hi=0;hi<16;hi++){var he=document.createElement('i');he.innerHTML=HEART;var hr=Math.random,hc=['#6152a0','#8a7fc0','#cfc8e6','#e8609c','#f7a3c6','#c0397a'];he.style.cssText='--x:'+Math.round((hr()-.5)*190)+'px;--y:'+Math.round(-44-hr()*84)+'px;--d:'+Math.round(hr()*240)+'ms;--t:'+Math.round(1300+hr()*1400)+'ms;--dx:'+Math.round((hr()-.5)*36)+'px;--fall:'+Math.round(28+hr()*56)+'px;--s:'+(0.6+hr()*0.7).toFixed(2)+';color:'+hc[Math.floor(hr()*hc.length)];hb.appendChild(he)}fb0.appendChild(hb);setTimeout(function(){if(hb.parentNode)hb.parentNode.removeChild(hb)},3200)}return}
   if((v=t.getAttribute('data-amt'))){var ay0=$('#pop .ov').scrollTop;CO.amt=+v;CO.aerr='';CO.perks={};CO.noperks=false;drawCO();$('#pop .ov').scrollTop=ay0;var ab0=$('#pop [data-amt="'+v+'"]');if(ab0)ab0.focus({preventScroll:true});return}
   if((v=t.getAttribute('data-ord'))){var O=CO.ord||(CO.ord={shipped:false,edit:false,err:''}),oy=$('#pop .ov').scrollTop;if(v==='edit'){if(!CO.shipOther){CO.sname=(CO.first+' '+CO.last).trim();CO.saddr1=CO.addr1;CO.scity=CO.city;CO.sstate=CO.state;CO.szip=CO.zip;CO.scountry=CO.country}O.keep={tsize:CO.tsize,shipOther:CO.shipOther,sname:CO.sname,saddr1:CO.saddr1,scity:CO.scity,sstate:CO.sstate,szip:CO.szip,scountry:CO.scountry};CO.shipOther=true;O.edit=true;O.err=''}else if(v==='cancel'){for(var ok in O.keep)CO[ok]=O.keep[ok];O.edit=false;O.err=''}else if(v==='save'){if(!(CO.sname||'').trim()||!addrOk('s')){O.err='Please fill in the name and full address for the package.'}else{O.edit=false;O.err='';toast('Saved. We’ll ship to the new details.')}}else if(v==='ship'){O.shipped=!O.shipped;O.edit=false}drawCO();$('#pop .ov').scrollTop=oy;var of=$('#pop [data-ord="'+(v==='edit'?'save':v==='ship'?'ship':'edit')+'"]');if(of)of.focus({preventScroll:true});return}
   if((v=t.getAttribute('data-tg'))){if(v==='ask'||v==='no'){TG.ask=v==='ask';tgPaint()}else if(v==='retry'){CO.saveErr='';tgSave();drawCO()}else if(v==='member'){try{parent.postMessage({wat:'checkout-close',open:'member'},'*')}catch(e){}}else if(v==='yes'&&!TG.busy){TG.busy=true;tgPaint();rpc('clear_test_gifts').then(function(j){TG.busy=false;TG.ask=false;toast('Cleared '+(+j.gifts||0)+' test gift'+(+j.gifts===1?'':'s')+' and '+(+j.members||0)+' test supporter'+(+j.members===1?'':'s')+'.');tgStatus();tgPaint()},function(e){TG.busy=false;TG.ask=false;tgPaint();toast(/Not allowed|permission/i.test(String(e.message))?'Only Owners and Admins can clear test gifts.':'That did not go through. Please try again.')})}return}
