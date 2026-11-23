@@ -1599,6 +1599,13 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mov .smann span{display:block;font-size:13px;color:#5b6478}
 #wath-top .mov .smann.off b{color:#5b6478;text-decoration:line-through}
 #wath-top .mov .smann .mlink{flex:none;min-height:44px}
+html.wath-pin #header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:90!important;background:#6f74aa!important;pointer-events:auto!important;box-shadow:0 1px 0 rgba(27,21,38,.1)}
+html.wath-pin body:not(.header--menu-open) #header .header-title{visibility:visible!important}
+html.wath-pin :is(#wath,#wath-top) .subnav{top:var(--wath-hh,0px)}
+html.wath-pin :is(#wath,#wath-top) .sec{scroll-margin-top:calc(70px + var(--wath-hh,0px))}
+html.wath-pin :is(#wath,#wath-top) .band{scroll-margin-top:calc(56px + var(--wath-hh,0px))}
+html.wath-pin #wath .up{scroll-margin-top:calc(80px + var(--wath-hh,0px))}
+html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -3501,6 +3508,13 @@ document.addEventListener('submit',function(e){var f=e.target;if(!f||!f.hasAttri
 function openComm(){openProfilePage('Yet to be Named','community')}
 document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('.chhx[data-cc]');if(c){e.preventDefault();openComm()}});
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.matches&&e.target.matches('.chhx[data-cc]')){e.preventDefault();openComm()}});
+/* Nov 22 (Nirvan): PREVIEW of a pinned header. Add ?pin=1 to the address to keep the film title and main menu fixed at the top on desktop, with the section menu pinned under it. ?pin=0 turns it off again. Nothing changes without the switch. */
+(function(){var on=false;try{if(/[?&]pin=1(&|$)/.test(location.search))sessionStorage.setItem('wath:pin','1');if(/[?&]pin=0(&|$)/.test(location.search))sessionStorage.removeItem('wath:pin');on=sessionStorage.getItem('wath:pin')==='1'}catch(e){on=/[?&]pin=1(&|$)/.test(location.search)}if(!on)return;
+  var H=document.documentElement,mq=window.matchMedia?matchMedia('(min-width:900px)'):null,pad=null;
+  function fit(){var h=document.querySelector('#header');if(!h)return;if(mq&&!mq.matches){H.classList.remove('wath-pin');H.style.removeProperty('--wath-hh');if(pad)document.body.style.paddingTop='';return}
+    if(pad===null){var ps=getComputedStyle(h).position;pad=(ps==='static'||ps==='relative'||ps==='sticky')}
+    H.classList.add('wath-pin');var hh=Math.round(h.getBoundingClientRect().height);H.style.setProperty('--wath-hh',hh+'px');if(pad)document.body.style.paddingTop=hh+'px'}
+  fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,600);setTimeout(fit,2000)})();
 function closeTrailer(){var o=T.querySelector('.tov:not(.crv)');if(!o||o._closing)return;try{trailerAfter()}catch(e){}var done=function(){if(o.parentNode)o.parentNode.removeChild(o);document.documentElement.classList.remove('wath-noscroll');try{trailerAfter()}catch(e){}var b=$('.video [data-vjjoin]')||$('[data-trailer]');if(b)try{b.focus({preventScroll:true})}catch(e){}};
   var f=o.querySelector('.tovf'),src=$('.video');if(WRM||!f||!f.animate){done();return}o._closing=1;try{var r=f.getBoundingClientRect(),sr=src?src.getBoundingClientRect():null,vis=sr&&sr.width>20&&sr.bottom>0&&sr.top<window.innerHeight;f.style.transformOrigin=vis?'0 0':'50% 50%';
     var to=vis?'translate('+(sr.left-r.left)+'px,'+(sr.top-r.top)+'px) scale('+(sr.width/r.width)+','+(sr.height/r.height)+')':'scale(.9)',xb=o.querySelector('.tovx');if(xb)xb.style.opacity='0';

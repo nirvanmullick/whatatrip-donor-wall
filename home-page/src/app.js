@@ -961,6 +961,13 @@ document.addEventListener('submit',function(e){var f=e.target;if(!f||!f.hasAttri
 function openComm(){openProfilePage('Yet to be Named','community')}
 document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('.chhx[data-cc]');if(c){e.preventDefault();openComm()}});
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.matches&&e.target.matches('.chhx[data-cc]')){e.preventDefault();openComm()}});
+/* Nov 22 (Nirvan): PREVIEW of a pinned header. Add ?pin=1 to the address to keep the film title and main menu fixed at the top on desktop, with the section menu pinned under it. ?pin=0 turns it off again. Nothing changes without the switch. */
+(function(){var on=false;try{if(/[?&]pin=1(&|$)/.test(location.search))sessionStorage.setItem('wath:pin','1');if(/[?&]pin=0(&|$)/.test(location.search))sessionStorage.removeItem('wath:pin');on=sessionStorage.getItem('wath:pin')==='1'}catch(e){on=/[?&]pin=1(&|$)/.test(location.search)}if(!on)return;
+  var H=document.documentElement,mq=window.matchMedia?matchMedia('(min-width:900px)'):null,pad=null;
+  function fit(){var h=document.querySelector('#header');if(!h)return;if(mq&&!mq.matches){H.classList.remove('wath-pin');H.style.removeProperty('--wath-hh');if(pad)document.body.style.paddingTop='';return}
+    if(pad===null){var ps=getComputedStyle(h).position;pad=(ps==='static'||ps==='relative'||ps==='sticky')}
+    H.classList.add('wath-pin');var hh=Math.round(h.getBoundingClientRect().height);H.style.setProperty('--wath-hh',hh+'px');if(pad)document.body.style.paddingTop=hh+'px'}
+  fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,600);setTimeout(fit,2000)})();
 function closeTrailer(){var o=T.querySelector('.tov:not(.crv)');if(!o||o._closing)return;try{trailerAfter()}catch(e){}var done=function(){if(o.parentNode)o.parentNode.removeChild(o);document.documentElement.classList.remove('wath-noscroll');try{trailerAfter()}catch(e){}var b=$('.video [data-vjjoin]')||$('[data-trailer]');if(b)try{b.focus({preventScroll:true})}catch(e){}};
   var f=o.querySelector('.tovf'),src=$('.video');if(WRM||!f||!f.animate){done();return}o._closing=1;try{var r=f.getBoundingClientRect(),sr=src?src.getBoundingClientRect():null,vis=sr&&sr.width>20&&sr.bottom>0&&sr.top<window.innerHeight;f.style.transformOrigin=vis?'0 0':'50% 50%';
     var to=vis?'translate('+(sr.left-r.left)+'px,'+(sr.top-r.top)+'px) scale('+(sr.width/r.width)+','+(sr.height/r.height)+')':'scale(.9)',xb=o.querySelector('.tovx');if(xb)xb.style.opacity='0';

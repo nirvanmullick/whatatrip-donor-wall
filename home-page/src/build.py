@@ -1415,6 +1415,13 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .mov .smann span{display:block;font-size:13px;color:#5b6478}
 #wath-top .mov .smann.off b{color:#5b6478;text-decoration:line-through}
 #wath-top .mov .smann .mlink{flex:none;min-height:44px}
+html.wath-pin #header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:90!important;background:#6f74aa!important;pointer-events:auto!important;box-shadow:0 1px 0 rgba(27,21,38,.1)}
+html.wath-pin body:not(.header--menu-open) #header .header-title{visibility:visible!important}
+html.wath-pin :is(#wath,#wath-top) .subnav{top:var(--wath-hh,0px)}
+html.wath-pin :is(#wath,#wath-top) .sec{scroll-margin-top:calc(70px + var(--wath-hh,0px))}
+html.wath-pin :is(#wath,#wath-top) .band{scroll-margin-top:calc(56px + var(--wath-hh,0px))}
+html.wath-pin #wath .up{scroll-margin-top:calc(80px + var(--wath-hh,0px))}
+html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
