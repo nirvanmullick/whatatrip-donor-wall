@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `9048105838866fe5d805c36661851436707062c2` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `33ab3c97e80d383d6d526fe294d5aec285afbbf9` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -268,6 +268,13 @@ Claude Code updates this file at the end of each session.
    Trailer auto-close: a `message` listener trusts only https://player.vimeo.com messages from the trailer's own iframe; on "ready"
    it asks for the "ended" event, and on "ended" the overlay fades out and closes. Tested with a stand-in player (scratch t83.js),
    NOT yet with the real Vimeo player playing to the end.
+   Trailer: confirmed against the REAL Vimeo player (scratch t84.js, Chrome): it reports "finish" and the window closes itself.
+   `closeTrailer` now shrinks the player back into the preview card (or fades if the card is off screen).
+   Join hexagon: first click shows the preview card; its button says "Join us" and opens `openJoin` (class `.jov`): Donate $5 or more,
+   Start a fundraiser and raise $5 or more, Donate a perk (links to /contact for now). BUG FIXED in the hover card: clicking a
+   hexagon focused it, and pressing the mouse on the card closed the card (focusout) before its button got the click.
+   IDEA from Nirvan, not built: joining is free, but a profile is only activated and listed once the member has helped (gave,
+   raised, offered a perk that raised money, or invited friends who gave). Needs a membership rule and database work.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
