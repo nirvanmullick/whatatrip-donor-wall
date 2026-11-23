@@ -95,8 +95,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fl input,.fl textarea,.fl select{display:block;width:100%;margin-top:6px;border:1px solid #cfc8e6;border-radius:10px;padding:10px 12px;font-size:16px;font-weight:400;background:#fff;min-height:44px}
 .fl textarea{min-height:120px;resize:vertical;line-height:1.45}
 .fl input[readonly]{background:#f6f3fc;color:#3a3245}
-.fl.bad input{border-color:#6152a0;box-shadow:0 0 0 2px #d9d1ee}
-.err{color:#3a3245;background:#ece7f7;border-radius:8px;padding:8px 12px;font-size:14px;font-weight:600;margin-top:12px}
+.fl.bad input,.fl.bad select,.fl.bad textarea{border:2px solid #c62828;background:#fff8f8;box-shadow:none}
+.fe{display:block;margin-top:4px;font-style:normal;font-size:13.5px;font-weight:600;color:#a11217}
+.err{color:#a11217;background:#fdecec;border:1px solid #f0b5b5;border-radius:8px;padding:8px 12px;font-size:14px;font-weight:600;margin-top:12px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
 .three{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0 12px}
 .amtin{display:flex;align-items:center;gap:6px;border:1px solid #cfc8e6;border-radius:10px;padding:0 12px;margin-top:6px;font-size:18px}
@@ -494,6 +495,29 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cfn{padding-left:10px;border-left:1px solid #cfc8e6;font-size:11.5px;line-height:1.3;color:#5b6478}
 #mx1 .mx{min-height:22px}
 @media(max-width:380px){#pop .card #h1a{font-size:18px;letter-spacing:-.015em;white-space:nowrap}}
+.rmd{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:min(340px,calc(100% - 32px));box-sizing:border-box;background:#2a2333;color:#f6f3fc;border-radius:16px;padding:20px;text-align:center;box-shadow:0 16px 40px rgba(27,21,38,.4);animation:rmdin .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rmdin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.rmd>b{display:block;font-size:17px;margin:0 28px}
+.rmi{display:grid;place-items:center;margin:10px auto;color:#f7a3c6}
+.rmi svg{width:36px;height:36px}
+.rmd p{margin:0 0 12px;font-size:15px;line-height:1.45;color:#e4def4}
+.rmd .rmt{font-size:12.5px;color:#cfc8e6}
+.rmx{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:none;color:#cfc8e6;font-size:26px;line-height:1}
+.rml{display:block;text-align:left;font-size:13px;font-weight:700;color:#e4def4}
+.rml input{display:block;width:100%;box-sizing:border-box;margin-top:6px;min-height:46px;border:2px solid #cfc8e6;border-radius:10px;background:#2a2333;color:#fff;padding:10px 12px;font-size:16px}
+.rml input.bad{border-color:#ff8a8a}
+.rmd .fe{color:#ffb3b3;text-align:left}
+.rmd .btn{display:block;width:100%;margin-top:10px;min-height:46px;border-radius:10px;font-weight:700}
+.rmd .rmp{background:#6152a0;color:#fff;border:0}
+.rmd .rmb{background:#f6f3fc;color:#1b1526;border:0}
+.rmd .rmk{margin-top:10px;min-height:44px;color:#e4def4;font-size:14px}
+.rmd :focus-visible{outline:3px solid #f7a3c6;outline-offset:2px}
+.emb.rmdv,.emb.rmdv body{background:transparent}
+.emb.rmdv .rmd{right:0;bottom:0;width:100%;border-radius:16px}
+@media(prefers-reduced-motion:reduce){.rmd{animation:none}}
+#pop .x:focus{outline:none}
+#pop .x:focus-visible{outline:2px solid #6152a0;outline-offset:-8px;border-radius:50%}
+#pop h3:focus{outline:none}
 .sbox,.ndg{animation:fillin .28s cubic-bezier(.2,.8,.2,1) both}
 @keyframes fillin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 #pop .pm+.mopt{margin-bottom:8px}
@@ -797,16 +821,16 @@ var AFMT={US:['State','ZIP code',1],PR:['','ZIP code',0],GU:['','ZIP code',0],VI
  DE:['','Postal code',0],FR:['','Postal code',0],NL:['','Postal code',0],BE:['','Postal code',0],AT:['','Postal code',0],CH:['','Postal code',0],SE:['','Postal code',0],NO:['','Postal code',0],DK:['','Postal code',0],FI:['','Postal code',0],PT:['','Postal code',0],PL:['','Postal code',0],CZ:['','Postal code',0],IL:['','Postal code',0],SG:['','Postal code',0],LU:['','Postal code',0],IS:['','Postal code',0],GR:['','Postal code',0],HU:['','Postal code',0],ZA:['Province','Postal code',0]};
 function afmt(c){return AFMT[c]||['State, province or region','Postal code',0]}
 function ctryName(c){for(var i=0;i<CTRY.length;i++)if(CTRY[i][0]===c)return CTRY[i][1];return ''}
-function addrBlock(pre,o){o=o||{};var K=function(k){return pre+k},c=CO[K('country')]||'US',F=afmt(c),f=function(k,l,ac){return '<label class="fl">'+l+'<input data-f="'+K(k)+'" value="'+esc(CO[K(k)]||'')+'" autocomplete="'+(o.noac?'off':ac)+'"></label>'},n=1+(F[0]?1:0)+(F[1]?1:0);
+function addrBlock(pre,o){o=o||{};var K=function(k){return pre+k},c=CO[K('country')]||'US',F=afmt(c),need={addr1:1,city:1,state:F[0]&&F[2]?1:0,zip:F[1]?1:0},f=function(k,l,ac){var bad=!!(o.chk&&need[k]&&!String(CO[K(k)]||'').trim());return '<label class="fl'+(bad?' bad':'')+'">'+l+'<input data-f="'+K(k)+'" value="'+esc(CO[K(k)]||'')+'" autocomplete="'+(o.noac?'off':ac)+'"'+(bad?' aria-invalid="true"':'')+'>'+(bad?'<em class="fe">Please enter the '+(function(t){t=t.replace(/<small>.*$/,'').replace(/^(Your|Their) /,'').trim();return /^[A-Z]{2}/.test(t)?t:t.charAt(0).toLowerCase()+t.slice(1)})(l)+'.</em>':'')+'</label>'},n=1+(F[0]?1:0)+(F[1]?1:0);
   return '<label class="fl" for="'+K('ctry')+'">Country<select id="'+K('ctry')+'" data-f="'+K('country')+'" autocomplete="'+(o.noac?'off':'country')+'">'+CTRY.map(function(x){return '<option value="'+x[0]+'"'+(x[0]===c?' selected':'')+'>'+esc(x[1])+'</option>'}).join('')+'</select></label>'
    +f('addr1',o.street||'Street address','address-line1')
    +'<div class="'+(n===3?'three':n===2?'two':'')+'">'+f('city',c==='GB'||c==='IE'?'Town or city':'City','address-level2')+(F[0]?f('state',F[0]+(F[2]?'':' <small>Optional</small>'),'address-level1'):'')+(F[1]?f('zip',F[1],'postal-code'):'')+'</div>'}
 function addrOk(pre){var t=function(k){return String(CO[pre+k]||'').trim()},F=afmt(CO[pre+'country']||'US');return !!(t('addr1')&&t('city')&&(!F[0]||!F[2]||t('state'))&&(!F[1]||t('zip')))}
 function addrText(pre){var F=afmt(CO[pre+'country']||'US'),c=CO[pre+'country']||'US';return [CO[pre+'addr1'],CO[pre+'city'],F[0]?CO[pre+'state']:'',F[1]?CO[pre+'zip']:'',c==='US'?'':ctryName(c)].filter(function(x){return (x||'').trim()}).join(', ')}
-function shipAddrHtml(){var o=CO.shipOther,f=function(k,l,ac){return '<label class="fl">'+l+'<input data-f="'+k+'" value="'+esc(CO[k]||'')+'" autocomplete="'+(ac||'off')+'"></label>'};
+function shipAddrHtml(){var o=CO.shipOther,f=function(k,l,ac){var bad=!!(CO.serr&&!String(CO[k]||'').trim());return '<label class="fl'+(bad?' bad':'')+'">'+l+'<input data-f="'+k+'" value="'+esc(CO[k]||'')+'" autocomplete="'+(ac||'off')+'"'+(bad?' aria-invalid="true"':'')+'>'+(bad?femsg(k):'')+'</label>'};
   return '<div class="opt"><p class="lbl" style="margin-top:16px">Where should we send your shirt?</p><p class="note" style="margin-top:0">Legalize Rick Inception T-shirt, size '+esc(CO.tsize)+'. '+((CO.shipOther?CO.scountry:CO.country)==='US'?'Shipping and handling are included.':'Shipping and handling are included. Delivery outside the United States takes longer.')+'</p>'
-   +(o?f('sname','Recipient’s name')+addrBlock('s',{street:'Their street address',noac:1})
-      :addrBlock('',{street:'Your street address <small>Private</small>'}))
+   +(o?f('sname','Recipient’s name')+addrBlock('s',{street:'Their street address',noac:1,chk:!!CO.serr})
+      :addrBlock('',{street:'Your street address <small>Private</small>',chk:!!CO.serr}))
    +'<label class="ck"><input type="checkbox" data-c="shipOther"'+(o?' checked':'')+'><span>Send it to a different name or address than mine</span></label>'
    +(CO.serr?'<p class="err" role="alert">'+esc(CO.serr)+'</p>':'')+'</div>'}
 function frGive(){return !!(CO.fr&&FR.mode==='donors')}
@@ -996,9 +1020,13 @@ function receipt(g){
 
 /* ---------- checkout ---------- */
 function drawCO(){drawCO0.apply(this,arguments);wr();freqGo();dedGo();if(CO)CO.just=''}
-function openCO(a){lastFocus=document.activeElement;CO=fresh(a);document.documentElement.classList.add('lock');drawCO();var x=$('#pop .x');if(x)x.focus()}
+function openCO(a){lastFocus=document.activeElement;CO=fresh(a);document.documentElement.classList.add('lock');drawCO();var x=$('#pop .stepw h3')||$('#pop h3');if(x){x.tabIndex=-1;x.focus({preventScroll:true})}}
 function closeCO(){CO=null;$('#pop').innerHTML='';document.documentElement.classList.remove('lock');if(EMB&&VIEW!=='fr'){if(!LAST)hostClose();return}if(VIEW==='fr')drawFR();if(lastFocus&&lastFocus.focus)try{lastFocus.focus()}catch(e){}}
-function tryClose(){if(CO&&CO.amt>0&&CO.step<5&&!CO.leave){CO.leave=1;drawCO();return}closeCO()}
+/* Leaving part-way: the checkout closes and a small reminder card slides in at the side (Pledge does the same). Email reminders are not wired yet. */
+var RMD=null;
+function rmdHtml(){if(!RMD)return '';return '<div class="rmd" role="dialog" aria-label="Reminder"><button class="rmx" data-rmd="x" aria-label="Close">×</button>'+(RMD.sent?'<b>We’ll remind you.</b><div class="rmi" aria-hidden="true">'+HEART+'</div><p>A gentle reminder to finish your '+money(RMD.amt)+' gift will go to '+esc(RMD.email)+'.</p><p class="rmt">Test note: reminder emails are not switched on yet, so nothing was sent.</p><button class="btn rmb" data-rmd="x">Close</button>':'<b>Maybe next time?</b><div class="rmi" aria-hidden="true">'+HEART+'</div><p>Leave your email and we’ll send a gentle reminder to finish your '+money(RMD.amt)+' gift to <u>What a Trip</u>.</p><label class="rml">Your email<input data-rmf="email" type="email" autocomplete="email" value="'+esc(RMD.email)+'"'+(RMD.err?' aria-invalid="true" class="bad"':'')+'></label>'+(RMD.err?'<em class="fe rme">'+esc(RMD.err)+'</em>':'')+'<button class="btn rmp" data-rmd="go">Remind me later</button><button class="btn rmb" data-rmd="x">No, thanks</button><button class="lnk rmk" data-rmd="back">Keep going with my gift</button>')+'</div>'}
+function rmdDraw(){var el=document.getElementById('rmd');if(!el){el=document.createElement('div');el.id='rmd';document.body.appendChild(el)}el.innerHTML=rmdHtml();document.documentElement.classList.toggle('rmdv',!!RMD);if(EMB){try{parent.postMessage({wat:RMD?'checkout-mini':'checkout-full'},'*')}catch(e){}}}
+function tryClose(){if(CO&&CO.amt>0&&CO.step<5){RMD={amt:CO.amt,email:CO.email||'',co:CO,sent:false,err:''};CO=null;$('#pop').innerHTML='';document.documentElement.classList.remove('lock');rmdDraw();var rf=$('#rmd [data-rmf]');if(rf)rf.focus({preventScroll:true});return}closeCO()}
 function sumRows(){
   var f=fee(),v=fmv(),tu=topup(),pay=CO.step>=4&&!!CO.method,mo=CO.freq==='monthly',bank=CO.method==='bank',cf=pay?curFee(CO.method):0;
   var row=function(cls,label,k,val,t){return '<div class="'+cls+'"><span class="sl"><span>'+label+'</span>'+(k?info(k,'About: '+label.replace(/<[^>]+>/g,'')):'')+'</span><b>'+val+'</b></div>'+(k?tip(k,t):'')};
@@ -1017,7 +1045,9 @@ function info(k,label){return '<button class="ib" data-info="'+k+'" aria-expande
 function tip(k,t){return CO.info===k?'<p class="tip" role="note">'+t+'</p>':''}
 function EMAILOK(e){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(e||'').trim())}
 function detailsProblem(){var M=[];if(!CO.email.trim())M.push('your email');if(!CO.first.trim())M.push('your first name');if(!CO.last.trim())M.push('your last name');if(M.length)return 'Please add '+(M.length===1?M[0]:M.slice(0,-1).join(', ')+' and '+M[M.length-1])+'.'+(CO.email.trim()&&!EMAILOK(CO.email)?' And that email doesn’t look quite right.':'');if(!EMAILOK(CO.email))return 'That email doesn’t look quite right. Please check it, so your receipt reaches you.';return ''}
-function fld(k,label,o){o=o||{};return '<label class="fl'+(CO.err&&o.req&&(!String(CO[k]).trim()||(k==='email'&&!EMAILOK(CO.email)))?' bad':'')+'">'+label+(o.hint?' <small>'+o.hint+'</small>':'')+'<input data-f="'+k+'" type="'+(o.type||'text')+'" value="'+esc(CO[k])+'"'+(o.ac?' autocomplete="'+o.ac+'"':'')+(o.ph?' placeholder="'+o.ph+'"':'')+(o.req?' required':'')+'></label>'}
+var FEMSG={email:'Please enter your email.',first:'Please enter your first name.',last:'Please enter your last name.',sname:'Please enter the name for the package.',addr1:'Please enter the street address.',city:'Please enter the city.',state:'Please fill this in.',zip:'Please fill this in.'};
+function femsg(k){return '<em class="fe">'+(FEMSG[k]||FEMSG[k.replace(/^s/,'')]||'Please fill this in.')+'</em>'}
+function fld(k,label,o){o=o||{};var emp=!String(CO[k]).trim(),bad=!!(CO.err&&o.req&&(emp||(k==='email'&&!EMAILOK(CO.email))));return '<label class="fl'+(bad?' bad':'')+'">'+label+(o.hint?' <small>'+o.hint+'</small>':'')+'<input data-f="'+k+'" type="'+(o.type||'text')+'" value="'+esc(CO[k])+'"'+(o.ac?' autocomplete="'+o.ac+'"':'')+(o.ph?' placeholder="'+o.ph+'"':'')+(o.req?' required':'')+(bad?' aria-invalid="true"':'')+'>'+(bad?(k==='email'&&!emp?'<em class="fe">That email doesn’t look right. Please check it.</em>':femsg(k)):'')+'</label>'}
 function chk(k,label,sub){return '<label class="ck"><input type="checkbox" data-c="'+k+'"'+(CO[k]?' checked':'')+'><span>'+label+(sub?'<small>'+sub+'</small>':'')+'</span></label>'}
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 var SLAB={'Amount':'Amount','Perks':'Perks','Your details':'Details','Payment':'Payment'};
@@ -1097,7 +1127,7 @@ function perksView(){var ch=chosen(),O=CO.ord||(CO.ord={shipped:false,edit:false
       h+='<ol class="ordt" aria-label="Order progress">'+['Ordered','Getting ready','Shipped','Delivered'].map(function(x,i){var on=i<=(O.shipped?2:1);return '<li class="'+(on?'on':'')+'">'+x+'</li>'}).join('')+'</ol>';
       if(O.edit&&!O.shipped)h+='<div class="orde">'+(O.err?'<p class="err" role="alert">'+esc(O.err)+'</p>':'')
         +'<label class="fl" for="osz">Size<select id="osz" data-f="tsize">'+TSIZES.map(function(z){return '<option'+(CO.tsize===z?' selected':'')+'>'+z+'</option>'}).join('')+'</select></label>'
-        +fl('sname','Name on the package','name')+addrBlock('s',{})
+        +fl('sname','Name on the package','name')+addrBlock('s',{chk:!!O.err})
         +'<div class="ft"><button class="btn quiet" data-ord="cancel">Cancel</button><button class="btn pri" data-ord="save">Save changes</button></div></div>';
       else h+='<p class="ordd">Size <b>'+esc(CO.tsize)+'</b> · To <b>'+esc(sh.name)+'</b><br>'+esc(sh.addr)+'</p>'
         +(O.shipped?'<p class="tip" role="note"><b>This order has already shipped</b>, so its size and address can’t be changed. Shirts can’t be returned or refunded. If yours arrives damaged or isn’t what you ordered, contact us and we’ll make it right.</p><a class="lnk" href="https://www.whatatrip.com/shipping" target="_blank" rel="noopener">Shipping and returns policy</a>'
@@ -1137,10 +1167,9 @@ function drawCO0(){
   var S=steps(),name=CO.step===1?'Amount':CO.step===2?'Perks':CO.step===3?'Your details':'Payment',idx=S.indexOf(name)+1,a=CO.amt,lv=levelFor(a),h='';
   var head=headHtml();
   if(CO.leave===1){
-    h='<div class="ctr"><div class="ok" aria-hidden="true">⏰</div><h3>Save your progress?</h3><p class="note">Leaving already? We can email you a link so you can finish your '+money(a)+' gift right where you left off.</p></div>'
-     +fld('email','Your email',{type:'email',ac:'email'})+'<div class="ft"><button class="btn quiet" data-a="bye">No thanks</button><button class="btn pri" data-a="remind">Email me the link</button></div><p class="ctr"><button class="lnk" data-a="stay">Keep going</button></p>';
+    h='';
   }else if(CO.leave===2){
-    h='<div class="ctr"><div class="ok" aria-hidden="true">✓</div><h3>Reminder on the way</h3><p class="note">We’ll email '+esc(CO.email)+' a link to finish your '+money(a)+' gift. Your choices are saved.</p><button class="btn pri" data-a="bye">Close</button></div>';
+    h='';
   }else if(CO.step===1&&CO.sp){
     h='<h3>Sponsor a matching challenge</h3><p class="note" style="margin-top:0">Offer to double other people’s gifts, up to the amount you pledge.</p>'+(CO.known?'<p class="kpr" style="margin-top:8px">Welcome back, '+esc(CO.first)+'. '+(PRIOR?'You’ve given <b>'+money(PRIOR)+'</b> so far. ':'')+'Your challenge is added to your giving history, counts toward your level, and may unlock new perks.</p>':'')
      +'<div class="amts">'+[25000,50000,100000,250000].map(function(v){return '<button class="'+(a===v?'on':'')+'" data-amt="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
@@ -1461,7 +1490,7 @@ document.addEventListener('input',function(e){var t=e.target,k;
   if(CO&&t.hasAttribute&&t.hasAttribute('data-durdate')){CO.durDate=t.value;var nb=$('[data-a="next"]');if(nb)nb.disabled=!can1();return}
 
   if(CO){
-    if(CO.step===5&&(k=t.getAttribute('data-f'))){CO[k]=t.value;if(k==='comment'){var c5=$('#cmtn');if(c5)c5.textContent=t.value.length}if(k==='credit'){CO.creditEdited=true;if(CO.cerr){CO.cerr='';var ce=$('#pop .opt .err');if(ce)ce.remove()}}if(k==='comment'){var sb=$('#pop [data-ty="3"]');if(sb)sb.textContent=t.value.trim()?'Save and continue →':'Skip for now →'}if(k==='invite'&&!!t.value.trim()!==!!$('#pop [data-ty="invite"]')){var st=t.selectionStart;drawCO();var ni=$('#pop [data-f="invite"]');ni.focus({preventScroll:true});ni.setSelectionRange(st,st)}return}if((k=t.getAttribute('data-pgf'))){CO.pgf[k]=t.value;return}if((k=t.getAttribute('data-f'))){CO[k]=t.value;if(k==='credit'){CO.creditEdited=true;if(CO.cerr){CO.cerr='';var ce=$('#pop .opt .err');if(ce)ce.remove()}}else if((k==='first'||k==='last')&&!CO.creditEdited&&!CO.anon){var ci=$('#pop [data-f="credit"]');if(ci)ci.value=creditName()}if(k==='comment'){var cn=$('#cmtn');if(cn)cn.textContent=t.value.length}if(k==='spCredit'&&CO.step===1){var sg=$('#pop .gets');if(sg)sg.innerHTML=getsTxt(CO.amt)}if(CO.step===2&&CO.perr&&can2()){CO.perr=0;var pn=$('#pop .pnt');if(pn)pn.remove()}if(CO.err){CO.err='';var er=$('#pop .err');if(er)er.remove();[].forEach.call(document.querySelectorAll('#pop .fl.bad'),function(x){x.classList.remove('bad')})}return}
+    if(CO.step===5&&(k=t.getAttribute('data-f'))){CO[k]=t.value;if(k==='comment'){var c5=$('#cmtn');if(c5)c5.textContent=t.value.length}if(k==='credit'){CO.creditEdited=true;if(CO.cerr){CO.cerr='';var ce=$('#pop .opt .err');if(ce)ce.remove()}}if(k==='comment'){var sb=$('#pop [data-ty="3"]');if(sb)sb.textContent=t.value.trim()?'Save and continue →':'Skip for now →'}if(k==='invite'&&!!t.value.trim()!==!!$('#pop [data-ty="invite"]')){var st=t.selectionStart;drawCO();var ni=$('#pop [data-f="invite"]');ni.focus({preventScroll:true});ni.setSelectionRange(st,st)}return}if((k=t.getAttribute('data-pgf'))){CO.pgf[k]=t.value;return}if((k=t.getAttribute('data-f'))){CO[k]=t.value;if(k==='credit'){CO.creditEdited=true;if(CO.cerr){CO.cerr='';var ce=$('#pop .opt .err');if(ce)ce.remove()}}else if((k==='first'||k==='last')&&!CO.creditEdited&&!CO.anon){var ci=$('#pop [data-f="credit"]');if(ci)ci.value=creditName()}if(k==='comment'){var cn=$('#cmtn');if(cn)cn.textContent=t.value.length}if(k==='spCredit'&&CO.step===1){var sg=$('#pop .gets');if(sg)sg.innerHTML=getsTxt(CO.amt)}if(CO.step===2&&CO.perr&&can2()){CO.perr=0;var pn=$('#pop .pnt');if(pn)pn.remove()}var fb1=t.closest&&t.closest('.fl.bad');if(fb1&&String(t.value).trim()){fb1.classList.remove('bad');t.removeAttribute('aria-invalid');var fe1=fb1.querySelector('.fe');if(fe1)fe1.remove()}if(CO.err&&!document.querySelector('#pop .fl.bad')){CO.err='';var er=$('#pop .err');if(er)er.remove()}return}
     if(t.hasAttribute('data-amtin')){var n=parseInt(t.value.replace(/[^\d]/g,''),10)||0;CO.amt=n;CO.perks={};CO.noperks=false;var p=t.selectionStart===t.value.length;t.value=n?n.toLocaleString('en-US'):'';if(p)t.setSelectionRange(t.value.length,t.value.length);
       [].forEach.call(document.querySelectorAll('[data-amt]'),function(b){b.classList.toggle('on',+b.getAttribute('data-amt')===n)});$('.gets').innerHTML=getsTxt(n);wr(1);var i1=$('#imp1');if(i1)i1.innerHTML=impLine(n);var m1=$('#mx1');if(m1)m1.innerHTML=matchTop(n);headSync();if(CO.aerr){CO.aerr='';var ae=$('#pop .aerr');if(ae)ae.remove()}return}
   }
@@ -1469,6 +1498,8 @@ document.addEventListener('input',function(e){var t=e.target,k;
   if(t.hasAttribute('data-pv')){PERKS[+t.getAttribute('data-pv')].fmv=parseInt(t.value.replace(/[^\d]/g,''),10)||0;var r2=$('#rcpt');if(r2)r2.innerHTML=receipt(sampleGift());return}
   if(t.hasAttribute('data-way')){FS.ways[+t.getAttribute('data-way')][t.getAttribute('data-k')]=t.value}
 });
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-rmd]'),v;if(!t)return;e.stopPropagation();if((v=t.getAttribute('data-rmd'))&&RMD){if(v==='go'){var re=String(RMD.email||'').trim();if(!EMAILOK(re)){RMD.err=re?'That email doesn’t look right. Please check it.':'Please enter your email.';rmdDraw();var rb=$('#rmd [data-rmf]');if(rb)rb.focus();return}RMD.err='';RMD.sent=true;rmdDraw();var rc=$('#rmd .rmb');if(rc)rc.focus();return}if(v==='back'){CO=RMD.co;RMD=null;rmdDraw();document.documentElement.classList.add('lock');drawCO();var bx=$('#pop .stepw h3')||$('#pop h3');if(bx){bx.tabIndex=-1;bx.focus({preventScroll:true})}return}RMD=null;rmdDraw();if(EMB&&VIEW!=='fr')hostClose();else{drawPage();if(lastFocus&&lastFocus.focus)try{lastFocus.focus()}catch(e){}}return}},true);
+document.addEventListener('input',function(e){var t=e.target;if(RMD&&t.getAttribute&&t.getAttribute('data-rmf')){RMD.email=t.value;if(RMD.err){RMD.err='';t.classList.remove('bad');t.removeAttribute('aria-invalid');var x=$('#rmd .rme');if(x)x.remove()}}});
 document.addEventListener('change',function(e){var t=e.target,k;
   if(CO&&t.getAttribute&&/^s?country$/.test(t.getAttribute('data-f')||'')){k=t.getAttribute('data-f');CO[k]=t.value;var cy=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=cy;var cs=$('#pop [data-f="'+k+'"]');if(cs)cs.focus({preventScroll:true});return}
   if(CO&&t.hasAttribute&&t.hasAttribute('data-durdate')){CO.durDate=t.value;if(CO.dur!=='date'&&fmtD(t.value)){CO.dur='date';var dy=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=dy;var di=$('[data-durdate]');if(di)di.focus({preventScroll:true})}var nc=$('[data-a="next"]');if(nc)nc.disabled=!can1();return}
@@ -1481,6 +1512,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&PD){closePD
   if(PD&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){pdStep(e.key==='ArrowRight'?1:-1);return}
   if(e.key==='Escape'&&AW){closeAW();return}
   if(e.key==='Escape'&&!CO&&LAST&&(LAST.welcome||LAST.tour>=0)){LAST.welcome=false;LAST.tour=-1;drawPage();return}
+  if(e.key==='Escape'&&!CO&&RMD){RMD=null;rmdDraw();if(EMB&&VIEW!=='fr')hostClose();else drawPage();return}
   if(e.key==='Escape'&&CO){if(CO.info){var k0=CO.info;CO.info=null;var s0=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=s0;$('[data-info="'+k0+'"]').focus({preventScroll:true})}else tryClose()}
   if(e.key==='Tab'&&CO){var R=(AW||PD)?'#pop2':'#pop',f=[].filter.call(document.querySelectorAll(R+' button,'+R+' input,'+R+' textarea,'+R+' a'),function(x){return !x.disabled});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
 if(EMB){document.documentElement.classList.add('emb');PRIOR=+EMB.prior||0;if(EMB.match&&EMB.match.left>0){MATCH.on=true;MATCH.legs=(EMB.match.legs||[]).map(function(l){return {by:String(l.by||''),cap:+l.cap||0,left:+l.left||0}});MATCH.by=String(EMB.match.by||MATCH.by);MATCH.cap=+EMB.match.cap||MATCH.cap;MATCH.left=+EMB.match.left}else MATCH.on=false}
