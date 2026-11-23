@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `173c8162379545cbadfa60a75146e4f59480f636` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `588ee09cc6e2757a3c6e46c01e30c7bc65eff850` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -513,6 +513,13 @@ Claude Code updates this file at the end of each session.
      waiting on his pick. A link with no question mark (whatatrip.com/nirvan.mullick...) cannot work while the site is on
      Squarespace. The "?from=first-last" link he saw is drawn inside the checkout (Stripe session's file) and is display-only.
    - ASKED, NOT BUILT YET: simpler perk management in the dashboard (show only the status and one next-action button that expands).
+   Nov 23 (My perks simplified): Nirvan: "way too complicated. Don't show users the steps along the way. Just show them something
+   if they need to do something ... Make a button that says whatever their next action is."
+   - LIVE on /home-dev: the step-by-step tracker is gone from My perks. Each perk shows one status line. When it is the member's
+     turn the row has one button named for the action ("Confirm the spelling", "I'm interested", "Send my details"); pressing it
+     opens the form in place with a short slide-in. When it is our turn it says "Nothing for you to do. We take the next step and
+     will email you." Rows start closed. pfTrack() is no longer called but is left in the file.
+   - Tested in the sample dashboard (Preview as $25,000) at five widths. Not tried with a real login.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
