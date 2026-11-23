@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `28c33bb69b7ac91db4033b4ffe097e7dc939e34f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `0784ce53b20057e00de9ba8ea130f1b75d606fc3` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -297,6 +297,17 @@ Claude Code updates this file at the end of each session.
    Code: trailerAfter / vjDraw / vjRick in app.js, `.video .vj*` CSS. Shows after ANY close of the trailer, for that page view only.
    Also fixed: moving from one hexagon to the next no longer cancels the next preview card (site-wide).
    Join us pop-up redesign (layouts A/B/C in mockups/join-us-popup.html) still waits on his pick.
+   COMMUNITY CREDIT (Nov 22, Nirvan): "Yet to be Named" community credit, brought over from the live /donors wall. It is the sum of
+   every gift under $5,000 (named people by their total given, plus each anonymous gift), always added up from the gifts (commData).
+   - A hexagon with the animated multicolour outline sits in the home Supporters grid, placed by its total; it is not counted as a supporter.
+   - Its page (openComm -> openProfilePage(...,'community'); commMain/commSide/commHive/commList): total and count, a bar to $250K with
+     the $100K mark, "At $100,000 Contributing Producer / At $250,000 Executive Producer", About, The name, and "Everyone in this
+     credit" as a honeycomb with a Grid view / List view switch (search works on both; names open profiles).
+   NOT built, waiting on Nirvan: (1) the "submit a name" form and later the vote: needs a new database table, ask before migrating;
+   (2) the drawing for a trip to Arcturus (at $250K, and maybe at the $5 level): NOT on the site until a lawyer and Creative Visions
+   sign off. Summary given to him: a paid-entry drawing is a raffle (California bans selling raffle tickets online); the workable
+   route is a sweepstakes with a clearly disclosed free way to enter at equal odds (mail-in is the usual one; it cannot be hidden in
+   the terms), official rules, and NY/FL registration if the prize is worth over $5,000. (3) No hover card on the credit's hexagon yet.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
