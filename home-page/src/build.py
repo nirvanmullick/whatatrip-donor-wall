@@ -1301,17 +1301,17 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .tovp>.video{display:block!important;position:relative!important;order:0!important;border-radius:0!important;box-shadow:none!important}
 /* Nov 22 (Nirvan): the "Join us" pop-up: three ways to join */
 #wath-top .jov{position:fixed;inset:0;z-index:100003;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(27,21,38,.5);animation:wathFade .2s ease}
-#wath-top .jovc{position:relative;box-sizing:border-box;width:min(520px,100%);max-height:100%;overflow:auto;padding:28px 24px 12px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 16px 40px rgba(27,21,38,.24);color:#1b1526;text-align:left}
+#wath-top .jovc{position:relative;box-sizing:border-box;width:min(640px,100%);max-height:100%;overflow:auto;padding:28px 24px 12px;background:#fff;border:1px solid #d9d3ec;border-radius:14px;box-shadow:0 16px 40px rgba(27,21,38,.24);color:#1b1526;text-align:left}
 #wath-top .jovx{position:absolute;right:4px;top:4px;width:44px;height:44px;border:0;background:none;color:#5b6478;font-size:26px;line-height:1;cursor:pointer}
 #wath-top .jovx:focus-visible{outline:2px solid #6152a0;outline-offset:-4px}
 #wath-top .jovt{display:block;font-size:22px;line-height:1.2;font-weight:800}
 #wath-top .jovs{margin:4px 0 8px;font-size:15px;line-height:1.5;color:#5b6478}
-#wath-top .jovr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid #ebe7f5}
+#wath-top .jovr{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:center;gap:16px;padding:16px 0;border-top:1px solid #ebe7f5}
 #wath-top .jovr>div{min-width:0}
 #wath-top .jovr b{display:block;font-size:16px;line-height:1.3;font-weight:800}
 #wath-top .jovr span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#5b6478}
-#wath-top .jovr .btn{flex:none;min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
-@media(max-width:480px){#wath-top .jovr{flex-direction:column;align-items:stretch;gap:12px}#wath-top .jovr .btn{width:100%;box-sizing:border-box}}
+#wath-top .jovr .btn{box-sizing:border-box;width:100%;min-height:44px;margin:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;white-space:nowrap}
+@media(max-width:560px){#wath-top .jovr{grid-template-columns:minmax(0,1fr);gap:12px}}
 /* Nov 22 (Nirvan): the right-hand column of a voice: menu or flag on top, reactions under it */
 #wath .vrow .vside{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:44px;margin:-8px -8px 0 0}
 #wath .vrow .vside .vmw{margin:0}
@@ -2192,7 +2192,7 @@ extra+="""
 @media(max-width:600px){#wath-top .pfm2{grid-template-columns:1fr}}
 :is(#wath,#wath-top) .hz{background:none!important;border-radius:0!important;box-shadow:none!important;overflow:visible}
 :is(#wath,#wath-top) .hz .hrt{position:absolute;inset:-3px -4px -4px;width:calc(100% + 8px);height:calc(100% + 7px);overflow:visible;z-index:0}
-:is(#wath,#wath-top) .hz>svg:not(.hrt){position:relative;z-index:1;margin-top:-3px}
+:is(#wath,#wath-top) .hz>svg:not(.hrt){position:relative;z-index:1;margin-top:0}
 #wath .chi2 .hz .hrt path{fill:color-mix(in srgb,var(--cc) 45%,#fff);stroke:#fffaf0;stroke-width:2.6;stroke-linejoin:round}
 #wath .chw.next .chi2 .hz .hrt path{stroke:#f8f6fe}
 #wath .chi2 .g2{z-index:2}
