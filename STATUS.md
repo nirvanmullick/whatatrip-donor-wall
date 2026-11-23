@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `9418371a2c08e2177c77d9327c05fca2a73f45ae` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `5023e649bd994e3c040ea562b63aec889657409a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -658,6 +658,13 @@ Claude Code updates this file at the end of each session.
      * Social links visible from $500 given or raised (9). Store discount greyed "coming soon" (10).
      * Credit-name ideas as a staff table with counts, later voting (13). Anonymous across all giving history (6).
      * Analytics: no Google Analytics code is on the new page yet (12). Email blasts can only write, preview and send a test (14).
+   Nov 23 (links and store discount). LIVE on /home-dev:
+   - Web and social links show on a public profile once the member has given OR raised $50 (was $25K). On Profile details, only the
+     member sees a note under the links naming the level: either "You've reached the Road Trippers level ($50+), so your links
+     show..." or "They show once you have given or raised $50...".
+   - The store discount card in the dashboard is greyed and marked "Coming soon".
+   - His site-map notes (film team role, store locking, start-your-own-fundraiser flow, impact stats and honeycomb connections on
+     profiles, own view vs public view) were sent verbatim to the site-map session.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
