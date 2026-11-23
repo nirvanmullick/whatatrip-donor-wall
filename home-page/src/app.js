@@ -961,8 +961,8 @@ document.addEventListener('submit',function(e){var f=e.target;if(!f||!f.hasAttri
 function openComm(){openProfilePage('Yet to be Named','community')}
 document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('.chhx[data-cc]');if(c){e.preventDefault();openComm()}});
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.matches&&e.target.matches('.chhx[data-cc]')){e.preventDefault();openComm()}});
-/* Nov 22 (Nirvan): PREVIEW of a pinned header. Add ?pin=1 to the address to keep the film title and main menu fixed at the top on desktop, with the section menu pinned under it. ?pin=0 turns it off again. Nothing changes without the switch. */
-(function(){var on=false;try{if(/[?&]pin=1(&|$)/.test(location.search))sessionStorage.setItem('wath:pin','1');if(/[?&]pin=0(&|$)/.test(location.search))sessionStorage.removeItem('wath:pin');on=sessionStorage.getItem('wath:pin')==='1'}catch(e){on=/[?&]pin=1(&|$)/.test(location.search)}if(!on)return;
+/* Nov 22 (Nirvan): the site header (film title and main menu) stays pinned at the top on desktop, and the section menu pins under it. Phones are unchanged. */
+(function(){
   var H=document.documentElement,mq=window.matchMedia?matchMedia('(min-width:900px)'):null,pad=null;
   function fit(){var h=document.querySelector('#header');if(!h)return;if(mq&&!mq.matches){H.classList.remove('wath-pin');H.style.removeProperty('--wath-hh');if(pad)document.body.style.paddingTop='';return}
     if(pad===null){var ps=getComputedStyle(h).position;pad=(ps==='static'||ps==='relative'||ps==='sticky')}
