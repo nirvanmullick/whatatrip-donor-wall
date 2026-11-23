@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `1aef9bb45827738ef1695f61605bec462938b786` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `aa36134fe718ee6062e0b9914201ad54e3652311` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -682,6 +682,22 @@ Claude Code updates this file at the end of each session.
      functions were checked for permissions, NOT run with a real login.
    - NOT built: emailing the perk manager or the member; auto-drafted emails by perk and location; tasks in NIRVANA.
    - Known, not changed: perk answers remembered in the browser are shared by anyone using that same browser profile.
+   Nov 23 (hand-added gifts; Nirvan: "Yes, hand-added gifts").
+   - Migration `offline_gifts_public_and_match` APPLIED: gifts gains show_public, match_ok, method (check, wire, cash, stock,
+     in_kind, other). Functions: staff_save_offline_gift(...) (Owner/Admin, writes the audit log), public_offline_gifts() (anyone;
+     only gifts ticked to show; name or Anonymous, amount, date; never the staff note), staff_offline_gifts() (Owner/Admin/Manager).
+   - LIVE on /home-dev:
+     * Site Management > Members > a member > Add an offline gift: "How it was given", and tick boxes "Show on the supporters wall
+       and count in the totals" (on by default) and "If a matching challenge is active, include this gift in the match".
+       The gift history shows the method and whether it is on the wall / matched.
+     * The home page reads gifts ticked to show and adds them to the supporters wall, the supporter count, the raised total, and
+       (when ticked) the active match. With none, every number is unchanged (checked).
+     * Giving reports and its export include hand-added gifts, marked "Offline (method)", with "On the supporters wall" and the
+       staff note as extra columns.
+   - Tested with two pretend offline gifts ($10,000 matched, $500 anonymous): raised +$20,500, match left -$10,000, supporters
+     +2, export shows both rows. The staff add-gift form only exists with a real login, so it was NOT exercised.
+   - Watch for double counting: a gift entered here that is also in Pledge or in manual-gifts.csv would count twice.
+   - Also: for logged-in members perk answers are no longer kept in the browser; they are read from the database each visit.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
