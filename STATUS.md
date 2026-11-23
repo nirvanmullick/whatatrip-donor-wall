@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef05ad0d9b1a1cc3f19df20159728ad6c4b08f59` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef82592f65978d45decf6ef0a610344f8d00c9a7` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -530,6 +530,11 @@ Claude Code updates this file at the end of each session.
    - The checkout's own "share" link (?from=first-last, Stripe session's file) is still display-only; told that session the format.
    - HOUSEKEEPING: the built page has TWO inline scripts; the old "node --check the last script" step only checked the small one.
      scratch lastjs.py and suite.sh now check both. README's step 2 should say "every inline script".
+   Nov 23 (invite link, second pick): Nirvan typed "/nirvan-mullick-Rick-Doblin-Film-Invite?!".
+   - LIVE on /home-dev: invite links now read  whatatrip.com/?nirvan.mullick-Rick-Doblin-Film-Invite?!
+     Two things differ from what he typed, both flagged to him: the "?" after the slash (needed on Squarespace), and the username
+     keeps its real spelling with a dot (nirvan.mullick), because that is the username the database credits.
+   - The earlier ?username-Invite::Rick-Doblin-Film! and ?ref=username links are still read. 19 sample addresses checked.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
