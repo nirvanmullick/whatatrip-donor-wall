@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `f99ecc81339afc2e9162edf4b2912e63a0277e4a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `4ada5d385af339a35174708d2cfb464c1381fe08` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -395,6 +395,12 @@ Claude Code updates this file at the end of each session.
    - Tested: database functions as the Owner and as the gmail Manager inside a rolled-back transaction; forms in sample mode at
      360/390/768/1300. NOT tested with a real login on /home-dev.
    - Still to do (step 3 of the plan): save the welcome note and gift/perk notes in the database instead of the browser.
+   PINNED HEADER PREVIEW (Nov 22, Nirvan via the parent session: "Can I see what the site would look like if we keep the title
+   menu in the header fixed"): opt-in only. whatatrip.com/home-dev?pin=1 turns it on for that browser tab (remembered for the
+   visit); ?pin=0 turns it off. Desktop only (900px and wider): the site header is fixed at the top and the section menu pins
+   directly under it; section jumps allow for the taller bar. Phones are unchanged. Code: the small block before closeTrailer in
+   app.js and the `html.wath-pin` rules at the end of the CSS. Tested with a stand-in header, NOT with the real Squarespace header.
+   If he likes it, make it the default; if not, delete those two pieces.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
