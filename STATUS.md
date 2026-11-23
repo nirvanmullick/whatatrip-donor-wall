@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `b6848be2d6cfcb722a091e5da27264c8b9929603` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `945f378e05db976b55d3217676806fbdf278fee6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -349,6 +349,12 @@ Claude Code updates this file at the end of each session.
      needs you." (his later self-correction; still to confirm with him).
    - Preview cards on the hero mosaic choose a spot that never covers the headline, Join Us or the rewatch button (tested 56 hovers
      at 768, 1024, 1300, 1440).
+   Nov 22 late (Nirvan, direct): after-trailer headline is FINAL as two single lines, no third line:
+   "Changing policy needs science." / "Changing culture needs stories." then Join Us. Each stays on one line at every width; the
+   lines run across the sky to just short of Rick's hair so they can be as large as one line allows. "This story needs you." is removed.
+   Hexagon grids no longer cast drop shadows while they reshuffle.
+   NOT done here on purpose: his "$25,000 gift" perk-preview format for the giving pop-up. The Stripe session is building it into
+   the new checkout, which is about to replace this page's giving pop-up on /home-dev (hand-off pending from that session).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
