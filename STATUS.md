@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `8a147cf7914b8d33c40109cb1019667d252f4198` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `84a3fe69dfa6dc922b89aaf5cf0e9079c615316b` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -371,6 +371,18 @@ Claude Code updates this file at the end of each session.
    (one line each), a little bigger and a little higher, with no write-on: the text and Join Us are simply there when the picture returns.
    Same round: the honeycomb over the picture is much fainter (more sky and desert show through tiles and lines), the text has no
    drop shadow, and only a light even darkening on the left keeps the white text readable.
+   Nov 22 late: Nirvan reported updates locked for his accounts and a shared inbox. Findings and fixes (on /home-dev):
+   - His level edits DID save: "A private first look at Act 1" = $500+, "Building a dream: Rick and Arcturus" = $250+
+     (Act 1 has only one paragraph saved in the database). get_updates sends staff the full text.
+   - Cause of the locks: the Member Dashboard's "Supporter updates" tab was four fixed SAMPLE posts with fixed levels, judged only
+     by the account's gift total (both his accounts have $0 in gifts), with no staff exception, and clicking only showed a
+     "sample" notice. FIXED: the tab now lists the real updates with their real levels (memUps / memUpOk in app.js), staff can
+     open all, and opening one closes the dashboard and shows the update on the page. tests/mem.js updated to match.
+   - Inbox: the welcome note and test-gift notes were stored per BROWSER (wath:inbox, wath:testgift), so two accounts on one
+     computer shared them. FIXED: on the live site they are stored per member (inbKey / tgKey / inbScope). Real messages were
+     always per member (messages table).
+   - NOT built: staff sending a note to everyone or to chosen members (needs a described database change first; ask Nirvan).
+   - Not verified with a real login (cannot sign in as him); verified in sample mode and by reading the database as his member.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
