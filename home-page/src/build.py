@@ -1535,6 +1535,18 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .mdtop .btn{min-height:44px;margin:0}
 #wath-top .mov .mdtop .msub{margin:0;flex:1 1 220px}
 >>>>>>> Stashed changes
+#wath-top .mov .mpint{margin:0 0 16px;max-width:70ch}
+#wath-top .mov .mpint svg{vertical-align:-2px;margin-right:4px}
+#wath-top .mov .mpcr{margin-bottom:16px}
+#wath-top .mov .mpcrr{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 24px}
+#wath-top .mov .mpcrr .mf{flex:1 1 240px;max-width:360px;margin:8px 0 0}
+#wath-top .mov .mpcrr .mck{min-height:44px;display:inline-flex;align-items:center;gap:8px;margin:0}
+#wath-top .mov .mpcr .btn{min-height:44px;margin-top:12px}
+#wath-top .mov .msn.msnsub{padding-left:28px;font-size:14.5px}
+#wath-top [data-spf]:has([data-sped]){cursor:text;border-radius:8px;transition:background .15s,box-shadow .15s}
+#wath-top [data-spf]:has([data-sped]):hover{background:#f6f3fc;box-shadow:0 0 0 6px #f6f3fc}
+#wath-top [data-spf] .spedb:not(:focus-visible){position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;border:0!important;overflow:hidden!important;clip-path:inset(50%)}
+@media(max-width:700px){#wath-top .mov .msn.msnsub{padding-left:12px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
