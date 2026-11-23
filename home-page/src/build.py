@@ -1295,6 +1295,10 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .chhive .chhx .av.lvc.lo img{display:none}
 :is(#wath,#wath-top) .chhive .chhx:is(:hover,:focus-visible) .av.lvc.lo::before{opacity:1}
 :is(#wath,#wath-top) .gcotok{font-size:.86em;color:#6152a0;font-weight:700;white-space:nowrap}
+/* Nov 22 (Nirvan): the copy of the trailer preview that covers the player while it zooms open */
+:is(#wath,#wath-top) .tovf{position:relative}
+:is(#wath,#wath-top) .tovp{position:absolute;left:0;top:0;z-index:2;transform-origin:0 0;overflow:hidden;pointer-events:none}
+:is(#wath,#wath-top) .tovp>.video{display:block!important;position:relative!important;order:0!important;border-radius:0!important;box-shadow:none!important}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
