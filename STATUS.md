@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `588ee09cc6e2757a3c6e46c01e30c7bc65eff850` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef05ad0d9b1a1cc3f19df20159728ad6c4b08f59` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -520,6 +520,16 @@ Claude Code updates this file at the end of each session.
      opens the form in place with a short slide-in. When it is our turn it says "Nothing for you to do. We take the next step and
      will email you." Rows start closed. pfTrack() is no longer called but is left in the file.
    - Tested in the sample dashboard (Preview as $25,000) at five widths. Not tried with a real login.
+   Nov 23 (invite link format): Nirvan picked "/nirvan.mullick-Invite::Rick-Doblin-Film!".
+   - LIVE on /home-dev: a member's invite link now reads  whatatrip.com/?nirvan.mullick-Invite::Rick-Doblin-Film!
+     (shown in My impact, copied by the invite and share buttons). The "?" is required while the site is on Squarespace: without it
+     the address is a page that does not exist. After the move off Squarespace the "?" can go.
+   - The page reads only the username before "-Invite", any capitals, so the link still works if an app drops the final "!".
+     Old ?ref=username links keep working. "Share this profile" links (?supporter=...&ref=...) are unchanged.
+   - Checked 13 sample addresses with the page's own reader (all correct). Not tried on the real page with a real invite.
+   - The checkout's own "share" link (?from=first-last, Stripe session's file) is still display-only; told that session the format.
+   - HOUSEKEEPING: the built page has TWO inline scripts; the old "node --check the last script" step only checked the small one.
+     scratch lastjs.py and suite.sh now check both. README's step 2 should say "every inline script".
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
