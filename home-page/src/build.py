@@ -1355,10 +1355,10 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .ccnf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 6px}
 #wath-top .ccsr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 #wath-top .ccni{flex:1 1 220px;min-width:0;max-width:360px;box-sizing:border-box;min-height:44px;padding:4px 12px;border:1px solid #cfc8e6;border-radius:8px;background:#fff;color:#1b1526;font:inherit;font-size:clamp(18px,2.4vw,24px);font-weight:800}
-#wath-top .ccni[readonly]{background:#f6f3fc;cursor:default}
+#wath-top .ccni{cursor:text}#wath-top .ccni:hover{border-color:#6152a0}
 #wath-top .ccni:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
 #wath-top .ccnf .btn{flex:none;min-height:44px;display:inline-flex;align-items:center;gap:6px}
-#wath-top .ccnf .btn[hidden],#wath-top .ccgate[hidden]{display:none}
+#wath-top .ccnf .btn[hidden],#wath-top .ccgate[hidden],#wath-top .ccgate .btn[hidden]{display:none}
 #wath-top .ccm>.ccfm{margin:0 0 16px}
 #wath-top .ccgate{display:grid;justify-items:start;gap:8px;margin:0 0 20px;padding:16px;background:#f6f3fc;border:1px solid #d9d3ec;font-size:15px;line-height:1.5;color:#1b1526}
 #wath-top .ccgate p{margin:0}
