@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `0da466bc9417b78a20213b890f63543665f5dddd` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `9c320ebdbec4fa7e7f444231834080bd9bde50a6` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -328,6 +328,19 @@ Claude Code updates this file at the end of each session.
    is very small). Tiles radiate from wherever the Join Us button sits.
    Level colours (Nirvan): MAPS Makers ($500) is now an aqua blue (#d2eef2 / #7cc7d3 / #1d5d6b) so it no longer looks like Mile
    Markers ($250); the levels step red, orange, yellow, green, aqua, blue, indigo, purple from highest to lowest.
+   Nov 22 late, from Nirvan (all on /home-dev):
+   - Community credit page: grid on top with the list always under it (both follow the Largest/Recent sort; anonymous gifts are rows
+     too). The credit's name sits in a field with a "Suggest a name" button; pressing it makes the field editable and shows Submit
+     (with a lock when logged out). Logged out, Submit shows "You must log in to submit your name. This is for our members only.",
+     a Log in button, "If you're not yet a member, you can join us for as little as $5." and "Donate $5 to join". The "your name"
+     field is gone (the member's id is saved instead). About text rewritten to his wording with the live count and total in bold.
+     OPEN: the database still accepts ideas from visitors who are not logged in (the page blocks it, the table does not). Ask Nirvan
+     before the migration that limits inserts to signed-in members.
+   - Larger filmmaker photos (home bio preview, hover card, crew page) have a 3px hexagon outline: white on the page, lavender on white cards.
+   - TRY-OUT: in the hero the Matching Challenge Fund now sits above the Current Milestone (four `[data-hero]` order rules at the end
+     of the CSS in build.py; delete them to undo).
+   - He asked for mockups of the matching-fund icons (two linked hexagons with bold gift boxes; hexagon with two hearts): see
+     whatatrip-site/mockups/matching-icons.html.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
