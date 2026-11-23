@@ -1,0 +1,13 @@
+-- Reference copy (applied Nov 23 2026 as migrations checkout_test_gifts_tables, checkout_test_gifts_functions,
+-- checkout_test_gifts_unique_reference). Test gifts from the /home-dev checkout.
+--
+-- members.is_test, gifts.is_test (gifts.source = 'test'): everything a test creates is flagged.
+-- public.gift_checkout(gift_id, details jsonb): what the donor chose at checkout. Read by Owner/Admin or the gift's member.
+-- private.checkout_test_mode(enabled): the on/off switch (one row).
+--
+-- record_test_gift(p jsonb)   anon + authenticated. Only while the switch is on. Capped at 500 test gifts, 30 per 10 minutes.
+--                             Logged in: attaches to that member. Otherwise matches the email to a member, else creates
+--                             a test member (private profile). Never edits a real member's profile from a typed email.
+-- clear_test_gifts()          Owner/Admin. Deletes all is_test gifts and test members (and their logins). Audit-logged.
+-- test_gift_status()          anon + authenticated. {enabled, can_clear, gifts, members} (counts for staff only).
+-- set_test_gifts(p_on bool)   Owner/Admin. Turn test gifts on or off. TURN OFF AND CLEAR BEFORE LAUNCH.
