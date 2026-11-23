@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `e5b6b1bbe41036c69d762a14087b1c01805cd8d7` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `8776975f163a4cb8786e7e3ffbd2e408baffc432` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -601,6 +601,23 @@ Claude Code updates this file at the end of each session.
      stays at $25K. It shows in My perks. Film Advisory WhatsApp is still listed at $5K too.
    - Tested in the sample dashboard at 360/390/768/1300/1440. Not tried with a real login; the save paths in particular need a
      real try (credit name / Anonymous on My profile, Contact information, Profile details).
+   Nov 23 (page load, countdown, profile tidy). LIVE on /home-dev:
+   - Nirvan: the home page was "displaying its thoughts live" (matching card popping off, milestones cycling). Cause: it drew
+     remembered numbers, then re-drew as each answer arrived (gift total, gift list, and on /home-dev the test gifts).
+     Now the fundraising figures show a small "Loading the latest totals" spinner until those answers are in (or 4 seconds pass),
+     then draw once. Checked by sampling the hero every 0.12s during a slow load: LOADING, then one final state.
+   - "39 days to meet challenge" showed with no match left. The third hero figure now follows the matching pool: the countdown
+     while a match is open, "N matching challenges met" once the pool is used up.
+   - The "Add to your profile" button row is gone from profiles.
+   - Testimonials: the dark purple box is replaced by light italic text with a thin lavender rule, the same on supporter profiles
+     and filmmaker pages.
+   - Social links: the database shows none saved on his Gmail profile, and the save function accepts links fine, so the save never
+     arrived. Before today the Save button sat far below the links, under the private contact fields. On the new Profile details
+     page it is directly under them. Ask him to try again.
+   - NOT built: connections on the profile (Rick first, then referrals as a honeycomb cluster) and impact that cascades through
+     referrals. Needs a plan and a database function.
+   - NOT fixed, on the "should these be connected?" list given to him: the hero strip tile still says "Every gift doubled... $190K
+     matching challenge pool doubles gifts through Dec 31" when every challenge is met.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
