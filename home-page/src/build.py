@@ -1527,6 +1527,8 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 @keyframes pfOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media(max-width:560px){.mov .pfd>summary{flex-wrap:wrap}.mov .pfd>summary .pft{flex:1 1 0;min-width:0}.mov .pfd>summary .pfgo{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){.mov .pfd[open]>.pfb{animation:none}}
+#wath .srtb[data-comsort]{width:auto;height:auto;min-height:44px;padding:0 10px;gap:6px}
+#wath .srtb .srtl{font-size:13.5px;font-weight:700;color:#6152a0;white-space:nowrap}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
