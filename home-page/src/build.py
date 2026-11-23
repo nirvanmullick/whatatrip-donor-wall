@@ -1345,6 +1345,31 @@ html.wath-noscroll{overflow:hidden}
 :is(#wath,#wath-top) .video .vjj:focus-visible,:is(#wath,#wath-top) .video .vjr:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(max-width:700px){:is(#wath,#wath-top) .video .vjj{top:26cqw;border-width:2px;border-radius:10px}:is(#wath,#wath-top) .video .vjr{font-size:13px}}
 @media(prefers-reduced-motion:reduce){:is(#wath,#wath-top) .video .vjh .chhx{animation:none;transition:none}:is(#wath,#wath-top) .video .vjc,:is(#wath,#wath-top) .video .vjj{animation:none}}
+:is(#wath,#wath-top) .chhx.cchx{cursor:pointer}
+:is(#wath,#wath-top) .chhx.cchx .av,#wath-top .ccbh .av{color:var(--lt)}
+#wath-top .ccbh{position:relative;flex:none;width:88px;height:88px}
+#wath-top .ccm .crn{overflow-wrap:break-word}
+#wath-top .cct{margin:0 0 12px;font-size:16px;line-height:1.4;color:#3a3245}
+#wath-top .cct b{font-size:28px;line-height:1.1;font-weight:800;color:#1b1526;margin-right:6px}
+#wath-top .ccbar{position:relative;height:10px;border-radius:999px;background:#ece7f7}
+#wath-top .ccbar i{display:block;height:100%;min-width:6px;border-radius:999px;background:#6152a0}
+#wath-top .ccbar u{position:absolute;left:40%;top:-4px;bottom:-4px;width:2px;background:#cfc8e6}
+#wath-top .ccbl{position:relative;height:20px;margin:6px 0 16px;font-size:13px;font-weight:700;color:#5b6478}
+#wath-top .ccbl span{position:absolute;top:0}
+#wath-top .ccbl span:first-child{left:40%;transform:translateX(-50%)}
+#wath-top .ccbl span:last-child{right:0}
+#wath-top .ccg{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+#wath-top .ccg li{display:flex;flex-wrap:wrap;gap:2px 8px;padding:12px 16px;background:#f6f3fc;border:1px solid #d9d3ec;font-size:15px;line-height:1.45;color:#3a3245}
+#wath-top .ccg b{color:#1b1526;white-space:nowrap}
+#wath-top .ccg span{min-width:0}
+#wath-top .sppgall .ccvb{min-height:44px;padding:0 16px}
+#wath-top .ccl{display:none;list-style:none;margin:0;padding:0;columns:2;column-gap:32px}
+#wath-top .sppgall.cclon .ccl{display:block}
+#wath-top .sppgall.cclon .chhive{display:none}
+#wath-top .ccl li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-height:44px;padding:10px 0;border-bottom:1px solid #ebe7f5;break-inside:avoid;font-size:15px;line-height:1.4}
+#wath-top .ccl li>:first-child{min-width:0;text-align:left;overflow-wrap:anywhere;font-weight:700}
+#wath-top .ccl li span{flex:none;font-size:13px;color:#5b6478;text-align:right}
+@media(max-width:700px){#wath-top .ccl{columns:1}#wath-top .ccbh{width:72px;height:72px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
