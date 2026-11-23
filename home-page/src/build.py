@@ -1440,6 +1440,10 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .sgl{margin-bottom:16px}
 #wath-top .mov .sgl .smann span{overflow-wrap:anywhere}
 @media(max-width:560px){#wath-top .sgf2{grid-template-columns:minmax(0,1fr)}#wath-top .sgbar .btn{flex:1 1 auto;min-width:0}}
+#wath-top .mov .tgs{margin-top:16px}
+#wath-top .mov .tgs .btn{min-height:44px}
+#wath-top .mov .tgs .btn[disabled]{opacity:.55;cursor:default}
+#wath-top .mov .tgs .pfbar{display:flex;flex-wrap:wrap;gap:8px}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
