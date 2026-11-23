@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `aba7ff748bb0138feceb5f26fd5ee8700f68af02` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `a9d3791f58c7c380befb5d542014defe33fb08e0` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -480,6 +480,16 @@ Claude Code updates this file at the end of each session.
      the export file downloads with the right rows. Sample login only, not a real one.
    - Earlier the same day: my publish hit a merge conflict with the Stripe session's push in build.py; kept both sets of CSS and
      rebuilt (c5a84ab). Always pull right before publish.sh.
+   Nov 23 (goal passed + recent list): Nirvan made a $500,000 TEST gift on /home-dev and the hero said "$0 still needed".
+   - LIVE on /home-dev: once total raised passes the $700K Rough Cut goal the hero shows "$X total funds raised", then
+     "Goal of $700K for the Rough Cut exceeded by $Y · Now funding the Final Cut" (or "our stretch goals" once the $915K Final
+     Cut budget is also covered). The milestone card becomes NEXT PRODUCTION MILESTONE (the current Final Cut line) or STRETCH GOAL
+     (the current stretch goal). The phone donate bar says "$X raised so far". The Budget section marks the Rough Cut "fully funded"
+     and moves the current milestone into the Final Cut list, then the stretch goals. All figures are computed, none typed in.
+     My reading of his words: Final Cut first, stretch goals after; he may want different wording.
+   - Recent donations: the level under a name ("Executive Producer film credit") was being squeezed onto two clipped lines; it now
+     stays on one line and wraps cleanly with the date on phones.
+   - Tested with pretend test gifts of $500K and $1.5M and with none (unchanged). Not re-checked on the real /home-dev.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
