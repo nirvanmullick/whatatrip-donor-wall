@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `4941a3a9d2fae104e0be5c46dec2795c89e19a5a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `c5a84abc661d3540c4f453968612f2527e8123db` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -455,6 +455,19 @@ Claude Code updates this file at the end of each session.
      Still open: "invited people who then gave" does not count yet; test gifts count until cleared.
    - gifts_source_check now allows 'offline', so adding an offline gift in Site Management should work. Checked the rule and
      the constraint in the database; neither was tried from the page with a real login.
+   Nov 23 (dev supporters wall): Nirvan typed "Yes, build it".
+   - Migration `test_wall_function` APPLIED: public.test_wall() returns TEST gifts only (credit name or Anonymous, amount, date,
+     comment; never email/phone/address), and nothing when checkout test mode is off. Anyone can call it.
+   - /home-dev ONLY (path check, like the new checkout): test gifts join the hexagon grid, Top supporters, Recent donations, the
+     supporter count, raised total, the matching challenge and the community credit, tagged TEST. A "Dev page" bar above the
+     supporters lists says how many, with Hide/Show test gifts and Refresh. The list refreshes when the checkout closes.
+     Test gifts are never written to master-donors.json and never cached in the browser (gift list or supporter count), so the live
+     page and /home-test cannot show them.
+   - Supporters wall page: every supporter under their level with search, like live /donors. Opens from "See all N" / "See everyone
+     on the supporters wall" in the Supporters section, or at #supporters-wall. Those two links used to go to live /donors.
+   - Tested with pretend test gifts fed into the test page (count 291 -> 294, raised +$12,700 for $6,350 of gifts with the match,
+     match left -$6,350, hide switch restores real numbers). NOT tried on the real /home-dev with a real test gift.
+   - Noticed, not changed: in Recent donations the level text under a name ("Special Thanks") is squeezed when the row also has a date.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
