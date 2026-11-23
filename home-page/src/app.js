@@ -2038,11 +2038,12 @@ function refNameOf(h){try{if(!SUPSL)SUPSL=supSlugs();var k=SUPSL.by[h];if(!k)ret
 function refClaim(){if(!REF||!LIVE||!SB||!LV.member||!LV.prof||!LV.prof.display_name)return;SB.rpc('claim_referral',{p_ref:REF.h,p_ref_name:refNameOf(REF.h)||null}).then(function(r){var v=r&&r.data;if(!v||r.error||v==='no name yet'||v==='not signed in')return;try{localStorage.removeItem('wath:ref')}catch(e){}var who=REF.h;REF=null;if(v==='linked'){connLoad(function(){if(T.querySelector('.mov'))renderMember()});var nm=refNameOf(who);toast('Welcome! You joined through '+(nm||'a friend')+'’s link, and you now show in their referrals.')}},function(){})}
 /* my own referral link: whatatrip.com/?supporter=me&ref=me (whatatrip.com/me after the move off Squarespace) */
 function myRef(cb){if(!LIVE){cb(supSlug(MEM.me.wall||'supporter'));return}if(LV.refh){cb(LV.refh);return}if(!SB||!LV.member){cb('');return}SB.rpc('my_ref_link').then(function(r){LV.refh=(r&&!r.error&&r.data)||'';cb(LV.refh)},function(){cb('')})}
-/* Nov 23 (Nirvan): invite links read like an invitation: whatatrip.com/?nirvan.mullick-Invite::Rick-Doblin-Film!
-   The question mark is needed while the site is on Squarespace. Only the username before "-Invite" matters, so the link still works if an app
-   drops the trailing "!" or changes the capitals. Older ?ref=username links keep working. */
-function inviteUrl(h){return location.origin+location.pathname+'?'+encodeURIComponent(h)+'-Invite::Rick-Doblin-Film!'}
-function refFromUrl(){var s=location.search||'',m=/[?&](?:ref|[a-z-]*invite[a-z-]*|join-[a-z-]+)=([a-z0-9._-]{2,40})/i.exec(s)||/[?&]([a-z0-9._-]{2,40}?)-invite(?![a-z0-9._-]*=)/i.exec(s);return m}
+/* Nov 23 (Nirvan): invite links read like an invitation: whatatrip.com/?nirvan.mullick-Rick-Doblin-Film-Invite?!
+   (his first pick, ?nirvan.mullick-Invite::Rick-Doblin-Film!, was live for an hour and is still read.)
+   The question mark is needed while the site is on Squarespace. Only the username before "-Rick-Doblin-Film-Invite" matters, so the link still works if an app
+   drops the trailing "?!" or changes the capitals. Older ?ref=username links keep working. */
+function inviteUrl(h){return location.origin+location.pathname+'?'+encodeURIComponent(h)+'-Rick-Doblin-Film-Invite?!'}
+function refFromUrl(){var s=location.search||'',m=/[?&](?:ref|[a-z-]*invite[a-z-]*|join-[a-z-]+)=([a-z0-9._-]{2,40})/i.exec(s)||/[?&]([a-z0-9._-]{2,40}?)-rick-doblin-film-invite/i.exec(s)||/[?&]([a-z0-9._-]{2,40}?)-invite(?![a-z0-9._-]*=)/i.exec(s);return m}
 function myRefUrl(h,who){if(!who)return inviteUrl(h);return location.origin+location.pathname+'?supporter='+encodeURIComponent(who)+'&ref='+encodeURIComponent(h)}
 function refStats(cb){if(!LIVE){cb({visits:12,joined:refsOf(String(MEM.me.wall||'').toLowerCase()).length});return}if(!SB||!LV.member){cb(null);return}SB.rpc('my_ref_stats').then(function(r){cb((r&&r.data&&r.data[0])||null)},function(){cb(null)})}
 function connLoad(cb){var done=function(){CONN.ok=true;try{renderDonations()}catch(e){}cb&&cb()};
