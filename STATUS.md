@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `49662f9b71c33bb1b5fccbb390afffac51159f31` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `4941a3a9d2fae104e0be5c46dec2795c89e19a5a` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -443,6 +443,13 @@ Claude Code updates this file at the end of each session.
      yet count "invited people who gave", and it counts test gifts.
    - ALSO WAITING ON HIS YES: add 'offline' to gifts_source_check so staff_save_gift (offline gifts in Site Management) works.
    - /home-dev also carries the Stripe session's test-gift work (its migrations checkout_test_gifts_*).
+   Nov 23 (late): Nirvan (relayed verbatim): "A clear test gifts button would be great for testing in the management system."
+   - LIVE on /home-dev: Site Management > Dashboard has a TEST GIFTS card (Owner and Admin only) showing how many test gifts and
+     test members exist, with "Clear test gifts" and a second "Yes, clear test gifts" step. It calls the checkout's own
+     clear_test_gifts(), which removes only rows marked is_test (and their test members/logins, never staff) and writes the audit log.
+     No database change was needed. Tested in sample mode only; not tried with a real login or real test gifts.
+   - He did not ask for the test-mode on/off switch; not built.
+   - Pre-existing, not fixed: the staff screens scroll sideways by 1px at 360 wide.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
