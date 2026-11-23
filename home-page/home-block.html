@@ -3333,7 +3333,8 @@ var WCO_OFF=0,WCO_BUSY=0,WCO_GH='nirvanmullick/whatatrip-donor-wall';
 /* Worked out at click time, not at load: LIVE is set further down this file. */
 function wcoOn(){return !WCO_OFF&&!!window.fetch&&!/[?&]oldco=1/.test(location.search)&&(window.WAT_NEWCO===1||(LIVE&&/\/home-dev/.test(location.pathname)))}
 function watCoOpen(a){if(!wcoOn())return false;if(WCO_BUSY||document.querySelector('iframe.wat-co'))return true;WCO_BUSY=1;
-  var cfg={amt:+a>0?+a:0,prior:0,match:null};try{cfg.prior=gcoPrior()||0}catch(e){}try{var ml=pool()-matched();if(ml>0)cfg.match={by:'Matching Fund',label:'Our matching challenge',cap:pool(),left:ml}}catch(e){}
+  var cfg={amt:+a>0?+a:0,prior:0,match:null};try{cfg.prior=gcoPrior()||0}catch(e){}/* Each challenge is credited to the donor who funds it, in order: the one being met now first, then the ones after it. */
+  try{var legs=legState().filter(function(x){return !x.done&&x.l.cap-x.got>0}).map(function(x){return {by:x.l.n,cap:x.l.cap,left:x.l.cap-x.got}});if(legs.length)cfg.match={by:legs[0].by,cap:legs[0].cap,left:legs.reduce(function(t,l){return t+l.left},0),legs:legs}}catch(e){}
   var last=document.activeElement,txt=function(r){if(!r.ok)throw new Error('checkout '+r.status);return r.text()};
   fetch('https://raw.githubusercontent.com/'+WCO_GH+'/main/home-page/checkout/VERSION-CHECKOUT?t='+Math.floor(Date.now()/3e5)).then(txt).then(function(v){v=v.trim();if(!/^[0-9a-f]{40}$/.test(v))throw new Error('checkout version');return fetch('https://cdn.jsdelivr.net/gh/'+WCO_GH+'@'+v+'/home-page/checkout/checkout.html')}).then(txt).then(function(html){
     var f=document.createElement('iframe');f.className='wat-co';f.title='Donate to What a Trip';f.setAttribute('allowtransparency','true');
