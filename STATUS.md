@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `ef82592f65978d45decf6ef0a610344f8d00c9a7` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `3a5f32a2ae43a82e0363f3e822a67608733bfe3c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -535,6 +535,20 @@ Claude Code updates this file at the end of each session.
      Two things differ from what he typed, both flagged to him: the "?" after the slash (needed on Squarespace), and the username
      keeps its real spelling with a dot (nirvan.mullick), because that is the username the database credits.
    - The earlier ?username-Invite::Rick-Doblin-Film! and ?ref=username links are still read. 19 sample addresses checked.
+   Nov 23 (site-plan decisions, relayed by the site-map session after Nirvan said "Yes, pass them on"; see ../SITE-PLAN.md):
+   - LIVE on /home-dev: "Smoke a joint with Rick" removed from the $25K level list, the perk list and the old test checkout's perk
+     choices. Photos now show in the honeycomb grids at every level (the $25K-only rule is gone). The Dashboard has a
+     "View my public profile" button at the top.
+   - Already true before this: Road Trippers start at $50 and Extra film features is $500 on the home page.
+   - NOT CHANGED, needs his answer: "inner circle WhatsApp invite should be $5,000 or more". The page has two groups today,
+     Film Advisory WhatsApp at $5K and Inner Circle (WhatsApp plus Zoom with Rick) at $25K. Does Inner Circle replace Film Advisory
+     at $5K, or does only its WhatsApp invite move down while the Zoom with Rick stays at $25K?
+   - NOT DONE: the live /donors page ($50 Road Trippers, joint perk). Its source (whatatrip-donorwall-SOURCE.zip) is not on this Mac.
+   - "Your photo featured in our supporter grids" is still listed as a $25K perk though photos now show for everyone; ask him.
+   - The Stripe session upgraded the dashboard tour to a spotlight tour (ddb2f46); it is in this build.
+   - QUEUED from Nirvan (not built): Member Dashboard reorganisation (click any field on My profile to edit; private contact info
+     in its own place; Notifications limited to notifications; a clear anonymous / credit-name setting on the member's own profile);
+     the welcome Inbox note should mention the tour; let staff edit the welcome message in Site Management.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
