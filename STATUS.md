@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `b2ee33371af362dc0a9541d86ced35ff4ae6cc95` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `49662f9b71c33bb1b5fccbb390afffac51159f31` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -433,6 +433,16 @@ Claude Code updates this file at the end of each session.
    - The "Donate an experience" card in the perks grid also got an "Offer a perk" button, but that card did not appear in the test
      page, so it is unverified. Other /matching and /contact links (More ways to help lists) are unchanged.
    - Open: should name ideas require a gift, not just a login? Staff cannot yet mark a sign-up as handled.
+   Nov 23 (night): community credit name field. Nirvan (relayed verbatim by the parent session): only contributing supporters may
+   submit a name (donated $5+, raised $5+, invited people who gave/raised $5+, or switched on by staff after an event); and the
+   name should be clickable straight away, logged in or not, with the check on Submit.
+   - LIVE on /home-dev: the "Suggest a name" button is gone; click the name and type. On Submit the page asks the database
+     (am_i_supporter) and shows "Sorry, you must be a logged-in supporter to enter a name." with Log in / Join us if not.
+   - NOT APPLIED: the database lock is still "logged-in member". Tightening it to supporters needs his yes typed in this session.
+     The database's existing supporter rule (private.is_supporter) = staff, OR gifts >= $5, OR activities raised >= $5. It does NOT
+     yet count "invited people who gave", and it counts test gifts.
+   - ALSO WAITING ON HIS YES: add 'offline' to gifts_source_check so staff_save_gift (offline gifts in Site Management) works.
+   - /home-dev also carries the Stripe session's test-gift work (its migrations checkout_test_gifts_*).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
