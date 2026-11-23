@@ -801,7 +801,23 @@ function gcoAuto(){return GPK.filter(function(p){return p.auto&&GCO.amt>=p.min&&
 /* Nov 17 5:22pm (Nirvan): 'Also included' kept, as short bullets */
 function shirtN(a){return Math.max(0,Math.floor((+a||0)/500))}
 function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy '+shirtN(g)+' Legalize Rick Inception shirt'+(shirtN(g)===1?'':'s')+' in our store');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';}
-function gcoOpen(a){GCO={on:1,step:1,pill:null,pvMid:a>0&&GPK.some(function(p){return !p.auto&&a>=p.min}),amt:a>0?a:0,sa:a>0?a:0,ans:{},ack:{},agree:{}};gcoDraw();document.documentElement.classList.add('wath-noscroll')}
+/* The new test checkout (Stripe mockup). On /home-dev only, Give opens it in a full-window frame, so its styles and
+   this page's never mix. The file is one self-contained page, home-page/checkout/checkout.html; the commit to serve is
+   read from home-page/checkout/VERSION-CHECKOUT, so the checkout can be updated without rebuilding this page. If
+   anything fails to load, the older test checkout below opens instead. Add ?oldco=1 to the address to force the older one. */
+var WCO_ON=!/[?&]oldco=1/.test(location.search)&&(window.WAT_NEWCO===1||(LIVE&&/\/home-dev/.test(location.pathname))),WCO_BUSY=0,WCO_GH='nirvanmullick/whatatrip-donor-wall';
+function watCoOpen(a){if(!WCO_ON||!window.fetch)return false;if(WCO_BUSY||document.querySelector('iframe.wat-co'))return true;WCO_BUSY=1;
+  var cfg={amt:+a>0?+a:0,prior:0,match:null};try{cfg.prior=gcoPrior()||0}catch(e){}try{var ml=pool()-matched();if(ml>0)cfg.match={by:'Matching Fund',label:'Our matching challenge',cap:pool(),left:ml}}catch(e){}
+  var last=document.activeElement,txt=function(r){if(!r.ok)throw new Error('checkout '+r.status);return r.text()};
+  fetch('https://raw.githubusercontent.com/'+WCO_GH+'/main/home-page/checkout/VERSION-CHECKOUT?t='+Math.floor(Date.now()/3e5)).then(txt).then(function(v){v=v.trim();if(!/^[0-9a-f]{40}$/.test(v))throw new Error('checkout version');return fetch('https://cdn.jsdelivr.net/gh/'+WCO_GH+'@'+v+'/home-page/checkout/checkout.html')}).then(txt).then(function(html){
+    var f=document.createElement('iframe');f.className='wat-co';f.title='Donate to What a Trip';f.setAttribute('allowtransparency','true');
+    f.style.cssText='position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483000;background:transparent;color-scheme:light';
+    f.srcdoc=html.replace('<head>','<head><scr'+'ipt>window.WAT_EMBED='+JSON.stringify(cfg).replace(/</g,'\\u003c')+'</scr'+'ipt>');
+    var done=function(e){if(e.source!==f.contentWindow||!e.data||e.data.wat!=='checkout-close')return;window.removeEventListener('message',done);if(f.parentNode)f.parentNode.removeChild(f);document.documentElement.classList.remove('wath-noscroll');if(last&&last.focus)try{last.focus()}catch(x){}};
+    window.addEventListener('message',done);document.documentElement.classList.add('wath-noscroll');document.body.appendChild(f);f.addEventListener('load',function(){try{f.contentWindow.focus()}catch(x){}});WCO_BUSY=0;
+  }).catch(function(){WCO_BUSY=0;WCO_ON=false;gcoOpen(a)});
+  return true}
+function gcoOpen(a){if(watCoOpen(a))return;GCO={on:1,step:1,pill:null,pvMid:a>0&&GPK.some(function(p){return !p.auto&&a>=p.min}),amt:a>0?a:0,sa:a>0?a:0,ans:{},ack:{},agree:{}};gcoDraw();document.documentElement.classList.add('wath-noscroll')}
 /* Nov 17 5:09pm (Nirvan): leaving the checkout part-way offers an email reminder to finish later (same reminder service as the matching-challenge form) */
 var GIFT_REMIND_URL='https://script.google.com/macros/s/AKfycbx8qkqGsGwwNrfobN21wNATdHpUA4QirnmmnLM9O9jRMPU7-Bsam6nMHCcI5Ays4eM/exec';
 function gcoTryClose(){if(GCO.on&&GCO.amt>0&&GCO.step<4&&!GCO.asked&&!GCO.leave){GCO.leave=1;gcoDraw();return}gcoClose()}
