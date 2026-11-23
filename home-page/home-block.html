@@ -1478,6 +1478,7 @@ html.wath-noscroll{overflow:hidden}
 /* Nov 22 (Nirvan): in the honeycomb grids a photo is a $25K+ perk; below that the hexagon shows initials */
 :is(#wath,#wath-top) .chhive .chhx .av.lvc.lo img{display:none}
 :is(#wath,#wath-top) .chhive .chhx:is(:hover,:focus-visible) .av.lvc.lo::before{opacity:1}
+:is(#wath,#wath-top) .gcotok{font-size:.86em;color:#6152a0;font-weight:700;white-space:nowrap}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -3218,7 +3219,8 @@ function gcoLeft(p){if(!p.inv||!INV[p.inv]||!INV[p.inv].lim)return null;return i
 function gcoElig(){var T0=GCO.amt>0?GCO.amt+gcoPrior():0;return GPK.filter(function(p){return !p.auto&&T0>=p.min&&!(p.id==='zoomf'&&T0>=25000)&&!(INV[p.inv]&&INV[p.inv].on===0)})}
 function gcoAuto(){return GPK.filter(function(p){return p.auto&&GCO.amt>=p.min&&!(p.id==='zoomf'&&GCO.amt>=25000)})}
 /* Nov 17 5:22pm (Nirvan): 'Also included' kept, as short bullets */
-function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy Legalize Rick Inception shirts (purchased separately in our store)');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';}
+function shirtN(a){return Math.max(0,Math.floor((+a||0)/500))}
+function gcoAutoHtml(){var g=GCO.amt,L=[];if(g>=500)L.push('Access to buy '+shirtN(g)+' Legalize Rick Inception shirt'+(shirtN(g)===1?'':'s')+' (one for every $500; purchased separately in our store)');return L.length?'<div class="gcoinc"><b>Also included with your gift</b><ul>'+L.map(function(x){return '<li>'+x+pkIco(x)+'</li>'}).join('')+'</ul></div>':'';}
 function gcoOpen(a){GCO={on:1,step:1,pill:null,pvMid:a>0&&GPK.some(function(p){return !p.auto&&a>=p.min}),amt:a>0?a:0,sa:a>0?a:0,ans:{},ack:{},agree:{}};gcoDraw();document.documentElement.classList.add('wath-noscroll')}
 /* Nov 17 5:09pm (Nirvan): leaving the checkout part-way offers an email reminder to finish later (same reminder service as the matching-challenge form) */
 var GIFT_REMIND_URL='https://script.google.com/macros/s/AKfycbx8qkqGsGwwNrfobN21wNATdHpUA4QirnmmnLM9O9jRMPU7-Bsam6nMHCcI5Ays4eM/exec';
@@ -3244,7 +3246,7 @@ function gcoPerkB(a){var B=[],lv=levelFor(a);
   var DW=a>=25000?', plus your photo featured in our supporter grids':', plus listed on our online donor wall';var CR=a>=1000000?'Your <b>Presented by title credit</b> in the film'+DW:a>=500000?'Your <b>Executive Producer title credit</b> in the film'+DW:a>=250000?'Your <b>Co-Executive Producer</b> end credit in the film, on IMDb'+DW:a>=100000?'Your <b>Contributing Producer</b> end credit in the film'+DW:a>=25000?'Your <b>Made Possible By</b> end credit in the film'+DW:a>=5000?'Your name in the film’s <b>Special Thanks</b> end credits'+DW:'';
   B.push(CR||'Your name on our online donor wall at the <b>'+esc(lv?lv.n.replace(/ers$/,'er'):'Hitchhiker')+' Level</b>');if(a>=100000)B.push('Get listed as part of the <b>filmmaking team</b> on our website');if(a>=1000000)B.push('Option to add your <b>animated logo to the title credits</b>, subject to mutual approval');B.push('Access to our exclusive member updates');
   (lv&&lv.hide?lv.p:[]).forEach(function(x){B.push(x)});
-  if(a>=500)B.push('Access to buy <b>Legalize Rick Inception shirts</b> in our store');
+  if(a>=500)B.push('Access to buy <b>'+shirtN(a)+' Legalize Rick Inception shirt'+(shirtN(a)===1?'':'s')+'</b> in our store <span class="gcotok">one for every $500</span>');
   if(a>=25000)B.push('The <b>Inner Circle</b>');return B}
 function gcoGets(a){if(GCO.sa!=null)a=GCO.sa;if(!(a>0))return '<p class="gcon">Choose an amount to see what your gift does.</p>';var pr=gcoPrior(),T0=a+pr,lv=levelFor(T0),plv=pr?levelFor(pr):null,hrs=Math.floor(a/50),E=gcoElig(),B=[];
   if(a<5&&!pr)return '<p class="gcon">Gifts of $5 or more add your name to our online donor wall.</p>';
