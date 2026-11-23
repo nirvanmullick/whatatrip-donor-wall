@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `73696701d51aa350c41b4ede80c66749f980fe44` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `ac1b960df12b346569877a57045fb7e46ff4657d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -318,6 +318,8 @@ Claude Code updates this file at the end of each session.
    COMMUNITY CREDIT name ideas: form is live on the credit's page (idea + optional name). Migration `credit_name_ideas` applied
    Nov 22 with Nirvan's yes: anyone can insert, only Owner/Admin/Manager can read, Owner/Admin can edit or delete. There is no
    staff screen for the entries yet (read them with SQL), and the vote is not built.
+   Nov 22 (Nirvan, relayed by the Stripe session): the shirt line in the giving pop-up is shortened to one line:
+   "Access to buy N Legalize Rick Inception shirt(s) in our store" (the "one for every $500" detail is removed; the count is unchanged).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
