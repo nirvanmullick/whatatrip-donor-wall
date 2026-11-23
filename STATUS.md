@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `7ce7d99006686afb70e8d73a49014b20d98ff17d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `9418371a2c08e2177c77d9327c05fca2a73f45ae` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -633,6 +633,31 @@ Claude Code updates this file at the end of each session.
         marked offline, with how it was given, the date and notes.
    5.   Test gifts are NOT ignored anywhere; clear them all before launch.
    6.   Anonymous applies to a member's whole giving history, however and whenever each gift came in.
+   Nov 23 (matching challenge management, stage 1; Nirvan: "Yes, start there").
+   - Migration `matching_challenges` APPLIED: table public.challenges (who is credited, amount, ratio 1/2/3, start, end, status,
+     is_test, team contributors, note); challenge_signups gains ratio, run_length, pool_ok. Functions: public_challenges() (anyone;
+     only live/completed rows and public fields), staff_challenges() (Owner/Admin/Manager), staff_save_challenge(jsonb) and
+     staff_set_challenge_status(id,status) (Owner/Admin; both write the audit log). No direct table access.
+   - LIVE on /home-dev:
+     * Site Management > Matching challenges: new submissions from the Start a challenge form (badge on the menu), "Create
+       challenge" from a submission, New challenge / Edit, and Launch (two-step), Pause, Mark completed, Decline.
+       New challenges default to TEST (only show on /home-dev).
+     * Start a challenge form: match ratio, how long it should run, open to combining; thank-you in his wording.
+     * The home page reads launched challenges from the database and adds them AFTER the five typed into the code (those stay
+       as history). Matching maths now handles ratios and only matches gifts made while a challenge is running. Wording follows
+       the live challenge: 1:1 "doubled", 2:1 "tripled. Your $1 becomes $3", 3:1 "quadrupled". The countdown and "through DATE"
+       use the live challenge's end date. With no database challenges every number is unchanged (checked).
+   - Tested with pretend data only: a $100K 2:1 test challenge plus a $40K gift gives $73,122 left (26,561 from the open 1:1
+     challenge, then 13,439 x 2). The staff screen was run in sample mode. NOT tried with a real login or a real launch.
+   STILL TO BUILD from his notes (each needs his yes where the database or email is involved):
+     * Email to admins when a challenge is submitted; a task in NIRVANA; an API NIRVANA can read (tasks for the team).
+     * Taking the challenger's payment: held, not counted in the public total or in running matches until launch; their history
+       shows "pledged $25K for a new matching challenge", then "active now" with the running amount.
+     * Hand-added gifts: tick boxes "show on the wall and count in totals" and "include in the active match"; in the export as offline.
+     * Perk interest saved to the database with a perk manager who is notified (7). Notification switches saved (8).
+     * Social links visible from $500 given or raised (9). Store discount greyed "coming soon" (10).
+     * Credit-name ideas as a staff table with counts, later voting (13). Anonymous across all giving history (6).
+     * Analytics: no Google Analytics code is on the new page yet (12). Email blasts can only write, preview and send a test (14).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
