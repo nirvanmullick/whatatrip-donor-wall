@@ -1696,6 +1696,12 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 @media(prefers-reduced-motion:reduce){#wath .bfull>summary .chev{transition:none}}
 #wath-top .mthc .mthb{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 #wath-top .mthc .mthb .btn{flex:1 1 160px;min-height:44px;margin:0}
+.mov .pfd>summary .pfgo{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:0;padding:0 16px;white-space:nowrap}
+.mov .pfd[open]>summary .pfgo{display:none}
+.mov .pfd[open]>.pfb{animation:pfOpen .28s ease}
+@keyframes pfOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(max-width:560px){.mov .pfd>summary{flex-wrap:wrap}.mov .pfd>summary .pft{flex:1 1 0;min-width:0}.mov .pfd>summary .pfgo{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.mov .pfd[open]>.pfb{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -4093,10 +4099,21 @@ function pfStat(k,t){var st=(PF.st[k]||{}).st||'';if(t[1]==='join'||t[1]==='link
 function pfSkip(){if(!TG||!TG.cl)return [];return (TG.n||[]).concat(TG.w||[]).map(function(id){return GPF[id]}).filter(Boolean)}
 function pfAct(t){var sk=pfSkip();return PERKS.filter(function(p){return t>=p[1]&&pfZ(p,t)&&pfType(p[0])[1]!=='auto'&&sk.indexOf(pfType(p[0])[0])<0})}
 function pfZ(p,t){return !(t>=25000&&/^Zoom with the filmmakers$/.test(String(p[0]).replace(/<[^>]+>/g,'').trim()))}
+/* Nov 23 (Nirvan): My perks made simple. No step-by-step tracker. Each perk shows one status line; when it is the member's turn the row has one button
+   named for the next action, and pressing it opens what they need right there. When it is our turn it only says so. */
+function pfLine(k,ty){var t=ty[1],x=PF.st[k]||{},st=x.st||'todo';if(t==='join'||t==='link'||t==='auto')return esc(ty[2]||'');
+  var dts=x.dt?new Date(x.dt+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';
+  if(st==='done')return (dts?pfDone(k)+' '+dts+'. ':'Done. ')+'Thank you for being part of this.';
+  if(st==='ship')return (dts?'Shipped '+dts+'. ':'Shipped. ')+'It is on its way to you.';
+  if(st==='sched')return (dts?'Scheduled for '+dts+'. ':'Scheduled. ')+'We emailed you the details.';
+  if(st==='sent')return 'Nothing for you to do. We take the next step and will email you.';
+  return t==='name'?'One thing from you: check how your name is spelled.':PFI[t]?'One thing from you: tell us if you want this perk.':t==='rsvp'?'One thing from you: tell us if you are coming.':'One thing from you: a few details so we can arrange it.'}
+function pfGoLab(ty){var t=ty[1];return t==='name'?'Confirm the spelling':PFI[t]?'I\u2019m interested':t==='rsvp'?'RSVP':t==='ship'?'Add shipping details':t==='sess'?'Request my session':'Send my details'}
+function pfGo(k,ty){var t=ty[1];if(t==='join'||t==='link')return '';if(!(PF.st[k]||{}).st)return '<span class="btn pri pfgo">'+pfGoLab(ty)+'</span>';return pfStat(k,ty)}
 function pfList(t){var sk=pfSkip(),mine=PERKS.filter(function(p){return t>=p[1]&&sk.indexOf(pfType(p[0])[0])<0&&pfZ(p,t)}),act=mine.filter(function(p){return pfType(p[0])[1]!=='auto'}),aut=mine.filter(function(p){return pfType(p[0])[1]==='auto'}),first=1;
-  var rows=act.map(function(p){var k=pfKey(p[0]),ty=pfType(p[0]),st=(PF.st[k]||{}).st,op=PF.open===k||(PF.open==null&&!st&&first&&ty[1]!=='join'&&ty[1]!=='link');if(op&&PF.open==null)first=0;var at=(PF.st[k]||{}).at;
+  var rows=act.map(function(p){var k=pfKey(p[0]),ty=pfType(p[0]),st=(PF.st[k]||{}).st,op=PF.open===k;var at=(PF.st[k]||{}).at;
     if(PF.pend)return '<div class="pfd pfpend"><div class="pfsum"><span class="mpi">✓</span><span class="pft"><b>'+String(p[0]).replace(/<span class="soon">.*?<\/span>/,'')+'</b><span>Once your payment clears, you’ll be able to manage this perk.</span></span><span class="apill">Awaiting payment clearing</span></div></div>';
-    return '<details class="pfd"'+(op?' open':'')+' data-pfk="'+esc(k)+'"><summary><span class="mpi">✓</span><span class="pft"><b>'+String(p[0]).replace(/<span class="soon">.*?<\/span>/,'')+'</b>'+(ty[2]?'<span>'+esc(ty[2])+'</span>':'')+'</span>'+pfStat(k,ty)+'</summary><div class="pfb">'+pfTrack(k,ty)+(st&&at?'<p class="pfat">Sent '+esc(at)+'. You can still change it.</p>':'')+pfForm(k,ty)+pfMsg(k)+'</div></details>'}).join('');
+    return '<details class="pfd"'+(op?' open':'')+' data-pfk="'+esc(k)+'"><summary><span class="mpi">✓</span><span class="pft"><b>'+String(p[0]).replace(/<span class="soon">.*?<\/span>/,'')+'</b><span>'+pfLine(k,ty)+'</span></span>'+pfGo(k,ty)+'</summary><div class="pfb">'+(st&&at?'<p class="pfat">Sent '+esc(at)+'. You can still change it.</p>':'')+pfForm(k,ty)+pfMsg(k)+'</div></details>'}).join('');
   return '<div class="mcard"><div class="mrow"><span class="mtag" style="margin:0">MANAGE MY PERKS</span>'+(LIVE?'':'<span class="pfpv">Preview as '+[1250,5000,25000,100000,250000].map(function(v){return '<button class="mlink'+(PF.pv===v?' on':'')+'" data-m="pfpv" data-t="'+v+'">'+money(v)+'</button>'}).join(' ')+'</span>')+'</div>'+(rows||'<p class="msub">Your perks will appear here as you unlock them.</p>')+(aut.length?'<p class="msub pfauto">Included, nothing to arrange: '+aut.map(function(p){return String(p[0]).replace(/<[^>]+>/g,'')}).join(', ')+'.</p>':'')+'</div>'}
 /* Nov 17 5:30pm (Nirvan): track fulfillment: status, the date it happened (Zoom had, shirt delivered, joint smoked), and views for what is still open */
 function pfKind(n){n=String(n);return /shirt/i.test(n)?'Shirts':/Zoom/i.test(n)?'Zooms':/Arcturus|stay/i.test(n)?'Arcturus stays':/dinner/i.test(n)?'Dinners':/joint/i.test(n)?'Gatherings':/premiere/i.test(n)?'Premiere':/credit|name/i.test(n)?'Credits':/therapy|session/i.test(n)?'Guided sessions':'Other'}

@@ -1512,6 +1512,12 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 @media(prefers-reduced-motion:reduce){#wath .bfull>summary .chev{transition:none}}
 #wath-top .mthc .mthb{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 #wath-top .mthc .mthb .btn{flex:1 1 160px;min-height:44px;margin:0}
+.mov .pfd>summary .pfgo{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:0;padding:0 16px;white-space:nowrap}
+.mov .pfd[open]>summary .pfgo{display:none}
+.mov .pfd[open]>.pfb{animation:pfOpen .28s ease}
+@keyframes pfOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(max-width:560px){.mov .pfd>summary{flex-wrap:wrap}.mov .pfd>summary .pft{flex:1 1 0;min-width:0}.mov .pfd>summary .pfgo{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.mov .pfd[open]>.pfb{animation:none}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
