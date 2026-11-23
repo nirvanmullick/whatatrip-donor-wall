@@ -1579,6 +1579,10 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .prc .mf{margin:0;flex:1 1 150px}
 #wath-top .mov .prc select,#wath-top .mov .prc input{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15px;background:#fff;color:#1b1526}
 #wath-top .mov .prc .btn{min-height:44px;margin:0}
+#wath-top .mov .gflag{display:block;font-size:12.5px;color:#5b6478}
+#wath-top .mov .gaddf select{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #cfc8e6;border-radius:10px;padding:8px 12px;font:inherit;font-size:15px;background:#fff;color:#1b1526}
+#wath-top .mov .gaddf .mck{display:flex;align-items:flex-start;gap:8px;margin:8px 0;line-height:1.4}
+#wath-top .mov .gaddf .mck input{margin-top:3px;flex:none}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
