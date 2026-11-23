@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `a8e50ace14a7aef9d02db3c935443589d8fd9dfb` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `8fcbe547d863df352b2fb86d07183d3d36070f47` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -404,6 +404,15 @@ Claude Code updates this file at the end of each session.
    PINNED HEADER is now ON for everyone on /home-dev (Nirvan, Nov 22: "The pinned header is the way to go ... implement it on
    the site now"). Desktop only (900px and wider); the ?pin=1 switch is gone. Still not checked against the real Squarespace
    header (tests use a stand-in). Lesson noted: when he asks to "see" a change on the dev site, just build it on /home-dev.
+   Nov 23: Nirvan picked (answer "Yes, all three", given in the NIRVANA session and relayed by the parent session):
+   - Matching fund icons: version A. The two hearts are now two joined hexagons, each with a bold black gift box (hero matching card,
+     Challenges section rows, and the small icon in the recent-donations challenge header).
+   - Join us pop-up: layout A. Four rows, an equal-width button on the left and the explanation beside it: Donate $5+, Start a
+     fundraiser, Donate a perk (/contact), Start a challenge (/matching). On phones the button sits above its text.
+   - Community credit name ideas limited to logged-in members in the database: he said yes via relay, but the MIGRATION IS NOT APPLIED.
+     It needs his go-ahead typed in this session first (the page already hides Submit behind login; the database still accepts
+     an idea from anyone).
+   RULE (Nov 23): when reminding Nirvan of a waiting choice, say what it is, where it shows, each option, and re-send the picture.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
