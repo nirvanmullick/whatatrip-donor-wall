@@ -1211,7 +1211,8 @@ html.wath-noscroll{overflow:hidden}
 #wath .suphd.sopen .suphsi{padding-right:40px}
 #wath .suphsi::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
 /* Nov 22 (Nirvan): expand / collapse all on the FAQs heading */
-#wath .fqhd{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
+#wath .fqhd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0;margin-bottom:-5px}
+#wath .fqhd .fqall{margin-top:-7px}
 #wath .fqall{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;flex:none;min-height:44px;padding:0 4px;color:#6152a0;font-size:13px;font-weight:700}
 #wath .fqall:hover span{text-decoration:underline}
 #wath .fqall:focus-visible{outline:2px solid #6152a0;outline-offset:2px}
@@ -1312,6 +1313,15 @@ html.wath-noscroll{overflow:hidden}
 #wath-top .jovr span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#5b6478}
 #wath-top .jovr .btn{flex:none;min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
 @media(max-width:480px){#wath-top .jovr{flex-direction:column;align-items:stretch;gap:12px}#wath-top .jovr .btn{width:100%;box-sizing:border-box}}
+/* Nov 22 (Nirvan): the right-hand column of a voice: menu or flag on top, reactions under it */
+#wath .vrow .vside{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:44px;margin:-8px -8px 0 0}
+#wath .vrow .vside .vmw{margin:0}
+#wath .vrow .vside .vact{margin-top:0;justify-content:flex-end}
+#wath .vrow .vside .rxb{flex-direction:column;flex-wrap:nowrap;align-items:flex-end;gap:4px}
+#wath .vrow .vside .vflag{width:44px;height:30px}
+#wath .vrow .vside .rxb.sm .rx{height:24px}
+#wath .vrow .vside .rxb{gap:3px}
+@media(pointer:coarse){#wath .vrow .vside .vflag{height:44px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2469,7 +2479,13 @@ _c0=out.index('<div class="wrap chwrap" data-chhome>');_a,_b=_section(out,'<sect
 assert _a>_c0 and out[_b:_b+6]=='</div>'
 _cw=out[_c0:_b+6];out=out[:_c0]+out[_b+6:]
 _i0,_i1=_section(out,'<section class="impband" data-imphome>')
-out=out[:_i0]+_cw+out[_i0:_i1]+'<div class="wrap bfwrap" data-bfhome>'+_bud2+_faq2+'</div>'+out[_i1:]
+out=out[:_i0]+_cw+out[_i0:_i1]+'<div class="wrap bfwrap" data-bfhome>'+_bud2+'</div>'+out[_i1:]
+# Nov 22 (Nirvan): FAQs open the lower two-column block, so "More ways to help" sits beside them; then Voices, then Updates
+_s2='<div class="wrap cols second"><div class="stack">'
+assert out.count(_s2)==1
+assert _faq2.count('<h2>FAQs</h2>')==1
+_faq2=_faq2.replace('<h2>FAQs</h2>','<p class="eyb">FAQs<sup class="cnt" data-cnt="faq"></sup></p><h2>Questions and answers</h2>')
+out=out.replace(_s2,_s2+_faq2)
 _m1='<a href="#wath-levels" class="snm">Perks</a><a href="#wath-story">Story</a>'
 _m2='<a href="#wath-challenges">Challenges<sup class="cnt" data-cnt="chal"></sup></a><a href="#wath-faq">FAQs<sup class="cnt" data-cnt="faq"></sup></a><a href="#wath-budget">Budget</a><a href="#wath-impact">Impact</a>'
 assert out.count(_m1)>=1 and out.count(_m2)>=1
