@@ -1,0 +1,5 @@
+-- Reference copy (applied Nov 23 2026 as migration checkout_reminders; approved by Nirvan: "connect the reminder email").
+-- public.checkout_reminders(id, email, amount, monthly, page, created_at, sent_at, send_error)
+-- Row Level Security is on with NO policies: nothing on the website can read or write it. Only the checkout-reminder
+-- Edge Function (functions/checkout-reminder/index.ts, verify_jwt off, own limits) touches it with the service key.
+-- It contains email addresses: private. Limits: one reminder per address per 24 hours; 20 an hour and 150 a day in total.
