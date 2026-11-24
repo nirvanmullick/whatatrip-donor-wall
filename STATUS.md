@@ -3,7 +3,7 @@ Last updated Nov 23, 2026 (checkout section added by the checkout session; the r
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `14c23c1d4030a6daeb0de985e61b94306f77910d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `608805d07b3098a1036565e6231b4ee03e43f325` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -746,6 +746,16 @@ Claude Code updates this file at the end of each session.
    - He has more roll-over animation ideas to give; nothing further built.
    - The checkout session reports referral-at-the-gift and a real reminder email are live on /home-dev. Flagged to Nirvan: the
      reminder can email any address typed in, which is wider than his "internal addresses only for now" wish; not changed.
+   Nov 23 (relayed from the checkout session, Nirvan's words): "a button to clear all test donations and test accounts" and "clean
+   perk management up a lot... Add little thumbnails". LIVE on /home-dev, no database change:
+   - Site Management > Site overview: "Beta testing" card (Owner and Admins only). Test mode on/off switch (set_test_gifts),
+     counts of test gifts and test accounts, and "Clear all test data" which needs CLEAR typed before "Erase all test data" works.
+     Calls clear_test_gifts(): erases test gifts, test accounts and their logins, test referrals; never real gifts, sample records
+     or anyone with a staff role. Tested in sample mode only.
+   - Perk requests: each row has a thumbnail (the perk's picture the site already uses, or its icon) and a status label.
+     Pictures do not load in the test page; not seen with real images.
+   - OPEN: matching challenges now start at $5,000 in the checkout (his decision in that session). The home page still says
+     $25,000 in six places, and the challenge sign-up table only accepts $25,000+, so lowering it needs his yes on a migration.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
