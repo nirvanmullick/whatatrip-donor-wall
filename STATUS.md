@@ -720,6 +720,13 @@ Claude Code updates this file at the end of each session.
    in app.js (cfg.ref, and clearing the remembered referral on {wat:'checkout-ref-remove'}). This session added cfg.ref.photo so the
    checkout can show the person's photo hexagon. OPEN for Nirvan: a gift made through a referral is noted on the gift, but the
    person-to-person referral link is only created when the new donor signs in (claim_referral). Should the gift itself create it?
+   Nov 23 (two hand-entered gifts, LIVE donor list): Nirvan typed "Yes, add both" in this session.
+   Added to manual-gifts.csv, rebuilt with build-master.js, pushed as e238059:
+   - Sunny Bates, $5,000, source daf, dated 2026-10-15, match yes (NYC Lightning Society event).
+   - Allie Hoffman, $1,000, source check, dated 2026-10-15, match yes (same event; check deposited later).
+   master-donors.json went from 306 to 308 gifts (+$6,000). Expected on every page that reads it (live /donors, /donate, the new
+   home page): supporters +2, raised +$12,000 with matching, matching funds left -$6,000. To undo: remove the two lines and rebuild.
+   Neither person has a member account on the new site; none was created.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
