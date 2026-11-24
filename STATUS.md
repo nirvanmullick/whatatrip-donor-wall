@@ -3,7 +3,7 @@ Last updated Nov 23, 2026 (checkout section added by the checkout session; the r
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `608805d07b3098a1036565e6231b4ee03e43f325` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `1b66eec10d3d83846ab83725a8cae969ba6ece5f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -756,6 +756,12 @@ Claude Code updates this file at the end of each session.
      Pictures do not load in the test page; not seen with real images.
    - OPEN: matching challenges now start at $5,000 in the checkout (his decision in that session). The home page still says
      $25,000 in six places, and the challenge sign-up table only accepts $25,000+, so lowering it needs his yes on a migration.
+   Nov 23 (challenge minimum): Nirvan said "Yes, $5,000", then "Make the matching challenge a $10,000 minimum".
+   - Migrations `challenge_minimum_5000` then `challenge_minimum_10000` APPLIED: challenge_signups.amount must be $10,000 or more.
+     (staff_save_challenge still allows $1,000+, so staff can make a smaller one by hand if they choose.)
+   - LIVE on /home-dev: every "$25,000" for starting a challenge now says $10,000 (Join us pop-up, Start a challenge how-it-works
+     and form, challenge list, matching-pool update, More ways to help "From $10K"); the form refuses less than $10,000.
+   - The checkout (Stripe session's file) was set to $5,000 earlier today; told it the new minimum is $10,000.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
