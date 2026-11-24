@@ -1675,6 +1675,10 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .spsoc .cmtt span{font-size:13.5px;color:#5b6478;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #wath-top .spsoc .socx{max-width:680px}
 #wath-top .spsoc .socr .socn{margin-left:auto}
+#wath .vrow .vgrip{flex:none;align-self:center;display:flex;align-items:center;justify-content:center;width:24px;min-height:44px;color:#9a93b4;cursor:grab}
+#wath .vrow .vgrip:active{cursor:grabbing}
+#wath .vrow.vdragging{opacity:.45}
+#wath .vrow.vdrop{box-shadow:0 -3px 0 #6152a0}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
