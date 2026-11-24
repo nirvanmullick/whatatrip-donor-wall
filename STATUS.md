@@ -3,7 +3,7 @@ Last updated Nov 23, 2026 (checkout section added by the checkout session; the r
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `1b66eec10d3d83846ab83725a8cae969ba6ece5f` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `95ef11057f51a1f4f546c39d7595657ff0d4998c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -769,6 +769,25 @@ Claude Code updates this file at the end of each session.
      database changes that need his yes.
    - Team-only test emails (allow-list of internal addresses): DEFERRED by Nirvan until after the site moves off Squarespace.
      Note: until then the checkout's "Remind me later" email can still go to any address typed in.
+   Nov 23 (his answers to the waiting list). Done:
+   - 3: told the checkout session to hold the reminder email to @interconnected.is, @whatatrip.com and nirvan.mullick@gmail.com.
+   - Migration `welcome_message_and_testimonial_home` APPLIED: staff_permissions allows 'perks','forum_mod','welcome' (forum_mod
+     was being refused before); can_edit_welcome() (Owner, or Admins the Owner switches on); save_site_content accepts 'welcome';
+     set_staff_permission: only the Owner can grant 'welcome'; staff_content_history(key) lists saves from the audit log;
+     trigger adopt_seed_testimonial moves a starter quote into a member's profile when their profile name matches and they have
+     none (no current member matches any of the 12 starter quotes, so nothing moved today).
+   - LIVE on /home-dev:
+     * Site Management > Welcome message: edit title, opening, after-the-list text and sign-off ({first}, {level}), live
+       preview, history of changes with who and when (restore an older version), Owner switches Admins on or off.
+       New members' Inbox welcome uses it; people who already have the note keep theirs.
+     * Comments on testimonials: the testimonial on a profile has the same comment thread as that voice in Voices; many
+       comments per person allowed.
+     * Cascading impact: profiles also show what the people your invitees brought in gave; impact numbers are larger.
+       Site overview has a "Referral milestones" card listing anyone whose invitations brought in $100,000+.
+   - Tested in sample mode only. Not tried with a real login.
+   - Decided: progress bar not ready ("I need to work on this more"); test site host = Cloudflare (his questions relayed to
+     the test-site session); reminder email test later.
+   - NEXT: NIRVANA feed (yes) and drag to reorder featured voices (yes).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
