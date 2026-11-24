@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `808cfd905bc50bb19879e87aedccad3e2be28c44` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `14c23c1d4030a6daeb0de985e61b94306f77910d` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -737,6 +737,15 @@ Claude Code updates this file at the end of each session.
    It is now counted from the gifts like the others. The live /donate and /donors pages read the same files; not opened to check.
    Member accounts created for Allie Hoffman and Sunny Bates (Nirvan gave both emails here); no email sent; no gifts on the
    accounts yet (their dashboards show $0 until he says to add them as hand-entered gifts not shown on the wall).
+   Nov 23 (profile hero, his refinements): LIVE on /home-dev.
+   - The hero button on every supporter profile says "Join me" (screen readers hear "Join NAME in supporting the film").
+     The side card button still says "Give alongside NAME" / "Join NAME" by the link rule.
+   - The person's hexagon sits exactly one hexagon to the right of the button. The two are joined by a line that runs in the gaps
+     between hexagons (along the top edges of the hexagon in between), and a light travels from a glow on the button, down the
+     line, to their hexagon, about every 2.6 seconds. Reduced-motion settings get a still line.
+   - He has more roll-over animation ideas to give; nothing further built.
+   - The checkout session reports referral-at-the-gift and a real reminder email are live on /home-dev. Flagged to Nirvan: the
+     reminder can email any address typed in, which is wider than his "internal addresses only for now" wish; not changed.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
