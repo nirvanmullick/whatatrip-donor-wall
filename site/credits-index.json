@@ -119,6 +119,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-allen-hardison"
  },
  {
+  "slug": "allie-hoffman",
+  "name": "Allie Hoffman",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/allie-hoffman",
+  "goes_to": "https://whatatrip.com/donors#donor-allie-hoffman"
+ },
+ {
   "slug": "allison-brekke",
   "name": "Allison Brekke",
   "kind": "donor",
@@ -1944,6 +1951,13 @@
   "kind": "donor",
   "url": "https://credits.whatatrip.com/stephanie-lary",
   "goes_to": "https://whatatrip.com/donors#donor-stephanie-lary"
+ },
+ {
+  "slug": "sunny-bates",
+  "name": "Sunny Bates",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/sunny-bates",
+  "goes_to": "https://whatatrip.com/donors#donor-sunny-bates"
  },
  {
   "slug": "susannah-mars",
