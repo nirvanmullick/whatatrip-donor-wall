@@ -1622,6 +1622,59 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .prt .prst{display:inline-block;margin:4px 0 2px;font-style:normal;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6152a0}
 #wath-top .mov .prt .prst.st-done{color:#33697f}
 @media(max-width:560px){#wath-top .mov .prth{width:48px;height:48px}}
+#wath-top .spsoc{margin:12px 0 0}
+#wath-top .spsoc .soc{margin:0}
+#wath-top .mov .rfa{margin-top:16px}
+#wath-top .mov .welg{align-items:start}
+#wath-top .mov .welg .mf textarea,#wath-top .mov .welg .mf input{display:block;width:100%;box-sizing:border-box}
+#wath-top .mov .welpv{padding:16px;background:#f6f3fc;border:1px solid #d9d3ec;font-size:15px;line-height:1.5;color:#1b1526}
+#wath-top .mov .welpv p{margin:8px 0}
+#wath-top .mov .welpv ul{margin:8px 0;padding-left:20px;color:#5b6478}
+#wath-top .mov .welsg{color:#5b6478;font-style:italic}
+#wath-top .mov .welh{border-top:1px solid #ebe7f5;padding:12px 0}
+#wath-top .mov .welh>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+#wath-top .mov .welh .welpv{margin:8px 0}
+/* comment threads under a profile testimonial use the main page look (Nov 23) */
+#wath-top .spsoc .soc{margin-top:16px;padding-top:14px;border-top:1px solid #ece8f4}
+#wath-top .spsoc .socr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#wath-top .spsoc .rxb{display:inline-flex;flex-wrap:wrap;gap:6px}
+#wath-top .spsoc .rx{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:30px;height:30px;padding:0 7px;border-radius:8px;border:1px solid #e3def0;background:#fff;font-family:inherit;font-size:12.5px;font-weight:700;line-height:1;color:#4a4560;transition:background .15s,border-color .15s}
+#wath-top .spsoc .rx .rxe{font-size:14px;line-height:1}
+#wath-top .spsoc .rx:hover{background:#f4f1fb;border-color:#d4cce9}
+#wath-top .spsoc .rx.on{background:#ece7fa;border-color:#8f7fd0;color:#3d3175}
+#wath-top .spsoc .rx:focus-visible,#wath-top .spsoc .cml button:focus-visible{outline:2px solid #5d4fa6;outline-offset:2px}
+#wath-top .spsoc .rxb.sm .rx{min-width:26px;height:26px;padding:0 5px;border-radius:7px}
+#wath-top .spsoc .rxb.sm .rx .rxe{font-size:12.5px}
+#wath-top .spsoc .socn{all:unset;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;color:#5d4fa6;padding:6px 2px}
+#wath-top .spsoc .socn:hover{text-decoration:underline}
+#wath-top .spsoc .socl{margin-top:14px;display:flex;flex-direction:column;gap:14px}
+#wath-top .spsoc .cm{display:flex;gap:12px;align-items:flex-start}
+#wath-top .spsoc .cm .av{flex:none}
+#wath-top .spsoc .cm.hid{opacity:.55}
+#wath-top .spsoc .cmb{flex:1;min-width:0;background:#fff;border:1px solid #ebe7f3;border-radius:12px;padding:10px 14px}
+#wath-top .spsoc .cmh{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:14px}
+#wath-top .spsoc .cmh span{color:#7a7f90;font-size:13px}
+#wath-top .spsoc .cmb p{margin:4px 0 0;font-size:15px;line-height:1.5;color:#1f2430;overflow-wrap:anywhere}
+#wath-top .spsoc .cml{display:flex;gap:14px;margin-top:6px}
+#wath-top .spsoc .cml button{all:unset;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;color:#5d4fa6}
+#wath-top .spsoc .cml button:hover{text-decoration:underline}
+#wath-top .spsoc .cml button[data-arm]{color:#8a3b3b}
+#wath-top .spsoc .cmf{display:flex;gap:10px;align-items:flex-end;margin-top:14px}
+#wath-top .spsoc .cmf textarea,#wath-top .spsoc .cmb textarea{flex:1;width:100%;box-sizing:border-box;min-height:44px;border:1px solid #d9d3ea;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:15px;line-height:1.45;color:#1f2430;background:#fff;resize:vertical}
+#wath-top .spsoc .cmf .btn{flex:none}
+@media(max-width:520px){#wath-top .spsoc .cmf{flex-direction:column;align-items:stretch}}
+#wath-top .spsoc .socc{font-size:14px;font-weight:700;color:#4a4560}
+#wath-top .spsoc .cmtz{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:12px;max-width:min(100%,560px);padding:10px 16px 10px 12px;border-radius:999px;background:#fff;border:1px solid #e3def0;box-shadow:0 2px 10px rgba(27,21,38,.05);transition:border-color .15s,box-shadow .15s}
+#wath-top .spsoc .cmtz:hover{border-color:#c9bff0;box-shadow:0 6px 18px rgba(27,21,38,.09)}
+#wath-top .spsoc .cmtz:focus-visible{outline:2px solid #6152a0;outline-offset:3px}
+#wath-top .spsoc .cmta{display:inline-flex;flex:none}
+#wath-top .spsoc .cmta .av{width:30px;height:30px;font-size:11px;border:2px solid #fff;margin-left:-9px}
+#wath-top .spsoc .cmta .av:first-child{margin-left:0}
+#wath-top .spsoc .cmtt{display:flex;flex-direction:column;min-width:0}
+#wath-top .spsoc .cmtt b{font-size:14px;color:#1b1526}
+#wath-top .spsoc .cmtt span{font-size:13.5px;color:#5b6478;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#wath-top .spsoc .socx{max-width:680px}
+#wath-top .spsoc .socr .socn{margin-left:auto}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
@@ -2248,7 +2301,7 @@ extra+="""
 #wath-top .spov .spvh .av img{width:100%;height:100%;object-fit:cover}
 #wath-top .spst{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
 #wath-top .spst>div,#wath-top .spst>.spstb{flex:1 1 120px;background:#f6f3fd;border-radius:12px;padding:10px 12px}
-#wath-top .spst b{display:block;font-size:17px;color:#1b1526}
+#wath-top .spst b{display:block;font-size:clamp(20px,2.2vw,26px);line-height:1.2;font-weight:800;color:#1b1526}
 #wath-top .spst span{font-size:13px;color:#5b6478}
 #wath-top .spq blockquote{margin:0 0 10px;padding:10px 14px;border-left:3px solid #8a7cc8;background:#faf9fd;border-radius:0 10px 10px 0;color:#3a3245;font-size:15px;line-height:1.5}
 #wath-top .spnq{color:#5b6478;font-size:14.5px}
