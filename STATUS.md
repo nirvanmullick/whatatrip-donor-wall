@@ -820,7 +820,7 @@ How to rebuild, test and publish: `whatatrip-site/mockups/checkout-embed/HOW-TO-
   so), random pink/purple heart burst, note on tokens for monthly perks.
 - Red field errors with a message under each field; country picker with country-specific address fields; corner
   "Maybe next time?" reminder card; Donate opens at once (file fetched after page load).
-- Matching challenges start at $5,000 (Nirvan, Nov 23).
+- Matching challenges start at $10,000 (Nirvan, Nov 23; changed from $5,000 the same day).
 - After a gift: hands off to the real Member Dashboard (thank-you card, tour) or to its My profile / My perks pages.
 
 **Database (all approved by Nirvan in the checkout session, all named migrations).**

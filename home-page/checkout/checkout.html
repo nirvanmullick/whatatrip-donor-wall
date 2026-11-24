@@ -873,7 +873,7 @@ function impLine(n){var mo=CO.freq==='monthly',own=n>=5&&n<50000?impact(n):'';if
     return '<span class="imt">'+money(n)+' = <b>'+big+'</b></span>'+info('fund','What this gift funds')+tip('fund',fundList(n).map(function(x){return x[1]}).join('<br>'))}
   return ''}
 function matchTop(n){var M0=curMatch();if(CO.freq==='monthly'&&!CO.sp)return '<p class="mx"><span class="x2 hx2">'+HEART+'</span><span>They let us budget ahead for impact.</span></p>';if(CO.sp||!M0.on||!(M0.left>0))return '';var L=(M0.legs&&M0.legs.length?M0.legs:[M0]).filter(function(l){return l.left>0}),nm=L.length?L[0].by:M0.by,m=n>0?Math.min(n,M0.left):0;return '<p class="mx"><span class="x2">2x</span><span><b>'+esc(nm)+'</b> is matching '+(m&&m<n?'<b>'+money(m)+'</b> of your gift.':m?'your gift: '+money(n)+' becomes <b>'+money(n+m)+'</b>.':'your gift!')+'</span></p>'}
-var SPMIN=5000;
+var SPMIN=10000;
 function can1(){if(CO.sp)return CO.amt>=SPMIN;return CO.amt>=5&&!(CO.freq==='monthly'&&CO.dur==='date'&&!fmtD(CO.durDate))}
 function durTxt(){return CO.freq!=='monthly'?'':CO.dur==='date'&&fmtD(CO.durDate)?'until '+fmtD(CO.durDate):DUR[CO.dur][1]}
 /* Perk pictures: small copies of the ones the site already shows for each perk. */
@@ -1074,7 +1074,7 @@ function drawAfter(){var L=LAST,C=L.co||{},done=[1,1,L.photo?1:0,L.bio?1:0,L.lin
    +'<div class="afg">'
    +(L.perks.length?'<section class="pan" id="tp-perks"><h2>Your orders and perks</h2><div>'+L.perks.map(function(x){return '<div class="frrow"><span><b>'+esc(x[0])+'</b><small class="mcm">'+esc(x[1])+'</small></span></div>'}).join('')+'<div class="ft"><span></span><button class="btn quiet" data-after="perks">My orders and perks</button></div></div></section>':'')
    +'<section class="pan" id="tp-more"><h2>More ways to help</h2><div><label class="fl" style="margin-top:0">Invite friends by email <small>Separate with commas</small><textarea data-af="invite" style="min-height:64px" placeholder="friend@example.com">'+esc(L.invite)+'</textarea></label><div class="ft" style="margin-bottom:16px"><span class="note" style="margin:0">We email each person once, in your name.</span><button class="btn quiet" data-after="invite">Send invites</button></div>'
-     +'<div class="nxl" style="margin-top:0">'+[['x','Host a screening','Bring the film to your community'],['idea','Send us an idea','Questions or ideas for moving the film forward'],['fund','Start a fundraiser','Raise money with friends'],['match','Sponsor a matching challenge','Double other people’s gifts, from $5,000']].map(function(x){return '<button class="nxb" data-after="'+x[0]+'"><span><b>'+x[1]+'</b><small>'+x[2]+'</small></span><i aria-hidden="true">›</i></button>'}).join('')+'</div></div></section>'
+     +'<div class="nxl" style="margin-top:0">'+[['x','Host a screening','Bring the film to your community'],['idea','Send us an idea','Questions or ideas for moving the film forward'],['fund','Start a fundraiser','Raise money with friends'],['match','Sponsor a matching challenge','Double other people’s gifts, from $10,000']].map(function(x){return '<button class="nxb" data-after="'+x[0]+'"><span><b>'+x[1]+'</b><small>'+x[2]+'</small></span><i aria-hidden="true">›</i></button>'}).join('')+'</div></div></section>'
    +'</div><p class="tpr"><button class="lnk" data-after="tour-start">Show me around this page</button></p></div>';
   if(L.welcome)h+='<div class="tpo" role="dialog" aria-modal="true" aria-labelledby="tpw"><div class="tpc"><div class="ok" aria-hidden="true">'+HEART+'</div><h2 id="tpw">Thank you, '+esc(L.first)+'. Welcome to our crew.</h2>'
     +'<p>We’re so grateful for your support in helping tell this story. Use your dashboard to manage your perks, or to find more ways to help and connect with us.</p><p>If you have any questions, or ideas for moving this film forward, please let us know. We couldn’t be making this without you.</p>'
@@ -1281,8 +1281,8 @@ function drawCO0(){
     h='';
   }else if(CO.step===1&&CO.sp){
     h='<h3>Sponsor a matching challenge</h3><p class="note" style="margin-top:0">Offer to double other people’s gifts, up to the amount you pledge.</p>'+(CO.known?'<p class="kpr" style="margin-top:8px">Welcome back, '+esc(CO.first)+'. '+(PRIOR?'You’ve given <b>'+money(PRIOR)+'</b> so far. ':'')+'Your challenge is added to your giving history, counts toward your level, and may unlock new perks.</p>':'')
-     +'<div class="amts">'+[5000,10000,25000,50000,100000,250000].map(function(v){return '<button class="'+(a===v?'on':'')+'" data-amt="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
-     +'<label class="fl">Or enter your pledge <small>$5,000 or more</small><span class="amtin"><span aria-hidden="true">$</span><input data-amtin inputmode="numeric" value="'+(a?a.toLocaleString('en-US'):'')+'" placeholder="0"></span></label>'
+     +'<div class="amts">'+[10000,25000,50000,100000,250000,500000].map(function(v){return '<button class="'+(a===v?'on':'')+'" data-amt="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
+     +'<label class="fl">Or enter your pledge <small>$10,000 or more</small><span class="amtin"><span aria-hidden="true">$</span><input data-amtin inputmode="numeric" value="'+(a?a.toLocaleString('en-US'):'')+'" placeholder="0"></span></label>'
      +(CO.aerr?'<p class="err aerr" role="alert">'+esc(CO.aerr)+'</p>':'')
      +'<label class="fl">Credit the challenge to <small>The name donors will see</small><input data-f="spCredit" value="'+esc(CO.spCredit)+'" placeholder="Your name, family or foundation" autocomplete="off"></label>'
      +'<div class="gets" aria-live="polite">'+getsTxt(a)+'</div>'
@@ -1466,13 +1466,13 @@ function mcLeft(){return Math.max(0,MC.amt-mcMatched())}
 function mcTitle(){return mcCredit()+'’s '+shortK(MC.amt)+' matching challenge'}
 function mcDate(){if(!MC.until)return '';var d=new Date(MC.until+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
 function kindHtml(){return '<div class="seg" role="group" aria-label="What would you like to start" style="margin:0 0 24px">'+[['fund','Fundraiser'],['match','Matching challenge']].map(function(o){return '<button data-fr="kind" data-v="'+o[0]+'" aria-pressed="'+(FR.kind===o[0])+'">'+o[1]+'</button>'}).join('')+'</div>'}
-function mcEarn(){return MC.amt>=SPMIN?'Every gift is doubled until <b>'+money(MC.amt)+'</b> has been matched. You pay only what is matched.':'A matching challenge starts at <b>$5,000</b>.'}
+function mcEarn(){return MC.amt>=SPMIN?'Every gift is doubled until <b>'+money(MC.amt)+'</b> has been matched. You pay only what is matched.':'A matching challenge starts at <b>$10,000</b>.'}
 function drawMC(){drawMC0();embHdr()}
 function drawMC0(){
   if(!MC.made){
     $('#app').innerHTML='<div class="fs">'+kindHtml()+'<h1>Sponsor a matching challenge</h1><p>Offer to double other people’s gifts, up to an amount you choose. It is one of the strongest ways to bring new supporters in.</p>'
-    +'<section class="pan"><h2>Your pledge</h2><div><div class="amts fra">'+[5000,10000,25000,50000,100000].map(function(v){return '<button class="'+(MC.amt===v?'on':'')+'" data-fr="mcamt" data-v="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
-     +'<label class="fl">Or enter an amount <small>$5,000 or more</small><span class="amtin"><span aria-hidden="true">$</span><input data-mcf="amt" inputmode="numeric" value="'+(MC.amt?MC.amt.toLocaleString('en-US'):'')+'"></span></label><div class="gets" id="mcearn" aria-live="polite">'+mcEarn()+'</div></div></section>'
+    +'<section class="pan"><h2>Your pledge</h2><div><div class="amts fra">'+[10000,25000,50000,100000,250000].map(function(v){return '<button class="'+(MC.amt===v?'on':'')+'" data-fr="mcamt" data-v="'+v+'">'+money(v)+'</button>'}).join('')+'</div>'
+     +'<label class="fl">Or enter an amount <small>$10,000 or more</small><span class="amtin"><span aria-hidden="true">$</span><input data-mcf="amt" inputmode="numeric" value="'+(MC.amt?MC.amt.toLocaleString('en-US'):'')+'"></span></label><div class="gets" id="mcearn" aria-live="polite">'+mcEarn()+'</div></div></section>'
     +'<section class="pan"><h2>How it is credited</h2><div><div class="grid2"><label class="fl">Your name<input data-mcf="name" value="'+esc(MC.name)+'" autocomplete="name"></label><label class="fl">Credit the challenge to <small>optional</small><input data-mcf="credit" value="'+esc(MC.credit)+'" placeholder="'+esc(MC.name.trim()||'Your name')+'"></label></div>'
      +'<p class="note">This is the name donors see: “Your gift will be matched by …”. A person, a family, a foundation, or “An anonymous donor”.</p>'
      +'<label class="fl">Runs until <small>optional</small><input type="date" data-mcf="until" value="'+esc(MC.until)+'" min="'+minDate()+'"></label>'
@@ -1522,7 +1522,7 @@ function frAct(k,t){var v=t.getAttribute('data-v');
   else if(k==='give'){openCO(0);CO.fr=1;drawCO()}
   else if(k==='kind'){FR.kind=v;drawFR();$('[data-fr="kind"][data-v="'+v+'"]').focus({preventScroll:true})}
   else if(k==='mcamt'){MC.amt=+v;MC.err='';drawFR();$('[data-fr="mcamt"][data-v="'+v+'"]').focus({preventScroll:true})}
-  else if(k==='mccreate'){if(!(MC.amt>=SPMIN)){MC.err='A matching challenge starts at $5,000.';drawFR();return}if(!MC.name.trim()){MC.err='Please add your name.';drawFR();return}var cp=MC.credit.trim()&&CREDIT_BLOCK.test(MC.credit);if(cp){MC.err='That credit can’t be used. Please use a real name or a real organisation.';drawFR();return}MC.err='';MC.made=true;drawFR();window.scrollTo(0,0);toast('Matching challenge created. (Test: nothing was saved.)')}
+  else if(k==='mccreate'){if(!(MC.amt>=SPMIN)){MC.err='A matching challenge starts at $10,000.';drawFR();return}if(!MC.name.trim()){MC.err='Please add your name.';drawFR();return}var cp=MC.credit.trim()&&CREDIT_BLOCK.test(MC.credit);if(cp){MC.err='That credit can’t be used. Please use a real name or a real organisation.';drawFR();return}MC.err='';MC.made=true;drawFR();window.scrollTo(0,0);toast('Matching challenge created. (Test: nothing was saved.)')}
   else if(k==='mcedit'){MC.made=false;drawFR();window.scrollTo(0,0)}
   else if(k==='mcshare'){toast('A link to share would be copied here. (Test)')}
   else if(k==='mcgive'){openCO(0);CO.mc=1;drawCO()}}
@@ -1586,7 +1586,7 @@ document.addEventListener('click',function(e){
   else if(v==='pmchg'||(v==='back'&&CO.step===4&&CO.method)){CO.method='';CO.enter=-1;drawCO();$('#pop .ov').scrollTop=0;var ph=$('#pop .stepw h3');if(ph){ph.tabIndex=-1;ph.focus({preventScroll:true})}}
   else if(v==='back'){go(CO.step===3&&!paid().length?1:CO.step-1)}
   else if(v==='next'){
-    if(CO.step===1){if(!can1()){CO.aerr=CO.sp?'A matching challenge starts at $5,000. Please choose or enter your pledge.':CO.freq==='monthly'&&CO.dur==='date'&&CO.amt>=5?'Please choose the date your monthly gift should end.':'Please choose an amount, or type one in. Gifts start at $5.';var ay1=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=ay1;var af=CO.freq==='monthly'&&CO.dur==='date'&&CO.amt>=5?$('#pop [data-durdate]'):$('#pop [data-amtin]');if(af){af.scrollIntoView({block:'center'});af.focus({preventScroll:true})}return}CO.aerr='';go(paid().length?2:3)}
+    if(CO.step===1){if(!can1()){CO.aerr=CO.sp?'A matching challenge starts at $10,000. Please choose or enter your pledge.':CO.freq==='monthly'&&CO.dur==='date'&&CO.amt>=5?'Please choose the date your monthly gift should end.':'Please choose an amount, or type one in. Gifts start at $5.';var ay1=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=ay1;var af=CO.freq==='monthly'&&CO.dur==='date'&&CO.amt>=5?$('#pop [data-durdate]'):$('#pop [data-amtin]');if(af){af.scrollIntoView({block:'center'});af.focus({preventScroll:true})}return}CO.aerr='';go(paid().length?2:3)}
     else if(CO.step===2){if(!can2()){CO.perr=(CO.noperks||picked().length)?2:1;var py=$('#pop .ov');drawCO();py=$('#pop .ov');py.scrollTop=py.scrollHeight;var pf=CO.perr===2?$('#tsz'):$('#pop [data-a="pnone"]');if(pf){if(CO.perr===2)pf.scrollIntoView({block:'center'});pf.focus({preventScroll:CO.perr!==2})}return}CO.perr=0;CO.noperks=!picked().length;go(3)}
     else if(CO.step===3){var dp=detailsProblem();if(dp){CO.err=dp;drawCO();$('#pop .ov').scrollTop=0;var bf=$('#pop .fl.bad input');if(bf)bf.focus({preventScroll:true});return}CO.err='';if(!shipOk()){CO.serr=CO.shipOther?'Please add the recipient’s name and full address.':'Please add your full mailing address so we can send your shirt.';var sy3=$('#pop .ov').scrollTop;drawCO();$('#pop .ov').scrollTop=sy3;var sf=$('#pop [data-f="'+(CO.shipOther?'sname':'addr1')+'"]');if(sf)sf.focus();return}CO.serr='';go(4)}
     else go(CO.step+1)}
