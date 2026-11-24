@@ -15,3 +15,9 @@
 -- Nov 23 2026, migration checkout_test_gifts_total_and_testimonial (approved by Nirvan): record_test_gift() now also
 -- returns total / level / gift_count and has_testimonial to a logged-out donor whose email matches a member, unless that
 -- member's profile is anonymous or private (then those fields are null). Nothing else changed.
+--
+-- Nov 23 2026, migration checkout_test_gifts_referral_at_gift (approved by Nirvan: "Yes, record the referral at the gift"):
+-- record_test_gift(p) takes p.ref (the referrer's handle) and writes public.referrals at the gift, with claim_referral()'s
+-- rules (real handle, no self-referral, never overwrite, no loops, anonymous donors as "Anonymous supporter"). Rows carry
+-- source = 'test'; clear_test_gifts() deletes them. A real member matched only by a typed email is not given a referrer.
+-- The reply adds referral: linked | already | self | unknown link | no name yet | loop | needs sign-in | null.
