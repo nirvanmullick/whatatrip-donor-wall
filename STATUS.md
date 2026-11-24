@@ -790,6 +790,16 @@ Claude Code updates this file at the end of each session.
    - NEXT: NIRVANA feed (yes) and drag to reorder featured voices (yes).
    Nov 23: drag to reorder featured voices (his yes): Owners and Admins, in the Featured order, drag a pinned voice by its
    handle onto another; the order saves to site settings. Move up / Move down stay in the menu for keyboards. Sample-tested.
+   Nov 23 (later). Done:
+   - LIVE on /home-dev (44a607f): drag to reorder featured voices (Owner/Admin, Featured order, handle on each pinned voice;
+     Move up / Move down stay in the menu for keyboards).
+   - NIRVANA to-do feed: Edge Function `nirvana-feed` DEPLOYED (read-only GET ?since=, source in
+     home-page/supabase/functions/nirvana-feed/). Items: perk requests, matching challenge sign-ups, perk offers, bug
+     reports and ideas, flagged profiles, credit-name ideas; each has a link to the right Site Management tool.
+     Answers 503 "not_set_up" until the function secret NIRVANA_FEED_KEY (24+ random characters) is set in Supabase;
+     NIRVANA sends the same value in header x-feed-key. Checked: no key -> 503, POST -> 405.
+   - Open: database levels table names $1K "MAPS Makers" but the page says "Wayfinders" (fix?); no 'daf' gift method (add?).
+   - NEXT: Nirvan sets NIRVANA_FEED_KEY; the NIRVANA project builds the side that reads the feed.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
