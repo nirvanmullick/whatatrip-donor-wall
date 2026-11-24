@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-22T05:06:20.379Z",
- "count": 306,
+ "updated": "2026-11-24T03:08:58.276Z",
+ "count": 308,
  "gifts": [
   {
    "date": "2026-11-20T02:51:53.943-08:00",
@@ -133,19 +133,6 @@
    "added_by": "automatic (Pledge)"
   },
   {
-   "date": "2026-11-08T07:53:55.467-08:00",
-   "name": "Nathen Willard",
-   "name_on_record": "Nathen Willard",
-   "amount": 500,
-   "source": "pledge",
-   "anonymous": false,
-   "matched": true,
-   "pledge_id": 33861275,
-   "via": "",
-   "comment": "",
-   "added_by": "automatic (Pledge)"
-  },
-  {
    "date": "2026-11-08T12:00:00",
    "name": "Allen Hardison",
    "name_on_record": "Allen Hardison",
@@ -157,6 +144,19 @@
    "comment": "",
    "via": "Wonder Amazon boat trip auction",
    "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-11-08T07:53:55.467-08:00",
+   "name": "Nathen Willard",
+   "name_on_record": "Nathen Willard",
+   "amount": 500,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33861275,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
   },
   {
    "date": "2026-11-02T11:31:28.645-08:00",
@@ -523,19 +523,6 @@
    "added_by": "automatic (Pledge)"
   },
   {
-   "date": "2026-10-15T10:54:41.744-07:00",
-   "name": "Aubrey Marcus",
-   "name_on_record": "Aubrey Marcus",
-   "amount": 5000,
-   "source": "pledge",
-   "anonymous": false,
-   "matched": true,
-   "pledge_id": 33533446,
-   "via": "",
-   "comment": "",
-   "added_by": "automatic (Pledge)"
-  },
-  {
    "date": "2026-10-15T12:00:00",
    "name": "Rae Richman & Tomas McCabe",
    "name_on_record": "Rae Richman & Tomas McCabe",
@@ -573,6 +560,45 @@
    "comment": "",
    "via": "",
    "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Sunny Bates",
+   "name_on_record": "Sunny Bates",
+   "amount": 5000,
+   "source": "daf",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-10-15T12:00:00",
+   "name": "Allie Hoffman",
+   "name_on_record": "Allie Hoffman",
+   "amount": 1000,
+   "source": "check",
+   "anonymous": false,
+   "matched": false,
+   "pledge_id": "",
+   "comment": "",
+   "via": "",
+   "added_by": "by hand (manual-gifts.csv)"
+  },
+  {
+   "date": "2026-10-15T10:54:41.744-07:00",
+   "name": "Aubrey Marcus",
+   "name_on_record": "Aubrey Marcus",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 33533446,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
   },
   {
    "date": "2026-10-14T15:22:53.129-07:00",

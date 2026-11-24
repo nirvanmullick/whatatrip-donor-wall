@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-22T05:06:20.373Z",
- "count": 207,
+ "updated": "2026-11-24T03:08:58.271Z",
+ "count": 209,
  "gifts": [
   {
    "ts": "2026-11-08T12:00:00",
@@ -28,6 +28,20 @@
    "amount": 4385,
    "source": "private",
    "name": "Jade Netanya Ullmann"
+  },
+  {
+   "ts": "2026-10-15T12:00:00",
+   "amount": 5000,
+   "source": "daf",
+   "name": "Sunny Bates",
+   "match": true
+  },
+  {
+   "ts": "2026-10-15T12:00:00",
+   "amount": 1000,
+   "source": "check",
+   "name": "Allie Hoffman",
+   "match": true
   },
   {
    "ts": "2026-08-08T09:00:00",
