@@ -1611,6 +1611,17 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .spme .btn{min-height:44px;margin:0 0 8px}
 #wath-top .spme .spmnote{margin:8px 0 0;font-size:13.5px;line-height:1.45;color:#5b6478}
 @media(max-width:900px){#wath-top .sppgc>.spme,#wath-top .sppgc.sphon>.sppgL,#wath-top .sppgc.sphon>.sppga{grid-column:1;grid-row:auto}}
+#wath-top .mov .tgs .mtag .soon{margin-left:8px}
+#wath-top .mov .tgs .tgsconf{max-width:360px}
+#wath-top .mov .tgs .tgsconf input{min-height:44px;text-transform:uppercase;letter-spacing:.1em}
+#wath-top .mov .tgs .asw{flex:none}
+#wath-top .mov .prr{align-items:center}
+#wath-top .mov .prth{flex:none;width:64px;height:64px;border-radius:10px;background:#ece7f7 center/cover no-repeat;border:1px solid #d9d3ec}
+#wath-top .mov .prth.prti{display:flex;align-items:center;justify-content:center;color:#6152a0}
+#wath-top .mov .prth.prti svg{width:26px;height:26px}
+#wath-top .mov .prt .prst{display:inline-block;margin:4px 0 2px;font-style:normal;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6152a0}
+#wath-top .mov .prt .prst.st-done{color:#33697f}
+@media(max-width:560px){#wath-top .mov .prth{width:48px;height:48px}}
 :is(#wath,#wath-top) .upx{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14.5px;color:#3a3350;background:#f6f3fc;border:1px solid #d9d3ec;border-radius:12px;padding:10px 14px}
 :is(#wath,#wath-top) .upx b{color:#6152a0}
 :is(#wath,#wath-top) .ups{position:relative;margin:6px 0 0;padding-left:34px}
