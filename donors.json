@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T09:45:31.376Z",
+  "updated": "2026-11-24T20:12:43.424Z",
   "count": 99,
   "source": "pledge-json-v2",
   "totals": {
@@ -151,7 +151,7 @@
       "name": "Ian Pai",
       "anonymous": false,
       "amount": 200,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "matched": true
     },
     {
