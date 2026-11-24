@@ -3,7 +3,7 @@ Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `0de5d9b892c7dad0180a9ffc9db33b9b95bed9e4` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `808cfd905bc50bb19879e87aedccad3e2be28c44` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -727,6 +727,16 @@ Claude Code updates this file at the end of each session.
    master-donors.json went from 306 to 308 gifts (+$6,000). Expected on every page that reads it (live /donors, /donate, the new
    home page): supporters +2, raised +$12,000 with matching, matching funds left -$6,000. To undo: remove the two lines and rebuild.
    Neither person has a member account on the new site; none was created.
+   Nov 23 (challenges after the two Oct 15 gifts): the page recomputes who each challenge matched from the gift list, oldest first.
+   With Sunny Bates and Allie Hoffman added (both matched, Oct 15), compared before and after in the test page:
+   - Osters' $60K: now includes both; fully funded Oct 20 (was Nov 10); 66 people (was 77).
+   - Kasey & David's $25K: fully funded Nov 12 (was Nov 20); 16 people (was 7).
+   - Rachel's $50K (open): $29,439 matched (was $23,439), $20,561 left (was $26,561); 5 gifts (was 1).
+   - Totals: raised +$12,000, supporters +2.
+   FIXED on /home-dev: the Osters' "76 people" was typed in (in the list of challenges and in the matching-pool update text).
+   It is now counted from the gifts like the others. The live /donate and /donors pages read the same files; not opened to check.
+   Member accounts created for Allie Hoffman and Sunny Bates (Nirvan gave both emails here); no email sent; no gifts on the
+   accounts yet (their dashboards show $0 until he says to add them as hand-entered gifts not shown on the wall).
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
