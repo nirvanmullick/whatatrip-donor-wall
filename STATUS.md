@@ -3,7 +3,7 @@ Last updated Nov 23, 2026 (checkout section added by the checkout session; the r
 Claude Code updates this file at the end of each session.
 
 ## Live builds
-- whatatrip.com/home-dev (`VERSION-DEV`) serves `95ef11057f51a1f4f546c39d7595657ff0d4998c` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
+- whatatrip.com/home-dev (`VERSION-DEV`) serves `44a607f0ca7f6c47230341e84270fd87f322f53e` (Nov 22: honeycomb grid of supporters, roomier preview card, full-page profile).
 - /home-test (`VERSION`) still serves `210cca4cc14a26ee9f4797ff6c559141f88428e0`. Move it only when Nirvan says so.
 
 ## Built so far (on /home-dev)
@@ -788,6 +788,8 @@ Claude Code updates this file at the end of each session.
    - Decided: progress bar not ready ("I need to work on this more"); test site host = Cloudflare (his questions relayed to
      the test-site session); reminder email test later.
    - NEXT: NIRVANA feed (yes) and drag to reorder featured voices (yes).
+   Nov 23: drag to reorder featured voices (his yes): Owners and Admins, in the Featured order, drag a pinned voice by its
+   handle onto another; the order saves to site settings. Move up / Move down stay in the menu for keyboards. Sample-tested.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
