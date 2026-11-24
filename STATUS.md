@@ -762,6 +762,13 @@ Claude Code updates this file at the end of each session.
    - LIVE on /home-dev: every "$25,000" for starting a challenge now says $10,000 (Join us pop-up, Start a challenge how-it-works
      and form, challenge list, matching-pool update, More ways to help "From $10K"); the form refuses less than $10,000.
    - The checkout (Stripe session's file) was set to $5,000 earlier today; told it the new minimum is $10,000.
+   Nov 23 (decisions):
+   - Sunny Bates and Allie Hoffman: each gift also recorded on their member account (offline, Oct 15, not shown on the wall), so
+     their dashboards show $5,000 and $1,000. OPEN: the database level list calls $1,000 "MAPS Makers" while the page calls it
+     "Wayfinders" (its levels table is out of date); and gift method has no "daf" (Sunny's account gift says "other"). Both are
+     database changes that need his yes.
+   - Team-only test emails (allow-list of internal addresses): DEFERRED by Nirvan until after the site moves off Squarespace.
+     Note: until then the checkout's "Remind me later" email can still go to any address typed in.
    ASKED, not built yet: members posting updates on their profile with public/members/only-me visibility (needs a migration);
    Rick managing his own page and having an invite link (needs a member account linked to the crew page).
    STILL TO DO from that list and later messages: move "Learn about Arcturus" up under the perk levels with a divider;
