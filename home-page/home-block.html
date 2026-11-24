@@ -1769,9 +1769,18 @@ html.wath-pin #wath .cols.second>.mwside{top:calc(93px + var(--wath-hh,0px))}
 #wath-top .mov .gaddf .mck input{margin-top:3px;flex:none}
 #wath-top .sppg .sphv{position:relative;overflow:hidden;margin:0!important;width:auto!important;order:0!important;border:1px solid #d9d3ec;border-radius:0;cursor:default;align-self:stretch}
 #wath-top .sppg .sphv:before{display:none!important}
-#wath-top .sppg .sphv .vjme{z-index:3;transform:scale(1.28);filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 8px rgba(27,21,38,.45));animation:none}
+#wath-top .sppg .sphv .vjme{z-index:3;transform:scale(1.12);filter:drop-shadow(0 2px 8px rgba(27,21,38,.45))}
 #wath-top .sppg .sphv .vjme em{opacity:1}
-#wath-top .sppg .sphv .vjln{position:absolute;z-index:2;height:2px;background:rgba(255,255,255,.9);transform-origin:0 50%;pointer-events:none;border-radius:2px}
+#wath-top .sppg .sphv .vjpath{position:absolute;inset:0;z-index:2;pointer-events:none;display:block}
+#wath-top .sppg .sphv .vjpath svg{display:block;width:100%;height:100%;overflow:visible}
+#wath-top .sppg .sphv .vjpb{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+#wath-top .sppg .sphv .vjpl{fill:none;stroke:#fff;stroke-width:3;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px rgba(217,209,238,.9));animation:sphRun 2.6s cubic-bezier(.45,0,.3,1) infinite}
+#wath-top .sppg .sphv .vjj{animation:sphGlow 2.6s ease-in-out infinite}
+#wath-top .sppg .sphv .vjme{animation:sphMe 2.6s ease-in-out infinite}
+@keyframes sphRun{0%{stroke-dashoffset:var(--d0);opacity:0}12%{opacity:1}78%{opacity:1}92%,100%{stroke-dashoffset:var(--d1);opacity:0}}
+@keyframes sphGlow{0%,100%{box-shadow:0 10px 28px rgba(27,21,38,.35),0 0 0 0 rgba(255,255,255,0)}12%{box-shadow:0 10px 28px rgba(27,21,38,.35),0 0 18px 4px rgba(255,255,255,.75)}40%{box-shadow:0 10px 28px rgba(27,21,38,.35),0 0 0 0 rgba(255,255,255,0)}}
+@keyframes sphMe{0%,70%,100%{filter:drop-shadow(0 2px 8px rgba(27,21,38,.45))}86%{filter:drop-shadow(0 0 10px #fff) drop-shadow(0 2px 8px rgba(27,21,38,.45))}}
+@media(prefers-reduced-motion:reduce){#wath-top .sppg .sphv .vjpl{animation:none;stroke-dasharray:none!important;opacity:.9}#wath-top .sppg .sphv .vjj,#wath-top .sppg .sphv .vjme{animation:none}}
 #wath-top .sppg .sphv .vjj{width:auto!important;min-width:0;max-width:86%;padding:0 20px;white-space:nowrap;font-size:clamp(13px,2.4cqw,17px)}
 #wath-top .sppgc.sphon{grid-template-rows:auto 1fr}
 #wath-top .sppgc>.spme{grid-column:2;grid-row:1}
@@ -2998,14 +3007,20 @@ function sppgLeave(o){try{sppgNav(false);if(o._sy!=null)window.scrollTo({top:o._
 function spHandle(n){var k=String(n||'').toLowerCase();try{if(SUPSL&&SUPSL.of&&SUPSL.of[k])return String(SUPSL.of[k]).toLowerCase()}catch(e){}return String(supSlugOf(n)||'').toLowerCase()}
 function spViaLink(n){var h=spHandle(n);if(!h)return false;try{if(REFURL&&REFURL===h)return true;if(REF&&REF.h===h)return true}catch(e){}return false}
 function spCredit(n){try{if(REF&&REF.h)return;var h=spHandle(n);if(!h)return;REF={h:h,at:Date.now()};localStorage.setItem('wath:ref',JSON.stringify(REF))}catch(e){}}
-function spHeroDraw(hero,n){try{vjDraw(hero,false)}catch(e){return}var hv=hero.querySelector('.vjh'),bt=hero.querySelector('.vjj'),old=hero.querySelector('.vjln');if(old)old.parentNode.removeChild(old);if(!hv||!bt)return;
-  var T2=[].slice.call(hv.querySelectorAll('.chhx')),mine=T2.filter(function(x){return x.getAttribute('data-supp')===n})[0];if(!mine)return;
-  var hr=hero.getBoundingClientRect(),br=bt.getBoundingClientRect(),bcy=br.top+br.height/2,best=null,bd=1e9;
-  T2.forEach(function(x){var r=x.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;if(cx<br.right+r.width*.95||cx>hr.right-r.width*.4)return;var dd=Math.abs(cy-bcy)*3+(cx-br.right);if(dd<bd){bd=dd;best=x}});if(!best)return;
-  var c=mine.cloneNode(true);c.style.left=best.style.left;c.style.top=best.style.top;c.style.width=best.style.width;c.style.height=best.style.height;c.style.fontSize=best.style.fontSize;c.style.animation='none';c.style.setProperty('--ko','.92');c.style.setProperty('--eo','1');c.classList.add('vjme');c.setAttribute('aria-label',n);best.parentNode.replaceChild(c,best);
-  var cr=c.getBoundingClientRect(),x1=br.right-hr.left,y1=bcy-hr.top,x2=cr.left+cr.width*.2-hr.left,y2=cr.top+cr.height/2-hr.top,len=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)),ln=document.createElement('i');ln.className='vjln';ln.setAttribute('aria-hidden','true');ln.style.cssText='left:'+x1.toFixed(1)+'px;top:'+(y1-1).toFixed(1)+'px;width:'+len.toFixed(1)+'px;transform:rotate('+(Math.atan2(y2-y1,x2-x1)*180/Math.PI).toFixed(2)+'deg)';hero.querySelector('.vj').appendChild(ln)}
+/* Nov 23 (Nirvan): the person's hexagon sits one hexagon to the right of the button. The two are joined by a line that runs in the gaps
+   between the hexagons (along the top edges of the hexagon in between), and a light travels from the button along that line to their hexagon. */
+function spHeroDraw(hero,n){try{vjDraw(hero,false)}catch(e){return}var hv=hero.querySelector('.vjh'),bt=hero.querySelector('.vjj'),old=hero.querySelector('.vjpath');if(old)old.parentNode.removeChild(old);if(!hv||!bt)return;
+  var T2=[].slice.call(hv.querySelectorAll('.chhx')),mine=T2.filter(function(x){return x.getAttribute('data-supp')===n})[0];if(!mine||!T2.length)return;
+  var hr=hero.getBoundingClientRect(),br=bt.getBoundingClientRect(),bcy=br.top+br.height/2-hr.top,bR=br.right-hr.left,ts=parseFloat(T2[0].style.width)||0;if(!ts)return;var sz=ts/.95,hw=sz*.866,R=sz/2;
+  var C=T2.map(function(x){return {x:x,cx:parseFloat(x.style.left)+ts/2,cy:parseFloat(x.style.top)+ts/2}}),rowY=null,bd=1e9;C.forEach(function(c){var dd=Math.abs(c.cy-bcy);if(dd<bd-.5){bd=dd;rowY=c.cy}});
+  var row=C.filter(function(c){return Math.abs(c.cy-rowY)<1}).sort(function(p,q){return p.cx-q.cx}),gi=-1;row.forEach(function(c,i){if(gi<0&&c.cx-hw/2>=bR+2)gi=i});if(gi<0||gi+1>=row.length)return;var G=row[gi],M=row[gi+1];if(M.cx+hw/2>hr.width-2)return;
+  var c=mine.cloneNode(true);c.style.left=M.x.style.left;c.style.top=M.x.style.top;c.style.width=M.x.style.width;c.style.height=M.x.style.height;c.style.fontSize=M.x.style.fontSize;c.style.animation='';c.style.setProperty('--ko','.92');c.style.setProperty('--eo','1');c.classList.add('vjme');c.setAttribute('aria-label',n);M.x.parentNode.replaceChild(c,M.x);
+  var P=[[bR,G.cy-R/2],[G.cx-hw/2,G.cy-R/2],[G.cx,G.cy-R],[G.cx+hw/2,G.cy-R/2]],len=0;for(var i=1;i<P.length;i++)len+=Math.sqrt(Math.pow(P[i][0]-P[i-1][0],2)+Math.pow(P[i][1]-P[i-1][1],2));
+  var pts=P.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' '),dash=Math.max(10,len*.28),sv=document.createElement('span');sv.className='vjpath';sv.setAttribute('aria-hidden','true');
+  sv.innerHTML='<svg width="'+hr.width.toFixed(0)+'" height="'+hr.height.toFixed(0)+'" viewBox="0 0 '+hr.width.toFixed(0)+' '+hr.height.toFixed(0)+'"><polyline class="vjpb" points="'+pts+'"/><polyline class="vjpl" points="'+pts+'" style="stroke-dasharray:'+dash.toFixed(1)+' '+(len+dash).toFixed(1)+';--d0:'+dash.toFixed(1)+';--d1:-'+len.toFixed(1)+'"/></svg>';
+  hero.querySelector('.vj').appendChild(sv)}
 function spHero(o,n,view,into){var grid=o.querySelector('.sppgc'),L=o.querySelector('.sppgL');if(!grid||!L||grid.querySelector('.sphv'))return;var fn=String(n).split(/\s*&\s*|\s+/)[0],pl=/&| and /.test(n),who=pl?n:fn,via=spViaLink(n),lab=(via?'Join ':'Give alongside ')+who;
-  var hero=document.createElement('div');hero.className='video vjon sphv';hero.innerHTML='<span class="vj"><span class="vjh"></span><span class="vjs" aria-hidden="true"></span><span class="vjw"><b class="vjc"><span>Science can change policy.</span><span>Stories can change culture.</span></b><button type="button" class="vjj" data-spjoin>'+esc(lab)+'</button><button type="button" class="vjr" data-sptrailer aria-label="Watch the trailer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><span>Watch the trailer</span></button></span></span>';
+  var hero=document.createElement('div');hero.className='video vjon sphv';hero.innerHTML='<span class="vj"><span class="vjh"></span><span class="vjs" aria-hidden="true"></span><span class="vjw"><b class="vjc"><span>Science can change policy.</span><span>Stories can change culture.</span></b><button type="button" class="vjj" data-spjoin aria-label="Join '+esc(who)+' in supporting the film">Join me</button><button type="button" class="vjr" data-sptrailer aria-label="Watch the trailer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><span>Watch the trailer</span></button></span></span>';
   L.insertBefore(hero,L.firstChild);
   if(view!=='own'){var hd=into.querySelector('.bovh'),lv=hd&&hd.querySelector('[data-spf="display_name"] span'),me=document.createElement('section');me.className='sppgcd spme';
     me.innerHTML='<div class="spmh">'+av(n)+'<div class="spmn"><b>'+esc(n)+'</b>'+(lv&&lv.textContent.trim()?'<span>'+esc(lv.textContent.trim())+'</span>':'')+'</div></div><button type="button" class="btn pri" data-spjoin>'+esc(lab)+'</button><button type="button" class="btn" data-spshare>Share this profile</button><p class="spmnote">Every gift goes to the film through Creative Visions. '+esc(who)+' '+(pl?'are':'is')+' credited for the introduction.</p>';
