@@ -14,6 +14,10 @@ const PAGES = ["/home-dev", "/home-test", "/donate", "/"]; // where the "finish 
 const FROM = "WHAT A TRIP: The Rick Doblin Story <members@whatatrip.com>";
 const REPLY_TO = "support@whatatrip.com";
 const ORIGINS = ["https://whatatrip.com", "https://www.whatatrip.com"];
+// While testing (Nirvan, Nov 23), reminders go only to the team: any @interconnected.is or @whatatrip.com address,
+// and nirvan.mullick@gmail.com. Every other address is refused here, whatever the page sends.
+const TEAM_ONLY = true;
+const teamOk = (e: string) => /@(interconnected\.is|whatatrip\.com)$/.test(e) || e === "nirvan.mullick@gmail.com";
 const money = (n: number) => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 2 });
 
 Deno.serve(async (req: Request) => {
@@ -38,6 +42,7 @@ Deno.serve(async (req: Request) => {
   const page = PAGES.includes(String(body.page ?? "")) ? String(body.page) : "/";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return json({ ok: false, reason: "bad_email" }, 400);
   if (!(amount >= 5 && amount <= 10000000)) return json({ ok: false, reason: "bad_amount" }, 400);
+  if (TEAM_ONLY && !teamOk(email)) return json({ ok: false, reason: "team_only" });
 
   const url = Deno.env.get("SUPABASE_URL"), skey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !skey) return json({ ok: false, reason: "not_set_up" });
