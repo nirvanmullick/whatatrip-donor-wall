@@ -1,5 +1,5 @@
 # What a Trip website: status
-Last updated Nov 22, 2026 (written from the claude.ai session notes of Nov 15–18).
+Last updated Nov 23, 2026 (checkout section added by the checkout session; the rest from the claude.ai session notes of Nov 15–18 and later sessions).
 Claude Code updates this file at the end of each session.
 
 ## Live builds
@@ -782,6 +782,53 @@ Claude Code updates this file at the end of each session.
 3. In-house member fundraisers (members never leave for Pledge), and perks option A or B for fundraisers.
 4. Whether and when to move off Squarespace (and whether Cloudflare is acceptable).
 5. Real bios for Juli Crockett, Micah Van Hove and Jeffrey Reeser.
+
+## New checkout (Stripe test), status Nov 23, 2026
+Written by the checkout session. This section supersedes the older checkout notes above (lines that say the test
+checkout is not on the site are out of date: Nirvan approved /home-dev himself on Nov 22).
+
+**Where it lives.** Source `whatatrip-site/mockups/stripe-checkout.html` (outside the repo). It is built into the
+self-contained `home-page/checkout/checkout.html` and loaded by app.js (`watCoOpen`) into a full-window frame on
+/home-dev only. `home-page/checkout/VERSION-CHECKOUT` points at the commit to serve (now `63871da`). Private test page
+with extra screens (Fiscal Sponsor, store, receipts): https://claude.ai/artifact/TuiBjyLjFWFa5hZvqzBx3z (v56+).
+How to rebuild, test and publish: `whatatrip-site/mockups/checkout-embed/HOW-TO-PUBLISH.md`; tests are in the same folder.
+
+**Built and live on /home-dev (Nov 22–23).**
+- Steps: Amount, Perks (only if any apply), Details (skipped for logged-in members unless a shirt needs an address),
+  Payment (Pledge-style: pick a method, then only that method's fields), then credit confirmation, thank-you, share.
+- Wide desktop layout: steps on the left, a sticky "Your gift" panel on the right with a labelled "What you pay" box
+  (the only big number) and a quiet "For your taxes, not a charge" box; on phones a pinned bar at the perks step.
+- Logged-in members: greeted by first name, no name/email step, saved anonymous choice and credit name pre-filled,
+  real invite link shown, testimonial not asked again if they have one, "Your referral" row with Remove.
+- Monthly: one-line heading swap, three end choices (date via our own calendar, until the film premieres, until I say
+  so), random pink/purple heart burst, note on tokens for monthly perks.
+- Red field errors with a message under each field; country picker with country-specific address fields; corner
+  "Maybe next time?" reminder card; Donate opens at once (file fetched after page load).
+- Matching challenges start at $5,000 (Nirvan, Nov 23).
+- After a gift: hands off to the real Member Dashboard (thank-you card, tour) or to its My profile / My perks pages.
+
+**Database (all approved by Nirvan in the checkout session, all named migrations).**
+- `checkout_test_gifts_*`: `members.is_test`, `gifts.is_test` (source 'test'), `gift_checkout`, private switch
+  `checkout_test_mode` (on). RPCs `record_test_gift`, `clear_test_gifts`, `test_gift_status`, `set_test_gifts`.
+  Reference: `home-page/supabase/checkout_test_gifts.sql`.
+- `..._total_and_testimonial`: a recognised email sees its new total unless the profile is anonymous or private.
+- `..._referral_at_gift`: the referral is written at the gift (source 'test'; cleared by `clear_test_gifts`).
+- `checkout_reminders` + Edge Function `checkout-reminder` (Resend; one per address per day, 20/hour, 150/day).
+  Reference: `home-page/supabase/checkout_reminders.sql`, `home-page/supabase/functions/checkout-reminder/`.
+- No real reminder email has been sent yet: Nirvan to try one on /home-dev.
+
+**Decisions on record (Nov 23).** Shipping included worldwide for now. Logo of Creative Visions in the footer is fine.
+"Nonprofit" one word. Two names per member: real name for the account and greetings, credit name (may be Anonymous)
+for credits and public pages. Recurring gifts earn perk tokens; redeeming pays fair market value separately.
+
+**Not built / waiting.**
+- Real payments, monthly charging, a "Billing" line in the dashboard: need the Interconnected Media Stripe account.
+- Policy pages (/disclosures, /terms, /privacy, /shipping) do not exist; drafts with 44 open questions are in
+  `whatatrip-site/policy-drafts/` for Juli and counsel.
+- Before launch: switch test mode off (`set_test_gifts(false)`) and clear test gifts. A Site Management button for this
+  is requested from the home-page session.
+- Unreleased code is in the public repo until the repo switch (stages 2 to 5, each needs Nirvan's go-ahead).
+- Stale checkout tests: none known after Nov 23 (mc, sp, sm, emb, t updated).
 
 ## Open technical items
 - Cloudflare Turnstile check on non-supporter messages (needs a free Cloudflare account; Nirvan pastes the secret into Supabase).
