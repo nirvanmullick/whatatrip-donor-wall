@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:12:43.424Z",
+  "updated": "2026-11-25T03:42:30.201Z",
   "count": 99,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Dr. Ioana Bina & James Ehrhart",
       "anonymous": false,
       "amount": 25000,
-      "time": "4 days ago",
+      "time": "5 days ago",
       "matched": false
     },
     {
@@ -42,7 +42,7 @@
       "name": "Zhana Vrangalova",
       "anonymous": false,
       "amount": 100,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -545,7 +545,7 @@
       "name": "Beth Karlin",
       "anonymous": false,
       "amount": 50,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
