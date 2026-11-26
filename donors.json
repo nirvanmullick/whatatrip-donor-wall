@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T19:06:31.714Z",
+  "updated": "2026-11-26T23:15:07.909Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Joko Wunderly",
       "anonymous": false,
       "amount": 5000,
-      "time": "14 hours ago",
+      "time": "18 hours ago",
       "matched": true
     },
     {
@@ -24,7 +24,7 @@
       "name": "Dr. Ioana Bina & James Ehrhart",
       "anonymous": false,
       "amount": 25000,
-      "time": "6 days ago",
+      "time": "7 days ago",
       "matched": false
     },
     {
@@ -509,7 +509,7 @@
       "ts": "2026-10-11T20:35:37.603-07:00",
       "anonymous": true,
       "amount": 250,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
