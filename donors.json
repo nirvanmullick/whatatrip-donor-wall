@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T14:23:15.922Z",
+  "updated": "2026-11-26T19:06:31.714Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Joko Wunderly",
       "anonymous": false,
       "amount": 5000,
-      "time": "10 hours ago",
+      "time": "14 hours ago",
       "matched": true
     },
     {
@@ -140,7 +140,7 @@
       "name": "Carla Detchon",
       "anonymous": false,
       "amount": 500,
-      "time": "4 weeks ago",
+      "time": "1 month ago",
       "comment": "Let's make this happen--can't wait to see it!",
       "reply": "Thank you SO much for helping make it happen!",
       "matched": true
@@ -518,7 +518,7 @@
       "name": "Wendy Marussich",
       "anonymous": false,
       "amount": 100,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -527,7 +527,7 @@
       "name": "Jean Fleury",
       "anonymous": false,
       "amount": 100,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -536,7 +536,7 @@
       "name": "Pamela O’Leary",
       "anonymous": false,
       "amount": 20,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -545,7 +545,7 @@
       "name": "Douglas Frey",
       "anonymous": false,
       "amount": 100,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
