@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-24T03:09:26.943Z",
- "count": 308,
+ "updated": "2026-11-26T14:23:15.976Z",
+ "count": 309,
  "gifts": [
+  {
+   "date": "2026-11-25T20:51:14.314-08:00",
+   "name": "Joko Wunderly",
+   "name_on_record": "Joko Wunderly",
+   "amount": 5000,
+   "source": "pledge",
+   "anonymous": false,
+   "matched": true,
+   "pledge_id": 34349172,
+   "via": "",
+   "comment": "",
+   "added_by": "automatic (Pledge)"
+  },
   {
    "date": "2026-11-20T02:51:53.943-08:00",
    "name": "Dr. Ioana Bina & James Ehrhart",

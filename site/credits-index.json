@@ -1134,6 +1134,13 @@
   "goes_to": "https://whatatrip.com/donors#donor-john-quigley"
  },
  {
+  "slug": "joko-wunderly",
+  "name": "Joko Wunderly",
+  "kind": "donor",
+  "url": "https://credits.whatatrip.com/joko-wunderly",
+  "goes_to": "https://whatatrip.com/donors#donor-joko-wunderly"
+ },
+ {
   "slug": "jon-evens",
   "name": "Jon Evens",
   "kind": "donor",
