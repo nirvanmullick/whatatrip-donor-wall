@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T15:19:04.913Z",
+  "updated": "2026-11-27T19:02:54.309Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Joko Wunderly",
       "anonymous": false,
       "amount": 5000,
-      "time": "1 day ago",
+      "time": "2 days ago",
       "matched": true
     },
     {
