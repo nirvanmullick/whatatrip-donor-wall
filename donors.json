@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T23:15:07.909Z",
+  "updated": "2026-11-27T05:09:36.654Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Joko Wunderly",
       "anonymous": false,
       "amount": 5000,
-      "time": "18 hours ago",
+      "time": "1 day ago",
       "matched": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Chris Pinault",
       "anonymous": false,
       "amount": 200,
-      "time": "1 week ago",
+      "time": "2 weeks ago",
       "matched": true
     },
     {
@@ -95,7 +95,7 @@
       "name": "Jamie Frankenberg",
       "anonymous": false,
       "amount": 5,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
