@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T04:56:38.619Z",
+  "updated": "2026-11-28T14:05:39.736Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -86,7 +86,7 @@
       "ts": "2026-11-10T17:41:30.520-08:00",
       "anonymous": true,
       "amount": 250,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -466,7 +466,7 @@
       "name": "LauraLe Wunsch",
       "anonymous": false,
       "amount": 100,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "comment": "Thanks for sharing at the Portal! I'd love to be on the WhatsApp Group. All the best, and see you again soon! \nLL  / LauraLe(e) <3",
       "matched": true
     },
