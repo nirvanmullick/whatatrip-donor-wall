@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T14:05:39.736Z",
+  "updated": "2026-11-28T17:37:38.227Z",
   "count": 100,
   "source": "pledge-json-v2",
   "totals": {
@@ -15,7 +15,7 @@
       "name": "Joko Wunderly",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 days ago",
+      "time": "3 days ago",
       "matched": true
     },
     {
@@ -78,7 +78,7 @@
       "name": "Alexa Albert",
       "anonymous": false,
       "amount": 5000,
-      "time": "2 weeks ago",
+      "time": "3 weeks ago",
       "matched": true
     },
     {
@@ -430,7 +430,7 @@
       "name": "Sarah Gordon",
       "anonymous": false,
       "amount": 111,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -439,7 +439,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 1000,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -448,7 +448,7 @@
       "name": "Courtney Barnes",
       "anonymous": false,
       "amount": 111,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
@@ -457,7 +457,7 @@
       "name": "Jonelle Toothman",
       "anonymous": false,
       "amount": 500,
-      "time": "1 month ago",
+      "time": "2 months ago",
       "matched": true
     },
     {
